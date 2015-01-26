@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForModel('e57', 'E57', {
+moduleForModel('e57m', 'E57m', {
   // Specify the other units that are required for this test.
   needs: []
 });

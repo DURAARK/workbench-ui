@@ -6,7 +6,9 @@ var app = new EmberApp();
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
-//
+
+app.import('bower_components/ember-data-sails-adapter/ember-data-sails-adapter.js');
+
 // If you need to use different assets in different
 // environments, specify an object as the first parameter. That
 // object's keys should be the environment name and the values
