@@ -7,6 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route("e57metadata");
+  this.route("files");
 });
 
 export default Router;

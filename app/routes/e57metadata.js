@@ -21,7 +21,5 @@ export default Ember.Route.extend({
 	setupController: function(controller, model) {
 		controller.set('model', model);
 		controller.set('metadata', model.e57m);
-
-		console.log('')
 	}
 });
