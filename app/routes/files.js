@@ -8,6 +8,6 @@ default Ember.Route.extend({
 
     setupController: function(controller, model) {
         controller.set('model', model);
-        controller.set('files', model.get('files'));
+        controller.set('files', model);
     }
 });

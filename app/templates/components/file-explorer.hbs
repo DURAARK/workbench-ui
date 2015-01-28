@@ -1,7 +1,12 @@
 <h2>File Explorer:</h2>
 
-<ul>
 {{#each files}}
-	<li>Path: {{this}}</li>
-{{/each}}
+
+<h3>Path: {{path}}</h3>
+<ul>
+	<li>Size: {{size}}</li>
+	<li>Created at: {{ctime}}</li>
+	<li>Modified at: {{mtime}}</li>
 </ul>
+
+{{/each}}
