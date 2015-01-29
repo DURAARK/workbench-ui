@@ -17,5 +17,5 @@ RUN bower install --allow-root
 
 EXPOSE 4200
 
-CMD ["ember", "serve"]
+ENTRYPOINT ["ember", "serve", "--prod"]
 
