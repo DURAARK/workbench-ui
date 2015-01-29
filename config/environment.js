@@ -28,11 +28,27 @@ module.exports = function(environment) {
             },
             ifcmetadata: {
                 host: 'http://juliet.cgv.tugraz.at',
-                port: 5002
+                port: 5002,
+                // The endpoint where the current jobs ('pending' and 'finished') are returned
+                jobsEndpoint: '/ifcm',
+                // The endpoint where an extraction job can be posted
+                extractEndpoint: '/ifcm/extract',
+                // TODO: the JSON response from the API has one parent key, which is
+                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
+                // handling in the APIIfcMetadata and APIE57Metadata binding!
+                responseKey: 'ifcms'
             },
             e57metadata: {
                 host: 'http://juliet.cgv.tugraz.at',
-                port: 5003
+                port: 5003,
+                // The endpoint where the current jobs ('pending' and 'finished') are returned
+                jobsEndpoint: '/e57m',
+                // The endpoint where an extraction job can be posted
+                extractEndpoint: '/e57m/extract',
+                // TODO: the JSON response from the API has one parent key, which is
+                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
+                // handling in the APIIfcMetadata and APIE57Metadata binding!
+                responseKey: 'e57ms'
             }
         }
     }
@@ -45,20 +61,20 @@ module.exports = function(environment) {
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
         // Overwrite API endpoints for development environment:
-        ENV.DURAARKAPI = {
-            files: {
-                host: 'http://localhost',
-                port: 5001
-            },
-            ifcmetadata: {
-                host: 'http://localhost',
-                port: 5002
-            },
-            e57metadata: {
-                host: 'http://localhost',
-                port: 5003
-            }
-        };
+        // ENV.DURAARKAPI = {
+        //     files: {
+        //         host: 'http://localhost',
+        //         port: 5001
+        //     },
+        //     ifcmetadata: {
+        //         host: 'http://localhost',
+        //         port: 5002
+        //     },
+        //     e57metadata: {
+        //         host: 'http://localhost',
+        //         port: 5003
+        //     }
+        // };
     }
 
     if (environment === 'test') {
