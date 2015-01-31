@@ -23,12 +23,12 @@ module.exports = function(environment) {
         // config is overwritten below.
         DURAARKAPI: {
             files: {
-                host: 'http://files',
-                port: 5001
+                host: 'http://juliet.cgv.tugraz.at/files',
+                port: 80
             },
             ifcmetadata: {
-                host: 'http://ifcmetadata',
-                port: 5002,
+                host: 'http://juliet.cgv.tugraz.at/ifcmetadata',
+                port: 80,
                 // The endpoint where the current jobs ('pending' and 'finished') are returned
                 jobsEndpoint: '/ifcm',
                 // The endpoint where an extraction job can be posted
@@ -39,8 +39,8 @@ module.exports = function(environment) {
                 responseKey: 'ifcms'
             },
             e57metadata: {
-                host: 'http://e57metadata',
-                port: 5003,
+                host: 'http://juliet.cgv.tugraz.at/e57metadata',
+                port: 80,
                 // The endpoint where the current jobs ('pending' and 'finished') are returned
                 jobsEndpoint: '/e57m',
                 // The endpoint where an extraction job can be posted

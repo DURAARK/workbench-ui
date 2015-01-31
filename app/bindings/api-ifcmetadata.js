@@ -3,7 +3,7 @@ import MetadataExtractionAPIBase from './mixins/api-metadataextraction';
 import ENV from '../config/environment';
 
 var apiConfig = ENV.DURAARKAPI.ifcmetadata;
-var host = apiConfig.host + ':' + apiConfig.port;
+var host = apiConfig.host;// + ':' + apiConfig.port;
 
 export
 default Ember.Object.extend(MetadataExtractionAPIBase, {

@@ -3,7 +3,7 @@ import ApplicationAdapter from './application';
 import ENV from '../config/environment';
 
 var apiConfig = ENV.DURAARKAPI.files;
-var host = apiConfig.host + ':' + apiConfig.port;
+var host = apiConfig.host;// + ':' + apiConfig.port;
 
 console.log('Connecting to "Files" API via: ' + host);
 
