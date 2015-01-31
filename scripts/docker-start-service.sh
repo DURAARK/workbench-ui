@@ -17,4 +17,4 @@ echo "Removing "
 docker rm -f $CONTAINERNAME
 
 echo "\nStarted as "
-docker run -d -p $HOSTPORT:$DEFAULTPORT --name $CONTAINERNAME $IMAGENAME
+docker run -d -p $HOSTPORT:4200 --name $CONTAINERNAME --volumes-from microservice-files --link microservice-files:files --link microservice-ifcmetadata:ifcmetadata --link microservice-e57metadata:e57metadata $IMAGENAME
