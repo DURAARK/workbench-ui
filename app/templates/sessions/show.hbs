@@ -1,0 +1,15 @@
+<h2>Session: {{name}}</h2>
+
+<hr>
+
+<h3>Files:</h3>
+{{#each files}}
+	<h4>File: {{path}}</h4>
+	<ul>
+		<li>Size: {{size}}</li>
+		<li>Created at: {{ctime}}</li>
+		<li>Last modified: {{mtime}}</li>
+	</ul>
+
+	<hr>
+{{/each}}
