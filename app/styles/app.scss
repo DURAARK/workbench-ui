@@ -1,0 +1,8 @@
+@import "bourbon";
+@import "bower_components/susy/sass/susy";
+
+@import "ghost";
+
+.susy-test-item {
+	@include gallery(4 of 12);
+}

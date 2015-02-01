@@ -13,7 +13,10 @@
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.5",
     "qunit": "~1.17.1",
-    "ember-data-sails-adapter": "~2.1.1"
+    "ember-data-sails-adapter": "~2.1.1",
+    "normalize.css": "~3.0.2",
+    "bourbon": "3.2.1",
+    "susy": "~2.2.2"
   },
   "resolutions": {
     "ember": "1.8.1"
