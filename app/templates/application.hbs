@@ -1,3 +1,5 @@
+{{log sessions}}
+
 <nav class="global-nav" role="navigation">
 
 {{!--     <a class="nav-item" href="http://duraark.eu" title="DURAARK logo">
@@ -26,18 +28,27 @@
 
 <section id="ember861" class="ember-view content-list-content js-content-scrollbox">        
 <ol class="posts-list">
+{{#each session in sessions}}
 	<li id="ember877" class="ember-view active"><a id="ember879" class="ember-view permalink active" href="/ghost/1/" title="Edit this post">                    
-	<h3 class="entry-title">Review</h3>
+	<h3 class="entry-title">{{session.name}}</h3>
              <section class="entry-meta">
                         <img class="avatar" title="Martin Hecher" src="/shared/img/user-image.png" data-bindattr-882="882">
-                        <span class="author">Martin Hecher</span>
+                        <span class="author">{{session.author}}</span>
                         <span class="status">
                                     <time datetime="1422791344895" class="date published">
-                                        Published an hour ago
+                                        {{session.author}}
+                                    </time>
+                        </span>
+                        <span class="status">
+                                    <time datetime="1422791344895" class="date published">
+                                        (Published an hour ago)
                                     </time>
                         </span>
              </section>
-</a></li>        </ol>
+</a></li>       
+{{/each}}
+ </ol>
+
 </section>    </section>
     <section class="content-preview js-content-preview" data-bindattr-862="862">
         <div id="ember680" class="ember-view"><header class="post-preview-header clearfix">
@@ -46,11 +57,11 @@
 {{!--     <button type="button" class="unfeatured" data-bindattr-889="889" title="Feature this post" data-ember-action="890">
         <span class="hidden">Star</span>
     </button> --}}
-    <small class="post-published-by">
-        <span class="status">Created</span>
+{{!--     <small class="post-published-by">
+        <span class="status">   Created</span>
         <span class="normal">by</span>
         <span class="author">Martin Hecher</span>
-    </small>
+    </small> --}}
     <section class="post-controls">
         <a id="ember891" class="ember-view btn btn-default post-edit" href="/ghost/editor/1/"> Edit</a>
     </section>
