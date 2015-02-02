@@ -1,7 +1,13 @@
 <section id="ember900" class="ember-view content-preview-content">    
   <div class="wrapper">
-        <h1>Welcome to your sessions</h1>
+        <h1>Welcome to the WorkbenchUI</h1>
         <hr>
-        <p>Select an intem on the left to continue previous work.</p>
+        <h2>Choose what you want to do:</h2>
+        <ul>
+			<li><br><br>&#8227; {{#link-to "sessions"}}SESSIONS{{/link-to}} Create a new session or work on one of the existing ones to create SIP archives (select from the list on the left).</li>
+			<li><br><br>&#8227; {{#link-to "sessions"}}SEARCH & RETRIEVE{{/link-to}} Search the database of archived SIPs.</li>
+			<li><br><br>&#8227; {{#link-to "sessions"}}MAINTENANCE{{/link-to}} Perform maintenance operations.</li>
+			<li><br><br>&#8227; {{#link-to "sessions"}}SETTINGS{{/link-to}} Adjust you account settings.</li>
+        </ul>
   </div>
 </section>

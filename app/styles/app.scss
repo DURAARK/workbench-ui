@@ -3,6 +3,7 @@
 
 @import "ghost";
 @import "base";
+@import "da-session";
 
 .susy-test-item {
 	@include gallery(4 of 12);

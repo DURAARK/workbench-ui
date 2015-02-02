@@ -1,1 +1,15 @@
-<h4>Files overview</h4>
+<section class="post-controls">
+    <a id="ember891" class="ember-view btn btn-default post-edit" href="/ghost/editor/1/"> Edit</a>
+</section>
+
+<br>
+
+<span class="da-workflow-description-small">Added to archive:</span>
+
+<br><br>
+
+<ul>
+{{#each file in model}}
+	<li>{{file.path}} &#8594; valid: yes</li>
+{{/each}}
+</ul>

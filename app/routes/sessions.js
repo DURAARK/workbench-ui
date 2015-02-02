@@ -66,6 +66,12 @@ default Ember.Route.extend({
             component: 'workflow-overview-geometricenrichment',
             status: 'unfinished',
             customData: {}
+        }, {
+            id: 4,
+            name: 'SIP Generation',
+            component: 'workflow-overview-sipgenerator',
+            status: 'unfinished',
+            customData: {}
         }]);
 
         this.store.pushMany('session', [{
@@ -74,14 +80,14 @@ default Ember.Route.extend({
             author: 'Martin Hecher',
             created: new Date(),
             status: 'finished',
-            workflows: [0, 1, 2, 3]
-        },{
+            workflows: [0, 1, 2, 3, 4]
+        }, {
             id: 1,
             name: 'Demosession',
             author: 'Martin Hecher',
             created: new Date(),
             status: 'inprocess',
-            workflows: [0, 1, 2, 3]
+            workflows: [0, 1, 2, 3, 4]
         }]);
 
         return this.store.all('session');

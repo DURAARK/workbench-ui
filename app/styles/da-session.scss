@@ -1,0 +1,40 @@
+@import "bower_components/susy/sass/susy";
+
+.da-session-header {
+	font-size: 3em;
+	text-align: center;
+}
+
+.da-session-workflow-header {
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid #edece4;
+	line-height: .1em;
+	margin: 30px 0 7px;
+}
+
+.da-session-workflow-header span {
+	background: #fff;
+	color: #929292;
+	font-size: 16px;
+	padding: 0 10px;
+}
+
+.da-session-start {
+	color: #929292;
+	font-size: 3em;
+	text-align: center;
+	margin-left: 0.8em;
+}
+
+.da-session-next {
+	color: #929292;
+	font-size: 3em;
+	text-align: center;
+}
+
+.da-workflow-description-small {
+	font-size: 1.5em;
+	text-align: center;
+}

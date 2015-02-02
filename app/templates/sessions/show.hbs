@@ -1,13 +1,18 @@
-<h2>Session: {{name}}</h2>
+<div class="da-session-header">{{name}}</div>
+<div style="text-align: center;">Creator: {{author}} / {{created}}</div>
 
-<section class="entry-meta">
-	<ul>
-	{{#each workflow in this.workflows}}
-		<li class="workflow-header">
-			<span>{{workflow.name}}</span>
-		</li>
+<div class="da-session-start">&#8213;&#8213;&#8213;</div>
 
-		{{dynamic-component type=workflow.component onClick="thingClicked" value=something}}
-	{{/each}}
-	</ul>  
-</section>
+<ul>
+{{#each workflow in this.workflows}}
+	<li class="da-session-workflow-header">
+		<span>{{workflow.name}}</span>
+	</li>
+
+	{{dynamic-component type=workflow.component model=workflow.customData}}
+
+	<div class="da-session-workflow-header"></div>
+
+	<div class="da-session-next">&#8615;</div>
+{{/each}}
+</ul>  
