@@ -2,7 +2,22 @@
 @import "bower_components/susy/sass/susy";
 
 @import "ghost";
+@import "base";
 
 .susy-test-item {
 	@include gallery(4 of 12);
+}
+
+.workflow-header {
+	text-align: center;
+	border-bottom: 1px solid #edece4;
+	line-height: .1em;
+	margin: 30px 0 7px;
+}
+
+.workflow-header span {
+	background: #fff;
+	color: #929292;
+	font-size: 16px;
+	padding: 0 10px;
 }
