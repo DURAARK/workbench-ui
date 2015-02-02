@@ -5,6 +5,8 @@
 
 <ul>
 {{#each workflow in this.workflows}}
+	<div class="da-session-next">&#8615;</div>
+
 	<li class="da-session-workflow-header">
 		<span>{{workflow.name}}</span>
 	</li>
@@ -12,7 +14,5 @@
 	{{dynamic-component type=workflow.component model=workflow.customData}}
 
 	<div class="da-session-workflow-header"></div>
-
-	<div class="da-session-next">&#8615;</div>
 {{/each}}
 </ul>  
