@@ -1,28 +1,3 @@
-<nav class="global-nav" role="navigation">
-
-{{!--     <a class="nav-item" href="http://duraark.eu" title="DURAARK logo">
-        <div class="nav-label"><i class="icon-ghost"></i> <span>Visit blog</span> </div>
-    </a> --}}
-
-    {{#link-to "files" classNames="nav-item nav-new js-nav-item"}}
-        <div class="nav-label"><i class="icon-add"></i> New Session</div>
-    {{/link-to}}
-
-    {{#link-to "files" classNames="nav-item nav-new js-nav-item"}}
-        <div class="nav-label"><i class="icon-add"></i> Search & Retrieve</div>
-    {{/link-to}}    
-
-    {{#link-to "files" classNames="nav-item nav-new js-nav-item"}}
-        <div class="nav-label"><i class="icon-add"></i> Maintenance</div>
-    {{/link-to}}
-
-    {{!-- {{#unless session.user.isAuthor}} --}}
-    {{#link-to "files" classNames="nav-item nav-settings js-nav-item"}}
-        <div class="nav-label"><i class="icon-settings2"></i> Settings</div>
-    {{/link-to}}
-    {{!-- {{/unless}} --}}
-</nav>{{! .global-nav }}
-
 <div class="page-content">
     <section class="content-list js-content-list" data-bindattr-849="849">
         <header class="floatingheader">
@@ -51,7 +26,7 @@
 						<li>{{input type="checkbox" name="rooms" checked=rooms}} Rooms</li>
 					</ul>
 
-					<div style="margin-top: 20px;border-width: 1px;border-style: solid;"><i class="icon-add"></i> SEARCH</div>
+					<div style="padding-left: 10px; margin-top: 20px;border-width: 1px;border-style: solid; width: 100px;"><i class="icon-add"></i> SEARCH</div>
 
 					<div style="margin-top: 35px; margin-bottom: -10px;">(You can store your search below for later reuse.)</div>
 
