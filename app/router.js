@@ -8,12 +8,12 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route("e57metadata");
   this.route("files");
-  this.resource("sessions", function() {
+  this.resource("preingest", function() {
   	this.route('index', { path: "/" });
   	this.route('show', { path: "/:id" });
   });
   this.route("search");
-  this.route("maintenance");
+  this.route("semenhance");
 });
 
 export default Router;
