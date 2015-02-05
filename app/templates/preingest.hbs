@@ -4,7 +4,9 @@
             <section class="content-filter">
                 <small>All Sessions</small>
             </section>
-            <a id="ember850" class="ember-view btn btn-green" href="/preingest" title="New Session"><span class="hidden">New Session</span></a>
+            {{#link-to "preingest.create" class="ember-view btn btn-green" title="New Session"}}<span class="hidden">New Session</span>{{/link-to}}
+
+            {{!-- <a id="ember850" class="ember-view btn btn-green" href="/preingest" title="New Session"><span class="hidden">New Session</span></a> --}}
         </header>
 
 <section id="ember861" class="ember-view content-list-content js-content-scrollbox">        
@@ -15,15 +17,16 @@
              <section class="entry-meta">
                         &#9737;
                         {{!-- <img class="avatar" title="Martin Hecher" src="/shared/img/user-image.png" data-bindattr-882="882"> --}}
-                        <span class="author">{{session.author}}</span>
+                        <span class="author">{{session.creator}}</span>
                         <span class="status">
                                     <time datetime="1422791344895" class="date published">
-                                        {{session.author}}
+                                        {{session.creator}}
                                     </time>
                         </span>
+                        /
                         <span class="status">
                                     <time datetime="1422791344895" class="date published">
-                                        (Published an hour ago)
+                                        {{session.created}}
                                     </time>
                         </span>
              </section>     

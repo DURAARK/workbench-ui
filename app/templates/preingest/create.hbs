@@ -1,0 +1,21 @@
+<section class="content-preview-content">    
+  <div class="wrapper">
+        <h1>Create new session</h1>
+        <hr>
+
+		Session Name:<br><br>
+        {{input type="text" value=name disabled=entryNotAllowed size="10" placeholder="Session Name"}}
+
+		<div style="margin-top: 35px;">
+			Creator:<br><br>
+	        {{input type="text" value=creator disabled=entryNotAllowed size="10" placeholder="Creator"}}
+        </div>
+
+		<div style="margin-top: 35px;">
+	        Description:<br><br>
+	        {{input type="text" value=description disabled=entryNotAllowed size="10" placeholder="Description"}}
+        </div>
+
+		<button style="margin-top: 45px;" class="btn btn-green" id="create" {{action "createSession"}}>Create</button>        
+  </div>
+</section>

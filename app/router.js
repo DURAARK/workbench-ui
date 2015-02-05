@@ -11,6 +11,7 @@ Router.map(function() {
   this.resource("preingest", function() {
   	this.route('index', { path: "/" });
   	this.route('show', { path: "/:id" });
+  	this.route('create', { path: "/create" });
   });
   this.route("search");
   this.route("semenhance");
