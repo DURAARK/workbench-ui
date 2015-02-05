@@ -1,4 +1,14 @@
 import Ember from 'ember';
 
-// TODO: remove! 
-export default Ember.Controller.extend({});
+export
+default Ember.Controller.extend({
+    actions: {
+        selectFiles: function() {
+            // TODO: add files to session!
+            console.log('Selected files!');
+
+            this.transitionToRoute('preingest');
+        }
+    }
+    
+});

@@ -1,0 +1,8 @@
+{{!-- <label>{{input type="checkbox" checked=isSelected}} {{item.path}}</label> --}}
+
+<li {{action "selectItem" item}}>                
+	<a>
+	<div class="header">&#9737; {{item.path}}</div>
+	<div class="meta">Created: {{item.ctime}} / Last modified: {{item.atime}}</div>
+	</a>
+</li>  

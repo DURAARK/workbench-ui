@@ -1,16 +1,15 @@
-<h2>File Explorer:</h2>
+<ol class="fe-list">
+	{{#if this.showOnlySelected}}
 
-{{#each files}}
+		{{#each selectedItems}}
+			{{selectable-item item=this action="handleItemSelected"}}
+		{{/each}}
 
-<h3>Path: {{path}}</h3>
-<ul>
-	<li>Size: {{size}}</li>
-	<li>Created at: {{ctime}}</li>
-	<li>Modified at: {{mtime}}</li>
-</ul>
+	{{else}}
 
-<button {{action 'showMetadata' this}}>Show Metadata</button>
+		{{#each deselectedItems}}
+			{{selectable-item item=this action="handleItemSelected"}}
+		{{/each}}
 
-<hr>
-
-{{/each}}
+	{{/if}}
+</ol>

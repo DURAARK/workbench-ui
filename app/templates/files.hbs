@@ -1,4 +1,37 @@
-<h1>Available files</h1>
+<main id="main">
+	<section class="content-view-container">
+	    <section class="content-list">
+	        <header class="floatingheader">
+	            <section class="manage content-filter">
+	                <small>Selected Files</small>
+	            </section>
+	        </header>
 
-{{file-explorer files=controller.model}}
+			<section>
+				<button class="btn btn-green" {{action "selectFiles" session}}> Select</button>   
+			</section>
+
+			<section class="content-list-content js-content-scrollbox">        
+				<ol class="posts-list">
+				{{file-explorer items=model showOnlySelected=true}}
+				</ol>
+			</section> 
+		</section>
+
+		<section class="content-preview">
+			<header class="floatingheader">
+			    <small>
+			        <span class="status">Available files</span>
+			    </small>
+			</header>
+
+			<section class="content-preview-content">
+				<div class="fe-list-item-header">Click on files to select, drag new here files to upload ...</div>
+				<hr>
+				{{file-explorer items=model showOnlySelected=false}}
+			</section>
+		</section>
+	</section>
+</main>
+
 

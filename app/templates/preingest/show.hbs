@@ -11,7 +11,7 @@
 		<span>{{workflow.name}}</span>
 	</li>
 
-	{{dynamic-component type=workflow.component model=workflow.customData}}
+	{{dynamic-component type=workflow.component model=workflow.customData editClicked="handleEdit"}}
 
 	<div class="da-session-workflow-header"></div>
 {{/each}}

@@ -6,14 +6,7 @@ default Ember.Route.extend({
 		return this.store.find('file');
 	},
 
-	setupController: function(controller, model) {
-		controller.set('model', model);
-		controller.set('files', model);
-	},
-
-	renderTemplate: function() {
-		this.render({
-			outlet: 'main'
-		});
+	setupController: function(controller, files) {
+		controller.set('model', files);
 	}
 });
