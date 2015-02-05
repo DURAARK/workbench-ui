@@ -1,15 +1,23 @@
 <section class="post-controls">
-    <a id="ember891" class="ember-view btn btn-default post-edit" href="/ghost/editor/1/"> Edit</a>
+    <a class="btn btn-default post-edit" {{action "editFiles"}}> Edit</a>
 </section>
 
 <br>
 
-<span class="da-workflow-description-small">Added to archive:</span>
+{{#if model.length}}
 
-<br><br>
+	<span class="<da-wo></da-wo>rkflow-description-small">Added to archive:</span>
 
-<ul>
-{{#each file in model}}
-	<li>{{file.path}} &#8594; valid: yes</li>
-{{/each}}
-</ul>
+	<br><br>
+
+	<ul>
+	{{#each file in model}}
+		<li>{{file.path}} &#8594; valid: yes</li>
+	{{/each}}
+	</ul>
+
+{{else}}
+
+<div style="text-align: left;">No files added yet.</div>
+
+{{/if}}

@@ -1,26 +1,15 @@
 <nav class="global-nav" role="navigation">
-
-{{!--     <a class="nav-item" href="http://duraark.eu" title="DURAARK logo">
-        <div class="nav-label"><i class="icon-ghost"></i> <span>Visit blog</span> </div>
-    </a> --}}
-
-    {{#link-to "sessions" classNames="nav-item nav-new js-nav-item"}}
-        <div class="nav-label"><i class="icon-add"></i> Sessions</div>
+    {{#link-to "preingest" classNames="nav-item nav-new js-nav-item"}}
+        <div class="nav-label"><i class="icon-add"></i> Preingest Workflow</div>
     {{/link-to}}
 
     {{#link-to "search" classNames="nav-item nav-new js-nav-item"}}
         <div class="nav-label"><i class="icon-add"></i> Search & Retrieve</div>
     {{/link-to}}    
 
-    {{#link-to "maintenance" classNames="nav-item nav-new js-nav-item"}}
-        <div class="nav-label"><i class="icon-add"></i> Maintenance</div>
+    {{#link-to "semenhance" classNames="nav-item nav-new js-nav-item"}}
+        <div class="nav-label"><i class="icon-add"></i> Semantic Enhancement</div>
     {{/link-to}}
-
-{{!--     {{#unless session.user.isAuthor}}
-    {{#link-to "files" classNames="nav-item nav-settings js-nav-item"}}
-        <div class="nav-label"><i class="icon-settings2"></i> Settings</div>
-    {{/link-to}}
-    {{/unless}} --}}
 </nav>{{! .global-nav }}
 
 {{outlet}}

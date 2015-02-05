@@ -51,7 +51,7 @@ module.exports = function(environment) {
                 responseKey: 'e57ms'
             }
         }
-    }
+    };
 
     if (environment === 'development') {
         // ENV.APP.LOG_RESOLVER = true;
