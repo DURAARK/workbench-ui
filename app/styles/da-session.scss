@@ -38,3 +38,44 @@
 	font-size: 1.5em;
 	text-align: center;
 }
+
+.content-list ol li a:hover {
+    box-shadow: rgba(0,0,0,0.1) 7px 0 0 inset;
+    @include transition(all 0.2s ease);
+}
+
+.content-list ol li.active {
+    border-bottom: #e8eaeb 1px solid;
+    background: #f6f6f7;
+    box-shadow: #e8eaeb 0 -1px 0,rgba(0,0,0,0.06) 7px 0 0 inset,#e8eaeb 1px 0 0 inset;
+}
+
+.content-list ol li a {
+    display: block;
+    padding: 20px 15px;
+    color: #aaa9a2;
+}
+
+.content-list ol li a {
+    display: block;
+    padding: 20px 15px;
+    color: #aaa9a2;
+}
+
+.content-list ol li.active .entry-meta {
+    color: #242628;
+}
+
+.workflow-header {
+	text-align: center;
+	border-bottom: 1px solid #edece4;
+	line-height: .1em;
+	margin: 30px 0 7px;
+}
+
+.workflow-header span {
+	background: #fff;
+	color: #929292;
+	font-size: 16px;
+	padding: 0 10px;
+}

@@ -104,8 +104,15 @@ default Ember.Route.extend({
     },
 
     setupController: function(controller, model) {
+        var sessions = model.get('content');
+
+        // Add the 'view model' properties to the sessions:
+        sessions.forEach(function(session) {
+            session.set('isSelected', false);
+        });
+
         controller.set('model', model);
-        controller.set('sessions', model.get('content'));
+        controller.set('sessions', sessions);
     },
 
     workflows: [{

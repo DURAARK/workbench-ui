@@ -6,20 +6,6 @@
 @import "da-session";
 @import "file-explorer";
 
-.workflow-header {
-	text-align: center;
-	border-bottom: 1px solid #edece4;
-	line-height: .1em;
-	margin: 30px 0 7px;
-}
-
-.workflow-header span {
-	background: #fff;
-	color: #929292;
-	font-size: 16px;
-	padding: 0 10px;
-}
-
 // copied from the _shame.scss to override adjust the .floatingheader class:
 // Semi-opaque fixed-position headers - used on content/editor
 .topheader {

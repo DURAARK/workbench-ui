@@ -11,26 +11,17 @@
             <section class="content-list-content js-content-scrollbox">        
                 <ol class="posts-list">
                 {{#each session in sessions}}
-                    <li {{action "showSession" session}} class="active">
-                        <a title="Edit this session">                    
-                            <h3 class="entry-title">{{session.name}}</h3>
-                            <section class="entry-meta">
-                                &#9737;
-                                {{!-- <img class="avatar" title="Martin Hecher" src="/shared/img/user-image.png" data-bindattr-882="882"> --}}
-                                <span class="author">{{session.creator}}</span>
-                                <span class="status">{{session.creator}} / {{session.created}}</span>
-                            </section>     
-                        </a>
-                    </li>       
+                    {{session-item session=session isSelected=session.isSelected action="showSession"}}
                 {{/each}}
                 </ol>
+
             </section> 
         </section>
 
         <section class="content-preview">
             <header class="floatingheader">
                 <small>
-                    <span class="status">INTRODUCTION</span>
+                    <span class="status">WORKFLOW DETAILS</span>
                 </small>
             </header>
 

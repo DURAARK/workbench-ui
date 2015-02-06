@@ -1,0 +1,11 @@
+<li {{action "onSelection" session}} {{bind-attr class="isSelected:active"}}>
+    <a title="Edit this session">                    
+        <h3 class="entry-title">{{session.name}}</h3>
+        <section class="entry-meta">
+            &#9737;
+            {{!-- <img class="avatar" title="Martin Hecher" src="/shared/img/user-image.png" data-bindattr-882="882"> --}}
+            <span class="author">{{session.creator}}</span>
+            <span class="status">{{session.creator}} / {{session.created}}</span>
+        </section>     
+    </a>
+</li>

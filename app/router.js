@@ -10,10 +10,11 @@ Router.map(function() {
   	this.route('index', { path: "/" });
   	this.route('show', { path: "/:id" });
   	this.route('create', { path: "/create" });
+  	
+  	this.resource('files', { path: "/:id/files" });
   });
   this.route("search");
   this.route("semenhance");
-  this.resource('files');
 });
 
 export default Router;
