@@ -3,7 +3,59 @@
 
 <div class="da-session-start">&#8213;&#8213;&#8213;</div>
 
-<ul>
+<div class="da-session-next">&#8615;</div>
+
+<li class="da-session-workflow-header">
+	<span>Files</span>
+</li>
+
+{{workflow-overview-files model=wfFiles editClicked="handleEdit"}}
+
+<div class="da-session-workflow-header"></div>
+
+
+<div class="da-session-next">&#8615;</div>
+
+<li class="da-session-workflow-header">
+	<span>Metadata</span>
+</li>
+
+{{workflow-overview-metadata model=wfMetadata editClicked="handleEdit"}}
+
+<div class="da-session-workflow-header"></div>
+
+
+<div class="da-session-next">&#8615;</div>
+
+<li class="da-session-workflow-header">
+	<span>Semantic Enrichment</span>
+</li>
+
+{{workflow-overview-semanticenrichment model=wfSemEnrichment editClicked="handleEdit"}}
+
+<div class="da-session-workflow-header"></div>
+
+
+<div class="da-session-next">&#8615;</div>
+
+<li class="da-session-workflow-header">
+	<span>Geometric Enrichment</span>
+</li>
+
+{{workflow-overview-geometricenrichment model=wfGeoEnrichment editClicked="handleEdit"}}
+
+<div class="da-session-workflow-header"></div>
+
+<li class="da-session-workflow-header">
+	<span>Geometric Enrichment</span>
+</li>
+
+{{workflow-overview-sipgenerator model=wfSipGenerator editClicked="handleEdit"}}
+
+<div class="da-session-workflow-header"></div>
+
+
+{{!-- <ul>
 {{#each workflow in this.workflows}}
 	<div class="da-session-next">&#8615;</div>
 
@@ -15,4 +67,4 @@
 
 	<div class="da-session-workflow-header"></div>
 {{/each}}
-</ul>  
+</ul>   --}}

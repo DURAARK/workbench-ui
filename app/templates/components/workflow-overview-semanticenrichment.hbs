@@ -4,7 +4,7 @@
 
 <br>
 
-{{#if model.length}}
+{{#if model.enrichments.length}}
 
 <span class="da-workflow-description-small">Enriched metadata available, based on input configuration:</span>
 
@@ -15,6 +15,13 @@
 	<li>CUSTOM CONCEPT #1</li>
 	<li>CUSTOM CONCEPT #2</li>
 </ul>
+
+Enrichments: {{model.enrichments.length}}
+
+<ul>
+{{#each model.enrichments}}
+	<li>Concept: {{concept}} / Value: {{value}}</li>	
+{{/each}}
 
 {{else}}
 

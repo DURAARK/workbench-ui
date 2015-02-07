@@ -4,16 +4,14 @@
 
 <br>
 
-{{#if model.length}}
+{{#if model.enrichments.length}}
 
-<span class="da-workflow-description-small">Following geometric enrichment steps are available:</span>
-
-<br><br>
+<span class="da-workflow-description-small">Following geometric enrichments are available:</span>
 
 <ul>
-	<li>Reconstruct IFC</li>
-	<li>Difference analysis</li>
-	<li>Detection of nearly invisible elements</li>
+{{#each model.enrichments}}
+	<li>Application: {{application}} / enrichments: {{enrichments}}</li>
+{{/each}}
 </ul>
 
 {{else}}

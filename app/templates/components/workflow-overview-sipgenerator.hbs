@@ -4,9 +4,18 @@
 
 <br>
 
-{{#if model.length}}
+{{#if model.files.length}}
 
-<span class="da-workflow-description-small">SIP Generation was not started yet.</span>
+<span class="da-workflow-description-small">SIP Content:</span>
+
+<ul>
+	{{#each file in model.files}}
+		<li>{{file.path}}</li>
+	{{/each}}
+</ul>
+
+Status: {{model.status}} <br>
+Archiv-Download: {{model.archive}}
 
 {{else}}
 

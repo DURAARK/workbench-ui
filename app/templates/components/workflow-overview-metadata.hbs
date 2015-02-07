@@ -4,20 +4,19 @@
 
 <br>
 
-{{#if model.length}}
+{{#if model.files.length}}
 
 <span class="da-workflow-description-small">Available metadata</span>
 
-<br><br>
-
 <ul>
-	<li>e57m (technical)</li>
-	<li>ifcm (technical)</li>
-	<li>buildm (descriptive)</li>
+	{{#each model.files}}
+		<li>Type: {{type}} / available: {{available}}</li>
+	{{/each}}
 </ul>
 
+	Status: {{model.status}}
 {{else}}
 
-<div style="text-align: left;">No files added yet.</div>
+<div style="text-align: left;">No metadata added yet.</div>
 
 {{/if}}
