@@ -4,15 +4,13 @@ export default Ember.ObjectController.extend({
 	needs: ['application'],
 
 	actions: {
-		handleEdit: function(route) {
-			console.log('handlingEdit: route = ' + route);
+		handleEdit: function(files) {
+			debugger;
+			// console.log('handlingEdit: files = ' + JSON.stringify(files, null, 4));
 
-			// // FIXXME: store current session, for later access in files route:
-			// var session = this.get('model');
-			// var app = this.get('controllers.application');
-			// app.set('session', session);
-			
-			this.transitionToRoute(route);
+
+			// this.transitionToRoute('editor/' + files.editor, files.model);
+			this.transitionToRoute(files.editor, files.model);
 		}
 	}
 });

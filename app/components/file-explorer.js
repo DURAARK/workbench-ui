@@ -40,6 +40,7 @@ default Ember.Component.extend({
         var items = this.get('items');
 
         if (items) {
+            debugger;
             items.forEach(function(item) {
                 item.set('isSelected', false);
             });

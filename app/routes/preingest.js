@@ -92,10 +92,34 @@ default Ember.Route.extend({
             ctime: new Date()
         }]);
 
+        this.store.pushMany('file', [{
+            id: 3,
+            path: '/storage/building1.ifc',
+            directory: false,
+            size: 2048,
+            mtime: new Date(),
+            atime: new Date(),
+            ctime: new Date()
+        }, {
+            id: 4,
+            path: '/storage/building1.e57',
+            directory: false,
+            size: 20048,
+            mtime: new Date(),
+            atime: new Date(),
+            ctime: new Date()
+        }]);
+
         this.store.push('wf-files', {
             id: 0,
             status: 'created',
             files: [0, 1]
+        });
+
+        this.store.push('wf-files', {
+            id: 1,
+            status: 'created',
+            files: [2, 0]
         });
 
         this.store.push('metadata-info', {
@@ -172,7 +196,7 @@ default Ember.Route.extend({
             creator: 'Martin Hecher',
             created: new Date(),
             status: 'finished',
-            wfFiles: 0,
+            wfFiles: 1,
             wfMetadata: 0,
             wfSemEnrichment: 0,
             wfGeoEnrichment: 0,

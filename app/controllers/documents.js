@@ -4,6 +4,7 @@ export
 default Ember.Controller.extend({
     actions: {
         selectFiles: function() {
+        	debugger;
             // TODO: add files to session!
             console.log('Selected files!');
 
