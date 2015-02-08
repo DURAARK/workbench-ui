@@ -1,4 +1,5 @@
 import DS from 'ember-data';
 
 export
-default DS.SailsRESTAdapter.extend({});
+default DS.RESTAdapter.extend({});
+// default DS.SailsRESTAdapter.extend({});

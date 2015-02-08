@@ -49,6 +49,18 @@ module.exports = function(environment) {
                 // denoted here. Think on a generic key, e.g. 'metadata', to unify the
                 // handling in the APIIfcMetadata and APIE57Metadata binding!
                 responseKey: 'e57ms'
+            },
+            sessions: {
+                host: 'http://localhost',
+                port: 1337,
+                // The endpoint where the current jobs ('pending' and 'finished') are returned
+                jobsEndpoint: '/e57m',
+                // The endpoint where an extraction job can be posted
+                extractEndpoint: '/e57m/extract',
+                // TODO: the JSON response from the API has one parent key, which is
+                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
+                // handling in the APIIfcMetadata and APIE57Metadata binding!
+                responseKey: 'e57ms'
             }
         }
     };
@@ -60,21 +72,45 @@ module.exports = function(environment) {
         // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
+
         // Overwrite API endpoints for development environment:
-        // ENV.DURAARKAPI = {
-        //     files: {
-        //         host: 'http://localhost',
-        //         port: 5001
-        //     },
-        //     ifcmetadata: {
-        //         host: 'http://localhost',
-        //         port: 5002
-        //     },
-        //     e57metadata: {
-        //         host: 'http://localhost',
-        //         port: 5003
-        //     }
-        // };
+        var apiEndpoint = 'http://localhost:5000/api/v0.1';
+
+        ENV.DURAARKAPI = {
+            sessions: {
+                host: apiEndpoint + '/sip'
+            },
+            files: {
+                host: apiEndpoint + '/storage'
+            },
+            stages: {
+                host: apiEndpoint + '/sip/stages'
+            },
+            ifcmetadata: {
+                host: 'http://juliet.cgv.tugraz.at/ifcmetadata',
+                port: 80,
+                // The endpoint where the current jobs ('pending' and 'finished') are returned
+                jobsEndpoint: '/ifcm',
+                // The endpoint where an extraction job can be posted
+                extractEndpoint: '/ifcm/extract',
+                // TODO: the JSON response from the API has one parent key, which is
+                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
+                // handling in the APIIfcMetadata and APIE57Metadata binding!
+                responseKey: 'ifcms'
+            },
+            e57metadata: {
+                host: 'http://juliet.cgv.tugraz.at/e57metadata',
+                port: 80,
+                // The endpoint where the current jobs ('pending' and 'finished') are returned
+                jobsEndpoint: '/e57m',
+                // The endpoint where an extraction job can be posted
+                extractEndpoint: '/e57m/extract',
+                // TODO: the JSON response from the API has one parent key, which is
+                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
+                // handling in the APIIfcMetadata and APIE57Metadata binding!
+                responseKey: 'e57ms'
+            },
+        };
     }
 
     if (environment === 'test') {

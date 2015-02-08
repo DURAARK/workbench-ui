@@ -11,12 +11,18 @@ Router.map(function() {
   	this.route('show', { path: "/:id" });
   	this.route('create', { path: "/create" });
   });
-  this.route("search");
-  this.route("semenhance");
 
   this.resource("editor", { path: "/editor"}, function() {
-    this.resource('documents', { path: "/documents/:id" });
+      this.resource('files', { path: "/files/stage/:id" });
+      // this.resource('metadata', { path: "/metadata/:id" });
+      // this.resource('rise', { path: "/rise/:id" });
+      // this.resource('ifcreconstruction', { path: "/ifcreconstruction/:id" });
+      // this.resource('differenedetection', { path: "/differencedetection/:id" });
   });
+
+  this.route("search");
+
+  this.route("semenhance");
 });
 
 export default Router;

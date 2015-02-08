@@ -9,7 +9,9 @@
 	<span>Files</span>
 </li>
 
-{{workflow-overview-files model=wfFiles editClicked="handleEdit"}}
+{{log stageFiles}}
+
+{{workflow-overview-files stage=stageFiles editClicked="editStage"}}
 
 <div class="da-session-workflow-header"></div>
 
@@ -20,7 +22,7 @@
 	<span>Metadata</span>
 </li>
 
-{{workflow-overview-metadata model=wfMetadata editClicked="handleEdit"}}
+{{workflow-overview-metadata model=wfMetadata editClicked="editStage"}}
 
 <div class="da-session-workflow-header"></div>
 
@@ -31,7 +33,7 @@
 	<span>Semantic Enrichment</span>
 </li>
 
-{{workflow-overview-semanticenrichment model=wfSemEnrichment editClicked="handleEdit"}}
+{{workflow-overview-semanticenrichment model=wfSemEnrichment editClicked="editStage"}}
 
 <div class="da-session-workflow-header"></div>
 
@@ -42,7 +44,7 @@
 	<span>Geometric Enrichment</span>
 </li>
 
-{{workflow-overview-geometricenrichment model=wfGeoEnrichment editClicked="handleEdit"}}
+{{workflow-overview-geometricenrichment model=wfGeoEnrichment editClicked="editStage"}}
 
 <div class="da-session-workflow-header"></div>
 
@@ -50,7 +52,7 @@
 	<span>Geometric Enrichment</span>
 </li>
 
-{{workflow-overview-sipgenerator model=wfSipGenerator editClicked="handleEdit"}}
+{{workflow-overview-sipgenerator model=wfSipGenerator editClicked="editStage"}}
 
 <div class="da-session-workflow-header"></div>
 
@@ -63,7 +65,7 @@
 		<span>{{workflow.name}}</span>
 	</li>
 
-	{{dynamic-component type=workflow.component model=workflow.customData editClicked="handleEdit"}}
+	{{dynamic-component type=workflow.component model=workflow.customData editClicked="editStage"}}
 
 	<div class="da-session-workflow-header"></div>
 {{/each}}

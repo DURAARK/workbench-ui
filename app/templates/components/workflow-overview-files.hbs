@@ -1,25 +1,25 @@
 <section class="post-controls">
-    <a class="btn btn-default post-edit" {{action "editFiles" model.files}}> Edit</a>
+    <a class="btn btn-default post-edit" {{action "editFiles" stage.model}}> Edit</a>
 </section>
 
 <br>
 
-{{#if model.files.length}}
+{{#if stage.model.length}}
 
 	<span class="da-workflow-description-small">Added to archive:</span>
 
 	<br><br>
 
 	<ul>
-	{{#each file in model.files}}
+	{{#each file in stage.model}}
 		<li>{{file.path}} &#8594; valid: yes</li>
 	{{/each}}
 	</ul>
 
-	Status: {{model.status}}
+	Status: {{stage.status}}
 	
 {{else}}
 
-<div style="text-align: left;">No files added yet.</div>
+<div style="text-align: left;">No model added yet.</div>
 
 {{/if}}
