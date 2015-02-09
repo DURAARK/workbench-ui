@@ -21,10 +21,18 @@ module.exports = function(environment) {
         // Default API endpoing configuration for the DURAARK Platform for 
         // *production* environment. For the development environment the 
         // config is overwritten below.
+
+        var apiEndpoint = 'http://api-gateway:5000/api/v0.1';
+
         DURAARKAPI: {
+            sessions: {
+                host: apiEndpoint + '/sip'
+            },
             files: {
-                host: 'http://juliet.cgv.tugraz.at/files',
-                port: 80
+                host: apiEndpoint + '/storage'
+            },
+            stages: {
+                host: apiEndpoint + '/sip/stages'
             },
             ifcmetadata: {
                 host: 'http://juliet.cgv.tugraz.at/ifcmetadata',
