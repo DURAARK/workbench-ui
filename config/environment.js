@@ -1,5 +1,7 @@
 /* jshint node: true */
 
+var apiEndpoint = 'http://juliet.cgv.tugraz.at/api/v0.1';
+
 module.exports = function(environment) {
     var ENV = {
         modulePrefix: 'workbench-ui',
@@ -21,9 +23,6 @@ module.exports = function(environment) {
         // Default API endpoing configuration for the DURAARK Platform for 
         // *production* environment. For the development environment the 
         // config is overwritten below.
-
-        var apiEndpoint = 'http://api-gateway:5000/api/v0.1';
-
         DURAARKAPI: {
             sessions: {
                 host: apiEndpoint + '/sip'
@@ -82,7 +81,7 @@ module.exports = function(environment) {
 
 
         // Overwrite API endpoints for development environment:
-        var apiEndpoint = 'http://localhost:5000/api/v0.1';
+        apiEndpoint = 'http://juliet.cgv.tugraz.at:5000/api/v0.1';
 
         ENV.DURAARKAPI = {
             sessions: {

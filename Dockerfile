@@ -17,6 +17,6 @@ RUN bower install --allow-root
 
 EXPOSE 4200
 
-#ENTRYPOINT ["ember", "serve", "--prod", "--proxy", "http://api-gatekeeper"]
-ENTRYPOINT ["ember", "serve", "--prod"]
+ENTRYPOINT ["ember", "serve", "--prod", "--proxy", "http://api-gatekeeper"]
+#ENTRYPOINT ["ember", "serve", "--prod"]
 
