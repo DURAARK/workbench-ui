@@ -3,6 +3,7 @@ FROM duraark/microservice-base
 
 # Install system dependencies
 RUN DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
 RUN apt-get install -y git build-essential python
 
 RUN npm install -g ember ember-cli
