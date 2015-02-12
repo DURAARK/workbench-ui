@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  status: DS.attr('string'),
+  name: DS.attr('string'),
   files: DS.hasMany('file', { async: true }),
-  archive: DS.attr('string')
+  session: DS.belongsTo('session')
 });

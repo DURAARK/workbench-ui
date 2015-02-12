@@ -1,15 +1,5 @@
 <ol class="fe-list">
-	{{#if this.showOnlySelected}}
-
-		{{#each selectedItems}}
-			{{selectable-item item=this action="handleItemSelected"}}
-		{{/each}}
-
-	{{else}}
-
-		{{#each deselectedItems}}
-			{{selectable-item item=this action="handleItemSelected"}}
-		{{/each}}
-
-	{{/if}}
+	{{#each items}}
+		{{selectable-item item=this action="onClick"}}
+	{{/each}}
 </ol>

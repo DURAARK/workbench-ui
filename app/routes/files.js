@@ -1,21 +1,44 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
-	model: function(params) {
-		return this.store.find('stage', params.id);
-	},
+export
+default Ember.Route.extend({
+    selectedFiles: [],
+    availableFiles: [],
 
-	setupController: function(controller, model) {
-		// Request files:
-		controller.set('model', model);
-		var files = model.get('model').files;
-		debugger;
-		controller.set('files', [this.store.find('file', files[0])]);
+    model: function(params) {
+        return this.store.find('filestage', params.id);
+    },
 
-		// this.store.find('file').then(function(records) {
-		// 	debugger;
-		// 	var bla = records.toArray();
-		// 	// controller.set('files', [records.toArray()[0], records.toArray()[1]]);
-		// });
-	}
+    setupController: function(controller, model) {
+        this._super(controller, model);
+
+        controller.set('selectedFiles', model.get('files'));
+
+        this.store.find('file').then(function(records) {
+            controller.set('availableFiles', records);
+        });
+    },
+
+    actions: {
+        save: function() {
+            this.get('controller.model').save().then(function() {
+                var session = this.get('controller.model.session');
+                this.transitionTo('preingest.show', session);
+            }.bind(this));
+        },
+
+        selectFile: function(file) {
+            // console.log('selected: ' + file.get('path'));
+
+            var model = this.get('controller.model');
+            model.get('files').pushObject(file);
+        },
+
+        deselectFile: function(file) {
+            // console.log('deselected: ' + file.get('path'));
+
+            var model = this.get('controller.model');
+            model.get('files').removeObject(file);
+        }
+    }
 });

@@ -6,8 +6,8 @@ export
 default Ember.Component.extend({
     showOnlySelected: false,
     
-    selectedItems: Em.computed.filterBy('items', 'isSelected', true),
-    deselectedItems: Em.computed.filterBy('items', 'isSelected', false),
+    // selectedItems: Em.computed.filterBy('items', 'isSelected', true),
+    // deselectedItems: Em.computed.filterBy('items', 'isSelected', false),
 
     actions: {
         showMetadata: function(fileinfo) {
@@ -29,23 +29,22 @@ default Ember.Component.extend({
             });
         },
 
-        handleItemSelected: function(item) {
-            item.toggleProperty('isSelected');
+        onClick: function(item) {
+            this.sendAction('selectFile', item);
         }
 
     },
     
-    // Create the items' 'isSelected' property on initialization:
-    onItemsChanged: function() {
-        var items = this.get('items');
+    // // Create the items' 'isSelected' property on initialization:
+    // onItemsChanged: function() {
+    //     var items = this.get('items');
 
-        if (items) {
-            debugger;
-            items.forEach(function(item) {
-                item.set('isSelected', false);
-            });
-        }
-    }.observes('items').on('init'),
+    //     if (items) {
+    //         items.forEach(function(item) {
+    //             item.set('isSelected', false);
+    //         });
+    //     }
+    // }.observes('items').on('init'),
 
     _getFileExtension: function(filepath) {
         return (/[.]/.exec(filepath)) ? /[^.]+$/.exec(filepath) : null;

@@ -81,14 +81,14 @@ module.exports = function(environment) {
 
 
         // Overwrite API endpoints for development environment:
-        apiEndpoint = 'http://juliet.cgv.tugraz.at:5000/api/v0.1';
+        apiEndpoint = 'http://localhost';
 
         ENV.DURAARKAPI = {
             sessions: {
-                host: apiEndpoint + '/sip'
+                host: apiEndpoint + ':5004'
             },
             files: {
-                host: apiEndpoint + '/storage'
+                host: apiEndpoint + ':5001'
             },
             stages: {
                 host: apiEndpoint + '/sip/stages'

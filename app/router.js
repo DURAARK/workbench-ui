@@ -13,7 +13,7 @@ Router.map(function() {
   });
 
   this.resource("editor", { path: "/editor"}, function() {
-      this.resource('files', { path: "/files/stage/:id" });
+      this.resource('files', { path: "/files/:id" });
       // this.resource('metadata', { path: "/metadata/:id" });
       // this.resource('rise', { path: "/rise/:id" });
       // this.resource('ifcreconstruction', { path: "/ifcreconstruction/:id" });

@@ -8,12 +8,12 @@
 	        </header>
 
 			<section>
-				<button class="btn btn-green" {{action "selectFiles" session}}> Select</button>   
+				<button class="btn btn-green" {{action "save"}}> Select</button>   
 			</section>
 
 			<section class="content-list-content js-content-scrollbox">        
 				<ol class="posts-list">
-				{{file-explorer items=model showOnlySelected=true}}
+				{{file-explorer items=selectedFiles selectFile="deselectFile"}}
 				</ol>
 			</section> 
 		</section>
@@ -28,7 +28,7 @@
 			<section class="content-preview-content">
 				<div class="fe-list-item-header">Click on files to select, drag new here files to upload ...</div>
 				<hr>
-				{{file-explorer items=model showOnlySelected=false}}
+				{{file-explorer items=availableFiles selectFile="selectFile"}}
 			</section>
 		</section>
 	</section>
