@@ -8,9 +8,6 @@ default Ember.Route.extend({
 
     setupController: function(controller, model) {
         this._super(controller, model);
-
-        this.store.find('file').then(function(files) {
-            controller.set('files', files);
-        });
+        model.set('isSelected', true);
     }
 });
