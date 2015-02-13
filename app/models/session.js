@@ -4,6 +4,7 @@ export
 default DS.Model.extend({
     name: DS.attr('string'),
     creator: DS.attr('string'),
-    created: DS.attr('date'),
+    createdAt: DS.attr('date'),
+    updatedAt: DS.attr('date'),
     filestage: DS.belongsTo('filestage', { async: true })
 });
