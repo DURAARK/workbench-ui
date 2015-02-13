@@ -4,22 +4,22 @@
 
 <br>
 
-{{#if stage.model.length}}
+{{#if stage.files.length}}
 
-	<span class="da-workflow-description-small">Added to archive:</span>
+	<span class="da-workflow-description-small">Included files:</span>
 
 	<br><br>
 
 	<ul>
-	{{#each file in stage.model}}
-		<li>{{file.path}} &#8594; valid: yes</li>
+	{{#each file in stage.files}}
+		<li class="da-file-entry"><div class="da-valid btn btn-green" title="Valid"> VALID</div> {{file.path}}</li>
 	{{/each}}
 	</ul>
 
-	Status: {{stage.status}}
+	{{!-- Status: {{stage.status}} --}}
 	
 {{else}}
 
-<div style="text-align: left;">No model added yet.</div>
+<div style="text-align: left;">No files added yet.</div>
 
 {{/if}}

@@ -1,6 +1,7 @@
 @import "bower_components/susy/sass/susy";
 
 .da-session-header {
+	margin-bottom: 25px;
 	font-size: 3em;
 	text-align: center;
 }
@@ -19,6 +20,15 @@
 	color: #929292;
 	font-size: 16px;
 	padding: 0 10px;
+	line-height: 0.75em;
+}
+
+.da-valid {
+	margin-right: 12px;
+}
+
+.da-file-entry {
+	margin-bottom: 10px;
 }
 
 .da-session-start {
@@ -29,8 +39,9 @@
 }
 
 .da-session-next {
+	margin-top: 40px;
 	color: #929292;
-	font-size: 3em;
+	font-size: 2em;
 	text-align: center;
 }
 

@@ -1,56 +1,47 @@
 <div class="da-session-header">{{name}}</div>
 <div style="text-align: center;">{{creator}} / {{createdAt}}</div>
 
-<div class="da-session-start">&#8213;&#8213;&#8213;</div>
-
 <div class="da-session-next">&#8615;</div>
 
-<li class="da-session-workflow-header">
+<div class="da-session-workflow-header">
 	<span>Files</span>
-</li>
-
-{{log filestage}}
+</div>
 
 {{workflow-overview-files stage=filestage editClicked="editStage"}}
 
 <div class="da-session-workflow-header"></div>
-
-
 <div class="da-session-next">&#8615;</div>
 
-<li class="da-session-workflow-header">
+<div class="da-session-workflow-header">
 	<span>Metadata</span>
-</li>
+</div>
 
 {{workflow-overview-metadata model=wfMetadata editClicked="editStage"}}
 
 <div class="da-session-workflow-header"></div>
-
-
 <div class="da-session-next">&#8615;</div>
 
-<li class="da-session-workflow-header">
+<div class="da-session-workflow-header">
 	<span>Semantic Enrichment</span>
-</li>
+</div>
 
 {{workflow-overview-semanticenrichment model=wfSemEnrichment editClicked="editStage"}}
 
 <div class="da-session-workflow-header"></div>
-
-
 <div class="da-session-next">&#8615;</div>
 
-<li class="da-session-workflow-header">
+<div class="da-session-workflow-header">
 	<span>Geometric Enrichment</span>
-</li>
+</div>
 
 {{workflow-overview-geometricenrichment model=wfGeoEnrichment editClicked="editStage"}}
 
 <div class="da-session-workflow-header"></div>
+<div class="da-session-next">&#8615;</div>
 
-<li class="da-session-workflow-header">
-	<span>Geometric Enrichment</span>
-</li>
+<div class="da-session-workflow-header">
+	<span>SIP Generator</span>
+</div>
 
 {{workflow-overview-sipgenerator model=wfSipGenerator editClicked="editStage"}}
 
@@ -61,9 +52,9 @@
 {{#each workflow in this.workflows}}
 	<div class="da-session-next">&#8615;</div>
 
-	<li class="da-session-workflow-header">
+	<div class="da-session-workflow-header">
 		<span>{{workflow.name}}</span>
-	</li>
+	</div>
 
 	{{dynamic-component type=workflow.component model=workflow.customData editClicked="editStage"}}
 
