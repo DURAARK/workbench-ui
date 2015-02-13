@@ -4,9 +4,14 @@ export default Ember.Component.extend({
 	isSelected: false,
 
 	actions: {
-		onSelection: function(session) {
+		onSelect: function(session) {
 			this.toggleProperty('isSelected');
-			this.sendAction('action', session);
-		}
+			this.sendAction('onSelect', session);
+		},
+
+		onDelete: function(session) {
+			this.toggleProperty('isSelected');
+			this.sendAction('onDelete', session);
+		}		
 	}
 });

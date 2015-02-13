@@ -6,65 +6,34 @@ default Ember.Controller.extend({
         createSession: function() {
             var name = this.get('name'),
                 creator = this.get('creator'),
-                description = this.get('description');
-
-            // console.log('Name: ' + name);
-            // console.log('Creator: ' + creator);
-            // console.log('Description: ' + description);
+                description = this.get('description'),
+                that = this;
 
             // TODO: check input and give visual feedback!
             if (!name.trim() || !creator.trim()) {
                 return;
             }
 
-            var session = this.store.createRecord('session', {
-                name: name,
-                creator: creator,
-                created: new Date(),
-                status: 'new'
+            // TODO: Is there a more straightforward way of creating records
+            // that are referencing each other?
+            
+            var filestage = this.store.createRecord('filestage');
+
+            filestage.save().then(function(stage) {
+                var session = that.store.createRecord('session', {
+                    name: name,
+                    creator: creator,
+                    description: description,
+                    filestage: stage
+                });
+
+                session.save().then(function(record) {
+                    stage.set('session', record);
+                    stage.save().then(function() {
+                        that.transitionToRoute('preingest.show', record);
+                    });
+                });
             });
-
-            var workflowIds = [],
-                startIdx = this.store.all('workflow').get('length');
-
-            for (var idx = 0; idx < this.get('workflows').length; idx++) {
-                var workflow = this.get('workflows')[idx];
-
-                var workflow = this.store.createRecord('workflow', workflow);
-                session.get('workflows').addObject(workflow);
-            };
-
-            // TODO: save to microservice-sessions!
-            // session.save();
-
-            this.transitionToRoute('preingest.show', session);
         }
-    },
-
-    workflows: [{
-        name: 'Files',
-        component: 'workflow-overview-files',
-        status: 'new',
-        customData: [],
-    }, {
-        name: 'Metadata',
-        component: 'workflow-overview-metadata',
-        status: 'new',
-        customData: {}
-    }, {
-        name: 'Semantic Enrichment',
-        component: 'workflow-overview-semanticenrichment',
-        status: 'new',
-        customData: {}
-    }, {
-        name: 'Geometric Enrichment',
-        component: 'workflow-overview-geometricenrichment',
-        status: 'new',
-        customData: {}
-    }, {
-        name: 'SIP Generation',
-        component: 'workflow-overview-sipgenerator',
-        status: 'new',
-        customData: {}
-    }]
+    }
 });

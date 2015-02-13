@@ -11,7 +11,8 @@
             <section class="content-list-content js-content-scrollbox">        
                 <ol class="posts-list">
                 {{#each session in sessions}}
-                    {{session-item session=session isSelected=session.isSelected action="showSession"}}
+                    {{session-item session=session isSelected=session.isSelected onSelect="showSession" 
+                                                                                 onDelete="deleteSession"}}
                 {{/each}}
                 </ol>
 

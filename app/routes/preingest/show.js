@@ -9,5 +9,7 @@ default Ember.Route.extend({
     setupController: function(controller, model) {
         this._super(controller, model);
         model.set('isSelected', true);
+
+        this.send('highlightSession', model);
     }
 });
