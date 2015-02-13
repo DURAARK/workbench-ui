@@ -106,8 +106,7 @@ module.exports = function(environment) {
                 responseKey: 'ifcms'
             },
             e57metadata: {
-                host: 'http://juliet.cgv.tugraz.at/e57metadata',
-                port: 80,
+                host: apiEndpoint + ':5003',
                 // The endpoint where the current jobs ('pending' and 'finished') are returned
                 jobsEndpoint: '/e57m',
                 // The endpoint where an extraction job can be posted
