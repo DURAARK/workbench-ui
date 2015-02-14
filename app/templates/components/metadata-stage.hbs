@@ -1,0 +1,24 @@
+<section class="post-controls">
+    <a class="btn btn-default post-edit" {{action "editFiles" stage}}> Edit</a>
+</section>
+
+<br>
+
+{{log stage}}
+
+{{#if stage.files.length}}
+
+<span class="da-workflow-description-small">Available metadata:</span>
+
+<ul>
+	{{#each stage.files}}
+		<li class="da-file-entry"><div class="da-valid btn btn-green" title="Schema"> {{schema}}</div> {{path}}</li>
+		{{log content}}
+	{{/each}}
+</ul>
+
+{{else}}
+
+<div style="text-align: left;">No metadata added yet.</div>
+
+{{/if}}

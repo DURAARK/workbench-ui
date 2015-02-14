@@ -49,12 +49,11 @@ default Ember.ObjectController.extend({
     },
 
     actions: {
-        editStage: function() {
-            var stage = this.get('filestage');
-
+        editStage: function(stage) {
+            console.log('stage: ' + stage);
+            debugger;
             console.log('[preingest.show] requesting stage editor: ' + stage.get('name'));
-
             this.transitionTo(stage.get('name'), stage);
         }
     }
-});
+}); 

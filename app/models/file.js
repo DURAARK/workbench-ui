@@ -7,4 +7,6 @@ export default DS.Model.extend({
   mtime: DS.attr('date'),
   atime: DS.attr('date'),
   ctime: DS.attr('date'),
+
+  metadata: DS.hasMany('metadatum', { async: true })
 });

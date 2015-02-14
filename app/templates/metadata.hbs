@@ -1,0 +1,35 @@
+<main id="main">
+	<section class="content-view-container">
+	    <section class="content-list">
+	        <header class="floatingheader">
+	            <section class="manage content-filter">
+	                <small>Metadata Files</small>
+	            </section>
+	        </header>
+
+			<section>
+				<button class="btn btn-green" {{action "save"}}> Save</button>   
+			</section>
+
+			<section class="content-list-content js-content-scrollbox">        
+				<ol class="posts-list">
+				{{file-explorer items=selectedFiles selectFile="editMetadata"}}
+				</ol>
+			</section> 
+		</section>
+
+		<section class="content-preview">
+			<header class="floatingheader">
+			    <small>
+			        <span class="status">Editor</span>
+			    </small>
+			</header>
+
+			<section class="content-preview-content">
+				{{metadata-editor file=selectedFile onSave="saveMetadata"}}
+			</section>
+		</section>
+	</section>
+</main>
+
+

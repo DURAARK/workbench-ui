@@ -83,17 +83,14 @@ module.exports = function(environment) {
             files: {
                 host: apiEndpoint + ':5001'
             },
-            stages: {
-                host: apiEndpoint + '/sip/stages'
-            },
             ifcmetadata: {
-                host: apiEndpoint + '/ifcmetadata',
+                host: apiEndpoint + ':5002',
                 jobsEndpoint: '/ifcm',
                 extractEndpoint: '/ifcm/extract',
                 responseKey: 'ifcms'
             },
             e57metadata: {
-                host: apiEndpoint + '/e57metadata',
+                host: apiEndpoint + ':5003',
                 jobsEndpoint: '/e57m',
                 extractEndpoint: '/e57m/extract',
                 responseKey: 'e57ms'
