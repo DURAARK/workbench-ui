@@ -19,20 +19,34 @@ default Ember.ObjectController.extend({
                         console.log('  path: ' + file.get('path'));
                         console.log('  metadata: ' + JSON.stringify(data, null, 4));
 
+                        var ext = that._getFileExtension(file.get('path'))[0],
+                            schema = null;
+
+                        console.log('ext: ' + ext);
+
+                        if (ext.toLowerCase() === 'e57') {
+                            schema = 'e57m';
+                        } else if (ext.toLowerCase() === 'ifc') {
+                            schema = 'ifcm';
+                        }
+
                         var item = that.store.createRecord('metadatum', {
                             path: file.get('path'),
-                            schema: 'e75m',
+                            schema: schema,
                             content: data
                         });
 
                         metadatafiles.pushObject(item);
-                        // that.set('model.metadatastage', stage);
                     });
                 });
             });
 
         });
     }.observes('model.filestage'),
+
+    _getFileExtension: function(filename) {
+        return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : undefined;
+    },
 
     actions: {
         editStage: function() {
