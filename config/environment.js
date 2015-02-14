@@ -34,8 +34,7 @@ module.exports = function(environment) {
                 host: apiEndpoint + '/sip/stages'
             },
             ifcmetadata: {
-                host: 'http://juliet.cgv.tugraz.at/ifcmetadata',
-                port: 80,
+                host: apiEndpoint + '/ifcmetadata',
                 // The endpoint where the current jobs ('pending' and 'finished') are returned
                 jobsEndpoint: '/ifcm',
                 // The endpoint where an extraction job can be posted
@@ -46,15 +45,9 @@ module.exports = function(environment) {
                 responseKey: 'ifcms'
             },
             e57metadata: {
-                host: 'http://juliet.cgv.tugraz.at/e57metadata',
-                port: 80,
-                // The endpoint where the current jobs ('pending' and 'finished') are returned
+                host: apiEndpoint + '/e57metadata',
                 jobsEndpoint: '/e57m',
-                // The endpoint where an extraction job can be posted
                 extractEndpoint: '/e57m/extract',
-                // TODO: the JSON response from the API has one parent key, which is
-                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
-                // handling in the APIIfcMetadata and APIE57Metadata binding!
                 responseKey: 'e57ms'
             },
             sessions: {
@@ -94,26 +87,15 @@ module.exports = function(environment) {
                 host: apiEndpoint + '/sip/stages'
             },
             ifcmetadata: {
-                host: 'http://juliet.cgv.tugraz.at/ifcmetadata',
-                port: 80,
-                // The endpoint where the current jobs ('pending' and 'finished') are returned
+                host: apiEndpoint + '/ifcmetadata',
                 jobsEndpoint: '/ifcm',
-                // The endpoint where an extraction job can be posted
                 extractEndpoint: '/ifcm/extract',
-                // TODO: the JSON response from the API has one parent key, which is
-                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
-                // handling in the APIIfcMetadata and APIE57Metadata binding!
                 responseKey: 'ifcms'
             },
             e57metadata: {
-                host: apiEndpoint + ':5003',
-                // The endpoint where the current jobs ('pending' and 'finished') are returned
+                host: apiEndpoint + '/e57metadata',
                 jobsEndpoint: '/e57m',
-                // The endpoint where an extraction job can be posted
                 extractEndpoint: '/e57m/extract',
-                // TODO: the JSON response from the API has one parent key, which is
-                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
-                // handling in the APIIfcMetadata and APIE57Metadata binding!
                 responseKey: 'e57ms'
             },
         };
