@@ -6,5 +6,6 @@ default DS.Model.extend({
     creator: DS.attr('string'),
     createdAt: DS.attr('date'),
     updatedAt: DS.attr('date'),
-    filestage: DS.belongsTo('filestage', { async: true })
+    filestage: DS.belongsTo('filestage', { async: true }),
+    metadatastage: DS.belongsTo('metadatastage', { async: true })
 });

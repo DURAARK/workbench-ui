@@ -4,20 +4,33 @@ import E57MetadataAPI from 'workbench-ui/bindings/api-e57metadata';
 export
 default Ember.ObjectController.extend({
     onFilesChanged: function() {
-        this.get('model.filestage.files').then(function(files) {
-            if (files) {
+        var that = this;
+
+        this.get('model.metadatastage.files').then(function(metadatafiles) {
+
+            var e57MetadataAPI = new E57MetadataAPI();
+
+            that.get('model.filestage.files').then(function(files) {
                 console.log('#files: ' + files.get('length'));
 
-                var e57MetadataAPI = new E57MetadataAPI();
-
                 files.forEach(function(file) {
-                    var bla = file.getProperties('path');
-                    e57MetadataAPI.getMetadataFor(bla).then(function(data) {
+                    var path = file.getProperties('path');
+                    e57MetadataAPI.getMetadataFor(path).then(function(data) {
                         console.log('  path: ' + file.get('path'));
                         console.log('  metadata: ' + JSON.stringify(data, null, 4));
+
+                        var item = that.store.createRecord('metadatum', {
+                            path: file.get('path'),
+                            schema: 'e75m',
+                            content: data
+                        });
+
+                        metadatafiles.pushObject(item);
+                        // that.set('model.metadatastage', stage);
                     });
                 });
-            }
+            });
+
         });
     }.observes('model.filestage'),
 
