@@ -26,7 +26,9 @@
 			</header>
 
 			<section class="content-preview-content">
-				{{metadata-editor file=selectedFile onSave="saveMetadata"}}
+			{{#each file in selectedFiles}}
+				{{metadata-editor file=file onSave="saveMetadata"}}
+			{{/each}}
 			</section>
 		</section>
 	</section>

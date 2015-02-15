@@ -1,4 +1,4 @@
-<ol class="fe-list">
+<ol class="fe-list" {{action "requestMetadata" file}}>
 
 	{{#if file}}
 		Showing metadata for "{{file.path}}"
@@ -7,4 +7,11 @@
 	{{else}}
 		<h3>Select file ...</h3>
 	{{/if}}
+
+<ul>
+	{{#each file.metadata}}
+		<li>{{this}} asdf</li>
+	{{/each}}
+</ul>
+
 </ol>

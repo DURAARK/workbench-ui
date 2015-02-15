@@ -4,21 +4,22 @@
 
 <br>
 
-{{log stage}}
+{{#if stage.metadata.length}}
 
-{{#if stage.files.length}}
-
-<span class="da-workflow-description-small">Available metadata:</span>
+{{!-- <span class="da-workflow-description-small">Available metadata:</span> --}}
 
 <ul>
-	{{#each stage.files}}
-		<li class="da-file-entry"><div class="da-valid btn btn-green" title="Schema"> {{schema}}</div> {{path}}</li>
-		{{log content}}
+	{{#each item in stage.metadata}}
+		{{#if item}}
+			{{metadata-item item=item}}
+		{{else}}
+			Requesting metadata, please wait...
+		{{/if}}
 	{{/each}}
 </ul>
 
 {{else}}
 
-<div style="text-align: left;">No metadata added yet.</div>
+<div>No metadata added yet.</div>
 
 {{/if}}

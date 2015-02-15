@@ -5,7 +5,7 @@ default DS.Model.extend({
     name: DS.attr('string', {
         defaultValue: 'metadata'
     }),
-    files: DS.hasMany('metadatum', {
+    metadata: DS.hasMany('metadatum', {
         async: true
     }, {
         defaultValue: []

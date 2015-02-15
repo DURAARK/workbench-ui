@@ -3,50 +3,77 @@ import E57MetadataAPI from 'workbench-ui/bindings/api-e57metadata';
 
 export
 default Ember.ObjectController.extend({
-    onFilesChanged: function() {
+    onFileStageChanged: function() {
         var that = this;
 
-        this.get('model.metadatastage.files').then(function(metadatafiles) {
+        var requestData = Em.RSVP.hash({
+            metadataStage: this.get('model.metadatastage'),
+            metadata: this.get('model.metadatastage.metadata'),
+            fileStage: this.get('model.filestage'),
+            store: this.store
+        });
 
-            var e57MetadataAPI = new E57MetadataAPI();
+        requestData.then(function(result) {
+            that.store.find('filestage').then(function(records) {
 
-            that.get('model.filestage.files').then(function(files) {
-                console.log('#files: ' + files.get('length'));
+                var lkj = result.store.createRecord('filestage');
+                //updateMetadataStage(result.metadataStage, result.fileStage, result.store);
 
-                files.forEach(function(file) {
-                    var path = file.getProperties('path');
-                    e57MetadataAPI.getMetadataFor(path).then(function(data) {
-                        console.log('  path: ' + file.get('path'));
-                        console.log('  metadata: ' + JSON.stringify(data, null, 4));
+                var metadataStage = result.metadataStage;
+                var fileStage = result.fileStage;
+                var metadata = result.metadata;
+                var store = result.store;
 
-                        var ext = that._getFileExtension(file.get('path'))[0],
-                            schema = null;
+                // function updateMetadataStage(metadataStage, fileStage, store) {
 
-                        console.log('ext: ' + ext);
+                // reset current metadataStage:
+                var md = metadata.toArray();
 
-                        if (ext.toLowerCase() === 'e57') {
-                            schema = 'e57m';
-                        } else if (ext.toLowerCase() === 'ifc') {
-                            schema = 'ifcm';
-                        }
+                md.forEach(function(item) {
+                    if (item.get('schema') === 'e57m') {
+                        metadata.removeObject(item);
+                    } else if (item.get('schema') === 'ifcm') {
+                        metadata.removeObject(item);
+                    }
+                });
 
-                        var item = that.store.createRecord('metadatum', {
-                            path: file.get('path'),
-                            schema: schema,
-                            content: data
+                fileStage.get('files').then(function(files) {
+                    // console.log('#files: ' + files.get('length'));
+
+                    files.forEach(function(file) {
+                        var path = file.getProperties('path');
+
+                        var e57MetadataAPI = new E57MetadataAPI();
+                        e57MetadataAPI.getMetadataFor(path).then(function(data) {
+                            // console.log('  path: ' + file.get('path'));
+                            // console.log('  metadata: ' + JSON.stringify(data, null, 4));
+
+                            var ext = _getFileExtension(file.get('path'))[0],
+                                schema = null;
+
+                            // console.log('ext: ' + ext);
+
+                            if (ext.toLowerCase() === 'e57') {
+                                schema = 'e57m';
+                            } else if (ext.toLowerCase() === 'ifc') {
+                                schema = 'ifcm';
+                            }
+
+                            var item = store.createRecord('metadatum', {
+                                schema: schema,
+                                format: 'application/json',
+                                model: data,
+                                file: file
+                            });
+
+                            metadata.pushObject(item);
                         });
-
-                        metadatafiles.pushObject(item);
                     });
                 });
+                // }(result.metadataStage, result.fileStage, that.store);
             });
-
         });
     }.observes('model.filestage'),
-
-    _getFileExtension: function(filename) {
-        return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : undefined;
-    },
 
     actions: {
         editStage: function(stage) {
@@ -56,4 +83,8 @@ default Ember.ObjectController.extend({
             this.transitionTo(stage.get('name'), stage);
         }
     }
-}); 
+});
+
+function _getFileExtension(filename) {
+    return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : undefined;
+}
