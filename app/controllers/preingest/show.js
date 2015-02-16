@@ -30,6 +30,7 @@ default Ember.ObjectController.extend({
 
 // TODO: refactor into 'duraark-api' object which gets injected into controllers and routes!
 function updateMetadataStage(metadataStage, fileStage, metadata, store) {
+    metadataStage.set('isLoading', true);
 
     // reset current metadataStage:
     var md = metadata.toArray();
@@ -65,6 +66,15 @@ function updateMetadataStage(metadataStage, fileStage, metadata, store) {
                 });
 
                 metadata.pushObject(item);
+
+                var a = fileStage.get('files.length');
+                var b = metadata.get('length');
+
+                console.log('a: ' + a + ' / ' + 'b: ' + b);
+
+                if (fileStage.get('files.length') === metadata.get('length')-1) { // take into account 'buildm' entry
+                    metadataStage.set('isLoading', false);
+                }
             });
         });
     });

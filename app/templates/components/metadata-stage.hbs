@@ -3,23 +3,22 @@
 </section>
 
 <br>
+{{#if stage.isLoading}}
+	{{loading-spinner-center}}
+{{/if}}
 
 {{#if stage.metadata.length}}
-
-{{!-- <span class="da-workflow-description-small">Available metadata:</span> --}}
 
 <ul>
 	{{#each item in stage.metadata}}
 		{{#if item}}
-			{{metadata-item item=item}}
-		{{else}}
-			Requesting metadata, please wait...
+			{{metadata-item item=item isLoading=stage.isLoading}}
 		{{/if}}
 	{{/each}}
 </ul>
 
 {{else}}
 
-<div>No metadata added yet.</div>
+<div>Requesting metadata ...</div>
 
 {{/if}}

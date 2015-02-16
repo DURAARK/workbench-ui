@@ -8,6 +8,7 @@ var app = new EmberApp();
 // output files.
 
 app.import('bower_components/ember-data-sails-adapter/ember-data-sails-adapter.js');
+app.import('bower_components/please-wait/build/please-wait.min.js');
 
 // If you need to use different assets in different
 // environments, specify an object as the first parameter. That

@@ -15,4 +15,8 @@ default DS.Model.extend({
     }),
     createdAt: DS.attr('date'),
     updatedAt: DS.attr('date'),
+
+    isLoading: DS.attr('boolean', {
+        defaultValue: false
+    })
 });
