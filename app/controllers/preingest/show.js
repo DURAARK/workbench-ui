@@ -15,75 +15,60 @@ default Ember.ObjectController.extend({
 
         requestData.then(function(result) {
             that.store.find('filestage').then(function(records) {
-
-                var lkj = result.store.createRecord('filestage');
-                //updateMetadataStage(result.metadataStage, result.fileStage, result.store);
-
-                var metadataStage = result.metadataStage;
-                var fileStage = result.fileStage;
-                var metadata = result.metadata;
-                var store = result.store;
-
-                // function updateMetadataStage(metadataStage, fileStage, store) {
-
-                // reset current metadataStage:
-                var md = metadata.toArray();
-
-                md.forEach(function(item) {
-                    if (item.get('schema') === 'e57m') {
-                        metadata.removeObject(item);
-                    } else if (item.get('schema') === 'ifcm') {
-                        metadata.removeObject(item);
-                    }
-                });
-
-                fileStage.get('files').then(function(files) {
-                    // console.log('#files: ' + files.get('length'));
-
-                    files.forEach(function(file) {
-                        var path = file.getProperties('path');
-
-                        var e57MetadataAPI = new E57MetadataAPI();
-                        e57MetadataAPI.getMetadataFor(path).then(function(data) {
-                            // console.log('  path: ' + file.get('path'));
-                            // console.log('  metadata: ' + JSON.stringify(data, null, 4));
-
-                            var ext = _getFileExtension(file.get('path'))[0],
-                                schema = null;
-
-                            // console.log('ext: ' + ext);
-
-                            if (ext.toLowerCase() === 'e57') {
-                                schema = 'e57m';
-                            } else if (ext.toLowerCase() === 'ifc') {
-                                schema = 'ifcm';
-                            }
-
-                            var item = store.createRecord('metadatum', {
-                                schema: schema,
-                                format: 'application/json',
-                                model: data,
-                                file: file
-                            });
-
-                            metadata.pushObject(item);
-                        });
-                    });
-                });
-                // }(result.metadataStage, result.fileStage, that.store);
+                updateMetadataStage(result.metadataStage, result.fileStage, result.metadata, result.store);
             });
         });
     }.observes('model.filestage'),
 
     actions: {
         editStage: function(stage) {
-            console.log('stage: ' + stage);
-            debugger;
             console.log('[preingest.show] requesting stage editor: ' + stage.get('name'));
             this.transitionTo(stage.get('name'), stage);
         }
     }
 });
+
+// TODO: refactor into 'duraark-api' object which gets injected into controllers and routes!
+function updateMetadataStage(metadataStage, fileStage, metadata, store) {
+
+    // reset current metadataStage:
+    var md = metadata.toArray();
+
+    md.forEach(function(item) {
+        if (item.get('schema') === 'e57m') {
+            metadata.removeObject(item);
+        } else if (item.get('schema') === 'ifcm') {
+            metadata.removeObject(item);
+        }
+    });
+
+    fileStage.get('files').then(function(files) {
+        files.forEach(function(file) {
+            var path = file.getProperties('path');
+
+            var e57MetadataAPI = new E57MetadataAPI();
+            e57MetadataAPI.getMetadataFor(path).then(function(data) {
+                var ext = _getFileExtension(file.get('path'))[0],
+                    schema = null;
+
+                if (ext.toLowerCase() === 'e57') {
+                    schema = 'e57m';
+                } else if (ext.toLowerCase() === 'ifc') {
+                    schema = 'ifcm';
+                }
+
+                var item = store.createRecord('metadatum', {
+                    schema: schema,
+                    format: 'application/json',
+                    model: data,
+                    file: file
+                });
+
+                metadata.pushObject(item);
+            });
+        });
+    });
+}
 
 function _getFileExtension(filename) {
     return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : undefined;
