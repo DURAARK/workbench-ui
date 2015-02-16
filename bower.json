@@ -16,7 +16,8 @@
     "ember-data-sails-adapter": "~2.1.1",
     "normalize.css": "~3.0.2",
     "bourbon": "3.2.1",
-    "susy": "~2.2.2"
+    "susy": "~2.2.2",
+    "please-wait": "~0.0.2"
   },
   "resolutions": {
     "ember": "1.8.1"
