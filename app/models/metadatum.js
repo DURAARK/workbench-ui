@@ -8,17 +8,17 @@ default DS.Model.extend({
     file: DS.belongsTo('file'),
 
     modelArray: function() {
-        var prop3,
+        var model,
             propertyArray = [];
 
-        prop3 = this.get('model');
+        model = this.get('model');
 
-        if (prop3) {
-            for (var key in prop3) {
-                if (prop3.hasOwnProperty(key) && key !== "toString") {
+        if (model) {
+            for (var key in model) {
+                if (model.hasOwnProperty(key) && key !== "toString") {
                     propertyArray.push({
                         key: key,
-                        value: prop3[key]
+                        value: model[key]
                     });
                 }
             }

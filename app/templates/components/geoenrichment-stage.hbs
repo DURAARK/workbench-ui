@@ -2,20 +2,24 @@
     <a id="ember891" class="ember-view btn btn-default post-edit" href="/ghost/editor/1/"> Edit</a>
 </section>
 
-<br>
+<br><br>
 
-{{#if model.enrichments.length}}
+{{#if stage.isLoading}}
+	{{loading-spinner-center}}
+{{/if}}
 
-<span class="da-workflow-description-small">Following geometric enrichments are available:</span>
+{{#if stage.metadata.length}}
 
 <ul>
-{{#each model.enrichments}}
-	<li>Application: {{application}} / enrichments: {{enrichments}}</li>
-{{/each}}
+	{{#each item in stage.metadata}}
+		{{#if item}}
+			{{geoenrichment-item item=item isLoading=stage.isLoading}}
+		{{/if}}
+	{{/each}}
 </ul>
 
 {{else}}
 
-<div style="text-align: left;">No enrichments added yet.</div>
+<div>Requesting metadata ...</div>
 
 {{/if}}
