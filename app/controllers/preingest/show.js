@@ -43,6 +43,11 @@ function updateMetadataStage(metadataStage, fileStage, metadata, store) {
         }
     });
 
+    if (fileStage.get('files.length') === 0) {
+        metadataStage.set('isLoading', false);
+        return;
+    }
+
     fileStage.get('files').then(function(files) {
         files.forEach(function(file) {
             var path = file.getProperties('path');
