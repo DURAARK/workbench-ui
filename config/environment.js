@@ -49,18 +49,6 @@ module.exports = function(environment) {
                 jobsEndpoint: '/e57m',
                 extractEndpoint: '/e57m/extract',
                 responseKey: 'e57ms'
-            },
-            sessions: {
-                host: 'http://localhost',
-                port: 1337,
-                // The endpoint where the current jobs ('pending' and 'finished') are returned
-                jobsEndpoint: '/e57m',
-                // The endpoint where an extraction job can be posted
-                extractEndpoint: '/e57m/extract',
-                // TODO: the JSON response from the API has one parent key, which is
-                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
-                // handling in the APIIfcMetadata and APIE57Metadata binding!
-                responseKey: 'e57ms'
             }
         }
     };

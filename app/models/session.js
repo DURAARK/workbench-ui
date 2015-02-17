@@ -7,5 +7,7 @@ default DS.Model.extend({
     createdAt: DS.attr('date'),
     updatedAt: DS.attr('date'),
     filestage: DS.belongsTo('filestage', { async: true }),
-    metadatastage: DS.belongsTo('metadatastage', { async: true })
+    metadatastage: DS.belongsTo('metadatastage', { async: true }),
+    semenrichmentstage: DS.belongsTo('semenrichmentstage', { async: true }),
+    geoenrichmentstage: DS.belongsTo('geoenrichmentstage', { async: true })
 });
