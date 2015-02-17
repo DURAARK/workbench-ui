@@ -12,11 +12,9 @@
 
 	<ul>
 	{{#each file in stage.files}}
-		<li class="da-file-entry"><div class="da-valid btn btn-green" title="Valid"> VALID</div> {{file.path}}</li>
+		{{file-item item=file onDelete="onDelete" isLoading=stage.isLoading}}	
 	{{/each}}
 	</ul>
-
-	{{!-- Status: {{stage.status}} --}}
 	
 {{else}}
 

@@ -10,5 +10,11 @@ default Ember.Component.extend({
         } else {
             return 'Loading...';
         }
-    }.property('item.model')
+    }.property('item.model'),
+
+    actions: {
+        onDelete: function(item) {
+            item.deleteRecord();
+        }
+    }
 });
