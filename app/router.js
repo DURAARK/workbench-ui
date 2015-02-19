@@ -23,6 +23,10 @@ Router.map(function() {
   this.route("search");
 
   this.route("semenhance");
+
+  this.resource("preservation", function() {
+    this.route('index', { path: "/" });
+  });
 });
 
 export default Router;
