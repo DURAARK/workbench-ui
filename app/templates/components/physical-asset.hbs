@@ -1,0 +1,10 @@
+<div style="font-size: 26px;">Building: {{model.url}} | properties: {{model.properties.length}}</div>
+
+<br>
+
+<ul>
+{{#each property in model.properties}}
+	<li><strong>{{property.key}}</strong>: {{property.value}}
+{{/each}}
+</ul>
+

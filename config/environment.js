@@ -23,7 +23,10 @@ module.exports = function(environment) {
         // Default API endpoing configuration for the DURAARK Platform for 
         // *production* environment. For the development environment the 
         // config is overwritten below.
-        DURAARKAPI: {
+        DURAARKAPI: {            
+            sda: {
+                host: apiEndpoint + '/sda'
+            },
             sessions: {
                 host: apiEndpoint + '/sip'
             },
@@ -65,6 +68,9 @@ module.exports = function(environment) {
         apiEndpoint = 'http://localhost';
 
         ENV.DURAARKAPI = {
+            physicalAssets: {
+                host: apiEndpoint + ':5005/example'
+            },
             sessions: {
                 host: apiEndpoint + ':5004'
             },
