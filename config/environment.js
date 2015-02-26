@@ -8,6 +8,14 @@ module.exports = function(environment) {
         environment: environment,
         baseURL: '/',
         locationType: 'auto',
+        contentSecurityPolicy: {
+            'default-src': "'none'",
+            'script-src': "'self'",
+            'font-src': "'self'",
+            'connect-src': "'self'",
+            'img-src': "'self' a.tiles.mapbox.com",
+            'style-src': "'self' 'unsafe-inline'",
+        },
         EmberENV: {
             FEATURES: {
                 // Here you can enable experimental features on an ember canary build
@@ -23,7 +31,7 @@ module.exports = function(environment) {
         // Default API endpoing configuration for the DURAARK Platform for 
         // *production* environment. For the development environment the 
         // config is overwritten below.
-        DURAARKAPI: {            
+        DURAARKAPI: {
             sda: {
                 host: apiEndpoint + '/sda'
             },

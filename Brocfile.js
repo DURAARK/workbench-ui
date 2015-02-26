@@ -10,6 +10,11 @@ var app = new EmberApp();
 app.import('bower_components/ember-data-sails-adapter/ember-data-sails-adapter.js');
 app.import('bower_components/please-wait/build/please-wait.min.js');
 
+// ember-leaflet:
+app.import('bower_components/leaflet-dist/leaflet.js')
+app.import('bower_components/leaflet-dist/leaflet.css')
+app.import('bower_components/ember-leaflet/dist/ember-leaflet.js')
+
 // If you need to use different assets in different
 // environments, specify an object as the first parameter. That
 // object's keys should be the environment name and the values

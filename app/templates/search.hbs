@@ -28,18 +28,18 @@
 
 					<div style="padding-left: 10px; margin-top: 20px;border-width: 1px;border-style: solid; width: 100px;"><i class="icon-add"></i> SEARCH</div>
 
-					<div style="margin-top: 35px; margin-bottom: -10px;">(You can store your search below for later reuse.)</div>
+					{{!-- <div style="margin-top: 35px; margin-bottom: -10px;">(You can store your search below for later reuse.)</div> --}}
 
 					</div>
 				</li>
 
-				<li>
+{{!-- 				<li>
 				    <header class="topheader">
 			            <section class="content-filter">
 			                <small>Predefined & saved search templates</small>
 			            </section>
                         <a id="ember850" class="ember-view btn btn-green" href="/ghost/editor/" title="Add current template"><span class="hidden">Add current template</span></a>
-			        {{!-- </header> --}}
+
 
 					<ul style="margin-top: 35px;">
 						<li style="margin: 30px;">Location-based search <a id="ember850" class="ember-view btn btn-green btn-red" href="/ghost/editor/" title="Delete"><span class="hidden">Delete</span></a></li>
@@ -49,13 +49,14 @@
 					</ul>
 
 					</div>
-				</li>
-
+				</li> --}}
 			</ol>
+
+			{{view "map"}}
 		</section>
 	</section>
 
-    <section class="content-preview js-content-preview" data-bindattr-862="862">
+    <section class="content-preview js-content-preview">
         {{!-- <div id="ember680" class="ember-view">
         <header class="post-preview-header clearfix">
 	    	<button id="ember888" class="ember-view btn btn-default btn-back">Back</button>

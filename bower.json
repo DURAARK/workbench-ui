@@ -17,7 +17,8 @@
     "normalize.css": "~3.0.2",
     "bourbon": "3.2.1",
     "susy": "~2.2.2",
-    "please-wait": "~0.0.2"
+    "please-wait": "~0.0.2",
+    "ember-leaflet": "~0.6.0"
   },
   "resolutions": {
     "ember": "1.8.1"
