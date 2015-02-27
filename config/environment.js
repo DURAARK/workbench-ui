@@ -12,7 +12,7 @@ module.exports = function(environment) {
             'default-src': "'none'",
             'script-src': "'self'",
             'font-src': "'self'",
-            'connect-src': "'self'",
+            'connect-src': "'self' ws://localhost:35729",
             'img-src': "'self' a.tiles.mapbox.com",
             'style-src': "'self' 'unsafe-inline'",
         },
@@ -32,8 +32,8 @@ module.exports = function(environment) {
         // *production* environment. For the development environment the 
         // config is overwritten below.
         DURAARKAPI: {
-            sda: {
-                host: apiEndpoint + '/sda'
+            physicalAssets: {
+                host: apiEndpoint + '/sda/example'
             },
             sessions: {
                 host: apiEndpoint + '/sip'
