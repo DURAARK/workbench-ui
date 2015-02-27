@@ -1,9 +1,27 @@
 import Ember from 'ember';
 
+var MarkerLayer =
+    EmberLeaflet.MarkerLayer.extend(
+        // EmberLeaflet.DraggableMixin,
+        EmberLeaflet.PopupMixin, {
+            popupContentBinding: 'content.title'
+        });
+
 var MarkerCollectionLayer =
     EmberLeaflet.MarkerCollectionLayer.extend({
-        contentBinding: "controller.markers"
+        contentBinding: 'controller.markers',
+        itemLayerClass: MarkerLayer
     });
+
+// var MarkerClusterLayer =
+//     EmberLeaflet.ContainerLayer.extend({
+//         childLayers: [
+//             MarkerCollectionLayer
+//         ],
+//         _newLayer: function() {
+//             return new L.MarkerClusterGroup();
+//         }
+//     });
 
 export
 default EmberLeaflet.MapView.extend({
@@ -11,6 +29,7 @@ default EmberLeaflet.MapView.extend({
     childLayers: [
         EmberLeaflet.DefaultTileLayer,
         MarkerCollectionLayer
+        // MarkerClusterLayer
     ],
     center: L.latLng(48, 13),
     zoom: 4,

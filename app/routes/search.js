@@ -13,7 +13,8 @@ default Ember.Route.extend({
 
         model.forEach(function(item) {
             markers.push({
-                location: L.latLng(item.get('latitude'), item.get('longitude'))
+                location: L.latLng(item.get('latitude'), item.get('longitude')),
+                title: 'test'
             });
         });
         controller.set('markers', markers);
