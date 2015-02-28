@@ -72,6 +72,26 @@
     right: 20px;
 }
 
+.btn-right {
+    float: right;
+}
+
+.btn-left {
+    float: left;
+}
+
+.btn-green-line {
+    background-color: #9FBB58;
+    border-color: #94b148;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-blue-line {
+    background-color: #5BA4E5;
+    border-color: #4598e2;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
 .btn-tiny {
     padding: 2px 5px;
     font-size: 1rem;

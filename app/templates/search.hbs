@@ -7,19 +7,14 @@
 {{!--             <a id="ember850" class="ember-view btn btn-green" href="/ghost/editor/" title="New Session"><span class="hidden">New Session</span></a> --}}
         </header>
 
-		<section id="ember861" class="ember-view content-list-content js-content-scrollbox">        
+		<section class="content-list-content js-content-scrollbox">        
 			<ol class="posts-list">
-
 				<li>
 					<div style="margin: 35px;width: 85%;">
 
-					<h4 style="margin-bottom: 15px;">Setup search templates</h4>
+					<h4 style="margin-bottom: 15px;">Filters ({{filters.length}})</h4>
 
-					<div style="margin-top: 15px;">... and select properties you want to be searched. Properties are defined by the buildm schema.</div>
-
-					<h4>Search Constraints: (#: {{searchConstraints.length}})</h4>
-
-					{{#custom-select value="longitude" action="selectProperty"}}
+					{{#custom-select value="Select..." action="selectProperty"}}
 						{{#each item in properties}}
 							{{#custom-option value=item.name}}{{item.name}}{{/custom-option}}
 						{{/each}}
@@ -27,48 +22,22 @@
 
 					{{input type="text" value=propertyValue size="10" placeholder="Search value"}}
 
-					<ul>
-					{{#each constraint in searchConstraints}}
-						<li>{{constraint.property}} | {{constraint.value}}
-            <div {{action "removeSearchConstraint" constraint}} class="btn btn-red btn-tiny btn-topright" title="Remove Constraint">x</div></li>
+					<div style="margin: 10px; overflow: hidden;">
+						<button {{action "addFilter"}} class="btn btn-green-line btn-left"  title="Add Filter">Add</button>
+						{{#if filters.length}}			
+						<button {{action "clearAllFilters"}} class="btn btn-blue-line btn-right" title="Clear all filters">Clear All</button>
+						{{/if}}
+					</div>
+
+					<ul style="clear: both; margin: 20px;">
+					{{#each filter in filters}}
+						<li>{{filter.property}} | {{filter.value}}
+            						<div {{action "clearFilter" filter}} class="btn btn-red btn-tiny btn-topright" title="Remove Filter">x</div>
+            					</li>
 					{{/each}}
 					</ul>
-					
-					<button class="btn btn-green" {{action "addSearchConstraint"}}>Add</button>
 
-{{!-- 					<ul style="margin-top: 15px;">
-						<li>{{input type="checkbox" name="location" checked=location}} Location</li>
-						<li>{{input type="checkbox" name="description" checked=description}} Description</li>
-						<li>{{input type="checkbox" name="levels" checked=levels}} Levels</li>
-						<li>{{input type="checkbox" name="rooms" checked=rooms}} Rooms</li>
-					</ul>
- --}}
-					<div {{action "performSearch"}} style="padding-left: 10px; margin-top: 20px;border-width: 1px;border-style: solid; width: 100px;"><i class="icon-add"></i> SEARCH</div>
-
-					<div {{action "listAll"}} style="padding-left: 10px; margin-top: 20px;border-width: 1px;border-style: solid; width: 100px;"><i class="icon-add"></i> LIST ALL</div>
-
-					{{!-- <div style="margin-top: 35px; margin-bottom: -10px;">(You can store your search below for later reuse.)</div> --}}
-
-					</div>
 				</li>
-
-{{!-- 				<li>
-				    <header class="topheader">
-			            <section class="content-filter">
-			                <small>Predefined & saved search templates</small>
-			            </section>
-                        <a id="ember850" class="ember-view btn btn-green" href="/ghost/editor/" title="Add current template"><span class="hidden">Add current template</span></a>
-
-
-					<ul style="margin-top: 35px;">
-						<li style="margin: 30px;">Location-based search <a id="ember850" class="ember-view btn btn-green btn-red" href="/ghost/editor/" title="Delete"><span class="hidden">Delete</span></a></li>
-						<li style="margin: 30px;">Geometry-based search <a id="ember850" class="ember-view btn btn-green btn-red" href="/ghost/editor/" title="Delete"><span class="hidden">Delete</span></a></li>
-						<li style="margin: 30px;">Find all buildings with x floors <a id="ember850" class="ember-view btn btn-green btn-red" href="/ghost/editor/" title="Delete"><span class="hidden">Delete</span></a></li>
-						<li style="margin: 30px;">Find all buildings build around xxx <a id="ember850" class="ember-view btn btn-green btn-red" href="/ghost/editor/" title="Delete"><span class="hidden">Delete</span></a></li>
-					</ul>
-
-					</div>
-				</li> --}}
 			</ol>
 
 			{{view "map"}}
@@ -76,15 +45,14 @@
 	</section>
 
     <section class="content-preview js-content-preview">
-        {{!-- <div id="ember680" class="ember-view">
-        <header class="post-preview-header clearfix">
-	    	<button id="ember888" class="ember-view btn btn-default btn-back">Back</button>
-	    	<h2 class="page-title">Preview</h2>
+		<header class="floatingheader">
+			<section>
+				<small>
+					<span class="status">Search Results ({{model.buildings.length}} buildings)</span>
+				</small>
+			</section>
 		</header>
-		</div> --}}
 
-		<h4 style="margin-top: 30px;">Buildings (#: {{model.buildings.length}})</h4>
-		
 		<ul style="margin-top: 25px;">
 		{{#each item in buildings}}
 			<hr>

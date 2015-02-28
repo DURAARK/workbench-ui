@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 	selectedProperty: null,
 	errorMessage: null,
-	searchConstraints: Ember.A(),
+	filters: Ember.A(),
 
 	onBuildingsChanged: function() {
 		var markers = [],
@@ -30,9 +30,10 @@ export default Ember.Controller.extend({
 	}.observes('errorMessage'),
 
 	actions: {
-		addSearchConstraint: function() {
+		addFilter: function() {
 			var selectedProperty = this.get('selectedProperty'),
-				propertyValue = this.get('propertyValue');
+				propertyValue = this.get('propertyValue'),
+				filters = this.get('filters');
 
 			if (!selectedProperty) {
 				this.set('errorMessage', 'Please select a property first!');
@@ -44,17 +45,30 @@ export default Ember.Controller.extend({
 				return;
 			}
 
-			var constraints = this.get('searchConstraints');
-			constraints.pushObject({
+			filters.pushObject({
 				property: selectedProperty,
 				value: propertyValue
 			});
-			console.log('Added constraint | ' + selectedProperty + ': ' + propertyValue);
+
+			console.log('Added filter | ' + selectedProperty + ': ' + propertyValue);
+
+			this.send('performSearch');
 		},
 
-		removeSearchConstraint: function(constraint) {
-			var constraints = this.get('searchConstraints');
-			constraints.removeObject(constraint);
+		clearFilter: function(filter) {
+			var filters = this.get('filters');
+			filters.removeObject(filter);
+
+			if (filters.get('length')) {
+				this.send('performSearch');
+			} else {
+				this.send('listAll');
+			}
+		},
+
+		clearAllFilters: function() {
+			this.set('filters', Ember.A());
+			this.send('listAll');
 		},
 
 		selectProperty: function(property) {
@@ -63,16 +77,16 @@ export default Ember.Controller.extend({
 		},
 
 		listAll: function() {
-			debugger;
 			this.store.find('physicalAsset').then(function(records) {
-				debugger;
-				console.log('records: ' + records.get('length'));
 				this.set('buildings', records);
+				// FIXXME: for some reason the observer does not fire, we
+				// have to call the callback manually:
+				this.onBuildingsChanged();
 			}.bind(this));
 		},
 
 		performSearch: function() {
-			var constraints = this.get('searchConstraints'),
+			var constraints = this.get('filters'),
 				that = this;
 
 			if (!constraints.length) {
