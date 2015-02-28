@@ -2,7 +2,7 @@
     <section class="content-list js-content-list" data-bindattr-849="849">
         <header class="floatingheader">
             <section class="content-filter">
-                <small>Custom Search & Retrieve Interface</small>
+                <small>Custom Search & Retrieve Interface ({{controller.selectedProperty.name}})</small>
             </section>
 {{!--             <a id="ember850" class="ember-view btn btn-green" href="/ghost/editor/" title="New Session"><span class="hidden">New Session</span></a> --}}
         </header>
@@ -13,19 +13,25 @@
 				<li>
 					<div style="margin: 35px;width: 85%;">
 
-					<h4 style="margin-bottom: 15px;">Define a search template:</h4>
+					<h4 style="margin-bottom: 15px;">Setup search template:</h4>
 
-					{{input type="text" value=searchTerm disabled=entryNotAllowed size="10" placeholder="Search term"}}
+					<div style="margin-top: 15px;">... and select properties you want to be searched. Properties are defined by the buildm schema.</div>
 
-					<div style="margin-top: 15px;">... and select properties you want to be searched. Properties are defined by the SDA.</div>
+					{{#custom-select value="postalLocality" action="selectProperty"}}
+						{{#each item in properties}}
+							{{#custom-option value=item.name}}{{item.name}}{{/custom-option}}
+						{{/each}}
+					{{/custom-select}}
 
-					<ul style="margin-top: 15px;">
+					{{input type="text" value=searchTerm size="10" placeholder="Search value"}}
+
+{{!-- 					<ul style="margin-top: 15px;">
 						<li>{{input type="checkbox" name="location" checked=location}} Location</li>
 						<li>{{input type="checkbox" name="description" checked=description}} Description</li>
 						<li>{{input type="checkbox" name="levels" checked=levels}} Levels</li>
 						<li>{{input type="checkbox" name="rooms" checked=rooms}} Rooms</li>
 					</ul>
-
+ --}}
 					<div style="padding-left: 10px; margin-top: 20px;border-width: 1px;border-style: solid; width: 100px;"><i class="icon-add"></i> SEARCH</div>
 
 					{{!-- <div style="margin-top: 35px; margin-bottom: -10px;">(You can store your search below for later reuse.)</div> --}}
@@ -64,12 +70,12 @@
 		</header>
 		</div> --}}
 
-		<h4 style="margin-top: 30px;">Buildings (#{{model.length}})</h4>
+		<h4 style="margin-top: 30px;">Buildings (#{{model.buildings.length}})</h4>
 		
 		<ul style="margin-top: 25px;">
-		{{#each asset in model}}
+		{{#each item in buildings}}
 			<hr>
-			<li>{{physical-asset model=asset}}</li>
+			<li>{{physical-asset model=item}}</li>
 		{{/each}}
 			<hr>
 		</ul>

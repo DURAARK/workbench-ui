@@ -37,5 +37,8 @@
     "glob": "^4.0.5",
     "ember-dynamic-component": "0.0.4",
     "ember-cli-ember-leaflet": "^0.1.0"
+  },
+  "dependencies": {
+    "ember-cli-select": "0.0.2"
   }
 }

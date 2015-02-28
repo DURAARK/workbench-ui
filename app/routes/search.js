@@ -3,20 +3,16 @@ import Ember from 'ember';
 export
 default Ember.Route.extend({
     model: function() {
-        return this.store.find('physicalAsset');
+        return Ember.RSVP.hash({
+            buildings: this.store.find('physicalAsset'),
+            properties: this.store.find('property')
+        });
     },
 
     setupController: function(controller, model) {
         this._super(controller, model);
 
-        var markers = [];
-
-        model.forEach(function(item) {
-            markers.push({
-                location: L.latLng(item.get('latitude'), item.get('longitude')),
-                title: 'test'
-            });
-        });
-        controller.set('markers', markers);
+        controller.set('buildings', model.buildings);
+        controller.set('properties', model.properties);
     }
 });

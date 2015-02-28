@@ -32,6 +32,9 @@ module.exports = function(environment) {
         // *production* environment. For the development environment the 
         // config is overwritten below.
         DURAARKAPI: {
+            sda: {
+                host: apiEndpoint + '/sda'
+            },
             physicalAssets: {
                 host: apiEndpoint + '/sda/example'
             },
@@ -76,6 +79,9 @@ module.exports = function(environment) {
         apiEndpoint = 'http://localhost';
 
         ENV.DURAARKAPI = {
+            sda: {
+                host: apiEndpoint + ':5005'
+            },
             physicalAssets: {
                 host: apiEndpoint + ':5005/example'
             },
