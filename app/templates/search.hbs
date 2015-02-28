@@ -13,9 +13,16 @@
 				<li>
 					<div style="margin: 35px;width: 85%;">
 
-					<h4 style="margin-bottom: 15px;">Setup search template:</h4>
+					<h4 style="margin-bottom: 15px;">Setup search templates</h4>
 
 					<div style="margin-top: 15px;">... and select properties you want to be searched. Properties are defined by the buildm schema.</div>
+
+					<h4>Search Constraints: (#: {{searchConstraints.length}})</h4>
+					<ul>
+					{{#each constraint in searchConstraints}}
+						<li>{{constraint.property}} | {{constraint.value}}</li>
+					{{/each}}
+					</ul>
 
 					{{#custom-select value="postalLocality" action="selectProperty"}}
 						{{#each item in properties}}
@@ -23,7 +30,9 @@
 						{{/each}}
 					{{/custom-select}}
 
-					{{input type="text" value=searchTerm size="10" placeholder="Search value"}}
+					{{input type="text" value=propertyValue size="10" placeholder="Search value"}}
+					
+					<button class="btn btn-green" {{action "addSearchConstraint"}}>Add</button>
 
 {{!-- 					<ul style="margin-top: 15px;">
 						<li>{{input type="checkbox" name="location" checked=location}} Location</li>
