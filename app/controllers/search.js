@@ -1,4 +1,7 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
+
+var apiConfig = ENV.DURAARKAPI.physicalAssets;
 
 export default Ember.Controller.extend({
 	selectedProperty: null,
@@ -103,7 +106,7 @@ export default Ember.Controller.extend({
 
 			$.ajax({
 				type: 'POST',
-				url: 'http://localhost:5005/example/search',
+				url: apiConfig.host + '/search',
 				data: payload
 			}).done(function(response) {
 				that.store.unloadAll('physicalAsset');
