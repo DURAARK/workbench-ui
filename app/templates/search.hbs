@@ -8,7 +8,7 @@
         </header>
 
 		<section class="content-list-content js-content-scrollbox">        
-			<ol class="posts-list">
+			<ol style="overflow: auto; height: 60%;" class="posts-list">
 				<li>
 					<div style="margin: 35px;width: 85%;">
 
@@ -31,8 +31,8 @@
 
 					<ul style="clear: both; margin: 20px;">
 					{{#each filter in filters}}
-						<li>{{filter.property}} | {{filter.value}}
-            						<div {{action "clearFilter" filter}} class="btn btn-red btn-tiny btn-topright" title="Remove Filter">x</div>
+						<li style="margin: 10px; font-size: 20px;"><strong>{{filter.property}}:</strong> {{filter.value}}
+            						<div {{action "clearFilter" filter}} class="btn btn-red btn-tiny btn-right" title="Remove Filter">x</div>
             					</li>
 					{{/each}}
 					</ul>
