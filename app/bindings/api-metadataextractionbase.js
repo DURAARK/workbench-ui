@@ -4,8 +4,6 @@ import ENV from '../config/environment';
 var apiConfig = ENV.DURAARKAPI.ifcmetadata;
 var host = apiConfig.host + ':' + apiConfig.port;
 
-// TODO: extract common base object from IfcMetadataAPI and E57MetadataAPI!
-
 export
 default Ember.Mixin.create({
     getMetadataFor: function(filepaths) {
@@ -15,6 +13,7 @@ default Ember.Mixin.create({
             url = host + this.get('extractEndpoint');
 
         return this._post(url, data).then(function(data) {
+            debugger;
             return new Ember.RSVP.Promise(function(resolve) { //reject is handled inside this._get
                 // The returned data does not necessarily contain the metadata already
                 // (because the metadata is extracted from the given file, and the extraction
@@ -54,14 +53,14 @@ default Ember.Mixin.create({
                 if (jqxhr.status === 200) {
                     resolve(data);
                 } else {
-                    reject(new Error('[E57MetadataAPI::_get]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
+                    reject(new Error('[MetadataExtractionBase::_get]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
                 }
             }
 
             var jqxhr = Ember.$.get(url, handler);
 
             jqxhr.fail(function() {
-                reject(new Error('[E57MetadataAPI::_get]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
+                reject(new Error('[MetadataExtractionBase::_get]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
             });
         });
     },
@@ -72,9 +71,9 @@ default Ember.Mixin.create({
         return new Ember.RSVP.Promise(function(resolve, reject) {
             function handler(data, status, jqxhr) {
                 if (jqxhr.status === 201) {
-                    resolve(data[that.get('responseKey')]);
+                    resolve(data[that.get('responseKey')] || data); // FIXXME: do it one way or the other!
                 } else {
-                    reject(new Error('[E57MetadataAPI::_post]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
+                    reject(new Error('[MetadataExtractionBase::_post]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
                 }
             }
 

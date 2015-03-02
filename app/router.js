@@ -27,6 +27,7 @@ Router.map(function() {
   this.resource("preservation", function() {
     this.route('index', { path: "/" });
   });
+  this.route("semanticenrichment");
 });
 
 export default Router;

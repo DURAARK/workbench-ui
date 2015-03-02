@@ -1,0 +1,38 @@
+<main id="main">
+	<section class="content-view-container">
+	    <section class="content-list">
+	        <header class="floatingheader">
+	            <section class="manage content-filter">
+	                <small>Selected Files</small>
+	            </section>
+	        </header>
+
+			<section>
+				<button class="btn btn-green" {{action "save"}}> Select</button>   
+			</section>
+
+			<section class="content-list-content js-content-scrollbox">        
+				<ol class="posts-list">
+				{{file-explorer items=selectedFiles selectFile="deselectFile"}}
+				</ol>
+			</section> 
+		</section>
+
+		<section class="content-preview">
+			<header class="floatingheader">
+			    <small>
+			        <span class="status">Available files</span>
+			    </small>
+			</header>
+
+			<section class="content-preview-content">
+				<div class="fe-list-item-header">Click on files to select, drag new here files to upload ...</div>
+				<hr>
+				<button {{action "getSemanticEnrichments"}} class="btn btn-green-line btn-left"  title="Get semantic enrichment">Get Semantic Enrichment</button>
+			</section>
+		</section>
+	</section>
+</main>
+
+
+

@@ -11,7 +11,7 @@ default Ember.ObjectController.extend({
         }
 
         // Note: when calling the code below the 'model.filestage' property is changed (where?) and causes
-        // the observer to recurse indefinitely. This is a quick workaround for that.
+        // the observer to recurse endlessly. This is a quick workaround for that.
         this.set('_isUpdatingMetadata', true);
 
         var that = this;

@@ -63,6 +63,11 @@ module.exports = function(environment) {
                 jobsEndpoint: '/e57m',
                 extractEndpoint: '/e57m/extract',
                 responseKey: 'e57ms'
+            },
+            semanticenrichment: {
+                host: apiEndpoint + '/semanticenrichment',
+                jobsEndpoint: '/enrichment',
+                extractEndpoint: '/enrichment/extract'
             }
         }
     };
@@ -103,6 +108,11 @@ module.exports = function(environment) {
                 extractEndpoint: '/e57m/extract',
                 responseKey: 'e57ms'
             },
+            semanticenrichment: {
+                host: apiEndpoint + ':5006',
+                jobsEndpoint: '/enrichment',
+                extractEndpoint: '/enrichment/extract'
+            }
         };
     }
 

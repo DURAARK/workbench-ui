@@ -8,7 +8,8 @@ default Ember.Mixin.create({
             },
             url = this.get('host') + this.get('extractEndpoint');
 
-        return this._post(url, data).then(function(data) {
+        return this._post(url, data).then(function(response) {
+            debugger;
             return new Ember.RSVP.Promise(function(resolve) { //reject is handled inside this._get
                 // The returned data does not necessarily contain the metadata already
                 // (because the metadata is extracted from the given file, and the extraction
@@ -19,7 +20,7 @@ default Ember.Mixin.create({
                 // interface until the data is available:
 
                 // We requested a single file, therefore the response contains a single entry:
-                var metadata = data[0];
+                var metadata = response[0];
                 url = this.get('host') + this.get('jobsEndpoint') + '/' + metadata.id;
 
                 var checkFinished = function() {
