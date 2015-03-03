@@ -6,29 +6,40 @@ default Ember.Controller.extend({
     actions: {
         getSemanticEnrichments: function() {
             var store = this.store,
+                controller = this,
+                stage = this.get('model'),
                 that = this;
+
+            controller.set('_isUpdatingMetadata', true);
+            stage.set('isLoading', true);
 
             var semanticEnrichmentAPI = new SemanticEnrichmentAPI();
             semanticEnrichmentAPI.getMetadataFor({
                 path: 'dummy.ifc'
             }).then(function(data) {
-                console.log('data: ' + JSON.stringify(data, null, 4));
+                // console.log('data: ' + JSON.stringify(data, null, 4));
+
+                store.unloadAll('enrichment-item');
 
                 for (var idx = 0; idx < data.metadata.length; idx++) {
                     var item = data.metadata[idx]
-                    var record = store.createRecord('sem-enrichment', item);
-                    console.log('created item: ' + record.get('datasetName'));
+                    var record = store.createRecord('enrichment-item', item);
+                    stage.get('availableItems').pushObject(record);
                 };
 
-                // metadata.pushObject(item);
-
-                // if (fileStage.get('files.length') === metadata.get('length') - 1) { // take into account 'buildm' entry
-                // 	metadataStage.set('isLoading', false);
-                // 	controller.set('_isUpdatingMetadata', false);
-                // }
-
-                that.set('enrichmentItems', store.all('sem-enrichment'));
+                controller.set('_isUpdatingMetadata', false);
+                stage.set('isLoading', false);
             });
         }
+
+        // saveEnrichments: function() {
+        //     var stage = this.get('model');
+        //     var items = this.get('enrichmentItems');
+
+        //     items.forEach(function(item) {
+        //         stage.get('semEnrichment').pushObject(item);
+        //     })
+        //     stage.save();
+        // }
     }
 });

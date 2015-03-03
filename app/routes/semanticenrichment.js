@@ -2,8 +2,6 @@ import Ember from 'ember';
 
 export
 default Ember.Route.extend({
-    selectedFiles: [],
-    availableFiles: [],
 
     model: function(params) {
         return this.store.find('semanticenrichmentstage', params.id);
@@ -11,12 +9,7 @@ default Ember.Route.extend({
 
     setupController: function(controller, model) {
         this._super(controller, model);
-
-        controller.set('selectedFiles', model.get('files'));
-
-        this.store.find('file').then(function(records) {
-            controller.set('availableFiles', records);
-        });
+        controller.set('stage', model);
     },
 
     actions: {
@@ -27,18 +20,14 @@ default Ember.Route.extend({
             }.bind(this));
         },
 
-        selectFile: function(file) {
-            // console.log('selected: ' + file.get('path'));
-
-            var model = this.get('controller.model');
-            model.get('files').pushObject(file);
+        selectItem: function(item) {
+            var stage = this.get('controller');
+            stage.get('stage.selectedItems').pushObject(item);
         },
 
-        deselectFile: function(file) {
-            // console.log('deselected: ' + file.get('path'));
-
-            var model = this.get('controller.model');
-            model.get('files').removeObject(file);
+        deselectItem: function(item) {
+            var stage = this.get('controller');
+            stage.get('stage.selectedItems').removeObject(item);
         }
     }
 });

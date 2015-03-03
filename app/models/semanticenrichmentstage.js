@@ -5,15 +5,21 @@ default DS.Model.extend({
     name: DS.attr('string', {
         defaultValue: 'semenrichment'
     }),
-    semEnrichment: DS.hasMany('sem-enrichment', {
+
+    availableItems: DS.hasMany('enrichment-item', {
         async: true
-    }, {
-        defaultValue: []
     }),
+
+    selectedItems: DS.hasMany('enrichment-item', {
+        async: true
+    }),
+
     session: DS.belongsTo('session', {
         async: true
     }),
+
     createdAt: DS.attr('date'),
+
     updatedAt: DS.attr('date'),
 
     isLoading: DS.attr('boolean', {
