@@ -29,6 +29,18 @@
 				<div class="fe-list-item-header">Click on files to select, drag new here files to upload ...</div>
 				<hr>
 				<button {{action "getSemanticEnrichments"}} class="btn btn-green-line btn-left"  title="Get semantic enrichment">Get Semantic Enrichment</button>
+
+				{{#if enrichmentItems.length}}
+					<ul>
+					{{#each item in enrichmentItems}}
+						<li>{{item.datasetName}}</li>
+					{{/each}}
+					</ul>
+				{{else}}
+					<br><br>
+					<h3>No enrichments loaded yet.</h3>
+				{{/if}}
+
 			</section>
 		</section>
 	</section>

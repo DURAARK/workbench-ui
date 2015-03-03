@@ -6,7 +6,7 @@ var apiConfig = ENV.DURAARKAPI.semanticenrichment;
 var host = apiConfig.host;
 
 console.log('[API:semanticenrichment] endpoint: ' + host);
-console.log('[API:semanticenrichment]    config: ' + JSON.stringify(apiConfig, null, 4));
+console.log('[API:semanticenrichment] config:   ' + JSON.stringify(apiConfig, null, 4));
 
 export
 default Ember.Object.extend(MetadataExtractionAPIBase, {
