@@ -31,6 +31,14 @@
 			</header>
 
 			<section class="content-preview-content">
+			{{#if physicalAsset}}
+				<h3>PhysicalAsset</h3>
+			{{/if}}
+
+			{{#if digitalObjects.length}}
+				<h3>DigitalObjects: {{digitalObjects.length}}</h3>
+			{{/if}}
+
 			{{#if selectedInstance}}
 				{{metadata-item item=selectedInstance onSave="saveMetadata"}}
 			{{else}}

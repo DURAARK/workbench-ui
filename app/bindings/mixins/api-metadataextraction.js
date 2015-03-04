@@ -22,7 +22,12 @@ default Ember.Mixin.create({
                 var metadata = response[0];
                 url = this.get('host') + this.get('jobsEndpoint') + '/' + metadata.id;
 
-                var checkFinished = function() {
+                var checkFinished = function(md) {
+                    if (md.status === 'finished') {
+                        resolve(md);
+                        return;
+                    }
+
                     this._get(url).then(function(record) {
                         if (record.status === 'finished') {
                             // We are good to go:
@@ -36,7 +41,7 @@ default Ember.Mixin.create({
                     });
                 }.bind(this);
 
-                checkFinished();
+                checkFinished(metadata);
 
             }.bind(this));
         }.bind(this));
@@ -45,7 +50,7 @@ default Ember.Mixin.create({
     _get: function(url) {
         return new Ember.RSVP.Promise(function(resolve, reject) {
             function handler(data, status, jqxhr) {
-                if (jqxhr.status === 200) {
+                if (status === 'success') {
                     resolve(data);
                 } else {
                     reject(new Error('[MetadataExtractionAPIMixin::_get]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
@@ -65,7 +70,7 @@ default Ember.Mixin.create({
 
         return new Ember.RSVP.Promise(function(resolve, reject) {
             function handler(data, status, jqxhr) {
-                if (jqxhr.status === 201) {
+                if (status === 'success') {
                     resolve(data);
                 } else {
                     reject(new Error('[MetadataExtractionAPIMixin::_post]: "' + url + '" failed with status: [' + jqxhr.status + ']'));

@@ -2,11 +2,6 @@ import Ember from 'ember';
 
 export
 default Ember.Route.extend({
-    // selectedFile: function(file) {
-    //     console.log('asdfadsfasdfasdF: ' + file.get('path'));
-    //     return file;
-    // }.property(),
-
     model: function(params) {
         return this.store.find('metadatastage', params.id);
     },
@@ -14,6 +9,12 @@ default Ember.Route.extend({
     setupController: function(controller, model) {
         this._super(controller, model);
         controller.set('stage', model);
+
+        this.store.find('filestage', model.get('id')).then(function(stage) {
+            stage.get('files').then(function(records) {
+                controller.set('files', records);
+            });
+        });
     },
 
     actions: {
@@ -26,10 +27,6 @@ default Ember.Route.extend({
                     this.transitionTo('preingest.show', session);
                 }.bind(this));
             }.bind(this));
-        },
-
-        editMetadata: function(instance) {
-            this.set('controller.selectedInstance', instance);
         }
     }
 });
