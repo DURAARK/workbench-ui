@@ -2,7 +2,8 @@
 	{{#if isLoading}}
 		<li class="da-file-entry"><div class="da-valid btn btn-blue" title="Schema">{{loading-spinner}}</div>Descriptive metadata</li>
 	{{else}}
-		<li class="da-file-entry"><div class="da-valid btn btn-blue" title="Schema">{{item.schema}}</div>Descriptive metadata</li>
+
+		{{buildm-editor instance=item}}
 	{{/if}}
 {{/if}}
 
@@ -10,7 +11,8 @@
 	{{#if isLoading}}
 		<li class="da-file-entry"><div class="da-valid btn btn-alt" title="Schema">{{loading-spinner}}</div>Technical metadata</li>
 	{{else}}
-		<li class="da-file-entry"><div class="da-valid btn btn-alt" title="Schema">{{item.schema}}</div>Technical metadata</li>
+
+		{{ifcm-editor instance=item}}
 	{{/if}}
 {{/if}}
 
@@ -18,6 +20,6 @@
 	{{#if isLoading}}
 		<li class="da-file-entry"><div class="da-valid btn btn-green" title="Schema">{{loading-spinner}}</div>Technical metadata</li>
 	{{else}}
-		<li class="da-file-entry"><div class="da-valid btn btn-green" title="Schema">{{item.schema}}</div>Technical metadata</li>
+		{{e57m-editor instance=item}}
 	{{/if}}
 {{/if}}

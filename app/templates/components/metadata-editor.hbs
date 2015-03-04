@@ -1,15 +1,16 @@
-<ol class="fe-list" {{action "requestMetadata" file}}>
+<ol class="fe-list" {{action "requestMetadata" instance}}>
 
-	{{#if file}}
-		Showing metadata for "{{file.path}}"
-		{{!-- Content: {{file.content}} --}}
-		{{!-- Basefile: {{file.path}} --}}
+	{{#if instance}}
+	{{log instance.model.metadata}}
+		Showing metadata for "{{instance.schema}}"
+		{{!-- Content: {{instance.content}} --}}
+		{{!-- Baseinstance: {{instance.path}} --}}
 	{{else}}
-		<h3>Select file ...</h3>
+		<h3>Select instance ...</h3>
 	{{/if}}
 
 <ul>
-	{{#each file.metadata}}
+	{{#each instance.metadata}}
 		<li>{{this}} asdf</li>
 	{{/each}}
 </ul>

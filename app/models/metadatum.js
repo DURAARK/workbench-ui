@@ -5,7 +5,9 @@ default DS.Model.extend({
     schema: DS.attr('string'),
     model: DS.attr(),
 
-    file: DS.belongsTo('file'),
+    file: DS.belongsTo('file', {
+        async: true
+    }),
 
     modelArray: function() {
         var model,

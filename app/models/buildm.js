@@ -3,6 +3,6 @@ import DS from 'ember-data';
 export
 default DS.Model.extend({
     schema: DS.attr('string'),
-    floors: DS.attr('number'),
-    scans: DS.attr('number'),
+    latitude: DS.attr('number'),
+    longitude: DS.attr('number'),
 });

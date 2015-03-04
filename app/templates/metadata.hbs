@@ -13,7 +13,12 @@
 
 			<section class="content-list-content js-content-scrollbox">        
 				<ol class="posts-list">
-				{{file-explorer items=selectedFiles selectFile="editMetadata"}}
+				{{!-- {{file-explorer items=stage.metadata selectFile="editMetadata"}} --}}
+
+					<div class="fe-list"{{action "editMetadata" stage.buildm}}>buildm</div>
+					<div class="fe-list"{{action "editMetadata" stage.ifcm}}>ifcm</div>
+					<div class="fe-list"{{action "editMetadata" stage.e57m}}>e57m</div>
+
 				</ol>
 			</section> 
 		</section>
@@ -26,9 +31,12 @@
 			</header>
 
 			<section class="content-preview-content">
-			{{#each file in selectedFiles}}
-				{{metadata-editor file=file onSave="saveMetadata"}}
-			{{/each}}
+			{{#if selectedInstance}}
+				{{metadata-item item=selectedInstance onSave="saveMetadata"}}
+			{{else}}
+				No instance selected.
+			{{/if}}
+
 			</section>
 		</section>
 	</section>

@@ -26,7 +26,7 @@ default Ember.ObjectController.extend({
 
         var requestData = Em.RSVP.hash({
             metadataStage: this.get('model.metadatastage'),
-            metadata: this.get('model.metadatastage.metadata'),
+            // metadata: this.get('model.metadatastage.metadata'),
             fileStage: this.get('model.filestage'),
             semanticenrichmentStage: this.get('model.semanticenrichmentstage'),
             store: this.store,
@@ -132,10 +132,13 @@ function updateMetadataStage(metadataStage, fileStage, metadata, store, controll
 
                 metadata.pushObject(item);
 
-                if (fileStage.get('files.length') === metadata.get('length') - 1) { // take into account 'buildm' entry
+                item.save().then(function(bla) {
+                    //if (fileStage.get('files.length') === metadata.get('length') - 1) { // take into account 'buildm' entry
                     metadataStage.set('isLoading', false);
                     controller.set('_isUpdatingMetadata', false);
-                }
+                    metadataStage.save();
+                    //}
+                });
             });
         });
     });
