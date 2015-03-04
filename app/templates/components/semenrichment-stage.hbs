@@ -4,14 +4,18 @@
 
 <br><br>
 
+<h3>Available: {{stage.availableItems.length}}</h3>
+<h3>Selected: {{stage.selectedItems.length}}</h3>
+
 {{#if stage.isLoading}}
 	{{loading-spinner-center}}
 {{/if}}
 
-{{#if stage.metadata.length}}
+{{#if stage.selectedItems.length}}
 
 <ul>
-	{{#each item in stage.metadata}}
+	{{#each item in stage.selectedItems}}
+	{{log item}}
 		{{#if item}}
 			{{semenrichment-item item=item isLoading=stage.isLoading}}
 		{{/if}}

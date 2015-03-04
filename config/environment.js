@@ -12,7 +12,7 @@ module.exports = function(environment) {
             'default-src': "'none'",
             'script-src': "'self'",
             'font-src': "'self'",
-            'connect-src': "'self' ws://localhost:35729",
+            'connect-src': "'self' http://localhost:5001 http://localhost:5002 http://localhost:5003 http://localhost:5004 http://localhost:5005 http://localhost:5006",
             'img-src': "'self' a.tiles.mapbox.com",
             'style-src': "'self' 'unsafe-inline'",
         },

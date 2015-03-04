@@ -21,8 +21,8 @@ default Ember.Controller.extend({
 
                 store.unloadAll('enrichment-item');
 
-                for (var idx = 0; idx < data.metadata.length; idx++) {
-                    var item = data.metadata[idx]
+                for (var idx = 0; idx < data.availableItems.length; idx++) {
+                    var item = data.availableItems[idx]
                     var record = store.createRecord('enrichment-item', item);
                     stage.get('availableItems').pushObject(record);
                 };

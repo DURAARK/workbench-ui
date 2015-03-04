@@ -10,6 +10,7 @@ default Ember.Route.extend({
     setupController: function(controller, model) {
         this._super(controller, model);
         controller.set('stage', model);
+        debugger;
     },
 
     actions: {

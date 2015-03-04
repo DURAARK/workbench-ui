@@ -2,9 +2,9 @@ import Ember from 'ember';
 import ApplicationAdapter from './application';
 import ENV from '../config/environment';
 
-var apiConfig = ENV.DURAARKAPI.e57metadata;
+var apiConfig = ENV.DURAARKAPI.ifcmetadata;
 
-console.log('Connecting to "e57metadata" API via: ' + apiConfig.host);
+console.log('Connecting to "ifcmetadata" API via: ' + apiConfig.host);
 
 export
 default ApplicationAdapter.extend({
