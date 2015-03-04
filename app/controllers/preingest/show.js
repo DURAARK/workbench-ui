@@ -26,7 +26,6 @@ default Ember.ObjectController.extend({
 
         var requestData = Em.RSVP.hash({
             metadataStage: this.get('model.metadatastage'),
-            // metadata: this.get('model.metadatastage.metadata'),
             fileStage: this.get('model.filestage'),
             semanticenrichmentStage: this.get('model.semanticenrichmentstage'),
             store: this.store,
@@ -35,7 +34,7 @@ default Ember.ObjectController.extend({
 
         requestData.then(function(result) {
             that.store.find('filestage').then(function(records) {
-                updateMetadataStage(result.metadataStage, result.fileStage, result.metadata, result.store, result.controller);
+                updateMetadataStage(result.metadataStage, result.fileStage, result.store, result.controller);
                 updateSemanticEnrichmentStage(result.semanticenrichmentStage, result.fileStage, result.store, result.controller);
             });
         });
@@ -86,19 +85,19 @@ function updateSemanticEnrichmentStage(semanticenrichmentStage, fileStage, store
 }
 
 // TODO: refactor into 'duraark-api' object which gets injected into controllers and routes!
-function updateMetadataStage(metadataStage, fileStage, metadata, store, controller) {
+function updateMetadataStage(metadataStage, fileStage, store, controller) {
     metadataStage.set('isLoading', true);
 
-    // reset current metadataStage:
-    var md = metadata.toArray();
+    // // reset current metadataStage:
+    // var md = metadata.toArray();
 
-    md.forEach(function(item) {
-        if (item.get('schema') === 'e57m') {
-            metadata.removeObject(item);
-        } else if (item.get('schema') === 'ifcm') {
-            metadata.removeObject(item);
-        }
-    });
+    // md.forEach(function(item) {
+    //     if (item.get('schema') === 'e57m') {
+    //         metadata.removeObject(item);
+    //     } else if (item.get('schema') === 'ifcm') {
+    //         metadata.removeObject(item);
+    //     }
+    // });
 
     if (fileStage.get('files.length') === 0) {
         metadataStage.set('isLoading', false);
@@ -108,39 +107,43 @@ function updateMetadataStage(metadataStage, fileStage, metadata, store, controll
     fileStage.get('files').then(function(files) {
         console.log('NUMFILES: ' + files.get('length'));
 
-        files.forEach(function(file) {
-            var path = file.getProperties('path'),
-                ext = _getFileExtension(file.get('path'))[0],
-                schema = null,
-                metadataAPI = null;
+        // files.forEach(function(file) {
+        //     var path = file.getProperties('path'),
+        //         ext = _getFileExtension(file.get('path'))[0],
+        //         schema = null,
+        //         metadataAPI = null;
 
-            if (ext.toLowerCase() === 'e57') {
-                metadataAPI = new E57MetadataAPI();
-                schema = 'e57m';
-            } else if (ext.toLowerCase() === 'ifc') {
-                metadataAPI = new IfcMetadataAPI();
-                schema = 'ifcm';
-            }
+        //     if (ext.toLowerCase() === 'e57') {
+        //         metadataAPI = new E57MetadataAPI();
+        //         schema = 'e57m';
+        //     } else if (ext.toLowerCase() === 'ifc') {
+        //         metadataAPI = new IfcMetadataAPI();
+        //         schema = 'ifcm';
+        //     }
 
-            metadataAPI.getMetadataFor(path).then(function(data) {
-                var item = store.createRecord('metadatum', {
-                    schema: schema,
-                    format: 'application/json',
-                    model: data,
-                    file: file
-                });
+        //     metadataAPI.getMetadataFor(path).then(function(data) {
+        //         var item = store.createRecord('metadatum', {
+        //             schema: schema,
+        //             format: 'application/json',
+        //             model: data,
+        //             file: file
+        //         });
 
-                metadata.pushObject(item);
+        //         if (schema === 'ifcm') {
+        //             metadataStage.get('ifcm').pushObject(item);
+        //         } else if (schema === 'e57m') {
+        //             metadataStage.get('e57m').pushObject(item);
+        //         }
 
-                item.save().then(function(bla) {
-                    //if (fileStage.get('files.length') === metadata.get('length') - 1) { // take into account 'buildm' entry
-                    metadataStage.set('isLoading', false);
-                    controller.set('_isUpdatingMetadata', false);
-                    metadataStage.save();
-                    //}
-                });
-            });
-        });
+        //         item.save().then(function(bla) {
+        //             //if (fileStage.get('files.length') === metadata.get('length') - 1) { // take into account 'buildm' entry
+        //             metadataStage.set('isLoading', false);
+        //             controller.set('_isUpdatingMetadata', false);
+        //             metadataStage.save();
+        //             //}
+        //         });
+        //     });
+        // });
     });
 }
 

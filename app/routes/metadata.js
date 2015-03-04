@@ -14,20 +14,17 @@ default Ember.Route.extend({
     setupController: function(controller, model) {
         this._super(controller, model);
         controller.set('stage', model);
-
-        // controller.set('selectedFiles', model.get('files'));
-        // controller.set('selectedFile', null);
-
-        // this.store.find('metadatum').then(function(records) {
-        //     controller.set('availableFiles', records);
-        // });
     },
 
     actions: {
         save: function() {
-            this.get('controller.model').save().then(function() {
-                var session = this.get('controller.model.session');
-                this.transitionTo('preingest.show', session);
+            // NOTE: see http://stackoverflow.com/questions/26940363/ember-data-belongsto-async-relationship-omitted-from-createrecord-save-seria
+            // on how to save a 'belongsTo' relationship:
+            this.get('controller.stage.buildm').then(function(buildmRecord) {
+                buildmRecord.save().then(function() {
+                    var session = this.get('controller.model.session');
+                    this.transitionTo('preingest.show', session);
+                }.bind(this));
             }.bind(this));
         },
 

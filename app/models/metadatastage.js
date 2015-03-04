@@ -11,16 +11,22 @@ default DS.Model.extend({
     //     defaultValue: []
     // }),
 
-    buildm: DS.belongsTo('buildm', {async: true}),
+    buildm: DS.belongsTo('buildm', {
+        async: true
+    }),
 
-    ifcm: DS.belongsTo('ifcm', {async: true}),
+    ifcm: DS.belongsTo('ifcm', {
+        async: true
+    }),
 
-    e57m: DS.belongsTo('e57m', {async: true}),
+    e57m: DS.belongsTo('e57m', {
+        async: true
+    }),
 
     session: DS.belongsTo('session', {
         async: true
     }),
-    
+
     createdAt: DS.attr('date'),
 
     updatedAt: DS.attr('date'),
