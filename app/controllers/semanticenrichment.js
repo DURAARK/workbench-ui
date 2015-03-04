@@ -7,39 +7,20 @@ default Ember.Controller.extend({
         getSemanticEnrichments: function() {
             var store = this.store,
                 controller = this,
-                stage = this.get('model'),
-                that = this;
+                stage = this.get('stage'),
+                that = this,
+                sessionId = stage.session;
 
             controller.set('_isUpdatingMetadata', true);
             stage.set('isLoading', true);
 
             var semanticEnrichmentAPI = new SemanticEnrichmentAPI();
             semanticEnrichmentAPI.getMetadataFor({
-                path: 'dummy.ifc'
+                path: 'dummy.ifc',
+                session: parseInt(sessionId)
             }).then(function(data) {
-                // console.log('data: ' + JSON.stringify(data, null, 4));
-
-                store.unloadAll('enrichment-item');
-
-                for (var idx = 0; idx < data.availableItems.length; idx++) {
-                    var item = data.availableItems[idx]
-                    var record = store.createRecord('enrichment-item', item);
-                    stage.get('availableItems').pushObject(record);
-                };
-
-                controller.set('_isUpdatingMetadata', false);
-                stage.set('isLoading', false);
-            });
+                this.set('stage', data);
+            }.bind(this));
         }
-
-        // saveEnrichments: function() {
-        //     var stage = this.get('model');
-        //     var items = this.get('enrichmentItems');
-
-        //     items.forEach(function(item) {
-        //         stage.get('semEnrichment').pushObject(item);
-        //     })
-        //     stage.save();
-        // }
     }
 });

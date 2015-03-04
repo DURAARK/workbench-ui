@@ -3,16 +3,12 @@ import DS from 'ember-data';
 export
 default DS.Model.extend({
     name: DS.attr('string', {
-        defaultValue: 'semenrichment'
+        defaultValue: 'semanticenrichment'
     }),
 
-    availableItems: DS.hasMany('enrichment-item', {
-        async: true
-    }),
+    availableItems: DS.hasMany('enrichment-item'),
 
-    selectedItems: DS.hasMany('enrichment-item', {
-        async: true
-    }),
+    selectedItems: DS.hasMany('enrichment-item'),
 
     session: DS.belongsTo('session', {
         async: true

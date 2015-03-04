@@ -15,14 +15,8 @@ default Ember.ObjectController.extend({
         // FIXXME: for some weird reason the semanticenrichmentstage is not loaded, nor is the geometricenrichmentstage.
         // The metadatastage is... This is a quick workaround until I found the root cause:
         this.store.find('semanticenrichmentstage', 1).then(function(stage) {
-            debugger;
             this.set('semanticenrichmentstage', stage);
         }.bind(this));
-
-        // this.store.find('geoenrichmentstage').then(function(stage) {
-        //     this.set('geoenrichmentstage', stage);
-        // }.bind(this));
-        // FIXXME: ----------------------------------------------------------------------------------------------------
 
         // Note: when calling the code below the 'model.filestage' property is changed (where?) and causes
         // the observer to recurse endlessly. This is a quick workaround for that.
@@ -49,7 +43,6 @@ default Ember.ObjectController.extend({
 
     actions: {
         editStage: function(stage) {
-            alert('adsf');
             console.log('[preingest.show] requesting stage editor: ' + stage.get('name'));
             this.transitionTo(stage.get('name'), stage);
         }
