@@ -1,2 +1,108 @@
-<div>Scans: {{instance.scans}}</div>
-<div>Floors: {{instance.floors}}</div>
+{{#with instance.digitalObject as meta}}
+<div>coordinate_metadata: {{meta.coordinate_metadata}}</div>
+<div>creation_datetime: {{meta.creation_datetime}}</div>
+<div>guid: {{meta.guid}}</div>
+<div>image_count: {{meta.image_count}}</div>
+<div>image_size: {{meta.image_size}}</div>
+<div>image_size: {{meta.image_size}}</div>
+<div>scan_count: {{meta.scan_count}}</div>
+<div>scan_size: {{meta.scan_size}}</div>
+<div>version_major: {{meta.version_major}}</div>
+<div>version_minor: {{meta.version_minor}}</div>
+Images:
+{{#each image in images}}
+	<div>image</div>
+{{/each}}
+Scans: 
+{{#each scan in meta.scans}}
+	<div>acquisition_start: {{scan.acquisition_start}}</div>
+	<div>acquisition_end: {{scan.acquisition_end}}</div>
+	<div>description: {{scan.description}}</div>
+	<div>guid: {{scan.guid}}</div>
+	<div>name: {{scan.name}}</div>
+	<div>points_size: {{scan.points_size}}</div>
+	<div>relative_humidity: {{scan.relative_humidity}}</div>
+	<div>sensor_firmware_version: {{scan.sensor_firmware_version}}</div>
+	<div>sensor_hardware_version: {{scan.sensor_hardware_version}}</div>
+	<div>sensor_model: {{scan.sensor_model}}</div>
+	<div>sensor_serial_number: {{scan.sensor_serial_number}}</div>
+	<div>sensor_software_version: {{scan.sensor_software_version}}</div>
+	<div>sensor_vendor: {{scan.sensor_vendor}}</div>
+	<div>temperature: {{scan.temperature}}</div>
+	<div>atmospheric_pressure: {{scan.atmospheric_pressure}}</div>
+	<h4>cartesian_bounds:</h4>
+	<div>x_maximum: {{scan.cartesian_bounds.x_maximum}}</div>
+	<div>x_minimum: {{scan.cartesian_bounds.x_minimum}}</div>
+	<div>y_maximum: {{scan.cartesian_bounds.y_maximum}}</div>
+	<div>y_minimum: {{scan.cartesian_bounds.y_minimum}}</div>
+	<div>z_maximum: {{scan.cartesian_bounds.z_maximum}}</div>
+	<div>z_minimum: {{scan.cartesian_bounds.z_minimum}}</div>
+	<h4>color_limits:</h4>
+	<div>color_blue_maximum: {{scan.color_limits.color_blue_maximum}}</div>
+	<div>color_blue_minimum: {{scan.color_limits.color_blue_minimum}}</div>
+	<div>color_green_maximum: {{scan.color_limits.color_green_maximum}}</div>
+	<div>color_green_minimum: {{scan.color_limits.color_green_minimum}}</div>
+	<div>color_red_maximum: {{scan.color_limits.color_red_maximum}}</div>
+	<div>color_red_minimum: {{scan.color_limits.color_red_minimum}}</div>
+	<h4>index_bounds:</h4>
+	<div>col_maximum: {{scan.index_bounds.col_maximum}}</div>
+	<div>col_minimum: {{scan.index_bounds.col_minimum}}</div>
+	<div>return_maximum: {{scan.index_bounds.return_maximum}}</div>
+	<div>return_minimum: {{scan.index_bounds.return_minimum}}</div>
+	<div>row_maximum: {{scan.index_bounds.row_maximum}}</div>
+	<div>rotw_minimum: {{scan.index_bounds.row_minimum}}</div>
+	<h4>original_guids:</h4>
+	<h4>point_fields:</h4>
+	<div>angle_maximum: {{scan.point_fields.angle_maximum}}</div>
+	<div>angle_minimum: {{scan.point_fields.angle_minimum}}</div>
+	<div>angle_scaled_integer: {{scan.point_fields.angle_scaled_integer}}</div>
+	<div>cartesian_invalid_state_field: {{scan.point_fields.cartesian_invalid_state_field}}</div>
+	<div>cartesian_x_field: {{scan.point_fields.cartesian_x_field}}</div>
+	<div>cartesian_y_field: {{scan.point_fields.cartesian_y_field}}</div>
+	<div>cartesian_z_field: {{scan.point_fields.cartesian_z_field}}</div>
+	<div>color_blue_field: {{scan.point_fields.color_blue_field}}</div>
+	<div>color_green_field: {{scan.point_fields.color_green_field}}</div>
+	<div>color_red_field: {{scan.point_fields.color_red_field}}</div>
+	<div>column_index_field: {{scan.point_fields.column_index_field}}</div>
+	<div>column_index_maximum: {{scan.point_fields.column_index_maximum}}</div>
+	<div>intensity_field: {{scan.point_fields.intensity_field}}</div>
+	<div>intensity_scaled_integer: {{scan.point_fields.intensity_scaled_integer}}</div>
+	<div>is_Time_Stamp_Invalid_field: {{scan.point_fields.is_Time_Stamp_Invalid_field}}</div>
+	<div>is_color_invalid_field: {{scan.point_fields.is_color_invalid_field}}</div>
+	<div>is_intensity_invalid_field: {{scan.point_fields.is_intensity_invalid_field}}</div>
+	<div>point_range_maximum: {{scan.point_fields.point_range_maximum}}</div>
+	<div>point_range_minimum: {{scan.point_fields.point_range_minimum}}</div>
+	<div>point_range_scaled_integer: {{scan.point_fields.point_range_scaled_integer}}</div>
+	<div>return_count_field: {{scan.point_fields.return_count_field}}</div>
+	<div>return_index_field: {{scan.point_fields.return_index_field}}</div>
+	<div>return_maximum: {{scan.point_fields.return_maximum}}</div>
+	<div>row_index_field: {{scan.point_fields.row_index_field}}</div>
+	<div>row_index_maximum: {{scan.point_fields.row_index_maximum}}</div>
+	<div>spherical_azimuth_field: {{scan.point_fields.spherical_azimuth_field}}</div>
+	<div>spherical_elevation_field: {{scan.point_fields.spherical_elevation_field}}</div>
+	<div>spherical_invalid_state_field: {{scan.point_fields.spherical_invalid_state_field}}</div>
+	<div>spherical_range_field: {{scan.point_fields.spherical_range_field}}</div>
+	<div>time_Maximum: {{scan.point_fields.time_Maximum}}</div>
+	<div>time_stamp_field: {{scan.point_fields.time_stamp_field}}</div>
+	<h4>intensity_limits:</h4>
+	<div>intensity_maximum: {{scan.intensity_limits.intensity_maximum}}</div>
+	<div>intensity_minimum: {{scan.intensity_limits.intensity_minimum}}</div>
+	<h4>pose:</h4>
+	<div>rotation:</div>
+	<div>w: {{scan.pose.rotation.w}}</div>
+	<div>x: {{scan.pose.rotation.x}}</div>
+	<div>y: {{scan.pose.rotation.y}}</div>
+	<div>z: {{scan.pose.rotation.z}}</div>
+	<div>translation:</div>
+	<div>x: {{scan.pose.translation.x}}</div>
+	<div>y: {{scan.pose.translation.y}}</div>
+	<div>z: {{scan.pose.translation.z}}</div>
+	<h4>sperical_bounds:</h4>
+	<div>azimuth_maximum: {{scan.spherical_bounds.azimuth_maximum}}</div>
+	<div>azimuth_minimum: {{scan.spherical_bounds.azimuth_minimum}}</div>
+	<div>elevation_maximum: {{scan.spherical_bounds.elevation_maximum}}</div>
+	<div>elevation_minimum: {{scan.spherical_bounds.elevation_minimum}}</div>	
+	<div>range_maximum: {{scan.spherical_bounds.range_maximum}}</div>
+	<div>range_minimum: {{scan.spherical_bounds.range_minimum}}</div>	
+{{/each}}
+{{/with}}

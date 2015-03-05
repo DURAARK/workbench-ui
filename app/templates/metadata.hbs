@@ -39,11 +39,9 @@
 				<h3>DigitalObjects: {{digitalObjects.length}}</h3>
 			{{/if}}
 
-			{{#if selectedInstance}}
-				{{metadata-item item=selectedInstance onSave="saveMetadata"}}
-			{{else}}
-				No instance selected.
-			{{/if}}
+			{{#each instance in digitalObjects}}
+				{{metadata-item item=instance onSave="saveMetadata"}}
+			{{/each}}
 
 			</section>
 		</section>

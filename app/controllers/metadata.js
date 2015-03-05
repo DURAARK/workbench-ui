@@ -44,7 +44,8 @@ export default Ember.Controller.extend({
 						that.set('physicalAsset', md.physicalAsset);
 						that.get('digitalObjects').pushObject(md.digitalObject);
 					} else if (md.schema === 'e57m') {
-						that.get('digitalObjects').pushObject(md.digitalObject);
+						var record = that.store.createRecord('e57m', md);
+						that.get('digitalObjects').pushObject(record);
 					}
 				});
 			}
