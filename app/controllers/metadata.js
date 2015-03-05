@@ -45,6 +45,7 @@ export default Ember.Controller.extend({
 						that.get('digitalObjects').pushObject(md.digitalObject);
 					} else if (md.schema === 'e57m') {
 						var record = that.store.createRecord('e57m', md);
+						// metadataStage.set('e57m', record);
 						that.get('digitalObjects').pushObject(record);
 					}
 				});
