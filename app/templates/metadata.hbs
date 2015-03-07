@@ -14,17 +14,22 @@
 			<section class="content-list-content js-content-scrollbox">        
 				<ol class="fe-list">
 					<li class="da-file-entry">Descriptive Metadata</li>
-					<li {{action "selectItem" stage.physicalAsset}}>     
-						{{physical-asset-overview item=stage.physicalAsset}}
+					
+					{{#each item in stage.physicalAssets}}
+					<li {{action "selectItem" item}}>     
+						{{physical-asset-overview item=item}}
 					</li>
+					{{/each}}
+
 					{{#each item in stage.digitalObjects}}
 					<li {{action "selectItem" item}}>                
 						{{digital-object-overview item=item}}
 					</li>  	
 					{{/each}}	
+
 					<li class="da-file-entry">Technical Metadata (non-editable)</li>
 					{{#each item in stage.e57ms}}
-					<li {{action "selectItem" item}}>                
+					<li {{action "selectItem" item}}>         
 						{{e57m-overview item=item}}
 					</li>
 					{{/each}}

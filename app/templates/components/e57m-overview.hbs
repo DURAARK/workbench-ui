@@ -1,5 +1,8 @@
+{{#if item.schema}}
 <a>
-{{log item}}
 <div class="header">&#9737; {{filename}}</div>
 <div class="meta">Schema: {{item.schema}}</div>
 </a>
+{{else}}
+<h4>Loading...</h4>
+{{/if}}

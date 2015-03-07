@@ -12,15 +12,23 @@ export default Ember.Controller.extend({
 			var filename = item.get('file');
 			var fileext = _getFileExtension(filename)[0];
 
-			if (fileext === 'e57' && item.get('schema') === 'e57m') {
-				console.log('selectItem: ' + item.get('schema'));
+			if (fileext === 'e57' && item.get('schema') === 'e57m') { // --> e57m
 				this.transitionToRoute('metadata.e57m', item);
 			}
 
-			if (fileext === 'ifc' && item.get('schema') === 'ifcm') {
-				console.log('selectItem: ' + item.get('schema'));
+			if (fileext === 'ifc' && item.get('schema') === 'ifcm') { // --> ifcm
 				this.transitionToRoute('metadata.ifcm', item);
 			}
+
+			// FIXXME: refactor differentiation between digital-object and physical-asset!
+			if (fileext === 'ifc' && item.get('schema') === 'buildm' && item.get('instance').creator) { // --> digitalObject
+				this.transitionToRoute('metadata.digitalobject', item);
+			}
+
+			// FIXXME: refactor differentiation between digital-object and physical-asset!
+			if (fileext === 'ifc' && item.get('schema') === 'buildm' && item.get('instance').latitude) { // --> physicalAsset
+				this.transitionToRoute('metadata.physicalasset', item);
+			}			
 		}
 	},
 
@@ -47,25 +55,39 @@ export default Ember.Controller.extend({
 					path: file.get('path')
 				}).then(function(md) {
 					if (md.type === 'ifc') {
-						var physicalAsset = that.store.createRecord('physicalAsset', md.physicalAsset);
-						physicalAsset.save().then(function() {
-							metadataStage.set('physicalAsset', physicalAsset);
-						});
 
-						var digitalObject = that.store.createRecord('digitalObject', md.digitalObject);
-						digitalObject.save().then(function() {
-							metadataStage.get('digitalObjects').pushObject(digitalObject);
-						});
+						var dasset = metadataStage.get('physicalAssets').filterBy('file', md.physicalAsset.file);
+						if (!dasset) {
+							var physicalAsset = that.store.createRecord('physicalAsset', md.physicalAsset);
+							physicalAsset.save().then(function() {
+								metadataStage.get('physicalAssets').pushObject(physicalAsset);
+							});
+						}
 
-						var ifcm = that.store.createRecord('ifcm', md.ifcm);
-						ifcm.save().then(function() {
-							metadataStage.get('ifcms').pushObject(ifcm);
-						});
+						var dobj = metadataStage.get('digitalObjects').filterBy('file', md.digitalObject.file);
+						if (!dobj) {
+							var digitalObject = that.store.createRecord('digitalObject', md.digitalObject);
+							digitalObject.save().then(function() {
+								metadataStage.get('digitalObjects').pushObject(digitalObject);
+							});
+						}
+
+						var difcm = metadataStage.get('ifcms').filterBy('file', md.ifcm.file);
+						if (!difcm) {
+							var ifcm = that.store.createRecord('ifcm', md.ifcm);
+							ifcm.save().then(function() {
+								metadataStage.get('ifcms').pushObject(ifcm);
+							});
+						}
 					} else if (md.type === 'e57') {
-						var e57m = that.store.createRecord('e57m', md.e57m);
-						e57m.save().then(function() {
-							metadataStage.get('e57ms').pushObject(e57m);
-						});
+						var de57m = metadataStage.get('e57ms').filterBy('file', md.e57m.file);
+
+						if (!de57m) {
+							var e57m = that.store.createRecord('e57m', md.e57m);
+							e57m.save().then(function() {
+								metadataStage.get('e57ms').pushObject(e57m);
+							});
+						}
 					}
 				});
 			}

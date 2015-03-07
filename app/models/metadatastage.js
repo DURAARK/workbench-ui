@@ -6,7 +6,7 @@ default DS.Model.extend({
         defaultValue: 'metadata'
     }),
     
-    physicalAsset: DS.belongsTo('physical-asset', {
+    physicalAssets: DS.hasMany('physical-asset', {
         async: true
     }),
 

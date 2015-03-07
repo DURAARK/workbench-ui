@@ -3,5 +3,48 @@
 <br>
 
 {{#with model.instance as meta}}
-<div>Filesize: {{meta.filesize}}</div>
+<header><strong>header</strong></header>
+<ol>
+	<li>creationDate: {{meta.header.creationDate}}</li>
+	<li>author: {{meta.header.author}}</li>
+	<li>organization: {{meta.header.organization}}</li>
+	<li>preprocessor: {{meta.header.preprocessor}}</li>
+	<li>originatingSystem: {{meta.header.originatingSystem}}</li>
+	<li>authorization: {{meta.header.authorization}}</li>
+	<li>fileSchema: {{meta.header.fileSchema}}</li>
+	<li>viewDefinition: {{meta.header.viewDefinition}}</li>
+	<li>exportOptions: {{meta.header.exportOptions}}</li>
+</ol>
+
+<header><strong>ifcparameters</strong></header>
+<ol>
+	<li>ifcApplication: {{meta.ifcparameters.ifcApplication}}</li>
+	<li>IfcGeometricRepresentationContext: {{meta.ifcparameters.IfcGeometricRepresentationContext}}</li>
+	<li>ifcSiUnit: {{meta.ifcparameters.ifcSiUnit}}</li>
+</ol>
+
+<header><strong>countObjects</strong></header>
+	<li>floorCount: {{meta.countObjects.floorCount}}</li>
+	<li>roomCount: {{meta.countObjects.roomCount}}</li>
+	<li>wallCount: {{meta.countObjects.wallCount}}</li>
+	<li>windowsCount: {{meta.countObjects.windowsCount}}</li>
+	<li>doorCount: {{meta.countObjects.doorCount}}</li>
+	<li>pipeCount: {{meta.countObjects.pipeCount}}</li>
+	<li>columnCount: {{meta.countObjects.columnCount}}</li>
+	<li>numberOfComponents: {{meta.countObjects.numberOfComponents}}</li>
+	<li>numberOfRelations: {{meta.countObjects.numberOfRelations}}</li>
+	<li>numberOfActors: {{meta.countObjects.numberOfActors}}</li>
+</ol>
+
+<header><strong>informationMetric</strong></header>
+<ol>
+	<li>numberOfEntityTypesUsed: {{meta.informationMetric.numberOfEntityTypesUsed}}</li>
+	<li>numberOfTotalEntitiesUsed: {{meta.informationMetric.numberOfTotalEntitiesUsed}}</li>
+	<li>optionalAttributes: {{meta.informationMetric.optionalAttributes}}</li>
+</ol>
+
+<header><strong>Dependencies</strong></header>
+<ol>
+	<li>webResourceLink: {{meta.dependencies.webResourceLink}}</li>
+</ol>
 {{/with}}

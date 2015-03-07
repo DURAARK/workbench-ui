@@ -4,7 +4,7 @@ import ENV from '../config/environment';
 
 var apiConfig = ENV.DURAARKAPI.sessions;
 
-console.log('Connecting to "sip/physicalassets" API via: ' + apiConfig.host);
+console.log('Connecting to "sip/digitalobjects" API via: ' + apiConfig.host);
 
 export
 default ApplicationAdapter.extend({

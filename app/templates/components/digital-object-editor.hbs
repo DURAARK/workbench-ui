@@ -1,0 +1,21 @@
+<h4>{{filename}} (schema: {{model.schema}}</h4>
+
+<br>
+
+{{#with model.instance as meta}}
+	<div>Identifier: {{meta.Identifier}}</div>
+	<div>creator: {{meta.creator}}</div>
+	<div>name: {{meta.name}}</div>
+	<div>dateCreated: {{meta.dateCreated}}</div>
+	<div>isPartOf: {{meta.isPartOf}}</div>
+	<div>hasPart: {{meta.hasPart}}</div>
+	<div>format: {{meta.format}}</div>
+	<div>hasType: {{meta.hasType}}</div>
+	<div>hasFormatDetails: {{meta.hasFormatDetails}}</div>
+	<div>description: {{meta.description}}</div>
+	<div>provenance: {{meta.provenance}}</div>
+	<div>license: {{meta.license}}</div>
+	<div>unitCode: {{meta.unitCode}}</div>
+	<div>levelOfDetail: {{meta.levelOfDetail}}</div>
+{{/with}}
+

@@ -1,0 +1,35 @@
+<h4>{{filename}} (schema: {{model.schema}})</h4>
+
+<br>
+
+{{#with model.instance as meta}}
+	<div>Identifier: {{meta.Identifier}}</div>
+	<div>latitude: {{meta.latitude}}</div>
+	<div>longitude: {{meta.longitude}}</div>
+	<div>owner: {{meta.owner}}</div>
+	<div>buildingArea: {{meta.buildingArea}}</div>
+	<div>floorCount: {{meta.floorCount}}</div>
+	<div>numberOfRooms: {{meta.numberOfRooms}}</div>
+	<div>function: {{meta.function}}</div>
+	<div>architecturalStyle: {{meta.architecturalStyle}}</div>
+	<div>description: {{meta.description}}</div>
+	<div>location: {{meta.location}}</div>
+	<div>streetAddress: {{meta.streetAddress}}</div>
+	<div>postalCodeStart: {{meta.postalCodeStart}}</div>
+	<div>postalCodeEnd: {{meta.postalCodeEnd}}</div>
+	<div>postOfficeBoxNumber: {{meta.postOfficeBoxNumber}}</div>
+	<div>addressRegion: {{meta.addressRegion}}</div>
+	<div>postalLocality: {{meta.postalLocality}}</div>
+	<div>architect: {{meta.architect}}</div>
+	<div>contributor: {{meta.contributor}}</div>
+	<div>startDate: {{meta.startDate}}</div>
+	<div>completionDate: {{meta.completionDate}}</div>
+	<div>constructionTime: {{meta.constructionTime}}</div>
+	<div>rebuildingDate: {{meta.rebuildingDate}}</div>
+	<div>modificationDetails: {{meta.modificationDetails}}</div>
+	<div>cost: {{meta.cost}}</div>
+	<div>rightsDetails: {{meta.rightsDetails}}</div>
+{{/with}}
+
+
+

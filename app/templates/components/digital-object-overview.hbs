@@ -1,4 +1,8 @@
+{{#if item.schema}}
 <a>
 <div class="header">&#9737; {{filename}} (digital object)</div>
 <div class="meta">Schema: {{item.schema}}</div>
 </a>
+{{else}}
+<h4>Loading...</h4>
+{{/if}}
