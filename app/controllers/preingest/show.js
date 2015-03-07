@@ -27,7 +27,7 @@ default Ember.ObjectController.extend({
         var requestData = Em.RSVP.hash({
             metadataStage: this.get('model.metadatastage'),
             fileStage: this.get('model.filestage'),
-            semanticenrichmentStage: this.get('model.semanticenrichmentstage'),
+            //semanticenrichmentStage: this.get('model.semanticenrichmentstage'),
             store: this.store,
             controller: this
         });
@@ -35,7 +35,7 @@ default Ember.ObjectController.extend({
         requestData.then(function(result) {
             that.store.find('filestage').then(function(records) {
                 updateMetadataStage(result.metadataStage, result.fileStage, result.store, result.controller);
-                updateSemanticEnrichmentStage(result.semanticenrichmentStage, result.fileStage, result.store, result.controller);
+                //updateSemanticEnrichmentStage(result.semanticenrichmentStage, result.fileStage, result.store, result.controller);
             });
         });
     }.observes('model.filestage'),
@@ -57,7 +57,7 @@ function updateSemanticEnrichmentStage(semanticenrichmentStage, fileStage, store
         store.unloadAll('enrichment-item');
 
         files.forEach(function(file) {
-            var path = file.getProperties('path'),
+            var path = file.get('path'),
                 ext = _getFileExtension(file.get('path'))[0],
                 schema = null;
 
@@ -68,7 +68,6 @@ function updateSemanticEnrichmentStage(semanticenrichmentStage, fileStage, store
                 semanticEnrichmentAPI.getMetadataFor({
                     path: path
                 }).then(function(data) {
-                    console.log('ADSFASDFASDFASDFdata: ' + JSON.stringify(data, null, 4));
                     for (var idx = 0; idx < data.metadata.length; idx++) {
                         var item = data.metadata[idx]
                         var record = store.createRecord('enrichment-item', item);

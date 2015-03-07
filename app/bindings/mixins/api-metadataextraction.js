@@ -23,7 +23,8 @@ default Ember.Mixin.create({
                 url = this.get('host') + this.get('jobsEndpoint') + '/' + metadata.id;
 
                 var checkFinished = function(md) {
-                    if (md.status === 'finished') {
+                    // NOTE: in some cases 'md' is undefined
+                    if (md && md.status === 'finished') {
                         resolve(md);
                         return;
                     }

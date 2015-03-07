@@ -87,6 +87,7 @@ default Ember.Route.extend({
 
             _post(url, data).then(function(record) {
                 debugger;
+                var stage = this.get('controller.stage');
                 var session = this.get('controller.stage.session');
                 console.log('session: ' + session.id);
                 this.transitionTo('preingest.show', session);
@@ -94,13 +95,13 @@ default Ember.Route.extend({
         },
 
         selectItem: function(item) {
-            var stage = this.get('controller');
-            stage.get('stage.selectedItems').pushObject(item);
+            var items = this.get('controller.stage.selectedItems');
+            items.pushObject(item);
         },
 
         deselectItem: function(item) {
-            var stage = this.get('controller');
-            stage.get('stage.selectedItems').removeObject(item);
+            var items = this.get('controller.stage.selectedItems');
+            items.removeObject(item);
         }
     }
 });
