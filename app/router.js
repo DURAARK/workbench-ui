@@ -14,7 +14,12 @@ Router.map(function() {
 
   this.resource("editor", { path: "/editor"}, function() {
       this.resource('files', { path: "/files/:id" });
-      this.resource('metadata', { path: "/metadata/:id" });
+      this.resource('metadata', { path: "/metadata/:id" }, function() {
+        // this.route('index', { path: "/metadata/:id"});
+        this.route('physicalasset', { path: "physicalAsset/:id"});
+        this.route('e57m', { path: "e57m/:id"});
+        this.route('ifcm', { path: "ifcm/:id"});
+      });
       this.resource("semanticenrichment", { path: "/semanticenrichment/:id" });
       // this.resource('rise', { path: "/rise/:id" });
       // this.resource('ifcreconstruction', { path: "/ifcreconstruction/:id" });

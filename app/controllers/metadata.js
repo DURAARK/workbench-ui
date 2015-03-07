@@ -7,31 +7,20 @@ function _getFileExtension(filepath) {
 }
 
 export default Ember.Controller.extend({
-	physicalAsset: null,
-	digitalObjects: [],
-
-	e57mFileShort: function() {
-		var e57mName = this.get('stage.e57m.file');
-		if (e57mName) {
-			return e57mName.split('/').pop();
-		}
-
-		return 'no file given';
-	}.property('stage.e57m.file'),
-
-	ifcmFileShort: function() {
-		var ifcmName = this.get('stage.ifcm.file');
-		if (ifcmName) {
-			return ifcmName.split('/').pop();
-		}
-
-		return 'no file given';
-	}.property('stage.ifcm.file'),
-
 	actions: {
-		editMetadata: function(file) {
-			console.log('editMetadata: ' + file.get('schema'));
-			this.set('selectedInstance', file);
+		selectItem: function(item) {
+			var filename = item.get('file');
+			var fileext = _getFileExtension(filename)[0];
+
+			if (fileext === 'e57' && item.get('schema') === 'e57m') {
+				console.log('selectItem: ' + item.get('schema'));
+				this.transitionToRoute('metadata.e57m', item);
+			}
+
+			if (fileext === 'ifc' && item.get('schema') === 'ifcm') {
+				console.log('selectItem: ' + item.get('schema'));
+				this.transitionToRoute('metadata.ifcm', item);
+			}
 		}
 	},
 
@@ -59,16 +48,24 @@ export default Ember.Controller.extend({
 				}).then(function(md) {
 					if (md.type === 'ifc') {
 						var physicalAsset = that.store.createRecord('physicalAsset', md.physicalAsset);
-						metadataStage.set('physicalAsset', physicalAsset);
+						physicalAsset.save().then(function() {
+							metadataStage.set('physicalAsset', physicalAsset);
+						});
 
 						var digitalObject = that.store.createRecord('digitalObject', md.digitalObject);
-						metadataStage.get('digitalObjects').pushObject(digitalObject);
+						digitalObject.save().then(function() {
+							metadataStage.get('digitalObjects').pushObject(digitalObject);
+						});
 
 						var ifcm = that.store.createRecord('ifcm', md.ifcm);
-						metadataStage.get('ifcms').pushObject(ifcm);
+						ifcm.save().then(function() {
+							metadataStage.get('ifcms').pushObject(ifcm);
+						});
 					} else if (md.type === 'e57') {
 						var e57m = that.store.createRecord('e57m', md.e57m);
-						metadataStage.get('e57ms').pushObject(e57m);
+						e57m.save().then(function() {
+							metadataStage.get('e57ms').pushObject(e57m);
+						});
 					}
 				});
 			}

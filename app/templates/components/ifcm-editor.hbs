@@ -1,4 +1,7 @@
-{{log instance}}
+<h4>{{filename}} (schema: {{model.schema}})</h4>
 
-<div>Creator: {{instance.creator}}</div>
-<div>StreetAdress: {{instance.streetAdress}}</div>
+<br>
+
+{{#with model.instance as meta}}
+<div>Filesize: {{meta.filesize}}</div>
+{{/with}}

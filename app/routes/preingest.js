@@ -3,7 +3,7 @@ import Ember from 'ember';
 export
 default Ember.Route.extend({
     model: function() {
-        return this.store.find('session');
+        return this.modelFor('application');
     },
 
     setupController: function(controller, model) {
@@ -16,17 +16,5 @@ default Ember.Route.extend({
 
         controller.set('model', model);
         controller.set('sessions', sessions);
-    },
-
-    actions: {
-        highlightSession: function(session) {
-            var sessions = this.controllerFor('preingest').get('sessions');
-
-            sessions.forEach(function(session) {
-                session.set('isSelected', false);
-            });
-
-            session.set('isSelected', true);
-        }
     }
 });

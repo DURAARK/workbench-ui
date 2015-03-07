@@ -3,7 +3,7 @@
 	    <section class="content-list">
 	        <header class="floatingheader">
 	            <section class="manage content-filter">
-	                <small>Metadata Files</small>
+	                <small>Metadata</small>
 	            </section>
 	        </header>
 
@@ -14,8 +14,8 @@
 			<section class="content-list-content js-content-scrollbox">        
 				<ol class="fe-list">
 					<li class="da-file-entry">Descriptive Metadata</li>
-					<li {{action "selectItem" item}}>     
-						{{physical-asset-overview item=item}}
+					<li {{action "selectItem" stage.physicalAsset}}>     
+						{{physical-asset-overview item=stage.physicalAsset}}
 					</li>
 					{{#each item in stage.digitalObjects}}
 					<li {{action "selectItem" item}}>                
@@ -46,18 +46,7 @@
 			</header>
 
 			<section class="content-preview-content">
-			{{#if physicalAsset}}
-				<h3>PhysicalAsset</h3>
-			{{/if}}
-
-			{{#if digitalObjects.length}}
-				<h3>DigitalObjects: {{digitalObjects.length}}</h3>
-			{{/if}}
-
-			{{#each instance in digitalObjects}}
-				{{metadata-item item=instance onSave="saveMetadata"}}
-			{{/each}}
-
+				{{outlet}}
 			</section>
 		</section>
 	</section>

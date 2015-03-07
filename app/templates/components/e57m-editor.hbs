@@ -1,4 +1,8 @@
-{{#with instance.digitalObject as meta}}
+<h4>{{filename}} (schema: {{model.schema}})</h4>
+
+<br>
+
+{{#with model.instance as meta}}
 <div>coordinate_metadata: {{meta.coordinate_metadata}}</div>
 <div>creation_datetime: {{meta.creation_datetime}}</div>
 <div>guid: {{meta.guid}}</div>

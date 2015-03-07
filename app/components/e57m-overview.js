@@ -2,6 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	filename: function() {
-		return this.get('model.file').split('/').pop();
+		return this.get('item.file').split('/').pop();
 	}.property()
 });
