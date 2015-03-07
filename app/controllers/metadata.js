@@ -10,6 +10,24 @@ export default Ember.Controller.extend({
 	physicalAsset: null,
 	digitalObjects: [],
 
+	e57mFileShort: function() {
+		var e57mName = this.get('stage.e57m.file');
+		if (e57mName) {
+			return e57mName.split('/').pop();
+		}
+
+		return 'no file given';
+	}.property('stage.e57m.file'),
+
+	ifcmFileShort: function() {
+		var ifcmName = this.get('stage.ifcm.file');
+		if (ifcmName) {
+			return ifcmName.split('/').pop();
+		}
+
+		return 'no file given';
+	}.property('stage.ifcm.file'),
+
 	actions: {
 		editMetadata: function(file) {
 			console.log('editMetadata: ' + file.get('schema'));
@@ -39,14 +57,18 @@ export default Ember.Controller.extend({
 				metadataAPI.getMetadataFor({
 					path: file.get('path')
 				}).then(function(md) {
-					debugger;
-					if (md.schema === 'ifcm') {
-						that.set('physicalAsset', md.physicalAsset);
-						that.get('digitalObjects').pushObject(md.digitalObject);
-					} else if (md.schema === 'e57m') {
-						var record = that.store.createRecord('e57m', md);
-						// metadataStage.set('e57m', record);
-						that.get('digitalObjects').pushObject(record);
+					if (md.type === 'ifc') {
+						var physicalAsset = that.store.createRecord('physicalAsset', md.physicalAsset);
+						metadataStage.set('physicalAsset', physicalAsset);
+
+						var digitalObject = that.store.createRecord('digitalObject', md.digitalObject);
+						metadataStage.get('digitalObjects').pushObject(digitalObject);
+
+						var ifcm = that.store.createRecord('ifcm', md.ifcm);
+						metadataStage.get('ifcms').pushObject(ifcm);
+					} else if (md.type === 'e57') {
+						var e57m = that.store.createRecord('e57m', md.e57m);
+						metadataStage.get('e57ms').pushObject(e57m);
 					}
 				});
 			}

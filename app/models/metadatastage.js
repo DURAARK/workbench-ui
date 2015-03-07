@@ -5,21 +5,20 @@ default DS.Model.extend({
     name: DS.attr('string', {
         defaultValue: 'metadata'
     }),
-    // metadata: DS.hasMany('metadatum', {
-    //     async: true
-    // }, {
-    //     defaultValue: []
-    // }),
-
-    buildm: DS.belongsTo('buildm', {
+    
+    physicalAsset: DS.belongsTo('physical-asset', {
         async: true
     }),
 
-    ifcm: DS.belongsTo('ifcm', {
+    digitalObjects: DS.hasMany('digital-object', {
         async: true
     }),
 
-    e57m: DS.belongsTo('e57m', {
+    ifcms: DS.hasMany('ifcm', {
+        async: true
+    }),
+
+    e57ms: DS.hasMany('e57m', {
         async: true
     }),
 

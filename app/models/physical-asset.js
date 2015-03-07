@@ -2,8 +2,11 @@ import DS from 'ember-data';
 
 export
 default DS.Model.extend({
-    url: DS.attr('string'),
-    latitude: DS.attr('number'),
-    longitude: DS.attr('number'),
-    properties: DS.attr()
+	schema: DS.attr('string'),
+	file: DS.attr('string'), //FIXXME: replace with DURAARK's file model!
+	// file: DS.belongsTo('file', {
+	// 	async: true
+	// }),
+
+	instance: DS.attr(),
 });

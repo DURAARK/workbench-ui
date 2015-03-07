@@ -12,13 +12,28 @@
 			</section>
 
 			<section class="content-list-content js-content-scrollbox">        
-				<ol class="posts-list">
-				{{!-- {{file-explorer items=stage.metadata selectFile="editMetadata"}} --}}
+				<ol class="fe-list">
+					<li class="da-file-entry">Descriptive Metadata</li>
+					<li {{action "selectItem" item}}>     
+						{{physical-asset-overview item=item}}
+					</li>
+					{{#each item in stage.digitalObjects}}
+					<li {{action "selectItem" item}}>                
+						{{digital-object-overview item=item}}
+					</li>  	
+					{{/each}}	
+					<li class="da-file-entry">Technical Metadata (non-editable)</li>
+					{{#each item in stage.e57ms}}
+					<li {{action "selectItem" item}}>                
+						{{e57m-overview item=item}}
+					</li>
+					{{/each}}
 
-					<div class="da-file-entry"{{action "editMetadata" stage.buildm}}>buildm</div>
-					<div class="da-file-entry"{{action "editMetadata" stage.ifcm}}>ifcm</div>
-					<div class="da-file-entry"{{action "editMetadata" stage.e57m}}>e57m</div>
-
+					{{#each item in stage.ifcms}}
+					<li {{action "selectItem" item}}>                
+						{{ifcm-overview item=item}}
+					</li>
+					{{/each}}	
 				</ol>
 			</section> 
 		</section>
