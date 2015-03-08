@@ -31,11 +31,33 @@ default Ember.Route.extend({
         this._super(controller, model);
         this.send('highlightSession', model);
 
-        var sessionId = parseInt(model.get('id')),
-            url = apiConfig.host + '/semanticenrichmentstages/' + sessionId;
+        model.get('filestage').then(function(filestage) {
+            filestage.get('files').then(function(filesArray) {
+                var files = filesArray.toArray();
+                // Check if an IFC file is present. If so, request the semantic enrichment stage:
+                for (var idx = 0; idx < files.length; idx++) {
+                    var file = files[idx];
+                        var path = file.get('path');
+                        var ext = _getFileExtension(path)[0];
 
-        _get(url).then(function(stage) {
-            controller.set("semanticenrichmentstage", Ember.Object.create(stage));
-        }.bind(this));
+                    if (ext === 'ifc') {
+                        controller.set('hasIfcFile', true);
+
+                        var sessionId = parseInt(model.get('id')),
+                            url = apiConfig.host + '/semanticenrichmentstages/' + sessionId;
+
+                        _get(url).then(function(stage) {
+                            controller.set("semanticenrichmentstage", Ember.Object.create(stage));
+                        });
+
+                        return;
+                    }
+                }
+            });
+        });
     }
 });
+
+function _getFileExtension(filename) {
+    return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : undefined;
+}

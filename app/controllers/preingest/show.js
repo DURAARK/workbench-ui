@@ -85,6 +85,7 @@ function updateSemanticEnrichmentStage(semanticenrichmentStage, fileStage, store
 
 // TODO: refactor into 'duraark-api' object which gets injected into controllers and routes!
 function updateMetadataStage(metadataStage, fileStage, store, controller) {
+    controller.set('hasIfcFile', false);
     metadataStage.set('isLoading', true);
 
     // // reset current metadataStage:
@@ -103,15 +104,13 @@ function updateMetadataStage(metadataStage, fileStage, store, controller) {
         return;
     }
 
+    // FIXXME: refactor into 'updateSemanticEnrichmentStage' function!
     fileStage.get('files').then(function(files) {
-        console.log('NUMFILES: ' + files.get('length'));
-
         // files.forEach(function(file) {
-        //     var path = file.getProperties('path'),
-        //         ext = _getFileExtension(file.get('path'))[0],
-        //         schema = null,
-        //         metadataAPI = null;
-
+        // var path = file.getProperties('path'),
+        //     ext = _getFileExtension(file.get('path'))[0];
+        // schema = null,
+        // metadataAPI = null;
         //     if (ext.toLowerCase() === 'e57') {
         //         metadataAPI = new E57MetadataAPI();
         //         schema = 'e57m';
@@ -128,11 +127,11 @@ function updateMetadataStage(metadataStage, fileStage, store, controller) {
         //             file: file
         //         });
 
-        //         if (schema === 'ifcm') {
-        //             metadataStage.get('ifcm').pushObject(item);
-        //         } else if (schema === 'e57m') {
-        //             metadataStage.get('e57m').pushObject(item);
-        //         }
+        // if (schema === 'ifcm') {
+        //     metadataStage.get('ifcm').pushObject(item);
+        // } else if (schema === 'e57m') {
+        //     metadataStage.get('e57m').pushObject(item);
+        // }
 
         //         item.save().then(function(bla) {
         //             //if (fileStage.get('files.length') === metadata.get('length') - 1) { // take into account 'buildm' entry

@@ -13,8 +13,8 @@ export default Ember.Route.extend({
 		highlightSession: function(session) {
 			var sessions = this.modelFor('application');
 
-			sessions.forEach(function(session) {
-				session.set('isSelected', false);
+			sessions.forEach(function(item) {
+				item.set('isSelected', false);
 			});
 
 			session.set('isSelected', true);

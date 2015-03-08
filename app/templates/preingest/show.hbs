@@ -25,7 +25,15 @@
 	<span>Semantic Enrichment</span>
 </div>
 
-{{semenrichment-stage stage=semanticenrichmentstage editClicked="editStage"}}
+{{#if hasIfcFile}}
+	{{semenrichment-stage stage=semanticenrichmentstage editClicked="editStage"}}
+{{else}}
+	<br>
+	<center>
+		<div style="font-size: 20px;">Add an IFC file to enable semantic enrichement component.</div>
+		<small>(this limitation will be removed in upcoming versions)</small>
+	</center>
+{{/if}}
 
 <div class="da-session-workflow-header"></div>
 <div class="da-session-next">&#8615;</div>

@@ -11,8 +11,11 @@ default Ember.Controller.extend({
                 that = this,
                 sessionId = stage.session;
 
+            // FIXXME: check if those two are still necessary and remove if not!
             controller.set('_isUpdatingMetadata', true);
             stage.set('isLoading', true);
+
+            controller.set('isUpdatingEnrichments', true);
 
             var semanticEnrichmentAPI = new SemanticEnrichmentAPI();
             semanticEnrichmentAPI.getMetadataFor({
@@ -20,6 +23,7 @@ default Ember.Controller.extend({
                 session: parseInt(sessionId)
             }).then(function(data) {
                 this.set('stage', data);
+                controller.set('isUpdatingEnrichments', false);
             }.bind(this));
         }
     }
