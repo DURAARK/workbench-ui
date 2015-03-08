@@ -12,6 +12,7 @@
 
 	<ul>
 	{{#each file in stage.files}}
+	{{log file}}
 		{{file-item item=file onDelete="onDelete" isLoading=stage.isLoading}}	
 	{{/each}}
 	</ul>

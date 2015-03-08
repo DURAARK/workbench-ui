@@ -8,7 +8,7 @@
 	        </header>
 
 			<section>
-				<button class="btn btn-green" {{action "save"}}> Select</button>   
+				<button class="btn btn-green" {{action "save"}}> Save</button>   
 			</section>
 
 			<section class="content-list-content js-content-scrollbox">        
@@ -21,13 +21,21 @@
 		<section class="content-preview">
 			<header class="floatingheader">
 			    <small>
-			        <span class="status">Available files</span>
+			        <span class="status">Available Files</span>
 			    </small>
 			</header>
 
 			<section class="content-preview-content">
-				<div class="fe-list-item-header">Click on files to select, drag new here files to upload ...</div>
+				<div class="fe-list-item-header"></div>
+				<h4>File Selection</h4>
+				<br>
+				<div class="fe-list-item-header">The list below shows all available files in the system. Click an item to add the file to the session.</div>
 				<hr>
+
+				<div style="font-size: 20px;"><strong>Available Files:</strong></h4>
+
+				<br><br>
+
 				{{file-explorer items=availableFiles selectFile="selectFile"}}
 			</section>
 		</section>
