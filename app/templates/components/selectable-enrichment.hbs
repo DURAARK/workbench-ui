@@ -1,8 +1,7 @@
-{{!-- <label>{{input type="checkbox" checked=isSelected}} {{item.path}}</label> --}}
-
 <li {{action "selectItem" item}}>                
-	<a>
-	<div class="header">&#9737; {{item.datasetName}}</div>
-	<div class="meta">URI: {{item.resourceUri}} / {{item.propertyUri}}</div>
-	</a>
+		<span class="header">&#9737; {{resourceName}}</span>
 </li>  
+<div style="font-size: 15px;margin: 5px;">
+	<span style="margin-left: 40px;margin-right: 10px;">></span><a target="_blank" href="{{unbound item.resourceUri}}">Resource URI</a> / <a target="_blank" href="{{unbound item.propertyUri}}">Property URI</a>
+</div>
+

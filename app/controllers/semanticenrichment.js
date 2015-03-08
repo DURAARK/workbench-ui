@@ -4,6 +4,7 @@ import SemanticEnrichmentAPI from 'workbench-ui/bindings/api-semanticenrichment'
 export
 default Ember.Controller.extend({
     ifcFiles: [],
+    uniqueAvailableItems: [],
     locationPivots: ['IFCPOSTALADDRESS', 'IFCADDRESSLOCALITY', 'IFCPOSTALCOUNTRY'],
     selectedPivot: 'IFCADDRESSLOCALITY',
 
@@ -37,6 +38,35 @@ default Ember.Controller.extend({
             });
         }
     },
+
+    onAvailableItemsChanged: function() {
+        debugger;
+        var items = this.get('stage.availableItems'),
+            uniqueItems = [];
+
+        items.filter(function(item, index, enumerable) {
+            var uri = item.resourceUri;
+
+            var resource = window.unescape(uri);
+            var name = resource.split('/').pop();
+
+            var result = uniqueItems.find(function(item, index, enumerable) {
+                var resource0 = window.unescape(item.resourceUri);
+                var name0 = resource0.split('/').pop();
+                if (name0 === name) return true;
+                return false;
+            });
+
+            if (!result) {
+                uniqueItems.pushObject(item);
+            } else {
+                console.log('sckippasdf');
+            }
+        });
+
+        this.set('uniqueAvailableItems', uniqueItems);
+
+    }.observes('stage.availableItems'),
 
     onFilesChanged: function() {
         var files = this.get('files');

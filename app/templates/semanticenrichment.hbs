@@ -52,12 +52,11 @@
 
 					{{loading-spinner-center}}
 				{{else}}
-					{{#if stage.availableItems.length}}
-					{{log shownFile}}
+					{{#if uniqueAvailableItems.length}}
 					<div style="font-size: 20px;">Available Enrichments: <strong>{{shownFile.filename}}</strong> <small>(seed: {{selectedPivot}})</small></h4>
 
 					<br><br>
-						{{enrichment-explorer items=stage.availableItems selectItem="selectItem"}}
+						{{enrichment-explorer items=uniqueAvailableItems selectItem="selectItem"}}
 					{{else}}
 						<br><br>
 						<center><h3>No enrichments yet.</h3></center>
