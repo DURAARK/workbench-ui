@@ -13,7 +13,6 @@ default Ember.Mixin.create({
             url = host + this.get('extractEndpoint');
 
         return this._post(url, data).then(function(data) {
-            debugger;
             return new Ember.RSVP.Promise(function(resolve) { //reject is handled inside this._get
                 // The returned data does not necessarily contain the metadata already
                 // (because the metadata is extracted from the given file, and the extraction

@@ -99,7 +99,6 @@ default Ember.Route.extend({
             };
 
             _post(url, data).then(function(record) {
-                debugger;
                 var stage = this.get('controller.stage');
                 var session = this.get('controller.stage.session');
                 console.log('session: ' + session.id);

@@ -14,7 +14,7 @@ default Ember.Controller.extend({
                 stage = this.get('stage'),
                 sessionId = stage.session,
                 path = ifcFile.raw.get('path'),
-                locationPivot =  this.get('selectedPivot');
+                locationPivot = this.get('selectedPivot');
 
             console.log('Searching enrichments based on : ' + path);
             console.log('     location pivot: ' + locationPivot);
@@ -39,8 +39,11 @@ default Ember.Controller.extend({
     },
 
     onFilesChanged: function() {
-        var files = this.get('files'),
-            ifcFiles = this.get('ifcFiles');
+        var files = this.get('files');
+
+        // reset current files:
+        this.set('ifcFiles', []);
+        var ifcFiles = this.get('ifcFiles');
 
         files.forEach(function(file) {
             var ext = _getFileExtension(file.get('path'))[0];

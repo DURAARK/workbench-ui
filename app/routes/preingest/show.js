@@ -41,7 +41,6 @@ default Ember.Route.extend({
                     var file = files[idx],
                         path = file.get('path'),
                         ext = _getFileExtension(path)[0];
-
                     if (ext === 'ifc') {
                         controller.set('hasIfcFile', true);
 

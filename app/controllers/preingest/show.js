@@ -85,7 +85,6 @@ function updateSemanticEnrichmentStage(semanticenrichmentStage, fileStage, store
 
 // TODO: refactor into 'duraark-api' object which gets injected into controllers and routes!
 function updateMetadataStage(metadataStage, fileStage, store, controller) {
-    controller.set('hasIfcFile', false);
     metadataStage.set('isLoading', true);
 
     // // reset current metadataStage:
