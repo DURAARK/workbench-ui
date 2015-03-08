@@ -1,50 +1,44 @@
-<h4>{{filename}} (schema: {{model.schema}})</h4>
+<h4>&#9737; {{filename}}</h4>
+
+<div class="metadata-description">The following elements are extracted from the STEP physical file format header portion of the IFC file. They contain information about the creation process of the file as well as about the schema and view make-up of the digital object.</div>
 
 <br>
 
+<fieldset class="md-list">
 {{#with model.instance as meta}}
-<header><strong>header</strong></header>
-<ol>
-	<li>creationDate: {{meta.header.creationDate}}</li>
-	<li>author: {{meta.header.author}}</li>
-	<li>organization: {{meta.header.organization}}</li>
-	<li>preprocessor: {{meta.header.preprocessor}}</li>
-	<li>originatingSystem: {{meta.header.originatingSystem}}</li>
-	<li>authorization: {{meta.header.authorization}}</li>
-	<li>fileSchema: {{meta.header.fileSchema}}</li>
-	<li>viewDefinition: {{meta.header.viewDefinition}}</li>
-	<li>exportOptions: {{meta.header.exportOptions}}</li>
-</ol>
+<header>Header</header>
+	<div><label>creationDate:<span>&#10067;</span></label> {{input readonly=true value=meta.header.creationDate}}</div>
+	<div><label>author:<span>&#10067;</span></label> {{input readonly=true value=meta.header.author}}</div>
+	<div><label>organization:<span>&#10067;</span></label> {{input readonly=true value=meta.header.organization}}</div>
+	<div><label>preprocessor:<span>&#10067;</span></label> {{input readonly=true value=meta.header.preprocessor}}</div>
+	<div><label>originatingSystem:<span>&#10067;</span></label> {{input readonly=true value=meta.header.originatingSystem}}</div>
+	<div><label>authorization:<span>&#10067;</span></label> {{input readonly=true value=meta.header.authorization}}</div>
+	<div><label>fileSchema:<span>&#10067;</span></label> {{input readonly=true value=meta.header.fileSchema}}</div>
+	<div><label>viewDefinition:<span>&#10067;</span></label> {{input readonly=true value=meta.header.viewDefinition}}</div>
+	<div><label>exportOptions:<span>&#10067;</span></label> {{input readonly=true value=meta.header.exportOptions}}</div>
+<header>IFC Parameters</header>
+	<div><label>ifcApplication:<span>&#10067;</span></label> {{input readonly=true value=meta.ifcparameters.ifcApplication}}</div>
+	<div><label>IfcGeometricRepresentationContext:<span>&#10067;</span></label> {{input readonly=true value=meta.ifcparameters.IfcGeometricRepresentationContext}}</div>
+	<div><label>ifcSiUnit:<span>&#10067;</span></label> {{input readonly=true value=meta.ifcparameters.ifcSiUnit}}</div>
 
-<header><strong>ifcparameters</strong></header>
-<ol>
-	<li>ifcApplication: {{meta.ifcparameters.ifcApplication}}</li>
-	<li>IfcGeometricRepresentationContext: {{meta.ifcparameters.IfcGeometricRepresentationContext}}</li>
-	<li>ifcSiUnit: {{meta.ifcparameters.ifcSiUnit}}</li>
-</ol>
+<header>Object Counts</header>
+	<div><label>floorCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.floorCount}}</div>
+	<div><label>roomCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.roomCount}}</div>
+	<div><label>wallCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.wallCount}}</div>
+	<div><label>windowsCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.windowsCount}}</div>
+	<div><label>doorCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.doorCount}}</div>
+	<div><label>pipeCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.pipeCount}}</div>
+	<div><label>columnCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.columnCount}}</div>
+	<div><label>numberOfComponents:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.numberOfComponents}}</div>
+	<div><label>numberOfRelations:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.numberOfRelations}}</div>
+	<div><label>numberOfActors:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.numberOfActors}}</div>
 
-<header><strong>countObjects</strong></header>
-	<li>floorCount: {{meta.countObjects.floorCount}}</li>
-	<li>roomCount: {{meta.countObjects.roomCount}}</li>
-	<li>wallCount: {{meta.countObjects.wallCount}}</li>
-	<li>windowsCount: {{meta.countObjects.windowsCount}}</li>
-	<li>doorCount: {{meta.countObjects.doorCount}}</li>
-	<li>pipeCount: {{meta.countObjects.pipeCount}}</li>
-	<li>columnCount: {{meta.countObjects.columnCount}}</li>
-	<li>numberOfComponents: {{meta.countObjects.numberOfComponents}}</li>
-	<li>numberOfRelations: {{meta.countObjects.numberOfRelations}}</li>
-	<li>numberOfActors: {{meta.countObjects.numberOfActors}}</li>
-</ol>
+<header>Metric Information</header>
+	<div><label>numberOfEntityTypesUsed:<span>&#10067;</span></label> {{input readonly=true value=meta.informationMetric.numberOfEntityTypesUsed}}</div>
+	<div><label>numberOfTotalEntitiesUsed:<span>&#10067;</span></label> {{input readonly=true value=meta.informationMetric.numberOfTotalEntitiesUsed}}</div>
+	<div><label>optionalAttributes:<span>&#10067;</span></label> {{input readonly=true value=meta.informationMetric.optionalAttributes}}</div>
 
-<header><strong>informationMetric</strong></header>
-<ol>
-	<li>numberOfEntityTypesUsed: {{meta.informationMetric.numberOfEntityTypesUsed}}</li>
-	<li>numberOfTotalEntitiesUsed: {{meta.informationMetric.numberOfTotalEntitiesUsed}}</li>
-	<li>optionalAttributes: {{meta.informationMetric.optionalAttributes}}</li>
-</ol>
-
-<header><strong>Dependencies</strong></header>
-<ol>
-	<li>webResourceLink: {{meta.dependencies.webResourceLink}}</li>
-</ol>
+<header>Dependencies</header>
+	<div><label>webResourceLink:<span>&#10067;</span></label> {{input readonly=true value=meta.dependencies.webResourceLink}}</div>
 {{/with}}
+</fieldset>

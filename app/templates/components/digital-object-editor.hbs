@@ -1,21 +1,24 @@
-<h4>{{filename}} (schema: {{model.schema}})</h4>
+<h4>&#9737; Digital Object ({{filename}})</h4>
+
+<div class="metadata-description">Descriptive metadata about the digital object containing a representation of the physical asset, such as a plan or a scan.</div>
 
 <br>
 
+<fieldset class="md-list">
 {{#with model.instance as meta}}
-	<div>Identifier: {{meta.Identifier}}</div>
-	<div>creator: {{meta.creator}}</div>
-	<div>name: {{meta.name}}</div>
-	<div>dateCreated: {{meta.dateCreated}}</div>
-	<div>isPartOf: {{meta.isPartOf}}</div>
-	<div>hasPart: {{meta.hasPart}}</div>
-	<div>format: {{meta.format}}</div>
-	<div>hasType: {{meta.hasType}}</div>
-	<div>hasFormatDetails: {{meta.hasFormatDetails}}</div>
-	<div>description: {{meta.description}}</div>
-	<div>provenance: {{meta.provenance}}</div>
-	<div>license: {{meta.license}}</div>
-	<div>unitCode: {{meta.unitCode}}</div>
-	<div>levelOfDetail: {{meta.levelOfDetail}}</div>
+	<div><label>Identifier:<span>&#10067;</span></label> {{input readonly=true value=meta.Identifier}}</div>
+	<div><label>creator:<span>&#10067;</span></label> {{input value=meta.creator}}</div>
+	<div><label>name:<span>&#10067;</span></label> {{input value=meta.name}}</div>
+	<div><label>dateCreated:<span>&#10067;</span></label> {{input value=meta.dateCreated}}</div>
+	<div><label>isPartOf:<span>&#10067;</span></label> {{input value=meta.isPartOf}}</div>
+	<div><label>hasPart:<span>&#10067;</span></label> {{input value=meta.hasPart}}</div>
+	<div><label>format:<span>&#10067;</span></label> {{input value=meta.format}}</div>
+	<div><label>hasType:<span>&#10067;</span></label> {{input value=meta.hasType}}</div>
+	<div><label>hasFormatDetails:<span>&#10067;</span></label> {{input value=meta.hasFormatDetails}}</div>
+	<div><label>description:<span>&#10067;</span></label> {{input value=meta.description}}</div>
+	<div><label>provenance:<span>&#10067;</span></label> {{input value=meta.provenance}}</div>
+	<div><label>license:<span>&#10067;</span></label> {{input value=meta.license}}</div>
+	<div><label>unitCode:<span>&#10067;</span></label> {{input value=meta.unitCode}}</div>
+	<div><label>levelOfDetail:<span>&#10067;</span></label> {{input value=meta.levelOfDetail}}</div>
 {{/with}}
-
+</fieldset>

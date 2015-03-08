@@ -39,8 +39,11 @@ default Ember.Controller.extend({
         }
     },
 
+    // FIXXME: this function creates a unique array based on the 'resourceUri' of the availableItems.
+    // As a bad sideeffect it discards enrichment triples, cause the resourceUri cn be the same for 
+    // different triples. So, at the moment this is fine for demonstration purposes, for production use
+    // this is a BUG!
     onAvailableItemsChanged: function() {
-        debugger;
         var items = this.get('stage.availableItems'),
             uniqueItems = [];
 

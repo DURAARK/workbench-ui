@@ -1,35 +1,41 @@
-<h4>{{filename}} (schema: {{model.schema}})</h4>
+{{!-- <h4>{{filename}} (schema: {{model.schema}})</h4> --}}
+
+<h4>&#9737; Physical Asset</h4>
+
+<div class="metadata-description">Descriptive metadata about the tangible building.</div>
 
 <br>
 
+<fieldset class="md-list">
 {{#with model.instance as meta}}
-	<div>Identifier: {{meta.Identifier}}</div>
-	<div>latitude: {{meta.latitude}}</div>
-	<div>longitude: {{meta.longitude}}</div>
-	<div>owner: {{meta.owner}}</div>
-	<div>buildingArea: {{meta.buildingArea}}</div>
-	<div>floorCount: {{meta.floorCount}}</div>
-	<div>numberOfRooms: {{meta.numberOfRooms}}</div>
-	<div>function: {{meta.function}}</div>
-	<div>architecturalStyle: {{meta.architecturalStyle}}</div>
-	<div>description: {{meta.description}}</div>
-	<div>location: {{meta.location}}</div>
-	<div>streetAddress: {{meta.streetAddress}}</div>
-	<div>postalCodeStart: {{meta.postalCodeStart}}</div>
-	<div>postalCodeEnd: {{meta.postalCodeEnd}}</div>
-	<div>postOfficeBoxNumber: {{meta.postOfficeBoxNumber}}</div>
-	<div>addressRegion: {{meta.addressRegion}}</div>
-	<div>postalLocality: {{meta.postalLocality}}</div>
-	<div>architect: {{meta.architect}}</div>
-	<div>contributor: {{meta.contributor}}</div>
-	<div>startDate: {{meta.startDate}}</div>
-	<div>completionDate: {{meta.completionDate}}</div>
-	<div>constructionTime: {{meta.constructionTime}}</div>
-	<div>rebuildingDate: {{meta.rebuildingDate}}</div>
-	<div>modificationDetails: {{meta.modificationDetails}}</div>
-	<div>cost: {{meta.cost}}</div>
-	<div>rightsDetails: {{meta.rightsDetails}}</div>
+	<div><label>Identifier:<span>&#10067;</span></label> {{input readonly=true value=meta.Identifier}}</div>
+	<div><label>Latitude:<span>&#10067;</span></label> {{input value=meta.latitude}}</div>
+	<div><label>Longitude:<span>&#10067;</span></label> {{input value=meta.longitude}}</div>
+	<div><label>Owner:<span>&#10067;</span></label> {{input value=meta.owner}}</div>
+	<div><label>Building area:<span>&#10067;</span></label> {{input value=meta.buildingArea}}</div>
+	<div><label>Floor count:<span>&#10067;</span></label> {{input value=meta.floorCount}}</div>
+	<div><label>Number of rooms:<span>&#10067;</span></label> {{input value=meta.numberOfRooms}}</div>
+	<div><label>Function:<span>&#10067;</span></label> {{input value=meta.function}}</div>
+	<div><label>Architectural style:<span>&#10067;</span></label> {{input value=meta.architecturalStyle}}</div>
+	<div><label>Description:<span>&#10067;</span></label> {{input value=meta.description}}</div>
+	<div><label>Location:<span>&#10067;</span></label> {{input value=meta.location}}</div>
+	<div><label>Street address:<span>&#10067;</span></label> {{input value=meta.streetAddress}}</div>
+	<div><label>Postal code (start):<span>&#10067;</span></label> {{input value=meta.postalCodeStart}}</div>
+	<div><label>Postal code (end):<span>&#10067;</span></label> {{input value=meta.postalCodeEnd}}</div>
+	<div><label>Postoffice box number:<span>&#10067;</span></label> {{input value=meta.postOfficeBoxNumber}}</div>
+	<div><label>Address region:<span>&#10067;</span></label> {{input value=meta.addressRegion}}</div>
+	<div><label>Postal locality:<span>&#10067;</span></label> {{input value=meta.postalLocality}}</div>
+	<div><label>Architect:<span>&#10067;</span></label> {{input value=meta.architect}}</div>
+	<div><label>Contributor:<span>&#10067;</span></label> {{input value=meta.contributor}}</div>
+	<div><label>Building start date:<span>&#10067;</span></label> {{input value=meta.startDate}}</div>
+	<div><label>Building completion date:<span>&#10067;</span></label> {{input value=meta.completionDate}}</div>
+	<div><label>Construction time:<span>&#10067;</span></label> {{input value=meta.constructionTime}}</div>
+	<div><label>Rebuilding date:<span>&#10067;</span></label> {{input value=meta.rebuildingDate}}</div>
+	<div><label>Modification details:<span>&#10067;</span></label> {{input value=meta.modificationDetails}}</div>
+	<div><label>Cost ($):<span>&#10067;</span></label> {{input value=meta.cost}}</div>
+	<div><label>Rights details:<span>&#10067;</span></label> {{input value=meta.rightsDetails}}</div>
 {{/with}}
+</fieldset>
 
 
 

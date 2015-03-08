@@ -13,7 +13,7 @@
 
 			<section class="content-list-content js-content-scrollbox">        
 				<ol class="fe-list">
-					<li class="da-file-entry">Descriptive Metadata</li>
+					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9998;</span> Descriptions</div>
 					
 					{{#each item in stage.physicalAssets}}
 					<li {{action "selectItem" item}}>     
@@ -27,7 +27,7 @@
 					</li>  	
 					{{/each}}	
 
-					<li class="da-file-entry">Technical Metadata (non-editable)</li>
+					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9782;</span> File Information</div>
 					{{#each item in stage.e57ms}}
 					<li {{action "selectItem" item}}>         
 						{{e57m-overview item=item}}
