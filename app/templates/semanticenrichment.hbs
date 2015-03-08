@@ -33,22 +33,22 @@
 				<center><button {{action "getSemanticEnrichments"}} class="btn btn-green-line" title="Get semantic enrichment">Update Enrichments</button></center>
 				<hr>
 
-				{{#if isUpdatingEnrichments}}
-					<div style="font-size: 20px;"><center><strong>Searching archive for enrichments, be patient ...</strong></center></h4>
+				{{#if stage.availableItems.length}}
+					{{#if isUpdatingEnrichments}}
+						<div style="font-size: 20px;"><center><strong>Searching archive for enrichments, be patient ...</strong></center></h4>
 
-					<br><br>
-
-					{{loading-spinner-center}}
-				{{else}}
-					<div style="font-size: 20px;"><strong>Available Enrichments:</strong></h4>
-
-					<br><br>
-					{{#if stage.availableItems.length}}
-						{{enrichment-explorer items=stage.availableItems selectItem="selectItem"}}
-					{{else}}
 						<br><br>
-						<h3>No enrichments loaded.</h3>
+
+						{{loading-spinner-center}}
+					{{else}}
+						<div style="font-size: 20px;"><strong>Available Enrichments:</strong></h4>
+
+						<br><br>
+							{{enrichment-explorer items=stage.availableItems selectItem="selectItem"}}
 					{{/if}}
+				{{else}}
+					<br><br>
+					<center><h3>No enrichments loaded yet.</h3></center>
 				{{/if}}
 
 			</section>
