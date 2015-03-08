@@ -28,9 +28,21 @@
 			<section class="content-preview-content">
 				<h4>Semantic Enrichment</h4>
 				<br>
-				<div class="fe-list-item-header">By clicking the button below the system will search for semantic enrichment based on location information present in the IFC file. Be aware that already selected enrichments will be discarded in this case.</div>
+				<div class="fe-list-item-header">A semantic enrichment is based on information from a certain IFC file, called a 'seed'. Below you can choose, which seed the search will be based on (e.g. the postal address) and which file should be taken as input.</div>
 				<br>
-				<center><button {{action "getSemanticEnrichments"}} class="btn btn-green-line" title="Get semantic enrichment">Update Enrichments</button></center>
+
+				<center>Information seed:</center>
+				<div style="width: 50%; margin-left: auto; margin-right: auto;">
+					{{view "select" content=locationPivots value=selectedPivot}}
+				</div>
+
+				<br>
+
+				{{#each file in ifcFiles}}
+					<center><button {{action "getSemanticEnrichments" file}} class="btn btn-green-line" title="Get semantic enrichment">Search Enrichments</button> for <strong>{{file.filename}}</strong></center>
+					<br>
+				{{/each}}
+
 				<hr>
 
 				{{#if isUpdatingEnrichments}}
@@ -41,13 +53,14 @@
 					{{loading-spinner-center}}
 				{{else}}
 					{{#if stage.availableItems.length}}
-					<div style="font-size: 20px;"><strong>Available Enrichments:</strong></h4>
+					{{log shownFile}}
+					<div style="font-size: 20px;">Available Enrichments: <strong>{{shownFile.filename}}</strong> <small>(seed: {{selectedPivot}})</small></h4>
 
 					<br><br>
 						{{enrichment-explorer items=stage.availableItems selectItem="selectItem"}}
 					{{else}}
 						<br><br>
-						<center><h3>No enrichments loaded yet.</h3></center>
+						<center><h3>No enrichments yet.</h3></center>
 					{{/if}}
 				{{/if}}
 

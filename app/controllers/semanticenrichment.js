@@ -3,28 +3,57 @@ import SemanticEnrichmentAPI from 'workbench-ui/bindings/api-semanticenrichment'
 
 export
 default Ember.Controller.extend({
+    ifcFiles: [],
+    locationPivots: ['IFCPOSTALADDRESS', 'IFCADDRESSLOCALITY', 'IFCPOSTALCOUNTRY'],
+    selectedPivot: 'IFCADDRESSLOCALITY',
+
     actions: {
-        getSemanticEnrichments: function() {
+        getSemanticEnrichments: function(ifcFile) {
             var store = this.store,
                 controller = this,
                 stage = this.get('stage'),
-                that = this,
-                sessionId = stage.session;
+                sessionId = stage.session,
+                path = ifcFile.raw.get('path'),
+                locationPivot =  this.get('selectedPivot');
+
+            console.log('Searching enrichments based on : ' + path);
+            console.log('     location pivot: ' + locationPivot);
 
             // FIXXME: check if those two are still necessary and remove if not!
             controller.set('_isUpdatingMetadata', true);
             stage.set('isLoading', true);
 
+            controller.set('shownFile', ifcFile);
             controller.set('isUpdatingEnrichments', true);
 
             var semanticEnrichmentAPI = new SemanticEnrichmentAPI();
             semanticEnrichmentAPI.getMetadataFor({
-                path: 'dummy.ifc',
-                session: parseInt(sessionId)
+                path: path,
+                session: parseInt(sessionId),
+                locationProperty: locationPivot
             }).then(function(data) {
-                this.set('stage', data);
+                controller.set('stage.availableItems', data.availableItems);
                 controller.set('isUpdatingEnrichments', false);
-            }.bind(this));
+            });
         }
-    }
+    },
+
+    onFilesChanged: function() {
+        var files = this.get('files'),
+            ifcFiles = this.get('ifcFiles');
+
+        files.forEach(function(file) {
+            var ext = _getFileExtension(file.get('path'))[0];
+            if (ext.toLowerCase() === 'ifc') {
+                ifcFiles.pushObject({
+                    filename: file.get('path').split('/').pop(),
+                    raw: file
+                });
+            }
+        })
+    }.observes('files')
 });
+
+function _getFileExtension(filename) {
+    return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : undefined;
+}

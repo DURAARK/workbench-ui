@@ -10,6 +10,8 @@ default DS.Model.extend({
 
     selectedItems: DS.hasMany('enrichment-item'),
 
+    files: DS.hasMany('files'),
+    
     session: DS.belongsTo('session', {
         async: true
     }),

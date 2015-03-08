@@ -47,11 +47,24 @@ default Ember.Route.extend({
     setupController: function(controller, model) {
         // this._super(controller, model);
 
-        var url = apiConfig.host + '/semanticenrichmentstages/' + model.id;
+        var url = apiConfig.host + '/semanticenrichmentstages/' + model.id,
+            store = this.store;
 
         _get(url).then(function(stage) {
-            controller.set("stage", Ember.Object.create(stage));
-        }.bind(this));
+            var stage = Ember.Object.create(stage);
+            controller.set("stage", stage);
+
+            var sessionId = stage.get('session');
+            
+            store.find('session', sessionId).then(function(session) {
+                session.get("filestage").then(function(filestage) {
+                    filestage.get("files").then(function(files) {
+                        controller.set('files', []);
+                        controller.set('files', files);
+                    });
+                });
+            });
+        });
     },
 
     actions: {
