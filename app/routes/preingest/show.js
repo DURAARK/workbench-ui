@@ -31,14 +31,16 @@ default Ember.Route.extend({
         this._super(controller, model);
         this.send('highlightSession', model);
 
+        controller.set('hasIfcFile', false);
+
         model.get('filestage').then(function(filestage) {
             filestage.get('files').then(function(filesArray) {
                 var files = filesArray.toArray();
                 // Check if an IFC file is present. If so, request the semantic enrichment stage:
                 for (var idx = 0; idx < files.length; idx++) {
-                    var file = files[idx];
-                        var path = file.get('path');
-                        var ext = _getFileExtension(path)[0];
+                    var file = files[idx],
+                        path = file.get('path'),
+                        ext = _getFileExtension(path)[0];
 
                     if (ext === 'ifc') {
                         controller.set('hasIfcFile', true);
