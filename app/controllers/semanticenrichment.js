@@ -6,7 +6,7 @@ default Ember.Controller.extend({
     ifcFiles: [],
     uniqueAvailableItems: [],
     locationPivots: ['IFCPOSTALADDRESS', 'IFCADDRESSLOCALITY', 'IFCPOSTALCOUNTRY'],
-    selectedPivot: 'IFCADDRESSLOCALITY',
+    selectedPivot: 'IFCPOSTALADDRESS',
 
     actions: {
         getSemanticEnrichments: function(ifcFile) {
