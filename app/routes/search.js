@@ -4,7 +4,7 @@ export
 default Ember.Route.extend({
     model: function() {
         return Ember.RSVP.hash({
-            buildings: this.store.find('physicalAsset'),
+            buildings: this.store.find('searchItem'),
             properties: this.store.find('property')
         });
     },

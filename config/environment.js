@@ -35,7 +35,7 @@ module.exports = function(environment) {
             sda: {
                 host: apiEndpoint + '/sda'
             },
-            physicalAssets: {
+            searchItems: {
                 host: apiEndpoint + '/sda/example'
             },
             sessions: {
@@ -87,7 +87,7 @@ module.exports = function(environment) {
             sda: {
                 host: apiEndpoint + ':5005'
             },
-            physicalAssets: {
+            searchItems: {
                 host: apiEndpoint + ':5005/example'
             },
             sessions: {

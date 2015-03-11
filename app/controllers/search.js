@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import ENV from '../config/environment';
 
-var apiConfig = ENV.DURAARKAPI.physicalAssets;
+var apiConfig = ENV.DURAARKAPI.searchItems;
 
 export default Ember.Controller.extend({
 	selectedProperty: null,
@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
 
 		buildings.forEach(function(item) {
 			markers.push({
-				location: L.latLng(item.get('latitude'), item.get('longitude')),
+				location: L.latLng(item.get('instance.latitude'), item.get('instance.longitude')),
 				title: 'Building'
 			});
 		});
@@ -80,7 +80,7 @@ export default Ember.Controller.extend({
 		},
 
 		listAll: function() {
-			this.store.find('physicalAsset').then(function(records) {
+			this.store.find('search-item').then(function(records) {
 				this.set('buildings', records);
 				// FIXXME: for some reason the observer does not fire, we
 				// have to call the callback manually:
@@ -109,11 +109,11 @@ export default Ember.Controller.extend({
 				url: apiConfig.host + '/search',
 				data: payload
 			}).done(function(response) {
-				that.store.unloadAll('physicalAsset');
-				that.store.pushMany('physicalAsset', response);
+				that.store.unloadAll('search-item');
+				that.store.pushMany('search-item', response);
 				// console.log('Search response: ' + JSON.stringify(response, 4, null));
 
-				that.set('buildings', that.store.all('physicalAsset'));
+				that.set('buildings', that.store.all('search-item'));
 			}).fail(function(error) {
 				console.log('Search error: ' + JSON.stringify(error, 4, null));
 			})
