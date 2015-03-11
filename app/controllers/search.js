@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
 
 		buildings.forEach(function(item) {
 			markers.push({
-				location: L.latLng(item.get('instance.latitude'), item.get('instance.longitude')),
+				location: L.latLng(item.get('latitude'), item.get('longitude')),
 				title: 'Building'
 			});
 		});
