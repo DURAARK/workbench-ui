@@ -4,11 +4,9 @@
 
 <br>
 
-{{log stage}}
-
-{{#if stage.isLoading}}
+{{!-- {{#if stage.isLoading}}
 	{{loading-spinner-center}}
-{{/if}}
+{{/if}} --}}
 
 {{#if stage.metadata.length}}
 
@@ -22,6 +20,8 @@
 
 {{else}}
 
-<div>Requesting metadata ...</div>
+{{!-- <div>Requesting metadata ...</div> --}}
+
+<div class="da-valid btn btn-green">Ready to go</div>
 
 {{/if}}

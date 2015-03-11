@@ -6,13 +6,12 @@
 
 {{#if stage.files.length}}
 
-	<span class="da-workflow-description-small">Included files:</span>
+	<span class="da-workflow-description-small">Files in SIP:</span>
 
 	<br><br>
 
 	<ul>
 	{{#each file in stage.files}}
-	{{log file}}
 		{{file-item item=file onDelete="onDelete" isLoading=stage.isLoading}}	
 	{{/each}}
 	</ul>
