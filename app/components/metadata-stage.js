@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	actions: {
-		editFiles: function(stage) {
+		editStage: function(stage) {
 			this.sendAction('editClicked', stage);
 		}
 	}
