@@ -1,8 +1,11 @@
-<section class="post-controls">
+<br>
+<center><div class="da-valid btn btn-blue" {{action "edit" stage}}>Edit</div></center>
+
+{{!-- <section class="post-controls">
     <a class="btn btn-default post-edit" {{action "edit" stage}}> Edit</a>
 </section>
 
-<br><br>
+<br><br> --}}
 {{!-- 
 {{#if stage.isLoading}}
 	{{loading-spinner-center}}
@@ -10,9 +13,6 @@
 	<div style="font-size: 20px;">Enrichments found: {{stage.availableItems.length}}</div>
 	<div style="font-size: 20px;">Enrichments selected: {{stage.selectedItems.length}}</div>
 {{/if}} --}}
-
-
-<div class="da-valid btn btn-green">Ready to go</div>
 
 {{!-- {{#if stage.selectedItems.length}}
 

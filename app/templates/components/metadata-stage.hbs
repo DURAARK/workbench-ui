@@ -1,27 +1,2 @@
-<section class="post-controls">
-    <a class="btn btn-default post-edit" {{action "editFiles" stage}}> Edit</a>
-</section>
-
 <br>
-
-{{!-- {{#if stage.isLoading}}
-	{{loading-spinner-center}}
-{{/if}} --}}
-
-{{#if stage.metadata.length}}
-
-<ul>
-	{{#each item in stage.metadata}}
-		{{#if item}}
-			{{metadata-item item=item isLoading=stage.isLoading}}
-		{{/if}}
-	{{/each}}
-</ul>
-
-{{else}}
-
-{{!-- <div>Requesting metadata ...</div> --}}
-
-<div class="da-valid btn btn-green">Ready to go</div>
-
-{{/if}}
+<center><div class="da-valid btn btn-blue" {{action "edit" stage}}>Edit</div></center>
