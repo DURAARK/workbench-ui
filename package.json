@@ -35,6 +35,7 @@
     "ember-normalize": "0.0.2",
     "express": "^4.8.5",
     "glob": "^4.0.5",
+    "rimraf": "2.2.8",
     "ember-dynamic-component": "0.0.4",
     "ember-cli-ember-leaflet": "^0.1.0"
   },
