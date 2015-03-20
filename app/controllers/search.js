@@ -3,120 +3,127 @@ import ENV from '../config/environment';
 
 var apiConfig = ENV.DURAARKAPI.searchItems;
 
-export default Ember.Controller.extend({
-	selectedProperty: null,
-	errorMessage: null,
-	filters: Ember.A(),
+export
+default Ember.Controller.extend({
+    selectedProperty: null,
+    errorMessage: null,
+    filters: Ember.A(),
 
-	onBuildingsChanged: function() {
-		var markers = [],
-			buildings = this.get('buildings');
+    onBuildingsChanged: function() {
+        var markers = [],
+            buildings = this.get('buildings');
 
-		buildings.forEach(function(item) {
-			markers.push({
-				location: L.latLng(item.get('latitude'), item.get('longitude')),
-				title: 'Building'
-			});
-		});
-		this.set('markers', markers);
-		console.log('updated markers');
-	}.observes('buildings'),
+        buildings.forEach(function(item) {
+            markers.push({
+                location: L.latLng(item.get('latitude'), item.get('longitude')),
+                title: 'Building'
+            });
+        });
+        this.set('markers', markers);
+        console.log('updated markers');
+    }.observes('buildings'),
 
-	onErrorMessageChanged: function() {
-		var message = this.get('errorMessage');
+    onErrorMessageChanged: function() {
+        var message = this.get('errorMessage');
 
-		if (message) {
-			// TODO: replace with a popup message!
-			alert('Error: ' + message);
-			this.set('errorMessage', null);
-		}
-	}.observes('errorMessage'),
+        if (message) {
+            // TODO: replace with a popup message!
+            alert('Error: ' + message);
+            this.set('errorMessage', null);
+        }
+    }.observes('errorMessage'),
 
-	actions: {
-		addFilter: function() {
-			var selectedProperty = this.get('selectedProperty'),
-				propertyValue = this.get('propertyValue'),
-				filters = this.get('filters');
+    actions: {
+        addFilter: function() {
+            var selectedProperty = this.get('selectedProperty'),
+                propertyValue = this.get('propertyValue'),
+                filters = this.get('filters');
 
-			if (!selectedProperty) {
-				this.set('errorMessage', 'Please select a property first!');
-				return;
-			}
+            if (!selectedProperty) {
+                this.set('errorMessage', 'Please select a property first!');
+                return;
+            }
 
-			if (!propertyValue) {
-				this.set('errorMessage', 'Please enter a value for the property first!');
-				return;
-			}
+            if (!propertyValue) {
+                this.set('errorMessage', 'Please enter a value for the property first!');
+                return;
+            }
 
-			filters.pushObject({
-				property: selectedProperty,
-				value: propertyValue
-			});
+            var properties = this.store.all('property');
 
-			console.log('Added filter | ' + selectedProperty + ': ' + propertyValue);
+            var prop = properties.findBy('name', selectedProperty);
+            var type = prop.get('type');
 
-			this.send('performSearch');
-		},
+            filters.pushObject({
+                property: selectedProperty,
+                value: propertyValue,
+                type: prop.get('type')
+            });
 
-		clearFilter: function(filter) {
-			var filters = this.get('filters');
-			filters.removeObject(filter);
+            console.log('Added filter | ' + selectedProperty + ': ' + propertyValue);
 
-			if (filters.get('length')) {
-				this.send('performSearch');
-			} else {
-				this.send('listAll');
-			}
-		},
+            this.send('performSearch');
+        },
 
-		clearAllFilters: function() {
-			this.set('filters', Ember.A());
-			this.send('listAll');
-		},
+        clearFilter: function(filter) {
+            var filters = this.get('filters');
+            filters.removeObject(filter);
 
-		selectProperty: function(property) {
-			console.log('selectedProperty: ' + property);
-			this.set('selectedProperty', property);
-		},
+            if (filters.get('length')) {
+                this.send('performSearch');
+            } else {
+                this.send('listAll');
+            }
+        },
 
-		listAll: function() {
-			this.store.find('search-item').then(function(records) {
-				this.set('buildings', records);
-				// FIXXME: for some reason the observer does not fire, we
-				// have to call the callback manually:
-				this.onBuildingsChanged();
-			}.bind(this));
-		},
+        clearAllFilters: function() {
+            this.set('filters', Ember.A());
+            this.send('listAll');
+        },
 
-		performSearch: function() {
-			var constraints = this.get('filters'),
-				that = this;
+        selectProperty: function(property) {
+            console.log('selectedProperty: ' + property);
+            this.set('selectedProperty', property);
+        },
 
-			if (!constraints.length) {
-				this.set('errorMessage', 'You have to add a search constraint first!');
-				return;
-			}
+        listAll: function() {
+            this.store.find('search-item').then(function(records) {
+                this.set('buildings', records);
+                // FIXXME: for some reason the observer does not fire, we
+                // have to call the callback manually:
+                this.onBuildingsChanged();
+            }.bind(this));
+        },
 
-			var data = JSON.parse(JSON.stringify(constraints, null, 4));
-			console.log('Searching for: ' + JSON.stringify(data, null, 4));
+        performSearch: function() {
+            var constraints = this.get('filters'),
+                that = this;
 
-			var payload = {
-				constraints: data
-			};
+            if (!constraints.length) {
+                this.set('errorMessage', 'You have to add a search constraint first!');
+                return;
+            }
 
-			$.ajax({
-				type: 'POST',
-				url: apiConfig.host + '/search',
-				data: payload
-			}).done(function(response) {
-				that.store.unloadAll('search-item');
-				that.store.pushMany('search-item', response);
-				// console.log('Search response: ' + JSON.stringify(response, 4, null));
+            var data = JSON.parse(JSON.stringify(constraints, null, 4));
+            console.log('Searching for: ' + JSON.stringify(data, null, 4));
 
-				that.set('buildings', that.store.all('search-item'));
-			}).fail(function(error) {
-				console.log('Search error: ' + JSON.stringify(error, 4, null));
-			})
-		}
-	}
+            var payload = {
+                constraints: data
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: apiConfig.host + '/search',
+                data: payload
+            }).done(function(response) {
+                that.store.unloadAll('search-item');
+                that.store.pushMany('search-item', response);
+                // console.log('Search response: ' + JSON.stringify(response, 4, null));
+
+                that.set('buildings', that.store.all('search-item'));
+            }).fail(function(error) {
+                console.log('Search error: ' + JSON.stringify(error, 4, null));
+            })
+        }
+    }
 });

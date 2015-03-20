@@ -3,5 +3,6 @@ import DS from 'ember-data';
 export default DS.Model.extend({
 	name: DS.attr('string'),
 	description: DS.attr('string'),
-	required: DS.attr('boolean')
+	required: DS.attr('boolean'),
+	type: DS.attr('string')
 });
