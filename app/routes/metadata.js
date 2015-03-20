@@ -21,12 +21,19 @@ default Ember.Route.extend({
         save: function() {
             // NOTE: see http://stackoverflow.com/questions/26940363/ember-data-belongsto-async-relationship-omitted-from-createrecord-save-seria
             // on how to save a 'belongsTo' relationship:
-            this.get('controller.stage.buildm').then(function(buildmRecord) {
-                buildmRecord.save().then(function() {
-                    var session = this.get('controller.model.session');
-                    this.transitionTo('preingest.show', session);
-                }.bind(this));
-            }.bind(this));
+            var metadatastage = this.get('controller.stage');
+
+            var pas = metadatastage.get('physicalAssets');
+
+            metadatastage.get('physicalAssets').forEach(function(asset) {
+                asset.save();
+            });
+
+            metadatastage.get('digitalObjects').forEach(function(dobject) {
+                dobject.save();
+            });
+
+            this.transitionTo('preingest.show', metadatastage.get('session'));
         }
     }
 });

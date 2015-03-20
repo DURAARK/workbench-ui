@@ -11,8 +11,10 @@
 				<button class="btn btn-green" {{action "save"}}> Save</button>   
 			</section>
 
-			<section class="content-list-content js-content-scrollbox">        
-				<ol class="fe-list">
+			<section class="content-list-content js-content-scrollbox">
+
+				<ol style="position: relative" class="fe-list">
+					
 					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9998;</span> Descriptions</div>
 					
 					{{#each item in stage.physicalAssets}}
@@ -49,7 +51,7 @@
 			        <span class="status">Editor</span>
 			    </small>
 			</header>
-
+			
 			<section class="content-preview-content">
 				{{outlet}}
 			</section>

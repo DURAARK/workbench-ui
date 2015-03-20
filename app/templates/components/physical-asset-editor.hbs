@@ -1,4 +1,4 @@
-{{!-- <h4>{{filename}} (schema: {{model.schema}})</h4> --}}
+<button class="btn btn-green btn-right" {{action "update" model.file}}> Update</button>   
 
 <h4>&#9737; Physical Asset</h4>
 
@@ -8,32 +8,35 @@
 
 <fieldset class="md-list">
 {{#with model.instance as meta}}
-	<div><label>Identifier:<span>&#10067;</span></label> {{input readonly=true value=meta.Identifier}}</div>
-	<div><label>Latitude:<span>&#10067;</span></label> {{input value=meta.latitude}}</div>
-	<div><label>Longitude:<span>&#10067;</span></label> {{input value=meta.longitude}}</div>
-	<div><label>Owner:<span>&#10067;</span></label> {{input value=meta.owner}}</div>
-	<div><label>Building area:<span>&#10067;</span></label> {{input value=meta.buildingArea}}</div>
-	<div><label>Floor count:<span>&#10067;</span></label> {{input value=meta.floorCount}}</div>
-	<div><label>Number of rooms:<span>&#10067;</span></label> {{input value=meta.numberOfRooms}}</div>
-	<div><label>Function:<span>&#10067;</span></label> {{input value=meta.function}}</div>
-	<div><label>Architectural style:<span>&#10067;</span></label> {{input value=meta.architecturalStyle}}</div>
-	<div><label>Description:<span>&#10067;</span></label> {{input value=meta.description}}</div>
-	<div><label>Location:<span>&#10067;</span></label> {{input value=meta.location}}</div>
-	<div><label>Street address:<span>&#10067;</span></label> {{input value=meta.streetAddress}}</div>
-	<div><label>Postal code (start):<span>&#10067;</span></label> {{input value=meta.postalCodeStart}}</div>
-	<div><label>Postal code (end):<span>&#10067;</span></label> {{input value=meta.postalCodeEnd}}</div>
-	<div><label>Postoffice box number:<span>&#10067;</span></label> {{input value=meta.postOfficeBoxNumber}}</div>
-	<div><label>Address region:<span>&#10067;</span></label> {{input value=meta.addressRegion}}</div>
-	<div><label>Postal locality:<span>&#10067;</span></label> {{input value=meta.postalLocality}}</div>
-	<div><label>Architect:<span>&#10067;</span></label> {{input value=meta.architect}}</div>
-	<div><label>Contributor:<span>&#10067;</span></label> {{input value=meta.contributor}}</div>
-	<div><label>Building start date:<span>&#10067;</span></label> {{input value=meta.startDate}}</div>
-	<div><label>Building completion date:<span>&#10067;</span></label> {{input value=meta.completionDate}}</div>
-	<div><label>Construction time:<span>&#10067;</span></label> {{input value=meta.constructionTime}}</div>
-	<div><label>Rebuilding date:<span>&#10067;</span></label> {{input value=meta.rebuildingDate}}</div>
-	<div><label>Modification details:<span>&#10067;</span></label> {{input value=meta.modificationDetails}}</div>
-	<div><label>Cost ($):<span>&#10067;</span></label> {{input value=meta.cost}}</div>
-	<div><label>Rights details:<span>&#10067;</span></label> {{input value=meta.rightsDetails}}</div>
+	{{multi-line-item label="Owner:" value=meta.owner readonly=false}}
+	{{multi-line-item label="Description:" value=meta.description readonly=false}}
+	{{multi-line-item label="Architect:" value=meta.architect readonly=false}}
+	{{multi-line-item label="Street address:" value=meta.streetAddress readonly=false}}
+	{{multi-line-item label="Rights details::" value=meta.rightsDetails readonly=false}}
+	{{multi-line-item label="Building area:" value=meta.buildingArea readonly=false}}
+	{{multi-line-item label="Floor count:" value=meta.floorCount readonly=false}}
+	{{multi-line-item label="Number of rooms:" value=meta.numberOfRooms readonly=false}}
+	{{multi-line-item label="Function:" value=meta.function readonly=false}}
+	{{multi-line-item label="Architectural style:" value=meta.architecturalStyle readonly=false}}
+	{{multi-line-item label="Latitude:" value=meta.latitude readonly=false}}
+	{{multi-line-item label="Longitude:" value=meta.longitude readonly=false}}
+	{{multi-line-item label="Location:" value=meta.location readonly=false}}
+	{{multi-line-item label="Street address:" value=meta.streetAddress readonly=false}}
+	{{multi-line-item label="Postal code (start):" value=meta.postalCodeStart readonly=false}}
+	{{multi-line-item label="Postal code (end):" value=meta.postalCodeEnd readonly=false}}
+	{{multi-line-item label="Postoffice box number:" value=meta.postOfficeBoxNumber readonly=false}}
+	{{multi-line-item label="Address region:" value=meta.addressRegion readonly=false}}
+	{{multi-line-item label="Postal locality:" value=meta.postalLocality readonly=false}}
+	{{multi-line-item label="Architect:" value=meta.architect readonly=false}}
+	{{multi-line-item label="Contributor:" value=meta.contributor readonly=false}}
+	{{multi-line-item label="Building start date:" value=meta.startDate readonly=false}}
+	{{multi-line-item label="Building completion date:" value=meta.completionDate readonly=false}}
+	{{multi-line-item label="Construction time:" value=meta.constructionTime readonly=false}}
+	{{multi-line-item label="Rebuilding date:" value=meta.rebuildingDate readonly=false}}
+	{{multi-line-item label="Modification details:" value=meta.modificationDate readonly=false}}
+	{{multi-line-item label="Cost ($):" value=meta.cost readonly=false}}
+	{{multi-line-item label="Rights details::" value=meta.rightsDetails readonly=false}}
+	{{multi-line-item label="Identifier:" value=meta.identifier readonly=true}}
 {{/with}}
 </fieldset>
 

@@ -1,0 +1,8 @@
+{{#if value.length}}
+	{{#each value}}
+		<div><label>{{controller.label}}<span>&#10067;</span></label> {{input value=this}}</div>
+	{{/each}}
+{{else}}
+	<div><label>{{label}}<span>&#10067;</span></label> {{input value='please enter'}}</div>
+{{/if}}
+
