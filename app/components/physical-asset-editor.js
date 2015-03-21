@@ -18,7 +18,9 @@ default Ember.Component.extend({
                 var physicalAsset = controller.get('model');
                 physicalAsset.set('instance', md.physicalAsset.instance);
 
-	           	controller.set('isLoading', false);
+                physicalAsset.set('instance.owner', ['martin']);
+
+                controller.set('isLoading', false);
             });
         }
     },

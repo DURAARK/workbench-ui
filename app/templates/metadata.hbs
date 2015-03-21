@@ -15,28 +15,28 @@
 
 				<ol style="position: relative" class="fe-list">
 					
-					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9998;</span> Descriptions</div>
+					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9998;</span> Metadata</div>
 					
-					{{#each item in stage.physicalAssets}}
+					{{#each item in physicalAssets}}
 					<li {{action "selectItem" item}}>     
 						{{physical-asset-overview item=item}}
 					</li>
 					{{/each}}
 
-					{{#each item in stage.digitalObjects}}
+					{{#each item in digitalObjects}}
 					<li {{action "selectItem" item}}>                
 						{{digital-object-overview item=item}}
 					</li>  	
 					{{/each}}	
 
 					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9782;</span> File Information</div>
-					{{#each item in stage.e57ms}}
+					{{#each item in e57ms}}
 					<li {{action "selectItem" item}}>         
 						{{e57m-overview item=item}}
 					</li>
 					{{/each}}
 
-					{{#each item in stage.ifcms}}
+					{{#each item in ifcms}}
 					<li {{action "selectItem" item}}>                
 						{{ifcm-overview item=item}}
 					</li>

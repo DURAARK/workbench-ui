@@ -50,8 +50,8 @@ default Ember.Route.extend({
                         _get(url).then(function(stage) {
                             controller.set("semanticenrichmentstage", Ember.Object.create(stage));
                         });
-
-                        return;
+                    } else if (ext === 'e57') {
+                        controller.set('hasE57File', true);
                     }
                 }
             });

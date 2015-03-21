@@ -1,8 +1,10 @@
-{{#if value.length}}
+{{!-- FIXXME: add multi-value support! --}}
+{{!-- {{#if value.length}}
 	{{#each value}}
 		<div><label>{{controller.label}}<span>&#10067;</span></label> {{input value=this}}</div>
 	{{/each}}
-{{else}}
-	<div><label>{{label}}<span>&#10067;</span></label> {{input value='please enter'}}</div>
-{{/if}}
+{{else}} --}}
+{{log value}}
+	<div><label>{{label}}<span>&#10067;</span></label> {{input value=value placeholder='please enter'}}</div>
+{{!-- {{/if}} --}}
 

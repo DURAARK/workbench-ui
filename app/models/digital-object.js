@@ -8,5 +8,5 @@ default DS.Model.extend({
 	// 	async: true
 	// }),
 
-	instance: DS.attr(),
+	instance: DS.attr()
 });

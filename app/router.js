@@ -13,18 +13,16 @@ Router.map(function() {
   });
 
   this.resource("editor", { path: "/editor"}, function() {
-      this.resource('files', { path: "/files/:id" });
-      this.resource('metadata', { path: "/metadata/:id" }, function() {
-        this.route('physicalasset', { path: "/physicalasset/:id"});
-        this.route('digitalobject', { path: "/digitalobject/:id"});
-        this.route('e57m', { path: "/e57m/:id"});
-        this.route('ifcm', { path: "/ifcm/:id"});
-      });
+    this.resource('files', { path: "/files/:id" });
+    this.resource('metadata', { path: "/metadata/:id" }, function() {
+      this.route('physicalasset', { path: "/physicalasset/:physicalAsset_id"});
+      this.route('digitalobject', { path: "/digitalobject/:digitalObject_id"});
+      this.route('e57m', { path: "/e57m/:id"});
+      this.route('ifcm', { path: "/ifcm/:id"});
+    });
 
-      this.resource("semanticenrichment", { path: "/semanticenrichment/:id" });
-      // this.resource('rise', { path: "/rise/:id" });
-      // this.resource('ifcreconstruction', { path: "/ifcreconstruction/:id" });
-      // this.resource('differenedetection', { path: "/differencedetection/:id" });
+    this.resource("semanticenrichment", { path: "/semanticenrichment/:id" });
+    this.route("geometric-enrichment", { path: "/geometricenrichment/:id" });
   });
 
   this.route("search");

@@ -1,6 +1,9 @@
-{{#if item.schema}}
-	<span class="sb-entry">&#9737; Digital Object: <strong>{{filename}}</strong></span>
-	{{!-- <div class="meta">Schema: {{item.schema}}</div> --}}
+{{#if item.instance}}
+	{{#if item.instance.type}}
+		<span class="sb-entry">&#9737; Digital Representation: <strong>{{item.instance.type}} ({{filename}})</strong></span>
+	{{else}}
+		<span class="sb-entry">&#9737; Digital Representation: <strong>{{filename}}</strong></span>
+	{{/if}}
 {{else}}
 	{{loading-spinner-center}}
 {{/if}}

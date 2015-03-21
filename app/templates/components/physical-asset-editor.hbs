@@ -1,6 +1,6 @@
 <button class="btn btn-green btn-right" {{action "update" model.file}}> Update</button>   
 
-<h4>&#9737; Physical Asset</h4>
+<h4>&#9737; Building Description</h4>
 
 <div class="metadata-description">Descriptive metadata about the tangible building.</div>
 
@@ -12,7 +12,7 @@
 	{{multi-line-item label="Description:" value=meta.description readonly=false}}
 	{{multi-line-item label="Architect:" value=meta.architect readonly=false}}
 	{{multi-line-item label="Street address:" value=meta.streetAddress readonly=false}}
-	{{multi-line-item label="Rights details::" value=meta.rightsDetails readonly=false}}
+	{{multi-line-item label="Rights details:" value=meta.rightsDetails readonly=false}}
 	{{multi-line-item label="Building area:" value=meta.buildingArea readonly=false}}
 	{{multi-line-item label="Floor count:" value=meta.floorCount readonly=false}}
 	{{multi-line-item label="Number of rooms:" value=meta.numberOfRooms readonly=false}}

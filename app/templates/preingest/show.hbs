@@ -30,7 +30,7 @@
 {{else}}
 	<br>
 	<center>
-		<div style="font-size: 20px;">Add an IFC file to enable semantic enrichement component.</div>
+		<div style="font-size: 20px;">Add an IFC file to enable the semantic-enrichement component.</div>
 		<small>(this limitation will be removed in upcoming versions)</small>
 	</center>
 {{/if}}
@@ -42,7 +42,14 @@
 	<span>Geometric Enrichment</span>
 </div>
 
-{{geoenrichment-stage stage=geoenrichmentstage editClicked="editStage"}}
+{{#if hasE57File}}
+	{{geoenrichment-stage stage=geoenrichmentstage editClicked="editStage"}}
+{{else}}
+	<br>
+	<center>
+		<div style="font-size: 20px;">Add an E57 file to enable the geometric-enrichement component.</div>
+	</center>
+{{/if}}
 
 <div class="da-session-workflow-header"></div>
 
