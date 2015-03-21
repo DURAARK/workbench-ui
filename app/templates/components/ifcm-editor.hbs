@@ -4,6 +4,12 @@
 
 <br>
 
+<div class="wui-alpha-feature-note">
+The <strong>technical metadata scheme (ifcm)</strong> is in flux and will be available in a stable version in future versions of the software. See below for an example with the current pre-liminary schema.
+</div>
+
+<br>
+
 <fieldset class="md-list">
 {{#with model.instance as meta}}
 <header>Header</header>
@@ -41,39 +47,5 @@
 <header>Dependencies</header>
 	<div><label>webResourceLink:<span>&#10067;</span></label> {{input readonly=true value=meta.dependencies.webResourceLink}}</div>
 	
-{{!-- <header>Header</header>
-	<div><label>creationDate:<span>&#10067;</span></label> {{input readonly=true value=meta.header.creationDate}}</div>
-	<div><label>author:<span>&#10067;</span></label> {{input readonly=true value=meta.header.author}}</div>
-	<div><label>organization:<span>&#10067;</span></label> {{input readonly=true value=meta.header.organization}}</div>
-	<div><label>preprocessor:<span>&#10067;</span></label> {{input readonly=true value=meta.header.preprocessor}}</div>
-	<div><label>originatingSystem:<span>&#10067;</span></label> {{input readonly=true value=meta.header.originatingSystem}}</div>
-	<div><label>authorization:<span>&#10067;</span></label> {{input readonly=true value=meta.header.authorization}}</div>
-	<div><label>fileSchema:<span>&#10067;</span></label> {{input readonly=true value=meta.header.fileSchema}}</div>
-	<div><label>viewDefinition:<span>&#10067;</span></label> {{input readonly=true value=meta.header.viewDefinition}}</div>
-	<div><label>exportOptions:<span>&#10067;</span></label> {{input readonly=true value=meta.header.exportOptions}}</div>
-<header>IFC Parameters</header>
-	<div><label>ifcApplication:<span>&#10067;</span></label> {{input readonly=true value=meta.ifcparameters.ifcApplication}}</div>
-	<div><label>IfcGeometricRepresentationContext:<span>&#10067;</span></label> {{input readonly=true value=meta.ifcparameters.IfcGeometricRepresentationContext}}</div>
-	<div><label>ifcSiUnit:<span>&#10067;</span></label> {{input readonly=true value=meta.ifcparameters.ifcSiUnit}}</div>
-
-<header>Object Counts</header>
-	<div><label>floorCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.floorCount}}</div>
-	<div><label>roomCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.roomCount}}</div>
-	<div><label>wallCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.wallCount}}</div>
-	<div><label>windowsCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.windowsCount}}</div>
-	<div><label>doorCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.doorCount}}</div>
-	<div><label>pipeCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.pipeCount}}</div>
-	<div><label>columnCount:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.columnCount}}</div>
-	<div><label>numberOfComponents:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.numberOfComponents}}</div>
-	<div><label>numberOfRelations:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.numberOfRelations}}</div>
-	<div><label>numberOfActors:<span>&#10067;</span></label> {{input readonly=true value=meta.countObjects.numberOfActors}}</div>
-
-<header>Metric Information</header>
-	<div><label>numberOfEntityTypesUsed:<span>&#10067;</span></label> {{input readonly=true value=meta.informationMetric.numberOfEntityTypesUsed}}</div>
-	<div><label>numberOfTotalEntitiesUsed:<span>&#10067;</span></label> {{input readonly=true value=meta.informationMetric.numberOfTotalEntitiesUsed}}</div>
-	<div><label>optionalAttributes:<span>&#10067;</span></label> {{input readonly=true value=meta.informationMetric.optionalAttributes}}</div>
-
-<header>Dependencies</header>
-	<div><label>webResourceLink:<span>&#10067;</span></label> {{input readonly=true value=meta.dependencies.webResourceLink}}</div> --}}
 {{/with}}
 </fieldset>

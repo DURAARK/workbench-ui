@@ -3,6 +3,10 @@
 
 @import "ghost";
 @import "base";
+
+@import "workbench-ui/wui";
+
+// FIXXME: move to 'workbench-ui' folder!
 @import "da-session";
 @import "file-explorer";
 @import "map";
