@@ -29,7 +29,10 @@ Router.map(function() {
 
   this.route("search");
 
-  this.route("semenhance");
+  this.route("maintenance", function() {
+    this.route("interlink");
+    this.route("sdo-graph-explorer");
+  });
 
   this.resource("preservation", function() {
     this.route('index', { path: "/" });
