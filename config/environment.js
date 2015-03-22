@@ -69,7 +69,7 @@ module.exports = function(environment) {
                 jobsEndpoint: '/enrichment',
                 extractEndpoint: '/enrichment/extract'
             },            
-            semanticenrichment: {
+            sipgenerator: {
                 host: apiEndpoint + '/sipgenerator',
                 jobsEndpoint: '/rosetta',
                 extractEndpoint: '/rosetta/create'
