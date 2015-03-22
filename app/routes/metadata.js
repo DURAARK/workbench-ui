@@ -14,8 +14,8 @@
         setupController: function(controller, model) {
             var store = this.store,
                 stage = model,
-                physicalAssets = [],
-                digitalObjects = [],
+                physicalAssets = model.physicalAssets,
+                digitalObjects = model.digitalObjects,
                 ifcms = [],
                 e57ms = [];
 
@@ -29,7 +29,7 @@
 
             // Check if the physicalAsset already has metadata associated with it within the metadatastage from microservice-sip.
             // If so, create and populate a physical-asset instance, else create an empty instance:
-            model.get('physicalAssets').then(function(assets) {
+            stage.get('physicalAssets').then(function(assets) {
                 var assets = stage.get('physicalAssets'),
                     asset = null;
 
@@ -94,9 +94,10 @@
 
                             // Check if the physicalAsset already has metadata associated with it within the metadatastage from microservice-sip.
                             // If so, create and populate a physical-asset instance, else create an empty instance:
-                            model.get('digitalObjects').then(function(storedObjects) {
+                            stage.get('digitalObjects').then(function(storedObjects) {
                                 var filepath = file.get('path');
                                 console.log('checking if "' + filepath + '" is already poplated:');
+                                debugger;
                                 var object = storedObjects.findBy('file', filepath);
 
                                 if (!object) {
@@ -130,23 +131,63 @@
 
                                 if (isNewRecord) {
                                     object.save().then(function(record) {
-                                        digitalObjects.pushObject(record);
+                                        stage.digitalObjects.pushObject(record);
                                     });
                                 } else {
-                                    digitalObjects.pushObject(object);
+                                    stage.digitalObjects.pushObject(object);
                                 }
 
-                                // var ifcm = store.createRecord('ifcm');
-                                // ifcm.set('file', file.get('path'));
-                                // ifcm.set('instance', {});
-                                // ifcms.pushObject(ifcm);
+                                var ifcm = store.createRecord('ifcm');
+
+                                var ifcmSchemaTemplate = {
+                                    header: {
+                                        creationDate: new Date(),
+                                        author: 'Martin Hecher',
+                                        organization: 'TU Graz',
+                                        preprocessor: 'none',
+                                        originatingSystem: 'none',
+                                        authorization: 'none',
+                                        fileSchema: 'IFC-SPF',
+                                        viewDefinition: 'none',
+                                        exportOptions: 'none'
+                                    },
+                                    ifcparameters: {
+                                        ifcApplication: 'Blender',
+                                        IfcGeometricRepresentationContext: 'none',
+                                        ifcSiUnit: 'none'
+                                    },
+                                    countObjects: {
+                                        floorCount: 3,
+                                        roomCount: 3,
+                                        wallCount: 3,
+                                        windowsCount: 3,
+                                        doorCount: 3,
+                                        pipeCount: 3,
+                                        columnCount: 3,
+                                        numberOfComponents: 3,
+                                        numberOfRelations: 3,
+                                        numberOfActors: 3
+                                    },
+                                    informationMetric: {
+                                        numberOfEntityTypesUsed: 3,
+                                        numberOfTotalEntitiesUsed: 3,
+                                        optionalAttributes: 0
+                                    },
+                                    dependencies: {
+                                        webResourceLink: 'none'
+                                    },
+                                };
+
+                                ifcm.set('file', file.get('path'));
+                                ifcm.set('instance', ifcmSchemaTemplate);
+                                stage.ifcms.pushObject(ifcm);
                             });
                         } else if (ext === 'e57') {
                             var e57m = store.createRecord('e57m');
                             e57m.set('file', file.get('path'));
                             e57m.set('instance', {});
                             // e57m.save().then(function() {
-                            e57ms.pushObject(e57m);
+                            stage.e57ms.pushObject(e57m);
                             // });
                         }
                     });
@@ -163,25 +204,22 @@
                 // on how to save a 'belongsTo' relationship:
                 var metadatastage = this.get('controller.stage');
 
-                // metadatastage.set('physicalAssets', []);
+                that.get('controller.physicalAssets').forEach(function(asset) {
+                    console.log('owner: ' + asset.get('instance.owner'));
+                    asset.save();
+                });
+
+                that.get('controller.digitalObjects').forEach(function(dobject) {
+                    dobject.save();
+                });
+
                 metadatastage.get('physicalAssets').then(function(records) {
-                    // records.forEach(function(item) {
-                    //     item.deleteRecord();
-                    // })
+                    records.save()
+                });
 
-                    // records.save().then(function() {
-                    //     debugger;
-
-                        that.get('controller.physicalAssets').forEach(function(asset) {
-                            console.log('owner: ' + asset.get('instance.owner'));
-                            asset.save();
-                        });
-
-                        that.get('controller.digitalObjects').forEach(function(dobject) {
-                            dobject.save();
-                        });
-                    });
-                // });
+                metadatastage.get('digitalObjects').then(function(records) {
+                    records.save()
+                });
 
                 this.transitionTo('preingest.show', metadatastage.get('session'));
             }
