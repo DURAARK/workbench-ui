@@ -23,8 +23,6 @@ default Ember.Controller.extend({
 
             // FIXXME: refactor differentiation between digital-object and physical-asset!
             if (fileext === 'ifc' && item.get('schema') === 'buildm' && item.get('instance').hasOwnProperty('creator')) { // --> digitalObject
-                console.log('asdfasdf: ' + item.get('id'));
-                debugger;
                 this.transitionTo('metadata.digitalobject', item);
             }
 

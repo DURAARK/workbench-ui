@@ -24,7 +24,9 @@ function _get(url) {
 export
 default Ember.Route.extend({
     model: function(params) {
-        return this.store.find('session', params.id);
+        var session = this.store.find('session', params.id);
+        debugger;
+        return session;
     },
 
     setupController: function(controller, model) {
@@ -32,28 +34,32 @@ default Ember.Route.extend({
         this.send('highlightSession', model);
 
         controller.set('hasIfcFile', false);
+        controller.set('hasE57File', false);
 
-        model.get('filestage').then(function(filestage) {
-            filestage.get('files').then(function(filesArray) {
-                var files = filesArray.toArray();
-                // Check if an IFC file is present. If so, request the semantic enrichment stage:
-                for (var idx = 0; idx < files.length; idx++) {
-                    var file = files[idx],
-                        path = file.get('path'),
-                        ext = _getFileExtension(path)[0];
-                    if (ext === 'ifc') {
-                        controller.set('hasIfcFile', true);
+        model.get('geometricenrichmentstage').then(function(geostage) {
+            console.log('geostage: ' + geostage);
+            model.get('filestage').then(function(filestage) {
+                filestage.get('files').then(function(filesArray) {
+                    var files = filesArray.toArray();
+                    // Check if an IFC file is present. If so, request the semantic enrichment stage:
+                    for (var idx = 0; idx < files.length; idx++) {
+                        var file = files[idx],
+                            path = file.get('path'),
+                            ext = _getFileExtension(path)[0];
+                        if (ext === 'ifc') {
+                            controller.set('hasIfcFile', true);
 
-                        var sessionId = parseInt(model.get('id')),
-                            url = apiConfig.host + '/semanticenrichmentstages/' + sessionId;
+                            var sessionId = parseInt(model.get('id')),
+                                url = apiConfig.host + '/semanticenrichmentstages/' + sessionId;
 
-                        _get(url).then(function(stage) {
-                            controller.set("semanticenrichmentstage", Ember.Object.create(stage));
-                        });
-                    } else if (ext === 'e57') {
-                        controller.set('hasE57File', true);
+                            _get(url).then(function(stage) {
+                                controller.set("semanticenrichmentstage", Ember.Object.create(stage));
+                            });
+                        } else if (ext === 'e57') {
+                            controller.set('hasE57File', true);
+                        }
                     }
-                }
+                });
             });
         });
     }

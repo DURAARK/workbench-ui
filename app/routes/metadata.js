@@ -136,18 +136,58 @@
                                     digitalObjects.pushObject(object);
                                 }
 
-                                // var ifcm = store.createRecord('ifcm');
-                                // ifcm.set('file', file.get('path'));
-                                // ifcm.set('instance', {});
-                                // ifcms.pushObject(ifcm);
+                                var ifcm = store.createRecord('ifcm');
+
+                                var ifcmSchemaTemplate = {
+                                    header: {
+                                        creationDate: new Date(),
+                                        author: 'Martin Hecher',
+                                        organization: 'TU Graz',
+                                        preprocessor: 'none',
+                                        originatingSystem: 'none',
+                                        authorization: 'none',
+                                        fileSchema: 'IFC-SPF',
+                                        viewDefinition: 'none',
+                                        exportOptions: 'none'
+                                    },
+                                    ifcparameters: {
+                                        ifcApplication: 'Blender',
+                                        IfcGeometricRepresentationContext: 'none',
+                                        ifcSiUnit: 'none'
+                                    },
+                                    countObjects: {
+                                        floorCount: 3,
+                                        roomCount: 3,
+                                        wallCount: 3,
+                                        windowsCount: 3,
+                                        doorCount: 3,
+                                        pipeCount: 3,
+                                        columnCount: 3,
+                                        numberOfComponents: 3,
+                                        numberOfRelations: 3,
+                                        numberOfActors: 3
+                                    },
+                                    informationMetric: {
+                                        numberOfEntityTypesUsed: 3,
+                                        numberOfTotalEntitiesUsed: 3,
+                                        optionalAttributes: 0
+                                    },
+                                    dependencies: {
+                                        webResourceLink: 'none'
+                                    }
+                                };
+
+                                ifcm.set('file', file.get('path'));
+                                ifcm.set('instance', ifcmSchemaTemplate);
+                                ifcm.set('schema', 'ifcm');
+                                ifcms.pushObject(ifcm);
                             });
                         } else if (ext === 'e57') {
                             var e57m = store.createRecord('e57m');
                             e57m.set('file', file.get('path'));
                             e57m.set('instance', {});
-                            // e57m.save().then(function() {
+                            e57m.set('schema', 'e57m');
                             e57ms.pushObject(e57m);
-                            // });
                         }
                     });
                 });
@@ -172,15 +212,15 @@
                     // records.save().then(function() {
                     //     debugger;
 
-                        that.get('controller.physicalAssets').forEach(function(asset) {
-                            console.log('owner: ' + asset.get('instance.owner'));
-                            asset.save();
-                        });
-
-                        that.get('controller.digitalObjects').forEach(function(dobject) {
-                            dobject.save();
-                        });
+                    that.get('controller.physicalAssets').forEach(function(asset) {
+                        console.log('owner: ' + asset.get('instance.owner'));
+                        asset.save();
                     });
+
+                    that.get('controller.digitalObjects').forEach(function(dobject) {
+                        dobject.save();
+                    });
+                });
                 // });
 
                 this.transitionTo('preingest.show', metadatastage.get('session'));

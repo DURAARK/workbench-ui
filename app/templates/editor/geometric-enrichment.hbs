@@ -1,0 +1,52 @@
+<main id="main">
+	<section class="content-view-container">
+	    <section class="content-list">
+	        <header class="floatingheader">
+	            <section class="manage content-filter">
+	                <small>Geometric Enrichment</small>
+	            </section>
+	        </header>
+
+			<section>
+				<button class="btn btn-green" {{action "save"}}> Back</button>   
+			</section>
+
+			<section class="content-list-content js-content-scrollbox">
+
+				<ol style="position: relative" class="fe-list">
+					
+					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9998;</span> IFC Reconstructions</div>
+					
+					{{#each item in model.ifcReconstructions}}
+					<li {{action "selectItem" item}}>     
+						{{ifc-reconstructions-overview item=item}}
+					</li>
+					{{/each}}
+
+					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9782;</span> Hidden Features</div>
+					
+					{{#each item in model.hiddenFeatures}}
+					<li {{action "selectItem" item}}>                
+						{{hidden-features-overview item=item}}
+					</li>  	
+					{{/each}}
+
+				</ol>
+			</section> 
+		</section>
+
+		<section class="content-preview">
+			<header class="floatingheader">
+			    <small>
+			        <span class="status">Available Tools</span>
+			    </small>
+			</header>
+			
+			<section class="content-preview-content">
+				{{geometric-enrichment-tools files=compatibleFiles}}
+			</section>
+		</section>
+	</section>
+</main>
+
+
