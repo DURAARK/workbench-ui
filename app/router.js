@@ -34,6 +34,7 @@ Router.map(function() {
 
   this.resource("preservation", function() {
     this.route('index', { path: "/" });
+    this.route('show', { path: "/:id" });
   });
 });
 

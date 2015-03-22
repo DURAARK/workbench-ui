@@ -14,6 +14,7 @@ default Ember.ObjectController.extend({
 
         // FIXXME: for some weird reason the semanticenrichmentstage is not loaded, nor is the geometricenrichmentstage.
         // The metadatastage is... This is a quick workaround until I found the root cause:
+        debugger;
         this.store.find('semanticenrichmentstage', 1).then(function(stage) {
             this.set('semanticenrichmentstage', stage);
         }.bind(this));

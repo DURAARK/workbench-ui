@@ -43,6 +43,7 @@ default Ember.Controller.extend({
     actions: {
         createSession: function() {
             var name = this.get('name'),
+                store = this.store,
                 creator = this.get('creator'),
                 description = this.get('description'),
                 that = this;
@@ -101,9 +102,10 @@ default Ember.Controller.extend({
                     name: 'semanticenrichment',
                     availableItems: [],
                     selectedItems: [],
-                    session: 0
+                    session: store.all('session').get('length') + 1
                 };
 
+                console.log('sessoin: ' + semstage.session);
                 var url = apiConfig.host + '/semanticenrichmentstages';
                 console.log('url: ' + url);
 
