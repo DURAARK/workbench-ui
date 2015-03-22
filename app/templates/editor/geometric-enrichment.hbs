@@ -3,34 +3,53 @@
 	    <section class="content-list">
 	        <header class="floatingheader">
 	            <section class="manage content-filter">
-	                <small>Geometric Enrichment</small>
+	                <small>Content stored in archive</small>
 	            </section>
 	        </header>
 
 			<section>
-				<button class="btn btn-green" {{action "save"}}> Back</button>   
+				<button class="btn btn-green" {{action "save"}}> SAVE</button>   
 			</section>
 
 			<section class="content-list-content js-content-scrollbox">
 
 				<ol style="position: relative" class="fe-list">
 					
-					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9998;</span> IFC Reconstructions</div>
+					<div class="md-item-header-sidebar">
+						<span style="margin-right: 5px;">&#9998;</span> IFC Reconstruction
+					</div>
 					
-					{{#each item in model.ifcReconstructions}}
-					<li {{action "selectItem" item}}>     
-						{{ifc-reconstructions-overview item=item}}
-					</li>
+					{{#if ifcReconstructionEnrichments}}
+					{{#each item in enrichments}}
+						{{#if item.hasIfcReconstruction}}
+							<li {{action "selectItem" item}}>     
+								{{ifc-reconstructions-overview item=item}}
+							</li>
+						{{/if}}
 					{{/each}}
+					{{else}}
+						<li>
+							<span class="sb-entry">None</span>
+						</li>
+					{{/if}}
 
-					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9782;</span> Hidden Features</div>
+					<div class="md-item-header-sidebar">
+						<span style="margin-right: 5px;">&#9782;</span> Hidden Features
+					</div>
 					
-					{{#each item in model.hiddenFeatures}}
+					{{#if hiddenFeaturesEnrichments}}
+					{{#each item in enrichments}}
+					{{#if item.hasHiddenFeatures}}
 					<li {{action "selectItem" item}}>                
 						{{hidden-features-overview item=item}}
-					</li>  	
+					</li>
+					{{/if}}
 					{{/each}}
-
+					{{else}}
+						<li>
+							<span class="sb-entry">None</span>
+						</li>
+					{{/if}}
 				</ol>
 			</section> 
 		</section>
@@ -43,7 +62,15 @@
 			</header>
 			
 			<section class="content-preview-content">
-				{{geometric-enrichment-tools files=compatibleFiles}}
+				<div class="wui-stage-header">Geometric Enrichment</div>
+				<br>
+				<div class="wui-stage-description">The geometric enrichment is working on point cloud files (format: e57), you can select, which enrichment tool to use on which E57 file. Currently two enrichment tools are supported: IFCReconstruction and Hidden Feature Detection. After selection the process is started in the background (and can take quite a while, depending on the file size). When the process finished the the resulting files are added to the archive automatically.</div>
+
+				<div class="wui-alpha-feature-note">
+				Note: The connection to the backend is not activated in this public version yet and gives only a preview on the GUI. The Service Platform integration of the geometric enrichment tools is working, so expect the full functionality of the GUI working in  2-3 weeks from now (2015-03-19).
+				</div>
+				
+				{{geometric-enrichment-tools items=enrichments}}
 			</section>
 		</section>
 	</section>

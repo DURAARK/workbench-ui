@@ -3,11 +3,12 @@ import DS from 'ember-data';
 export
 default DS.Model.extend({
     name: DS.attr('string', {
-        defaultValue: 'geoenrichment'
+        defaultValue: 'editor.geometric-enrichment'
     }),
-    
-    ifcReconstructions: DS.attr(),
-    hiddenFeatures: DS.attr(),
+
+    enrichments: DS.hasMany('geometricenrichment', {
+        async: true
+    }),
 
     session: DS.belongsTo('session', {
         async: true

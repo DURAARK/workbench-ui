@@ -1,12 +1,29 @@
 @import "wui-config";
+@import "wui-geometric-enrichment-tools";
 
 .wui-alpha-feature-note {
     background-color: $alphaFeatureNote-background-color;
 
+    margin-bottom: 25px;
     padding: 10px;
     
     border-width: 2px;
     border-style: solid;
     border-color: $alphaFeatureNote-border-color;
     border-radius: 8px;
+
+    font-size: 16px;
+}
+
+.wui-stage-header {
+	font-size: 28px;
+	font-weight: bold;
+
+	text-align: left;
+}
+
+.wui-stage-description {
+	margin-bottom: 15px;
+
+	font-size: 16px;
 }

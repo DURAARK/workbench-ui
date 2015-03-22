@@ -1,0 +1,12 @@
+<div class="geometric-enrichment-tools-fileitem">
+	<div class="header">&#9737; {{shortName}}</div>
+	<div class="main">
+		{{!-- {{input type="checkbox" name="hasIfcReconstruction" checked=hasIfcReconstruction}} --}}
+		<button {{action "toggleIfcReconstruction" item}} {{bind-attr class=":btn hasIfcReconstruction:btn-green:btn-default"}}>Perform IFC Reconstruction</button>
+
+		<br>
+
+		{{!-- {{input type="checkbox" name="hasHiddenFeatures" checked=hasHiddenFeatures}} --}}
+		<button {{action "toggleHiddenFeatureDetection" item}} {{bind-attr class=":btn hasHiddenFeatures:btn-green:btn-default"}}>Perform Hidden Feature Detection</button>
+	</div>
+</div>

@@ -1,5 +1,7 @@
-<ul>
-{{#each file in files}}
-	<li>{{file.shortName}}</li>
-{{/each}}
-</ul>
+<div class="wui-geometric-enrichment-tools">
+	<ul>
+	{{#each enrichment in items}}
+		<li>{{geometric-enrichment-tools-fileitem item=enrichment}}</li> 
+	{{/each}}
+	</ul>
+</div>

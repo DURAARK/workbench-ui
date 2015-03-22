@@ -1,0 +1,40 @@
+// .wui-geometric-enrichment-tools {
+// 	background-color: $alphaFeatureNote-background-color;
+
+// 	padding: 10px;
+
+// 	border-width: 2px;
+// 	border-style: solid;
+// 	border-color: $alphaFeatureNote-border-color;
+// 	border-radius: 8px;
+// }
+
+.js-is-selected .wui-geometric-enrichment-tools {
+	background-color: $alphaFeatureNote-background-color;
+
+	padding: 10px;
+
+	border-width: 2px;
+	border-style: solid;
+	border-color: $alphaFeatureNote-border-color;
+	border-radius: 8px;
+}
+
+.geometric-enrichment-tools-fileitem {
+	position: relative;
+
+	.header {
+		font-weight: bold;
+		font-size: 22px;
+	}
+
+	.main {
+		margin: 30px;
+		margin-left: 100px;
+
+		button {
+			margin: 10px;
+			width: 300px;
+		}
+	}
+}
