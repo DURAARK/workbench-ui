@@ -3,8 +3,17 @@ import Ember from 'ember';
 export
 default Ember.Mixin.create({
     getMetadataFor: function(filepaths) {
+        var files = null;
+debugger;
+
+        if (filepaths.path.magicCookie) {
+            files = filepaths.path.files;
+        } else {
+            files = [filepaths];
+        }
+
         var data = {
-                files: [filepaths]
+                files: files
             },
             url = this.get('host') + this.get('extractEndpoint');
 

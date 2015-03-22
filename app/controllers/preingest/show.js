@@ -44,8 +44,11 @@ default Ember.ObjectController.extend({
     actions: {
         editStage: function(stage) {
             console.log('[preingest.show] requesting stage editor: ' + stage.get('name'));
-            debugger;
             this.transitionTo(stage.get('name'), stage);
+        },
+
+        goToPreservation: function(session) {
+            this.transitionToRoute('preservation.show', session);
         }
     }
 });

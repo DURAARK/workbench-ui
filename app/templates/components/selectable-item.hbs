@@ -1,7 +1,7 @@
 <li {{action "selectItem" item}}>                
 	<a>
 	{{#if item.path}}
-		<div class="header">{{filename}}<div class="da-valid btn btn-green btn-right">{{extension}}</div></div>
+		<div class="header">&#9737; {{filename}}<div class="da-valid btn btn-green btn-right">{{extension}}</div></div>
 		<div class="meta">Size: {{item.size}} <br> Created: {{item.ctime}} <br> Last modified: {{item.atime}}</div>
 	{{/if}}
 	</a>

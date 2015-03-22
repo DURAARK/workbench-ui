@@ -68,6 +68,11 @@ module.exports = function(environment) {
                 host: apiEndpoint + '/semanticenrichment',
                 jobsEndpoint: '/enrichment',
                 extractEndpoint: '/enrichment/extract'
+            },            
+            semanticenrichment: {
+                host: apiEndpoint + '/sipgenerator',
+                jobsEndpoint: '/rosetta',
+                extractEndpoint: '/rosetta/create'
             }
         }
     };
@@ -112,7 +117,12 @@ module.exports = function(environment) {
                 host: apiEndpoint + ':5006',
                 jobsEndpoint: '/enrichment',
                 extractEndpoint: '/enrichment/extract'
-            }
+            },
+            sipgenerator: {
+                host: apiEndpoint + ':5007',
+                jobsEndpoint: '/rosetta',
+                extractEndpoint: '/rosetta/create'
+            }            
         };
     }
 
