@@ -10,7 +10,7 @@ default DS.Model.extend({
 
     selectedItems: DS.hasMany('enrichment-item'),
 
-    files: DS.hasMany('files'),
+    // files: DS.hasMany('files'),
     
     session: DS.belongsTo('session', {
         async: true
@@ -20,7 +20,7 @@ default DS.Model.extend({
 
     updatedAt: DS.attr('date'),
 
-    isLoading: DS.attr('boolean', {
-        defaultValue: false
-    })
+    // isLoading: DS.attr('boolean', {
+    //     defaultValue: false
+    // })
 });
