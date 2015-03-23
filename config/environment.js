@@ -71,8 +71,8 @@ module.exports = function(environment) {
             },            
             sipgenerator: {
                 host: apiEndpoint + '/sipgenerator',
-                jobsEndpoint: '/rosetta',
-                extractEndpoint: '/rosetta/create'
+                jobsEndpoint: '/sip',
+                extractEndpoint: '/sip/create'
             }
         }
     };
@@ -120,8 +120,8 @@ module.exports = function(environment) {
             },
             sipgenerator: {
                 host: apiEndpoint + ':5007',
-                jobsEndpoint: '/rosetta',
-                extractEndpoint: '/rosetta/create'
+                jobsEndpoint: '/sip',
+                extractEndpoint: '/sip/create'
             }            
         };
     }

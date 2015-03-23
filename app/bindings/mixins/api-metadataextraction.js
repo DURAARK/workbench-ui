@@ -4,7 +4,6 @@ export
 default Ember.Mixin.create({
     getMetadataFor: function(filepaths) {
         var files = null;
-debugger;
 
         if (filepaths.path.magicCookie) {
             files = filepaths.path.files;
