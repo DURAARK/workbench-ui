@@ -5,12 +5,12 @@ export
 default Ember.Component.extend({
     actions: {
         update: function(file) {
-            console.log('updating physical asset for file: ' + file);
-
-            this.set('isLoading', true);
-
             var metadataAPI = new IfcMetadataAPI(),
                 controller = this;
+
+            console.log('updating physical asset for file: ' + file);
+
+            controller.set('isLoading', true);
 
             metadataAPI.getMetadataFor({
                 path: file

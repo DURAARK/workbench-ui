@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import IfcMetadataAPI from 'workbench-ui/bindings/api-ifcmetadata';
 
-
 export
 default Ember.Component.extend({
     actions: {

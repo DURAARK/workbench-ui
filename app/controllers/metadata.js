@@ -1,6 +1,4 @@
 import Ember from 'ember';
-import E57MetadataAPI from 'workbench-ui/bindings/api-e57metadata';
-import IfcMetadataAPI from 'workbench-ui/bindings/api-ifcmetadata';
 
 function _getFileExtension(filepath) {
     return (/[.]/.exec(filepath)) ? /[^.]+$/.exec(filepath) : null;
