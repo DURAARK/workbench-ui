@@ -16,13 +16,15 @@ export default Ember.Controller.extend({
 		controller.set('enrichments', []);
 
 		files.forEach(function(file) {
-			var enrichment = controller.store.createRecord('enrichment', {
-				path: file.get('path'),
-				ifcReconstruction: {},
-				hiddenFeatures: {}
-			});
+			if (_getFileExtension(file.get('path'))[0].toLowerCase() === 'e57') {
+				var enrichment = controller.store.createRecord('enrichment', {
+					path: file.get('path'),
+					ifcReconstruction: {},
+					hiddenFeatures: {}
+				});
 
-			controller.get('enrichments').pushObject(enrichment);
+				controller.get('enrichments').pushObject(enrichment);
+			}
 		});
 
 		// console.log('onFileChange: ' + files.get('length'));
@@ -46,7 +48,7 @@ export default Ember.Controller.extend({
 			var recon = item.get('ifcReconstruction');
 			if (recon.label) {
 				item.set('hasIfcReconstruction', true);
-				controller.set ('ifcReconstructionEnrichments', true); // FIXXME: visualize no items. this is a quick hack, which is not really working
+				controller.set('ifcReconstructionEnrichments', true); // FIXXME: visualize no items. this is a quick hack, which is not really working
 			} else {
 				item.set('hasIfcReconstruction', false);
 			}
@@ -54,7 +56,7 @@ export default Ember.Controller.extend({
 			var hiddenFeatures = item.get('hiddenFeatures');
 			if (hiddenFeatures.label) {
 				item.set('hasHiddenFeatures', true);
-				controller.set ('hiddenFeaturesEnrichments', true);
+				controller.set('hiddenFeaturesEnrichments', true);
 			} else {
 				item.set('hasHiddenFeatures', false);
 			}
