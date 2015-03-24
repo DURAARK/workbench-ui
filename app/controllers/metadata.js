@@ -13,6 +13,8 @@ default Ember.Controller.extend({
             var filename = item.get('file');
             var fileext = _getFileExtension(filename)[0];
 
+            console.log('selecting file: ' + filename);
+
             if (fileext === 'e57' && item.get('schema') === 'e57m') { // --> e57m
                 this.transitionToRoute('metadata.e57m', item);
             }
