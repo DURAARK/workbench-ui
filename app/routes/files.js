@@ -33,6 +33,11 @@ default Ember.Route.extend({
                 mdStage.get('physicalAssets').then(function(pas) {
                     mdStage.get('digitalObjects').then(function(dos) {
 
+                        dos.forEach(function(obj) {
+                            debugger;
+                            obj.deleteRecord();
+                            obj.save();
+                        });
                         var setPhysicalAsset = false;
 
                         controller.get('files').forEach(function(file) {

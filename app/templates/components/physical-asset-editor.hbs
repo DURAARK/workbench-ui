@@ -1,4 +1,8 @@
-<button class="btn btn-green btn-right" {{action "update" model.file}}> Update</button>   
+{{#if isLoading}}
+	<div class="btn btn-green btn-right"> {{loading-spinner}}</div>
+{{else}}
+	<button class="btn btn-green btn-right" {{action "update" model.file}}> Update</button>
+{{/if}}
 
 <h4>&#9737; Building Description</h4>
 
