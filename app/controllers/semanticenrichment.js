@@ -5,7 +5,7 @@ export
 default Ember.Controller.extend({
     ifcFiles: [],
     uniqueAvailableItems: [],
-    locationPivots: ['IFCPOSTALADDRESS', 'IFCADDRESSLOCALITY', 'IFCPOSTALCOUNTRY'],
+    locationPivots: ['IFCPOSTALADDRESS', 'IFCBUILDING', 'IFCORGANIZATION'],
     selectedPivot: 'IFCPOSTALADDRESS',
 
     actions: {
