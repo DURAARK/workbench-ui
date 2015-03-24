@@ -10,7 +10,7 @@ The WorkbenchUI is tying together a bunch of microservices which provide functio
 
 ## Demo-Server
 
-A showcasing demo is running on or [development system](http://juliet.cgv.tugraz.at). It is a development system, not a production one. You will always have the newest version running there, but it is also possible to experience bugs. A production demo will be available soon at http://workbench.duraark.eu. Currently we have the first prototype version running there.
+A showcasing demo is running on our [development system](http://juliet.cgv.tugraz.at). It is a development system, not a production one. You will always have the newest version running there, but it is also possible to experience bugs. A production demo will be available soon at http://workbench.duraark.eu. Currently we have the first prototype version running there.
 
 ## Setup & Installation
 
