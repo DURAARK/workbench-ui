@@ -30,6 +30,7 @@ Router.map(function() {
   this.route("maintenance", function() {
     this.route("interlink");
     this.route("sdo-graph-explorer");
+    this.route("virtuoso-query");
   });
 
   this.resource("preservation", function() {
