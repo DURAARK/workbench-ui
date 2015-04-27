@@ -1,8 +1,9 @@
 {
   "name": "workbench-ui",
-  "version": "0.0.0",
-  "description": "Small description for workbench-ui goes here",
-  "private": true,
+  "version": "0.5.0",
+  "description": "Microservice providing a file management API.",
+  "keywords": ["duraark", "ui", "long-time-preservation", "emberjs"],
+  "private": false,
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -12,11 +13,11 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "https://github.com/DURAARK/workbench-ui.git",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Martin Hecher <martin.hecher@fraunhofer.at>",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
