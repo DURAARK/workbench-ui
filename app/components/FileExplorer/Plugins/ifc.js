@@ -25,9 +25,13 @@ default Ember.Controller.extend({
         console.log('fileext: ' + fileext);
 
         if (fileext[0].toLowerCase() === 'ifc') {
-            api = new IfcMetadataAPI();
+            api = IfcMetadataAPI.create({
+                host: this.get('apiConfig.host') + ENV.DURAARKAPI.ifcmetadata.endpoint
+            });
         } else if (fileext[0].toLowerCase() === 'e57') {
-            api = new E57MetadataAPI();
+            api = E57MetadataAPI.create({
+                host: this.get('apiConfig.host') + ENV.DURAARKAPI.e57metadata.endpoint
+            });
         }
 
         api.getMetadataFor(filepath).then(function(data) {
@@ -36,7 +40,7 @@ default Ember.Controller.extend({
         }.bind(this));
     },
 
-    showObject: function(/*fileRecord*/) {
+    showObject: function( /*fileRecord*/ ) {
         console.log('Dummy IFC viewer');
     },
 

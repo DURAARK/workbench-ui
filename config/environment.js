@@ -1,6 +1,9 @@
 /* jshint node: true */
 
-var apiEndpoint = 'http://juliet.cgv.tugraz.at/api/v0.1';
+var apiConfig = {
+    host: '',
+    overrideHost: ''
+}
 
 module.exports = function(environment) {
     var ENV = {
@@ -15,6 +18,10 @@ module.exports = function(environment) {
             'connect-src': "'self' http://localhost:5001 http://localhost:5002 http://localhost:5003 http://localhost:5004 http://localhost:5005 http://localhost:5006",
             'img-src': "'self' a.tiles.mapbox.com",
             'style-src': "'self' 'unsafe-inline'",
+        },
+        apiConfig: {
+            host: '',
+            overrideHost: ''
         },
         EmberENV: {
             FEATURES: {
@@ -33,22 +40,22 @@ module.exports = function(environment) {
         // config is overwritten below.
         DURAARKAPI: {
             sda: {
-                host: apiEndpoint + '/sda'
+                endpoint: '/sda'
             },
             searchItems: {
-                host: apiEndpoint + '/sda/example'
+                endpoint: '/sda/example'
             },
             sessions: {
-                host: apiEndpoint + '/sip'
+                endpoint: '/sip'
             },
             files: {
-                host: apiEndpoint + '/storage'
+                endpoint: '/storage'
             },
             stages: {
-                host: apiEndpoint + '/sip/stages'
+                endpoint: '/sip/stages'
             },
             ifcmetadata: {
-                host: apiEndpoint + '/ifcmetadata',
+                endpoint: '/ifcmetadata',
                 // The endpoint where the current jobs ('pending' and 'finished') are returned
                 jobsEndpoint: '/ifcm',
                 // The endpoint where an extraction job can be posted
@@ -59,13 +66,13 @@ module.exports = function(environment) {
                 responseKey: 'ifcms'
             },
             e57metadata: {
-                host: apiEndpoint + '/e57metadata',
+                endpoint: '/e57metadata',
                 jobsEndpoint: '/e57m',
                 extractEndpoint: '/e57m/extract',
                 responseKey: 'e57ms'
             },
             semanticenrichment: {
-                host: apiEndpoint + '/semanticenrichment',
+                endpoint: '/semanticenrichment',
                 jobsEndpoint: '/enrichment',
                 extractEndpoint: '/enrichment/extract'
             }
@@ -81,35 +88,76 @@ module.exports = function(environment) {
 
 
         // Overwrite API endpoints for development environment:
-        apiEndpoint = 'http://localhost';
+        // ENV.apiConfig.overrideHost = 'http://localhost';
+        ENV.apiConfig.overrideHost = 'http://localhost';
+
+        // ENV.DURAARKAPI = {
+        //     sda: {
+        //         endpoint: '/sda'
+        //     },
+        //     searchItems: {
+        //         endpoint: '/sda/example'
+        //     },
+        //     sessions: {
+        //         endpoint: '/sip'
+        //     },
+        //     files: {
+        //         endpoint: '/storage'
+        //     },
+        //     stages: {
+        //         endpoint: '/sip/stages'
+        //     },
+        //     ifcmetadata: {
+        //         endpoint: '/ifcmetadata',
+        //         // The endpoint where the current jobs ('pending' and 'finished') are returned
+        //         jobsEndpoint: '/ifcm',
+        //         // The endpoint where an extraction job can be posted
+        //         extractEndpoint: '/ifcm/extract',
+        //         // TODO: the JSON response from the API has one parent key, which is
+        //         // denoted here. Think on a generic key, e.g. 'metadata', to unify the
+        //         // handling in the APIIfcMetadata and APIE57Metadata binding!
+        //         responseKey: 'ifcms'
+        //     },
+        //     e57metadata: {
+        //         endpoint: '/e57metadata',
+        //         jobsEndpoint: '/e57m',
+        //         extractEndpoint: '/e57m/extract',
+        //         responseKey: 'e57ms'
+        //     },
+        //     semanticenrichment: {
+        //         endpoint: '/semanticenrichment',
+        //         jobsEndpoint: '/enrichment',
+        //         extractEndpoint: '/enrichment/extract'
+        //     }
+        // };
 
         ENV.DURAARKAPI = {
             sda: {
-                host: apiEndpoint + ':5005'
+                endpoint: ':5005'
             },
             searchItems: {
-                host: apiEndpoint + ':5005/example'
+                endpoint: ':5005/example'
             },
             sessions: {
-                host: apiEndpoint + ':5004'
+                endpoint: ':5004'
             },
             files: {
-                host: apiEndpoint + ':5001'
+                endpoint: ':5001'
             },
             ifcmetadata: {
-                host: apiEndpoint + ':5002',
+                endpoint: ':5002',
                 jobsEndpoint: '/ifcm',
                 extractEndpoint: '/ifcm/extract',
                 responseKey: 'ifcms'
             },
             e57metadata: {
-                host: apiEndpoint + ':5003',
+                endpoint: ':5003',
                 jobsEndpoint: '/e57m',
                 extractEndpoint: '/e57m/extract',
                 responseKey: 'e57ms'
             },
             semanticenrichment: {
-                host: apiEndpoint + ':5006',
+                endpoint: ':5006',
                 jobsEndpoint: '/enrichment',
                 extractEndpoint: '/enrichment/extract'
             }

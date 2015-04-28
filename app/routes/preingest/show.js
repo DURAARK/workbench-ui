@@ -44,8 +44,9 @@ default Ember.Route.extend({
                     if (ext === 'ifc') {
                         controller.set('hasIfcFile', true);
 
+                        var host = controller.get('apiConfig.host') + ENV.DURAARKAPI.sessions.endpoint;
                         var sessionId = parseInt(model.get('id')),
-                            url = apiConfig.host + '/semanticenrichmentstages/' + sessionId;
+                            url = host + '/semanticenrichmentstages/' + sessionId;
 
                         _get(url).then(function(stage) {
                             controller.set("semanticenrichmentstage", Ember.Object.create(stage));

@@ -1,10 +1,12 @@
+import Ember from 'ember';
 import ApplicationAdapter from './application';
 import ENV from '../config/environment';
 
-var apiConfig = ENV.DURAARKAPI.sda;
-console.log('Connecting to "sda" API via: ' + apiConfig.host);
-
 export
 default ApplicationAdapter.extend({
-    host: apiConfig.host
+	label: 'property',
+
+	endpoint: function() {
+		return ENV.DURAARKAPI.sda.endpoint;
+	}.property()
 });

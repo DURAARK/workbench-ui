@@ -40,14 +40,16 @@ export
 default Ember.Route.extend({
 
     model: function(params) {
-        return _get(apiConfig.host + '/semanticenrichmentstages/' + params.id);
+        var host = this.get('apiConfig.host') + apiConfig.endpoint;
+        return _get(host + '/semanticenrichmentstages/' + params.id);
         // return this.store.find('semanticenrichmentstage', params.id);
     },
 
     setupController: function(controller, model) {
         // this._super(controller, model);
 
-        var url = apiConfig.host + '/semanticenrichmentstages/' + model.id,
+        var host = this.get('apiConfig.host') + apiConfig.endpoint,
+            url = host + '/semanticenrichmentstages/' + model.id,
             store = this.store;
 
         _get(url).then(function(stage) {
@@ -55,7 +57,7 @@ default Ember.Route.extend({
             controller.set("stage", stage);
 
             var sessionId = stage.get('session');
-            
+
             store.find('session', sessionId).then(function(session) {
                 session.get("filestage").then(function(filestage) {
                     filestage.get("files").then(function(files) {
@@ -73,7 +75,8 @@ default Ember.Route.extend({
             var sessionId = stage.session;
             // var data = stage.getProperties('availableItems', 'selectedItems', 'session');
 
-            var url = apiConfig.host + '/semanticenrichmentstages/' + sessionId;
+            var host = this.get('apiConfig.host') + apiConfig.endpoint;
+            var url = host + '/semanticenrichmentstages/' + sessionId;
 
             var available = [],
                 selected = [];

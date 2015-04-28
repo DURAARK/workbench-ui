@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import SemanticEnrichmentAPI from 'workbench-ui/bindings/api-semanticenrichment';
+import ENV from '../config/environment';
 
 export
 default Ember.Controller.extend({
@@ -27,7 +28,10 @@ default Ember.Controller.extend({
             controller.set('shownFile', ifcFile);
             controller.set('isUpdatingEnrichments', true);
 
-            var semanticEnrichmentAPI = new SemanticEnrichmentAPI();
+            var semanticEnrichmentAPI = SemanticEnrichmentAPI.create({
+                host: this.get('apiConfig.host') + ENV.DURAARKAPI.semanticenrichment.endpoint
+            });
+
             semanticEnrichmentAPI.getMetadataFor({
                 path: path,
                 session: parseInt(sessionId),

@@ -2,16 +2,13 @@ import Ember from 'ember';
 import ApplicationAdapter from './application';
 import ENV from '../config/environment';
 
-var apiConfig = ENV.DURAARKAPI.sessions;
-
-console.log('Connecting to "sip/metadatastage" API via: ' + apiConfig.host);
+var apiConfig = ENV.DURAARKAPI.ifcmetadata;
 
 export
 default ApplicationAdapter.extend({
-    host: apiConfig.host,
+	label: 'metadatastage',
 
-    pathForType: function(type) {
-        var camelized = Ember.String.camelize(type);
-        return Ember.String.pluralize(camelized);
-    }
+	endpoint: function() {
+		return ENV.DURAARKAPI.sessions.endpoint;
+	}.property()
 });

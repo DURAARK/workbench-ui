@@ -3,11 +3,10 @@ import MetadataExtractionAPIBase from './mixins/api-metadataextraction';
 import ENV from '../config/environment';
 
 var apiConfig = ENV.DURAARKAPI.ifcmetadata;
-var host = apiConfig.host;
 
 export
 default Ember.Object.extend(MetadataExtractionAPIBase, {
-    host: host,
+    // host: host,
     jobsEndpoint: apiConfig.jobsEndpoint,
     extractEndpoint: apiConfig.extractEndpoint,
     responseKey: apiConfig.responseKey

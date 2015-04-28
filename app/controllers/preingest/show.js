@@ -49,6 +49,7 @@ default Ember.ObjectController.extend({
 });
 
 function updateSemanticEnrichmentStage(semanticenrichmentStage, fileStage, store, controller) {
+    debugger;
     fileStage.get('files').then(function(files) {
 
         console.log('NUMFILES: ' + files.get('length'));
@@ -64,7 +65,10 @@ function updateSemanticEnrichmentStage(semanticenrichmentStage, fileStage, store
             if (ext.toLowerCase() === 'ifc') {
                 console.log('[show::updateSemanticEnrichmentStage] requesting semenrichment for file: ' + path);
 
-                var semanticEnrichmentAPI = new SemanticEnrichmentAPI();
+                var apiHost = this.get('apiConfig.host');
+                var semanticEnrichmentAPI = SemanticEnrichmentAPI.create({
+                    host: apiHost
+                });
                 semanticEnrichmentAPI.getMetadataFor({
                     path: path
                 }).then(function(data) {

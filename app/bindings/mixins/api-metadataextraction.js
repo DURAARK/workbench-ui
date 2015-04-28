@@ -7,7 +7,7 @@ default Ember.Mixin.create({
                 files: [filepaths]
             },
             url = this.get('host') + this.get('extractEndpoint');
-
+ 
         return this._post(url, data).then(function(response) {
             return new Ember.RSVP.Promise(function(resolve) { //reject is handled inside this._get
                 // The returned data does not necessarily contain the metadata already

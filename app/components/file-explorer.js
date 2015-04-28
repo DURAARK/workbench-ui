@@ -5,7 +5,7 @@ import E57MetadataAPI from 'workbench-ui/bindings/api-e57metadata';
 export
 default Ember.Component.extend({
     showOnlySelected: false,
-    
+
     // selectedItems: Em.computed.filterBy('items', 'isSelected', true),
     // deselectedItems: Em.computed.filterBy('items', 'isSelected', false),
 
@@ -19,9 +19,13 @@ default Ember.Component.extend({
             // console.log('fileext: ' + fileext);
 
             if (fileext[0].toLowerCase() === 'ifc') {
-                api = new IfcMetadataAPI();
+                api = E57MetadataAPI.create({
+                    host: this.get('apiConfig.host') + ENV.DURAARKAPI.ifcmetadata.endpoint
+                });
             } else if (fileext[0].toLowerCase() === 'e57') {
-                api = new E57MetadataAPI();
+                api = E57MetadataAPI.create({
+                    host: this.get('apiConfig.host') + ENV.DURAARKAPI.e57metadata.endpoint
+                });
             }
 
             api.getMetadataFor(fileinfo.get('path')).then(function(data) {
@@ -34,7 +38,7 @@ default Ember.Component.extend({
         }
 
     },
-    
+
     // // Create the items' 'isSelected' property on initialization:
     // onItemsChanged: function() {
     //     var items = this.get('items');

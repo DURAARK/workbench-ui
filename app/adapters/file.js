@@ -2,15 +2,11 @@ import Ember from 'ember';
 import ApplicationAdapter from './application';
 import ENV from '../config/environment';
 
-var apiConfig = ENV.DURAARKAPI.files;
-console.log('Connecting to "Files" API via: ' + apiConfig.host);
-
 export
 default ApplicationAdapter.extend({
-    host: apiConfig.host,
+	label: 'file',
 
-    pathForType: function(type) {
-        var camelized = Ember.String.camelize(type);
-        return Ember.String.pluralize(camelized);
-    }
+	endpoint: function() {
+		return ENV.DURAARKAPI.files.endpoint;
+	}.property()
 });

@@ -10,7 +10,9 @@ default Ember.Component.extend({
 
             this.set('isLoading', true);
 
-            var metadataAPI = new IfcMetadataAPI(),
+            var metadataAPI = IfcMetadataAPI.create({
+                    host: this.get('apiConfig.host') + ENV.DURAARKAPI.ifcmetadata.endpoint
+                }),
                 controller = this;
 
             metadataAPI.getMetadataFor({
