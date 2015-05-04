@@ -1,3 +1,5 @@
+[![ZenHub](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://zenhub.io)
+
 # WorkbenchUI
 
 [![Circle CI](https://circleci.com/gh/DURAARK/workbench-ui.svg?style=svg)](https://circleci.com/gh/DURAARK/workbench-ui)
