@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import SemanticEnrichmentAPI from 'workbench-ui/bindings/api-semanticenrichment';
+import FocusedCrawlerAPI from 'workbench-ui/bindings/api-focusedcrawler';
 
 export
 default Ember.Controller.extend({
@@ -27,15 +28,29 @@ default Ember.Controller.extend({
             controller.set('shownFile', ifcFile);
             controller.set('isUpdatingEnrichments', true);
 
-            var semanticEnrichmentAPI = new SemanticEnrichmentAPI();
-            semanticEnrichmentAPI.getMetadataFor({
-                path: path,
-                session: parseInt(sessionId),
-                locationProperty: locationPivot
+            var focusedCrawler = new FocusedCrawlerAPI();
+            focusedCrawler.getTriples({
+                seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
+                depth: 1,
+                user: sessionId
             }).then(function(data) {
                 controller.set('stage.availableItems', data.availableItems);
                 controller.set('isUpdatingEnrichments', false);
+            }, function(data) {
+                controller.set('stage.availableItems', [])
+                controller.set('isUpdatingEnrichments', false);
+                alert('Error during enrichment, try again!');
             });
+
+            // var semanticEnrichmentAPI = new SemanticEnrichmentAPI();
+            // semanticEnrichmentAPI.getMetadataFor({
+            //     path: path,
+            //     session: parseInt(sessionId),
+            //     locationProperty: locationPivot
+            // }).then(function(data) {
+            //     controller.set('stage.availableItems', data.availableItems);
+            //     controller.set('isUpdatingEnrichments', false);
+            // });
         }
     },
 

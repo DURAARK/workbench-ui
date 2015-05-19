@@ -68,7 +68,12 @@ module.exports = function(environment) {
                 host: apiEndpoint + '/semanticenrichment',
                 jobsEndpoint: '/enrichment',
                 extractEndpoint: '/enrichment/extract'
-            },            
+            },
+            focusedcrawler: {
+                host: apiEndpoint + '/semanticenrichment',
+                jobsEndpoint: '/crawl',
+                extractEndpoint: '/enrichment/extract'
+            },
             sipgenerator: {
                 host: apiEndpoint + '/sipgenerator',
                 jobsEndpoint: '/sip',
@@ -117,12 +122,17 @@ module.exports = function(environment) {
                 host: apiEndpoint + ':5006',
                 jobsEndpoint: '/enrichment',
                 extractEndpoint: '/enrichment/extract'
+            },            
+            focusedcrawler: {
+                host: apiEndpoint + ':5006',
+                jobsEndpoint: '/crawl',
+                extractEndpoint: '/enrichment/extract'
             },
             sipgenerator: {
                 host: apiEndpoint + ':5007',
                 jobsEndpoint: '/sip',
                 extractEndpoint: '/sip/create'
-            }            
+            }
         };
     }
 
