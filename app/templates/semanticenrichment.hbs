@@ -30,8 +30,21 @@
 				<br>
 				<div class="fe-list-item-header">A semantic enrichment is based on information from a certain IFC file, called a 'seed'. Below you can choose, which seed the search will be based on (e.g. the postal address) and which file should be taken as input.</div>
 				<br>
+				<ul class="wui-semenrich-template-wrapper">				
+				{{#each template in seedTemplates}}
+					<li class="wui-semenrich-template" {{action "selectSeedTemplate" template}}>
+						{{template.label}}
+					</li>
+				{{/each}}
+				</ul>
 
-				<center>Information seed:</center>
+				<br>
+
+				<center>
+					<button {{action "getSemanticEnrichments" file}} class="btn btn-green-line" title="Get semantic enrichment">Search Enrichments</button>
+				</center>
+
+{{!-- 				<center>Information seed:</center>
 				<div style="width: 50%; margin-left: auto; margin-right: auto;">
 					{{view "select" content=locationPivots value=selectedPivot}}
 				</div>
@@ -41,25 +54,36 @@
 				{{#each file in ifcFiles}}
 					<center><button {{action "getSemanticEnrichments" file}} class="btn btn-green-line" title="Get semantic enrichment">Search Enrichments</button> for <strong>{{file.filename}}</strong></center>
 					<br>
-				{{/each}}
+				{{/each}} --}}
 
 				<hr>
 
-				{{#if isUpdatingEnrichments}}
-					<div style="font-size: 20px;"><center><strong>Searching archive for enrichments, be patient ...</strong></center></div>
 
+				{{#if hasError}}
 					<br><br>
-
-					{{loading-spinner-center}}
+					<center>
+						<h4>
+						Something went wrong. Try again! <br><br>
+						If the error is permanent contact your system administrator.
+						</h4>
+					</center>
 				{{else}}
-					{{#if uniqueAvailableItems.length}}
-					<div style="font-size: 20px;">Available Enrichments: <strong>{{shownFile.filename}}</strong> <small>(seed: {{selectedPivot}})</small></div>
+					{{#if isUpdatingEnrichments}}
+						<div style="font-size: 20px;"><center><strong>Searching archive for enrichments, be patient ...</strong></center></div>
 
-					<br><br>
-						{{enrichment-explorer items=uniqueAvailableItems selectItem="selectItem"}}
-					{{else}}
 						<br><br>
-						<center><h3>No enrichments yet.</h3></center>
+
+						{{loading-spinner-center}}
+					{{else}}
+						{{#if uniqueAvailableItems.length}}
+						<div style="font-size: 20px;">Available Enrichments: <strong>{{shownFile.filename}}</strong> <small>(seed: {{selectedPivot}})</small></div>
+
+						<br><br>
+							{{enrichment-explorer items=uniqueAvailableItems selectItem="selectItem"}}
+						{{else}}
+							<br><br>
+							<center><h3>No enrichments yet.</h3></center>
+						{{/if}}
 					{{/if}}
 				{{/if}}
 

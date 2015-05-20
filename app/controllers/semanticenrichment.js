@@ -8,24 +8,43 @@ default Ember.Controller.extend({
     uniqueAvailableItems: [],
     locationPivots: ['IFCPOSTALADDRESS', 'IFCBUILDING', 'IFCORGANIZATION'],
     selectedPivot: 'IFCPOSTALADDRESS',
+    hasError: false,
+
+    seedTemplates: [{
+        label: 'Architectural Style',
+        seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
+        depth: 1
+    }, {
+        label: 'Material',
+        seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
+        depth: 1
+    }, {
+        label: 'Environment',
+        seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
+        depth: 1
+    }, {
+        label: 'Energy Consumption',
+        seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
+        depth: 1
+    }],
 
     actions: {
-        getSemanticEnrichments: function(ifcFile) {
+        selectSeedTemplate: function(seedTemplate) {
+            console.log('selected: ' + seedTemplate.label);
+        },
+
+        getSemanticEnrichments: function() {
             var store = this.store,
                 controller = this,
                 stage = this.get('stage'),
                 sessionId = stage.session,
-                path = ifcFile.raw.get('path'),
                 locationPivot = this.get('selectedPivot');
-
-            console.log('Searching enrichments based on : ' + path);
-            console.log('     location pivot: ' + locationPivot);
 
             // FIXXME: check if those two are still necessary and remove if not!
             controller.set('_isUpdatingMetadata', true);
             stage.set('isLoading', true);
 
-            controller.set('shownFile', ifcFile);
+            // controller.set('shownFile', ifcFile);
             controller.set('isUpdatingEnrichments', true);
 
             var focusedCrawler = new FocusedCrawlerAPI();
@@ -34,23 +53,13 @@ default Ember.Controller.extend({
                 depth: 1,
                 user: sessionId
             }).then(function(data) {
-                controller.set('stage.availableItems', data.availableItems);
+                controller.set('hasError', false);
+                controller.set('stage.availableItems', data.candidates);
                 controller.set('isUpdatingEnrichments', false);
             }, function(data) {
-                controller.set('stage.availableItems', [])
                 controller.set('isUpdatingEnrichments', false);
-                alert('Error during enrichment, try again!');
+                controller.set('hasError', true);
             });
-
-            // var semanticEnrichmentAPI = new SemanticEnrichmentAPI();
-            // semanticEnrichmentAPI.getMetadataFor({
-            //     path: path,
-            //     session: parseInt(sessionId),
-            //     locationProperty: locationPivot
-            // }).then(function(data) {
-            //     controller.set('stage.availableItems', data.availableItems);
-            //     controller.set('isUpdatingEnrichments', false);
-            // });
         }
     },
 

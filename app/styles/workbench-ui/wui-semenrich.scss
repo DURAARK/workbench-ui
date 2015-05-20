@@ -1,0 +1,25 @@
+.wui-semenrich-template-wrapper {
+	@include clearfix;
+} 
+
+.wui-semenrich-template {
+	@include gallery(2 of 8); 
+	
+	width: 10em;
+	height: 10em;
+
+	background: #EDECE4;
+
+	text-align: center;
+	line-height: 10em;
+	vertical-align: middle;
+
+	border-radius: 10px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+.wui-semenrich-template:hover {
+	background: darken(#EDECE4, 20%);
+}
