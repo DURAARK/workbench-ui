@@ -55,7 +55,7 @@ default Ember.Route.extend({
             controller.set("stage", stage);
 
             var sessionId = stage.get('session');
-            
+
             store.find('session', sessionId).then(function(session) {
                 session.get("filestage").then(function(filestage) {
                     filestage.get("files").then(function(files) {
@@ -75,30 +75,17 @@ default Ember.Route.extend({
 
             var url = apiConfig.host + '/semanticenrichmentstages/' + sessionId;
 
-            var available = [],
-                selected = [];
-
-            var availableItems = stage.availableItems,
-                selectedItems = stage.selectedItems;
-
-            for (var i = 0; i < availableItems.length; i++) {
-                var item = availableItems[i];
-                available.push(JSON.parse(JSON.stringify(item)))
-            };
-
-            for (var ii = 0; ii < selectedItems.length; ii++) {
-                var item = selectedItems[ii];
-                selected.push(JSON.parse(JSON.stringify(item)))
-            };
-
             var data = {
                 name: 'semanticenrichment',
-                availableItems: available,
-                selectedItems: selected,
+                availableItems: stage.availableItems,
+                selectedItems: stage.selectedItems,
                 session: sessionId
             };
 
-            _post(url, data).then(function(record) {
+            // NOTE: the data is sent like in the line below to not have jQuery convert the data to form encoding.
+            // See http://stackoverflow.com/questions/13956462/jquery-post-sends-form-data-and-not-json for more
+            // information.
+            _post(url, {json: JSON.stringify(data)}).then(function(record) {
                 var stage = this.get('controller.stage');
                 var session = this.get('controller.stage.session');
                 console.log('session: ' + session.id);

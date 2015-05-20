@@ -61,12 +61,10 @@ default Ember.Controller.extend({
                 return;
             }
 
+            selectedTemplate.user = sessionId;
+
             var focusedCrawler = new FocusedCrawlerAPI();
-            focusedCrawler.getTriples({
-                seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
-                depth: 1,
-                user: sessionId
-            }).then(function(data) {
+            focusedCrawler.getTriples(selectedTemplate).then(function(data) {
                 controller.set('isUpdatingEnrichments', false);
                 controller.set('stage.availableItems', data.candidates);
             }, function(data) {
