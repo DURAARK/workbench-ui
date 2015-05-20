@@ -1,5 +1,5 @@
 <ol class="fe-list">
-	{{#each items}}
-		{{selectable-enrichment item=this action="onClick"}}
+	{{#each item in items}}
+		{{selectable-enrichment item=item action="onClick"}}
 	{{/each}}
 </ol>

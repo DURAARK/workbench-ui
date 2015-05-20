@@ -38,10 +38,10 @@
 				{{/each}}
 				</ul>
 
-				<br>
+				<br><br>
 
 				<center>
-					<button {{action "getSemanticEnrichments" file}} class="btn btn-green-line" title="Get semantic enrichment">Search Enrichments</button>
+					<button {{action "getSemanticEnrichments" file}} class="btn btn-green-line" title="Get semantic enrichment">Search Candidates</button>
 				</center>
 
 {{!-- 				<center>Information seed:</center>
@@ -62,10 +62,7 @@
 				{{#if hasError}}
 					<br><br>
 					<center>
-						<h4>
-						Something went wrong. Try again! <br><br>
-						If the error is permanent contact your system administrator.
-						</h4>
+						<h4>{{errorText}}</h4>
 					</center>
 				{{else}}
 					{{#if isUpdatingEnrichments}}
@@ -76,13 +73,15 @@
 						{{loading-spinner-center}}
 					{{else}}
 						{{#if uniqueAvailableItems.length}}
-						<div style="font-size: 20px;">Available Enrichments: <strong>{{shownFile.filename}}</strong> <small>(seed: {{selectedPivot}})</small></div>
+						<div style="font-size: 20px;">
+							Available Candidates based on the selected templates:
+						</div>
 
-						<br><br>
+						<br>
 							{{enrichment-explorer items=uniqueAvailableItems selectItem="selectItem"}}
 						{{else}}
 							<br><br>
-							<center><h3>No enrichments yet.</h3></center>
+							<center><h3>No candidates yet.</h3></center>
 						{{/if}}
 					{{/if}}
 				{{/if}}

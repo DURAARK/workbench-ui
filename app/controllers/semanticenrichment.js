@@ -27,10 +27,12 @@ default Ember.Controller.extend({
         seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
         depth: 1
     }],
+    selectedTemplate: null,
 
     actions: {
         selectSeedTemplate: function(seedTemplate) {
-            console.log('selected: ' + seedTemplate.label);
+            console.log('selected template: ' + seedTemplate.label);
+            this.set('selectedTemplate', seedTemplate);
         },
 
         getSemanticEnrichments: function() {
@@ -40,6 +42,10 @@ default Ember.Controller.extend({
                 sessionId = stage.session,
                 locationPivot = this.get('selectedPivot');
 
+            // Reset eventual error:
+            controller.set('hasError', false);
+            controller.set('errorText', '');
+
             // FIXXME: check if those two are still necessary and remove if not!
             controller.set('_isUpdatingMetadata', true);
             stage.set('isLoading', true);
@@ -47,18 +53,27 @@ default Ember.Controller.extend({
             // controller.set('shownFile', ifcFile);
             controller.set('isUpdatingEnrichments', true);
 
+            var selectedTemplate = this.get('selectedTemplate');
+            if (!selectedTemplate) {
+                controller.set('hasError', true);
+                controller.set('errorText', 'Select one of the templates above first!');
+
+                return;
+            }
+
             var focusedCrawler = new FocusedCrawlerAPI();
             focusedCrawler.getTriples({
                 seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
                 depth: 1,
                 user: sessionId
             }).then(function(data) {
-                controller.set('hasError', false);
+                controller.set('isUpdatingEnrichments', false);
                 controller.set('stage.availableItems', data.candidates);
-                controller.set('isUpdatingEnrichments', false);
             }, function(data) {
-                controller.set('isUpdatingEnrichments', false);
                 controller.set('hasError', true);
+                controller.set('errorText', 'Something went wrong. Try again! If the error is permanent contact your system administrator.');
+
+                controller.set('isUpdatingEnrichments', false);
             });
         }
     },
@@ -72,13 +87,13 @@ default Ember.Controller.extend({
             uniqueItems = [];
 
         items.filter(function(item, index, enumerable) {
-            var uri = item.resourceUri;
+            var uri = item.entity;
 
             var resource = window.unescape(uri);
             var name = resource.split('/').pop();
 
             var result = uniqueItems.find(function(item, index, enumerable) {
-                var resource0 = window.unescape(item.resourceUri);
+                var resource0 = window.unescape(item.entity);
                 var name0 = resource0.split('/').pop();
                 if (name0 === name) return true;
                 return false;
@@ -87,7 +102,7 @@ default Ember.Controller.extend({
             if (!result) {
                 uniqueItems.pushObject(item);
             } else {
-                console.log('sckippasdf');
+                console.log('Should not happen, investigate!');
             }
         });
 
