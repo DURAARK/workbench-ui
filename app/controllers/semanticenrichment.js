@@ -6,37 +6,38 @@ export
 default Ember.Controller.extend({
     ifcFiles: [],
     uniqueAvailableItems: [],
-    locationPivots: ['IFCPOSTALADDRESS', 'IFCBUILDING', 'IFCORGANIZATION'],
-    selectedPivot: 'IFCPOSTALADDRESS',
+
+    seedTemplates: [Ember.Object.create({
+            label: 'Architectural Style',
+            seeds: ['http://dbpedia.org/resource/Wennigsen', ],
+            depth: 1,
+            selected: false
+        }),
+        Ember.Object.create({
+            label: 'Material',
+            seeds: ['http://dbpedia.org/ontology/largestCity'],
+            depth: 1,
+            selected: false
+        }),
+        Ember.Object.create({
+            label: 'Environment',
+            seeds: ['http://dbpedia.org/ontology/nobelLaureates', 'http://dbpedia.org/ontology/railwayPlatforms'],
+            depth: 1,
+            selected: false
+        }),
+        Ember.Object.create({
+            label: 'Energy Consumption',
+            seeds: ['http://dbpedia.org/ontology/railwayPlatforms'],
+            depth: 1,
+            selected: false
+        })
+    ],
+
     hasError: false,
     isLoading: false,
 
-    seedTemplates: [Ember.Object.create({
-        label: 'Architectural Style',
-        seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
-        depth: 1,
-        selected: false
-    }), Ember.Object.create({
-        label: 'Material',
-        seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
-        depth: 1,
-        selected: false
-    }), Ember.Object.create({
-        label: 'Environment',
-        seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
-        depth: 1,
-        selected: false
-    }), Ember.Object.create({
-        label: 'Energy Consumption',
-        seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
-        depth: 1,
-        selected: false
-    })],
-    selectedTemplate: null,
-
     actions: {
         toggleSeedSelection: function(seedTemplate) {
-
             if (seedTemplate.get('selected')) {
                 seedTemplate.set('selected', false);
                 console.log('deselected seed template: ' + seedTemplate.label);
@@ -50,8 +51,7 @@ default Ember.Controller.extend({
             var store = this.store,
                 controller = this,
                 stage = this.get('stage'),
-                sessionId = stage.session,
-                locationPivot = this.get('selectedPivot');
+                sessionId = stage.session;
 
             // Reset eventual error:
             controller.set('hasError', false);
@@ -64,18 +64,34 @@ default Ember.Controller.extend({
             // controller.set('shownFile', ifcFile);
             controller.set('isUpdatingEnrichments', true);
 
-            var selectedTemplate = this.get('selectedTemplate');
-            if (!selectedTemplate) {
+            var selectedTemplates = this.get('seedTemplates').filter(function(item, index, self) {
+                    if (item.get('selected')) {
+                        return true;
+                    }
+                }),
+                seeds = [];
+
+            if (!selectedTemplates.length) {
                 controller.set('hasError', true);
                 controller.set('errorText', 'Select one of the templates above first!');
 
                 return;
             }
 
-            selectedTemplate.user = sessionId;
+            selectedTemplates.forEach(function(template) {
+                template.get('seeds').forEach(function(item) {
+                    seeds.push(item);
+                })
+            });
+
+            console.log('Seeds:\n\n' + JSON.stringify(seeds, null, 4));
 
             var focusedCrawler = new FocusedCrawlerAPI();
-            focusedCrawler.getTriples(selectedTemplate).then(function(data) {
+            focusedCrawler.getTriples({
+                seeds: seeds,
+                depth: 1,
+                user: sessionId
+            }).then(function(data) {
                 controller.set('isUpdatingEnrichments', false);
                 controller.set('stage.availableItems', data.candidates);
             }, function(data) {
