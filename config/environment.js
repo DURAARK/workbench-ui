@@ -4,6 +4,12 @@ var os = require('os'),
     hostname = os.hostname(),
     apiEndpoint = 'http://localhost';
 
+
+    var tmp = process.ENV.HOST_HOSTNAME;
+
+console.log('Running tmp: ' + tmp);
+    if (tmp) hostname = tmp;
+
 console.log('Running on host: ' + hostname);
 
 // Setup api endpoint depending on the host the application is started on:
