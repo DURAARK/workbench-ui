@@ -45,32 +45,36 @@ default Ember.Route.extend({
     },
 
     setupController: function(controller, model) {
-        // this._super(controller, model);
+        this._super(controller, model);
 
         var url = apiConfig.host + '/semanticenrichmentstages/' + model.id,
             store = this.store;
+
+        controller.set('isStarting', true);
 
         _get(url).then(function(stage) {
             var stage = Ember.Object.create(stage);
             controller.set("stage", stage);
 
-            var sessionId = stage.get('session');
+            controller.set('isStarting', false);
 
-            store.find('session', sessionId).then(function(session) {
-                session.get("filestage").then(function(filestage) {
-                    filestage.get("files").then(function(files) {
-                        controller.set('files', []);
-                        controller.set('files', files);
-                    });
-                });
-            });
+            // var sessionId = stage.get('session');
+
+            // store.find('session', sessionId).then(function(session) {
+            //     session.get("filestage").then(function(filestage) {
+            //         filestage.get("files").then(function(files) {
+            //             controller.set('files', []);
+            //             controller.set('files', files);
+            //         });
+            //     });
+            // });
         });
     },
 
     actions: {
         save: function() {
-            var stage = this.get('controller.stage');
-            var sessionId = stage.session;
+            var stage = this.get('controller.stage')
+;            var sessionId = stage.session;
             // var data = stage.getProperties('availableItems', 'selectedItems', 'session');
 
             var url = apiConfig.host + '/semanticenrichmentstages/' + sessionId;
@@ -88,7 +92,6 @@ default Ember.Route.extend({
             _post(url, {json: JSON.stringify(data)}).then(function(record) {
                 var stage = this.get('controller.stage');
                 var session = this.get('controller.stage.session');
-                console.log('session: ' + session.id);
                 this.transitionTo('preingest.show', session);
             }.bind(this));
         },

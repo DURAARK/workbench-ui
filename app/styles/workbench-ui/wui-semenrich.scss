@@ -14,12 +14,16 @@
 	line-height: 10em;
 	vertical-align: middle;
 
-	border-radius: 10px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: black;
+
+	&.selected {
+		background: #9FBB58;	
+		border-radius: 20px;
+		// border-width: 1px;
+		// border-style: solid;
+		// border-color: black;
+	}
 }
 
 .wui-semenrich-template:hover {
-	background: darken(#EDECE4, 20%);
+	background: #9FBB58;
 }

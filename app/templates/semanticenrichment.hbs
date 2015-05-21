@@ -28,11 +28,11 @@
 			<section class="content-preview-content">
 				<h4>Semantic Enrichment</h4>
 				<br>
-				<div class="fe-list-item-header">A semantic enrichment is based on information from a certain IFC file, called a 'seed'. Below you can choose, which seed the search will be based on (e.g. the postal address) and which file should be taken as input.</div>
+				<div class="fe-list-item-header">Please select one or multiple topics which are related to the data you want to store. We will find valuable additional information pieces which are tailored for your data and provide you with a list of information candidates. Either add all candidates to your archive or select the most relevant candidates on your own.</div>
 				<br>
 				<ul class="wui-semenrich-template-wrapper">				
 				{{#each template in seedTemplates}}
-					<li class="wui-semenrich-template" {{action "selectSeedTemplate" template}}>
+					<li {{bind-attr class=":wui-semenrich-template template.selected:selected"}} {{action "toggleSeedSelection" template}}>
 						{{template.label}}
 					</li>
 				{{/each}}
@@ -41,7 +41,7 @@
 				<br><br>
 
 				<center>
-					<button {{action "getSemanticEnrichments" file}} class="btn btn-green-line" title="Get semantic enrichment">Search Candidates</button>
+					<button {{action "getSemanticEnrichments" file}} class="btn btn-green-line" title="Get semantic enrichment">Update Candidates</button>
 				</center>
 
 {{!-- 				<center>Information seed:</center>
@@ -80,8 +80,18 @@
 						<br>
 							{{enrichment-explorer items=uniqueAvailableItems selectItem="selectItem"}}
 						{{else}}
-							<br><br>
-							<center><h3>No candidates yet.</h3></center>
+						
+							{{#if isStarting}}
+								<div style="font-size: 20px;"><center><strong>Looking for candidates from last session</strong></center></div>
+
+								<br><br>
+
+								{{loading-spinner-center}}
+							{{else}}
+								<br><br>
+								<center><h3>No candidates yet.</h3></center>
+							{{/if}}
+						
 						{{/if}}
 					{{/if}}
 				{{/if}}

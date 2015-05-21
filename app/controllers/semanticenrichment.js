@@ -9,30 +9,41 @@ default Ember.Controller.extend({
     locationPivots: ['IFCPOSTALADDRESS', 'IFCBUILDING', 'IFCORGANIZATION'],
     selectedPivot: 'IFCPOSTALADDRESS',
     hasError: false,
+    isLoading: false,
 
-    seedTemplates: [{
+    seedTemplates: [Ember.Object.create({
         label: 'Architectural Style',
         seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
-        depth: 1
-    }, {
+        depth: 1,
+        selected: false
+    }), Ember.Object.create({
         label: 'Material',
         seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
-        depth: 1
-    }, {
+        depth: 1,
+        selected: false
+    }), Ember.Object.create({
         label: 'Environment',
         seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
-        depth: 1
-    }, {
+        depth: 1,
+        selected: false
+    }), Ember.Object.create({
         label: 'Energy Consumption',
         seeds: ['http://dbpedia.org/resource/Wennigsen', 'http://dbpedia.org/ontology/largestCity'],
-        depth: 1
-    }],
+        depth: 1,
+        selected: false
+    })],
     selectedTemplate: null,
 
     actions: {
-        selectSeedTemplate: function(seedTemplate) {
-            console.log('selected template: ' + seedTemplate.label);
-            this.set('selectedTemplate', seedTemplate);
+        toggleSeedSelection: function(seedTemplate) {
+
+            if (seedTemplate.get('selected')) {
+                seedTemplate.set('selected', false);
+                console.log('deselected seed template: ' + seedTemplate.label);
+            } else {
+                seedTemplate.set('selected', true);
+                console.log('selected seed template: ' + seedTemplate.label);
+            }
         },
 
         getSemanticEnrichments: function() {
