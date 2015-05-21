@@ -1,6 +1,22 @@
 /* jshint node: true */
 
-var apiEndpoint = 'http://juliet.cgv.tugraz.at/api/v0.1';
+var os = require('os'),
+    hostname = os.hostname(),
+    apiEndpoint = 'http://localhost';
+
+console.log('Running on host: ' + hostname);
+
+// Setup api endpoint depending on the host the application is started on:
+// FIXXME: find a GUI configurable way to do that!
+if (hostname === 'mimas') { // PRODUCTION
+    console.log('Selected mimas');
+    apiEndpoint = 'http://mimas.cgv.tugraz.at/api/v0.1';
+} else if (hostname === 'juliet') {
+    console.log('Selected juliet');
+    apiEndpoint = 'http://juliet.cgv.tugraz.at/api/v0.1';
+}
+
+console.log('[apiEndpoint] ' + apiEndpoint);
 
 module.exports = function(environment) {
     var ENV = {
@@ -89,10 +105,6 @@ module.exports = function(environment) {
         // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-
-        // Overwrite API endpoints for development environment:
-        apiEndpoint = 'http://localhost';
-
         ENV.DURAARKAPI = {
             sda: {
                 host: apiEndpoint + ':5005'
@@ -122,7 +134,7 @@ module.exports = function(environment) {
                 host: apiEndpoint + ':5006',
                 jobsEndpoint: '/enrichment',
                 extractEndpoint: '/enrichment/extract'
-            },            
+            },
             focusedcrawler: {
                 host: apiEndpoint + ':5006',
                 jobsEndpoint: '/crawl',
