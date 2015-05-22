@@ -2,10 +2,11 @@
 
 var os = require('os'),
     hostname = os.hostname(),
-    apiEndpoint = 'http://localhost',
-    host_hostname = process.env.HOST_HOSTNAME;
+    host_hostname = process.env.HOST_HOSTNAME,
+    // FIXXME: find a GUI configurable way to do that!
+    apiEndpoint = process.env.DURAARK_API_ENDPOINT;
 
-console.log('[duraark-platform] Started on host: ' + hostname);
+console.log('[workbench-ui] Started on host: ' + hostname);
 
 // If the host is running as docker container we decide which API endpoint
 // to use based on the hostname of the host which started the docker container.
@@ -13,18 +14,17 @@ console.log('[duraark-platform] Started on host: ' + hostname);
 // starting the docker container to announce itself:
 if (host_hostname) {
     hostname = host_hostname;
-    console.log('[duraark-platform] Parent host name (docker host): ' + hostname);
+    console.log('[workbench-ui] Parent host name (docker host): ' + hostname);
 }
 
-// Setup api endpoint depending on thehost the application is started on:
-// FIXXME: find a GUI configurable way to do that!
-if (hostname === 'mimas') { // PRODUCTION
-    apiEndpoint = 'http://mimas.cgv.tugraz.at/api/v0.1';
-} else if (hostname === 'juliet') {
-    apiEndpoint = 'http://juliet.cgv.tugraz.at/api/v0.1';
+console.log('[workbench-ui] (debug) DURAARK_API_ENDPOINT: ' + process.env.DURAARK_API_ENDPOINT);
+
+if (!apiEndpoint) {
+  apiEndpoint = 'http://localhost';
+  console.log('[workbench-ui] No DURAARK_API_ENDPOINT environment variable defined, using "http://localhost"');
 }
 
-console.log('[duraark-platform] API endpoint configuration: ' + apiEndpoint);
+console.log('[workbench-ui] API endpoint URL: ' + apiEndpoint);
 
 module.exports = function(environment) {
     var ENV = {
@@ -52,8 +52,8 @@ module.exports = function(environment) {
             // when it is created
         },
 
-        // Default API endpoing configuration for the DURAARK Platform for 
-        // *production* environment. For the development environment the 
+        // Default API endpoing configuration for the DURAARK Platform for
+        // *production* environment. For the development environment the
         // config is overwritten below.
         DURAARKAPI: {
             sda: {
