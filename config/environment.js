@@ -2,27 +2,29 @@
 
 var os = require('os'),
     hostname = os.hostname(),
-    apiEndpoint = 'http://localhost';
+    apiEndpoint = 'http://localhost',
+    host_hostname = process.env.HOST_HOSTNAME;
 
+console.log('[duraark-platform] Started on host: ' + hostname);
 
-    var tmp = process.ENV.HOST_HOSTNAME;
+// If the host is running as docker container we decide which API endpoint
+// to use based on the hostname of the host which started the docker container.
+// The docker host has to set the environment variable HOST_HOSTNAME when
+// starting the docker container to announce itself:
+if (host_hostname) {
+    hostname = host_hostname;
+    console.log('[duraark-platform] Parent host name (docker host): ' + hostname);
+}
 
-console.log('Running tmp: ' + tmp);
-    if (tmp) hostname = tmp;
-
-console.log('Running on host: ' + hostname);
-
-// Setup api endpoint depending on the host the application is started on:
+// Setup api endpoint depending on thehost the application is started on:
 // FIXXME: find a GUI configurable way to do that!
 if (hostname === 'mimas') { // PRODUCTION
-    console.log('Selected mimas');
     apiEndpoint = 'http://mimas.cgv.tugraz.at/api/v0.1';
 } else if (hostname === 'juliet') {
-    console.log('Selected juliet');
     apiEndpoint = 'http://juliet.cgv.tugraz.at/api/v0.1';
 }
 
-console.log('[apiEndpoint] ' + apiEndpoint);
+console.log('[duraark-platform] API endpoint configuration: ' + apiEndpoint);
 
 module.exports = function(environment) {
     var ENV = {
@@ -111,47 +113,49 @@ module.exports = function(environment) {
         // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-        ENV.DURAARKAPI = {
-            sda: {
-                host: apiEndpoint + ':5005'
-            },
-            searchItems: {
-                host: apiEndpoint + ':5005/example'
-            },
-            sessions: {
-                host: apiEndpoint + ':5004'
-            },
-            files: {
-                host: apiEndpoint + ':5001'
-            },
-            ifcmetadata: {
-                host: apiEndpoint + ':5002',
-                jobsEndpoint: '/ifcm',
-                extractEndpoint: '/ifcm/extract',
-                responseKey: 'ifcms'
-            },
-            e57metadata: {
-                host: apiEndpoint + ':5003',
-                jobsEndpoint: '/e57m',
-                extractEndpoint: '/e57m/extract',
-                responseKey: 'e57ms'
-            },
-            semanticenrichment: {
-                host: apiEndpoint + ':5006',
-                jobsEndpoint: '/enrichment',
-                extractEndpoint: '/enrichment/extract'
-            },
-            focusedcrawler: {
-                host: apiEndpoint + ':5006',
-                jobsEndpoint: '/crawl',
-                extractEndpoint: '/enrichment/extract'
-            },
-            sipgenerator: {
-                host: apiEndpoint + ':5007',
-                jobsEndpoint: '/sip',
-                extractEndpoint: '/sip/create'
-            }
-        };
+        if (apiEndpoint === 'http://localhost') {
+            ENV.DURAARKAPI = {
+                sda: {
+                    host: apiEndpoint + ':5005'
+                },
+                searchItems: {
+                    host: apiEndpoint + ':5005/example'
+                },
+                sessions: {
+                    host: apiEndpoint + ':5004'
+                },
+                files: {
+                    host: apiEndpoint + ':5001'
+                },
+                ifcmetadata: {
+                    host: apiEndpoint + ':5002',
+                    jobsEndpoint: '/ifcm',
+                    extractEndpoint: '/ifcm/extract',
+                    responseKey: 'ifcms'
+                },
+                e57metadata: {
+                    host: apiEndpoint + ':5003',
+                    jobsEndpoint: '/e57m',
+                    extractEndpoint: '/e57m/extract',
+                    responseKey: 'e57ms'
+                },
+                semanticenrichment: {
+                    host: apiEndpoint + ':5006',
+                    jobsEndpoint: '/enrichment',
+                    extractEndpoint: '/enrichment/extract'
+                },
+                focusedcrawler: {
+                    host: apiEndpoint + ':5006',
+                    jobsEndpoint: '/crawl',
+                    extractEndpoint: '/enrichment/extract'
+                },
+                sipgenerator: {
+                    host: apiEndpoint + ':5007',
+                    jobsEndpoint: '/sip',
+                    extractEndpoint: '/sip/create'
+                }
+            };
+        }
     }
 
     if (environment === 'test') {

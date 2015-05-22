@@ -64,11 +64,7 @@ default Ember.Controller.extend({
             // controller.set('shownFile', ifcFile);
             controller.set('isUpdatingEnrichments', true);
 
-            var selectedTemplates = this.get('seedTemplates').filter(function(item, index, self) {
-                    if (item.get('selected')) {
-                        return true;
-                    }
-                }),
+            var selectedTemplates = this.get('seedTemplates').filterBy('selected', true),
                 seeds = [];
 
             if (!selectedTemplates.length) {
