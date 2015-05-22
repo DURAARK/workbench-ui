@@ -2,21 +2,10 @@
 
 var os = require('os'),
     hostname = os.hostname(),
-    host_hostname = process.env.HOST_HOSTNAME,
     // FIXXME: find a GUI configurable way to do that!
     apiEndpoint = process.env.DURAARK_API_ENDPOINT;
 
 console.log('[workbench-ui] Started on host: ' + hostname);
-
-// If the host is running as docker container we decide which API endpoint
-// to use based on the hostname of the host which started the docker container.
-// The docker host has to set the environment variable HOST_HOSTNAME when
-// starting the docker container to announce itself:
-if (host_hostname) {
-    hostname = host_hostname;
-    console.log('[workbench-ui] Parent host name (docker host): ' + hostname);
-}
-
 console.log('[workbench-ui] (debug) DURAARK_API_ENDPOINT: ' + process.env.DURAARK_API_ENDPOINT);
 
 if (!apiEndpoint) {
