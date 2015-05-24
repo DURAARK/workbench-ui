@@ -1,0 +1,181 @@
+
+// Gallery Reloaded
+// ----------------
+// Create an isolated gallery
+// - $span        : <span>
+// - $extras      : <list> of 3 params 
+//                  1) margin-removal <top> | <bottom>
+//                  2) $class selector
+//                  3) $adjust: Boolean
+// - [$selector]  : child | of-type
+@mixin gallery-reloaded(
+  $span,
+  $extras: top,
+  $selector: child
+  ) {
+
+  $inspect    : $span;
+  $span       : parse-span($span);
+  $span       : map-merge($span, (location: 1));
+
+  $n            : susy-get(span, $span);
+  $columns      : susy-get(columns, $span);
+  $context      : susy-count($columns);
+  $flow         : susy-get(flow, $span);
+
+  $inside       : is-inside($span);
+  $from         : from($flow);
+  $line         : floor($context / $n);
+  $symmetrical  : is-symmetrical($columns);
+
+  // Extras, for removing top or bottom margin and for self adjusting grids. 
+  $margin-removal: nth($extras, 1);
+  $class: null; 
+  $adjust: null;
+
+  @if length($extras) > 1 {
+    $class: nth($extras,2);
+  }
+  @if length($extras) > 2 {
+    $adjust: nth($extras, 3);
+  }
+  
+  $class: if($class, $class, unquote('&'));
+
+  $output: (
+    width             : null,
+    float             : from,
+    margin-before     : null,
+    margin-after      : null,
+    padding-before    : null,
+    padding-after     : null,
+    flow              : $flow,
+    );
+
+  @if $inside {
+    $gutters: get-gutters($span);
+    $output: map-merge($output, (
+      padding-before: map-get($gutters, before),
+      padding-after: map-get($gutters, after),
+      ));
+  }
+
+  @if $symmetrical {
+    $output: map-merge($output, (width: get-span-width($span)));
+  }
+
+  $box          : susy-get(box-sizing, $span);
+  $global-box   : if(susy-get(global-box-sizing) == 'border-box', true, false);
+
+  @include susy-inspect(gallery, $inspect);
+
+  // Collective Output
+  @if $box == border-box or ($inside and not($box) and not($global-box)) {
+    @include output((box-sizing: border-box));
+  } @else if $box == content-box {
+    @include output((box-sizing: content-box));
+  }
+
+  @include float-span-output($output...);
+
+  // Individual Loop
+  @for $item from 1 through $line {
+    $nth: '#{$line}n + #{$item}';
+    &:nth-#{$selector}(#{$nth}) {
+      // Individual Prep
+      // @debug $span;
+      $output: (
+        width             : if($symmetrical, null, get-span-width($span)),
+        float             : null,
+        margin-before     : get-isolation($span),
+        margin-after      : -100%,
+        padding-before    : null,
+        padding-after     : null,
+        flow              : $flow,
+        );
+
+      // Individual Output
+      @include float-span-output($output...);
+
+      @if get-edge($span) == first {
+        @include break;
+        @include first($span);
+      } @else {
+        @include nobreak;
+      }
+
+      // Individual Location Increment
+      $location: get-location($span) + $n;
+      $location: if($location > $context, 1, $location);
+      $span: map-merge($span, (location: $location));
+
+    }
+  }
+
+  // Adjustment Loop for last row
+  @if $adjust {
+    @for $item from 1 through $line - 1 {
+      @for $sibling from 1 through $line {        
+        $selector-string: null;
+        $first-item: "nth-#{$selector}(#{$line}n + 1):nth-last-#{$selector}(#{$item})"; 
+        $nth: "#{$item}n + #{$sibling}";
+        $n: floor($context / $item);
+
+        @if $item == 1 and $sibling == $line or $sibling == 1{
+          $selector-string: "&:#{$first-item}";
+        } @else if $sibling > $item {
+          $selector-string : null;
+        } @else if $item != 1{
+          $selector-string: '&:#{$first-item} ~ .#{$class}:nth-#{$selector}(#{$line}n + #{$sibling})';
+        } 
+
+        $span: map-merge($span, (span: $n));
+
+        @if $selector-string {
+          #{$selector-string} {
+            $output: (
+              width             : get-span-width($span),
+              float             : null,
+              margin-before     : get-isolation($span),
+              margin-after      : -100%,
+              padding-before    : null,
+              padding-after     : null,
+              flow              : $flow,
+              );
+
+            // Individual Output
+            @include float-span-output($output...);
+
+
+            @if get-edge($span) == first or get-edge($span) == full {
+              @include break;
+              @include first($span);
+            } @else {
+              @include nobreak;
+            }
+
+            // Individual Location Increment
+            $location: get-location($span) + $n;
+            $location: if($location > $context, 1, $location);
+            $span: map-merge($span, (location: $location));
+          }
+        }
+      }
+    }
+  }
+  
+  // Removing top margins
+  @if $margin-removal == top {
+    &:nth-#{$selector}(-n + #{$line}) {
+      margin-top: 0;
+    }    
+  }
+
+  // Removing and bottom margins
+  @else if $margin-removal == bottom { 
+    &:nth-last-#{$selector}(#{$line}), 
+    &:nth-last-#{$selector}(#{$line}) ~ .#{$class}, {
+      margin-bottom: 0;
+    }
+  }
+}

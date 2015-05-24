@@ -1,0 +1,20 @@
+.c-cta {
+  > a {
+    padding: rhythm(2);
+  }
+}
+
+.c-cta__title {
+  font-size: 3.33rem;
+  line-height: 0.95;
+  font-weight: 500;
+  margin-top: rhythm(1.5);
+  margin-bottom: rhythm(2);
+}
+
+.c-logo {
+  background: url("../images/blog-homepage-sprite.png") no-repeat 0 -25px;
+  height: 20px;
+  margin-top: rhythm(2);
+  text-indent: -9999px;
+}

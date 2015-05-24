@@ -1,106 +1,51 @@
-@import "../../bower_components/bourbon/app/assets/stylesheets/bourbon";
-@import "bower_components/susy/sass/susy";
+// Libraries
+// ---------
+@import "lib/lib";
 
-@import "ghost";
-@import "base";
+// Helpers
+// -------
+@import "helpers/helpers";
 
-@import "workbench-ui/wui";
+// Variables
+// ---------
+@import "variables/colors";
+@import "variables/typography";
+@import "variables/themes";
+@import "variables/zindex";
+@import "variables/breakpoints";
+//
+// // Reset and base files
+// // --------------------
+@import "base/reset";
+@import "base/base";
+//
+// // Layouts
+// // -------
+@import "layouts/susy";
+@import "layouts/layouts";
+//
+// // Objects
+// // -------
+// // Repeatable objects across the site
+@import "objects/typography";
+@import "objects/buttons";
+//
+// // Components
+// // ----------
+// // For individual, isolated components
+@import "components/_workflow";
+@import "components/sticky-header";
+// @import "components/cta";
 
-// FIXXME: move to 'workbench-ui' folder!
-@import "da-session";
-@import "file-explorer";
-@import "map";
-@import "metadata";
-@import "maintenance";
-@import "components/loading-spinner";
+// Utilities
+// ---------
+// @import "utilities";
 
-// copied from the _shame.scss to override adjust the .floatingheader class:
-// Semi-opaque fixed-position headers - used on content/editor
-.topheader {
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 400;
-    height: 40px;
-    padding: 10px 20px;
-    font-size: 1.3rem;
-    text-transform: uppercase;
-    color: $brown;
-    background: linear-gradient(to bottom, white 0%, white 25%, rgba(255,255,255,0.9) 100%); //Transparent gradient to make bg fade out as it goes out the top
+// Page Specific Overrides
+// -----------------------
+// Rarely ever used. Exceptions may be homepage, for example
 
-    .button {
-        display: inline-block;
-        font-size: 10px;
-        min-height: 20px;
-        height: 20px;
-        padding: 3px 4px;
-        vertical-align: top;
-
-        &.button-back {
-            position: relative;
-            top: -2px;
-            left: 3px;
-            display: none;
-            padding: 0 6px 0 3px;
-
-            &:active {
-                box-shadow: none;
-            }
-
-            &:before {
-                left: -8px;
-                border-width: 10px 8px 10px 0;
-            }
-
-            @media (max-width: 900px) {
-                display: inline-block;
-            }
-        }
-    }//.button
-
-    small {
-        font-size: 0.85em;
-    }
-
-    a,
-    button {
-        color: $brown;
-
-        &:hover {
-            color: $darkgrey;
-        }
-    }
-} // .floatingheader
-
-.btn-topright {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-}
-
-.btn-right {
-    float: right;
-}
-
-.btn-left {
-    float: left;
-}
-
-.btn-green-line {
-    background-color: #9FBB58;
-    border-color: #94b148;
-    transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.btn-blue-line {
-    background-color: #5BA4E5;
-    border-color: #4598e2;
-    transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.btn-tiny {
-    padding: 2px 5px;
-    font-size: 1rem;
-    // line-height: 1.5;
-    border-radius: 2px;
-}
+// Shame
+// -----
+// For new style snippets that haven't been sorted and commented yet
+// @import "shame";

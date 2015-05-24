@@ -1,0 +1,25 @@
+
+// THEMES
+// ------
+// Map for project themes. Uses a theming method 
+// developed by @zellwk with the help of @ezekkkg. 
+// See Themify mixin for more info.
+// ======
+$themes: (
+  advice: (
+    color: color(scooter),
+    background: url("../../images/blog-illustrations.png") center -490px,
+    ), 
+  launch: (
+    color: color(cream-can),
+    background: url("../../images/blog-illustrations.png") center -240px,
+    ), 
+  other: (
+    color: color(mischka),
+    background: url("../../images/blog-illustrations.png") center -1740px,
+    ), 
+  trends: (
+    color: color(cornflower-blue),
+    background: url("../../images/blog-illustrations.png") center 0,
+    )
+  );

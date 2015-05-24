@@ -1,0 +1,81 @@
+.l-wrap {
+  @include container;
+  width: 100%;
+  margin-top: rhythm(3);
+  // @include with-context(blog-posts, med) {
+  //   $bp-med: span(full) + 2 * gutter() !global;
+  //
+  //   @include bp($bp-med) {
+  //     width: $bp-med;
+  //   }
+  // }
+  // @include with-context(blog-posts, med) {
+  //   $bp-med: span(full) + 2 * gutter() !global;
+  //
+  //   @include bp($bp-med) {
+  //     width: $bp-med;
+  //   }
+  // }
+  //
+  // @include with-context(blog-posts, large) {
+  //   $bp-large: span(full) + 2 * gutter() !global;
+  //
+  //   @include bp($bp-large) {
+  //     width: $bp-large;
+  //   }
+  // }
+  //
+  // @include with-context(blog-posts, xlarge) {
+  //   $bp-xlarge: span(full) + 2 * gutter() !global;
+  //
+  //   @include bp($bp-xlarge) {
+  //     width: $bp-xlarge;
+  //   }
+  // }
+}
+.l-wrap-header {
+  @include cf;
+}
+.l-wrap-sidebar {
+  @include span(4);
+  background-color: blue;
+  min-height: 500px;
+}
+.l-wrap-content {
+  @include span(8 last);
+  background-color: orange;
+  min-height: 500px;
+}
+.l-blog-posts {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -2 * gutter();
+}
+.l-blog-post {
+  width: 100%;
+  @include bp($bp-med) {
+    @include span(1);
+    margin-top: 2 * gutter();
+  }
+  @include bp-with-context($bp-med $bp-large, blog-posts, med) {
+    // 1, 9, 17,
+    &:nth-child(8n+1),
+    &:nth-child(8n+6) {
+      width: span(2);
+    }
+  }
+  @include bp-with-context($bp-large $bp-xlarge, blog-posts, large) {
+    // 1, 11, 21, 31, 41, 51 ....
+    &:nth-child(10n+1),
+    &:nth-child(10n+7) {
+      width: span(2);
+    }
+  }
+  @include bp-with-context($bp-xlarge, blog-posts, xlarge) {
+    // 1, 15, 29
+    &:nth-child(14n+1),
+    &:nth-child(14n+10) {
+      width: span(2);
+    }
+  }
+}

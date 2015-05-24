@@ -1,0 +1,30 @@
+.c-workflow {
+  @include gallery(6);
+  background-color: color(pigeon-post);
+  text-align: center;
+  height: 40px;
+}
+.c-workflow__image {
+  height: 100px;
+  background-color: lightblue;
+}
+.c-workflow__title {
+  height: 100px;
+}
+.c-workflow__description {
+  height: 100px;
+}
+.c-workflow__footer {
+  height: 100px;
+}
+
+// // Theme categories
+// .c-blog-post {
+//   @include themify(theme) {
+//     .c-blog-post__header {
+//       background: theme(background);
+//       background-color: theme(color);
+//       background-repeat: no-repeat;
+//     }
+//   }
+// }

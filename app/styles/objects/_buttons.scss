@@ -1,0 +1,15 @@
+.o-btn {
+  display: inline-block;
+  flex: none;
+  padding: rhythm(0.5) rhythm(1);
+  background: color(cold-purple);
+  color: color(white);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.o-btn:hover,
+.o-btn:active,
+.o-btn:focus {
+  background: linear-gradient(to bottom, color(cold-purple), color(purple-majesty));
+}

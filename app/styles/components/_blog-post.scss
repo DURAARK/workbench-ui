@@ -1,0 +1,52 @@
+.c-blog-post {
+  background: color(comet);
+  display: flex;
+
+  > a {
+    display: flex;
+    flex-direction: column;
+    color: color(white);
+    text-decoration: none;
+  }
+}
+
+.c-blog-post__category {
+  color: color(pigeon-post);
+}
+
+.c-blog-post__header {
+  position: relative;
+  height: rhythm(10);
+  background: rgba(red, 0.25);
+}
+
+.c-blog-post__title {
+  margin-top: rhythm(0.25);
+  margin-bottom: rhythm(1);
+}
+
+.c-blog-post__content {
+  flex-grow: 1;
+  padding: rhythm(2);
+  padding-bottom: rhythm(1);
+}
+
+.c-blog-post__footer {
+  padding: 0 rhythm(2) rhythm(0.5);
+
+  > * {
+    display: inline-block;
+    margin-right: rhythm(0.5);
+  }
+}
+
+// Theme categories
+.c-blog-post {
+  @include themify(theme) {
+    .c-blog-post__header {
+      background: theme(background);
+      background-color: theme(color);
+      background-repeat: no-repeat;
+    }
+  }
+}

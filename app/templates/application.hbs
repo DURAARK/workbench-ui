@@ -1,22 +1,49 @@
-<nav class="global-nav" role="navigation">
-    {{#link-to "preingest" classNames="nav-item nav-new js-nav-item"}}
-        <div class="nav-label"><i class="icon-add"></i> Preingest Workflow</div>
-    {{/link-to}}
+<header class="c-sticky-header">
+  <h3>DURAARK Workbench</h3>
+</header>
 
-    {{#link-to "preservation" classNames="nav-item nav-new js-nav-item"}}
-        <div class="nav-label"><i class="icon-add"></i> Preservation</div>
-    {{/link-to}}    
+<div class="l-wrap">
+  <div class="l-wrap-header">
+    <div class="c-workflows">
+      <ul>
+        <li class="c-workflow">
+          {{#link-to "preingest"}}
+            <div class="c-workflow__image"></div>
+            <div class="c-workflow__title">Preingest</div>
+            <div class="c-workflow__description">Description</div>
+            <div class="c-workflow__footer">Footer</div>
+          {{/link-to}}
+        </li>
+        <li class="c-workflow">
+          {{#link-to "preservation"}}
+          <div class="c-workflow__image"></div>
+          <div class="c-workflow__title">Preservation</div>
+          <div class="c-workflow__description">Description</div>
+          <div class="c-workflow__footer">Footer</div>
+          {{/link-to}}
+        </li>
+        <li class="c-workflow">
+          {{#link-to "search"}}
+          <div class="c-workflow__image"></div>
+          <div class="c-workflow__title">Search & Retrieve</div>
+          <div class="c-workflow__description">Description</div>
+          <div class="c-workflow__footer">Footer</div>
+          {{/link-to}}
+        </li>
+        <li class="c-workflow">
+          {{#link-to "maintenance"}}
+          <div class="c-workflow__image"></div>
+          <div class="c-workflow__title">Maintenance</div>
+          <div class="c-workflow__description">Description</div>
+          <div class="c-workflow__footer">Footer</div>
+          {{/link-to}}
+        </li>
 
-    {{#link-to "search" classNames="nav-item nav-new js-nav-item"}}
-        <div class="nav-label"><i class="icon-add"></i> Search & Retrieve</div>
-    {{/link-to}}    
+        <!-- <img class="wui-app-duraark-logo" src="DURAARK_logo.jpg" alt="EU logo"> -->
+        <!-- <img class="wui-app-eu-logo" src="EU_logo.jpg" alt="EU logo"> -->
+      </ul>
+    </div>
+  </div>
+</div>
 
-    {{#link-to "maintenance" classNames="nav-item nav-new js-nav-item"}}
-        <div class="nav-label"><i class="icon-add"></i> Maintenance</div>
-    {{/link-to}}
-
-    <img class="wui-app-duraark-logo" src="DURAARK_logo.jpg" alt="EU logo">
-    <img class="wui-app-eu-logo" src="EU_logo.jpg" alt="EU logo">
-</nav>{{! .global-nav }}
-
-{{outlet}}
+<!-- {{outlet}} -->

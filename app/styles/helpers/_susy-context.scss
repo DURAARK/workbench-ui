@@ -1,0 +1,91 @@
+
+$contexts: () !default;
+
+// With Context [Mixin]
+// --------------------
+// Use a nested grid with predefined contexts
+// - $keys... : <path-to-contexts>
+@mixin with-context(
+  $keys...
+) {
+  $inspect  : _susy-deep-get($contexts, $keys...);
+  $context  : parse-span($inspect);
+  $old      : susy-get(columns);
+
+  // Checks and sets column to correct nested syntax 
+  $columns  : if(map-has-key($context, columns), nested($context), $inspect);
+
+  $susy: map-merge($susy, (columns: $columns)) !global; 
+
+  @include susy-inspect(nested, $inspect);
+  @content;
+
+  $susy     : map-merge($susy, (columns: $old)) !global;
+}
+
+// BP With Context [Mixin]
+// -----------------------
+// Use a nested grid with predefined context in a breakpoint 
+// - $breakpoints : <breakpoint>
+// - $keys        : <path-to-context>
+
+@mixin bp-with-context($breakpoint, $keys...) {
+  @include breakpoint($breakpoint) {
+    @include with-context($keys...) {
+      @content;
+    }
+  }
+}
+
+// Span AC [Mixin]
+// ---------------
+// uses span mixin and adds context to $context map
+// - $span        : <span>
+// - $name        : <name-of-identifier>
+// - $breakpoint  : <breakpoint>
+@mixin span-ac($span, $name, $breakpoint: null) {
+  @include span($span);
+  @include add-context($span, $name, $breakpoint);
+}
+
+
+// Add Context [Mixin]
+// ---------------
+// Adds context to $context map
+// - $span        : <span>
+// - $name        : <name-of-identifier>
+// - $breakpoint  : <breakpoint>
+@mixin add-context($span, $name, $breakpoint: null) {
+  $map: parse-span($span);
+  $n: susy-get(span, $map);
+  $columns: susy-get(columns, $map);
+  $gutters: susy-get(gutters, $map);
+  // $spread: susy-get(spread, $map);
+  $edge: get-edge($span);
+  $location: get-location($map);
+  // Count number of columns if n is 'full'
+  @if $n == full or $n == null {
+    $n: susy-count($columns);
+  }
+  // Resets edge to null if set to 'full'
+  @if $edge == full {
+    $edge: null;
+  }
+  // Adds span to $contexts
+  @if $breakpoint == null {
+    @if $edge {
+      $contexts: _susy-deep-set($contexts, $name, $n of $columns $edge) !global;
+    }
+    @else {
+      $contexts: _susy-deep-set($contexts, $name, $n of $columns at $location) !global;
+    }
+  }
+  @else {
+    @if $edge {
+      $contexts: _susy-deep-set($contexts, $name, $breakpoint, $n of $columns $edge) !global;
+    }
+    @else {
+      $contexts: _susy-deep-set($contexts, $name, $breakpoint, $n of $columns at $location) !global;
+    }
+  }
+}
