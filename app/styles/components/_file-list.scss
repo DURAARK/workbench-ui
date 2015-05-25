@@ -1,4 +1,5 @@
 .c-file-list {
+  position: relative;
   @include container();
   color: color(white);
   margin-top: rhythm(0.2);

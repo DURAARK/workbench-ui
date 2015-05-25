@@ -1,0 +1,31 @@
+.c-storage-selector {
+  position: absolute;
+
+  top: rhythm(1.5);
+  right: 0;
+
+  padding: rhythm(0.5);
+  padding-left: rhythm(1.5);
+  padding-right: rhythm(1.5);
+  background: color(gallery);
+
+  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.25);
+
+  text-align: center;
+  text-transform: none;
+
+  h4 {
+    padding-top: rhythm(0.5);
+    color: color(mid-gray);
+
+    &:last-child {
+        padding-bottom: rhythm(0.5);
+    }
+  }
+
+  h4:hover {
+    color: color(natural-gray);
+      // box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.25);
+    // @include bleed-x(50px);
+  }
+}
