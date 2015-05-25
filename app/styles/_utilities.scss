@@ -1,0 +1,13 @@
+.u-show-mobile {
+  display: none !important;
+
+  @include bp(max $bp-med) {
+    display: block !important;
+  }
+}
+
+.u-hide-mobile {
+  @include bp(max $bp-med) {
+    display: none !important;
+  }
+}

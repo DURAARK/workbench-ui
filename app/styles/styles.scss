@@ -1,8 +1,8 @@
-// Libraries
+// Libraries 
 // ---------
 @import "lib/lib";
 
-// Helpers
+// Helpers 
 // -------
 @import "helpers/helpers";
 
@@ -11,28 +11,28 @@
 @import "variables/colors";
 @import "variables/typography";
 @import "variables/themes";
-@import "variables/zindex";
+// @import "variables/zindex";
 @import "variables/breakpoints";
-//
-// // Reset and base files
-// // --------------------
+
+// Reset and base files
+// --------------------
 @import "base/reset";
 @import "base/base";
-//
-// // Layouts
-// // -------
+
+// Layouts 
+// -------
 @import "layouts/susy";
 @import "layouts/layouts";
-//
-// // Objects
-// // -------
-// // Repeatable objects across the site
-@import "objects/typography";
-@import "objects/buttons";
-//
-// // Components
-// // ----------
-// // For individual, isolated components
+
+// Objects
+// -------
+// Repeatable objects across the site
+
+// Components
+// ----------
+// For individual, isolated components
+@import "components/collapsible";
+@import "components/follow";
 @import "components/sitenav";
 @import "components/content";
 

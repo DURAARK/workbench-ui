@@ -1,0 +1,60 @@
+// Games
+// -----
+
+.l-games {
+  @include cf;
+}
+
+.l-game {
+  margin-bottom: 2 * gutter();
+
+  @include nested(2) {
+    @include gallery(1);
+  }
+
+  $eqs: small, med, large, xlarge, xxlarge, xxxlarge;
+
+  @each $eq in $eqs {
+    @include eq($eq) {
+      @include with-context(content, $eq) {
+        @include gallery(1);
+      }
+    }
+  }
+
+  // @include eq("small") {
+  //   @include with-context(content, small) {
+  //     @include gallery(1);
+  //   }
+  // }
+
+  // @include eq("med") {
+  //   @include with-context(content, med) {
+  //     @include gallery(1);
+  //   }
+  // }
+
+  // @include eq("large") {
+  //   @include with-context(content, large) {
+  //     @include gallery(1);
+  //   }
+  // }
+
+  // @include eq("xlarge") {
+  //   @include with-context(content, xlarge) {
+  //     @include gallery(1);
+  //   }
+  // }
+
+  // @include eq("xxlarge") {
+  //   @include with-context(content, xxlarge) {
+  //     @include gallery(1);
+  //   }
+  // }
+
+  // @include eq("xxxlarge") {
+  //   @include with-context(content, xxxlarge) {
+  //     @include gallery(1);
+  //   }
+  // }
+}

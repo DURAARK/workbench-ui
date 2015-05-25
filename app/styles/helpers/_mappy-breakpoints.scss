@@ -158,9 +158,9 @@ $breakpoints: () !default;
   @return $_return;
 }
 
-// Mappy Convert To Rem [Function]
+// Mappy Convert To Em [Function]
 // -------------------------------
-// Checks and converts px values to rem. Leave other units untouched.
+// Checks and converts px values to em. Leave other units untouched.
 
 @function mappy-convert-to-em($val) {
   @if unit($val) == "px" or $val == 0 {
@@ -172,9 +172,9 @@ $breakpoints: () !default;
   }
 }
 
-// Mappy Rem [Function]
+// Mappy Em [Function]
 // --------------------
-// Converts pixels to rem with $base-font-size
+// Converts pixels to em with $base-font-size
 // - https://gist.github.com/ijy/1441967
 @function mappy-em($target, $context: 16px) {
   @if $target == 0 {

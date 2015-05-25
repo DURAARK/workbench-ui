@@ -24,6 +24,14 @@
   }
 }
 
+// EQ
+// --
+@mixin eq($state) {
+  [data-eq-state="#{$state}"] & {
+    @content;
+  }
+}
+
 // Font Smoothing
 // --------------
 // Mixin to turn on font smoothing, especially for light text on dark background for OSX

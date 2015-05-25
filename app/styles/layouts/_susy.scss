@@ -1,37 +1,17 @@
-$susy:(
-  columns: 12,
-  gutters: 0.0286,
+$susy: (
+  columns: 2, 
+  gutters: 0.15, 
   global-box-sizing: border-box,
-  debug: (image: show-columns, color: rgba(red, 0.5))
+  // debug: (image: show-columns, color: rgba(red, 0.25))
   );
 
 $contexts: (
-  blog-posts: (
-    small: 1,
-    med: 2,
-    large: 3,
-    xlarge: 4
+  games: (
+    small: 3, 
+    med: 4, 
+    large: 5, 
+    xlarge: 6, 
+    xxlarge: 7, 
+    xxxlarge: 8
     )
   );
-
-$bp-med: 600px;
-$bp-large: 980px;
-$bp-xlarge: 1500px;
-
-// $bp-small: 450px;
-// $bp-med: 630px;
-// $bp-large: 810px;
-// $bp-xlarge: 990px;
-// $bp-xxlarge: 1180px;
-// $bp-xxxlarge: 1372px;
-
-// $susy: (
-//   math: static,
-//   column-width: 350px,
-//   gutter-position: split,
-//   columns: 1,
-//   container: auto,
-//   gutters: 0.0286,
-//   global-box-sizing: border-box,
-//   debug: (image: show-columns, color: rgba(red, 0.5))
-//   );

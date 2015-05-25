@@ -1,47 +1,92 @@
-<header class="c-sticky-header">
-  <h3>DURAARK Workbench</h3>
-</header>
+<div class="l-canvas">
+  <div class="l-sitenav c-sitenav">
+    <div class="c-collapsible-toggle c-collapsible-toggle--nav jsToggle" data-toggle="nav"></div>
 
-<div class="l-wrap">
-  <div class="l-wrap-header">
-    <div class="c-workflows">
-      <ul>
-        <li class="c-workflow">
-          {{#link-to "preingest"}}
-            <div class="c-workflow__image"></div>
-            <div class="c-workflow__title">Preingest</div>
-            <div class="c-workflow__description">Description</div>
-            <div class="c-workflow__footer">Footer</div>
-          {{/link-to}}
-        </li>
-        <li class="c-workflow">
-          {{#link-to "preservation"}}
-          <div class="c-workflow__image"></div>
-          <div class="c-workflow__title">Preservation</div>
-          <div class="c-workflow__description">Description</div>
-          <div class="c-workflow__footer">Footer</div>
-          {{/link-to}}
-        </li>
-        <li class="c-workflow">
-          {{#link-to "search"}}
-          <div class="c-workflow__image"></div>
-          <div class="c-workflow__title">Search & Retrieve</div>
-          <div class="c-workflow__description">Description</div>
-          <div class="c-workflow__footer">Footer</div>
-          {{/link-to}}
-        </li>
-        <li class="c-workflow">
-          {{#link-to "maintenance"}}
-          <div class="c-workflow__image"></div>
-          <div class="c-workflow__title">Maintenance</div>
-          <div class="c-workflow__description">Description</div>
-          <div class="c-workflow__footer">Footer</div>
-          {{/link-to}}
-        </li>
+    <!-- expanded sitenav -->
+    <div class="c-expanded-sitenav">
+      <div class="c-expanded-sitenav__header">
+        <div class="c-logo">
 
-        <!-- <img class="wui-app-duraark-logo" src="DURAARK_logo.jpg" alt="EU logo"> -->
-        <!-- <img class="wui-app-eu-logo" src="EU_logo.jpg" alt="EU logo"> -->
-      </ul>
+        </div>
+
+        <!-- <form action="" clas="c-expanded-sitenav__form">
+          <input type="text" placeholder="Search">
+        </form> -->
+      </div>
+
+      <div class="c-expanded-sitenav__content">
+        <nav class="c-expanded-sitenav__menu emphasize">
+          <h5 class="c-expanded-sitenav__title">Active Tool - Files</h5>
+          <a href="#">
+            <span class="i-icon"></span>3 items</a>
+          <a href="#">
+            <span class="i-icon"></span>580 MB</a>
+          <a href="#">
+            <span class="i-icon"></span>location: bimsync</a>
+        </nav>
+
+        <nav class="c-expanded-sitenav__menu">
+          <h5 class="c-expanded-sitenav__title">Archival Stages</h5>
+          <a href="#">
+            <span class="i-icon"></span>Files</a>
+          <a href="#">
+            <span class="i-icon"></span>Metadata Editor</a>
+        /  <a href="#">
+            <span class="i-icon"></span>Semantic Enrichment</a>
+          <a href="#">
+            <span class="i-icon"></span>Geometric Enrichment</a>
+          <a href="#">
+            <span class="i-icon"></span>Archive Generation</a>
+        </nav>
+
+        <!-- <nav class="c-expanded-sitenav__menu">
+          <div class="c-user">
+            <h5 class="c-username">MartinH</h5>
+            <a href="#">
+              <span class="i-icon">Logout</span>
+            </a>
+            <a href="#">
+              <span class="i-icon">Logout</span>
+            </a>
+          </div>
+          <a href="#">
+            <span class="i-icon"></span>Profile</a>
+          <a href="#">
+            <span class="i-icon"></span>Following</a>
+          <a href="#">
+            <span class="i-icon"></span>Messages</a>
+        </nav> -->
+
+        <div class="c-expanded-sitenav__footer">
+          <div class="c-logo c-logo--small">
+
+          </div>
+
+          <nav class="c-expanded-sitenav__footer-menu">
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Developers</a>
+            <a href="#">Partners</a>
+            <a href="#">Funding</a>
+            <a href="#">More</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- end expanded sitenav -->
+
+  </div>
+
+  <div class="l-content c-content">
+    <div class="c-tools">
+      <!-- <img class="wui-app-duraark-logo" src="DURAARK_logo.jpg" alt="EU logo"> -->
+      <!-- <img class="wui-app-eu-logo" src="EU_logo.jpg" alt="EU logo"> -->
+    </div>
+
+    <div class="l-follow c-follow">
     </div>
   </div>
 </div>

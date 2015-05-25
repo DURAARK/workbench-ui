@@ -1,81 +1,92 @@
-.l-wrap {
+// Layouts
+// =======
+
+html,
+body,
+.l-canvas,
+.l-content,
+.l-follow,
+.l-sitenav {
+  height: 100%;
+}
+
+.l-canvas {
+  position: relative;
+  overflow: hidden;
+}
+
+.l-content,
+.l-follow,
+.l-sitenav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
+
+.l-sitenav {
+  background-color: rgba(red, 0.25);
+  z-index: 20;
+  width: rhythm(11);
+
+  &.is-collapsed {
+    width: rhythm(2);
+  }
+}
+
+.l-follow {
+  background-color: rgba(green, 0.25);
+  z-index: 20;
+  right: 0;
+  width: rhythm(14);
+
+  &.is-collapsed {
+    width: 0;
+    padding: 0;
+
+    *:not(.c-collapsible-toggle) {
+      display: none;
+    }
+  }
+}
+
+.l-content {
+  width: calc(100% - #{rhythm(11)} - #{rhythm(14)});
+  margin-left: rhythm(11);
+  margin-right: rhythm(14);
+  padding-left: rhythm(1);
+  padding-right: rhythm(1);
+  overflow-y: scroll;
+
+  &.has-nav-collapsed {
+    margin-left: rhythm(2);
+    width: calc(100% - #{rhythm(2)} - #{rhythm(14)});
+  }
+
+  &.has-follow-collapsed {
+    margin-right: 0;
+    width: calc(100% - #{rhythm(11)});
+  }
+
+  &.has-nav-collapsed.has-follow-collapsed {
+    width: calc(100% - #{rhythm(2)});
+  }
+}
+
+.l-games {
   @include container;
-  width: 100%;
-  margin-top: rhythm(3);
-  // @include with-context(blog-posts, med) {
-  //   $bp-med: span(full) + 2 * gutter() !global;
-  //
-  //   @include bp($bp-med) {
-  //     width: $bp-med;
-  //   }
-  // }
-  // @include with-context(blog-posts, med) {
-  //   $bp-med: span(full) + 2 * gutter() !global;
-  //
-  //   @include bp($bp-med) {
-  //     width: $bp-med;
-  //   }
-  // }
-  //
-  // @include with-context(blog-posts, large) {
-  //   $bp-large: span(full) + 2 * gutter() !global;
-  //
-  //   @include bp($bp-large) {
-  //     width: $bp-large;
-  //   }
-  // }
-  //
-  // @include with-context(blog-posts, xlarge) {
-  //   $bp-xlarge: span(full) + 2 * gutter() !global;
-  //
-  //   @include bp($bp-xlarge) {
-  //     width: $bp-xlarge;
-  //   }
-  // }
 }
-.l-wrap-header {
-  @include cf;
-}
-.l-wrap-sidebar {
-  @include span(4);
-  background-color: blue;
-  min-height: 500px;
-}
-.l-wrap-content {
-  @include span(8 last);
-  background-color: orange;
-  min-height: 500px;
-}
-.l-blog-posts {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: -2 * gutter();
-}
-.l-blog-post {
-  width: 100%;
-  @include bp($bp-med) {
-    @include span(1);
-    margin-top: 2 * gutter();
-  }
-  @include bp-with-context($bp-med $bp-large, blog-posts, med) {
-    // 1, 9, 17,
-    &:nth-child(8n+1),
-    &:nth-child(8n+6) {
-      width: span(2);
-    }
-  }
-  @include bp-with-context($bp-large $bp-xlarge, blog-posts, large) {
-    // 1, 11, 21, 31, 41, 51 ....
-    &:nth-child(10n+1),
-    &:nth-child(10n+7) {
-      width: span(2);
-    }
-  }
-  @include bp-with-context($bp-xlarge, blog-posts, xlarge) {
-    // 1, 15, 29
-    &:nth-child(14n+1),
-    &:nth-child(14n+10) {
-      width: span(2);
+
+.l-game {
+  @include gallery(1);
+  $games: map-get($contexts, games);
+  $keys: map-keys($games);
+
+  @each $eq in $keys {
+    [data-eq-state="#{$eq}"] & {
+      @include with-context(games, $eq) {
+        @include gallery(1);
+        margin-bottom: gutter();
+      }
     }
   }
 }

@@ -1,0 +1,45 @@
+%left-arrow {
+  @include triangle(6px, #bfbfbf, right);
+
+  &:hover,
+  &:active,
+  &:focus {
+    @include triangle(6px, #808080, right);
+  }
+}
+
+%right-arrow {
+  @include triangle(6px, #bfbfbf, left);
+
+  &:hover,
+  &:active,
+  &:focus {
+    @include triangle(6px, #808080, left);
+  }
+}
+
+.c-collapsible-toggle {
+  position: absolute;
+  top: 8px;
+  cursor: pointer;
+}
+
+.c-collapsible-toggle--nav {
+  @extend %left-arrow;
+  right: -12px;
+
+  .is-collapsed & {
+    right: -18px;
+    @extend %right-arrow;
+  }
+}
+
+.c-collapsible-toggle--follow {
+  @extend %right-arrow;
+  left: -12px;
+
+  .is-collapsed & {
+    left: -18px;
+    @extend %left-arrow;
+  }
+}
