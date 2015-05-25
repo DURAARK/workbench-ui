@@ -1,4 +1,5 @@
 .c-file {
+  position: relative;
   @include gallery(1);
   margin-bottom: gutter();
   text-align: center;
@@ -13,4 +14,16 @@
 
   background: color(gallery);
   color: color(mid-gray);
+}
+.c-file__actions {
+  width: 100%;
+  background: color(natural-gray);
+}
+
+.c-file__action {
+  float: right;
+  display: inline-block;
+  width: rhythm(1);
+
+  background: color(natural-gray);
 }
