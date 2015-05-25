@@ -4,6 +4,11 @@
   text-transform: uppercase;
   text-align: right;
 }
+
+.c-content-header__actions {
+  float: left;
+}
+
 .c-content {
   padding-left: rhythm(1.5);
   background-color: color(mid-gray);

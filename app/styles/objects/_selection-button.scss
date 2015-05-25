@@ -1,4 +1,12 @@
-.c-storage-selector {
+.o-selection-button {
+  position: relative;
+}
+
+.o-selection-button__button {
+
+}
+
+.o-selection-button__list {
   position: absolute;
 
   top: rhythm(1.5);

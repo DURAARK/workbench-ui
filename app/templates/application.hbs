@@ -19,9 +19,9 @@
 
       <div class="c-expanded-sitenav__content">
         <nav class="c-expanded-sitenav__menu">
-          <h5 class="c-expanded-sitenav__title">Archive Content</h5>
+          <h5 class="c-expanded-sitenav__title">Archive Overview</h5>
           <a href="#">
-            <span class="i-icon"></span>Files</a>
+            <span class="i-icon"></span>Content</a>
         </nav>
 
         <!-- <nav class="c-expanded-sitenav__menu">
@@ -33,7 +33,7 @@
         </nav> -->
 
         <nav class="c-expanded-sitenav__menu">
-          <h5 class="c-expanded-sitenav__title">Archive Tools</h5>
+          <h5 class="c-expanded-sitenav__title">Workbench Tools</h5>
           <a href="#">
             <span class="i-icon"></span>Metadata</a>
           <a href="#">
@@ -72,6 +72,23 @@
   </div>
 
   <div class="l-content-header c-content-header">
+    <div class="c-content-header__actions">
+      <div class="c-content-header__action">
+        <div class="o-selection-button">
+          <button type="button" class="o-selection-button__button" name="add">Archive ...</button>
+          <div class="o-selection-button__list">
+            <ul>
+              <li>
+                <h4>Local</h4>
+              </li>
+              <li>
+                <h4>Rosetta</h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <h1>Archive Content</h1>
   </div>
 
@@ -79,19 +96,21 @@
     <div class="c-file-list">
       <div class="c-file-list__category">
         <h4>3D Files</h4>
-        <button type="button" name="add">Add Files ...</button>
-        <div class="c-storage-selector">
-          <ul>
-            <li>
-              <h4>Local</h4>
-            </li>
-            <li>
-              <h4>bimsync</h4>
-            </li>
-            <li>
-              <h4>Rosetta</h4>
-            </li>
-          </ul>
+        <div class="o-selection-button">
+          <button type="button" class="o-selection-button__button" name="add">Add Files ...</button>
+          <div class="o-selection-button__list">
+            <ul>
+              <li>
+                <h4>Local</h4>
+              </li>
+              <li>
+                <h4>bimsync</h4>
+              </li>
+              <li>
+                <h4>Rosetta</h4>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="c-file-list__listing">

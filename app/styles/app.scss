@@ -29,6 +29,7 @@
 // // Repeatable objects across the site
 @import "objects/typography";
 @import "objects/buttons";
+@import "objects/selection-button";
 //
 // // Components
 // // ----------
@@ -39,7 +40,6 @@
 @import "components/collapsible";
 @import "components/file-list";
 @import "components/file";
-@import "components/storage-selector";
 
 // Utilities
 // ---------
