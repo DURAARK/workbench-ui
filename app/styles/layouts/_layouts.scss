@@ -15,6 +15,7 @@ body,
   overflow: hidden;
 }
 
+.l-content-header,
 .l-content,
 .l-follow,
 .l-sitenav {
@@ -24,7 +25,6 @@ body,
 }
 
 .l-sitenav {
-  background-color: rgba(red, 0.25);
   z-index: 20;
   width: rhythm(11);
 
@@ -49,13 +49,25 @@ body,
   }
 }
 
-.l-content {
-  width: calc(100% - #{rhythm(11)} - #{rhythm(14)});
+.l-content-header {
+  z-index: 20;
+  width: calc(100% - #{rhythm(11)});
+  height: rhythm(5);
   margin-left: rhythm(11);
   margin-right: rhythm(14);
+  padding: rhythm(2);
+  padding-left: rhythm(1.5);
+}
+
+.l-content {
+  @include cf;
+  width: calc(100% - #{rhythm(11)});
+  margin-top: rhythm(5);
+  margin-left: rhythm(11);
   padding-left: rhythm(1);
   padding-right: rhythm(1);
-  overflow-y: scroll;
+  padding-bottom: rhythm(5); // FIXXME: workaround for scrollbar not scrolling down enough
+  overflow-y: auto;
 
   &.has-nav-collapsed {
     margin-left: rhythm(2);

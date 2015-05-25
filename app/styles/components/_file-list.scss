@@ -1,0 +1,31 @@
+.c-file-list {
+  @include container();
+  color: color(white);
+  margin-top: rhythm(0.2);
+}
+
+.c-file-list__category {
+  @include cf;
+  margin-bottom: rhythm(1);
+  padding: rhythm(0.5);
+  background: color(natural-gray);
+  @include bleed-x(50px); // FIXXME!
+
+  // overwrite <h4> style from _typography.scss
+  h4 {
+    float: left;
+    color: color(white);
+    font-weight: bold;
+  }
+
+  button {
+      float: right;
+      color: color(mid-gray);
+  }
+
+  text-transform: uppercase;
+}
+
+.c-file-list__listing {
+  margin-top: rhythm(1);
+}

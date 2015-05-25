@@ -1,17 +1,17 @@
 $susy: (
-  columns: 2, 
-  gutters: 0.15, 
+  columns: 4,
+  gutters: 0.15,
   global-box-sizing: border-box,
-  // debug: (image: show-columns, color: rgba(red, 0.25))
+  //debug: (image: show-columns, color: rgba(red, 0.25))
   );
 
 $contexts: (
   games: (
-    small: 3, 
-    med: 4, 
-    large: 5, 
-    xlarge: 6, 
-    xxlarge: 7, 
+    small: 3,
+    med: 4,
+    large: 5,
+    xlarge: 6,
+    xxlarge: 7,
     xxxlarge: 8
     )
   );
