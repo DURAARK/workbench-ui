@@ -6,6 +6,12 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.resource("workflows", function() {
+    this.route('archival', { path: "/archival" });
+    this.route('retrieval', { path: "/retrieval" });
+    this.route('maintenance', { path: "/maintenance" });
+  });
+
   this.resource("preingest", function() {
   	this.route('index', { path: "/" });
   	this.route('show', { path: "/:id" });

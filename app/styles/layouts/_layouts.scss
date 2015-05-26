@@ -70,7 +70,7 @@ body,
   overflow-y: auto;
 
   &.has-nav-collapsed {
-    margin-left: rhythm(2);
+    margin-left: lrhythm(2);
     width: calc(100% - #{rhythm(2)} - #{rhythm(14)});
   }
 

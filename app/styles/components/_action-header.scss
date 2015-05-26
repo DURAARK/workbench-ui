@@ -12,8 +12,7 @@
   padding-left: rhythm(0.5);
   padding-right: rhythm(0.5);
 
-  // width: 50%;
-  // height: rhythm(5);
+  height: rhythm(1.8); // FIXXME: workaround for non-clearing float correctly...
 
   text-align: center;
 

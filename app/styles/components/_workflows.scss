@@ -1,0 +1,34 @@
+@include nested(3) {
+  .c-workflows {
+    margin-top: rhythm(2);
+  }
+
+  .c-workflow {
+    @include gallery(1);
+    @include show-grid;
+    margin-bottom: rhythm(1);
+
+    color: color(gallery);
+    text-decoration: none;
+
+    border: 3px dashed color(gallery);
+  }
+}
+
+.c-workflow__header {
+  padding: rhythm(0.5);
+  text-align: center;
+
+  background: color(natural-gray);
+  color: color(tunar);
+}
+
+.c-workflow__description {
+  padding: rhythm(1);
+  text-align: justify;
+}
+
+.c-workflow__footer {  
+  background: rgba(color(natural-gray), 0.5);
+  text-align: center;
+}

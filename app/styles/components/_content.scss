@@ -1,13 +1,24 @@
 .c-content-header {
+  @include cf;
   background: color(natural-gray);
   color: color(white);
   text-transform: uppercase;
+
+  h1 {
+    float: left;
+  }
+
+  h3 {
+    float: right;
+    text-decoration: none;
+    color: color(white);
+  }
 }
 
 .c-content-header__actions {
-  float: right;
-
+  float: left;
   margin-top: rhythm(-0.5);
+  margin-left: rhythm(2);
 }
 
 .c-content {
