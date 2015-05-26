@@ -1,6 +1,6 @@
 .c-content-header {
   @include cf;
-  background: color(natural-gray);
+  background: color(light-blue);
   color: color(white);
   text-transform: uppercase;
 
@@ -23,5 +23,5 @@
 
 .c-content {
   padding-left: rhythm(1.5);
-  background-color: color(mid-gray);
+  background-color: color(dark-gray);
 }
