@@ -2,23 +2,29 @@
   @include cf;
   background: color(light-blue);
   color: color(white);
+
   text-transform: uppercase;
+}
 
-  h1 {
-    float: left;
-  }
+.c-content-header__home {
+  display: inline-block;
+  margin-right: rhythm(0.5);
+  margin-left: rhythm(1);
+  color: rgba(color(royal-purple), 0.5);
+}
 
-  h3 {
-    float: right;
-    text-decoration: none;
-    color: color(white);
-  }
+.c-content-header__home:hover {
+  color: rgba(color(royal-purple), 1);
+}
+
+.c-content-header__title {
+  display: inline-block;
+  margin-left: rhythm(4);
 }
 
 .c-content-header__actions {
-  float: left;
+  float: right;
   margin-top: rhythm(-0.5);
-  margin-left: rhythm(2);
 }
 
 .c-content {

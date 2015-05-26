@@ -1,10 +1,12 @@
 .c-action-header {
-  background: rgba(color(gallery), 0.1);
-  border: 3px dashed color(gallery);
-  transition: background 0.2s;
+  background: rgba(color(very-green), 0.4);
+  border: 3px dashed color(very-green);
+  transition: all 0.2s;
 }
 .c-action-header:hover {
-  background: rgba(color(gallery), 0.5);
+  background: rgba(color(very-green), 0.8);
+  border: 4px dashed color(very-green);
+  margin-top: -1px;
 }
 .c-action-header__name {
   padding-top: rhythm(0.3);
