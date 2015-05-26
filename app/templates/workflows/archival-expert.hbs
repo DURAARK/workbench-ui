@@ -77,19 +77,19 @@
 </div>
 
 <div class="l-content-header c-content-header">
-{{!--   <div class="c-content-header__home">
+  <div class="c-content-header__home">
     <h1>Home</h1>
   </div>
- --}}
+
   <div class="c-content-header__title">
-     <h1>Archive Content</h1>
+     <h1>Session Content</h1>
   </div>
 
     <div class="c-content-header__actions">
       <div class="c-content-header__action">
         <div class="c-action-header">
           <div class="c-action-header__name">
-            <h3>CREATE</h3>
+            <h3>Create Archive</h3>
           </div>
         </div>
       </div>
@@ -97,49 +97,27 @@
 </div>
 
 <div class="l-content c-content has-follow-collapsed">
-
-<div class="c-file-list">
-	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">
-		<div class="c-action-tile__name">
-			<h3>File</h3>
-			<h4>ADD</h4>
-		</div>
-	</div>
-{{!-- 	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">		
-		<div class="c-action-tile__name">
-			<h3>ADD ROSETTA ARCHIVES</h3>
-		</div>
-	</div>
-
-	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">		
-		<div class="c-action-tile__name">
-			<h3>ADD BIMSYNC FILES</h3>
-		</div>				
-	</div> --}}
-
-	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">		
-		<div class="c-action-tile__name">
-			<h3>Semantic Enrichment</h3>
-			<h4>ADD</h4>
-		</div>				
-	</div>
-
-	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">		
-		<div class="c-action-tile__name">
-			<h3>Geometric Enrichment</h3>
-			<h4>ADD IFC RECONSTRUCTION</h4>
-			<h4>ADD HIDDEN SURFACE DETECTION</h4>
-			<h4>ADD REGISTRATION</h4>
-		</div>				
-	</div>		
-</div>
-
   <div class="c-file-list">
     <div class="c-file-list__category">
-      <h4>Haus30-Scan-2014-05-24.e57 | 429 MB</h4>
+      <h4>3D Files</h4>
+      {{!-- <div class="o-selection-button">
+        <button type="button" class="o-selection-button__button" name="add">Add ...</button>
+        <div class="o-selection-button__list">
+          <ul>
+            <li>
+              <h4>Local</h4>
+            </li>
+            <li>
+              <h4>bimsync</h4>
+            </li>
+            <li>
+              <h4>Rosetta</h4>
+            </li>
+          </ul>
+        </div>
+      </div> --}}
     </div>
     <div class="c-file-list__listing">
-
       <div class="c-file">
         <div class="c-file__header">
           Pointcloud (E57)
@@ -162,23 +140,14 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="c-file-list">
-    <div class="c-file-list__category">
-      <h4>Haus30-Scan-2014-05-24.e57 | 429 MB</h4>
-    </div>
-    <div class="c-file-list__listing">
-
       <div class="c-file">
         <div class="c-file__header">
           Pointcloud (E57)
         </div>
         <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.e57</h3>
+          <h3>Haus30-Scan-2012-05-24.e57</h3>
           <div class="c-file__size">
-            <h4>382 MB</h4>
+            <h4>273 MB</h4>
           </div>
         </div>
         <div class="c-file__actions">
@@ -193,21 +162,12 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-    <div class="c-file-list">
-    <div class="c-file-list__category">
-      <h4>Haus30-Scan-2014-05-24.ifc | 429 MB</h4>
-    </div>
-    <div class="c-file-list__listing">
-
       <div class="c-file">
         <div class="c-file__header">
           3D Model (IFC)
         </div>
         <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.ifc</h3>
+          <h3>Haus30.ifc</h3>
           <div class="c-file__size">
             <h4>382 MB</h4>
           </div>
@@ -222,66 +182,141 @@
           <div class="c-file__action">
             v
           </div>
-        </div>
-      </div>
-
-      <div class="c-file">
-        <div class="c-file__header">
-          Metadata (buildm)
-        </div>
-        <div class="c-file__name">
-          <h3>Physical Asset Metadata</h3>
-          <div class="c-file__size">
-            <h4>434 KB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
           <div class="c-file__action">
-            e
+            d
           </div>
         </div>
       </div>
-
-      <div class="c-file">
-        <div class="c-file__header">
-          Metadata (buildm)
+      <div class="c-action-tile">
+        <div class="c-action-tile__name__left">
+          <h3>ADD</h3>
         </div>
-        <div class="c-file__name">
-          <h3>Digital Object Metadata</h3>
-          <div class="c-file__size">
-            <h4>234 KB</h4>
+        <div class="c-action-tile__actions">
+          <div class="c-action-tile__action">
+            Local
           </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            e
+          <div class="c-action-tile__action">
+            Rosetta
           </div>
-        </div>
-      </div>
-
-      <div class="c-file">
-        <div class="c-file__header">
-          Metadata (buildm+)
-        </div>
-        <div class="c-file__name">
-          <h3>Linked Open Data</h3>
-          <div class="c-file__size">
-            <h4>734 KB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            e
+          <div class="c-action-tile__action">
+            bimsync
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
   <div class="c-file-list">
     <div class="c-file-list__category">
-      <h4>Geometric Enrichments</h4>
+      <h4>Metadata Files</h4>
+      <div class="c-content-header__action">
+{{!--         <div class="o-selection-button">
+        <button {{action editMetadata}} type="button" class="o-selection-button__button" name="add">Edit ...</button>
+      </div> --}}
+    </div>
+    </div>
+    <div class="c-file-list__listing">
+      <div class="c-file">
+        <div class="c-file__header">
+          Descriptive Metadata (buildm)
+        </div>
+        <div class="c-file__name">
+          <h3>buildm.xml</h3>
+          <div class="c-file__size">
+            <h4>200 KB</h4>
+          </div>
+        </div>
+        <div class="c-file__actions">
+          <div class="c-file__action">
+            e
+          </div>
+          <div class="c-file__action">
+            d
+          </div>
+        </div>
+      </div>
+      <div class="c-file">
+        <div class="c-file__header">
+          Technical Metadata (e57m)
+        </div>
+        <div class="c-file__name">
+          <h3>e57m.xml</h3>
+          <div class="c-file__size">
+            <h4>173 KB</h4>
+          </div>
+        </div>
+        <div class="c-file__actions">
+          <div class="c-file__action">
+            e
+          </div>
+          <div class="c-file__action">
+            d
+          </div>
+        </div>
+      </div>
+      <div class="c-file">
+        <div class="c-file__header">
+          Technical Metadata (ifcm)
+        </div>
+        <div class="c-file__name">
+          <h3>ifcm.xml</h3>
+          <div class="c-file__size">
+            <h4>189 KB</h4>
+          </div>
+        </div>
+        <div class="c-file__actions">
+          <div class="c-file__action">
+            e
+          </div>
+          <div class="c-file__action">
+            d
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-file-list">
+    <div class="c-file-list__category">
+      <h4>Semantic Enrichment Files</h4>
+{{!--         <div class="o-selection-button">
+        <button {{action addSemanticEnrichment}} type="button" class="o-selection-button__button" name="add">Add ...</button>
+      </div>    --}}
+    </div>
+    <div class="c-file-list__listing">
+      <div class="c-file">
+        <div class="c-file__header">
+          LOD Enrichments (buildm+)
+        </div>
+        <div class="c-file__name">
+          <h3>buildm+.rdf</h3>
+          <div class="c-file__size">
+            <h4>144 KB</h4>
+          </div>
+        </div>
+        <div class="c-file__actions">
+          <div class="c-file__action">
+            e
+          </div>
+          <div class="c-file__action">
+            d
+          </div>
+        </div>
+      </div>
+      <div {{action 'addSemanticEnrichment'}}class="c-action-tile">
+        <div class="c-action-tile__name">
+          <h3>ADD</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-file-list">
+    <div class="c-file-list__category">
+      <h4>Geometric Enrichment Files</h4>
+{{!--         <div class="o-selection-button">
+        <button {{action addGeometricEnrichment}} type="button" class="o-selection-button__button" name="add">Add ...</button>
+      </div>         --}}
     </div>
     <div class="c-file-list__listing">
 
@@ -364,8 +399,7 @@
           </div>
         </div>
       </div>
-      
-{{!--       <div class="c-action-tile">
+      <div class="c-action-tile">
         <div class="c-action-tile__name">
           <h3>ADD</h3>
         </div>
@@ -380,8 +414,7 @@
             Registration
           </div>
         </div>
-      </div> --}}
-
+      </div>
     </div>
   </div>
 
