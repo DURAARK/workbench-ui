@@ -17,7 +17,9 @@
     "please-wait": "~0.0.2",
     "ember-leaflet": "~0.6.1",
     "bourbon": "~4.2.3",
-    "normalize-scss": "~3.0.3"
+    "normalize-scss": "~3.0.3",
+    "vertical-rhythms-without-compass": "~1.0.1",
+    "sass-hidpi": "~2.0.0"
   },
   "resolutions": {
     "ember": "^1.8"

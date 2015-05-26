@@ -1,0 +1,60 @@
+.c-action-tile {
+  position: relative;
+  @include gallery(1);
+  margin-bottom: gutter();
+  background: rgba(color(gallery), 0.1);
+  border: 3px dashed color(gallery);
+  transition: background 0.2s;
+}
+.c-action-tile:hover {
+  background: rgba(color(gallery), 0.5);
+}
+.c-action-tile__name {
+  padding-top: rhythm(1.8);
+
+  // width: 50%;
+  height: rhythm(5);
+
+  text-align: center;
+
+  color: color(gallery);
+}
+.c-action-tile__name__left {
+  padding-top: rhythm(1.8);
+  padding-left: rhythm(2);
+
+  // width: 50%;
+  height: rhythm(5);
+
+  text-align: left;
+
+  color: color(gallery);
+}
+.c-action-tile__actions {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  // background: color(natural-gray);
+}
+
+.c-action-tile__action {
+  width: rhythm(5);
+  padding-top: rhythm(0.32);
+  padding-bottom: rhythm(0.32);
+  background: color(natural-gray);
+  transition: background 0.8s;
+
+  border-top: 1px solid rgba(color(gallery), 0.5);
+
+  text-align: center;
+
+  &:first-child {
+    border: none;
+  }
+}
+
+.c-action-tile__action:hover {
+  background: color(gallery);
+  color: color(mid-gray);
+}

@@ -1,0 +1,21 @@
+.c-action-header {
+  background: rgba(color(gallery), 0.1);
+  border: 3px dashed color(gallery);
+  transition: background 0.2s;
+}
+.c-action-header:hover {
+  background: rgba(color(gallery), 0.5);
+}
+.c-action-header__name {
+  padding-top: rhythm(0.3);
+  padding-bottom: rhythm(0.3);
+  padding-left: rhythm(0.5);
+  padding-right: rhythm(0.5);
+
+  // width: 50%;
+  // height: rhythm(5);
+
+  text-align: center;
+
+  color: color(gallery);
+}

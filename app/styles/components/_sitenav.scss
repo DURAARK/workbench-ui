@@ -64,6 +64,7 @@
 
 .c-expanded-sitenav__menu {
   margin-top: rhythm(0.25);
+  margin-bottom: rhythm(1);
   padding-top: rhythm(0.75);
   border-top: 1px solid color(tuna);
 
@@ -93,7 +94,7 @@
 }
 
 .c-expanded-sitenav__title {
-  margin-bottom: rhythm(0.25);
+  margin-bottom: rhythm(0.65);
   font-size: 0.786rem;
   text-transform: uppercase;
   color: color(mid-gray);
@@ -108,15 +109,16 @@
 
   width: 100%;
 
+  background: color(mid-gray);
+
   text-align: center;
-  // margin-top: rhythm(1);
-  margin-bottom: rhythm(0.25);
+  padding-bottom: rhythm(0.25);
 
   a {
     display: inline-block;
     font-size: 0.857rem;
     text-decoration: none;
-    color: color(mid-gray);
+    color: color(white);
   }
 
   a:hover,

@@ -4,7 +4,7 @@
 
     <!-- expanded sitenav -->
     <div class="c-expanded-sitenav">
-      <div class="c-expanded-sitenav__header">
+       <div class="c-expanded-sitenav__header">
         <div class="c-logo">
           <!-- <img src="/DURAARK_logo.jpg" alt="DURAARK logo" /> -->
           <h3>DURAARK
@@ -19,11 +19,58 @@
 
       <div class="c-expanded-sitenav__content">
         <nav class="c-expanded-sitenav__menu">
+          <h5 class="c-expanded-sitenav__title">Add 3D Files</h5>
+{{!--           <a href="#">
+            <span class="i-icon"></span>Content</a> --}}
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </nav>
+
+        <nav class="c-expanded-sitenav__menu">
+          <h5 class="c-expanded-sitenav__title">Edit Metadata Files</h5>
+{{!--           <a href="#">
+            <span class="i-icon"></span>Content</a> --}}
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </nav>
+
+        <nav class="c-expanded-sitenav__menu">
+          <h5 class="c-expanded-sitenav__title">Add Semantic Enrichments</h5>
+{{!--           <a href="#">
+            <span class="i-icon"></span>Content</a> --}}
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </nav>
+
+        <nav class="c-expanded-sitenav__menu">
+          <h5 class="c-expanded-sitenav__title">Add Geometric Enrichments</h5>
+{{!--           <a href="#">
+            <span class="i-icon"></span>Content</a> --}}
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </nav>        
+{{!--         <nav class="c-expanded-sitenav__menu">
           <h5 class="c-expanded-sitenav__title">Archive Overview</h5>
           <a href="#">
             <span class="i-icon"></span>Content</a>
         </nav>
-
+ --}}
         <!-- <nav class="c-expanded-sitenav__menu">
           <h5 class="c-expanded-sitenav__title">Active Tool - Files</h5>
           <a href="#">
@@ -32,7 +79,7 @@
             <span class="i-icon"></span>580 MB</a>
         </nav> -->
 
-        <nav class="c-expanded-sitenav__menu">
+{{!--         <nav class="c-expanded-sitenav__menu">
           <h5 class="c-expanded-sitenav__title">Workbench Tools</h5>
           <a href="#">
             <span class="i-icon"></span>Metadata</a>
@@ -42,7 +89,7 @@
             <span class="i-icon"></span>Geometric Enrichment</a>
           <a href="#">
             <span class="i-icon"></span>Archive Storage</a>
-        </nav>
+        </nav> --}}
       </div>
 
       <div class="c-expanded-sitenav__footer">
@@ -74,7 +121,14 @@
   <div class="l-content-header c-content-header">
     <div class="c-content-header__actions">
       <div class="c-content-header__action">
-        <div class="o-selection-button">
+
+      <div class="c-action-header">
+        <div class="c-action-header__name">
+          <h3>Archive</h3>
+        </div>
+      </div>
+
+        {{!-- <div class="o-selection-button">
           <button type="button" class="o-selection-button__button" name="add">Archive ...</button>
           <div class="o-selection-button__list">
             <ul>
@@ -86,7 +140,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
     <h1>Archive Content</h1>
@@ -96,8 +150,8 @@
     <div class="c-file-list">
       <div class="c-file-list__category">
         <h4>3D Files</h4>
-        <div class="o-selection-button">
-          <button type="button" class="o-selection-button__button" name="add">Add Files ...</button>
+        {{!-- <div class="o-selection-button">
+          <button type="button" class="o-selection-button__button" name="add">Add ...</button>
           <div class="o-selection-button__list">
             <ul>
               <li>
@@ -111,7 +165,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> --}}
       </div>
       <div class="c-file-list__listing">
         <div class="c-file">
@@ -181,6 +235,22 @@
                 d
               </div>
             </div>
+          </div>     
+        </div>
+        <div class="c-action-tile">
+          <div class="c-action-tile__name__left">
+            <h3>ADD</h3>
+          </div>
+          <div class="c-action-tile__actions">
+            <div class="c-action-tile__action">
+              Local
+            </div>
+            <div class="c-action-tile__action">
+              Rosetta
+            </div>
+            <div class="c-action-tile__action">
+              bimsync
+            </div>
           </div>
         </div>
       </div>
@@ -189,6 +259,11 @@
     <div class="c-file-list">
       <div class="c-file-list__category">
         <h4>Metadata Files</h4>
+        <div class="c-content-header__action">
+{{!--         <div class="o-selection-button">
+          <button {{action editMetadata}} type="button" class="o-selection-button__button" name="add">Edit ...</button>
+        </div> --}}
+      </div>
       </div>
       <div class="c-file-list__listing">
         <div class="c-file">
@@ -254,6 +329,9 @@
     <div class="c-file-list">
       <div class="c-file-list__category">
         <h4>Semantic Enrichment Files</h4>
+{{!--         <div class="o-selection-button">
+          <button {{action addSemanticEnrichment}} type="button" class="o-selection-button__button" name="add">Add ...</button>
+        </div>    --}}     
       </div>
       <div class="c-file-list__listing">
         <div class="c-file">
@@ -275,12 +353,20 @@
             </div>
           </div>
         </div>
+        <div class="c-action-tile">
+          <div class="c-action-tile__name">
+            <h3>ADD</h3>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="c-file-list">
       <div class="c-file-list__category">
         <h4>Geometric Enrichment Files</h4>
+{{!--         <div class="o-selection-button">
+          <button {{action addGeometricEnrichment}} type="button" class="o-selection-button__button" name="add">Add ...</button>
+        </div>         --}}
       </div>
       <div class="c-file-list__listing">
 
@@ -360,6 +446,22 @@
             </div>
             <div class="c-file__action">
               v
+            </div>
+          </div>
+        </div>
+        <div class="c-action-tile">
+          <div class="c-action-tile__name">
+            <h3>ADD</h3>
+          </div>
+          <div class="c-action-tile__actions">
+            <div class="c-action-tile__action">
+              Reconstruction
+            </div>
+            <div class="c-action-tile__action">
+              Hidden Features
+            </div>
+            <div class="c-action-tile__action">
+              Registration
             </div>
           </div>
         </div>

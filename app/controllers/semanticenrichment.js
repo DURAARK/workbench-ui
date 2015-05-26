@@ -15,7 +15,7 @@ default Ember.Controller.extend({
         }),
         Ember.Object.create({
             label: 'Material',
-            seeds: ['http://dbpedia.org/ontology/largestCity'],
+            seeds: ['http://dbpedia.org/resource/Graz'],
             depth: 1,
             selected: false
         }),
