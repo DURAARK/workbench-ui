@@ -7,11 +7,11 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.resource("workflows", function() {
-    this.route('archival', { path: "/archival" });
-    this.route('archival-expert', { path: "/archival-expert" });
-
+    this.route('files', { path: "/files" });
+    this.route('archiveexpert', { path: "/archiveexpert" });
+    this.route('semanticenrichment', { path: "/semanticenrichment" });
+    this.route('geometricenrichment', { path: "/geometricenrichment" });
     this.route('retrieval', { path: "/retrieval" });
-
     this.route('maintenance', { path: "/maintenance" });
   });
 

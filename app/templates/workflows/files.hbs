@@ -76,20 +76,20 @@
   <!-- end expanded sitenav -->
 </div>
 
-<div class="l-content-header c-content-header">
+<div class="l-content-header c-content-header c-content-semenrich">
 {{!--   <div class="c-content-header__home">
     <h1>Home</h1>
   </div>
  --}}
   <div class="c-content-header__title">
-     <h1>Archive Content</h1>
+     <h1>Session Content</h1>
   </div>
 
     <div class="c-content-header__actions">
       <div class="c-content-header__action">
         <div class="c-action-header">
           <div class="c-action-header__name">
-            <h3>CREATE</h3>
+            <h3>CREATE ARCHIVE</h3>
           </div>
         </div>
       </div>
@@ -98,47 +98,78 @@
 
 <div class="l-content c-content has-follow-collapsed">
 
-<div class="c-button-list">
+<!-- Begin stages component -->
+<div class="c-stage-list">
 
-	<div class="c-button">
-    <div class="c-button__frame">
-  		<div class="c-button__name">
-  			<h3>File</h3>
+  <div class="c-stage-list__category">
+    <h3>STAGES</h3>
+  </div>
+
+  <div class="c-stage-list__content">
+
+	{{#link-to "workflows.files" class="c-button"}}
+    <div class="c-stage__frame c-stage__files active">
+  		<div class="c-stage__name">
+  			<h3>Files & Metadata</h3>
   		</div>
     </div>
-    <div {{action 'addFile'}} class="c-button__actions">
-      <div class="c-button_action">
-        <h3>ADD</h3>
-      </div>
-    </div>
-	</div>
+	{{/link-to}}
 
-	<div class="c-button">	
-    <div class="c-button__frame">
-      <div class="c-button__name">
-        <h3>Semantic Enrichment</h3>
+  {{#link-to "workflows.semanticenrichment" class="c-stage"}}
+    <div class="c-stage__frame c-stage__semenrich">
+      <div class="c-stage__name">
+        <h3>Semantic Enrichments</h3>
       </div>
     </div>
-    <div class="c-button__actions">
-      <div {{action 'addSemanticEnrichment'}} class="c-button_action">
-        <h3>ADD</h3>
-      </div>
-    </div>	
-	</div>
+  {{/link-to}}
 
-	<div class="c-button">
-    <div class="c-button__frame">
-      <div class="c-button__name">
-        <h3>Geometric Enrichment</h3>
+  {{#link-to "workflows.geometricenrichment" class="c-stage"}}
+    <div class="c-stage__frame c-stage__geoenrich">
+      <div class="c-stage__name">
+        <h3>Geometric Enrichments</h3>
       </div>
     </div>
-    <div class="c-button__actions">
-      <div {{action 'addGeometricEnrichment'}} class="c-button_action">
-        <h3>ADD</h3>
-      </div>
-    </div>
+  {{/link-to}}
+
   </div>
 </div>
+<!-- End stages component -->
+
+<!-- Begin ADD component -->
+<div class="c-button-list">
+  <div class="c-button-list__category">
+    <h3>ADD FILES</h3>
+  </div>
+
+  <div class="c-button-list__content">
+
+	{{#link-to "workflows.files" class="c-button"}}
+    <div class="c-button__frame active">
+  		<div class="c-button__name">
+  			<h3>Local file</h3>
+  		</div>
+    </div>
+	{{/link-to}}
+
+  {{#link-to "workflows.semanticenrichment" class="c-button"}}
+    <div class="c-button__frame active">
+      <div class="c-button__name">
+        <h3>Rosetta Archive</h3>
+      </div>
+    </div>
+  {{/link-to}}
+
+  {{#link-to "workflows.geometricenrichment" class="c-button"}}
+    <div class="c-button__frame active">
+      <div class="c-button__name">
+        <h3>Bimsync file</h3>
+      </div>
+    </div>
+  {{/link-to}}
+
+  </div>
+</div>
+<!-- End ADD component -->
 
   <div class="c-file-list">
     <div class="c-file-list__category">
@@ -370,7 +401,7 @@
           </div>
         </div>
       </div>
-      
+
 {{!--       <div class="c-action-tile">
         <div class="c-action-tile__name">
           <h3>ADD</h3>

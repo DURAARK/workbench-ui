@@ -4,6 +4,18 @@
   color: color(white);
 
   text-transform: uppercase;
+
+  &.c-content__files {
+    background: rgba(color(light-blue), 1);
+  }
+
+  &.c-content__semenrich {
+    background: rgba(color(light-orange), 1);
+  }
+
+  &.c-content__geoenrich {
+    background: rgba(color(light-green), 1);
+  }
 }
 
 .c-content-header__home {
@@ -28,6 +40,6 @@
 }
 
 .c-content {
-  padding-left: rhythm(1.5);
+  // padding-left: rhythm(1.5);
   background-color: color(dark-gray);
 }

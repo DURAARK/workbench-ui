@@ -1,0 +1,72 @@
+.c-stage-list {
+  color: color(white);
+  transition: background 0.2s;
+}
+
+.c-stage-list__category {
+  padding: rhythm(0.2);
+  padding-left: rhythm(1);
+  background: color(natural-gray);
+
+  h3 {
+    font-weight: bold;
+  }
+  text-align: left;
+}
+
+.c-stage-list__content {
+  @include container();
+}
+
+.c-stage {
+  @include gallery(1);
+
+  text-decoration: none;
+}
+.c-stage:hover {
+  background: rgba(color(gallery), 0.5);
+}
+.c-stage__frame {
+  min-height: rhythm(4);
+
+  background: rgba(color(gallery), 0.1);
+
+  &.c-stage__files {
+    background: rgba(color(light-blue), 0.1);
+
+    &.active {
+      background: color(light-blue);
+    }
+  }
+  &.c-stage__semenrich {
+    background: rgba(color(light-orange), 0.1);
+
+    &.active {
+      background: color(light-orange);
+    }
+  }
+  &.c-stage__geoenrich {
+    background: rgba(color(light-green), 0.1);
+
+    &.active {
+      background: color(light-green);
+    }
+  }
+}
+.c-stage__name {
+  padding-top: rhythm(1.3);
+
+  color: color(gallery);
+  text-align: center;
+}
+.c-stage__actions {
+  margin-top: rhythm(0.2);
+}
+.c-stage_action {
+  background: color(light-green);
+  text-align: center;
+
+  h3 {
+   color: color(gallery);
+  }
+}
