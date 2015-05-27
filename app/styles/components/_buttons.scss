@@ -1,0 +1,53 @@
+.c-button-list {
+  @include container();
+}
+
+.c-button {
+  @include gallery(1);
+
+  margin-bottom: rhythm(1);
+
+  background: rgba(color(gallery), 0.1);
+  border: 3px dashed color(gallery);
+
+  transition: background 0.2s;
+}
+.c-button:hover {
+  background: rgba(color(gallery), 0.5);
+}
+.c-button__name {
+  padding-top: rhythm(1.8);
+
+  color: color(gallery);
+  text-align: center;
+}
+.c-button__buttons {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  // background: color(natural-gray);
+}
+
+.c-button__button {
+  width: rhythm(5);
+  padding-top: rhythm(0.32);
+  padding-bottom: rhythm(0.32);
+  background: color(natural-gray);
+  transition: background 0.8s;
+
+  color: color(dark-gray);
+
+  border-top: 1px solid rgba(color(gallery), 0.5);
+
+  text-align: center;
+
+  &:first-child {
+    border: none;
+  }
+}
+
+.c-button__button:hover {
+  background: color(gallery);
+  color: color(dark-gray);
+}

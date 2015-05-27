@@ -98,40 +98,46 @@
 
 <div class="l-content c-content has-follow-collapsed">
 
-<div class="c-file-list">
-	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">
-		<div class="c-action-tile__name">
-			<h3>File</h3>
-			<h4>ADD</h4>
-		</div>
-	</div>
-{{!-- 	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">		
-		<div class="c-action-tile__name">
-			<h3>ADD ROSETTA ARCHIVES</h3>
-		</div>
-	</div>
+<div class="c-button-list">
 
-	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">		
-		<div class="c-action-tile__name">
-			<h3>ADD BIMSYNC FILES</h3>
-		</div>				
-	</div> --}}
-
-	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">		
-		<div class="c-action-tile__name">
-			<h3>Semantic Enrichment</h3>
-			<h4>ADD</h4>
-		</div>				
+	<div class="c-button">
+    <div class="c-button__frame">
+  		<div class="c-button__name">
+  			<h3>File</h3>
+  		</div>
+    </div>
+    <div {{action 'addFile'}} class="c-button__actions">
+      <div class="c-button_action">
+        <h3>ADD</h3>
+      </div>
+    </div>
 	</div>
 
-	<div {{action 'addSemanticEnrichment'}}class="c-action-tile">		
-		<div class="c-action-tile__name">
-			<h3>Geometric Enrichment</h3>
-			<h4>ADD IFC RECONSTRUCTION</h4>
-			<h4>ADD HIDDEN SURFACE DETECTION</h4>
-			<h4>ADD REGISTRATION</h4>
-		</div>				
-	</div>		
+	<div class="c-button">	
+    <div class="c-button__frame">
+      <div class="c-button__name">
+        <h3>Semantic Enrichment</h3>
+      </div>
+    </div>
+    <div class="c-button__actions">
+      <div {{action 'addSemanticEnrichment'}} class="c-button_action">
+        <h3>ADD</h3>
+      </div>
+    </div>	
+	</div>
+
+	<div class="c-button">
+    <div class="c-button__frame">
+      <div class="c-button__name">
+        <h3>Geometric Enrichment</h3>
+      </div>
+    </div>
+    <div class="c-button__actions">
+      <div {{action 'addGeometricEnrichment'}} class="c-button_action">
+        <h3>ADD</h3>
+      </div>
+    </div>
+  </div>
 </div>
 
   <div class="c-file-list">
