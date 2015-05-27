@@ -85,15 +85,21 @@
      <h1>Session Content</h1>
   </div>
 
-    <div class="c-content-header__actions">
-      <div class="c-content-header__action">
-        <div class="c-action-header">
-          <div class="c-action-header__name">
-            <h3>CREATE ARCHIVE</h3>
-          </div>
+    {{#link-to "workflows.archiveexpert" class="c-content-header__actions"}}
+      <div class="c-action-header">
+        <div class="c-action-header__name">
+          <h3>CREATE ARCHIVE</h3>
         </div>
       </div>
-    </div>
+    {{/link-to}}
+
+    {{#link-to "workflows.archiveexpert" class="c-content-header__actions"}}
+      <div class="c-action-header">
+        <div class="c-action-header__name">
+          <h3>EXPERT VIEW</h3>
+        </div>
+      </div>
+    {{/link-to}}
 </div>
 
 <div class="l-content c-content has-follow-collapsed">
@@ -135,112 +141,15 @@
 </div>
 <!-- End stages component -->
 
-<!-- Begin ADD component -->
-<div class="c-button-list">
-  <div class="c-button-list__category">
-    <h3>ADD FILES</h3>
-  </div>
-
-  <div class="c-button-list__content">
-
-	{{#link-to "workflows.files" class="c-button"}}
-    <div class="c-button__frame active">
-  		<div class="c-button__name">
-  			<h3>Local file</h3>
-  		</div>
-    </div>
-	{{/link-to}}
-
-  {{#link-to "workflows.semanticenrichment" class="c-button"}}
-    <div class="c-button__frame active">
-      <div class="c-button__name">
-        <h3>Rosetta Archive</h3>
-      </div>
-    </div>
-  {{/link-to}}
-
-  {{#link-to "workflows.geometricenrichment" class="c-button"}}
-    <div class="c-button__frame active">
-      <div class="c-button__name">
-        <h3>Bimsync file</h3>
-      </div>
-    </div>
-  {{/link-to}}
-
-  </div>
-</div>
-<!-- End ADD component -->
-
+<!-- Start filelist item -->
   <div class="c-file-list">
     <div class="c-file-list__category">
-      <h4>Haus30-Scan-2014-05-24.e57 | 429 MB</h4>
+      <h3>Haus30-Scan-2014-05-24.ifc | 429 MB</h3>
     </div>
     <div class="c-file-list__listing">
 
       <div class="c-file">
-        <div class="c-file__header">
-          Pointcloud (E57)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.e57</h3>
-          <div class="c-file__size">
-            <h4>382 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="c-file-list">
-    <div class="c-file-list__category">
-      <h4>Haus30-Scan-2014-05-24.e57 | 429 MB</h4>
-    </div>
-    <div class="c-file-list__listing">
-
-      <div class="c-file">
-        <div class="c-file__header">
-          Pointcloud (E57)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.e57</h3>
-          <div class="c-file__size">
-            <h4>382 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <div class="c-file-list">
-    <div class="c-file-list__category">
-      <h4>Haus30-Scan-2014-05-24.ifc | 429 MB</h4>
-    </div>
-    <div class="c-file-list__listing">
-
-      <div class="c-file">
-        <div class="c-file__header">
+        <div class="c-file__header t-file-files">
           3D Model (IFC)
         </div>
         <div class="c-file__name">
@@ -263,7 +172,7 @@
       </div>
 
       <div class="c-file">
-        <div class="c-file__header">
+        <div class="c-file__header t-file-files">
           Metadata (buildm)
         </div>
         <div class="c-file__name">
@@ -280,7 +189,7 @@
       </div>
 
       <div class="c-file">
-        <div class="c-file__header">
+        <div class="c-file__header t-file-files">
           Metadata (buildm)
         </div>
         <div class="c-file__name">
@@ -296,132 +205,114 @@
         </div>
       </div>
 
-      <div class="c-file">
-        <div class="c-file__header">
-          Metadata (buildm+)
-        </div>
-        <div class="c-file__name">
-          <h3>Linked Open Data</h3>
-          <div class="c-file__size">
-            <h4>734 KB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            e
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
+  <!-- End filelist item -->
 
-  <div class="c-file-list">
-    <div class="c-file-list__category">
-      <h4>Geometric Enrichments</h4>
+  <!-- Start filelist item -->
+    <div class="c-file-list">
+      <div class="c-file-list__category">
+        <h3>Haus30-Scan-2014-05-24.e57 | 742 MB</h3>
+      </div>
+      <div class="c-file-list__listing">
+
+        <div class="c-file">
+          <div class="c-file__header t-file-files">
+            Pointcloud (E57)
+          </div>
+          <div class="c-file__name">
+            <h3>Haus30-Scan-2014-05-24.e57</h3>
+            <div class="c-file__size">
+              <h4>742 MB</h4>
+            </div>
+          </div>
+          <div class="c-file__actions">
+            <div class="c-file__action">
+              x
+            </div>
+            <div class="c-file__action">
+              e
+            </div>
+            <div class="c-file__action">
+              v
+            </div>
+          </div>
+        </div>
+
+        <div class="c-file">
+          <div class="c-file__header t-file-files">
+            Metadata (buildm)
+          </div>
+          <div class="c-file__name">
+            <h3>Physical Asset Metadata</h3>
+            <div class="c-file__size">
+              <h4>434 KB</h4>
+            </div>
+          </div>
+          <div class="c-file__actions">
+            <div class="c-file__action">
+              e
+            </div>
+          </div>
+        </div>
+
+        <div class="c-file">
+          <div class="c-file__header t-file-files">
+            Metadata (buildm)
+          </div>
+          <div class="c-file__name">
+            <h3>Digital Object Metadata</h3>
+            <div class="c-file__size">
+              <h4>234 KB</h4>
+            </div>
+          </div>
+          <div class="c-file__actions">
+            <div class="c-file__action">
+              e
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="c-file-list__listing">
+    <!-- End filelist item -->
 
-      <div class="c-file">
-        <div class="c-file__header">
-          Reconstruction (IFC)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2012-05-24.ifc</h3>
-          <div class="c-file__size">
-            <h4>132 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
+
+    <!-- Begin ADD component -->
+    <div class="c-button-list">
+      <div class="c-button-list__category">
+        <h3>ADD FILE(S)</h3>
       </div>
 
-      <div class="c-file">
-        <div class="c-file__header">
-          Hidden Features (IFC)
+      <div class="c-button-list__content">
+
+    	{{#link-to "workflows.files" class="c-button"}}
+        <div class="c-button__frame t-button-files">
+      		<div class="c-button__name">
+      			<h3>Local file</h3>
+      		</div>
         </div>
-        <div class="c-file__name">
-          <h3>HiddenFeatures_Haus30-Scan-2012-05-24.ifc</h3>
-          <div class="c-file__size">
-            <h4>148 MB</h4>
+    	{{/link-to}}
+
+      {{#link-to "workflows.semanticenrichment" class="c-button"}}
+        <div class="c-button__frame t-button-files">
+          <div class="c-button__name">
+            <h3>Rosetta Archive</h3>
           </div>
         </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            v
+      {{/link-to}}
+
+      {{#link-to "workflows.geometricenrichment" class="c-button"}}
+        <div class="c-button__frame t-button-files">
+          <div class="c-button__name">
+            <h3>Bimsync file</h3>
           </div>
         </div>
+      {{/link-to}}
+
       </div>
-
-      <div class="c-file">
-        <div class="c-file__header">
-          Hidden Features (IFC)
-        </div>
-        <div class="c-file__name">
-          <h3>HiddenFeatures_Haus30-Scan-2014-05-24.ifc</h3>
-          <div class="c-file__size">
-            <h4>167 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-
-      <div class="c-file">
-        <div class="c-file__header">
-          Registration (ifcPC)
-        </div>
-        <div class="c-file__name">
-          <h3>Registration_Haus30-Scan-2014-05-24.ifc-Haus30-Scan2012-05-24.rdf</h3>
-          <div class="c-file__size">
-            <h4>477 KB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-
-{{!--       <div class="c-action-tile">
-        <div class="c-action-tile__name">
-          <h3>ADD</h3>
-        </div>
-        <div class="c-action-tile__actions">
-          <div class="c-action-tile__action">
-            Reconstruction
-          </div>
-          <div class="c-action-tile__action">
-            Hidden Features
-          </div>
-          <div class="c-action-tile__action">
-            Registration
-          </div>
-        </div>
-      </div> --}}
-
     </div>
-  </div>
-
+    <!-- End ADD component -->
 </div>
 
 <div class="l-follow c-follow is-collapsed">

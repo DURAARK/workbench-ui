@@ -1,6 +1,5 @@
 .c-button-list {
   color: color(white);
-
   transition: background 0.2s;
 }
 
@@ -18,13 +17,12 @@
 .c-button-list__content {
   @include container();
   @include cf;
-  // margin-bottom: rhythm(1);
+  margin-top: rhythm(1);
   padding: rhythm(0.5);
 }
 
 .c-button {
   @include gallery(1);
-
   text-decoration: none;
 }
 .c-button:hover {

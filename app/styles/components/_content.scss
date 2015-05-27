@@ -37,6 +37,12 @@
 .c-content-header__actions {
   float: right;
   margin-top: rhythm(-0.5);
+  text-decoration: none;
+}
+
+.c-content-header__action {
+    display: inline-block;
+    margin-left: rhythm(1);
 }
 
 .c-content {

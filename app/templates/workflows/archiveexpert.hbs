@@ -77,23 +77,30 @@
 </div>
 
 <div class="l-content-header c-content-header">
-  <div class="c-content-header__home">
+  <!-- <div class="c-content-header__home">
     <h1>Home</h1>
-  </div>
+  </div> -->
 
   <div class="c-content-header__title">
      <h1>Session Content</h1>
   </div>
 
-    <div class="c-content-header__actions">
-      <div class="c-content-header__action">
-        <div class="c-action-header">
-          <div class="c-action-header__name">
-            <h3>Create Archive</h3>
-          </div>
-        </div>
+  {{#link-to "workflows.archiveexpert" class="c-content-header__actions"}}
+    <div class="c-action-header">
+      <div class="c-action-header__name">
+        <h3>CREATE ARCHIVE</h3>
       </div>
     </div>
+  {{/link-to}}
+
+    {{#link-to "workflows.files" class="c-content-header__actions"}}
+      <div class="c-action-header">
+        <div class="c-action-header__name">
+          <h3>SIMPLE VIEW</h3>
+        </div>
+      </div>
+    {{/link-to}}
+
 </div>
 
 <div class="l-content c-content has-follow-collapsed">
@@ -187,8 +194,9 @@
           </div>
         </div>
       </div>
+
       <div class="c-action-tile">
-        <div class="c-action-tile__name__left">
+        <div class="c-action-tile__name">
           <h3>ADD</h3>
         </div>
         <div class="c-action-tile__actions">
@@ -203,6 +211,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -273,15 +282,19 @@
           </div>
         </div>
       </div>
+
+      <div {{action 'addSemanticEnrichment'}}class="c-action-tile">
+        <div class="c-action-tile__name">
+          <h3>ADD METADATA FILE</h3>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <div class="c-file-list">
     <div class="c-file-list__category">
       <h4>Semantic Enrichment Files</h4>
-{{!--         <div class="o-selection-button">
-        <button {{action addSemanticEnrichment}} type="button" class="o-selection-button__button" name="add">Add ...</button>
-      </div>    --}}
     </div>
     <div class="c-file-list__listing">
       <div class="c-file">
@@ -305,7 +318,7 @@
       </div>
       <div {{action 'addSemanticEnrichment'}}class="c-action-tile">
         <div class="c-action-tile__name">
-          <h3>ADD</h3>
+          <h3>ADD SEMANTIC ENRICHMENT</h3>
         </div>
       </div>
     </div>
@@ -399,6 +412,7 @@
           </div>
         </div>
       </div>
+
       <div class="c-action-tile">
         <div class="c-action-tile__name">
           <h3>ADD</h3>
@@ -415,6 +429,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 

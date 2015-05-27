@@ -41,6 +41,27 @@ $colors: (
   light-orange: #ABAA77
   );
 
+.t-file-files,
+.t-button-files {
+  background: color(light-blue) !important;
+}
+
+.t-file-semenrich,
+.t-button-semenrich {
+  background: color(light-orange) !important;
+}
+
+.t-file-geoenrich,
+.t-button-geoenrich {
+  background: color(light-green) !important;
+}
+
+.t-button-files,
+.t-button-semenrich,
+.t-button-geoenrich {
+  background: rgba(color(gallery), 0.1) !important;
+}
+
 // original
   // $colors: (
   //   white: #fff,
