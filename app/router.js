@@ -8,6 +8,7 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.resource("workflows", function() {
     this.route('files', { path: "/files" });
+    this.route('metadata', { path: "/metadata" });
     this.route('archiveexpert', { path: "/archiveexpert" });
     this.route('semanticenrichment', { path: "/semanticenrichment" });
     this.route('semanticenrichment-select-topic-1', { path: "/semanticenrichment-select-topic-1" });

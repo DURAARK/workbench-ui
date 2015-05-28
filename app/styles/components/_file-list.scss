@@ -1,13 +1,17 @@
 .c-file-list {
-  position: relative;
   @include container();
+  margin-left: rhythm(1);
+  margin-right: rhythm(1);
+  position: relative;
+  
   color: color(white);
 }
 
 .c-file-list__category {
   padding-left: rhythm(1);
   background: color(natural-gray);
-
+  @include bleed-x(rhythm(1));
+  
   h3 {
     font-weight: bold;
   }

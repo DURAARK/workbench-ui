@@ -34,7 +34,7 @@
       </nav>
 
       <nav class="c-expanded-sitenav__menu">
-        <h5 class="c-expanded-sitenav__title">Add Semantic Enrichments</h5>
+        <h5 class="c-expanded-sitenav__title">ADD TOPICs</h5>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -82,7 +82,7 @@
   </div>
  --}}
   <div class="c-content-header__title">
-     <h1>Session Content</h1>
+     <h1>SESSION: Haus 30</h1>
   </div>
 
     {{#link-to "workflows.archiveexpert" class="c-content-header__actions"}}
@@ -113,10 +113,18 @@
 
   <div class="c-stage-list__content">
 
-	{{#link-to "workflows.files" class="c-button"}}
+  {{#link-to "workflows.files" class="c-stage"}}
     <div class="c-stage__frame c-stage__files active">
+      <div class="c-stage__name">
+        <h3>Files</h3>
+      </div>
+    </div>
+  {{/link-to}}
+
+	{{#link-to "workflows.metadata" class="c-stage"}}
+    <div class="c-stage__frame c-stage__metadata">
   		<div class="c-stage__name">
-  			<h3>Files & Metadata</h3>
+  			<h3>Metadata</h3>
   		</div>
     </div>
 	{{/link-to}}
@@ -144,7 +152,7 @@
 <!-- Start filelist item -->
   <div class="c-file-list">
     <div class="c-file-list__category">
-      <h3>Haus30-Scan-2014-05-24.ifc | 429 MB</h3>
+      <h3>Files | Total: 1.3 GB</h3>
     </div>
     <div class="c-file-list__listing">
 
@@ -171,51 +179,6 @@
         </div>
       </div>
 
-      <div class="c-file">
-        <div class="c-file__header t-file-files">
-          Metadata (buildm)
-        </div>
-        <div class="c-file__name">
-          <h3>Physical Asset</h3>
-          <div class="c-file__size">
-            <h4>434 KB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            e
-          </div>
-        </div>
-      </div>
-
-      <div class="c-file">
-        <div class="c-file__header t-file-files">
-          Metadata (buildm)
-        </div>
-        <div class="c-file__name">
-          <h3>Digital Object</h3>
-          <div class="c-file__size">
-            <h4>234 KB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            e
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <!-- End filelist item -->
-
-  <!-- Start filelist item -->
-    <div class="c-file-list">
-      <div class="c-file-list__category">
-        <h3>Haus30-Scan-2014-05-24.e57 | 742 MB</h3>
-      </div>
-      <div class="c-file-list__listing">
-
         <div class="c-file">
           <div class="c-file__header t-file-files">
             Pointcloud (E57)
@@ -235,40 +198,6 @@
             </div>
             <div class="c-file__action">
               v
-            </div>
-          </div>
-        </div>
-
-        <div class="c-file">
-          <div class="c-file__header t-file-files">
-            Metadata (buildm)
-          </div>
-          <div class="c-file__name">
-            <h3>Physical Asset</h3>
-            <div class="c-file__size">
-              <h4>434 KB</h4>
-            </div>
-          </div>
-          <div class="c-file__actions">
-            <div class="c-file__action">
-              e
-            </div>
-          </div>
-        </div>
-
-        <div class="c-file">
-          <div class="c-file__header t-file-files">
-            Metadata (buildm)
-          </div>
-          <div class="c-file__name">
-            <h3>Digital Object</h3>
-            <div class="c-file__size">
-              <h4>234 KB</h4>
-            </div>
-          </div>
-          <div class="c-file__actions">
-            <div class="c-file__action">
-              e
             </div>
           </div>
         </div>

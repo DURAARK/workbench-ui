@@ -5,6 +5,13 @@ $susy: (
   //debug: (image: show-columns, color: rgba(red, 0.25))
   );
 
+$stages: (
+  columns: 4,
+  gutters: 0,
+  global-box-sizing: border-box,
+  //debug: (image: show-columns, color: rgba(red, 0.25))
+  );
+
 $contexts: (
   games: (
     small: 3,
