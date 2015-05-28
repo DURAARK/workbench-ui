@@ -19,17 +19,6 @@
 
   color: color(gallery);
 }
-.c-action-tile__name__left {
-  padding-top: rhythm(1.8);
-  padding-left: rhythm(2);
-
-  // width: 50%;
-  height: rhythm(5);
-
-  text-align: left;
-
-  color: color(gallery);
-}
 .c-action-tile__actions {
   position: absolute;
 
@@ -50,9 +39,18 @@
   border-top: 1px solid rgba(color(gallery), 0.5);
 
   text-align: center;
+  text-decoration: none;
 
   &:first-child {
     border: none;
+  }
+
+  &.apply {
+    background: green;
+  }
+
+  &.cancel {
+    background: red;
   }
 }
 

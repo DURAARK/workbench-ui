@@ -10,6 +10,10 @@ Router.map(function() {
     this.route('files', { path: "/files" });
     this.route('archiveexpert', { path: "/archiveexpert" });
     this.route('semanticenrichment', { path: "/semanticenrichment" });
+    this.route('semanticenrichment-select-topic-1', { path: "/semanticenrichment-select-topic-1" });
+    this.route('semanticenrichment-select-topic-1-added', { path: "/semanticenrichment-select-topic-1-added" });
+    this.route('semanticenrichment-select-topic-2', { path: "/semanticenrichment-select-topic-2" });
+    this.route('semanticenrichment-new-topic', { path: "/semanticenrichment-new-topic" });
     this.route('geometricenrichment', { path: "/geometricenrichment" });
     this.route('retrieval', { path: "/retrieval" });
     this.route('maintenance', { path: "/maintenance" });

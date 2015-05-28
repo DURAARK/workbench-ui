@@ -107,13 +107,13 @@
 
     <div class="c-stage-list__content">
 
-  	{{#link-to "workflows.files" class="c-button"}}
+    {{#link-to "workflows.files" class="c-button"}}
       <div class="c-stage__frame c-stage__files">
-    		<div class="c-stage__name">
-    			<h3>Files & Metadata</h3>
-    		</div>
+        <div class="c-stage__name">
+          <h3>Files & Metadata</h3>
+        </div>
       </div>
-  	{{/link-to}}
+    {{/link-to}}
 
     {{#link-to "workflows.semanticenrichment" class="c-stage"}}
       <div class="c-stage__frame c-stage__semenrich active">
@@ -137,18 +137,32 @@
 
   <div class="c-file-list">
     <div class="c-file-list__category">
-      <h3>Haus30-Scan-2014-05-24.e57 | 429 MB</h3>
+      <h3>Topic: <input type="input" placeholder="topic name"></h3>
     </div>
     <div class="c-file-list__listing">
 
+      <div class="c-action-tile">
+        <div class="c-action-tile__name">
+          <h3>ADD TOPIC</h3>
+        </div>
+        <div class="c-action-tile__actions">
+          <div class="c-action-tile__action apply">
+            {{#link-to "workflows.semanticenrichment-select-topic-1"}}<h3>SAVE</h3>{{/link-to}}
+          </div>
+          <div class="c-action-tile__action cancel">
+            {{#link-to "workflows.semanticenrichment-select-topic-1"}}<h3>CANCEL</h3>{{/link-to}}
+          </div>
+        </div>
+      </div>
+
       <div class="c-file">
         <div class="c-file__header t-file-semenrich">
-          3D Model (IFC)
+          Seed
         </div>
         <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.ifc</h3>
+          <h3>http://dbpedia.org/resource/Wennigsen</h3>
           <div class="c-file__size">
-            <h4>382 MB</h4>
+            <h4>Description</h4>
           </div>
         </div>
         <div class="c-file__actions">
@@ -166,12 +180,12 @@
 
       <div class="c-file">
         <div class="c-file__header t-file-semenrich">
-          Metadata (buildm+)
+          Seed
         </div>
         <div class="c-file__name">
-          <h3>Seed Topic: Environment</h3>
+          <h3>http://dbpedia.org/ontology/nobelLaureates</h3>
           <div class="c-file__size">
-            <h4>163 KB</h4>
+            <h4>Description</h4>
           </div>
         </div>
         <div class="c-file__actions">
@@ -186,100 +200,38 @@
           </div>
         </div>
       </div>
+
+      <div class="c-file">
+        <div class="c-file__header t-file-semenrich">
+          Seed
+        </div>
+        <div class="c-file__name">
+          <h3>http://dbpedia.org/resource/Graz</h3>
+          <div class="c-file__size">
+            <h4>Description</h4>
+          </div>
+        </div>
+        <div class="c-file__actions">
+          <div class="c-file__action">
+            x
+          </div>
+          <div class="c-file__action">
+            e
+          </div>
+          <div class="c-file__action">
+            v
+          </div>
+        </div>
+      </div>      
 
       <div class="c-action-tile">
         <div class="c-action-tile__name">
-          {{#link-to "workflows.semanticenrichment-select-topic-1"}}<h3>ADD SEMANTIC ENRICHMENT</h3>{{/link-to}}
+          <h3>ADD SEED</h3>
         </div>
       </div>
 
     </div>
   </div>
-
-  <div class="c-file-list">
-    <div class="c-file-list__category">
-      <h3>Haus30-Scan-2014-05-24.e57 | 429 MB</h3>
-    </div>
-    <div class="c-file-list__listing">
-
-      <div class="c-file">
-        <div class="c-file__header t-file-semenrich">
-          Pointcloud (E57)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.e57ifc</h3>
-          <div class="c-file__size">
-            <h4>742 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-
-      <div class="c-file">
-        <div class="c-file__header t-file-semenrich">
-          Metadata (buildm+)
-        </div>
-        <div class="c-file__name">
-          <h3>Seed Topic: Architecture</h3>
-          <div class="c-file__size">
-            <h4>832 KB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-
-      <div class="c-file">
-        <div class="c-file__header t-file-semenrich">
-          Metadata (buildm+)
-        </div>
-        <div class="c-file__name">
-          <h3>Seed Topic: Energy</h3>
-          <div class="c-file__size">
-            <h4>172 KB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-
-      <div class="c-action-tile">
-        <div class="c-action-tile__name">
-          {{#link-to "workflows.semanticenrichment-select-topic-2"}}<h3>ADD SEMANTIC ENRICHMENT</h3>{{/link-to}}
-        </div>
-      </div>
-
-    </div>
-  </div>
-
 </div>
 
 <div class="l-follow c-follow is-collapsed">
