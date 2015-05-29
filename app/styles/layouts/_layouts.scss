@@ -52,7 +52,7 @@ body,
 
 .l-content-header {
   z-index: 20;
-  width: calc(100% - #{rhythm(0)});
+  //width: calc(100% - #{rhythm(0)});
   height: rhythm(5);
   margin-left: rhythm(0);
   margin-right: rhythm(21);
@@ -62,7 +62,7 @@ body,
 
 .l-content {
   @include cf;
-  width: calc(100% - #{rhythm(0)});
+  //width: calc(100% - #{rhythm(0)});
   margin-top: rhythm(5);
   margin-left: rhythm(0);
   padding-left: rhythm(0);
@@ -77,7 +77,7 @@ body,
 
   &.has-follow-collapsed {
     margin-right: 0;
-    width: calc(100% - #{rhythm(0)});
+    //width: calc(100% - #{rhythm(0)});
   }
 
   &.has-nav-collapsed.has-follow-collapsed {
