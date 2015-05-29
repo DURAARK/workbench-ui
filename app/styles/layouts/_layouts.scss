@@ -53,9 +53,10 @@ body,
 .l-content-header {
   z-index: 20;
   //width: calc(100% - #{rhythm(0)});
+  width: 100%;
   height: rhythm(5);
   margin-left: rhythm(0);
-  margin-right: rhythm(21);
+  //margin-right: rhythm(21);
   padding: rhythm(2);
   padding-left: rhythm(1.5);
 }
@@ -63,6 +64,7 @@ body,
 .l-content {
   @include cf;
   //width: calc(100% - #{rhythm(0)});
+  width: 100%;
   margin-top: rhythm(5);
   margin-left: rhythm(0);
   padding-left: rhythm(0);
@@ -71,17 +73,19 @@ body,
   overflow-y: auto;
 
   &.has-nav-collapsed {
-    margin-left: lrhythm(2);
-    width: calc(100% - #{rhythm(2)} - #{rhythm(21)});
+    //margin-left: rhythm(2);
+    //width: calc(100% - #{rhythm(2)} - #{rhythm(21)});
+    width: 100%;
   }
 
   &.has-follow-collapsed {
     margin-right: 0;
     //width: calc(100% - #{rhythm(0)});
+    width: 100%;
   }
 
   &.has-nav-collapsed.has-follow-collapsed {
-    width: calc(100% - #{rhythm(2)});
+    //width: calc(100% - #{rhythm(2)});
   }
 }
 
