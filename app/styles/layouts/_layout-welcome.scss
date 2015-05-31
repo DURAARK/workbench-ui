@@ -1,0 +1,27 @@
+// Layouts
+// =======
+
+html,
+body {
+  height: 100%;
+}
+
+.l-header {
+  background-image: url("https://konnektor.grazzz.at/owncloud/index.php/apps/gallery/ajax/image.php?file=455aab1cc1fbc7e670aa499fe5901c24%2F_DSC8080.jpg");
+  color: white;
+
+  height: 100vh;
+  background-size: cover;
+
+  // margin: 0 auto 20px;
+
+  text-align: right;
+}
+
+.l-welcome {
+  // height: 100%;
+  background-image: url("https://konnektor.grazzz.at/owncloud/index.php/apps/gallery/ajax/image.php?file=455aab1cc1fbc7e670aa499fe5901c24%2F_DSC8080.jpg");
+  color: grey;
+
+  height: 100vh;
+}

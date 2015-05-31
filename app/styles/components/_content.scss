@@ -1,9 +1,9 @@
 .c-content-header {
-  @include cf;
+  // @include cf;
   background: color(light-blue);
   color: color(white);
 
-  text-transform: uppercase;
+  // text-transform: uppercase;
 
   &.c-content__files {
     background: rgba(color(light-blue), 1);
@@ -33,14 +33,25 @@
   color: rgba(color(royal-purple), 1);
 }
 
+.c-content-header__header {
+  padding-right: rhythm(1);
+  background: color(natural-gray);
+
+  // h3 {
+  //   font-weight: bold;
+  // }
+
+  text-align: center;
+}
+
 .c-content-header__title {
   display: inline-block;
-  margin-left: rhythm(4);
+  padding: rhythm(1);
 }
 
 .c-content-header__actions {
   float: right;
-  margin-top: rhythm(-0.5);
+  padding: rhythm(0.5);
   text-decoration: none;
 }
 

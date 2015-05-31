@@ -1,6 +1,8 @@
 // Layouts
 // =======
 
+@import "layout-welcome";
+
 html,
 body,
 .l-canvas,
@@ -54,18 +56,18 @@ body,
   z-index: 20;
   //width: calc(100% - #{rhythm(0)});
   width: 100%;
-  height: rhythm(5);
+  height: rhythm(3);
   margin-left: rhythm(0);
   //margin-right: rhythm(21);
-  padding: rhythm(2);
-  padding-left: rhythm(1.5);
+  // padding: rhythm(2);
+  // padding-left:   rhythm(1.5);
 }
 
 .l-content {
   @include cf;
   //width: calc(100% - #{rhythm(0)});
   width: 100%;
-  margin-top: rhythm(5);
+  margin-top: rhythm(3);
   margin-left: rhythm(0);
   padding-left: rhythm(0);
   padding-right: rhythm(0);
