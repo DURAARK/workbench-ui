@@ -1,0 +1,35 @@
+.c-header {
+  background-image: url("https://konnektor.grazzz.at/owncloud/index.php/apps/gallery/ajax/image.php?file=455aab1cc1fbc7e670aa499fe5901c24%2F_DSC8080.jpg");
+  color: white;
+  text-align: right;
+}
+.c-landingpage {
+  background-image: url("https://konnektor.grazzz.at/owncloud/index.php/apps/gallery/ajax/image.php?file=455aab1cc1fbc7e670aa499fe5901c24%2F_DSC8080.jpg");
+  background-repeat: no-repeat;
+  color: black;
+}
+.c-landingpage__title {
+  padding: rhythm(2.2) rhythm(2.2) rhythm(2.2) rhythm(36.5);
+}
+.c-landingpage__subtitle {
+  margin-top: rhythm(0.7);
+}
+.c-landingpage__buttons {
+  margin-top: rhythm(9);
+  margin-left: rhythm(50);
+
+  button {
+    display: block;
+    width: rhythm(7);
+    margin-bottom: rhythm(0.5);
+    padding: rhythm(0.4);
+
+    // text-align: left;
+
+    background: rgb(206, 203, 42);
+  }
+
+  button:hover {
+    background: lighten(rgb(206, 203, 42), 20%);
+  }
+}
