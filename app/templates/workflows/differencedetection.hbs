@@ -33,7 +33,7 @@
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </nav>
 
-      <nav class="c-expanded-sitenavaber schon cool, dass du den mal siehst, odeR?__menu">
+      <nav class="c-expanded-sitenav__menu">
         <h5 class="c-expanded-sitenav__title">ADD TOPICs</h5>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -76,79 +76,68 @@
   <!-- end expanded sitenav -->
 </div>
 
-<div class="l-content-header c-content-header c-content__geoenrich">
-  {{!--   <div class="c-content-header__home">
-      <h1>Home</h1>
-    </div>
-   --}}
-   <!-- <div class="c-content-header__header">
-      <h3>Session</h3>
-   </div> -->
- <div class="c-content-header__title">
-    <h1>Haus 30</h1>
- </div>
+<div class="l-content-header c-content-header c-content-semenrich">
+{{!--   <div class="c-content-header__home">
+    <h1>Home</h1>
+  </div>
+ --}}
+  <div class="c-content-header__title">
+     <h1>Haus 30</h1>
+  </div>
+</div>
 
-   {{#link-to "workflows.archiveexpert" class="c-content-header__actions"}}
-     <div class="c-action-header">
-       <div class="c-action-header__name">
-         <h3>CREATE ARCHIVE</h3>
-       </div>
-     </div>
-   {{/link-to}}
- </div>
+<div class="l-content c-content has-follow-collapsed">
 
- <div class="l-content c-content has-follow-collapsed">
+<!-- Begin stages component -->
+<div class="c-stage-list">
 
- <!-- Begin stages component -->
- <div class="c-stage-list">
+  <div class="c-stage-list__category">
+    <h3>Workbench Tools</h3>
+  </div>
 
- <div class="c-stage-list__category">
-   <h3>Workbench Tools</h3>
- </div>
+  <div class="c-stage-list__content">
 
- <div class="c-stage-list__content">
+    {{#link-to "workflows.files" class="c-stage"}}
+      <div class="c-stage__frame c-stage__geoenrich active">
+        <div class="c-stage__name">
+          <h3>> Difference Detection</h3>
+        </div>
+      </div>
+    {{/link-to}}
 
- {{#link-to "workflows.files" class="c-stage"}}
-   <div class="c-stage__frame c-stage__files active">
-     <div class="c-stage__name">
-       <h3>Files</h3>
-     </div>
-   </div>
- {{/link-to}}
+  </div>
+</div>
+<!-- End stages component -->
 
- {{#link-to "workflows.metadata" class="c-stage"}}
-   <div class="c-stage__frame c-stage__metadata">
-     <div class="c-stage__name">
-       <h3>Metadata</h3>
-     </div>
-   </div>
- {{/link-to}}
-
- {{#link-to "workflows.semanticenrichment" class="c-stage"}}
-   <div class="c-stage__frame c-stage__semenrich">
-     <div class="c-stage__name">
-       <h3>Semantic Enrichments</h3>
-     </div>
-   </div>
- {{/link-to}}
-
- {{#link-to "workflows.geometricenrichment" class="c-stage"}}
-   <div class="c-stage__frame c-stage__geoenrich">
-     <div class="c-stage__name">
-       <h3>Geometric Enrichments</h3>
-     </div>
-   </div>
- {{/link-to}}
-
- </div>
- </div>
- <!-- End stages component -->
-
+<!-- Start filelist item -->
   <div class="c-file-list">
     <div class="c-file-list__category">
-      <h3>Haus30-Scan-2014-05-24.e57 | 742 MB</h3>
+      <h3>Select two files to compare</h3>
     </div>
     <div class="c-file-list__listing">
+
+      <div class="c-file">
+        <div class="c-file__header t-file-geoenrich">
+          3D Model (IFC)
+        </div>
+        <div class="c-file__name">
+          <h3>Haus30-Scan-2014-05-24.ifc</h3>
+          <div class="c-file__size">
+            <h4>382 MB</h4>
+          </div>
+        </div>
+        <div class="c-file__actions">
+          <div class="c-file__action">
+            x
+          </div>
+          <div class="c-file__action">
+            e
+          </div>
+          <div class="c-file__action">
+            v
+          </div>
+        </div>
+      </div>
 
       <div class="c-file">
         <div class="c-file__header t-file-geoenrich">
@@ -173,37 +162,38 @@
         </div>
       </div>
 
-      <div class="c-action-tile">
-        <div class="c-action-tile__name">
-          <h3>ADD RECONSTRUCTION</h3>
-        </div>
       </div>
-
-
-      {{#link-to "workflows.differencedetection" class="c-action-tile"}}
-        <div class="c-action-tile__name">
-          <h3>ADD HIDDEN FEATURES</h3>
-        </div>
-      {{/link-to}}
-
     </div>
-  </div>
+    <!-- End filelist item -->
 
-  <div class="c-file-list">
-    <div class="c-file-list__category">
-      <h3>DIFFERENCE DETECTIONS</h3>
-    </div>
-    <div class="c-file-list__listing">
 
-      <div {{action "showDifferenceDetectionPage"}}class="c-action-tile">
-        <div class="c-action-tile__name">
-          <h3>ADD</h3>
+    <!-- Begin ADD component -->
+    <div class="c-button-list">
+      <!-- <div class="c-button-list__category">
+        <h3>Add files</h3>
+      </div> -->
+
+      <div class="c-button-list__content">
+
+    	{{#link-to "workflows.geometricenrichment-added-difference-detection" class="c-button"}}
+        <div class="c-button__frame t-button-files">
+      		<div class="c-button__name">
+      			<h3>Detect</h3>
+      		</div>
         </div>
+    	{{/link-to}}
+
+      {{#link-to "workflows.geometricenrichment" class="c-button"}}
+        <div class="c-button__frame t-button-files">
+      		<div class="c-button__name">
+      			<h3>Cancel</h3>
+      		</div>
+        </div>
+    	{{/link-to}}
+
       </div>
-
     </div>
-  </div>
-
+    <!-- End ADD component -->
 </div>
 
 <div class="l-follow c-follow is-collapsed">

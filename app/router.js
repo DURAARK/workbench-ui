@@ -16,6 +16,8 @@ Router.map(function() {
     this.route('semanticenrichment-select-topic-2', { path: "/semanticenrichment-select-topic-2" });
     this.route('semanticenrichment-new-topic', { path: "/semanticenrichment-new-topic" });
     this.route('geometricenrichment', { path: "/geometricenrichment" });
+    this.route('geometricenrichment-added-difference-detection', { path: "/geometricenrichment-added-difference-detection" });
+    this.route('differencedetection', { path: "/geometricenrichment/differencedetection" });
     this.route('retrieval', { path: "/retrieval" });
     this.route('maintenance', { path: "/maintenance" });
   });
