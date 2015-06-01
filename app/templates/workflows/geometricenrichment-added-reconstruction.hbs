@@ -109,7 +109,7 @@
  <div class="c-stage-list__content">
 
  {{#link-to "workflows.files" class="c-stage"}}
-   <div class="c-stage__frame c-stage__files active">
+   <div class="c-stage__frame c-stage__files">
      <div class="c-stage__name">
        <h3>Files</h3>
      </div>
@@ -133,7 +133,7 @@
  {{/link-to}}
 
  {{#link-to "workflows.geometricenrichment" class="c-stage"}}
-   <div class="c-stage__frame c-stage__geoenrich">
+   <div class="c-stage__frame c-stage__geoenrich active">
      <div class="c-stage__name">
        <h3>Geometric Enrichments</h3>
      </div>
@@ -173,15 +173,32 @@
         </div>
       </div>
 
-      {{#link-to "workflows.geometricenrichment-added-reconstruction" class="c-action-tile"}}
-        <div class="c-action-tile__name">
-          <h3>ADD RECONSTRUCTION</h3>
+      <div class="c-file">
+        <div class="c-file__header t-file-geoenrich">
+          3D Model (IFC Reconstruction)
         </div>
-      {{/link-to}}
+        <div class="c-file__name">
+          <h3>Haus30-Scan-2014-05-24.ifc</h3>
+          <div class="c-file__size">
+            <h4>353 MB</h4>
+          </div>
+        </div>
+        <div class="c-file__actions">
+          <div class="c-file__action">
+            x
+          </div>
+          <div class="c-file__action">
+            e
+          </div>
+          <div class="c-file__action">
+            v
+          </div>
+        </div>
+      </div>
 
       {{#link-to "workflows.hiddenfeatures" class="c-action-tile"}}
         <div class="c-action-tile__name">
-          <h3>ADD HIDDEN FEATURES</h3>
+          <h3>DETECT HIDDEN FEATURES</h3>
         </div>
       {{/link-to}}
 
@@ -193,75 +210,6 @@
       <h3>DIFFERENCE DETECTIONS</h3>
     </div>
     <div class="c-file-list__listing">
-
-      <div class="c-file">
-        <div class="c-file__header t-file-geoenrich">
-          Difference Detection (rdf)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.e57 - Haus30-2014-05-24.ifc</h3>
-          <div class="c-file__size">
-            <h4>742 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-
-      <!-- <div class="c-file">
-        <div class="c-file__header t-file-geoenrich">
-          Difference Detection (rdf)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.e57 - Haus30-2014-05-24.e57</h3>
-          <div class="c-file__size">
-            <h4>742 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-
-      <div class="c-file">
-        <div class="c-file__header t-file-geoenrich">
-          Difference Detection (rdf)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.ifc - Haus30-2014-05-24.ifc</h3>
-          <div class="c-file__size">
-            <h4>742 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div> -->
 
       <div {{action "showDifferenceDetectionPage"}}class="c-action-tile">
         <div class="c-action-tile__name">
