@@ -2,7 +2,7 @@
   position: relative;
   @include gallery(1);
   margin-bottom: gutter();
-  color: color(dark-gray);
+  //color: color(gallery);
   text-align: center;
   transition: background 0.2s;
   background: rgba(color(gallery), 0.1);
@@ -25,24 +25,35 @@
 }
 
 .selectable.c-file:hover {
-  background: rgba(color(gallery), 0.5);
+  background: rgba(color(natural-gray),1);
 }
 .c-file__header {
   background: color(light-green);
-  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.25);
+//  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.25);
 }
 .c-file__name {
   min-height: rhythm(3.3);
   padding-top: rhythm(0.5);
-
-  background: color(gallery);
-  color: color(mid-gray);
+  font-size: 1.2rem;
+  background: color(natural-gray);
+  color: color(dark-gray);
 }
 .c-file__actions {
   width: 100%;
   background: color(natural-gray);
-}
 
+
+  .c-file__actions__button {
+      width: 100%;
+      background: rgba(color(dark-brown), 1);
+      color: color(light-gray);
+
+      &:hover {
+      background: rgba(color(light-orange), 1);
+      color: color(dark-gray);
+      }
+    }
+}
 .c-file__action {
   float: right;
   display: inline-block;

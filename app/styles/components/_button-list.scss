@@ -1,5 +1,5 @@
 .c-button-list {
-  color: color(white);
+  color: color(dark-gray);
   transition: background 0.2s;
 }
 
@@ -24,9 +24,11 @@
 .c-button {
   @include gallery(1);
   text-decoration: none;
+  background: rgba(color(natural-gray), 1);
 }
 .c-button:hover {
-  background: rgba(color(gallery), 0.5);
+  background: rgba(color(light-orange), 1);
+
 }
 .c-button__frame {
   min-height: rhythm(4);

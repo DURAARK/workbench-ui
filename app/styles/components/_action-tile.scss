@@ -2,12 +2,12 @@
   position: relative;
   @include gallery(1);
   margin-bottom: gutter();
-  background: rgba(color(gallery), 0.1);
+  background: rgba(color(natural-gray), 1);
   border: 3px dashed color(gallery);
   transition: background 0.2s;
 }
 .c-action-tile:hover {
-  background: rgba(color(gallery), 0.5);
+  background: rgba(color(light-orange), 0.5);
 }
 .c-action-tile__name {
   padding-top: rhythm(1.8);
@@ -45,16 +45,17 @@
     border: none;
   }
 
-  &.apply {
-    background: green;
+  &.apply:hover {
+      background: color(light-orange);
+    
   }
 
-  &.cancel {
-    background: red;
-  }
+  &.cancel:hover {
+      background: color(light-orange);
+    }
+  
 }
 
 .c-action-tile__action:hover {
-  background: color(gallery);
-  color: color(dark-gray);
+  background: color(light-orange);
 }

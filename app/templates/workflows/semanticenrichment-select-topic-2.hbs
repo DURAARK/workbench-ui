@@ -195,11 +195,13 @@
         </div>
       </div>
 
-      <div class="c-action-tile">
+      
+          
+      {{#link-to "workflows.semanticenrichment-select-topic-1"  class="c-button c-action-tile"}}
         <div class="c-action-tile__name">
-          {{#link-to "workflows.semanticenrichment-select-topic-1"}}<h3>ADD TOPIC</h3>{{/link-to}}
+          <h3>ADD TOPIC</h3>
         </div>
-      </div>
+      {{/link-to}}
 
     </div>
   </div>
@@ -216,10 +218,10 @@
         </div>
         <div class="c-action-tile__actions">
           <div class="c-action-tile__action apply">
-            {{#link-to "workflows.semanticenrichment-select-topic-1-added"}}<h3>SAVE</h3>{{/link-to}}
+            {{#link-to "workflows.semanticenrichment-select-topic-1-added" class="c-action-tile__action"}}<h3>SAVE</h3>{{/link-to}}
           </div>
           <div class="c-action-tile__action cancel">
-            {{#link-to "workflows.semanticenrichment"}}<h3>CANCEL</h3>{{/link-to}}
+            {{#link-to "workflows.semanticenrichment" class="c-action-tile__action"}}<h3>CANCEL</h3>{{/link-to}}
           </div>
         </div>
       </div>
@@ -284,11 +286,12 @@
         </div>
       </div>
 
-      <div class="c-action-tile">
+     
+            {{#link-to "workflows.semanticenrichment-new-topic" class="c-button c-action-tile"}}
         <div class="c-action-tile__name">
-            {{#link-to "workflows.semanticenrichment-new-topic"}}<h3>NEW TOPIC</h3>{{/link-to}}
+          <h3>NEW TOPIC</h3>
         </div>
-      </div>
+      {{/link-to}}
 
     </div>
   </div>

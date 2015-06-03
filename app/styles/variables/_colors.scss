@@ -23,39 +23,41 @@
 
 $colors: (
   white: #fff,
-  dark-gray: #5A5A5A,
-  gallery: #eee,
+  dark-gray: #3D3E40,
+  gallery: #3D3E40,
   concrete: #f2f2f2,
   silver: #c2c2c2,
   gray: #8c8c8c,
-  natural-gray: #8c8c9c,
+  natural-gray: #e4e4f0,
   royal-purple: rgba(85, 26, 139, 0.99),
   tuna: rgba(50, 50, 62, 0.5),
   woodsmoke:#101014,
   shark: #edece4,
-  mid-gray: #666676,
-  light-green: #8C9C91,
+  mid-gray: #acb6ba,
+  light-green: #D3E33F,
   mid-green: #187735,
   very-green: rgba(84, 176, 112, 1),
-  light-blue: #739BA9,
-  light-orange: #AE8263,
-  flashy-green: #808B4F
+  light-blue: #0066A8,
+  light-orange: #fed64a,
+  flashy-green: #0066A8,
+  light-gray: #F6F6FF,
+  dark-brown: #55504b
   );
 
 .t-file-files {
-  background: color(light-blue) !important;
+  background: color(light-green) !important;
 }
 
 .t-file-semenrich {
-  background: color(light-orange) !important;
+  background: color(light-green) !important;
 }
 
-.t-file-geoenrich {
+.t-file-geoenrich { 
   background: color(light-green) !important;
 }
 
 .t-file-metadata {
-  background: rgba(color(flashy-green), 1) !important;
+  background: rgba(color(light-green), 1) !important;
 }
 
 .t-button-files,
@@ -63,7 +65,7 @@ $colors: (
 .t-button-semenrich,
 .t-button-geoenrich,
 .t-button-metadata {
-  background: rgba(color(gallery), 0.1) !important;
+  background: rgba(color(natural-gray), 0) !important;
 }
 
 // original

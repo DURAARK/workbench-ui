@@ -1,20 +1,20 @@
 .c-content-header {
   // @include cf;
-  background: color(light-blue);
-  color: color(white);
+  background: color(light-green);
+  color: color(gallery);
 
   // text-transform: uppercase;
 
   &.c-content__files {
-    background: rgba(color(light-blue), 1);
+    background: rgba(color(light-green), 1);
   }
 
   &.c-content__metadata {
-    background: rgba(color(flashy-green), 1);
+    background: rgba(color(light-green), 1);
   }
 
   &.c-content__semenrich {
-    background: rgba(color(light-orange), 1);
+    background: rgba(color(light-green), 1);
   }
 
   &.c-content__geoenrich {
@@ -62,5 +62,5 @@
 
 .c-content {
   // padding-left: rhythm(1.5);
-  background-color: color(dark-gray);
+  background-color: color(light-gray);
 }

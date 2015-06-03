@@ -1,13 +1,11 @@
 .c-action-header {
   margin-left: rhythm(1);
-  background: rgba(color(very-green), 0.4);
-  border: 3px dashed color(very-green);
+  background: rgba(color(natural-gray), 01);
+  border: 3px dashed color(dark-brown);
   transition: all 0.2s;
 }
 .c-action-header:hover {
-  background: rgba(color(very-green), 0.8);
-  border: 4px dashed color(very-green);
-  margin-top: -1px;
+  background: rgba(color(light-orange), 1);
 }
 .c-action-header__name {
   padding-top: rhythm(0.3);
