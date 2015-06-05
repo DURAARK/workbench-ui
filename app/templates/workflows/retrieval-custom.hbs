@@ -85,7 +85,7 @@
     <div class="c-stage-list__content">
 
     {{#link-to "workflows.retrieval" class="c-stage"}}
-      <div class="c-stage__frame c-stage__files active">
+      <div class="c-stage__frame c-stage__files">
         <div class="c-stage__name">
           <h3><i class="fa fa-filter"></i> Filters</h3>
         </div>
@@ -93,7 +93,7 @@
     {{/link-to}}
 
     {{#link-to "workflows.retrieval-custom" class="c-stage"}}
-      <div class="c-stage__frame c-stage__metadata">
+      <div class="c-stage__frame c-stage__metadata active">
         <div class="c-stage__name">
           <h3><i class="fa fa-puzzle-piece"></i> Custom Search</h3>
         </div>
@@ -106,56 +106,67 @@
 
     <div class="c-file-list">
       <div class="c-file-list__category">
-        <h3>Filter Templates</h3>
+        <h3>Custom Search</h3>
         <div class="o-selection-button">
-          <button type="button" class="o-selection-button__button" name="add">Show only active</button>
-        </div>
+          <button type="button" class="o-selection-button__button" name="add">Save as Filter</button>
+        </div>        
       </div>
-      <div class="c-file-list__listing">
+      <div class="c-file-list__listing"> 
+
         <div class="c-file">
           <div class="c-file__header">
-            Urban planning
+            Address
           </div>
           <div class="c-file__name">
-            <h3>All buildings within 3km range</h3>
+            <h3><br>Inffeldgasse</h3>
           </div>
           <div class="c-file__actions">
             <div class="c-file__action">
-              <i class="fa fa-check-square-o"></i>
+              <i class="fa fa-times"></i>
             </div>
           </div>
         </div>
         <div class="c-file">
           <div class="c-file__header">
-            Construction
+            Rooms
           </div>
           <div class="c-file__name">
-            <h3>All buildings with 3 storeys</h3>
+            <h3><br>> 10</h3>
           </div>
           <div class="c-file__actions">
             <div class="c-file__action">
-              <i class="fa fa-check-square-o"></i>
+              <i class="fa fa-times"></i>
             </div>
           </div>
         </div>
         <div class="c-file">
           <div class="c-file__header">
-            Material
+            Floors
           </div>
           <div class="c-file__name">
-            <h3>All buildings with PVC materials</h3>
+            <h3><br>> 6</h3>
           </div>
           <div class="c-file__actions">
             <div class="c-file__action">
-              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-times"></i>
             </div>
           </div>
         </div>
-        <div {{action 'createCustomFilter'}}class="c-action-tile">
+
+        <div {{action 'createNewTemplate'}}class="c-action-tile">
           <div class="c-action-tile__name">
-            <h3>Add Filter ...</h3>
+            <h3>Add filter...</h3>
+            <select style="width: 80%" name="select">
+              <option value="value1">Address</option> 
+              <option value="value2">Owner</option>
+              <option value="value3">Floors</option>
+              <option value="value3">Rooms</option>
+              <option value="value3">Architect</option>
+              <option value="value3">...</option>
+            </select>
           </div>
-        </div>
+        </div>   
+
       </div>
     </div>
 
@@ -175,55 +186,20 @@
             Pointcloud (E57)
           </div>
           <div class="c-file__name">
-            <h3>Haus30-Scan-2014-05-24.e57</h3>
+            <h3>Inffeldgasse 16c.e57</h3>
             <div class="c-file__size">
-              <h4>382 MB</h4>
+              <h4>782 MB</h4>
             </div>
           </div>
           <div class="c-file__actions">
             <div class="c-file__action">
-              <i class="fa fa-download"></i>
+              <i class="fa fa-times"></i>
+            </div>
+            <div class="c-file__action">
+              <i class="fa fa-edit"></i>
             </div>
             <div class="c-file__action">
               <i class="fa fa-eye"></i>
-            </div>
-          </div>
-        </div>
-        <div class="c-file">
-          <div class="c-file__header">
-            Pointcloud (E57)
-          </div>
-          <div class="c-file__name">
-            <h3>Haus30-Scan-2012-05-24.e57</h3>
-            <div class="c-file__size">
-              <h4>273 MB</h4>
-            </div>
-          </div>
-          <div class="c-file__actions">
-            <div class="c-file__action">
-              <i class="fa fa-download"></i>
-            </div>
-            <div class="c-file__action">
-              <i class="fa fa-eye"></i>
-            </div>
-          </div>
-        </div>
-        <div class="c-file">
-          <div class="c-file__header">
-            3D Model (IFC)
-          </div>
-          <div class="c-file__name">
-            <h3>Haus30.ifc</h3>
-            <div class="c-file__size">
-              <h4>382 MB</h4>
-            </div>
-          </div>
-          <div class="c-file__actions">
-            <div class="c-file__action">
-              <i class="fa fa-eye"></i>
-            </div>
-            <div class="c-file__action">
-              <i class="fa fa-download"></i>
             </div>
           </div>
         </div>

@@ -12,6 +12,10 @@ var fontFiles = funnel('bower_components/font-awesome/fonts', {
     destDir: 'fonts'
 });
 
+var adaptivePlaceholders = funnel('vendor/adaptive-placeholders', {
+    destDir: 'vendor/adaptive-placeholders'
+});
+
 // If you need to use different assets in different
 // environments, specify an object as the first parameter. That
 // object's keys should be the environment name and the values
@@ -22,4 +26,4 @@ var fontFiles = funnel('bower_components/font-awesome/fonts', {
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-module.exports = app.toTree(fontFiles);
+module.exports = app.toTree(fontFiles, adaptivePlaceholders);

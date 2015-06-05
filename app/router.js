@@ -22,6 +22,7 @@ Router.map(function() {
     this.route('hiddenfeatures', { path: "/geometricenrichment/hiddenfeatures" });
     this.route('hiddenfeatures-processing', { path: "/geometricenrichment/hiddenfeatures-processing" });
     this.route('retrieval', { path: "/retrieval" });
+    this.route('retrieval-custom', { path: "/retrieval-custom" });
     this.route('maintenance', { path: "/maintenance" });
   });
 

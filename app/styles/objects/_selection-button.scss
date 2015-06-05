@@ -1,9 +1,15 @@
 .o-selection-button {
   position: relative;
+  float: right;
 }
 
 .o-selection-button__button {
   margin-right: rhythm(1);
+  background: color(natural-gray);
+
+  &:hover {
+    background: lighten(color(natural-gray), 20%);
+  }
 }
 
 .o-selection-button__list {
@@ -15,7 +21,6 @@
   padding: rhythm(0.5);
   padding-left: rhythm(1.5);
   padding-right: rhythm(1.5);
-  background: color(gallery);
 
   box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.25);
 
