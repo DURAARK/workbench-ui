@@ -1,12 +1,17 @@
 /* global require, module */
 
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var EmberApp = require('ember-cli/lib/broccoli/ember-app'),
+    funnel = require('broccoli-funnel');
 
 var app = new EmberApp();
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
-//
+
+var fontFiles = funnel('bower_components/font-awesome/fonts', {
+    destDir: 'fonts'
+});
+
 // If you need to use different assets in different
 // environments, specify an object as the first parameter. That
 // object's keys should be the environment name and the values
@@ -17,4 +22,4 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-module.exports = app.toTree();
+module.exports = app.toTree(fontFiles);

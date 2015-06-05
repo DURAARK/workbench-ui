@@ -19,7 +19,8 @@
     "normalize-scss": "~3.0.3",
     "vertical-rhythms-without-compass": "~1.0.1",
     "sass-hidpi": "~2.0.0",
-    "adaptive-placeholders": "~1.1.3"
+    "adaptive-placeholders": "~1.1.3",
+    "font-awesome": "~4.3.0"
   },
   "resolutions": {
     "ember": ">= 1.8.1 < 2.0.0"

@@ -14,26 +14,26 @@
 @import "variables/zindex";
 @import "variables/breakpoints";
 //
-// // Reset and base files
-// // --------------------
+// Reset and base files
+// --------------------
 @import "base/reset";
 @import "base/base";
 //
-// // Layouts
-// // -------
+// Layouts
+// -------
 @import "layouts/susy";
 @import "layouts/layouts";
 //
-// // Objects
-// // -------
-// // Repeatable objects across the site
+// Objects
+// -------
+// Repeatable objects across the site
 @import "objects/typography";
 @import "objects/buttons";
 @import "objects/selection-button";
 //
-// // Components
-// // ----------
-// // For individual, isolated components
+// Components
+// ----------
+// For individual, isolated components
 @import "components/landingpage";
 @import "components/sitenav";
 @import "components/content";
@@ -48,8 +48,8 @@
 @import "components/workflows";
 
 
-//fontawesome
-@import "fontawesome/font-awesome";
+//  fontawesome
+ @import "bower_components/font-awesome/scss/font-awesome";
 
 // Utilities
 // ---------
