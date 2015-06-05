@@ -13,8 +13,8 @@ RUN npm install -g bower
 COPY ./ /workbench-ui
 WORKDIR /workbench-ui
 
-#RUN npm install
-#RUN bower install --allow-root
+RUN npm install
+RUN bower install --allow-root
 
 EXPOSE 4200
 
