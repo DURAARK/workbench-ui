@@ -1,5 +1,9 @@
 // Libraries
 // ---------
+
+@import "0-plugins/plugins-dir";
+@import "components/hero";
+
 @import "lib/lib";
 
 // Helpers
@@ -34,7 +38,7 @@
 // Components
 // ----------
 // For individual, isolated components
-@import "components/landingpage";
+// @import "components/hero";
 @import "components/sitenav";
 @import "components/content";
 @import "components/logo";
