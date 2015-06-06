@@ -8,16 +8,41 @@
   }
 }
 
-.c-filedetails__details {
+.c-filedetails__leftpane {
   @include span(4 of 12);
+
+  .c-md-list {
+    // margin-top: rhythm(3);
+  }
+}
+
+.c-filedetails__header {
+    margin-bottom: rhythm(0.6);  
+}
+
+
+.c-filedetails__metadata {
+  text-align: center;
+
+  fieldset {
+    text-align: left;
+  }
 }
 
 .c-filedetails__preview {
   @include span(8 of 12 last);
+
+  h3 {
+    text-align: right;
+  }
 
   img {
     width: 100%;
     display: inline-block;
     text-align: center;
   }
+}
+
+.c-filedetails__buttons {
+  margin-top: rhythm(7);
 }

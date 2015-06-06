@@ -86,21 +86,43 @@
 
   <div class="c-filedetails">
 
-    <div class="c-filedetails__details">
+    <div class="c-filedetails__leftpane">
 
-      <fieldset class="c-md-list">
-        <h3>Details</h3>
-        <div><label>Name:</label> {{input readonly=true value="Haus30-Scan-2014-05-24.ifc"}}</div>
-        <div><label>Created at:</label> {{input readonly=true value="December 3rd, 2015, 23:21:54"}}</div>
-        <div><label>Modified at:</label> {{input readonly=true value="December 3rd, 2015, 23:21:54"}}</div>
-        <div><label>Size:</label> {{input readonly=true value="382 MB"}}</div>
-        <div><label>Description:</label> {{input readonly=true value="buildm description, if available."}}</div>
-    </fieldset>
+      <div class="c-filedetails__metadata">
 
-    </div>
+        <div class="c-filedetails__header">
+          <h3>Details</h3>
+        </div>
+
+        <fieldset class="c-md-list">
+          <div><label>Name:</label> <span>Haus30-Scan-2014-05-24.ifc</span></div>
+          <div><label>Created at:</label> <span>December 3rd, 2015, 23:21:54</span></div>
+          <div><label>Modified at:</label> <span>December 3rd, 2015, 23:21:54</span></div>
+          <div><label>Size:</label> <span>382 MB</span></div>
+          <div><label>Description:</label> <span>buildm description, if available.</span></div>
+      </fieldset>
+
+      <div class="c-filedetails__buttons">
+        
+            <div class="c-hero-button">
+              <button {{action "openArchivalSession"}} type="button" name="button"><h3>Download</h3></button>
+            </div>
+
+              <div class="c-hero-button">
+              <button {{action "openArchivalSession"}} type="button" name="button"><h3>Delete</h3></button>
+            </div>
+
+        </div>
+      </div>
+
+      </div>
 
     <div class="c-filedetails__preview">
-      <h3>Preview</h3>
+
+        <div class="c-filedetails__header">
+          <h3>Preview</h3>
+        </div>
+
       <img src="http://lorempixel.com/500/320/city" alt="3D preview">
     </div>
 
