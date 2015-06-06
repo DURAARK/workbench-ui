@@ -1,15 +1,17 @@
 .c-header {
-  background-image: url("https://konnektor.grazzz.at/owncloud/index.php/apps/gallery/ajax/image.php?file=455aab1cc1fbc7e670aa499fe5901c24%2F_DSC8080.jpg");
+  background-image: url("/holmenkollen.jpg");
   color: white;
   text-align: right;
 }
 .c-landingpage {
-  background-image: url("https://konnektor.grazzz.at/owncloud/index.php/apps/gallery/ajax/image.php?file=455aab1cc1fbc7e670aa499fe5901c24%2F_DSC8080.jpg");
+  background-image: url("/holmenkollen.jpg");
   background-repeat: no-repeat;
+  // background-position: right rhythm(5);
   color: black;
 }
 .c-landingpage__title {
   padding: rhythm(2.2) rhythm(2.2) rhythm(2.2) rhythm(36.5);
+  background: rgba(color(light-green), 0.5);
 }
 .c-landingpage__subtitle {
   margin-top: rhythm(0.7);
@@ -21,15 +23,15 @@
   button {
     display: block;
     width: rhythm(7);
-    margin-bottom: rhythm(0.5);
-    padding: rhythm(0.4);
+    margin-bottom: rhythm(1);
+    padding: rhythm(0.8);
 
     // text-align: left;
 
-    background: rgb(206, 203, 42);
+    background: rgba(color(light-green), 1);
   }
 
   button:hover {
-    background: lighten(rgb(206, 203, 42), 20%);
+    background: rgba(color(light-green), 0.5);
   }
 }
