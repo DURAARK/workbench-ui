@@ -1,0 +1,23 @@
+.c-filedetails {
+  @include container();
+
+  margin: rhythm(1);
+
+  h3 {
+    font-weight: bold;
+  }
+}
+
+.c-filedetails__details {
+  @include span(4 of 12);
+}
+
+.c-filedetails__preview {
+  @include span(8 of 12 last);
+
+  img {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+  }
+}

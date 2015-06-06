@@ -26,6 +26,8 @@ Router.map(function() {
     this.route('maintenance', { path: "/maintenance" });
   });
 
+    this.route('fileDetails');
+
   this.resource("preingest", function() {
   	this.route('index', { path: "/" });
   	this.route('show', { path: "/:id" });

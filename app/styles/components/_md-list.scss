@@ -1,0 +1,21 @@
+.c-md-list {
+  @include container();
+  margin-left: rhythm(1);
+  margin-right: rhythm(1);
+  position: relative;
+
+  color: color(dark-gray);
+
+  fieldset {
+  	border: none;
+  }
+
+  div > label {
+  	display: inline-block;
+  	width: rhythm(4);
+  }
+
+  div > input {
+  	width: rhythm(10);
+  }
+}
