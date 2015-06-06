@@ -25,11 +25,15 @@
     }
 
   .c-stage {
-    @include gallery(1);
-
     text-decoration: none;
 
     border-right: 2px solid color(natural-gray);
+  }
+
+  .l-horizontal {
+    .c-stage {
+      @include gallery(1);
+    }
   }
   .c-stage:hover {
     background: rgba(color(gallery), 0.5);

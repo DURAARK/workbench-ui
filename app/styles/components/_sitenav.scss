@@ -31,35 +31,38 @@
 // Expanded Menu
 
 .c-expanded-sitenav__header {
-  text-align: center;
+  margin-top: rhythm(3);
+
   padding-left: rhythm(1);
   padding-right: rhythm(1);
 
-  svg {
-    margin-top: rhythm(1);
-    margin-bottom: rhythm(1);
-    fill: color(white);
-  }
+  text-align: center;
 
-  input {
-    background: color(shark);
-    color: color(white);
-    border: 1px solid color(tuna);
-    padding-top: rhythm(0.25);
-    padding-bottom: rhythm(0.25);
-    width: 100%;
-  }
+  img {
+   -webkit-filter: invert(1);
+   filter: invert(1);
+   }
+   
+  // svg {
+  //   margin-top: rhythm(1);
+  //   margin-bottom: rhythm(1);
+  //   fill: color(white);
+  // }
+
+  // input {
+  //   background: color(shark);
+  //   color: color(white);
+  //   border: 1px solid color(tuna);
+  //   padding-top: rhythm(0.25);
+  //   padding-bottom: rhythm(0.25);
+  //   width: 100%;
+  // }
 }
 
 .c-expanded-sitenav__content {
-  position: absolute;
-  top: rhythm(5.5);
-  left: 0;
-  right: 0;
-  bottom: 0;
+  padding: rhythm(0.1);
+
   overflow-y: auto;
-  padding-left: rhythm(1);
-  padding-right: rhythm(1);
 }
 
 .c-expanded-sitenav__menu {

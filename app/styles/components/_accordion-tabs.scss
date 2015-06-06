@@ -2,7 +2,7 @@
   $base-border-color: gainsboro !default;
   $base-border-radius: 3px !default;
   $base-background-color: white !default;
-  $base-spacing: 1.5em !default;
+  $base-spacing: 1em !default;
   $action-color: #477DCA !default;
   $base-link-color: $action-color !default;
   $dark-gray: #333 !default;
@@ -16,7 +16,7 @@
   $tab-mode: $medium-screen;
 
   @include clearfix;
-  line-height: 1.5;
+  line-height: 1;
   margin-bottom: $base-spacing;
   padding: 0;
 
@@ -88,8 +88,12 @@
   .tab-content {
     background: $tab-content-background;
     display: none;
-    padding: $base-spacing $gutter;
+    margin-bottom: rhythm(5);
+    padding-left: rhythm(0.2);
+    padding-right: rhythm(0.2);
     width: 100%;
+
+    overflow-y: auto;
 
     @include media($tab-mode) {
       border-bottom-left-radius: $base-border-radius;

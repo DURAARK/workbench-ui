@@ -42,15 +42,19 @@ body,
 }
 
 .l-sitenav {
-  display: none;
   z-index: 20;
-  width: rhythm(0);
+  width: rhythm(14);
 
   &.is-collapsed {
     width: rhythm(2);
   }
 }
 
+.l-horizontal {
+  .l-sitenav {
+    @include full;
+  }
+}
 .l-follow {
   background-color: rgba(green, 0.25);
   z-index: 20;
@@ -80,29 +84,28 @@ body,
 
 .l-content {
   @include cf;
-  //width: calc(100% - #{rhythm(0)});
-  width: 100%;
+  width: calc(100% - #{rhythm(14)});
   margin-top: rhythm(3);
-  margin-left: rhythm(0);
+  margin-left: rhythm(14);
   padding-left: rhythm(0);
   padding-right: rhythm(0);
   padding-bottom: rhythm(5); // FIXXME: workaround for scrollbar not scrolling down enough
   overflow-y: auto;
 
   &.has-nav-collapsed {
-    //margin-left: rhythm(2);
-    //width: calc(100% - #{rhythm(2)} - #{rhythm(21)});
-    width: 100%;
+    margin-left: rhythm(2);
+    width: calc(100% - #{rhythm(2)} - #{rhythm(21)});
+    // width: 100%;
   }
 
   &.has-follow-collapsed {
     margin-right: 0;
-    //width: calc(100% - #{rhythm(0)});
-    width: 100%;
+    width: calc(100% - #{rhythm(0)});
+    // width: 100%;
   }
 
   &.has-nav-collapsed.has-follow-collapsed {
-    //width: calc(100% - #{rhythm(2)});
+    width: calc(100% - #{rhythm(2)});
   }
 }
 
