@@ -2,7 +2,10 @@
 // ---------
 
 @import "0-plugins/plugins-dir";
+@import "components/navigation";
 @import "components/hero";
+@import "components/bullets";
+@import "components/footer";
 
 @import "lib/lib";
 
@@ -38,7 +41,7 @@
 // Components
 // ----------
 // For individual, isolated components
-// @import "components/hero";
+@import "components/landingpage";
 @import "components/sitenav";
 @import "components/content";
 @import "components/logo";

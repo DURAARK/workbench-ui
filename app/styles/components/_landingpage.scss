@@ -1,37 +1,19 @@
-.c-header {
-  background-image: url("/holmenkollen.jpg");
-  color: white;
-  text-align: right;
-}
-.c-landingpage {
-  background-image: url("/holmenkollen.jpg");
-  background-repeat: no-repeat;
-  // background-position: right rhythm(5);
-  color: black;
-}
-.c-landingpage__title {
-  padding: rhythm(2.2) rhythm(2.2) rhythm(2.2) rhythm(36.5);
-  background: rgba(color(light-green), 0.5);
-}
-.c-landingpage__subtitle {
-  margin-top: rhythm(0.7);
-}
-.c-landingpage__buttons {
-  margin-top: rhythm(9);
-  margin-left: rhythm(50);
+.c-hero-button {
+  display: block;
+  @include outer-container;
+  
+  margin-left: auto;
+  margin-right: auto;
+
+  margin-top: rhythm(1.5);
 
   button {
-    display: block;
-    width: rhythm(7);
-    margin-bottom: rhythm(1);
-    padding: rhythm(0.8);
-
-    // text-align: left;
-
+    width: rhythm(8.5);
+    color: black;
     background: rgba(color(light-green), 1);
   }
 
   button:hover {
-    background: rgba(color(light-green), 0.5);
+    background: lighten(color(light-green), 10%);
   }
 }

@@ -8,6 +8,8 @@
   $gradient-angle: 10deg;
   $hero-image: '/holmenkollen.jpg';
 
+  position: relative;
+
   @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
   background-color: #324766;
   background-position: top;
@@ -21,7 +23,9 @@
   }
 
   .hero-inner {
-    @include outer-container;
+    // position: absolute;
+    
+    // @include outer-container;
     @include clearfix;
     color: $hero-color;
     background: rgba(green, 0.4);

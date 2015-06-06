@@ -3,6 +3,21 @@
 
 @import "layout-landingpage";
 
+.home {
+  .bullets {
+    @include outer-container;
+
+    margin-top: rhythm(2);
+  }
+}
+
+  footer {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+  }  
+  
 html,
 body,
 .l-canvas,
