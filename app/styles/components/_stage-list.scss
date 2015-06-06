@@ -7,6 +7,7 @@
   }
 
   .c-stage-list__category {
+    margin-bottom: rhythm(1.4);
     padding: rhythm(0.2);
     padding-right: rhythm(1);
     background: color(natural-gray);
@@ -20,6 +21,7 @@
 
     .c-stage-list__content {
         @include container();
+        margin-bottom: rhythm(0.6);
     }
 
   .c-stage {
