@@ -96,53 +96,7 @@
 
 <div class="l-content c-content has-follow-collapsed">
 
-<!-- Begin stages component -->
-<div class="c-stage-list">
-
-  <div class="c-stage-list__category">
-        <h3>Workbench Archival Tools</h3>        
-    <div class="o-selection-button">
-      <button {{action 'goToRetrieval'}} type="button" class="o-selection-button__button" name="add">Go to Retrieval</button>
-    </div>
-  </div>
-
-  <div class="c-stage-list__content">
-
-   {{#link-to "workflows.files" class="c-stage"}}
-    <div class="c-stage__frame c-stage__files ">
-      <div class="c-stage__name">
-        <h3><i class="fa fa-file"></i> Files</h3>
-      </div>
-    </div>
-  {{/link-to}}
-
-  {{#link-to "workflows.metadata" class="c-stage"}}
-    <div class="c-stage__frame c-stage__metadata active">
-      <div class="c-stage__name">
-        <h3><i class="fa fa-puzzle-piece"></i> Metadata</h3>
-      </div>
-    </div>
-  {{/link-to}}
-
-  {{#link-to "workflows.semanticenrichment" class="c-stage"}}
-    <div class="c-stage__frame c-stage__semenrich">
-      <div class="c-stage__name">
-        <h3><i class="fa fa-pencil"></i> Semantic Enrichments</h3>
-      </div>
-    </div>
-  {{/link-to}}
-
-  {{#link-to "workflows.geometricenrichment" class="c-stage"}}
-    <div class="c-stage__frame c-stage__geoenrich">
-      <div class="c-stage__name">
-        <h3><i class="fa fa-paint-brush"></i> Geometric Enrichments</h3>
-      </div>
-    </div>
-  {{/link-to}}
-
-  </div>
-</div>
-<!-- End stages component -->
+{{wui-stages}}
 
 <!-- Start filelist item -->
   <div class="c-file-list">

@@ -75,37 +75,7 @@
 
   <div class="l-content c-content has-follow-collapsed">
 
-  <!-- Begin stages component -->
-  <div class="c-stage-list">
-
-    <div class="c-stage-list__category">
-          <h3>Workbench Retrieval Tools</h3>        
-    <div class="o-selection-button">
-      <button {{action 'goToArchival'}} type="button" class="o-selection-button__button" name="add">Go to Archival</button>
-    </div>
-    </div>
-
-    <div class="c-stage-list__content">
-
-    {{#link-to "workflows.retrieval" class="c-stage"}}
-      <div class="c-stage__frame c-stage__files active">
-        <div class="c-stage__name">
-          <h3><i class="fa fa-filter"></i> Filters</h3>
-        </div>
-      </div>
-    {{/link-to}}
-
-    {{#link-to "workflows.retrieval-custom" class="c-stage"}}
-      <div class="c-stage__frame c-stage__metadata">
-        <div class="c-stage__name">
-          <h3><i class="fa fa-puzzle-piece"></i> Custom Search</h3>
-        </div>
-      </div>
-    {{/link-to}}
-
-    </div>
-  </div>
-  <!-- End stages component -->
+  {{wui-stages}}
 
     <div class="c-file-list">
       <div class="c-file-list__category">
