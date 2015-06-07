@@ -18,6 +18,7 @@ RUN bower install --allow-root
 
 EXPOSE 4200
 
-ENTRYPOINT ["DURAARK_API_ENDPOINT=http://juliet.cgv.tugraz.at/api/v0.1/", "ember", "serve", "--prod", "--proxy", "http://api-gatekeeper"]
-#ENTRYPOINT ["ember", "serve", "--prod"]
+ENV DURAARK_API_ENDPOINT=http://juliet.cgv.tugraz.at/api/v0.1/ 
+
+ENTRYPOINT ["ember", "serve", "--prod", "--proxy", "http://api-gatekeeper"]
 
