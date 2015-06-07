@@ -39,10 +39,12 @@
   text-align: center;
 
   img {
-   -webkit-filter: invert(1);
-   filter: invert(1);
-   }
-   
+     margin: rhythm(1);
+     
+     max-width:50%;
+     max-height:50%;
+  }
+
   // svg {
   //   margin-top: rhythm(1);
   //   margin-bottom: rhythm(1);

@@ -30,16 +30,11 @@
     border-right: 2px solid color(natural-gray);
   }
 
-  .l-horizontal {
-    .c-stage {
-      @include gallery(1);
-    }
-  }
   .c-stage:hover {
     background: rgba(color(gallery), 0.5);
   }
   .c-stage__frame {
-    min-height: rhythm(4);
+    min-height: rhythm(3);
 
     background: rgba(color(dark-brown), 0.1);
 
@@ -101,8 +96,23 @@
     }
   }
   .c-stage__name {
-    padding-top: rhythm(1.3);
+    padding-top: rhythm(1);
     text-align: center;
+
+    @include container();
+
+    h2 {
+      @include span(1 of 4);
+      padding-left: rhythm(1);
+    }
+  
+    h3 {
+      @include span(2 of 4);
+      font-weight: bold;
+
+      padding-bottom: rhythm(1);
+    }
+
   }
   .c-stage__actions {
     margin-top: rhythm(0.2);

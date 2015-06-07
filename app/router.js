@@ -59,7 +59,6 @@ Router.map(function() {
     this.route('index', { path: "/" });
     this.route('show', { path: "/:id" });
   });
-  this.route('workflows');
 });
 
 export default Router;

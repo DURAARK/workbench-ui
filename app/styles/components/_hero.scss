@@ -23,15 +23,17 @@
   }
 
   .hero-inner {
-    // position: absolute;
-    
-    // @include outer-container;
     @include clearfix;
     color: $hero-color;
     background: rgba(green, 0.4);
     margin-left: auto;
     padding: 3.5em;
     text-align: center;
+
+    img {
+      width: 30%;
+      height: auto;
+    }
 
     .hero-copy {
       text-align: center;
