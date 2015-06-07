@@ -40,7 +40,7 @@
 		  </div>
 		{{/link-to}}
 
-		{{#link-to "workflows.files" class="l-stage c-stage"}}
+		{{#link-to "workflows.archiveexpert" class="l-stage c-stage"}}
 		  <div class="c-stage__frame c-stage__geoenrich">
 			<div class="c-stage__name">
 			  <h2><i class="fa fa-archive"></i></h2>
@@ -79,32 +79,32 @@
 	<a href="javascript:void(0)" class="tab-link">Maintenance</a>
 	<div class="tab-content">
 
-	  {{#link-to "workflows.retrieval" class="l-stage c-stage"}}
-	      <div class="c-stage__frame c-stage__files active">
-	        <div class="c-stage__name">
-	          <h2><i class="fa fa-filter"></i></h2>
-	          <h3>Convert File Format</h3>
-	        </div>
-	      </div>
-	    {{/link-to}}
+	{{#link-to "workflows.retrieval-custom" class="l-stage c-stage"}}
+	  <div class="c-stage__frame c-stage__metadata">
+	    <div class="c-stage__name">
+	      <h2><i class="fa fa-puzzle-piece"></i></h2>
+	      <h3>Store SDA snapshot</h3>
+	    </div>
+	  </div>
+	{{/link-to}}
 
-	    {{#link-to "workflows.retrieval-custom" class="l-stage c-stage"}}
-	      <div class="c-stage__frame c-stage__metadata">
-	        <div class="c-stage__name">
-	          <h2><i class="fa fa-puzzle-piece"></i></h2>
-	          <h3>Update enrichment</h3>
-	        </div>
+	{{#link-to "workflows.retrieval" class="l-stage c-stage"}}
+	    <div class="c-stage__frame c-stage__files active">
+	      <div class="c-stage__name">
+	        <h2><i class="fa fa-filter"></i></h2>
+	        <h3>Update Schema</h3>
 	      </div>
-	    {{/link-to}}
+	    </div>
+	  {{/link-to}}
 
-	    {{#link-to "workflows.retrieval-custom" class="l-stage c-stage"}}
-	      <div class="c-stage__frame c-stage__metadata">
-	        <div class="c-stage__name">
-	          <h2><i class="fa fa-puzzle-piece"></i></h2>
-	          <h3>Check session integrity</h3>
-	        </div>
-	      </div>
-	    {{/link-to}}
+	{{#link-to "workflows.retrieval-custom" class="l-stage c-stage"}}
+	  <div class="c-stage__frame c-stage__metadata">
+	    <div class="c-stage__name">
+	      <h2><i class="fa fa-puzzle-piece"></i></h2>
+	      <h3>Check session integrity</h3>
+	    </div>
+	  </div>
+	{{/link-to}}
 
 	</div>
   </li>

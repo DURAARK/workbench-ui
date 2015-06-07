@@ -94,18 +94,16 @@ body,
 
   &.has-nav-collapsed {
     margin-left: rhythm(2);
-    width: calc(100% - #{rhythm(2)} - #{rhythm(21)});
-    // width: 100%;
+    width: calc(100% - #{rhythm(2)});
   }
 
   &.has-follow-collapsed {
     margin-right: 0;
-    width: calc(100% - #{rhythm(0)});
-    // width: 100%;
+    width: calc(100% - #{rhythm(14)});
   }
 
   &.has-nav-collapsed.has-follow-collapsed {
-    width: calc(100% - #{rhythm(2)});
+    width: calc(100% - #{rhythm(2)} - #{rhythm(14)});
   }
 }
 

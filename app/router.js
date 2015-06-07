@@ -8,6 +8,7 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.resource("workflows", function() {
     this.route('files', { path: "/files" });
+    this.route('select-files', { path: "/select-files" });
     this.route('metadata', { path: "/metadata" });
     this.route('archiveexpert', { path: "/archiveexpert" });
     this.route('semanticenrichment', { path: "/semanticenrichment" });
@@ -26,7 +27,7 @@ Router.map(function() {
     this.route('maintenance', { path: "/maintenance" });
   });
 
-    this.route('fileDetails');
+  this.route('fileDetails');
 
   this.resource("preingest", function() {
   	this.route('index', { path: "/" });
@@ -58,6 +59,11 @@ Router.map(function() {
   this.resource("preservation", function() {
     this.route('index', { path: "/" });
     this.route('show', { path: "/:id" });
+  });
+  this.route('template');
+
+  this.route('workflow', function() {
+    this.route('select-files');
   });
 });
 

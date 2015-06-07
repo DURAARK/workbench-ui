@@ -1,276 +1,75 @@
-<div class="l-sitenav c-sitenav">
-  <div class="c-collapsible-toggle c-collapsible-toggle--nav jsToggle" data-toggle="nav"></div>
+<div class="c-file-list">
+  <div class="c-file-list__category">
+    <h3>Haus30-Scan-2014-05-24.e57 | 742 MB</h3>
+  </div>
+  <div class="c-file-list__listing">
 
-  <!-- expanded sitenav -->
-  <div class="c-expanded-sitenav">
-     <div class="c-expanded-sitenav__header">
-      <div class="c-logo">
-        <!-- <img src="/DURAARK_logo.jpg" alt="DURAARK logo" /> -->
-        <h3>DURAARK
-          <br>ARCHIVAL
-          <br>WORKFLOW</h3>
+    <div class="c-file">
+      <div class="c-file__header t-file">
+        Pointcloud (E57)
+      </div>
+      <div class="c-file__name">
+        <h3>Haus30-Scan-2014-05-24.e57</h3>
+        <div class="c-file__size">
+          <h4>742 MB</h4>
+        </div>
+      </div>
+      <div class="c-file__actions">
+        <div class="c-file__action">
+            <i class="fa fa-times"></i>
+          </div>
+          <div {{action "detailsFile"}} class="c-file__action">
+            <i class="fa fa-eye"></i>
+          </div>
       </div>
     </div>
 
-    <div class="c-expanded-sitenav__content">
-      <nav class="c-expanded-sitenav__menu">
-        <h5 class="c-expanded-sitenav__title">Add 3D Files</h5>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </nav>
+    {{#link-to "workflows.geometricenrichment-added-reconstruction" class="c-button c-action-tile"}}
+      <div class="c-action-tile__name">
+        <h3>Add reconstruction</h3>
+      </div>
+    {{/link-to}}
 
-      <nav class="c-expanded-sitenav__menu">
-        <h5 class="c-expanded-sitenav__title">Edit Metadata Files</h5>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </nav>
+    {{#link-to "workflows.hiddenfeatures" class="c-button c-action-tile"}}
+      <div class="c-action-tile__name">
+        <h3>ADD HIDDEN FEATURES</h3>
+      </div>
+    {{/link-to}}
 
-      <nav class="c-expanded-sitenavaber schon cool, dass du den mal siehst, odeR?__menu">
-        <h5 class="c-expanded-sitenav__title">ADD TOPICs</h5>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </nav>
+  </div>
+</div>
 
-      <nav class="c-expanded-sitenav__menu">
-        <h5 class="c-expanded-sitenav__title">Add Geometric Enrichments</h5>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </nav>
+<div class="c-file-list">
+  <div class="c-file-list__category">
+    <h3>DIFFERENCE DETECTIONS</h3>
+  </div>
+  <div class="c-file-list__listing">
+
+    <div class="c-file">
+      <div class="c-file__header t-file-geoenrich">
+        Difference Detection (rdf)
+      </div>
+      <div class="c-file__name">
+        <h3>Haus30-Scan-2014-05-24.e57 - Haus30-2014-05-24.ifc</h3>
+        <div class="c-file__size">
+          <h4>742 MB</h4>
+        </div>
+      </div>
+      <div class="c-file__actions">
+       <div class="c-file__action">
+            <i class="fa fa-times"></i>
+          </div>
+          <div {{action "detailsFile"}} class="c-file__action">
+            <i class="fa fa-eye"></i>
+          </div>
+      </div>
     </div>
 
-    <div class="c-expanded-sitenav__footer">
-      <div class="c-logo c-logo--small">
-        <!-- <svg class="svg-logo_glitch" height="30px" version="1.1" viewBox="0 0 30 30" width="30px" x="0px" y="0px">
-          <path clip-rule="evenodd" d="M21,9h-2v6h2V9z M5.568,3L4,7v17h5v3h3.886L16,24h5l6-6V3H5.568z M25,16l-4,4h-6l-3,3v-3H8V5h17V16z M16,9h-2v6h2V9z" fill-rule="evenodd"></path>
-        </svg> -->
+    <div {{action "showDifferenceDetectionPage"}}class="c-button c-action-tile">
+      <div class="c-action-tile__name">
+        <h3>ADD</h3>
       </div>
-
-      <nav class="c-expanded-sitenav__footer-menu">
-        <a href="#">About</a>
-        <a href="#">Blog</a>
-        <a href="#">Developers</a>
-        <br>
-        <a href="#">Partners</a>
-        <a href="#">Funding</a>
-        <a href="#">Project</a>
-      </nav>
     </div>
 
   </div>
-  <!-- end expanded sitenav -->
 </div>
-
-<div class="l-content-header c-content-header c-content__geoenrich">
-  {{!--   <div class="c-content-header__home">
-      <h1>Home</h1>
-    </div>
-   --}}
-   <!-- <div class="c-content-header__header">
-      <h3>Session</h3>
-   </div> -->
- <div class="c-content-header__title">
-    <h1><i class="fa fa-home"></i> Haus 30</h1>
- </div>
-
-   {{#link-to "workflows.archiveexpert" class="c-content-header__actions"}}
-     <div class="c-action-header">
-       <div class="c-action-header__name">
-         <h3>Archive</h3>
-       </div>
-     </div>
-   {{/link-to}}
- </div>
-
- <div class="l-content c-content has-follow-collapsed">
-
- <!-- Begin stages component -->
- <div class="c-stage-list">
-
- <div class="c-stage-list__category">
-       <h3>Workbench Archival Tools</h3>        
-    <div class="o-selection-button">
-      <button {{action 'goToRetrieval'}} type="button" class="o-selection-button__button" name="add">Go to Retrieval</button>
-    </div>
- </div>
-
- <div class="c-stage-list__content">
-
-{{#link-to "workflows.files" class="c-stage"}}
-    <div class="c-stage__frame c-stage__files ">
-      <div class="c-stage__name">
-        <h3><i class="fa fa-file"></i> Files</h3>
-      </div>
-    </div>
-  {{/link-to}}
-
-  {{#link-to "workflows.metadata" class="c-stage"}}
-    <div class="c-stage__frame c-stage__metadata">
-      <div class="c-stage__name">
-        <h3><i class="fa fa-puzzle-piece"></i> Metadata</h3>
-      </div>
-    </div>
-  {{/link-to}}
-
-  {{#link-to "workflows.semanticenrichment" class="c-stage"}}
-    <div class="c-stage__frame c-stage__semenrich ">
-      <div class="c-stage__name">
-        <h3><i class="fa fa-pencil"></i> Semantic Enrichments</h3>
-      </div>
-    </div>
-  {{/link-to}}
-
-  {{#link-to "workflows.geometricenrichment" class="c-stage"}}
-    <div class="c-stage__frame c-stage__geoenrich active">
-      <div class="c-stage__name">
-        <h3><i class="fa fa-paint-brush"></i> Geometric Enrichments</h3>
-      </div>
-    </div>
-  {{/link-to}}
- </div>
- </div>
- <!-- End stages component -->
-
-  <div class="c-file-list">
-    <div class="c-file-list__category">
-      <h3>Haus30-Scan-2014-05-24.e57 | 742 MB</h3>
-    </div>
-    <div class="c-file-list__listing">
-
-      <div class="c-file">
-        <div class="c-file__header t-file-geoenrich">
-          Pointcloud (E57)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.e57</h3>
-          <div class="c-file__size">
-            <h4>742 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-              <i class="fa fa-times"></i>
-            </div>
-            <div {{action "detailsFile"}} class="c-file__action">
-              <i class="fa fa-eye"></i>
-            </div>
-        </div>
-      </div>
-
-      {{#link-to "workflows.geometricenrichment-added-reconstruction" class="c-button c-action-tile"}}
-        <div class="c-action-tile__name">
-          <h3>ADD RECONSTRUCTION</h3>
-        </div>
-      {{/link-to}}
-
-      {{#link-to "workflows.hiddenfeatures" class="c-button c-action-tile"}}
-        <div class="c-action-tile__name">
-          <h3>ADD HIDDEN FEATURES</h3>
-        </div>
-      {{/link-to}}
-
-    </div>
-  </div>
-
-  <div class="c-file-list">
-    <div class="c-file-list__category">
-      <h3>DIFFERENCE DETECTIONS</h3>
-    </div>
-    <div class="c-file-list__listing">
-
-      <div class="c-file">
-        <div class="c-file__header t-file-geoenrich">
-          Difference Detection (rdf)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.e57 - Haus30-2014-05-24.ifc</h3>
-          <div class="c-file__size">
-            <h4>742 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-         <div class="c-file__action">
-              <i class="fa fa-times"></i>
-            </div>
-            <div {{action "detailsFile"}} class="c-file__action">
-              <i class="fa fa-eye"></i>
-            </div>
-        </div>
-      </div>
-
-      <!-- <div class="c-file">
-        <div class="c-file__header t-file-geoenrich">
-          Difference Detection (rdf)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.e57 - Haus30-2014-05-24.e57</h3>
-          <div class="c-file__size">
-            <h4>742 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div>
-
-      <div class="c-file">
-        <div class="c-file__header t-file-geoenrich">
-          Difference Detection (rdf)
-        </div>
-        <div class="c-file__name">
-          <h3>Haus30-Scan-2014-05-24.ifc - Haus30-2014-05-24.ifc</h3>
-          <div class="c-file__size">
-            <h4>742 MB</h4>
-          </div>
-        </div>
-        <div class="c-file__actions">
-          <div class="c-file__action">
-            x
-          </div>
-          <div class="c-file__action">
-            e
-          </div>
-          <div class="c-file__action">
-            v
-          </div>
-        </div>
-      </div> -->
-
-      <div {{action "showDifferenceDetectionPage"}}class="c-button c-action-tile">
-        <div class="c-action-tile__name">
-          <h3>ADD</h3>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
-<div class="l-follow c-follow is-collapsed">
-</div>
-
-<!-- {{outlet}} -->

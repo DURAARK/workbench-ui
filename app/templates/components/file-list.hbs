@@ -1,0 +1,47 @@
+<div class="c-file-list">
+	<div class="c-file-list__category">
+		<h3>{{header}}</h3>
+	</div>
+	
+	<div class="c-file-list__listing">
+
+	{{#each file in files}}
+	  <div class="c-file">
+
+		{{#if file.isIFC}}
+			<div class="c-file__header t-file">
+			  3D Model (IFC)
+			</div>
+		{{else}}		
+			<div class="c-file__header t-file">
+			  Pointcloud (E57)
+			</div>
+		{{/if}}
+
+		<div class="c-file__name">
+			{{#if file.path}}
+			  	<h3>{{file.path}}</h3>
+			  {{else}}
+			  	<h3>Loading ...{{loading-spinner-center}}</h3>
+			  {{/if}}
+		  <div class="c-file__size">
+		  	{{#if file.size}}
+			<h4>{{file.size}} MB</h4>
+			  {{/if}}
+		  </div>
+		</div>
+
+		<div class="c-file__actions">
+		  <div {{action "removeFile" file}} class="c-file__action">
+			  <i class="fa fa-times"></i>
+			</div>
+			<div {{action "detailsFile" file}} class="c-file__action">
+			  <i class="fa fa-eye"></i>
+			</div>
+		</div>
+
+	  </div>
+  {{/each}}
+
+  </div>
+</div>
