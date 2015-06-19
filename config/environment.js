@@ -45,14 +45,18 @@ module.exports = function(environment) {
         // *production* environment. For the development environment the
         // config is overwritten below.
         DURAARKAPI: {
+            sessions: {
+                host: apiEndpoint + '/sip'
+            },
+            sipgenerator: {
+                host: apiEndpoint + '/sipgenerator'
+            },  
+
             sda: {
                 host: apiEndpoint + '/sda'
             },
             searchItems: {
                 host: apiEndpoint + '/sda/example'
-            },
-            sessions: {
-                host: apiEndpoint + '/sip'
             },
             files: {
                 host: apiEndpoint + '/storage'
@@ -104,14 +108,18 @@ module.exports = function(environment) {
 
         if (apiEndpoint === 'http://localhost') {
             ENV.DURAARKAPI = {
+                sessions: {
+                    host: apiEndpoint + ':5004'
+                },
+                sipgenerator: {
+                    host: apiEndpoint + ':5007'
+                },
+
                 sda: {
                     host: apiEndpoint + ':5005'
                 },
                 searchItems: {
                     host: apiEndpoint + ':5005/example'
-                },
-                sessions: {
-                    host: apiEndpoint + ':5004'
                 },
                 files: {
                     host: apiEndpoint + ':5001'

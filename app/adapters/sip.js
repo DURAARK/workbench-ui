@@ -2,9 +2,9 @@ import Ember from 'ember';
 import ApplicationAdapter from './application';
 import ENV from '../config/environment';
 
-var apiConfig = ENV.DURAARKAPI.sessions;
+var apiConfig = ENV.DURAARKAPI.sipgenerator;
 
-console.log('[API] "session/physicalAssets" endpoint: ' + apiConfig.host + '/physicalAssets');
+console.log('[API] "session/digitalobjects" endpoint: ' + apiConfig.host);
 
 export
 default ApplicationAdapter.extend({
