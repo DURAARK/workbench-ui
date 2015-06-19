@@ -8,4 +8,4 @@ FOLDER="../"
 
 #(cd $FOLDER; pm2 delete $SERVICENAME; pm2 start $INDEXFILE -x --name $SERVICENAME)
 #pm2 logs
-(cd $FOLDER; nodemon -w api -w config)
+(cd $FOLDER; ember serve)
