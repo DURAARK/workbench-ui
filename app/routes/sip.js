@@ -31,7 +31,8 @@ default Ember.Route.extend({
                         },
                         semMD: {
                             candidates: [{}], // TODO
-                            seeds: [{}] // TODO
+                            seeds: [{}], // TODO
+                            selection: [{}] // TODO
                         },
                         derivatives: [{
                             label: 'Difference to: Haus 30 (Scan: 2014-03-22)',
@@ -65,9 +66,13 @@ default Ember.Route.extend({
                             size: 2837423,
                             type: 'E57',
                         },
+                        descMD: {
+                            creator: 'I Architect'
+                        },
                         semMD: {
                             candidates: [{}], // TODO
-                            seeds: [{}] // TODO
+                            seeds: [{}], // TODO
+                            selection: [{}] // TODO
                         },
                         derivatives: [{
                             label: 'Haus 30 (Reconstruction)',
@@ -131,7 +136,8 @@ default Ember.Route.extend({
                     },
                     semMD: {
                         candidates: [{}], // TODO
-                        seeds: [{}] // TODO
+                        seeds: [{}], // TODO
+                        selection: [{}] // TODO
                     }
                 }, {
                     label: 'Haus 30',
@@ -147,7 +153,8 @@ default Ember.Route.extend({
                     },
                     semMD: {
                         candidates: [{}], // TODO
-                        seeds: [{}] // TODO
+                        seeds: [{}], // TODO
+                        selection: [{}] // TODO
                     }
                 }]
             }]
