@@ -13,20 +13,6 @@ default Ember.Route.extend({
 
                 physicalAssets: [{
                     descMD: {
-                        address: 'Haus 30, Street 42, Berlin, Germany',
-                        lat: 14,
-                        lng: 43
-                    },
-                    digitalObjects: [{
-                        label: 'Haus 30',
-                        path: '/storage/1234-1234-1234-1234/digitalObjects/haus30.ifc',
-                        physicalAssets: [0],
-                        techMD: {
-                            filename: 'haus30.ifc',
-                            size: 592843,
-                            type: 'IFC-SPF',
-                        },
-                        descMD: {
                             Identifier: 'f81d4fae-7dec-11d0-a765-00a0c91e6bf6', // mandatory, exactly one allowed, string
                             name: 'Haus 30', // mandatory, multiple allowed, string
                             latitude: '14', // mandatory, exactly one, string
@@ -39,7 +25,7 @@ default Ember.Route.extend({
                             architecturalStyle: 'Haus 30 style', // optional, multiple allowed, string
                             description: 'The Haus 30', // optional, multiple allowed, string
                             location: 'Haus 30 Strasse 42', // optional, exactly one allowed, string
-                            streetAddress: 'Haus 30 Strasse 42', // optional, exactly one allowed, string
+                            streetAddress: 'Haus 30 Strasse 42' // optional, exactly one allowed, string
 
                             // TODO: convert remaining properties from XML below:
 
@@ -88,6 +74,19 @@ default Ember.Route.extend({
                             // <xs:element name="rightsDetails" type="xs:string" minOccurs="0" maxOccurs="unbounded">
 
                             // </xs:element>
+                    },
+                    digitalObjects: [{
+                        label: 'Haus 30',
+                        path: '/storage/1234-1234-1234-1234/digitalObjects/haus30.ifc',
+                        physicalAssets: [0],
+                        techMD: {
+                            filename: 'haus30.ifc',
+                            size: 592843,
+                            type: 'IFC-SPF',
+                        },
+                        descMD: {
+                            Identifier: 'f81d4fae-7dec-11d0-a765-00a0c91e6bf6', // mandatory, exactly one allowed, string
+                            name: 'Haus 30' // mandatory, multiple allowed, string
                         },
                         semMD: {
                             candidates: [{}], // TODO
