@@ -1,43 +1,29 @@
-<main id="main">
-	<section class="content-view-container">
-	    <section class="content-list">
-	        <header class="floatingheader">
-	            <section class="manage content-filter">
-	                <small>Files stored in Archive</small>
-	            </section>
-	        </header>
+<div class="l-files">
+	<div class="l-file-list">
+		{{#each file in model}}
+			<div class="c-file">
+				<div {{action "toggleSelection" file}}>
+					<div class="c-file__header">{{file.type}}</div>
+					<div class="c-file__name">{{file.path}}</div>
+				</div>
 
-			<section>
-				<button class="btn btn-green" {{action "save"}}> Save</button>
-			</section>
+				<div class="c-file__actions">
+					<div class="c-file__actions__button">
+						<h3 {{action "showDetails" file}}>Details</h3>
+					</div>
+				</div>
 
-			<section class="content-list-content js-content-scrollbox">
-				<ol class="posts-list">
-				{{file-explorer items=selectedFiles selectFile="deselectFile"}}
-				</ol>
-			</section>
-		</section>
+			</div>
+		{{/each}}
+	</div>
 
-		<section class="content-preview">
-			<header class="floatingheader">
-			    <small>
-			        <span class="status">Available Files</span>
-			    </small>
-			</header>
-
-			<section class="content-preview-content">
-				<div class="fe-list-item-header"></div>
-				<h4>File Selection</h4>
-				<br>
-				<div class="fe-list-item-header">The list below shows all available files in the system. Click an item to add the file to the session.</div>
-				<hr>
-
-				<div style="font-size: 20px;"><strong>Available Files:</strong></div>
-
-				<br><br>
-
-				{{file-explorer items=availableFiles selectFile="selectFile"}}
-			</section>
-		</section>
-	</section>
-</main>
+	{{#if showSidebar}}
+		<div class="l-file-details">
+			{{log selectedFile}}
+			Showing details for:
+			{{#if selectedFile}}
+				{{selectedFile.path}}
+			{{/if}}
+		</div>
+	{{/if}}
+</div>

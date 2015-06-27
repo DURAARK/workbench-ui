@@ -6,6 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.resource('files', { path: "/files" });
+
   this.resource("sip", function() {
     this.route('index', { path: "/" });
   });

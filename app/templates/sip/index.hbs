@@ -1,5 +1,7 @@
 <h1>Submission Information Package</h1>
 
+	<div id="formholder">FORMHOLDER</div>
+	
 {{#each session in model.sessions}}
 	{{#each pa in session.physicalAssets}}
 		<h2>Building: {{pa.descMD.address}}</h2>
@@ -13,5 +15,4 @@
 	{{/each}}
 
 	<button {{action 'archive' session}}>Archive</button>
-
 {{/each}}

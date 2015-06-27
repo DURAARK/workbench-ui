@@ -1,0 +1,22 @@
+// Layout: files
+// =============
+
+html,
+body {
+  height: 100%;
+}
+
+.l-files {
+  @include container();
+}
+
+.l-file-list {
+  @include span(3);
+  background: green;
+}
+
+.l-file-details {
+  @include span(2 last);
+  height: 100vh;
+  background: blue;
+}
