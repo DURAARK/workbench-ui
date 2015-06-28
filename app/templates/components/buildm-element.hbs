@@ -1,0 +1,12 @@
+<h2>Id: {{objectId}}</h2>
+<h2>Type: {{objectType}}</h2>
+
+{{#each prop in props}}
+
+  <h3>{{prop.key}}</h3>
+
+  {{#each item in prop.items}}
+    <h4>{{item}}</h4>
+  {{/each}}
+
+{{/each}}

@@ -2,8 +2,8 @@ import Ember from 'ember';
 import ApplicationAdapter from './application';
 import ENV from '../config/environment';
 
-var apiConfig = ENV.DURAARKAPI.files;
-console.log('Connecting to "Files" API via: ' + apiConfig.host);
+var apiConfig = ENV.DURAARKAPI.sessions;
+console.log('Connecting to "session/files" API via: ' + apiConfig.host);
 
 export
 default ApplicationAdapter.extend({

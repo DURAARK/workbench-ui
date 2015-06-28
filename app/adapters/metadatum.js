@@ -2,9 +2,9 @@ import Ember from 'ember';
 import ApplicationAdapter from './application';
 import ENV from '../config/environment';
 
-var apiConfig = ENV.DURAARKAPI.sessions;
+var apiConfig = ENV.DURAARKAPI.metadata;
 
-console.log('Connecting to "sip/metadatum" API via: ' + apiConfig.host);
+console.log('Connecting to "metadata-extractor" API via: ' + apiConfig.host);
 
 export
 default ApplicationAdapter.extend({

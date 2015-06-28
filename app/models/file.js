@@ -7,7 +7,5 @@ export default DS.Model.extend({
   size: DS.attr('number'),
   mtime: DS.attr('date'),
   atime: DS.attr('date'),
-  ctime: DS.attr('date'),
-
-  metadata: DS.hasMany('metadatum', { async: true })
+  ctime: DS.attr('date')
 });

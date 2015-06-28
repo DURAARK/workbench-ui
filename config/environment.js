@@ -46,40 +46,19 @@ module.exports = function(environment) {
         // config is overwritten below.
         DURAARKAPI: {
             sessions: {
-                host: apiEndpoint + '/sip'
+                host: apiEndpoint + '/session'
+            },
+            metadata: {
+                host: apiEndpoint + '/metadata'
             },
             sipgenerator: {
                 host: apiEndpoint + '/sipgenerator'
-            },  
-
+            },
             sda: {
                 host: apiEndpoint + '/sda'
             },
             searchItems: {
                 host: apiEndpoint + '/sda/example'
-            },
-            files: {
-                host: apiEndpoint + '/storage'
-            },
-            stages: {
-                host: apiEndpoint + '/sip/stages'
-            },
-            ifcmetadata: {
-                host: apiEndpoint + '/ifcmetadata',
-                // The endpoint where the current jobs ('pending' and 'finished') are returned
-                jobsEndpoint: '/ifcm',
-                // The endpoint where an extraction job can be posted
-                extractEndpoint: '/ifcm/extract',
-                // TODO: the JSON response from the API has one parent key, which is
-                // denoted here. Think on a generic key, e.g. 'metadata', to unify the
-                // handling in the APIIfcMetadata and APIE57Metadata binding!
-                responseKey: 'ifcms'
-            },
-            e57metadata: {
-                host: apiEndpoint + '/e57metadata',
-                jobsEndpoint: '/e57m',
-                extractEndpoint: '/e57m/extract',
-                responseKey: 'e57ms'
             },
             semanticenrichment: {
                 host: apiEndpoint + '/semanticenrichment',
@@ -90,11 +69,6 @@ module.exports = function(environment) {
                 host: apiEndpoint + '/semanticenrichment',
                 jobsEndpoint: '/crawl',
                 extractEndpoint: '/enrichment/extract'
-            },
-            sipgenerator: {
-                host: apiEndpoint + '/sipgenerator',
-                jobsEndpoint: '/sip',
-                extractEndpoint: '/sip/create'
             }
         }
     };
@@ -109,32 +83,19 @@ module.exports = function(environment) {
         if (apiEndpoint === 'http://localhost') {
             ENV.DURAARKAPI = {
                 sessions: {
-                    host: apiEndpoint + ':5004'
+                    host: apiEndpoint + ':5001'
+                },
+                metadata: {
+                    host: apiEndpoint + ':5002'
                 },
                 sipgenerator: {
                     host: apiEndpoint + ':5007'
                 },
-
                 sda: {
                     host: apiEndpoint + ':5005'
                 },
                 searchItems: {
                     host: apiEndpoint + ':5005/example'
-                },
-                files: {
-                    host: apiEndpoint + ':5001'
-                },
-                ifcmetadata: {
-                    host: apiEndpoint + ':5002',
-                    jobsEndpoint: '/ifcm',
-                    extractEndpoint: '/ifcm/extract',
-                    responseKey: 'ifcms'
-                },
-                e57metadata: {
-                    host: apiEndpoint + ':5003',
-                    jobsEndpoint: '/e57m',
-                    extractEndpoint: '/e57m/extract',
-                    responseKey: 'e57ms'
                 },
                 semanticenrichment: {
                     host: apiEndpoint + ':5006',
@@ -145,11 +106,6 @@ module.exports = function(environment) {
                     host: apiEndpoint + ':5006',
                     jobsEndpoint: '/crawl',
                     extractEndpoint: '/enrichment/extract'
-                },
-                sipgenerator: {
-                    host: apiEndpoint + ':5007',
-                    jobsEndpoint: '/sip',
-                    extractEndpoint: '/sip/create'
                 }
             };
         }

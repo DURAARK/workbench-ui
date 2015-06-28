@@ -19,10 +19,9 @@
 
 	{{#if showSidebar}}
 		<div class="l-file-details">
-			{{log selectedFile}}
 			Showing details for:
-			{{#if selectedFile}}
-				{{selectedFile.path}}
+			{{#if fileInfo}}
+				{{buildm-viewer file=fileInfo}}
 			{{/if}}
 		</div>
 	{{/if}}

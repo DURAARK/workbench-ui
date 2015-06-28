@@ -17,27 +17,17 @@ export default Ember.Controller.extend({
 
       controller.set('isLoadingMetadata', true);
 
-      console.log('showing details for file:   ' + file.get('path'));
-      // this.set('selectedFile', file);
+      // NOTE: requests metadata for the given file via the
+      //       'metadata-extraction' service
+      var md = controller.store.createRecord('metadatum');
+      md.set('path', file.get('path'));
+      md.set('type', file.get('type'));
 
-      var payload = JSON.stringify({
-        file: {
-          path: file.get('path'),
-          type: file.get('type')
-        }
-      });
-
-      $.ajax({
-        type: "POST",
-        url: 'http://localhost:5002/extract',
-        data: payload,
-        success: function(file) {
-          console.log('juuh: ' + JSON.stringify(file, null, 4));
-          controller.set('selectedFile', file);
-          controller.set('isLoadingMetadata', false);
-        },
-        contentType: 'application/json',
-        dataType: 'json'
+      md.save().then(function(md) {
+        console.log('showing details for file:   ' + file.get('path'));
+        // console.log('md: ' + JSON.stringify(md, null, 4));
+        controller.set('fileInfo', md);
+        controller.set('isLoadingMetadata', false);
       });
     }
 

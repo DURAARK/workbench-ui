@@ -11,12 +11,13 @@ body {
 }
 
 .l-file-list {
-  @include span(3);
+  @include span(2);
   background: green;
 }
 
 .l-file-details {
-  @include span(2 last);
+  @include span(3 last);
   height: 100vh;
   background: blue;
+  overflow-y: auto;
 }
