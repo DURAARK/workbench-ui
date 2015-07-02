@@ -1,5 +1,43 @@
-Path: {{file.path}}
+<!--List Container-->
+<h3 class="title">{{file.path}}</h3>
+<ul class="dropdown-list-container">
 
-{{#each element in file.metadata}}
-  {{buildm-element item=element}}
-{{/each}}
+  <!--First List-->
+  <li class="dropdown-list">
+    <!--List Title-->
+    <a dropdown-prop="title">Building<i class="dropdown-icon"></i></a>
+      <!--List Items-->
+      <ul class="dropdown-list-items">
+        <li>Home</li>
+        <li>About Us</li>
+        <li>Services</li>
+        <li>Contact</li>
+    </ul>
+  </li>
+
+  <!--Second List-->
+  <li class="dropdown-list">
+    <!--List Title-->
+    <a dropdown-prop="title">Digital Representation<i class="dropdown-icon"></i></a>
+    <!--List Items-->
+    <ul class="dropdown-list-items">
+      <li>Home</li>
+      <li>About Us</li>
+      <li>Services</li>
+      <li>Contact</li>
+    </ul>
+  </li>
+
+  <!--Third List-->
+  <li class="dropdown-list">
+    <!--List Title-->
+    <a dropdown-prop="title">File<i class="dropdown-icon"></i></a>
+    <!--List Items-->
+    <ul class="dropdown-list-items">
+      <li>Home</li>
+      <li>About Us</li>
+      <li>Services</li>
+      <li>Contact</li>
+    </ul>
+  </li>
+</ul>

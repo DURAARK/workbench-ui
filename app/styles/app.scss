@@ -46,6 +46,9 @@
 @import "components/sitenav";
 @import "components/content";
 @import "components/logo";
+@import "components/tables";
+@import "components/list-item";
+
 @import "components/collapsible";
 @import "components/file-list";
 @import "components/file";
@@ -74,3 +77,99 @@
 // -----
 // For new style snippets that haven't been sorted and commented yet
 // @import "shame";
+
+// @import "compass/css3";
+
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+$text        : #ffffff;
+$background  : #34495e;
+$list-header : #16a085;
+$list-item   : #1abc9c;
+$page-font   : 'Lato', sans-serif;
+
+body {
+  font-size        : 20px;
+	font-family      : $page-font;
+  color            : $text;
+  background-color : $background;
+}
+
+.title {
+  color       : $text;
+  font-size   : 2.0em;
+  font-family : $page-font;
+}
+
+.dropdown-list-container {
+  padding    : 0 2.0em;
+  width      : 250px;
+  list-style : none;
+
+  -webkit-transform           : translateZ(0);
+  -webkit-backface-visibility : hidden;
+}
+
+.dropdown-list {
+  position      : relative;
+  background    : $list-header;
+  margin-bottom : 1px;
+
+
+  [dropdown-prop="title"] {
+    color           : $text;
+    padding         : 0.5em 2.0em;
+    display         : block;
+    text-decoration : none;
+    &:hover {
+      background : darken($list-header, 10);
+    }
+  }
+}
+
+.dropdown-list-items {
+	@include transition(max-height 0.4s ease-in);
+
+  padding    : 0;
+  max-height : 0;
+	list-style : none;
+	overflow   : hidden;
+
+	li a {
+    color           : $text;
+    display         : block;
+    padding         : 0.75em 1.0em;
+    background      : $list-item;
+    text-decoration : none;
+    &:hover {
+      background: darken($list-item, 10);
+    }
+	}
+}
+
+.dropdown-icon {
+  @include transition(transform .4s ease-in);
+  @include transform(rotate(0deg));
+
+  position  : absolute;
+  display   : block;
+  top       : 0.5em;
+  left      : 0.5em;
+  font-size : 1.0em;
+  padding   : 0;
+  color     : $text;
+  &:before {
+    content: '\25BA';
+  }
+}
+
+.dropdown-list-open {
+	@include transition(max-height 0.4s ease-out);
+
+	max-height : 15em;
+}
+
+.dropdown-icon-open {
+  @include transition(transform .4s ease-out);
+	@include transform(rotate(90deg));
+}

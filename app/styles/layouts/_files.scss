@@ -1,23 +1,21 @@
 // Layout: files
 // =============
-
 html,
 body {
   height: 100%;
 }
-
 .l-files {
-  @include container();
+    @include container();
 }
-
 .l-file-list {
-  @include span(2);
-  background: green;
+  @include span(7);
+  padding-left: rhythm(0.6);
 }
-
 .l-file-details {
-  @include span(3 last);
+  @include span(5 last);
   height: 100vh;
   background: blue;
   overflow-y: auto;
+}
+.c-file-item {
 }

@@ -1,0 +1,19 @@
+.c-list-item {
+  margin-left: rhythm(1);
+  margin-right: rhythm(1);
+  color: color(dark-gray);
+}
+.c-list-item__type {
+  background: color(natural-gray);
+  h4 {
+    font-weight: bold;
+  }
+  text-align: center;
+}
+.c-list-item__actions,
+.c-list-item__actions__button,
+.c-list-item__type,
+.c-list-item__name {
+  display: inline;
+  margin-right: rhythm(0.2);
+}

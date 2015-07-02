@@ -1,28 +1,48 @@
 <div class="l-files">
 	<div class="l-file-list">
-		{{#each file in model}}
-			<div class="c-file">
-				<div {{action "toggleSelection" file}}>
-					<div class="c-file__header">{{file.type}}</div>
-					<div class="c-file__name">{{file.path}}</div>
-				</div>
 
-				<div class="c-file__actions">
-					<div class="c-file__actions__button">
-						<h3 {{action "showDetails" file}}>Details</h3>
-					</div>
-				</div>
+		<div class="c-file-list__category">
+			<h3>Files: /duraark-storage/files</h3>
+		</div>
 
-			</div>
-		{{/each}}
+			<table class="tables c-file-item" >
+
+				<thead>
+					<tr>
+						<th></th>
+						<th>Type</th>
+						<th>Path</th>
+						<th>Size</th>
+						<th>Created at</th>
+					</tr>
+				</thead>
+
+				{{#each file in model}}
+
+					<tbody {{action "showDetails" file}}>
+						<tr>
+							<td>
+								<button {{action "toggleSelection" file}}>Select</button>
+							</td>
+							<td>{{file.type}}</td>
+							<td>{{file.path}}</td>
+							<td>395 MB</td>
+							<td>{{file.created}}</td>
+						</tr>
+					</tbody>
+
+				{{/each}}
+			</table>
+
 	</div>
 
 	{{#if showSidebar}}
 		<div class="l-file-details">
-			Showing details for:
+			<!-- Showing details for: -->
 			{{#if fileInfo}}
 				{{buildm-viewer file=fileInfo}}
 			{{/if}}
 		</div>
 	{{/if}}
+
 </div>
