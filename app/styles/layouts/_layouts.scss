@@ -1,23 +1,17 @@
 // Layouts
 // =======
-
 @import "layout-landingpage";
-
 .home {
   .bullets {
     @include outer-container;
-
     margin-top: rhythm(2);
   }
 }
-
-  footer {
-    position: fixed;
-
-    bottom: 0;
-    left: 0;
-  }  
-  
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
 html,
 body,
 .l-canvas,
@@ -26,12 +20,11 @@ body,
 .l-sitenav {
   height: 100%;
 }
-
 .l-canvas {
+  @include container();
   position: relative;
   overflow: hidden;
 }
-
 .l-content-header,
 .l-content,
 .l-follow,
@@ -40,16 +33,13 @@ body,
   top: 0;
   bottom: 0;
 }
-
 .l-sitenav {
   z-index: 20;
   width: rhythm(14);
-
   &.is-collapsed {
     width: rhythm(2);
   }
 }
-
 .l-horizontal {
   .l-sitenav {
     @include full;
@@ -60,28 +50,26 @@ body,
   z-index: 20;
   right: 0;
   width: rhythm(0);
-
   &.is-collapsed {
     width: 0;
     padding: 0;
-
     *:not(.c-collapsible-toggle) {
       display: none;
     }
   }
 }
-
 .l-content-header {
   z-index: 20;
+
   //width: calc(100% - #{rhythm(0)});
   width: 100%;
   height: rhythm(3);
   margin-left: rhythm(0);
+
   //margin-right: rhythm(21);
   // padding: rhythm(2);
   // padding-left:   rhythm(1.5);
 }
-
 .l-content {
   @include cf;
   width: calc(100% - #{rhythm(14)});
@@ -91,31 +79,25 @@ body,
   padding-right: rhythm(0);
   padding-bottom: rhythm(5); // FIXXME: workaround for scrollbar not scrolling down enough
   overflow-y: auto;
-
   &.has-nav-collapsed {
     margin-left: rhythm(2);
     width: calc(100% - #{rhythm(2)});
   }
-
   &.has-follow-collapsed {
     margin-right: 0;
     width: calc(100% - #{rhythm(14)});
   }
-
   &.has-nav-collapsed.has-follow-collapsed {
     width: calc(100% - #{rhythm(2)} - #{rhythm(14)});
   }
 }
-
 .l-games {
   @include container;
 }
-
 .l-game {
   @include gallery(1);
   $games: map-get($contexts, games);
   $keys: map-keys($games);
-
   @each $eq in $keys {
     [data-eq-state="#{$eq}"] & {
       @include with-context(games, $eq) {

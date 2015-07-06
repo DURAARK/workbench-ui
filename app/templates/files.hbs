@@ -1,44 +1,34 @@
 <div class="l-files">
+
 	<div class="l-file-list">
 
-		<div class="c-file-list__category">
-			<h3>Files: /duraark-storage/files</h3>
+		<div class="c-button-list">
+			<div class="c-button-list__content">
+
+				{{#link-to "workflows.files" class="c-button" }}
+					<div class="c-button__frame t-button-files">
+						<div class="c-button__name">
+							<h3>Add</h3>
+						</div>
+					</div>
+				{{/link-to}}
+
+				{{#link-to "workflows.files" class="c-button" }}
+					<div class="c-button__frame t-button-files">
+						<div class="c-button__name">
+							<h3>Cancel</h3>
+						</div>
+					</div>
+				{{/link-to}}
+
+			</div>
 		</div>
 
-			<table class="tables c-file-item" >
-
-				<thead>
-					<tr>
-						<th></th>
-						<th>Type</th>
-						<th>Path</th>
-						<th>Size</th>
-						<th>Created at</th>
-					</tr>
-				</thead>
-
-				{{#each file in model}}
-
-					<tbody {{action "showDetails" file}}>
-						<tr>
-							<td>
-								<button {{action "toggleSelection" file}}>Select</button>
-							</td>
-							<td>{{file.type}}</td>
-							<td>{{file.path}}</td>
-							<td>395 MB</td>
-							<td>{{file.created}}</td>
-						</tr>
-					</tbody>
-
-				{{/each}}
-			</table>
-
+		{{file-list files=model header="Select files"}}
 	</div>
 
 	{{#if showSidebar}}
 		<div class="l-file-details">
-			<!-- Showing details for: -->
 			{{#if fileInfo}}
 				{{buildm-viewer file=fileInfo}}
 			{{/if}}
@@ -46,3 +36,53 @@
 	{{/if}}
 
 </div>
+
+<!-- <div class="l-files">
+	<div class="l-file-list">
+
+		<div class="c-file-list__category">
+			<h3>Semantic Digital Archive Storage</h3>
+		</div>
+
+			<table class="tables c-file-item" >
+
+				<thead>
+					<tr>
+						<th></th>
+						<th>Name</th>
+						<th>Address</th>
+						<th>Locality</th>
+						<th>Source</th>
+					</tr>
+				</thead>
+
+				{{#each file in model}}
+
+					<tbody>
+						<tr>
+							<td align=center>
+								<button style="width: 8em;" {{action "toggleSelection" file}}>Select</button>
+								<button style="width: 8em;" {{action "showDetails" file}}>Details</button>
+							</td>
+							<td>{{file.name}}</td>
+							<td>{{file.adress}}</td>
+							<td>{{file.addressLocality}}</td>
+							<td><a href={{file.subject}}>Source</a></td>
+						</tr>
+					</tbody>
+
+				{{/each}}
+
+			</table>
+
+	</div>
+
+	{{#if showSidebar}}
+		<div class="l-file-details">
+			{{#if fileInfo}}
+				{{buildm-viewer file=fileInfo}}
+			{{/if}}
+		</div>
+	{{/if}}
+
+</div> -->

@@ -1,6 +1,6 @@
 .c-file {
   position: relative;
-  @include gallery(1);
+  // @include gallery(1);
   margin-bottom: gutter();
   //color: color(gallery);
   text-align: center;
@@ -10,7 +10,7 @@
   &.separate {
   margin-bottom: 0;
   }
-  
+
   &.separate:after {
     content:"";
     display: block;
@@ -34,7 +34,7 @@
 .c-file__name {
   min-height: rhythm(3.3);
   padding-top: rhythm(0.5);
-  font-size: 1.2rem;
+  font-size: 0.8em;
   background: color(natural-gray);
   color: color(dark-gray);
 }

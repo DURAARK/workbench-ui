@@ -18,6 +18,9 @@ var adaptivePlaceholders = funnel('vendor/adaptive-placeholders', {
     destDir: 'vendor/adaptive-placeholders'
 });
 
+funnel('vendor/numeral', {
+    destDir: 'vendor/numeral'
+});
 // If you need to use different assets in different
 // environments, specify an object as the first parameter. That
 // object's keys should be the environment name and the values

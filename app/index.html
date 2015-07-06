@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>WorkbenchUi</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{content-for 'head'}}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>WorkbenchUi</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> {{content-for 'head'}}
 
-    <link rel="stylesheet" href="assets/vendor.css">
-    <link rel="stylesheet" href="assets/workbench-ui.css">
+  <link rel="stylesheet" href="assets/vendor.css">
+  <link rel="stylesheet" href="assets/workbench-ui.css"> {{content-for 'head-footer'}}
+</head>
 
+<body>
+  {{content-for 'body'}}
 
-    {{content-for 'head-footer'}}
-  </head>
-  <body>
-    {{content-for 'body'}}
+  <script src="assets/vendor.js"></script>
+  <script src="assets/workbench-ui.js"></script>
 
-    <script src="assets/vendor.js"></script>
-    <script src="assets/workbench-ui.js"></script>
+  {{content-for 'body-footer'}}
 
-    {{content-for 'body-footer'}}
+  <script type="text/javascript" src="vendor/ember-data-sails-adapter.js"></script>
+  <script type="text/javascript" src="vendor/underscore-min.js"></script>
+  <script type="text/javascript" src="vendor/numeral/min/numeral.min.js"></script>
+  <script type="text/javascript" src="vendor/numeral/min/languages.min.js"></script>
 
-        <script type="text/javascript" src="vendor/ember-data-sails-adapter.js"></script>
-        <script type="text/javascript" src="vendor/underscore-min.js"></script>
-        <script type="text/javascript" src="vendor/backbone.js"></script>
-        <script type="text/javascript" src="vendor/backbone-forms.js"></script>
-        <script type="text/javascript" src="vendor/vie.js"></script>
-        
-  </body>
+</body>
+
 </html>

@@ -15,7 +15,6 @@
 }
 
 .c-button-list__content {
-  @include container();
   @include cf;
   margin-top: rhythm(1);
   padding: rhythm(0.5);

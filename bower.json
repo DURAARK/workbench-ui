@@ -21,7 +21,8 @@
     "sass-hidpi": "~2.0.0",
     "font-awesome": "~4.3.0",
     "vie": "~2.2.0",
-    "backbone-forms": "~0.14.0"
+    "backbone-forms": "~0.14.0",
+    "numeral": "~1.5.3"
   },
   "resolutions": {
     "ember": ">= 1.8.1 < 2.0.0",

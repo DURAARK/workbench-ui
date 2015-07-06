@@ -1,4 +1,40 @@
-{{#if isLoading}}
+<div class="l-file c-file">
+
+	{{#if isIFC}}
+		<div class="c-file__header t-file">
+			3D Model (IFC)
+		</div>
+	{{else}}
+		<div class="c-file__header t-file">
+			Pointcloud (E57)
+		</div>
+	{{/if}}
+
+	<div class="c-file__name">
+		{{#if filename}}
+			{{filename}}
+		{{else}}
+			<h3>Loading ...{{loading-spinner-center}}</h3>
+		{{/if}}
+		<div class="c-file__size">
+			{{#if item.size}}
+				<h4>{{size}}</h4>
+			{{/if}}
+		</div>
+	</div>
+
+	<div class="c-file__actions">
+		<div {{action "removeFile" file}} class="c-file__action">
+			<i class="fa fa-times"></i>
+		</div>
+		<div {{action "detailsFile" file}} class="c-file__action">
+			<i class="fa fa-eye"></i>
+		</div>
+	</div>
+
+</div>
+
+<!-- {{#if isLoading}}
 	<li class="da-file-entry"><div class="da-valid btn btn-green" title="Schema">{{loading-spinner}}</div></li>
 {{else}}
 	<li class="da-file-entry" {{action "onClick" item}}>
@@ -10,4 +46,4 @@
 				{{!-- <div {{action "onDelete" item}} style="color: white;" class="btn btn-red btn-tiny btn-topright" title="Remove File">x</div> --}}
 		</div>
 	</li>
-{{/if}}
+{{/if}} -->

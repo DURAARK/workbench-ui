@@ -1,4 +1,28 @@
-<div class="l-files">
+<div class="c-button-list">
+  <div class="c-button-list__content">
+
+	{{#link-to "workflows.files" class="c-button"}}
+	<div class="c-button__frame t-button-files">
+		<div class="c-button__name">
+			<h3>Add</h3>
+		</div>
+	</div>
+	{{/link-to}}
+
+  {{#link-to "workflows.files" class="c-button"}}
+	<div class="c-button__frame t-button-files">
+	  <div class="c-button__name">
+		<h3>Cancel</h3>
+	  </div>
+	</div>
+  {{/link-to}}
+
+  </div>
+</div>
+
+{{file-list files=model header="Select files"}}
+
+<!-- <div class="l-files">
 	<div class="l-file-list">
 
 		<div class="c-file-list__category">
@@ -14,8 +38,6 @@
 						<th>Address</th>
 						<th>Locality</th>
 						<th>Source</th>
-						<!-- <th>Size</th> -->
-						<!-- <th>Created at</th> -->
 					</tr>
 				</thead>
 
@@ -31,8 +53,6 @@
 							<td>{{file.adress}}</td>
 							<td>{{file.addressLocality}}</td>
 							<td><a href={{file.subject}}>Source</a></td>
-							<!-- <td>395 MB</td> -->
-							<!-- <td>{{file.created}}</td> -->
 						</tr>
 					</tbody>
 
@@ -44,11 +64,10 @@
 
 	{{#if showSidebar}}
 		<div class="l-file-details">
-			<!-- Showing details for: -->
 			{{#if fileInfo}}
 				{{buildm-viewer file=fileInfo}}
 			{{/if}}
 		</div>
 	{{/if}}
 
-</div>
+</div> -->
