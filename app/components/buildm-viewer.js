@@ -1,8 +1,55 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  physicalAsset: function() {
+    var pa = this.get('file.metadata.physicalAsset'),
+      result = [];
+
+    _.each(pa, function(value, key) {
+      if (key[0] !== '@') {
+        var k = key.replace('http://data.duraark.eu/vocab/', ''),
+        values = [];
+
+        _.each(value, function(item) {
+          console.log('key: ' + k + ' | value: ' + item['@value']);
+          values.push(item['@value']);
+        });
+
+        result.push({
+          key: k,
+          values: values
+        });
+      }
+    });
+
+    return result;
+  }.property('file'),
+
+  digitalObject: function() {
+    var da = this.get('file.metadata.digitalObject'),
+      result = [];
+
+    _.each(da, function(value, key) {
+      if (key[0] !== '@') {
+        var k = key.replace('http://data.duraark.eu/vocab/', ''),
+          values = [];
+
+        _.each(value, function(item) {
+          console.log('key: ' + k + ' | value: ' + item['@value']);
+          values.push(item['@value']);
+        });
+
+        result.push({
+          key: k,
+          values: values
+        });
+      }
+    });
+
+    return result;
+  }.property('file'),
+
   didInsertElement: function() {
-    console.log('bin da');
     var controller = this;
     var dropdown = document.querySelectorAll('.dropdown-list'),
       dropdownArray = Array.prototype.slice.call(dropdown, 0);

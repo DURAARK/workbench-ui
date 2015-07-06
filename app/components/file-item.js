@@ -6,10 +6,10 @@ default Ember.Component.extend({
 
 	actions: {
 		selectItem: function(item) {
-			this.sendAction('selectItem', item);
+			this.sendAction('select', item);
 		},
 		showDetails: function(item) {
-			this.sendAction('showDetails', item);
+			this.sendAction('details', item);
 		},
 	},
 

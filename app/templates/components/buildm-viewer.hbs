@@ -6,12 +6,16 @@
   <li class="dropdown-list">
     <!--List Title-->
     <a dropdown-prop="title">Building<i class="dropdown-icon"></i></a>
-      <!--List Items-->
-      <ul class="dropdown-list-items">
-        <li>Home</li>
-        <li>About Us</li>
-        <li>Services</li>
-        <li>Contact</li>
+    <!--List Items-->
+    <ul class="dropdown-list-items">
+      {{#each item in physicalAsset}}
+        {{item.key}}:
+        <ul>
+          {{#each value in item.values}}
+            <li>{{value}}</li>
+          {{/each}}
+        </ul>
+      {{/each}}
     </ul>
   </li>
 
@@ -21,10 +25,14 @@
     <a dropdown-prop="title">Digital Representation<i class="dropdown-icon"></i></a>
     <!--List Items-->
     <ul class="dropdown-list-items">
-      <li>Home</li>
-      <li>About Us</li>
-      <li>Services</li>
-      <li>Contact</li>
+      {{#each item in digitalObject}}
+        {{item.key}}:
+        <ul>
+          {{#each value in item.values}}
+            <li>{{value}}</li>
+          {{/each}}
+        </ul>
+      {{/each}}
     </ul>
   </li>
 
@@ -34,10 +42,7 @@
     <a dropdown-prop="title">File<i class="dropdown-icon"></i></a>
     <!--List Items-->
     <ul class="dropdown-list-items">
-      <li>Home</li>
-      <li>About Us</li>
-      <li>Services</li>
-      <li>Contact</li>
+      <li>Coming soon!</li>
     </ul>
   </li>
 </ul>
