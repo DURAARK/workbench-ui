@@ -1,0 +1,54 @@
+<div class="l-files">
+	<div class="l-file-list">
+
+		<div class="c-file-list__category">
+			<h3>Semantic Digital Archive Storage</h3>
+		</div>
+
+			<table class="tables c-file-item" >
+
+				<thead>
+					<tr>
+						<th></th>
+						<th>Name</th>
+						<th>Address</th>
+						<th>Locality</th>
+						<th>Source</th>
+						<!-- <th>Size</th> -->
+						<!-- <th>Created at</th> -->
+					</tr>
+				</thead>
+
+				{{#each file in model}}
+
+					<tbody>
+						<tr>
+							<td align=center>
+								<button style="width: 8em;" {{action "toggleSelection" file}}>Select</button>
+								<button style="width: 8em;" {{action "showDetails" file}}>Details</button>
+							</td>
+							<td>{{file.name}}</td>
+							<td>{{file.adress}}</td>
+							<td>{{file.addressLocality}}</td>
+							<td><a href={{file.subject}}>Source</a></td>
+							<!-- <td>395 MB</td> -->
+							<!-- <td>{{file.created}}</td> -->
+						</tr>
+					</tbody>
+
+				{{/each}}
+
+			</table>
+
+	</div>
+
+	{{#if showSidebar}}
+		<div class="l-file-details">
+			<!-- Showing details for: -->
+			{{#if fileInfo}}
+				{{buildm-viewer file=fileInfo}}
+			{{/if}}
+		</div>
+	{{/if}}
+
+</div>

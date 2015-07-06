@@ -2,9 +2,9 @@ import Ember from 'ember';
 import ApplicationAdapter from './application';
 import ENV from '../config/environment';
 
-var apiConfig = ENV.DURAARKAPI.sessions;
+var apiConfig = ENV.DURAARKAPI.sda;
 
-console.log('[API] "session/physicalAssets" endpoint: ' + apiConfig.host + '/physicalAssets');
+console.log('[API] "sda/physicalasset" endpoint: ' + apiConfig.host + '/physicalasset');
 
 export
 default ApplicationAdapter.extend({
