@@ -5,9 +5,12 @@ default Ember.Component.extend({
 	tagName: '',
 
 	actions: {
-		onDelete: function(item) {
-			this.sendAction('onDelete', item);
-		}
+		selectItem: function(item) {
+			this.sendAction('selectItem', item);
+		},
+		showDetails: function(item) {
+			this.sendAction('showDetails', item);
+		},
 	},
 
 	filename: function() {
@@ -39,7 +42,7 @@ default Ember.Component.extend({
 		return ext === 'ifc';
 	}.property('extension'),
 
-	ise57: function() {
+	isE57: function() {
 		var ext = this.get('extension').toLowerCase();
 		return ext === 'e57';
 	}.property('extension')

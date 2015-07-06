@@ -1,8 +1,8 @@
 <div class="c-file-list">
 	<div class="c-file-list__listing">
 
-		{{#each file in files}}
-			{{file-item item=file}}
+		{{#each files as |file|}}
+			{{yield file}}
 		{{/each}}
 
 	</div>

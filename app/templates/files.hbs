@@ -24,7 +24,9 @@
 			</div>
 		</div>
 
-		{{file-list files=model header="Select files"}}
+		{{#file-list files=model as |file|}}
+				{{file-item item=file}}
+		{{/file-list}}
 	</div>
 
 	{{#if showSidebar}}
