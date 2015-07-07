@@ -15,5 +15,11 @@ default Ember.Route.extend({
 
     controller.set('showSidebar', true);
     controller.set('selectedFile', null);
+  },
+
+  actions: {
+    error: function(err) {
+      console.log('err: ' + err);
+    },
   }
 });

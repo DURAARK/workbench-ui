@@ -1,6 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  fileInfo: null,
+
+  fileInfoShortName: function() {
+    if (!this.get('fileInfo')) return 'No file selected';
+
+    var path = this.get('fileInfo.path');
+    return path.replace('/duraark-storage/files/', '');
+  }.property('fileInfo'),
+
   actions: {
     toggleSelection: function(file) {
       file.toggleProperty('isSelected');
@@ -15,6 +24,9 @@ export default Ember.Controller.extend({
     showDetails: function(file) {
       var controller = this;
 
+      // Reset details pane:
+      controller.set('errors', null);
+      controller.set('fileInfo', null);
       controller.set('isLoadingMetadata', true);
 
       // TODO: check local store before sending network request!
@@ -37,9 +49,16 @@ export default Ember.Controller.extend({
       md.set('type', file.get('type'));
 
       md.save().then(function(md) {
+        var errors = md.get('extractionErrors');
+
         console.log('showing details for file:   ' + file.get('path'));
         // console.log('md: ' + JSON.stringify(md, null, 4));
         controller.set('fileInfo', md);
+
+        if (errors) {
+          controller.set('errors', errors);
+        }
+
         controller.set('isLoadingMetadata', false);
       });
     }

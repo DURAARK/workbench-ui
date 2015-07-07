@@ -1,41 +1,58 @@
+<div class="c-button-list">
+	<div class="c-button-list__content">
+
+		{{#link-to "workflows.files" class="c-button" }}
+			<div class="c-button__frame t-button-files">
+				<div class="c-button__name">
+					<h3>Add</h3>
+				</div>
+			</div>
+		{{/link-to}}
+
+		{{#link-to "workflows.files" class="c-button" }}
+			<div class="c-button__frame t-button-files">
+				<div class="c-button__name">
+					<h3>Cancel</h3>
+				</div>
+			</div>
+		{{/link-to}}
+
+	</div>
+</div>
+
 <div class="l-files">
 
 	<div class="l-file-list">
 
-		<div class="c-button-list">
-			<div class="c-button-list__content">
-
-				{{#link-to "workflows.files" class="c-button" }}
-					<div class="c-button__frame t-button-files">
-						<div class="c-button__name">
-							<h3>Add</h3>
-						</div>
-					</div>
-				{{/link-to}}
-
-				{{#link-to "workflows.files" class="c-button" }}
-					<div class="c-button__frame t-button-files">
-						<div class="c-button__name">
-							<h3>Cancel</h3>
-						</div>
-					</div>
-				{{/link-to}}
-
-			</div>
-		</div>
-
 		{{#file-list files=model as |file|}}
-				{{file-item item=file select="toggleSelection" details="showDetails"}}
+			{{file-item item=file select="toggleSelection" details="showDetails"}}
 		{{/file-list}}
 	</div>
 
 	{{#if showSidebar}}
 		<div class="l-file-details">
-			{{#if fileInfo}}
-			{{log fileInfo}}
-				{{buildm-viewer file=fileInfo}}
+
+			{{#if isLoadingMetadata}}
+				LOADING ...{{loading-spinner-center}}
+			{{else}}
+
+				{{#if fileInfo}}
+					<h3 class="title" style="color: white;">
+						<div>File:</div> {{fileInfoShortName}}</h3>
+					{{#if errors}}
+						{{#each error in errors}}
+							<div>Type: {{error.type}}</div>
+							<div>Message: {{error.msg}}</div>
+						{{/each}}
+					{{else}}
+						{{buildm-viewer file=fileInfo}}
+					{{/if}}
+				{{else}}
+					<h2 class="title" style="color: white;">To show details use the <i class="fa fa-eye"></i> icon on a file.</h2>
+					<h3 style="color: white;">Depending on the file size it may take some seconds/minutes for the first metadata extraction.</h3>
+				{{/if}}
 			{{/if}}
+
 		</div>
 	{{/if}}
-
 </div>

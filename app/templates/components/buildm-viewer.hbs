@@ -1,13 +1,12 @@
 <!--List Container-->
-<h3 class="title">{{file.path}}</h3>
 <ul class="dropdown-list-container">
 
   <!--First List-->
   <li class="dropdown-list">
     <!--List Title-->
-    <a dropdown-prop="title">Building<i class="dropdown-icon"></i></a>
+    <a dropdown-prop="title">Building Details<i class="dropdown-icon"></i></a>
     <!--List Items-->
-    <div class="dropdown-list-items">
+    <div class="dropdown-list-items dropdown-list-open">
       <fieldset>
       {{#each item in physicalAsset}}
         <label>{{item.key}}:</label>
@@ -22,7 +21,7 @@
   <!--Second List-->
   <li class="dropdown-list">
     <!--List Title-->
-    <a dropdown-prop="title">Digital Representation<i class="dropdown-icon"></i></a>
+    <a dropdown-prop="title">Plan Details<i class="dropdown-icon"></i></a>
     <!--List Items-->
     <div class="dropdown-list-items">
       <fieldset>
@@ -39,7 +38,7 @@
   <!--Third List-->
   <li class="dropdown-list">
     <!--List Title-->
-    <a dropdown-prop="title">File<i class="dropdown-icon"></i></a>
+    <a dropdown-prop="title">File Details<i class="dropdown-icon"></i></a>
     <!--List Items-->
     <div class="dropdown-list-items">
       <fieldset>
