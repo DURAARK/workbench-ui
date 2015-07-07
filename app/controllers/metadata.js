@@ -1,35 +1,27 @@
 import Ember from 'ember';
 
-function _getFileExtension(filepath) {
-    return (/[.]/.exec(filepath)) ? /[^.]+$/.exec(filepath) : null;
-}
+export default Ember.Controller.extend({
+  actions: {
+    showDetails: function(item) {
+      var controller = this;
 
-export
-default Ember.Controller.extend({
-    actions: {
-        selectItem: function(item) {
-            var filename = item.get('file');
-            var fileext = _getFileExtension(filename)[0];
-
-            console.log('selecting file: ' + filename);
-
-            if (fileext === 'e57' && item.get('schema') === 'e57m') { // --> e57m
-                this.transitionToRoute('metadata.e57m', item);
-            }
-
-            if (fileext === 'ifc' && item.get('schema') === 'ifcm') { // --> ifcm
-                this.transitionToRoute('metadata.ifcm', item);
-            }
-
-            // FIXXME: refactor differentiation between digital-object and physical-asset!
-            if (fileext === 'ifc' && item.get('schema') === 'buildm' && item.get('instance').hasOwnProperty('creator')) { // --> digitalObject
-                this.transitionTo('metadata.digitalobject', item);
-            }
-
-            // FIXXME: refactor differentiation between digital-object and physical-asset!
-            if (fileext === 'ifc' && item.get('schema') === 'buildm' && item.get('instance').hasOwnProperty('latitude')) { // --> physicalAsset
-                this.transitionToRoute('metadata.physicalasset', item);
-            }
-        }
+      // Reset details pane:
+      controller.set('fileInfo', item);
     }
+  },
+
+  isPhysicalAsset: function() {
+			var type = this.get('fileInfo')['buildm']['@type'][0];
+			return type === 'http://data.duraark.eu/vocab/PhysicalAsset';
+	}.property('fileInfo'),
+
+	isIFC: function() {
+		var type = this.get('fileInfo')['buildm']['@type'][0];
+		return type === 'http://data.duraark.eu/vocab/IFCSPFFile';
+	}.property('fileInfo'),
+
+	isE57: function() {
+		var type = this.get('fileInfo')['buildm']['@type'][0];
+		return type === 'http://data.duraark.eu/vocab/E57File';
+	}.property('fileInfo')
 });

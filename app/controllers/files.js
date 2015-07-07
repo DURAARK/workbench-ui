@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  // needs: ['application'],
   selectedFiles: [],
   fileInfo: null,
 
@@ -12,11 +13,25 @@ export default Ember.Controller.extend({
   }.property('fileInfo'),
 
   actions: {
-    save: function() {
+    next: function() {
+      var controller = this;
+
       console.log('Selected files:');
       this.get('selectedFiles').forEach(function(file) {
         console.log('  * ' + file.get('path'));
       });
+
+      // var appController = this.get('controllers.application');
+      // appController.set('files', this.get('selectedFiles'));
+
+      var session = this.store.createRecord('session'),
+        files = this.get('selectedFiles');
+
+      session.set('files', files);
+
+      session.save().then(function(session) {
+        controller.transitionToRoute('metadata', session);
+      })
     },
 
     toggleSelection: function(file) {
@@ -70,9 +85,18 @@ export default Ember.Controller.extend({
 
         console.log('showing details for file:   ' + file.get('path'));
         // console.log('md: ' + JSON.stringify(md, null, 4));
+
+        // NOTE: override 'name' from extraction with filename:
+        var name = file.get('path').split('/').pop();
+        md.get('metadata.digitalObject')['http://data.duraark.eu/vocab/name'][0]['@value'] = name;
+        md.get('metadata.physicalAsset')['http://data.duraark.eu/vocab/name'][0]['@value'] = 'Session Name'; // FIXXME: set session name!
+
         controller.set('fileInfo', md);
 
-        if (errors) {
+        if (!errors) {
+          file.set('metadata', md.get('metadata'));
+          file.save();
+        } else {
           controller.set('errors', errors);
         }
 

@@ -8,33 +8,34 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.resource('files', { path: "/files/local" });
   this.resource('files-sda', { path: "/files/sda" });
+  this.resource('metadata', { path: "/metadata/:id" });
 
-  this.resource("sip", function() {
-    this.route('index', { path: "/" });
-  });
-
-  this.resource("workflows", function() {
-    this.route('files', { path: "/files" });
-    this.route('select-files', { path: "/select-files" });
-    this.route('metadata', { path: "/metadata" });
-    this.route('archiveexpert', { path: "/archiveexpert" });
-    this.route('semanticenrichment', { path: "/semanticenrichment" });
-    this.route('semanticenrichment-select-topic-1', { path: "/semanticenrichment-select-topic-1" });
-    this.route('semanticenrichment-select-topic-1-added', { path: "/semanticenrichment-select-topic-1-added" });
-    this.route('semanticenrichment-select-topic-2', { path: "/semanticenrichment-select-topic-2" });
-    this.route('semanticenrichment-new-topic', { path: "/semanticenrichment-new-topic" });
-    this.route('geometricenrichment', { path: "/geometricenrichment" });
-    this.route('geometricenrichment-added-difference-detection', { path: "/geometricenrichment-added-difference-detection" });
-    this.route('geometricenrichment-added-reconstruction', { path: "/geometricenrichment-added-reconstruction" });
-    this.route('differencedetection', { path: "/geometricenrichment/differencedetection" });
-    this.route('hiddenfeatures', { path: "/geometricenrichment/hiddenfeatures" });
-    this.route('hiddenfeatures-processing', { path: "/geometricenrichment/hiddenfeatures-processing" });
-    this.route('retrieval', { path: "/retrieval" });
-    this.route('retrieval-custom', { path: "/retrieval-custom" });
-    this.route('maintenance', { path: "/maintenance" });
-  });
-
-  this.route('fileDetails');
+  // this.resource("sip", function() {
+  //   this.route('index', { path: "/" });
+  // });
+  //
+  // this.resource("workflows", function() {
+  //   this.route('files', { path: "/files" });
+  //   this.route('select-files', { path: "/select-files" });
+  //   this.route('metadata', { path: "/metadata" });
+  //   this.route('archiveexpert', { path: "/archiveexpert" });
+  //   this.route('semanticenrichment', { path: "/semanticenrichment" });
+  //   this.route('semanticenrichment-select-topic-1', { path: "/semanticenrichment-select-topic-1" });
+  //   this.route('semanticenrichment-select-topic-1-added', { path: "/semanticenrichment-select-topic-1-added" });
+  //   this.route('semanticenrichment-select-topic-2', { path: "/semanticenrichment-select-topic-2" });
+  //   this.route('semanticenrichment-new-topic', { path: "/semanticenrichment-new-topic" });
+  //   this.route('geometricenrichment', { path: "/geometricenrichment" });
+  //   this.route('geometricenrichment-added-difference-detection', { path: "/geometricenrichment-added-difference-detection" });
+  //   this.route('geometricenrichment-added-reconstruction', { path: "/geometricenrichment-added-reconstruction" });
+  //   this.route('differencedetection', { path: "/geometricenrichment/differencedetection" });
+  //   this.route('hiddenfeatures', { path: "/geometricenrichment/hiddenfeatures" });
+  //   this.route('hiddenfeatures-processing', { path: "/geometricenrichment/hiddenfeatures-processing" });
+  //   this.route('retrieval', { path: "/retrieval" });
+  //   this.route('retrieval-custom', { path: "/retrieval-custom" });
+  //   this.route('maintenance', { path: "/maintenance" });
+  // });
+  //
+  // this.route('fileDetails');
 
   // this.resource("preingest", function() {
   // 	this.route('index', { path: "/" });

@@ -1,0 +1,32 @@
+<div class="l-file c-file {{if item.isSelected 'is-selected'}}">
+	<div {{action "showDetails" item}}>
+
+		{{#if isIFC}}
+			<div class="c-file__header t-file">
+				3D Model (IFC)
+			</div>
+		{{else}}
+			{{#if isE57}}
+				<div class="c-file__header t-file">
+					Pointcloud (E57)
+				</div>
+			{{else}}
+				<div class="c-file__header t-file">
+					Building
+				</div>
+			{{/if}}
+		{{/if}}
+
+		<div class="c-file__name">
+			{{name}}
+		</div>
+
+	</div>
+
+	<div class="c-file__actions">
+		<div {{action "showDetails" item}} class="c-file__action">
+			<i class="fa fa-eye"></i>
+		</div>
+	</div>
+
+</div>

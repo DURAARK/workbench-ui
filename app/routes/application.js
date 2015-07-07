@@ -1,11 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	// model: function() {
-	// 	return this.store.find('session');
-	// },
-
+	model: function() {
+		return this.store.find('session');
+	},
+	//
 	// setupController: function(controller, model) {
+	// 	debugger;
 	// 	this._super(controller, model);
 	// },
 

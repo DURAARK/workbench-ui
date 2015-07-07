@@ -1,62 +1,66 @@
-<main id="main">
-	<section class="content-view-container">
-	    <section class="content-list">
-	        <header class="floatingheader">
-	            <section class="manage content-filter">
-	                <small>Metadata stored in Archive</small>
-	            </section>
-	        </header>
+<div class="c-button-list">
+	<div class="c-button-list__content">
 
-			<section>
-				<button class="btn btn-green" {{action "save"}}> Save</button>   
-			</section>
+		<div {{action 'next'}} class="c-button">
+			<div class="c-button__frame t-button-files">
+				<div class="c-button__name">
+					<h3>Next</h3>
+				</div>
+			</div>
+		</div>
 
-			<section class="content-list-content js-content-scrollbox">
+		<div class="c-button">
+			<div class="c-button__frame t-button-files">
+				<div class="c-button__name">
+					<h3>Back</h3>
+				</div>
+			</div>
+		</div>
 
-				<ol style="position: relative" class="fe-list">
-					
-					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9998;</span> Metadata</div>
-					
-					{{#each item in physicalAssets}}
-					<li {{action "selectItem" item}}>     
-						{{physical-asset-overview item=item}}
-					</li>
-					{{/each}}
+	</div>
+</div>
 
-					{{#each item in digitalObjects}}
-					<li {{action "selectItem" item}}>                
-						{{digital-object-overview item=item}}
-					</li>  	
-					{{/each}}	
+<div class="l-files">
 
-					<div class="md-item-header-sidebar"><span style="margin-right: 5px;">&#9782;</span> File Information</div>
-					{{#each item in e57ms}}
-					<li {{action "selectItem" item}}>         
-						{{e57m-overview item=item}}
-					</li>
-					{{/each}}
+	<div class="l-file-list">
 
-					{{#each item in ifcms}}
-					<li {{action "selectItem" item}}>                
-						{{ifcm-overview item=item}}
-					</li>
-					{{/each}}	
-				</ol>
-			</section> 
-		</section>
+		{{#file-list files=session.physicalAssets as |pa|}}
+			{{physical-asset-item item=pa details="showDetails"}}
+		{{/file-list}}
 
-		<section class="content-preview">
-			<header class="floatingheader">
-			    <small>
-			        <span class="status">Editor</span>
-			    </small>
-			</header>
-			
-			<section class="content-preview-content">
-				{{outlet}}
-			</section>
-		</section>
-	</section>
-</main>
+		{{#file-list files=session.digitalObjects as |do|}}
+			{{physical-asset-item item=do details="showDetails"}}
+		{{/file-list}}
+
+	</div>
+
+	{{#if model}}
+		<div class="l-file-details">
+
+			{{#if isLoadingMetadata}}
+				<div style="color: white;">LOADING ...</div>
+				{{loading-spinner-center}}
+			{{else}}
+
+				{{#if fileInfo}}
+					{{#if isIFC}}
+						{{metadata-editor-ifc buildm=fileInfo.buildm}}
+					{{/if}}
+
+					{{#if isE57}}
+						{{digital-object-editor buildm=fileInfo.buildm}}
+					{{/if}}
+
+					{{#if isPhysicalAsset}}
+						{{metadata-editor-physicalasset buildm=fileInfo.buildm}}
+					{{/if}}
 
 
+				{{else}}
+					<h2 class="title" style="color: white;">Select a building or a plan on the left to edit its metadata.</h2>
+				{{/if}}
+			{{/if}}
+
+		</div>
+	{{/if}}
+</div>

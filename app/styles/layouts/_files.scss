@@ -11,9 +11,7 @@
 }
 .l-file-details {
   @include span(4 last);
-  height: 100vh;
+  // height: 100vh;
   // background: blue;
   overflow-y: auto;
-}
-.c-file-item {
 }
