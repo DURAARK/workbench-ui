@@ -1,4 +1,3 @@
-
 // Colors
 // ======
 // For project colors.
@@ -20,46 +19,24 @@
 // Sublime gutter: https://sublime.wbond.net/packages/Gutter%20Color
 // See the colors you used in the gutter (Awesome if you use sublime text)
 // ==========
-
-$colors: (
-  white: #fff,
-  dark-gray: #3D3E40,
-  gallery: #3D3E40,
-  concrete: #f2f2f2,
-  silver: #c2c2c2,
-  gray: #8c8c8c,
-  natural-gray: #e4e4f0,
-  royal-purple: rgba(85, 26, 139, 0.99),
-  tuna: rgba(50, 50, 62, 0.5),
-  woodsmoke:#101014,
-  shark: #edece4,
-  mid-gray: #acb6ba,
-  light-green: #D3E33F,
-  mid-green: #187735,
-  very-green: rgba(84, 176, 112, 1),
-  light-blue: #70ADD5,
-  light-orange: #fed64a,
-  flashy-green: #0066A8,
-  light-gray: #F6F6FF,
-  dark-brown: #55504b
-  );
-
+$colors: ( white: #fff, dark-gray: #3D3E40, gallery: #3D3E40, concrete: #f2f2f2, silver: #c2c2c2, gray: #8c8c8c, natural-gray: #e4e4f0, royal-purple: rgba(85, 26, 139, 0.99), tuna: rgba(50, 50, 62, 0.5), woodsmoke:#101014, shark: #edece4, mid-gray: #acb6ba, light-green: #D3E33F, mid-green: #187735, very-green: rgba(84, 176, 112, 1), light-blue: #70ADD5, light-orange: #fed64a, flashy-green: #0066A8, light-gray: #F6F6FF, dark-brown: #55504b );
+.is-selected {
+  .t-file {
+    background: green !important;
+  }
+}
 .t-file {
   background: color(light-blue) !important;
 }
-
 .t-file-semenrich {
   background: color(light-green) !important;
 }
-
 .t-file-geoenrich {
   background: color(light-green) !important;
 }
-
 .t-file-metadata {
   background: rgba(color(light-green), 1) !important;
 }
-
 .t-button-files,
 .t-button-metadata,
 .t-button-semenrich,
@@ -69,7 +46,7 @@ $colors: (
 }
 
 // From _dropdown-list.scss
-$text        : #000;
-$background  : #34495e;
-$list-header : #16a085;
-$list-item   : #1abc9c;
+$text: #000;
+$background: #34495e;
+$list-header: #16a085;
+$list-item: #1abc9c;

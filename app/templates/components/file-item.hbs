@@ -1,30 +1,38 @@
-<div class="l-file c-file">
-	{{#if isIFC}}
-		<div class="c-file__header t-file">
-			3D Model (IFC)
-		</div>
-	{{else}}
-		<div class="c-file__header t-file">
-			Pointcloud (E57)
-		</div>
-	{{/if}}
+<div class="l-file c-file {{if item.isSelected 'is-selected'}}">
+	<div {{action "showDetails" item}}>
 
-	<div class="c-file__name">
-		{{#if filename}}
-			{{filename}}
+		{{#if isIFC}}
+			<div class="c-file__header t-file">
+				3D Model (IFC)
+			</div>
 		{{else}}
-			<h3>Loading ...{{loading-spinner-center}}</h3>
+			<div class="c-file__header t-file">
+				Pointcloud (E57)
+			</div>
 		{{/if}}
-		<div class="c-file__size">
-			{{#if item.size}}
-				<h4>{{size}}</h4>
+
+		<div class="c-file__name">
+			{{#if filename}}
+				{{filename}}
+			{{else}}
+				<h3>Loading ...{{loading-spinner-center}}</h3>
 			{{/if}}
+			<div class="c-file__size">
+				{{#if item.size}}
+					<h4>{{size}}</h4>
+				{{/if}}
+			</div>
 		</div>
+
 	</div>
 
 	<div class="c-file__actions">
 		<div {{action "selectItem" item}} class="c-file__action">
-			<i class="fa fa-plus"></i>
+			{{#if item.isSelected}}
+				<i class="fa fa-minus"></i>
+			{{else}}
+				<i class="fa fa-plus"></i>
+			{{/if}}
 		</div>
 		<div {{action "showDetails" item}} class="c-file__action">
 			<i class="fa fa-eye"></i>

@@ -1,24 +1,41 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  selectedFiles: [],
   fileInfo: null,
 
   fileInfoShortName: function() {
     if (!this.get('fileInfo')) return 'No file selected';
 
     var path = this.get('fileInfo.path');
-    return path.replace('/duraark-storage/files/', '');
+    return path.replace('/duraark-storage/files/', ''); // FIXXME!
   }.property('fileInfo'),
 
   actions: {
+    save: function() {
+      console.log('Selected files:');
+      this.get('selectedFiles').forEach(function(file) {
+        console.log('  * ' + file.get('path'));
+      });
+    },
+
     toggleSelection: function(file) {
       file.toggleProperty('isSelected');
 
+      var files = this.get('selectedFiles');
+
       if (file.get('isSelected')) {
-        console.log('selected file:   ' + file.get('path'));
+        files.push(file);
+        // console.log('selected file:   ' + file.get('path'));
       } else {
-        console.log('deselected file: ' + file.get('path'));
+        files.removeObject(file);
+        // console.log('deselected file:   ' + file.get('path'));
       }
+
+      // console.log('Currently selected files:');
+      // files.forEach(function(file) {
+      //   console.log('  * ' + file.get('path'));
+      // });
     },
 
     showDetails: function(file) {

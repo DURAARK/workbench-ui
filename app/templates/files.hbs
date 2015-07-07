@@ -1,21 +1,21 @@
 <div class="c-button-list">
 	<div class="c-button-list__content">
 
-		{{#link-to "workflows.files" class="c-button" }}
+		<div {{action 'save'}} class="c-button">
 			<div class="c-button__frame t-button-files">
 				<div class="c-button__name">
 					<h3>Add</h3>
 				</div>
 			</div>
-		{{/link-to}}
+		</div>
 
-		{{#link-to "workflows.files" class="c-button" }}
+		<div class="c-button">
 			<div class="c-button__frame t-button-files">
 				<div class="c-button__name">
 					<h3>Cancel</h3>
 				</div>
 			</div>
-		{{/link-to}}
+		</div>
 
 	</div>
 </div>
@@ -33,12 +33,12 @@
 		<div class="l-file-details">
 
 			{{#if isLoadingMetadata}}
-				LOADING ...{{loading-spinner-center}}
+				<div style="color: white;">LOADING ...</div>
+				{{loading-spinner-center}}
 			{{else}}
 
 				{{#if fileInfo}}
-					<h3 class="title" style="color: white;">
-						<div>File:</div> {{fileInfoShortName}}</h3>
+					<h3 class="title" style="color: white;">{{fileInfoShortName}}</h3>
 					{{#if errors}}
 						{{#each error in errors}}
 							<div>Type: {{error.type}}</div>
