@@ -7,16 +7,16 @@
     <!--List Title-->
     <a dropdown-prop="title">Building<i class="dropdown-icon"></i></a>
     <!--List Items-->
-    <ul class="dropdown-list-items">
+    <div class="dropdown-list-items">
+      <fieldset>
       {{#each item in physicalAsset}}
-        {{item.key}}:
-        <ul>
-          {{#each value in item.values}}
-            <li>{{value}}</li>
-          {{/each}}
-        </ul>
+        <label>{{item.key}}:</label>
+        {{#each value in item.values}}
+          {{input readonly=true value=value}}
+        {{/each}}
       {{/each}}
-    </ul>
+      </fieldset>
+    </div>
   </li>
 
   <!--Second List-->
@@ -24,16 +24,16 @@
     <!--List Title-->
     <a dropdown-prop="title">Digital Representation<i class="dropdown-icon"></i></a>
     <!--List Items-->
-    <ul class="dropdown-list-items">
+    <div class="dropdown-list-items">
+      <fieldset>
       {{#each item in digitalObject}}
-        {{item.key}}:
-        <ul>
-          {{#each value in item.values}}
-            <li>{{value}}</li>
-          {{/each}}
-        </ul>
+        <label>{{item.key}}:</label>
+        {{#each value in item.values}}
+          {{input readonly=true value=value}}
+        {{/each}}
       {{/each}}
-    </ul>
+      </fieldset>
+    </div>
   </li>
 
   <!--Third List-->
@@ -41,8 +41,10 @@
     <!--List Title-->
     <a dropdown-prop="title">File<i class="dropdown-icon"></i></a>
     <!--List Items-->
-    <ul class="dropdown-list-items">
-      <li>Coming soon!</li>
-    </ul>
+    <div class="dropdown-list-items">
+      <fieldset>
+        <label>Coming soon!</label>
+      </fieldset>
+    </div>
   </li>
 </ul>

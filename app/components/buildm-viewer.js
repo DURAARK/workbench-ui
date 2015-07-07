@@ -3,22 +3,13 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   physicalAsset: function() {
     var pa = this.get('file.metadata.physicalAsset'),
-      result = [];
+      result = [],
+      controller = this;
 
     _.each(pa, function(value, key) {
-      if (key[0] !== '@') {
-        var k = key.replace('http://data.duraark.eu/vocab/', ''),
-        values = [];
-
-        _.each(value, function(item) {
-          console.log('key: ' + k + ' | value: ' + item['@value']);
-          values.push(item['@value']);
-        });
-
-        result.push({
-          key: k,
-          values: values
-        });
+      var entry = controller.extractFromJSONLD(value, key);
+      if (entry) {
+        result.push(entry);
       }
     });
 
@@ -27,22 +18,13 @@ export default Ember.Component.extend({
 
   digitalObject: function() {
     var da = this.get('file.metadata.digitalObject'),
-      result = [];
+      result = [],
+      controller = this;
 
     _.each(da, function(value, key) {
-      if (key[0] !== '@') {
-        var k = key.replace('http://data.duraark.eu/vocab/', ''),
-          values = [];
-
-        _.each(value, function(item) {
-          console.log('key: ' + k + ' | value: ' + item['@value']);
-          values.push(item['@value']);
-        });
-
-        result.push({
-          key: k,
-          values: values
-        });
+      var entry = controller.extractFromJSONLD(value, key);
+      if (entry) {
+        result.push(entry);
       }
     });
 
@@ -66,5 +48,29 @@ export default Ember.Component.extend({
 
       button.addEventListener('click', toggleDropdown);
     });
+  },
+
+  extractFromJSONLD: function(value, key) {
+    if (key[0] !== '@') {
+      var k = key.replace('http://data.duraark.eu/vocab/', ''),
+        values = [];
+
+      _.each(value, function(item) {
+        console.log('key: ' + k + ' | value: ' + item['@value']);
+
+        var v = item['@value'];
+
+        if (v && v !== '') {
+          values.push(v);
+        }
+      });
+
+      return {
+        key: k,
+        values: values
+      };
+    }
+
+    return null;
   }
 });

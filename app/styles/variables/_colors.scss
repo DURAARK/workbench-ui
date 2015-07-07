@@ -52,7 +52,7 @@ $colors: (
   background: color(light-green) !important;
 }
 
-.t-file-geoenrich { 
+.t-file-geoenrich {
   background: color(light-green) !important;
 }
 
@@ -68,17 +68,8 @@ $colors: (
   background: rgba(color(natural-gray), 0) !important;
 }
 
-// original
-  // $colors: (
-  //   white: #fff,
-  //   gallery: #eee,
-  //   concrete: #f2f2f2,
-  //   silver: #c2c2c2,
-  //   gray: #8c8c8c,
-  //   natural-gray: #8c8c9c,
-  //   royal-purple: #6445a3,
-  //   tuna: #32323e,
-  //   woodsmoke:#101014,
-  //   shark: #19191f,
-  //   mid-gray: #666676
-  //   );
+// From _dropdown-list.scss
+$text        : #000;
+$background  : #34495e;
+$list-header : #16a085;
+$list-item   : #1abc9c;

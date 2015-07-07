@@ -2,8 +2,13 @@
 // ----------
 @include establish-baseline;
 
+$page-font   : 'Lato', sans-serif;
+
 body {
-  background: white;
+  font-size        : 20px;
+  font-family      : $page-font;
+  color            : $text;
+  background: $background;
 }
 
 // Adaptation of Lobotomized Owls Selector on p elements
