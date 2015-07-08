@@ -11,10 +11,10 @@
 
       {{#each item in formDescription}}
 
-        <label>{{item.key}}:</label>
+        <label>{{item.label}}:</label>
 
-        {{#each bla in item.values}}
-          {{input readonly=false value=bla.value}}
+        {{#each value in item.values}}
+          {{input readonly=false value=value.value}}
         {{/each}}
 
         {{#if item.multiples}}

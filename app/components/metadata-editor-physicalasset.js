@@ -8,10 +8,12 @@ var FormEntry = Ember.Object.extend({
   origKey: null,
   key: null,
   type: null,
+  mandatory: false,
   multiples: false,
   values: [],
   newValue: '',
-  addLabel: ''
+  addLabel: '',
+  label: null
 });
 
 export default Ember.Component.extend({
@@ -20,6 +22,11 @@ export default Ember.Component.extend({
   actions: {
     addItem: function(item) {
       var newValue = item.get('newValue');
+
+      if (newValue === '') {
+        return;
+      }
+
       item.set('newValue', '');
 
       console.log('newValue: ' + newValue);
@@ -37,15 +44,13 @@ export default Ember.Component.extend({
   onBuildmChange: function() {
     var da = this.get('buildm'),
       formDescription = [],
-      controller = this,
-      schemaInfo = this.getSchemaInfo();
-
-      console.log('schemaInfo:\n' +JSON.stringify(schemaInfo, null, 4));
+      schemaDesc = this.getSchemaDescription(),
+      controller = this;
 
     _.each(da, function(value, key) {
 
       if (key[0] !== '@') {
-        var entry = controller.buildFormDescription(value, key);
+        var entry = controller.buildFormDescription(value, key, schemaDesc);
 
         if (entry) {
           formDescription.pushObject(entry);
@@ -56,15 +61,38 @@ export default Ember.Component.extend({
     this.set('formDescription', formDescription);
   }.observes('buildm').on('init'),
 
-  buildFormDescription: function(value, key) {
+  buildFormDescription: function(value, key, schemaDesc) {
     var entry = FormEntry.create({
       origKey: key,
-      values: []
+      key: key.replace('http://data.duraark.eu/vocab/', ''),
+      type: null,
+      mandatory: false,
+      multiples: false,
+      values: [],
+      newValue: '',
+      addLabel: '',
+      label: null,
+      doc: ''
     });
 
-    entry.set('key', key.replace('http://data.duraark.eu/vocab/', ''));
-    entry.set('type', value[0]['type']);
-    entry.set('multiples', false);
+    var schemaEntry = schemaDesc.physicalAsset[entry.get('key')];
+
+    if (!schemaEntry) { // Encountering an entry which is not defined in schema, skipping...
+      return null;
+    }
+
+    console.log('asdf: ' + JSON.stringify(schemaEntry, null, 4));
+
+    entry.set('type', schemaEntry.type);
+    entry.set('mandatory', (schemaEntry.minOccurs === '1') ? true : false);
+    entry.set('multiples', (schemaEntry.maxOccurs === 'unbounded') ? true : false);
+    entry.set('doc', schemaEntry.doc);
+
+    // FIXXME: set nice label for each
+    var label = entry.get('key');
+    entry.set('label', label);
+
+    entry.set('addLabel', 'Add ' + label);
 
     _.each(value, function(item, idx) {
       console.log('key: ' + entry.key + ' | value: ' + item['@value']);
@@ -81,9 +109,10 @@ export default Ember.Component.extend({
     return entry;
   },
 
-  getSchemaInfo: function(key) {
+  getSchemaDescription: function(key) {
     var schemaInfo = {};
 
+    // NOTE: conversion from xsd via http://www.utilities-online.info/xmltojson
     var schema = {
       "xs:schema": {
         "-xmlns:xs": "http://www.w3.org/2001/XMLSchema",
@@ -440,7 +469,7 @@ export default Ember.Component.extend({
     var elements = schema['xs:schema']['xs:element']['xs:complexType']['xs:sequence']['xs:element'];
     _.each(elements, function(element) {
 
-            var curElement = element['-name'];
+      var curElement = element['-name'];
 
       // console.log('ELEMENT: ' + curElement);
 
@@ -454,7 +483,7 @@ export default Ember.Component.extend({
       var subels = element['xs:complexType']['xs:sequence']['xs:element'];
       _.each(subels, function(els) {
         var info = {},
-        name = els['-name'];
+          name = els['-name'];
 
         // info['name'] = els['-name'];
         info['doc'] = els['xs:annotation']['xs:documentation'];

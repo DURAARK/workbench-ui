@@ -21,29 +21,29 @@
             buildm: {}
           };
 
-        files.forEach(function(file) {
-          // FIXXME: how to combine pa data from all files?
-          var paMD = file.metadata.physicalAsset;
-          pa.buildm = paMD;
-          session.set('physicalAssets', [pa]);
-
-          var daMD = file.metadata.digitalObject;
-
-          var digOb = {
-            label: daMD['http://data.duraark.eu/vocab/name'][0]['@value'] || "Edit name",
-            buildm: daMD,
-            semMD: {},
-            techMD: {},
-            derivatives: {}
-          };
-
-          var das = session.get('digitalObjects');
-          if (!das) {
-            das = [];
-          }
-          das.push(digOb);
-          session.set('digitalObjects', das);
-        });
+        // files.forEach(function(file) {
+        //   // FIXXME: how to combine pa data from all files?
+        //   var paMD = file.metadata.physicalAsset;
+        //   pa.buildm = paMD;
+        //   session.set('physicalAssets', [pa]);
+        //
+        //   var daMD = file.metadata.digitalObject;
+        //
+        //   var digOb = {
+        //     label: daMD['http://data.duraark.eu/vocab/name'][0]['@value'] || "Edit name",
+        //     buildm: daMD,
+        //     semMD: {},
+        //     techMD: {},
+        //     derivatives: {}
+        //   };
+        //
+        //   var das = session.get('digitalObjects');
+        //   if (!das) {
+        //     das = [];
+        //   }
+        //   das.push(digOb);
+        //   session.set('digitalObjects', das);
+        // });
 
         return session.save().then(function(session) {
           controller.set('session', session);
