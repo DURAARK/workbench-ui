@@ -17,7 +17,7 @@ var FormEntry = Ember.Object.extend({
 });
 
 export default Ember.Component.extend({
-  formDescription: [],
+  formDescription: [], // TODO: rename to 'form'!
 
   actions: {
     addItem: function(item) {
@@ -62,51 +62,6 @@ export default Ember.Component.extend({
 
     this.set('formDescription', formTemplate);
   }.observes('buildm').on('init'),
-
-  buildFormDescription: function(value, key, schemaDesc) {
-    var entry = FormEntry.create({
-      origKey: key,
-      key: key.replace('http://data.duraark.eu/vocab/', ''),
-      type: null,
-      mandatory: false,
-      multiples: false,
-      values: [],
-      newValue: '',
-      addLabel: '',
-      label: null,
-      doc: ''
-    });
-
-    var schemaEntry = schemaDesc.physicalAsset[entry.get('key')];
-
-    if (!schemaEntry) { // Encountering an entry which is not defined in schema, skipping...
-      return null;
-    }
-
-    entry.set('type', schemaEntry.type);
-    entry.set('mandatory', (schemaEntry.minOccurs === '1') ? true : false);
-    entry.set('multiples', (schemaEntry.maxOccurs === 'unbounded') ? true : false);
-    entry.set('doc', schemaEntry.doc);
-
-    // FIXXME: set nice label for each
-    var label = entry.get('key');
-    entry.set('label', label);
-    entry.set('addLabel', 'Add ' + label);
-
-    _.each(value, function(item, idx) {
-      console.log('key: ' + entry.key + ' | value: ' + item['@value']);
-
-      var v = item['@value'];
-
-      if (v && v !== '') {
-        entry.get('values').pushObject(EntryLine.create({
-          value: v
-        }));
-      }
-    });
-
-    return entry;
-  },
 
   buildFormTemplate: function(existingMetadataValues) {
     var schemaFull = this.getSchema(),
@@ -571,29 +526,6 @@ export default Ember.Component.extend({
     });
 
     return schemaInfo;
-  },
-
-  extractFromJSONLD: function(value, key) {
-    if (key[0] !== '@') {
-      var k = key.replace('http://data.duraark.eu/vocab/', ''),
-        values = [];
-
-      _.each(value, function(item) {
-        console.log('key: ' + k + ' | value: ' + item['@value']);
-
-        var v = item['@value'];
-
-        if (v && v !== '') {
-          values.push(v);
-        }
-      });
-
-      return {
-        key: k,
-        values: values
-      };
-    }
-
-    return null;
   }
+
 });
