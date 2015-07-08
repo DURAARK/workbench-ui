@@ -5,6 +5,12 @@
   <li class="dropdown-list">
     <!--List Title-->
     <a dropdown-prop="title" {{action "save"}}>{{label}}: <br> {{formDescription.itemName}}</a>
+
+    {{#if showSaveButton}}
+      <button {{action "save"}}>Save</button>
+      <button {{action "restore"}}>Cancel</button>
+    {{/if}}
+
     <!--List Items-->
     <div class="dropdown-list-items dropdown-list-open">
       <fieldset>
@@ -15,18 +21,18 @@
           {{#if item.mandatory}}*{{/if}}
 
           <div>{{item.doc}}</div>
-          
+
           {{#each value in item.values}}
-            {{input readonly=false value=value.value}}
+            {{input value=value.value action="metadataChanged" on="key-press"}}
           {{/each}}
 
           {{#if item.multiples}}
-            {{input readonly=false placeholder=item.addLabel value=item.newValue}}
+            {{input placeholder=item.addLabel value=item.newValue action="metadataChanged" on="key-press"}}
             <button type="button" {{action "addItem" item}}>+</button>
           {{else}}
             {{#if item.values.length}}
             {{else}}
-              {{input readonly=false value=item.newValue}}
+              {{input value=item.newValue action="metadataChanged" on="key-press"}}
             {{/if}}
           {{/if}}
 

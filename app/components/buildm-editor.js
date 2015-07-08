@@ -17,8 +17,10 @@ var FormEntry = Ember.Object.extend({
 });
 
 export default Ember.Component.extend({
+  buildm: null,
   originalBuildm: null,
   formDescription: [], // TODO: rename to 'form'!
+  showSaveButton: false,
 
   actions: {
     addItem: function(item) {
@@ -42,6 +44,19 @@ export default Ember.Component.extend({
 
       var buildm = this.convertFormToJSONLD(formDescription);
       this.sendAction('save', buildm);
+      this.set('showSaveButton', false);
+    },
+
+    restore: function() {
+      var originalBuildm = this.get('originalBuildm');
+      this.set('buildm', originalBuildm);
+      this.set('showSaveButton', false);
+
+      this.buildmChanged();
+    },
+
+    metadataChanged: function() {
+      this.set('showSaveButton', true);
     }
   },
 
@@ -77,7 +92,7 @@ export default Ember.Component.extend({
     }
   }.property('buildm'),
 
-  onBuildmChange: function() {
+  buildmChanged: function() {
     var buildm = this.get('buildm'),
       formDescription = [],
       schemaDesc = this.getSchema(),
@@ -85,7 +100,7 @@ export default Ember.Component.extend({
 
     this.set('originalBuildm', buildm);
 
-    console.log('form: ' + JSON.stringify(buildm, null, 4));
+    // console.log('form: ' + JSON.stringify(buildm, null, 4));
 
     var formTemplate = this.buildFormTemplate(buildm);
     formTemplate['itemName'] = buildm['http://data.duraark.eu/vocab/name'][0]['@value'];
@@ -139,7 +154,7 @@ export default Ember.Component.extend({
 
       if (values) {
         _.each(values, function(value, idx) {
-          console.log('key: ' + entry.key + ' | value: ' + value['@value']);
+          // console.log('key: ' + entry.key + ' | value: ' + value['@value']);
 
           var v = value['@value'];
 
