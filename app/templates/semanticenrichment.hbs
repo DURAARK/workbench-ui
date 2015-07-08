@@ -1,102 +1,50 @@
-<main id="main">
-	<section class="content-view-container">
-	    <section class="content-list">
-	        <header class="floatingheader">
-	            <section class="manage content-filter">
-	                <small>Enrichments stored in Archive</small>
-	            </section>
-	        </header>
+<div class="c-button-list">
+	<div class="c-button-list__content">
 
-			<section>
-				<button class="btn btn-green" {{action "save"}}> Save</button>
-			</section>
-
-			<section class="content-list-content js-content-scrollbox">
-				<ol class="posts-list">
-					{{enrichment-explorer items=stage.selectedItems selectItem="deselectItem"}}
-				</ol>
-			</section>
-		</section>
-
-		<section class="content-preview">
-			<header class="floatingheader">
-			    <small>
-			        <span class="status">Available Enrichments</span>
-			    </small>
-			</header>
-
-			<section class="content-preview-content">
-				<h4>Semantic Enrichment</h4>
-				<br>
-				<div class="fe-list-item-header">Please select one or multiple topics which are related to the data you want to store. We will find valuable additional information pieces which are tailored for your data and provide you with a list of information candidates. Either add all candidates to your archive or select the most relevant candidates on your own.</div>
-				<br>
-				<ul class="wui-semenrich-template-wrapper">				
-				{{#each template in seedTemplates}}
-					<li {{bind-attr class=":wui-semenrich-template template.selected:selected"}} {{action "toggleSeedSelection" template}}>
-						{{template.label}}
-					</li>
-				{{/each}}
-				</ul>
-
-				<br><br>
-
-				<center>
-					<button {{action "getSemanticEnrichments" file}} class="btn btn-green-line" title="Get semantic enrichment">Update Candidates</button>
-				</center>
-
-{{!-- 				<center>Information seed:</center>
-				<div style="width: 50%; margin-left: auto; margin-right: auto;">
-					{{view "select" content=locationPivots value=selectedPivot}}
+		<div {{action 'next'}} class="c-button">
+			<div class="c-button__frame t-button-files">
+				<div class="c-button__name">
+					<h3>Next</h3>
 				</div>
+			</div>
+		</div>
 
-				<br>
+		<div {{action 'back'}} class="c-button">
+			<div class="c-button__frame t-button-files">
+				<div class="c-button__name">
+					<h3>Back</h3>
+				</div>
+			</div>
+		</div>
 
-				{{#each file in ifcFiles}}
-					<center><button {{action "getSemanticEnrichments" file}} class="btn btn-green-line" title="Get semantic enrichment">Search Enrichments</button> for <strong>{{file.filename}}</strong></center>
-					<br>
-				{{/each}} --}}
+	</div>
+</div>
 
-				<hr>
+<div class="l-files">
 
+	<div class="l-file-list">
 
-				{{#if hasError}}
-					<br><br>
-					<center>
-						<h4>{{errorText}}</h4>
-					</center>
+		{{#file-list files=session.digitalObjects as |do|}}
+			<div>{{physical-asset-item item=do details="showDetails"}}</div>
+		{{/file-list}}
+
+	</div>
+
+	{{#if model}}
+		<div class="l-file-details">
+
+			{{#if isLoadingMetadata}}
+				<div style="color: white;">LOADING ...</div>
+				{{loading-spinner-center}}
+			{{else}}
+
+				{{#if fileInfo}}
+						{{information-topic-selector buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
 				{{else}}
-					{{#if isUpdatingEnrichments}}
-						<div style="font-size: 20px;"><center><strong>Searching archive for enrichments, be patient ...</strong></center></div>
-
-						<br><br>
-
-						{{loading-spinner-center}}
-					{{else}}
-						{{#if uniqueAvailableItems.length}}
-						<div style="font-size: 20px;">
-							Available Candidates based on the selected templates:
-						</div>
-
-						<br>
-							{{enrichment-explorer items=uniqueAvailableItems selectItem="selectItem"}}
-						{{else}}
-						
-							{{#if isStarting}}
-								<div style="font-size: 20px;"><center><strong>Looking for candidates from last session</strong></center></div>
-
-								<br><br>
-
-								{{loading-spinner-center}}
-							{{else}}
-								<br><br>
-								<center><h3>No candidates yet.</h3></center>
-							{{/if}}
-						
-						{{/if}}
-					{{/if}}
+					<h2 class="title" style="color: white;">Select a plan or point cloud to enricht it with information topics.</h2>
 				{{/if}}
+			{{/if}}
 
-			</section>
-		</section>
-	</section>
-</main>
+		</div>
+	{{/if}}
+</div>

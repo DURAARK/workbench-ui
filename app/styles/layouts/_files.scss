@@ -2,7 +2,7 @@
 // =============
 
 .l-file-list {
-  @include span(8);
+  @include span(6);
   padding-left: rhythm(0.6);
 
   .l-file {
@@ -10,7 +10,7 @@
   }
 }
 .l-file-details {
-  @include span(4 last);
+  @include span(6 last);
   // height: 100vh;
   // background: blue;
   overflow-y: auto;

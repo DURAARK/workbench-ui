@@ -1,155 +1,101 @@
 import Ember from 'ember';
-import SemanticEnrichmentAPI from 'workbench-ui/bindings/api-semanticenrichment';
-import FocusedCrawlerAPI from 'workbench-ui/bindings/api-focusedcrawler';
 
-export
-default Ember.Controller.extend({
-    ifcFiles: [],
-    uniqueAvailableItems: [],
+function post(url, data) {
+  var that = this;
 
-    seedTemplates: [Ember.Object.create({
-            label: 'Architectural Style',
-            seeds: ['http://dbpedia.org/resource/Wennigsen', ],
-            depth: 1,
-            selected: false
-        }),
-        Ember.Object.create({
-            label: 'Material',
-            seeds: ['http://dbpedia.org/resource/Graz'],
-            depth: 1,
-            selected: false
-        }),
-        Ember.Object.create({
-            label: 'Environment',
-            seeds: ['http://dbpedia.org/ontology/nobelLaureates', 'http://dbpedia.org/ontology/railwayPlatforms'],
-            depth: 1,
-            selected: false
-        }),
-        Ember.Object.create({
-            label: 'Energy Consumption',
-            seeds: ['http://dbpedia.org/ontology/railwayPlatforms'],
-            depth: 1,
-            selected: false
-        })
-    ],
+  return new Ember.RSVP.Promise(function(resolve, reject) {
+    function handler(data, status, jqxhr) {
+      if (status === 'success') {
+        resolve(data);
+      } else {
+        reject(new Error('[post]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
+      }
+    }
 
-    hasError: false,
-    isLoading: false,
+    Ember.$.post(url, data, handler);
+  });
+};
 
-    actions: {
-        toggleSeedSelection: function(seedTemplate) {
-            if (seedTemplate.get('selected')) {
-                seedTemplate.set('selected', false);
-                console.log('deselected seed template: ' + seedTemplate.label);
-            } else {
-                seedTemplate.set('selected', true);
-                console.log('selected seed template: ' + seedTemplate.label);
-            }
-        },
+export default Ember.Controller.extend({
+  actions: {
+    next: function() {
 
-        getSemanticEnrichments: function() {
-            var store = this.store,
-                controller = this,
-                stage = this.get('stage'),
-                sessionId = stage.session;
+      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
 
-            // Reset eventual error:
-            controller.set('hasError', false);
-            controller.set('errorText', '');
-
-            // FIXXME: check if those two are still necessary and remove if not!
-            controller.set('_isUpdatingMetadata', true);
-            stage.set('isLoading', true);
-
-            // controller.set('shownFile', ifcFile);
-            controller.set('isUpdatingEnrichments', true);
-
-            var selectedTemplates = this.get('seedTemplates').filterBy('selected', true),
-                seeds = [];
-
-            if (!selectedTemplates.length) {
-                controller.set('hasError', true);
-                controller.set('errorText', 'Select one of the templates above first!');
-
-                return;
-            }
-
-            selectedTemplates.forEach(function(template) {
-                template.get('seeds').forEach(function(item) {
-                    seeds.push(item);
-                })
-            });
-
-            console.log('Seeds:\n\n' + JSON.stringify(seeds, null, 4));
-
-            var focusedCrawler = new FocusedCrawlerAPI();
-            focusedCrawler.getTriples({
-                seeds: seeds,
-                depth: 1,
-                user: sessionId
-            }).then(function(data) {
-                controller.set('isUpdatingEnrichments', false);
-                controller.set('stage.availableItems', data.candidates);
-            }, function(data) {
-                controller.set('hasError', true);
-                controller.set('errorText', 'Something went wrong. Try again! If the error is permanent contact your system administrator.');
-
-                controller.set('isUpdatingEnrichments', false);
-            });
-        }
+      var session = this.get('session');
+      this.transitionToRoute('semanticenrichment', session);
     },
 
-    // FIXXME: this function creates a unique array based on the 'resourceUri' of the availableItems.
-    // As a bad sideeffect it discards enrichment triples, cause the resourceUri cn be the same for 
-    // different triples. So, at the moment this is fine for demonstration purposes, for production use
-    // this is a BUG!
-    onAvailableItemsChanged: function() {
-        var items = this.get('stage.availableItems'),
-            uniqueItems = [];
+    back: function() {
 
-        items.filter(function(item, index, enumerable) {
-            var uri = item.entity;
+      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
 
-            var resource = window.unescape(uri);
-            var name = resource.split('/').pop();
+      var session = this.get('session');
+      this.transitionToRoute('metadata', session);
+    },
 
-            var result = uniqueItems.find(function(item, index, enumerable) {
-                var resource0 = window.unescape(item.entity);
-                var name0 = resource0.split('/').pop();
-                if (name0 === name) return true;
-                return false;
-            });
+    showDetails: function(item) {
+      this.set('fileInfo', item);
+    },
 
-            if (!result) {
-                uniqueItems.pushObject(item);
-            } else {
-                console.log('Should not happen, investigate!');
-            }
-        });
+    updateMetadata: function(buildm) {
+      var session = this.get('session'),
+        entityType = buildm['@type'][0],
+        entityId = buildm['@id'];
 
-        this.set('uniqueAvailableItems', uniqueItems);
+      console.log('entityType: ' + entityType);
+      console.log('entityId: ' + entityId);
 
-    }.observes('stage.availableItems'),
+      var entityToUpdate = null,
+        entityCandidates = null;
 
-    onFilesChanged: function() {
-        var files = this.get('files');
+      if (entityType === 'http://data.duraark.eu/vocab/PhysicalAsset') {
+        console.log('About to update PhysicalAsset');
+        entityCandidates = session.get('physicalAssets');
+      } else if (entityType === 'http://data.duraark.eu/vocab/IFCSPFFile' || entityType === 'http://data.duraark.eu/vocab/E57File') {
+        console.log('About to update DigitalObject');
+        entityCandidates = session.get('digitalObjects');
+      }
 
-        // reset current files:
-        this.set('ifcFiles', []);
-        var ifcFiles = this.get('ifcFiles');
+      entityCandidates.forEach(function(candidate) {
+        if (candidate.buildm['@id'] === entityId) {
+          entityToUpdate = candidate;
+        }
+      });
 
-        files.forEach(function(file) {
-            var ext = _getFileExtension(file.get('path'))[0];
-            if (ext.toLowerCase() === 'ifc') {
-                ifcFiles.pushObject({
-                    filename: file.get('path').split('/').pop(),
-                    raw: file
-                });
-            }
-        })
-    }.observes('files')
+      // FIXXME: I found no other way to update the buildm object, due to ember error messages. ..
+      _.forEach(buildm, function(value, key) {
+        entityToUpdate.buildm[key] = value;
+      });
+
+      var sessionId = session.get('id'),
+        url = 'http://localhost:5001/sessions/' + sessionId;
+
+      // FIXXME: I also found no way to update the session with ember board utilities, I guess I have an
+      // logical error in my approach, it cannot be that hard with ember data and plain objects. Anyways,
+      // this does the job, too:
+      post(url, session.toJSON()).then(function(result) {
+        console.log('stored session ...');
+      }).catch(function(err) {
+        throw new Error(err);
+      });
+
+    }
+  },
+
+  isPhysicalAsset: function() {
+    var type = this.get('fileInfo')['buildm']['@type'][0];
+    return type === 'http://data.duraark.eu/vocab/PhysicalAsset';
+  }.property('fileInfo'),
+
+  isIFC: function() {
+    var type = this.get('fileInfo')['buildm']['@type'][0];
+    return type === 'http://data.duraark.eu/vocab/IFCSPFFile';
+  }.property('fileInfo'),
+
+  isE57: function() {
+    var type = this.get('fileInfo')['buildm']['@type'][0];
+    return type === 'http://data.duraark.eu/vocab/E57File';
+  }.property('fileInfo')
+
 });
-
-function _getFileExtension(filename) {
-    return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : undefined;
-}

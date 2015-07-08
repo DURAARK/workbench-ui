@@ -8,7 +8,7 @@ function post(url, data) {
       if (status === 'success') {
         resolve(data);
       } else {
-        reject(new Error('[FocusedCrawlerAPI::_post]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
+        reject(new Error('[post]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
       }
     }
 
@@ -18,6 +18,22 @@ function post(url, data) {
 
 export default Ember.Controller.extend({
   actions: {
+    next: function() {
+
+      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
+
+      var session = this.get('session');
+      this.transitionToRoute('semanticenrichment', session);
+    },
+
+    back: function() {
+
+      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
+
+      var session = this.get('session');
+      this.transitionToRoute('files', session);
+    },
+
     showDetails: function(item) {
       this.set('fileInfo', item);
     },
