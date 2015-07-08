@@ -1,2 +1,33 @@
-<div>Longitude: {{input value=instance.longitude}}</div>
-<div>Latitude: {{input value=instance.latitude}}</div>
+<!--List Container-->
+<ul class="dropdown-list-container">
+
+  <!--Second List-->
+  <li class="dropdown-list">
+    <!--List Title-->
+    <a dropdown-prop="title" {{action "next"}}>{{label}}: <br> {{formDescription.itemName}}</a>
+    <!--List Items-->
+    <div class="dropdown-list-items dropdown-list-open">
+      <fieldset>
+
+        {{#each item in formDescription}}
+
+          <label>{{item.label}}:</label>
+          {{#if item.mandatory}}*{{/if}}
+
+          {{#each value in item.values}}
+              {{input readonly=false value=value.value}}
+          {{/each}}
+
+          {{#if item.multiples}}
+            {{input readonly=false placeholder=item.addLabel value=item.newValue}}
+            <button type="button" {{action "addItem" item}}>+</button>
+          {{else}}
+
+          {{/if}}
+
+        {{/each}}
+      </fieldset>
+    </div>
+  </li>
+
+</ul>

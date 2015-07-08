@@ -44,15 +44,15 @@
 
 				{{#if fileInfo}}
 					{{#if isIFC}}
-						{{metadata-editor-ifc buildm=fileInfo.buildm}}
+						{{buildm-editor buildm=fileInfo.buildm type="digitalObject"}}
 					{{/if}}
 
 					{{#if isE57}}
-						{{digital-object-editor buildm=fileInfo.buildm}}
+						{{buildm-editor buildm=fileInfo.buildm type="digitalObject"}}
 					{{/if}}
 
 					{{#if isPhysicalAsset}}
-						{{metadata-editor-physicalasset buildm=fileInfo.buildm}}
+						{{buildm-editor buildm=fileInfo.buildm type="physicalAsset"}}
 					{{/if}}
 
 
