@@ -1,24 +1,31 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	model: function() {
-		return this.store.find('session');
-	},
-	//
-	// setupController: function(controller, model) {
-	// 	debugger;
-	// 	this._super(controller, model);
-	// },
+  model: function() {
+    return this.store.find('session');
+  },
 
-	// actions: {
-	// 	highlightSession: function(session) {
-	// 		var sessions = this.modelFor('application');
+  actions: {
+    showError: function(err) {
+      alert('Error occured:\n' + err);
+    }
+  }
 
-	// 		sessions.forEach(function(item) {
-	// 			item.set('isSelected', false);
-	// 		});
+  //
+  // setupController: function(controller, model) {
+  // 	debugger;
+  // 	this._super(controller, model);
+  // },
 
-	// 		session.set('isSelected', true);
-	// 	}
-	// }
+  // actions: {
+  // 	highlightSession: function(session) {
+  // 		var sessions = this.modelFor('application');
+
+  // 		sessions.forEach(function(item) {
+  // 			item.set('isSelected', false);
+  // 		});
+
+  // 		session.set('isSelected', true);
+  // 	}
+  // }
 });
