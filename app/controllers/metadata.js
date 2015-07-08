@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
       if (entityType === 'http://data.duraark.eu/vocab/PhysicalAsset') {
         console.log('About to update PhysicalAsset');
         entityCandidates = session.get('physicalAssets');
-      } else if (entityType === 'http://data.duraark.eu/vocab/DigitalObject') {
+      } else if (entityType === 'http://data.duraark.eu/vocab/IFCSPFFile' || entityType === 'http://data.duraark.eu/vocab/E57File') {
         console.log('About to update DigitalObject');
         entityCandidates = session.get('digitalObjects');
       }

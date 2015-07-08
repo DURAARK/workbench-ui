@@ -187,7 +187,7 @@ export default Ember.Component.extend({
                 "xs:complexType": {
                   "xs:sequence": {
                     "xs:element": [{
-                      "-name": "identifier",
+                      "-name": "identifier", // FIXXME: manually changed that to lower case to comply with false metadata extraction parameter here...
                       "-type": "xs:string",
                       "-maxOccurs": "unbounded",
                       "xs:annotation": {
