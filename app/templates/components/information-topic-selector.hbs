@@ -1,0 +1,31 @@
+<h3>Topics for: {{digitalObject.label}}</h3>
+
+{{#each topic in topics}}
+
+  <div {{action "toggleSelection" topic}}>
+
+    <header>
+      {{topic.label}}
+    </header>
+
+    <div> [Seeds]</div>
+    <ul>
+      {{#each seed in topic.seeds}}
+        <li> * {{seed}}</li>
+      {{/each}}
+    </ul>
+
+    {{#each dependency in topic.dependencies}}
+      <div> > Dependencies on: {{dependency.type}}</div>
+      <ul>
+        {{#each element in dependency.elements}}
+          <li> - {{element}}</li>
+        {{/each}}
+      </ul>
+    {{/each}}
+
+  </div>
+
+  <hr>
+
+{{/each}}

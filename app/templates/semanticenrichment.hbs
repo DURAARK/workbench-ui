@@ -25,7 +25,8 @@
 	<div class="l-file-list">
 
 		{{#file-list files=session.digitalObjects as |do|}}
-			<div>{{physical-asset-item item=do details="showDetails"}}</div>
+			<div>{{physical-asset-item item=do details="showDetails"}}
+			     {{add-item select="addEnrichment" item=do}}</div>
 		{{/file-list}}
 
 	</div>
@@ -39,7 +40,7 @@
 			{{else}}
 
 				{{#if fileInfo}}
-						{{information-topic-selector buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+						{{information-topic-selector digitalObject=fileInfo topics=topics session=session save="addTopics"}}
 				{{else}}
 					<h2 class="title" style="color: white;">Select a plan or point cloud to enricht it with information topics.</h2>
 				{{/if}}

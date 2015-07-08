@@ -70,7 +70,7 @@ export default Ember.Controller.extend({
       var files = this.get('selectedFiles');
 
       if (file.get('isSelected')) {
-        files.push(file);
+        files.pushObject(file);
         // console.log('selected file:   ' + file.get('path'));
       } else {
         files.removeObject(file);
