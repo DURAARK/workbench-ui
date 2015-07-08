@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
-export default DS.Model.extend({
+export default DS.Model.extend({  
   subject: DS.attr('string'),
   type: DS.attr('string'),
   adress: DS.attr('string'),

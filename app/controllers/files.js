@@ -29,6 +29,36 @@ export default Ember.Controller.extend({
 
       session.set('files', files);
 
+      // Take files and create a physicalAsset and digitalObjects from the files:
+      var pa = {
+        label: "Building Site Name",
+        buildm: {}
+      };
+
+      files.forEach(function(file) {
+        // FIXXME: how to combine pa data from all files?
+        var paMD = file.get('metadata').physicalAsset;
+        pa.buildm = paMD;
+        session.set('physicalAssets', [pa]);
+
+        var daMD = file.get('metadata').digitalObject;
+
+        var digOb = {
+          label: daMD['http://data.duraark.eu/vocab/name'][0]['@value'] || "Edit name",
+          buildm: daMD,
+          semMD: {},
+          techMD: {},
+          derivatives: {}
+        };
+
+        var das = session.get('digitalObjects');
+        if (!das) {
+          das = [];
+        }
+        das.push(digOb);
+        session.set('digitalObjects', das);
+      });
+
       session.save().then(function(session) {
         controller.transitionToRoute('metadata', session);
       })

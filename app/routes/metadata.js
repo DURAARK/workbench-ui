@@ -11,43 +11,7 @@
 
       setupController: function(controller, model) {
         this._super(controller, model);
-
-        // Take files and create a physicalAsset and digitalObjects from the files:
-
-        var session = model,
-          files = session.get('files'),
-          pa = {
-            label: "Building Site Name",
-            buildm: {}
-          };
-
-        // files.forEach(function(file) {
-        //   // FIXXME: how to combine pa data from all files?
-        //   var paMD = file.metadata.physicalAsset;
-        //   pa.buildm = paMD;
-        //   session.set('physicalAssets', [pa]);
-        //
-        //   var daMD = file.metadata.digitalObject;
-        //
-        //   var digOb = {
-        //     label: daMD['http://data.duraark.eu/vocab/name'][0]['@value'] || "Edit name",
-        //     buildm: daMD,
-        //     semMD: {},
-        //     techMD: {},
-        //     derivatives: {}
-        //   };
-        //
-        //   var das = session.get('digitalObjects');
-        //   if (!das) {
-        //     das = [];
-        //   }
-        //   das.push(digOb);
-        //   session.set('digitalObjects', das);
-        // });
-
-        return session.save().then(function(session) {
-          controller.set('session', session);
-        });
+        controller.set('session', model);
       }
     });
 

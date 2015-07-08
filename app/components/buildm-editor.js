@@ -17,6 +17,7 @@ var FormEntry = Ember.Object.extend({
 });
 
 export default Ember.Component.extend({
+  originalBuildm: null,
   formDescription: [], // TODO: rename to 'form'!
 
   actions: {
@@ -34,10 +35,35 @@ export default Ember.Component.extend({
       }));
     },
 
-    next: function() {
+    save: function() {
       var formDescription = this.get('formDescription');
-      console.log('form: ' + JSON.stringify(formDescription, null, 4));
+
+      // console.log('form: ' + JSON.stringify(formDescription, null, 4));
+
+      var buildm = this.convertFormToJSONLD(formDescription);
+      this.sendAction('save', buildm);
     }
+  },
+
+  convertFormToJSONLD: function(formDescription) {
+    var originalBuildm = this.get('originalBuildm'),
+      newBuildm = {};
+
+    newBuildm['@id'] = originalBuildm['@id'];
+    newBuildm['@type'] = originalBuildm['@type'];
+
+    formDescription.forEach(function(item) {
+      var cur = newBuildm[item.get('origKey')] = [];
+
+      item.get('values').forEach(function(value) {
+        cur.pushObject({
+          '@value': value.value,
+          '@type': item.type
+        });
+      });
+    });
+
+    return newBuildm;
   },
 
   label: function() {
@@ -52,18 +78,22 @@ export default Ember.Component.extend({
   }.property('buildm'),
 
   onBuildmChange: function() {
-    var existingMetadataValues = this.get('buildm'),
+    var buildm = this.get('buildm'),
       formDescription = [],
       schemaDesc = this.getSchema(),
       controller = this;
 
-    var formTemplate = this.buildFormTemplate(existingMetadataValues);
-    formTemplate['itemName'] = existingMetadataValues['http://data.duraark.eu/vocab/name'][0]['@value'];
+    this.set('originalBuildm', buildm);
+
+    console.log('form: ' + JSON.stringify(buildm, null, 4));
+
+    var formTemplate = this.buildFormTemplate(buildm);
+    formTemplate['itemName'] = buildm['http://data.duraark.eu/vocab/name'][0]['@value'];
 
     this.set('formDescription', formTemplate);
   }.observes('buildm').on('init'),
 
-  buildFormTemplate: function(existingMetadataValues) {
+  buildFormTemplate: function(buildm) {
     var schemaFull = this.getSchema(),
       schemaForType = null,
       metadataType = this.get('type'),
@@ -102,9 +132,9 @@ export default Ember.Component.extend({
         key = origKey.replace(base, '');
 
       if (key.toLowerCase() === 'identifier') {
-        values = existingMetadataValues[base + 'identifier'];
+        values = buildm[base + 'identifier'];
       } else {
-        values = existingMetadataValues[entry.get('origKey')];
+        values = buildm[entry.get('origKey')];
       }
 
       if (values) {
@@ -157,7 +187,7 @@ export default Ember.Component.extend({
                 "xs:complexType": {
                   "xs:sequence": {
                     "xs:element": [{
-                      "-name": "Identifier",
+                      "-name": "identifier",
                       "-type": "xs:string",
                       "-maxOccurs": "unbounded",
                       "xs:annotation": {

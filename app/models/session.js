@@ -5,6 +5,7 @@ default DS.Model.extend({
     label: DS.attr('string'),
     // files: DS.hasMany('file', { async: true }),
     files: DS.attr(),
+    // physicalAssets: DS.hasMany('physical-asset'),
     physicalAssets: DS.attr(),
     digitalObjects: DS.attr(),
 
