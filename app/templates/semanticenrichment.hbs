@@ -17,6 +17,14 @@
       </div>
     </div>
 
+    <div {{action 'save'}} class="c-button">
+      <div class="c-button__frame t-button-files">
+        <div class="c-button__name">
+          <h3>Save</h3>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -24,7 +32,7 @@
 
   <div class="l-file-list">
 
-    {{#file-list files=session.digitalObjects as |do|}}
+    {{#file-list files=digitalObjects as |do|}}
       <div>
 
         {{physical-asset-item item=do details="showDetails"}}

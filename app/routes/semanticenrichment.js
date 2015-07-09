@@ -4,16 +4,34 @@ default Ember.Route.extend({
 
   model: function(params) {
     var sessions = this.modelFor('application');
-    var session = sessions[params.id - 1];
+    var session = sessions.objectAt(params.id - 1);
 
     return session;
   },
 
   setupController: function(controller, model) {
     this._super(controller, model);
-    controller.set('session', model);
 
-    // FIXXME: get from service!
+    var session = model,
+      digObjs = [];
+
+    controller.set('session', session);
+
+    session.get('digitalObjects').forEach(function(digObj) {
+      var obj = Ember.Object.create({
+        label: digObj.label,
+        buildm: digObj.buildm,
+        semMD: Ember.Object.create(digObj.semMD),
+        techMD: digObj.techMD,
+        derivatives: digObj.derivatives
+      });
+
+      digObjs.pushObject(obj);
+    });
+
+    controller.set('digitalObjects', digObjs);
+
+    // FIXXME: get from SDA service!
     var topics = [Ember.Object.create({
       label: 'Energy Efficiency',
       seeds: ['http://energy-efficiency.io', 'http://sustainable-materials.io'],

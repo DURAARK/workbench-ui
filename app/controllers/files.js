@@ -76,7 +76,7 @@ export default Ember.Controller.extend({
 
       session.save().then(function(session) {
         controller.transitionToRoute('metadata', session);
-      })
+      });
     },
 
     toggleSelection: function(file) {

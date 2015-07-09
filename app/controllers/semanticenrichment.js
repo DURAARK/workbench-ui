@@ -20,6 +20,33 @@ export default Ember.Controller.extend({
   seeds: null,
 
   actions: {
+    save: function() {
+      var session = this.get('session'),
+        url = 'http://localhost:5001/sessions/' + session.get('id');
+
+      var digObjs = this.get('digitalObjects');
+
+      digObjs.forEach(function(digObj) {
+        var model = session.get('digitalObjects').find(function(item) {
+          return item.label === digObj.get('label');
+        });
+
+        if (!model) {
+          throw new Error('should not happen, investigate!');
+        }
+
+              var bla = JSON.parse(JSON.stringify(digObj.get('semMD')));
+        // model.semMD = digObj.get('semMD');
+        model.semMD = bla;
+      });
+
+      session.save();
+
+      // post(url, session.toJSON()).then(function(session) {
+      //   console.log('Saved session');
+      // });
+    },
+
     next: function() {
 
       // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
