@@ -1,51 +1,59 @@
 <div class="c-button-list">
-	<div class="c-button-list__content">
+  <div class="c-button-list__content">
 
-		<div {{action 'next'}} class="c-button">
-			<div class="c-button__frame t-button-files">
-				<div class="c-button__name">
-					<h3>Next</h3>
-				</div>
-			</div>
-		</div>
+    <div {{action 'next'}} class="c-button">
+      <div class="c-button__frame t-button-files">
+        <div class="c-button__name">
+          <h3>Next</h3>
+        </div>
+      </div>
+    </div>
 
-		<div {{action 'back'}} class="c-button">
-			<div class="c-button__frame t-button-files">
-				<div class="c-button__name">
-					<h3>Back</h3>
-				</div>
-			</div>
-		</div>
+    <div {{action 'back'}} class="c-button">
+      <div class="c-button__frame t-button-files">
+        <div class="c-button__name">
+          <h3>Back</h3>
+        </div>
+      </div>
+    </div>
 
-	</div>
+  </div>
 </div>
 
 <div class="l-files">
 
-	<div class="l-file-list">
+  <div class="l-file-list">
 
-		{{#file-list files=session.digitalObjects as |do|}}
-			<div>{{physical-asset-item item=do details="showDetails"}}
-			     {{add-item select="addEnrichment" item=do}}</div>
-		{{/file-list}}
+    {{#file-list files=session.digitalObjects as |do|}}
+      <div>
 
-	</div>
+        {{physical-asset-item item=do details="showDetails"}}
 
-	{{#if model}}
-		<div class="l-file-details">
+        {{#each topic in do.semMD.topics}}
+          {{topic-item topic=topic remove="removeTopic" select="selectTopic"}}
+        {{/each}}
 
-			{{#if isLoadingMetadata}}
-				<div style="color: white;">LOADING ...</div>
-				{{loading-spinner-center}}
-			{{else}}
+        {{add-item select="showTopics" item=do}}
+      </div>
+    {{/file-list}}
 
-				{{#if fileInfo}}
-						{{information-topic-selector digitalObject=fileInfo topics=topics session=session save="addTopics"}}
-				{{else}}
-					<h2 class="title" style="color: white;">Select a plan or point cloud to enricht it with information topics.</h2>
-				{{/if}}
-			{{/if}}
+  </div>
 
-		</div>
-	{{/if}}
+  {{#if model}}
+    <div class="l-file-details">
+
+      {{#if isLoadingMetadata}}
+        <div style="color: white;">LOADING ...</div>
+        {{loading-spinner-center}}
+      {{else}}
+
+        {{#if fileInfo}}
+          {{information-topic-selector digitalObject=fileInfo topics=topics session=session click="clickedTopic" }}
+        {{else}}
+          <h2 class="title" style="color: white;">Select a plan or point cloud to enricht it with information topics.</h2>
+        {{/if}}
+      {{/if}}
+
+    </div>
+  {{/if}}
 </div>

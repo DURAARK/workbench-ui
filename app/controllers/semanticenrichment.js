@@ -36,21 +36,32 @@ export default Ember.Controller.extend({
       this.transitionToRoute('metadata', session);
     },
 
-    addEnrichment: function(item) {
+    showTopics: function(item) {
       this.set('fileInfo', item);
     },
 
-    addTopics: function(buildm) {
-      var session = this.get('session');
+    clickedTopic: function(topic) {
+      var selectedDigitalObject = this.get('fileInfo'),
+        currentTopics = selectedDigitalObject.get('semMD.topics');
 
-      // // FIXXME: I also found no way to update the session with ember board utilities, I guess I have an
-      // // logical error in my approach, it cannot be that hard with ember data and plain objects. Anyways,
-      // // this does the job, too:
-      // post(url, session.toJSON()).then(function(result) {
-      //   console.log('stored session ...');
-      // }).catch(function(err) {
-      //   throw new Error(err);
-      // });
+      var isTopic = currentTopics.find(function(item) {
+        return topic.get('label') === item.get('label');
+      });
+
+      if (isTopic) {
+        selectedDigitalObject.get('semMD.topics').removeObject(topic);
+      } else {
+        selectedDigitalObject.get('semMD.topics').pushObject(topic);
+      }
+    },
+
+    removeTopic: function(topic) {
+      var selectedDigitalObject = this.get('fileInfo');
+      selectedDigitalObject.get('semMD.topics').removeObject(topic);
+    },
+
+    showTopic: function(topic) {
+      console.log('showing topic details: ' + topic.get('label'));
     }
   }
 });

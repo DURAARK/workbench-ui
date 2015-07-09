@@ -55,19 +55,21 @@ export default Ember.Controller.extend({
 
           var daMD = file.get('metadata').digitalObject;
 
-          var digOb = {
+          var digOb = Ember.Object.create({
             label: daMD['http://data.duraark.eu/vocab/name'][0]['@value'] || "Edit name",
             buildm: daMD,
-            semMD: {},
+            semMD: Ember.Object.create({
+              topics: []
+            }),
             techMD: {},
             derivatives: {}
-          };
+          });
 
           var das = session.get('digitalObjects');
           if (!das) {
             das = [];
           }
-          das.push(digOb);
+          das.pushObject(digOb);
           session.set('digitalObjects', das);
         });
       });

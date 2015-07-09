@@ -1,0 +1,20 @@
+<div class="l-file c-file">
+	<div {{action "select" topic}}>
+
+			<div class="c-file__header t-file">
+				Topic
+			</div>
+
+		<div class="c-file__name">
+			{{topic.label}}
+		</div>
+
+	</div>
+
+	<div class="c-file__actions">
+		<div {{action "remove" topic}} class="c-file__action">
+			<i class="fa fa-remove"></i>
+		</div>
+	</div>
+
+</div>

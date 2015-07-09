@@ -3,7 +3,7 @@ export
 default Ember.Route.extend({
 
   model: function(params) {
-    var sessions = this.modelFor('application').get('content');
+    var sessions = this.modelFor('application');
     var session = sessions[params.id - 1];
 
     return session;

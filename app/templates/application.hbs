@@ -1,11 +1,28 @@
-{{!-- <div class="l-horizontal"> --}}
-<div>
+<div class="l-app-header">
 
-	<div class="l-canvas">
-	  {{outlet}}
+	<div class="l-nav">
+		<div class="c-breadcrumb">
+			<a href="javascript:void(0)">Files</a>
+			<a href="javascript:void(0)">Metadata</a>
+			<a href="javascript:void(0)">Semantic Enrichment</a>
+			<a href="javascript:void(0)">Geometric Enrichment</a>
+			<a href="javascript:void(0)">Archival</a>
+		</div>
 	</div>
 
-{{!-- 	<div class="l-follow c-follow is-collapsed">
-	</div> --}}
+	<div class="l-stats c-stats">
+		<ul>
+			<li>{{numDigitalObjects}}
+				<span>Digital Representation</span>
+			</li>
+			<li>{{numActionsPending}}
+				<span>Actions Pending</span>
+			</li>
+		</ul>
+	</div>
 
+</div>
+
+<div class="l-canvas">
+	{{outlet}}
 </div>

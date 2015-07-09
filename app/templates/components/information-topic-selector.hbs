@@ -1,31 +1,17 @@
-<h3>Topics for: {{digitalObject.label}}</h3>
+<div class="l-cards c-cards">
 
-{{#each topic in topics}}
-
-  <div {{action "toggleSelection" topic}}>
-
-    <header>
+  {{#each topic in topics}}
+  <div class="l-card c-card" {{action "click" topic}}>
+    <div class="c-card-image">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+    </div>
+    <div class="c-card-header">
       {{topic.label}}
-    </header>
-
-    <div> [Seeds]</div>
-    <ul>
-      {{#each seed in topic.seeds}}
-        <li> * {{seed}}</li>
-      {{/each}}
-    </ul>
-
-    {{#each dependency in topic.dependencies}}
-      <div> > Dependencies on: {{dependency.type}}</div>
-      <ul>
-        {{#each element in dependency.elements}}
-          <li> - {{element}}</li>
-        {{/each}}
-      </ul>
-    {{/each}}
-
+    </div>
+    <div class="c-card-copy">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+    </div>
   </div>
+  {{/each}}
 
-  <hr>
-
-{{/each}}
+</div>
