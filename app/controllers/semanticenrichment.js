@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
           throw new Error('should not happen, investigate!');
         }
 
-              var bla = JSON.parse(JSON.stringify(digObj.get('semMD')));
+        var bla = JSON.parse(JSON.stringify(digObj.get('semMD')));
         // model.semMD = digObj.get('semMD');
         model.semMD = bla;
       });
@@ -63,8 +63,13 @@ export default Ember.Controller.extend({
       this.transitionToRoute('metadata', session);
     },
 
-    showTopics: function(item) {
-      this.set('fileInfo', item);
+    showTopicSelection: function(digObj) {
+      this.set('fileInfo', digObj);
+    },
+
+    showSelectedTopic: function(digObj, topic) {
+      this.set('fileInfo', null);
+      this.set('topic', topic);
     },
 
     clickedTopic: function(topic) {
@@ -72,9 +77,7 @@ export default Ember.Controller.extend({
         currentTopics = selectedDigitalObject.get('semMD.topics');
 
       var isTopic = currentTopics.find(function(item) {
-        var label1 = topic.get('label');
-        var label2 = item.label;
-        return label1 === label2;
+        return topic.get('label') === item.label;
       });
 
       if (isTopic) {

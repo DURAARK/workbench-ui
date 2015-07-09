@@ -38,10 +38,10 @@
         {{physical-asset-item item=do details="showDetails"}}
 
         {{#each topic in do.semMD.topics}}
-          {{topic-item topic=topic digitalObject=do select="selectTopic" remove="removeTopic"}}
+          {{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
         {{/each}}
 
-        {{add-item select="showTopics" item=do}}
+        {{add-item select="showTopicSelection" item=do}}
       </div>
     {{/file-list}}
 
@@ -56,9 +56,13 @@
       {{else}}
 
         {{#if fileInfo}}
-          {{information-topic-selector digitalObject=fileInfo topics=topics session=session click="clickedTopic" }}
+          {{information-topic-selector digitalObject=do topics=topics click="clickedTopic" }}
         {{else}}
+          {{#if topic}}
+            {{topic-viewer digitalObject=do topic=topic}}
+          {{else}}
           <h2 class="title" style="color: white;">Select a plan or point cloud to enricht it with information topics.</h2>
+          {{/if}}
         {{/if}}
       {{/if}}
 

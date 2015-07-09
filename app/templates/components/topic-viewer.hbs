@@ -1,0 +1,22 @@
+<div class="l-cards c-cards">
+
+  {{#if topic.candidates}}
+    {{#each candidate in topic.candidates}}
+      <div class="l-card c-card">
+        <div class="c-card-image">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+        </div>
+        <div class="c-card-header">
+          <a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a>
+        </div>
+        <div class="c-card-copy">
+          <p>Score: {{candidate.score}}</p>
+        </div>
+      </div>
+    {{/each}}
+
+  {{else}}
+    <h2 class="title" style="color: white;">Information on that topic is gathered in the background, please be patient and come back later.</h2>
+  {{/if}}
+
+</div>
