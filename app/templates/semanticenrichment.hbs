@@ -38,7 +38,7 @@
         {{physical-asset-item item=do details="showDetails"}}
 
         {{#each topic in do.semMD.topics}}
-          {{topic-item topic=topic remove="removeTopic" select="selectTopic"}}
+          {{topic-item topic=topic digitalObject=do select="selectTopic" remove="removeTopic"}}
         {{/each}}
 
         {{add-item select="showTopics" item=do}}

@@ -6,11 +6,13 @@ default Ember.Component.extend({
 
 	actions: {
 		select: function(topic) {
-			this.sendAction('select', topic);
+			var digObj = this.get('digitalObject');
+			this.sendAction('select', digObj, topic);
 		},
 
 		remove: function(topic) {
-			this.sendAction('remove', topic);
+			var digObj = this.get('digitalObject');
+			this.sendAction('remove', digObj, topic);
 		}
 	}
 });

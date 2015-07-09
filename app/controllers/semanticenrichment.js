@@ -72,19 +72,22 @@ export default Ember.Controller.extend({
         currentTopics = selectedDigitalObject.get('semMD.topics');
 
       var isTopic = currentTopics.find(function(item) {
-        return topic.get('label') === item.get('label');
+        var label1 = topic.get('label');
+        var label2 = item.label;
+        return label1 === label2;
       });
 
       if (isTopic) {
-        selectedDigitalObject.get('semMD.topics').removeObject(topic);
+        currentTopics.removeObject(topic);
       } else {
-        selectedDigitalObject.get('semMD.topics').pushObject(topic);
+        currentTopics.pushObject(topic);
       }
     },
 
-    removeTopic: function(topic) {
-      var selectedDigitalObject = this.get('fileInfo');
-      selectedDigitalObject.get('semMD.topics').removeObject(topic);
+    removeTopic: function(digObj, topic) {
+      // var selectedDigitalObject = this.get('fileInfo');
+      // selectedDigitalObject.get('semMD.topics').removeObject(topic);
+      digObj.get('semMD.topics').removeObject(topic);
     },
 
     showTopic: function(topic) {
