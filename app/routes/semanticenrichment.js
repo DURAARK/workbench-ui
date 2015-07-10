@@ -41,7 +41,9 @@ default Ember.Route.extend({
       }, {
         type: 'digitalObject',
         elements: ['dateCreated']
-      }]
+      }],
+      candidates: [],
+      crawlId: -1,
     }), Ember.Object.create({
       label: 'Architectural Style',
       seeds: ['http://energy-efficiency.io', 'http://sustainable-materials.io'],
@@ -91,7 +93,8 @@ default Ember.Route.extend({
       }, {
         "entity": "http://dbpedia.org/resource/Makowiska,_%C5%81%C3%B3d%C5%BA_Voivodeship",
         "score": 0.0022273
-      }]
+      }],
+      crawlId: 5
     })];
 
     // FIXXME: incorporate selected topics from session!

@@ -1,4 +1,8 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
+import DURAARK from 'workbench-ui/bindings/duraark';
+
+var topicCrawlerApiEndpoint = ENV.DURAARKAPI.topicCrawler.host;
 
 function post(url, data) {
   var that = this;
@@ -19,10 +23,21 @@ function post(url, data) {
 export default Ember.Controller.extend({
   seeds: null,
 
+  initiateCrawls: function(topics) {
+    var topicCrawler = new DURAARK.TopicCrawler({
+      apiEndpoint: topicCrawlerApiEndpoint,
+    });
+
+    topicCrawler.initiateCrawl(JSON.parse(JSON.stringify(topics)));
+
+    this.send('addPendingAction');
+  },
+
   actions: {
     save: function() {
       var session = this.get('session'),
-        url = 'http://localhost:5001/sessions/' + session.get('id');
+        url = 'http://localhost:5001/sessions/' + session.get('id'),
+        controller = this;
 
       var digObjs = this.get('digitalObjects');
 
@@ -35,9 +50,11 @@ export default Ember.Controller.extend({
           throw new Error('should not happen, investigate!');
         }
 
-        var bla = JSON.parse(JSON.stringify(digObj.get('semMD')));
-        // model.semMD = digObj.get('semMD');
-        model.semMD = bla;
+        controller.initiateCrawls(digObj.get('semMD.topics'));
+
+        // Convert Ember.Object to plain JSON before saving:
+        var semMD = JSON.parse(JSON.stringify(digObj.get('semMD')));
+        model.semMD = semMD;
       });
 
       session.save();

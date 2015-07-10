@@ -65,10 +65,8 @@ module.exports = function(environment) {
                 jobsEndpoint: '/enrichment',
                 extractEndpoint: '/enrichment/extract'
             },
-            focusedcrawler: {
-                host: apiEndpoint + '/semanticenrichment',
-                jobsEndpoint: '/crawl',
-                extractEndpoint: '/enrichment/extract'
+            topicCrawler: {
+                host: 'http://asev.l3s.uni-hannover.de:9986/api/CrawlAPI/'
             }
         }
     };
@@ -102,10 +100,8 @@ module.exports = function(environment) {
                     jobsEndpoint: '/enrichment',
                     extractEndpoint: '/enrichment/extract'
                 },
-                focusedcrawler: {
-                    host: apiEndpoint + ':5006',
-                    jobsEndpoint: '/crawl',
-                    extractEndpoint: '/enrichment/extract'
+                topicCrawler: {
+                    host: 'http://asev.l3s.uni-hannover.de:9986/api/CrawlAPI/'
                 }
             };
         }
