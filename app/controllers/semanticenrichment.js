@@ -4,33 +4,54 @@ import DURAARK from 'workbench-ui/bindings/duraark';
 
 var topicCrawlerApiEndpoint = ENV.DURAARKAPI.topicCrawler.host;
 
-function post(url, data) {
-  var that = this;
-
-  return new Ember.RSVP.Promise(function(resolve, reject) {
-    function handler(data, status, jqxhr) {
-      if (status === 'success') {
-        resolve(data);
-      } else {
-        reject(new Error('[post]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
-      }
-    }
-
-    Ember.$.post(url, data, handler);
-  });
-};
-
 export default Ember.Controller.extend({
   seeds: null,
 
-  initiateCrawls: function(topics) {
-    var topicCrawler = new DURAARK.TopicCrawler({
-      apiEndpoint: topicCrawlerApiEndpoint,
+  initiateCrawl: function(crawler, topic) {
+    var controller = this;
+
+    var params = {
+      user: 1,
+      depth: 1
+    };
+
+    crawler.initiateCrawl(JSON.parse(JSON.stringify(topic)), params).then(function(result) {
+      console.log('result for: ' + topic.label);
+      console.log(JSON.stringify(result, null, 4));
+
+      topic.crawlId = result.crawl_id;
+
+      controller.get('session').save().then(function() {
+        controller.send('addPendingAction');
+        controller.askForCandidates(crawler, topic);
+      });
+
+    }).catch(function(err) {
+      throw new Error(err);
     });
+  },
 
-    topicCrawler.initiateCrawl(JSON.parse(JSON.stringify(topics)));
-
-    this.send('addPendingAction');
+  askForCandidates: function(crawler, topic) {
+    var controller = this;
+    console.log('asking for candidates...');
+    controller.send('addPendingAction');
+    crawler.getCandidates(topic.crawlId).then(function(candidates) {
+      if (candidates.length) {
+        console.log('candidates received: #' + candidates.length);
+        // FIXXME: implement pagination and sorting by relevance to manage the huge amount of results!
+        topic.candidates = candidates.slice(0,100);
+        // FIXXME: create a topic model to enable saving!
+        controller.get('session').save().then(function() {
+          console.log('stored candidates');
+          controller.send('removePendingAction');
+        });
+      } else {
+        console.log('No candidates yet, retrying in 60 seconds ...');
+        setTimeout(function() {
+          controller.askForCandidates(crawler, crawlId);
+        }, 1000 * 60);
+      }
+    });
   },
 
   actions: {
@@ -42,26 +63,26 @@ export default Ember.Controller.extend({
       var digObjs = this.get('digitalObjects');
 
       digObjs.forEach(function(digObj) {
-        var model = session.get('digitalObjects').find(function(item) {
-          return item.label === digObj.get('label');
+        digObj.get('semMD.topics').forEach(function(topic) {
+
+          if (!topic.candidates.length) {
+            var topicCrawler = new DURAARK.TopicCrawler({
+                apiEndpoint: topicCrawlerApiEndpoint,
+              }),
+              crawlId = topic.crawlId;
+
+            console.log('crawlId: ' + crawlId);
+
+            if (crawlId === -1) {
+              controller.initiateCrawl(topicCrawler, topic);
+            } else {
+              controller.askForCandidates(topicCrawler, topic);
+            }
+          }
         });
-
-        if (!model) {
-          throw new Error('should not happen, investigate!');
-        }
-
-        controller.initiateCrawls(digObj.get('semMD.topics'));
-
-        // Convert Ember.Object to plain JSON before saving:
-        var semMD = JSON.parse(JSON.stringify(digObj.get('semMD')));
-        model.semMD = semMD;
       });
 
       session.save();
-
-      // post(url, session.toJSON()).then(function(session) {
-      //   console.log('Saved session');
-      // });
     },
 
     next: function() {

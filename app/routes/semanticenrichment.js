@@ -32,9 +32,10 @@ default Ember.Route.extend({
     controller.set('digitalObjects', digObjs);
 
     // FIXXME: get from SDA service!
+    // FIXXME: create Topic model to enable saving and linking into session model!
     var topics = [Ember.Object.create({
-      label: 'Energy Efficiency',
-      seeds: ['http://energy-efficiency.io', 'http://sustainable-materials.io'],
+      label: 'Haus 30',
+      seeds: ['http://dbpedia.org/resource/Ludwig_Hoffmann_(architect)', 'http://dbpedia.org/resource/Märkisches_Museum', 'http://dbpedia.org/resource/Pergamon_Museum', 'http://dbpedia.org/resource/Märchenbrunnen', 'http://dbpedia.org/resource/Academy_of_Arts', 'http://dbpedia.org/resource/Altes_Stadthaus'],
       dependencies: [{
         type: 'physicalAsset',
         elements: ['streetAddress', 'buildingArea']
@@ -43,7 +44,7 @@ default Ember.Route.extend({
         elements: ['dateCreated']
       }],
       candidates: [],
-      crawlId: -1,
+      crawlId: -1
     }), Ember.Object.create({
       label: 'Architectural Style',
       seeds: ['http://energy-efficiency.io', 'http://sustainable-materials.io'],
@@ -94,7 +95,7 @@ default Ember.Route.extend({
         "entity": "http://dbpedia.org/resource/Makowiska,_%C5%81%C3%B3d%C5%BA_Voivodeship",
         "score": 0.0022273
       }],
-      crawlId: 5
+      crawlId: 9
     })];
 
     // FIXXME: incorporate selected topics from session!
