@@ -10,8 +10,8 @@ RUN npm install -g ember ember-cli
 RUN npm install -g bower
 
 # Pull in source code:
-COPY ./ /workbench-ui
-WORKDIR /workbench-ui
+COPY ./ /duraark/workbench-ui
+WORKDIR /duraark/workbench-ui
 
 RUN npm install
 RUN bower install --allow-root
