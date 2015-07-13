@@ -4,7 +4,10 @@ export
 default Ember.Route.extend({
 
   model: function(params) {
-    return this.store.find('session', params.id);
+    var sessions = this.modelFor('application');
+    var session = sessions.objectAt(params.id - 1);
+
+    return session;
   },
 
   setupController: function(controller, model) {

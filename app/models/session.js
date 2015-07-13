@@ -1,7 +1,6 @@
 import DS from 'ember-data';
 
-export
-default DS.Model.extend({
+var Session = DS.Model.extend({
     label: DS.attr('string'),
     // files: DS.hasMany('file', { async: true }),
     files: DS.attr(),
@@ -15,3 +14,6 @@ default DS.Model.extend({
     createdAt: DS.attr('date'),
     updatedAt: DS.attr('date')
 });
+
+export
+default Session;

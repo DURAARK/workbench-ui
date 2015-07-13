@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
-export default DS.Model.extend({
+var File = DS.Model.extend({
   path: DS.attr('string'),
   type: DS.attr('string'),
   directory: DS.attr('boolean'),
@@ -11,3 +11,6 @@ export default DS.Model.extend({
 
   metadata: DS.attr()
 });
+
+export
+default File;

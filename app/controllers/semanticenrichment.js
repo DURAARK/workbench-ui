@@ -1,8 +1,5 @@
 import Ember from 'ember';
-import ENV from '../config/environment';
 import DURAARK from 'workbench-ui/bindings/duraark';
-
-var topicCrawlerApiEndpoint = ENV.DURAARKAPI.topicCrawler.host;
 
 export default Ember.Controller.extend({
   seeds: null,
@@ -90,7 +87,7 @@ export default Ember.Controller.extend({
       // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
 
       var session = this.get('session');
-      this.transitionToRoute('semanticenrichment', session);
+      this.transitionToRoute('sipgeneration', session);
     },
 
     back: function() {

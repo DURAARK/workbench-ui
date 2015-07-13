@@ -62,8 +62,11 @@ export default Ember.Controller.extend({
               topics: []
             }),
             techMD: {},
-            derivatives: {}
+            derivatives: {},
+            path: file.get('path')
           });
+
+          console.log('PATH: ' + file.get('path'));
 
           var das = session.get('digitalObjects');
           if (!das) {

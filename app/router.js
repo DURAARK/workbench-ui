@@ -6,10 +6,12 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.resource('files', { path: "/files/local/:id" });
-  this.resource('files-sda', { path: "/files/sda/:id" });
-  this.resource('metadata', { path: "/metadata/:id" });
-  this.resource('semanticenrichment', { path: "/semanticenrichment/:id" });
+  this.route('files', { path: "/files/local/:id" });
+  this.route('files-sda', { path: "/files/sda/:id" });
+  this.route('metadata', { path: "/metadata/:id" });
+  this.route('semanticenrichment', { path: "/semanticenrichment/:id" });
+  // this.route('geometricenrichment', { path: "/geometricenrichment/:id" });
+  this.route('sipgeneration', { path: "/sipgeneration/:id" });
 });
 
 export default Router;
