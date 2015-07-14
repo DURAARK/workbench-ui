@@ -31,14 +31,11 @@
 <div class="l-files">
 
   <div class="l-file-list">
-    
-    {{#file-list files=session.digitalObjects as |do|}}
-      <div>
 
+    {{#file-list files=session.digitalObjects as |do|}}
         {{physical-asset-item item=do details="showDetails"}}
-        {{geo-tool label="IFC Reconstruction" digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
-        {{geo-tool label="Detect Electrical Appliances" digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
-      </div>
+        {{geo-tool label="IFC Reconstruction" digitalObject=do toggleSelection="toggleToolSelection"}}
+        {{geo-tool label="Electrical Appliance Detection" digitalObject=do toggleSelection="toggleToolSelection"}}
     {{/file-list}}
 
   </div>
