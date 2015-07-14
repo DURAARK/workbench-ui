@@ -32,12 +32,23 @@
 
 	<div class="l-file-list">
 
-		{{#file-list files=files as |file|}}
-			{{file-item item=file select="toggleSelection" details="showDetails"}}
+		{{#file-list files=session.physicalAssets as |pa|}}
+			{{physical-asset-item item=pa details="showDetails"}}
 		{{/file-list}}
+
+		{{#file-list files=session.digitalObjects as |do|}}
+		<div>
+			{{physical-asset-item item=do details="showDetails"}}
+
+			{{#each topic in do.semMD.topics}}
+				{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
+			{{/each}}
+		</div>
+		{{/file-list}}
+
 	</div>
 
-	{{#if showSidebar}}
+	{{#if model}}
 		<div class="l-file-details">
 
 			{{#if isLoadingMetadata}}
@@ -46,19 +57,22 @@
 			{{else}}
 
 				{{#if fileInfo}}
-					<h3 class="title" style="color: white;">{{fileInfoShortName}}</h3>
-					{{#if errors}}
-						{{#each error in errors}}
-							<div>Type: {{error.type}}</div>
-							<div>Message: {{error.msg}}</div>
-						{{/each}}
-					{{else}}
-						{{buildm-viewer file=fileInfo}}
+					{{#if isIFC}}
+						{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
 					{{/if}}
+
+					{{#if isE57}}
+						{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+					{{/if}}
+
+					{{#if isPhysicalAsset}}
+						{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
+					{{/if}}
+
 				{{else}}
-					<h2 class="title" style="color: white;">To show details use the <i class="fa fa-eye"></i> icon on a file.</h2>
-					<h3 style="color: white;">Depending on the file size it may take some seconds/minutes for the first metadata extraction.</h3>
+					<h2 class="title" style="color: white;">On the left an overview of the archive is shown. Check the content of the data with a click on the respective tile.</h2>
 				{{/if}}
+
 			{{/if}}
 
 		</div>
