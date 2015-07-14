@@ -9,7 +9,7 @@ console.log('[workbench-ui] Started on host: ' + hostname);
 console.log('[workbench-ui] (debug) DURAARK_API_ENDPOINT: ' + process.env.DURAARK_API_ENDPOINT);
 
 if (!apiEndpoint) {
-  apiEndpoint = hostname;
+  apiEndpoint = 'http://' + hostname;
   console.log('[workbench-ui] No DURAARK_API_ENDPOINT environment variable defined, using "' + apiEndpoint + '"');
 } else {
   console.log('[workbench-ui] API endpoint URL: ' + apiEndpoint);
