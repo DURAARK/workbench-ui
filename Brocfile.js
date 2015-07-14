@@ -10,6 +10,9 @@ var app = new EmberApp({
 // Use `app.import` to add additional libraries to the generated
 // output files.
 
+app.import('bower_components/please-wait/build/please-wait.min.js');
+app.import('bower_components/please-wait/build/please-wait.css');
+
 var fontFiles = funnel('bower_components/font-awesome/fonts', {
     destDir: 'fonts'
 });

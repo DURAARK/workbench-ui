@@ -6,7 +6,7 @@ default Ember.Component.extend({
 
     didInsertElement: function() {
         var spinner = pleaseWait({
-            //logo: "assets/images/pathgather.png",
+            logo: "assets/images/pathgather.png",
             backgroundColor: '#f46d3b',
             loadingHtml: "<div class='sk-spinner sk-spinner-wave'><div class='sk-rect1'></div><div class='sk-rect2'></div><div class='sk-rect3'></div><div class='sk-rect4'></div><div class='sk-rect5'></div></div>"
             // loadingHtml: "<p class='loading-message'>A good day to you fine user!</p>"

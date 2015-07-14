@@ -41,10 +41,11 @@ export default Ember.Controller.extend({
     updateMetadata: function(buildm) {
       var session = this.get('session'),
         entityType = buildm['@type'][0],
-        entityId = buildm['@id'];
+        entityId = buildm['@id'],
+        controller = this;
 
-      console.log('entityType: ' + entityType);
-      console.log('entityId: ' + entityId);
+      // console.log('entityType: ' + entityType);
+      // console.log('entityId: ' + entityId);
 
       var entityToUpdate = null,
         entityCandidates = null;
@@ -71,12 +72,16 @@ export default Ember.Controller.extend({
       var sessionId = session.get('id'),
         url = 'http://localhost:5001/sessions/' + sessionId;
 
+      controller.send('isLoading', true);
+
       // FIXXME: I also found no way to update the session with ember board utilities, I guess I have an
       // logical error in my approach, it cannot be that hard with ember data and plain objects. Anyways,
       // this does the job, too:
       post(url, session.toJSON()).then(function(result) {
         console.log('stored session ...');
+        this.send('isLoading', false);
       }).catch(function(err) {
+        this.send('isLoading', false);
         throw new Error(err);
       });
 

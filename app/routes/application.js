@@ -33,6 +33,10 @@ export default Ember.Route.extend({
       if (num > 0) {
         this.controller.set('numActionsPending', --num);
       }
+    },
+
+    isLoading: function(flag) {
+      this.controller.set('isLoading', flag);
     }
   }
 

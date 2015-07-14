@@ -19,7 +19,7 @@ default Ember.Route.extend({
     controller.set('showSidebar', true);
     controller.set('selectedFile', null);
 
-    controller.set('isLoading', true);
+    controller.send('isLoading', true);
 
     this.store.find('file').then(function(files) {
       controller.set('files', files);
@@ -28,7 +28,7 @@ default Ember.Route.extend({
         file.set('isSelected', false);
       });
 
-      controller.set('isLoading', false);
+      controller.send('isLoading', false);
     })
   }
 

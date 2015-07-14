@@ -110,7 +110,8 @@ export default Ember.Controller.extend({
       // Reset details pane:
       controller.set('errors', null);
       controller.set('fileInfo', null);
-      controller.set('isLoadingMetadata', true);
+
+      controller.send('isLoading', true);
 
       this.addMetadataTo(file).then(function(file) {
         var md = file.get('metadata');
@@ -124,8 +125,9 @@ export default Ember.Controller.extend({
         file.get('metadata.physicalAsset')['http://data.duraark.eu/vocab/name'][0]['@value'] = 'Session Name'; // FIXXME: set session name!
 
         controller.set('fileInfo', file);
-        controller.set('isLoadingMetadata', false);
+        controller.send('isLoading', false);
       }).catch(function(err) {
+        controller.send('isLoading', false);
         // FIXXME: use either one of those two error handling methods!
         controller.set('errors', err);
         controller.send('showError', err);
