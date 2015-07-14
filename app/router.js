@@ -10,7 +10,7 @@ Router.map(function() {
   this.route('files-sda', { path: "/files/sda/:id" });
   this.route('metadata', { path: "/metadata/:id" });
   this.route('semanticenrichment', { path: "/semanticenrichment/:id" });
-  // this.route('geometricenrichment', { path: "/geometricenrichment/:id" });
+  this.route('geometricenrichment', { path: "/geometricenrichment/:id" });
   this.route('sipgeneration', { path: "/sipgeneration/:id" });
 });
 

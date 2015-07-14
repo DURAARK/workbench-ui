@@ -67,7 +67,7 @@ export default Ember.Controller.extend({
       // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
 
       var session = this.get('session');
-      this.transitionToRoute('semanticenrichment', session);
+      this.transitionToRoute('geometricenrichment', session);
     },
   }
 });
