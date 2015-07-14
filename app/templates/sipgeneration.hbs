@@ -43,6 +43,10 @@
 			{{#each topic in do.semMD.topics}}
 				{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
 			{{/each}}
+
+			{{geo-tool label="IFC Reconstruction" digitalObject=do toggleSelection="toggleToolSelection"}}
+			{{geo-tool label="Electrical Appliance Detection" digitalObject=do toggleSelection="toggleToolSelection"}}
+			
 		</div>
 		{{/file-list}}
 
