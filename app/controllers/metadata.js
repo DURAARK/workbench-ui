@@ -1,4 +1,7 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
+
+var sessionEndpoint = ENV.DURAARKAPI.sessions;
 
 function post(url, data) {
   var that = this;
@@ -70,7 +73,7 @@ export default Ember.Controller.extend({
       });
 
       var sessionId = session.get('id'),
-        url = 'http://localhost:5001/sessions/' + sessionId;
+        url = sessionEndpoint.host + '/sessions/' + sessionId;
 
       controller.send('isLoading', true);
 

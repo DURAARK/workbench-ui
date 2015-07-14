@@ -9,7 +9,7 @@ TopicCrawler.prototype.initiateCrawl = function(topic, params) {
 
   var that = this;
 
-  var url = 'http://localhost:5005/topics';
+  var url = this.apiEndpoint + '/topics';
 
   // var seeds = topic.seeds.join(';');
   // var url = that.apiEndpoint + 'crawl?seeds=' + seeds + '&user=' + params.user + '&depth=' + params.depth;

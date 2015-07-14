@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import DURAARK from 'workbench-ui/bindings/duraark';
+import ENV from '../config/environment';
+
+var sdaEndpoint = ENV.DURAARKAPI.sda;
 
 export default Ember.Controller.extend({
   seeds: null,
@@ -54,7 +57,7 @@ export default Ember.Controller.extend({
   actions: {
     save: function() {
       var session = this.get('session'),
-        url = 'http://localhost:5001/sessions/' + session.get('id'),
+        url = sessionEndpoint + '/sessions/' + session.get('id'),
         controller = this;
 
       var digObjs = this.get('digitalObjects');
@@ -64,7 +67,7 @@ export default Ember.Controller.extend({
 
           if (!topic.candidates.length) {
             var topicCrawler = new DURAARK.TopicCrawler({
-                apiEndpoint: topicCrawlerApiEndpoint,
+                apiEndpoint: sdaEndpoint,
               }),
               crawlId = topic.crawlId;
 
