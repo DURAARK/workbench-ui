@@ -68,10 +68,13 @@ export default Ember.Controller.extend({
 
           console.log('PATH: ' + file.get('path'));
 
+          var das = null;
+
           var das = session.get('digitalObjects');
           if (!das) {
             das = [];
           }
+
           das.pushObject(digOb);
           session.set('digitalObjects', das);
         });
