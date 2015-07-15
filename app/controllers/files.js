@@ -15,6 +15,8 @@ export default Ember.Controller.extend({
     next: function() {
       var controller = this;
 
+      controller.send('isLoading', true, 'Extracting metadata ...');
+
       console.log('Selected files:');
       this.get('selectedFiles').forEach(function(file) {
         console.log('  * ' + file.get('path'));
@@ -77,6 +79,11 @@ export default Ember.Controller.extend({
 
           das.pushObject(digOb);
           session.set('digitalObjects', das);
+
+          controller.send('isLoading', false);
+        }).catch(function(err) {
+          controller.send('isLoading', false)
+          alert(err);
         });
       });
 
@@ -111,7 +118,7 @@ export default Ember.Controller.extend({
       controller.set('errors', null);
       controller.set('fileInfo', null);
 
-      controller.send('isLoading', true);
+      controller.send('isLoading', true, 'Extracting metadata ...');
 
       this.addMetadataTo(file).then(function(file) {
         var md = file.get('metadata');

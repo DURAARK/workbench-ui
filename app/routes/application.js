@@ -35,8 +35,14 @@ export default Ember.Route.extend({
       }
     },
 
-    isLoading: function(flag) {
+    isLoading: function(flag, message) {
       this.controller.set('isLoading', flag);
+
+      if (flag === true && message) {
+        this.controller.set('loadingMessage', message);
+      } else {
+        this.controller.set('loadingMessage', null);
+      }
     }
   }
 
