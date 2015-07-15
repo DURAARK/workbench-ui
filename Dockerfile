@@ -21,4 +21,4 @@ EXPOSE 4200
 #ENV DURAARK_API_ENDPOINT=http://juliet.cgv.tugraz.at/api/v0.1/
 
 #ENTRYPOINT ["ember", "serve", "--prod", "--proxy", "http://api-gatekeeper"]
-ENTRYPOINT ["ember", "serve", "--prod"]
+ENTRYPOINT ["ember", "serve"]

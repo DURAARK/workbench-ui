@@ -25,7 +25,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self'",
       'font-src': "'self'",
-      'connect-src': "'self' http://schema.rdfs.org/all.json http://localhost:5001 http://localhost:5002 http://localhost:5003 http://localhost:5004 http://localhost:5005 http://localhost:5006",
+      'connect-src': "'self' http://juliet.cgv.tugraz.at/api/v0.7/sessions/ http://juliet.cgv.tugraz.at/api/v0.7/metadata-extraction/ http://juliet.cgv.tugraz.at/api/v0.7/sda/ http://juliet.cgv.tugraz.at/api/v0.7/archival/",
       'img-src': "'self' a.tiles.mapbox.com",
       'style-src': "'self' 'unsafe-inline'",
     },
@@ -46,19 +46,19 @@ module.exports = function(environment) {
     // config is overwritten below.
     DURAARKAPI: {
       sessions: {
-        host: apiEndpoint + ':5011'
+        host: apiEndpoint + '/api/v0.7/sessions'
       },
       metadata: {
-        host: apiEndpoint + ':5012'
+        host: apiEndpoint + '/api/v0.7/metadata-extraction'
       },
       sda: {
-        host: apiEndpoint + ':5013'
+        host: apiEndpoint + '/api/v0.7/sda '
       },
       // geometricenrichment: {
       //   host: apiEndpoint + ':5014'
       // },
       sipgenerator: {
-        host: apiEndpoint + ':5015'
+        host: apiEndpoint + '/api/v0.7/archival'
       }
     }
   };
