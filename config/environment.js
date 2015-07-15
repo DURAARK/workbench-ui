@@ -3,10 +3,12 @@
 var os = require('os'),
   hostname = os.hostname(),
   // FIXXME: find a GUI configurable way to do that!
-  apiEndpoint = process.env.DURAARK_API_ENDPOINT;
+  apiEndpoint = process.env.DURAARK_API_ENDPOINT,
+  usePorts = process.env.DURAARK_API_USE_PORTS;
 
 console.log('[workbench-ui] Started on host: ' + hostname);
 console.log('[workbench-ui] (debug) DURAARK_API_ENDPOINT: ' + process.env.DURAARK_API_ENDPOINT);
+console.log('[workbench-ui] (debug) DURAARK_API_USE_PORTS: ' + process.env.DURAARK_API_USE_PORTS);
 
 if (!apiEndpoint) {
   apiEndpoint = 'http://juliet.cgv.tugraz.at';
@@ -52,7 +54,7 @@ module.exports = function(environment) {
         host: apiEndpoint + '/api/v0.7/metadata-extraction'
       },
       sda: {
-        host: apiEndpoint + '/api/v0.7/sda '
+        host: apiEndpoint + '/api/v0.7/sda'
       },
       // geometricenrichment: {
       //   host: apiEndpoint + ':5014'
@@ -63,6 +65,28 @@ module.exports = function(environment) {
     }
   };
 
+  if (usePorts) {
+    ENV.DURAARKAPI = {
+      sessions: {
+        host: apiEndpoint + ':5011'
+      },
+      metadata: {
+        host: apiEndpoint + ':5012'
+      },
+      sda: {
+        host: apiEndpoint + ':5013'
+      },
+      // geometricenrichment: {
+      //   host: apiEndpoint + ':5014'
+      // },
+      sipgenerator: {
+        host: apiEndpoint + ':5015'
+      }
+    }
+  }
+
+  console.log('API Endpoints:\n' + JSON.stringify(ENV.DURAARKAPI, null, 4));
+  
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;

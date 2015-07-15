@@ -77,14 +77,15 @@ export default Ember.Controller.extend({
 
       controller.send('isLoading', true);
 
+var bla = session.toJSON();
       // FIXXME: I also found no way to update the session with ember board utilities, I guess I have an
       // logical error in my approach, it cannot be that hard with ember data and plain objects. Anyways,
       // this does the job, too:
-      post(url, session.toJSON()).then(function(result) {
+      post(url, bla).then(function(result) {
         console.log('stored session ...');
-        this.send('isLoading', false);
+        controller.send('isLoading', false);
       }).catch(function(err) {
-        this.send('isLoading', false);
+        controller.send('isLoading', false);
         throw new Error(err);
       });
 

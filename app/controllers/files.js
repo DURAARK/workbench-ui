@@ -79,16 +79,15 @@ export default Ember.Controller.extend({
 
           das.pushObject(digOb);
           session.set('digitalObjects', das);
-
-          controller.send('isLoading', false);
-        }).catch(function(err) {
-          controller.send('isLoading', false)
-          alert(err);
         });
       });
 
       session.save().then(function(session) {
         controller.transitionToRoute('metadata', session);
+        controller.send('isLoading', false);
+      }).catch(function(err) {
+        controller.send('isLoading', false);
+        alert(err);
       });
     },
 
