@@ -32,10 +32,26 @@
 
   <div class="l-file-list">
 
-    {{#file-list files=session.digitalObjects as |do|}}
+    <!-- {{#file-list files=session.digitalObjects as |do|}}
         {{physical-asset-item item=do details="showDetails"}}
+
         {{geo-tool label="IFC Reconstruction" digitalObject=do toggleSelection="toggleToolSelection"}}
         {{geo-tool label="Electrical Appliance Detection" digitalObject=do toggleSelection="toggleToolSelection"}}
+
+        {{add-item select="showTopicSelection" item=do}}
+    {{/file-list}} -->
+
+    {{#file-list files=digitalObjects as |do|}}
+      <div>
+
+        {{physical-asset-item item=do details="showDetails"}}
+
+        {{#each tool in do.geoTools}}
+          {{topic-item topic=tool digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
+        {{/each}}
+
+        {{add-item select="showTopicSelection" item=do}}
+      </div>
     {{/file-list}}
 
   </div>
@@ -49,10 +65,10 @@
       {{else}}
 
         {{#if fileInfo}}
-          {{information-topic-selector digitalObject=do topics=topics click="clickedTopic" }}
+          {{information-topic-selector digitalObject=do topics=tools click="clickedTool" }}
         {{else}}
-          {{#if topic}}
-            {{topic-viewer digitalObject=do topic=topic}}
+          {{#if tool}}
+            TODO: Display information on currently selected tool!
           {{else}}
             <h2 class="title" style="color: white;">For each point cloud scan a set of tools can be applied, e.g. a reconstruction of a BIM model as IFC file or the automatic detection of in-wall electrical applicances. Enable a tool in activating the respective tile.</h2>
           {{/if}}
