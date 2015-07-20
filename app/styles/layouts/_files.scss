@@ -10,8 +10,16 @@
   }
 }
 .l-file-details {
-  @include span(6 last);
+  position: fixed;
+
+  right: 0;
+  top: 0;
+
+  width: 50%;
+
+  // overflow-y: none;
+
+  // @include span(6 last);
   // height: 100vh;
-  // background: blue;
-  overflow-y: auto;
+  background: blue;
 }

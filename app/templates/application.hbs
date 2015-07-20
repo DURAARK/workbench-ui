@@ -1,36 +1,41 @@
-{{#if isLoading}}
-	{{#if loadingMessage}}
-		<div class="loading-message">
+<div class="l-loading-message">
+	{{#if isLoading}}
+		{{#if loadingMessage}}
 			<h3>{{loadingMessage}}</h3>
 			{{loading-spinner}}
-		</div>
+		{{/if}}
 	{{/if}}
-{{/if}}
+</div>
 
-<div class="l-app-header">
+<div class="l-header">
 	<div class="l-nav">
-		<div class="c-breadcrumb">
+		<!-- <div class="c-breadcrumb">
 			{{#link-to "files" 1}}Files{{/link-to}}
 			{{#link-to "metadata" 1}}Metadata{{/link-to}}
 			{{#link-to "semanticenrichment" 1}}Semantic Enrichment{{/link-to}}
 			{{#link-to "geometricenrichment" 1}}Geometric Enrichment{{/link-to}}
 			{{#link-to "sipgeneration" 1}}Archive Generation{{/link-to}}
-		</div>
+		</div> -->
 	</div>
 
-	<div class="l-stats c-stats">
+	<!-- <div class="l-stats c-stats">
 		<ul>
-			<!-- <li>{{numDigitalObjects}}
-				<span>Digital Representation</span>
-			</li> -->
 			<li>{{numActionsPending}}
 				<span>Actions Pending</span>
 			</li>
 		</ul>
-	</div>
+	</div> -->
 
 </div>
 
-<div class="l-canvas">
-	{{outlet}}
+<div class="l-canvas-wrapper">
+
+	<div class="l-canvas">
+
+		<div class="l-panes">
+			{{outlet}}
+		</div>
+
+	</div>
+
 </div>

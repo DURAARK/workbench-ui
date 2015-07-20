@@ -1,4 +1,4 @@
-<div class="c-button-list">
+<!-- <div class="c-button-list">
 	<div class="c-button-list__content">
 
 		<div {{action 'next'}} class="c-button">
@@ -18,19 +18,22 @@
 		</div>
 
 	</div>
-</div>
+</div> -->
 
-<div class="l-files">
+	<div class="l-pane-left">
+		<div class="l-pane-left__content">
+			<div class="l-file-explorer">
 
-	<div class="l-file-list">
+				{{#file-list files=files as |file|}}
+					{{file-item item=file select="toggleSelection" details="showDetails"}}
+				{{/file-list}}
 
-		{{#file-list files=files as |file|}}
-			{{file-item item=file select="toggleSelection" details="showDetails"}}
-		{{/file-list}}
+			</div>
+		</div>
 	</div>
 
-	{{#if showSidebar}}
-		<div class="l-file-details">
+	<div class="l-pane-right">
+		{{#if showSidebar}}
 
 			{{#if isLoadingMetadata}}
 				<div style="color: white;">LOADING ...</div>
@@ -38,7 +41,7 @@
 			{{else}}
 
 				{{#if fileInfo}}
-					<h3 class="title" style="color: white;">{{fileInfoShortName}}</h3>
+					<!-- <h3 class="title" style="color: white;">{{fileInfoShortName}}</h3> -->
 					{{#if errors}}
 						{{#each error in errors}}
 							<div>Type: {{error.type}}</div>
@@ -53,6 +56,5 @@
 				{{/if}}
 			{{/if}}
 
-		</div>
-	{{/if}}
-</div>
+		{{/if}}
+	</div>
