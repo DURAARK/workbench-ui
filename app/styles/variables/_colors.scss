@@ -21,30 +21,32 @@
 // ==========
 $colors: ( 
 	white: #fff, 
+	silver: #c2c2c2, 
+	gray: #8c8c8c, 
+	light-gray: #F6F6FF, 
+	mid-gray: #cdcbcb, 
+	natural-gray: #e4e4f0, 
 	dark-gray: #3d3e40, 
 	gallery: #3D3E40, 
 	concrete: #f2f2f2, 
-	silver: #c2c2c2, 
-	gray: #8c8c8c, 
-	natural-gray: #e4e4f0, 
 	royal-purple: rgba(85, 26, 139, 0.99), 
 	tuna: rgba(50, 50, 62, 0.5), 
 	woodsmoke:#101014, 
 	shark: #edece4, 
-	mid-gray: #cdcbcb, 
-	light-green: #D3E33F, 
-	mid-green: #a4b411, 
-	very-green: rgba(84, 176, 112, 1), 
-	light-blue: #70ADD5, 
+	yellow: #FAEC39,
+	dirty-yellow: #baaf22,
 	light-orange: #e6892b, 
 	mid-orange: #ab5703,
 	light-orange-highlight: #F3BA21,
 	mid-orange-highlight: #a67e13,
+	dark-brown: #55504b, 
+	light-green: #D3E33F, 
+	mid-green: #a4b411, 
+	dark-green: #3a7429,
+	very-green: #75da5e, 
 	flashy-green: #0066A8, 
-	light-gray: #F6F6FF, 
-	yellow: #FAEC39,
-	dirty-yellow: #baaf22,
-	dark-brown: #55504b );
+	light-blue: #70ADD5);
+
 .is-selected {
   // .t-file {
   //   background: green !important;
@@ -63,13 +65,13 @@ $colors: (
 .t-file-metadata {
   background: rgba(color(light-green), 1) !important;
 }
-.t-button-files,
-.t-button-metadata,
-.t-button-semenrich,
-.t-button-geoenrich,
-.t-button-metadata {
-  background: rgba(color(natural-gray), 0) !important;
-}
+// .t-button-files,
+// .t-button-metadata,
+// .t-button-semenrich,
+// .t-button-geoenrich,
+// .t-button-metadata {
+// //  background: rgba(color(natural-gray), 0) !important;
+// }
 
 // From _dropdown-list.scss
 $text: #fff;

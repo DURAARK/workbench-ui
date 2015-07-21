@@ -44,7 +44,7 @@
 }
 
 .pointcloud {
-  @include gradient(color(yellow), color(dirty-yellow), 40px);
+  @include gradient(color(very-green), color(dark-green), 40px);
 }
 
 .c-file__name {
