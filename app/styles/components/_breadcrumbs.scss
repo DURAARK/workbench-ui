@@ -1,11 +1,12 @@
 .c-breadcrumb {
+  @include gradient(color(light-gray), color(mid-gray), 100%);
   $base-border-color: gainsboro !default;
   $base-border-radius: 3px !default;
   $base-background-color: white !default;
   $base-spacing: 1.5em !default;
   $action-color: #477DCA !default;
-  $medium-gray: #999 !default;
-  $light-gray: #DDD !default;
+  // $medium-gray: #999 !default;
+  // $light-gray: #DDD !default;
   $medium-screen: em(640) !default;
   $breadcrumb-border-color: $base-border-color;
   $breadcrumb-border: 1px solid $breadcrumb-border-color;
@@ -13,27 +14,32 @@
   $breadcrumb-arrow-color: $breadcrumb-border-color;
   $breadcrumb-background: $base-background-color;
   $breadcrumb-inactive-hover-color: $breadcrumb-background;
-  $breadcrumb-color: $medium-gray;
+
+  $breadcrumb-color: color(dark-gray);
   $breadcrumb-color-hover: $action-color;
   $breadcrumb-color-active: $breadcrumb-color;
 
   display: inline-block;
   margin-bottom: $base-spacing;
   text-align: left;
+  width: 100%;
 
   a {
-    background-color: $breadcrumb-background;
+ //   @include gradient(color(light-gray), color(mid-gray), 40px);
+   // background-color: $breadcrumb-background;
     border-left: 0;
     border: $breadcrumb-border;
     color: $breadcrumb-color;
     display: inline-block;
     font-size: 0.8em;
+    text-align: center;
     line-height: $breadcrumb-height;
     margin-bottom: 2px;
     margin-right: -5px;
     padding: 0 ($breadcrumb-height / 4) 0 ($breadcrumb-height / 2);
     position: relative;
     text-decoration: none;
+    width: 20%;
 
     &:first-child {
       border-bottom-left-radius: $base-border-radius;
@@ -43,7 +49,7 @@
     }
 
     &:last-child {
-      background-color: $breadcrumb-background;
+    //  background-color: $breadcrumb-background;
       border-bottom-right-radius: $base-border-radius;
       border-top-right-radius: $base-border-radius;
       color: $breadcrumb-color-active;
@@ -52,8 +58,9 @@
 
     &:focus,
     &:hover {
-      background-color: $breadcrumb-inactive-hover-color;
-      color: $breadcrumb-color-hover;
+    //  background-color: $breadcrumb-inactive-hover-color;
+    //  color: $breadcrumb-color-hover;
+    font-weight: bold;
     }
 
     &:after,
@@ -79,7 +86,8 @@
       z-index: 1;
     }
     &:after {
-      border-left-color: $breadcrumb-background;
+      border-left-color: color(light-gray);
+      background-color: none;
     }
 
     @include media($medium-screen) {

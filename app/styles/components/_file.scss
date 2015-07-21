@@ -6,8 +6,9 @@
   text-align: center;
   transition: background 0.2s;
   background: rgba(color(gallery), 0.1);
-
+  @include round-corners($amount: 10px);
   &.separate {
+
   margin-bottom: 0;
   }
 
@@ -28,36 +29,75 @@
   background: rgba(color(natural-gray),1);
 }
 .c-file__header {
-  background: color(light-green);
+  @include gradient(color(light-green), color(mid-green), 40px);
+  @include round-top-corners($amount: 10px);
+  padding-top: rhythm(0.5);
+  padding-bottom: rhythm(0.5);
+
+  border-top: 5px solid color(dark-gray);
+  border-left: 5px solid color(dark-gray);
+  border-right: 5px solid color(dark-gray);
+
+  //background: color(light-green);
 //  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.25);
 }
 .c-file__name {
   min-height: rhythm(3.3);
-  padding-top: rhythm(0.5);
+  padding: rhythm(0.5);
   font-size: 0.8em;
-  background: color(natural-gray);
+  @include gradient(color(light-gray), color(mid-gray), 100%);
   color: color(dark-gray);
+  text-align: left;
+  border-left: 5px solid color(dark-gray);
+  border-right: 5px solid color(dark-gray);
 }
 .c-file__actions {
   width: 100%;
-  background: color(natural-gray);
-
-
   .c-file__actions__button {
       width: 100%;
-      background: rgba(color(dark-brown), 1);
-      color: color(light-gray);
+      //background: rgba(color(dark-brown), 1);
+      color: color(white);
 
       &:hover {
-      background: rgba(color(light-orange), 1);
-      color: color(dark-gray);
+     // background: rgba(color(light-orange), 1);
+     // color: color(dark-gray);
       }
     }
 }
 .c-file__action {
-  float: right;
+  float: center;
   display: inline-block;
-  width: rhythm(1);
+  color: color(white);
+  //width: rhythm(1);
+  width: 100%;
+  padding-top: rhythm(0.5);
+  padding-bottom: rhythm(0.5);
+  @include gradient(color(light-orange), color(mid-orange), 100%);
+  @include round-bottom-corners($amount: 10px);
 
-  background: color(natural-gray);
+  border-bottom: 5px solid color(dark-gray);
+  border-left: 5px solid color(dark-gray);
+  border-right: 5px solid color(dark-gray);
+ // background: color(natural-gray);
+}
+.is-selected {
+ // border: 5px solid #fff;
+  
+  .c-file__action {
+    @include gradient(color(mid-gray), color(dark-gray), 100%);
+    border-bottom: 5px solid color(white);
+    border-left: 5px solid color(white);
+    border-right: 5px solid color(white);
+  }
+  .c-file__header {
+    @include gradient(color(light-green), color(mid-green), 40px);
+    border-top: 5px solid color(white);
+    border-left: 5px solid color(white);
+    border-right: 5px solid color(white);
+  }
+
+  .c-file__name {
+    border-left: 5px solid color(white);
+    border-right: 5px solid color(white);
+  }
 }

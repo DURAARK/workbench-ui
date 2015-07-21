@@ -156,3 +156,58 @@ $text-input-types: text, password, date, datetime, datetime-local, month, week, 
 @mixin zi($location) {
   z-index: map-get($zindex, $location);
 }
+
+$default_rounded_amount: 5px;
+// Round top corners by amount
+@mixin round-corner($position, $amount: $default_rounded_amount) {
+  border-#{$position}-radius: $amount;
+  -webkit-border-#{$position}-radius: $amount;
+}
+@mixin round-corner-mozilla($position, $amount: $default_rounded_amount) {
+  -moz-border-radius-#{$position}: $amount;
+}
+
+@mixin round-top-corners($amount: $amount) {
+  @include round-corner("top-left", $amount);
+  @include round-corner("top-right", $amount);
+  @include round-corner-mozilla("topleft", $amount);
+  @include round-corner-mozilla("topright", $amount);
+}
+
+// Round bottom corners by amount
+@mixin round-bottom-corners($amount: $amount) {
+  @include round-corner("bottom-left", $amount);
+  @include round-corner("bottom-right", $amount);
+  @include round-corner-mozilla("bottomleft", $amount);
+  @include round-corner-mozilla("bottomright", $amount);
+}
+
+// Round all corners by amount
+@mixin round-corners($amount: $default_rounded_amount) {
+  border-radius: $amount;
+  -moz-border-radius: $amount;
+  -webkit-border-radius: $amount;
+}
+
+@mixin gradient($from, $to, $height, $pie:"false") {
+    background-color: $to;
+ 
+    background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+    background-image: -webkit-linear-gradient($from, $to);
+    background-image: -moz-linear-gradient($from, $to);
+    background-image: -o-linear-gradient($from, $to);
+    background-image: -ms-linear-gradient($from, $to);
+    background-image: linear-gradient($from, $to);
+
+        @if $pie == "true" {
+        // For CSS3PIE
+        -pie-background: linear-gradient(90deg, $from,$to);
+    }
+ 
+    background-repeat: repeat-x;
+ 
+    -webkit-background-size: 100% $height;
+    -moz-background-size: 100% $height;
+    -o-background-size: 100% $height;
+    background-size: 100% $height;
+}
