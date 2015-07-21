@@ -6,14 +6,16 @@
     <!--List Title-->
     <a dropdown-prop="title">Building Details<i class="dropdown-icon"></i></a>
     <!--List Items-->
-    <div class="dropdown-list-items dropdown-list-open">
+    <div class="dropdown-list-items dropdown-list-open dropdownlist-grid">
       <fieldset>
-      {{#each item in physicalAsset}}
-        <label>{{item.key}}:</label>
-        {{#each value in item.values}}
-          {{input readonly=true value=value}}
-        {{/each}}
-      {{/each}}
+           {{#each item in physicalAsset}}
+            <div class="dropdownlist-grid-small">
+              <label>{{item.key}}:</label>
+              {{#each value in item.values}}
+                {{input readonly=true value=value}}
+              {{/each}}
+            </div>
+          {{/each}}
       </fieldset>
     </div>
   </li>
@@ -23,13 +25,15 @@
     <!--List Title-->
     <a dropdown-prop="title">Plan Details<i class="dropdown-icon"></i></a>
     <!--List Items-->
-    <div class="dropdown-list-items">
+    <div class="dropdown-list-items dropdownlist-grid">
       <fieldset>
       {{#each item in digitalObject}}
-        <label>{{item.key}}:</label>
-        {{#each value in item.values}}
-          {{input readonly=true value=value}}
-        {{/each}}
+        <div class="dropdownlist-grid-small">
+              <label>{{item.key}}:</label>
+              {{#each value in item.values}}
+                {{input readonly=true value=value}}
+              {{/each}}
+            </div>
       {{/each}}
       </fieldset>
     </div>
@@ -40,9 +44,11 @@
     <!--List Title-->
     <a dropdown-prop="title">File Details<i class="dropdown-icon"></i></a>
     <!--List Items-->
-    <div class="dropdown-list-items">
+    <div class="dropdown-list-items dropdownlist-grid">
       <fieldset>
-        <label>Coming soon!</label>
+        <div class="dropdownlist-grid-small">
+          <label>Coming soon!</label>
+        </div>
       </fieldset>
     </div>
   </li>

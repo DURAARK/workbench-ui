@@ -2,11 +2,11 @@
 	<div {{action "showDetails" item}}>
 
 		{{#if isIFC}}
-			<div class="c-file__header t-file">
+			<div class="c-file__header t-file ifc">
 				3D Model (IFC)
 			</div>
 		{{else}}
-			<div class="c-file__header t-file">
+			<div class="c-file__header t-file pointcloud">
 				Pointcloud (E57)
 			</div>
 		{{/if}}

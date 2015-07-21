@@ -86,8 +86,7 @@
       z-index: 1;
     }
     &:after {
-      border-left-color: color(light-gray);
-      background-color: none;
+      border-left-color: color(dark-gray);
     }
 
     @include media($medium-screen) {

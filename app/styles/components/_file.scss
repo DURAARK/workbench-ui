@@ -29,7 +29,7 @@
   background: rgba(color(natural-gray),1);
 }
 .c-file__header {
-  @include gradient(color(light-green), color(mid-green), 40px);
+  
   @include round-top-corners($amount: 10px);
   padding-top: rhythm(0.5);
   padding-bottom: rhythm(0.5);
@@ -37,10 +37,16 @@
   border-top: 5px solid color(dark-gray);
   border-left: 5px solid color(dark-gray);
   border-right: 5px solid color(dark-gray);
-
-  //background: color(light-green);
-//  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.25);
 }
+
+.ifc {
+  @include gradient(color(light-green), color(mid-green), 40px);
+}
+
+.pointcloud {
+  @include gradient(color(yellow), color(dirty-yellow), 40px);
+}
+
 .c-file__name {
   min-height: rhythm(3.3);
   padding: rhythm(0.5);
@@ -50,20 +56,23 @@
   text-align: left;
   border-left: 5px solid color(dark-gray);
   border-right: 5px solid color(dark-gray);
+
+  .c-file__size {
+    padding-top:  rhythm(0.5);
+    text-align: right;
+  }
 }
+
+
 .c-file__actions {
   width: 100%;
   .c-file__actions__button {
       width: 100%;
-      //background: rgba(color(dark-brown), 1);
       color: color(white);
-
-      &:hover {
-     // background: rgba(color(light-orange), 1);
-     // color: color(dark-gray);
-      }
     }
 }
+
+
 .c-file__action {
   float: center;
   display: inline-block;
@@ -78,16 +87,22 @@
   border-bottom: 5px solid color(dark-gray);
   border-left: 5px solid color(dark-gray);
   border-right: 5px solid color(dark-gray);
- // background: color(natural-gray);
+
+  &:hover {
+        @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+  }
 }
 .is-selected {
- // border: 5px solid #fff;
   
   .c-file__action {
     @include gradient(color(mid-gray), color(dark-gray), 100%);
     border-bottom: 5px solid color(white);
     border-left: 5px solid color(white);
     border-right: 5px solid color(white);
+
+    &:hover {
+        @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+    }
   }
   .c-file__header {
     @include gradient(color(light-green), color(mid-green), 40px);

@@ -8,18 +8,31 @@
   //padding    : 0 2.0em;
   //width      : 250px;
   list-style : none;
-
   color: black;
+  padding: 2em;
   
   -webkit-transform           : translateZ(0);
   -webkit-backface-visibility : hidden;
+
+
 }
 
 .dropdown-list {
   position      : relative;
-  background: color(light-blue);
   margin-bottom : 1px;
+  @include gradient(color(light-orange), color(mid-orange), 40px);
+  
+  &:hover {
+    @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+  }
 
+  &:first-child {
+    @include round-top-corners($amount: 10px);
+  }
+
+  &:last-child {
+    @include round-bottom-corners($amount: 10px);
+  }
 
   [dropdown-prop="title"] {
     color           : $text;
@@ -31,9 +44,6 @@
 
 .dropdown-list-items {
 	@include transition(max-height 0.4s ease-in);
-
-  background: color(natural-gray);
-
   padding    : 0;
   max-height : 0;
 	list-style : none;
@@ -58,7 +68,7 @@
 
 .dropdown-list-open {
 	@include transition(max-height 0.4s ease-out);
-
+  @include gradient(color(light-gray), color(mid-gray), 100%);
   height: 100%;
 	max-height : 30em;
   overflow: auto;
@@ -67,4 +77,17 @@
 .dropdown-icon-open {
   @include transition(transform .4s ease-out);
 	@include transform(rotate(90deg));
+}
+
+.dropdownlist-grid {
+  width: 100%;
+}
+
+.dropdownlist-grid-small {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 33%;
 }
