@@ -1,0 +1,10 @@
+// File Explorer
+// =============
+
+.l-file-explorer {
+  @include container;
+
+  .l-file {
+    @include gallery(4 of 12);
+  }
+}
