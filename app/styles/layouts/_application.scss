@@ -1,84 +1,23 @@
 // Application
 // ===========
 
-// body {
-//   overflow-x: none;
-// }
-
-body > .ember-view {
-  height: 100%;
+.l-app-header {
+  // @include span(12 of 12);
+  @include container;
 }
 
-.l-loading-message {
-  z-index: 10;
-  position: fixed;
-  top: 30%;
-  width: 100%;
-  // padding: 3.5em;
-  background-color: #333;
-  text-align: center;
-
-  h3 {
-    z-index: 110;
-    color: white;
-  }
+.l-nav {
+  //@include span(8 of 12);
 }
 
-.l-header {
-  height: 2.5em;
- // background: black;
+.l-stats {
+    @include span(3 of 12 last);
 }
 
-.l-canvas-wrapper {
-  position: relative;
-  height: calc(100% - 2.5em);
-
-  > .l-canvas {
-      position: absolute;
-
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-
-     // background: green;
-  }
+.l-cards {
+  // @include container;
 }
 
-.l-panes {
-  height: 100%;
-
-  > .l-pane-left {
-    height: 100%;
-
-    > .l-pane-left__content {
-      position: absolute;
-
-      top: 0;
-      left: 0;
-      padding-right: 50%;
-      width: 100%;
-      height: 100%;
-
-      // overflow-x: none;
-      overflow-y: auto;
-
-     // background: blue;
-    }
-  }
-
-  > .l-pane-right {
-    position: absolute;
-
-    top: 0;
-    right: 0;
-
-    width: 50%;
-    height: 100%;
-
-    //overflow-y: none;
-
-    //background: gray;
-  }
-
+.l-card {
+  @include gallery(4 of 12);
 }

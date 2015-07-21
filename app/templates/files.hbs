@@ -1,4 +1,4 @@
-<!-- <div class="c-button-list">
+<div class="c-button-list">
 	<div class="c-button-list__content">
 
 		<div {{action 'next'}} class="c-button">
@@ -18,22 +18,19 @@
 		</div>
 
 	</div>
-</div> -->
+</div>
 
-	<div class="l-pane-left">
-		<div class="l-pane-left__content">
-			<div class="l-file-explorer">
+<div class="l-files">
 
-				{{#file-list files=files as |file|}}
-					{{file-item item=file select="toggleSelection" details="showDetails"}}
-				{{/file-list}}
+	<div class="l-file-list">
 
-			</div>
-		</div>
+		{{#file-list files=files as |file|}}
+			{{file-item item=file select="toggleSelection" details="showDetails"}}
+		{{/file-list}}
 	</div>
 
-	<div class="l-pane-right">
-		{{#if showSidebar}}
+	{{#if showSidebar}}
+		<div class="l-file-details">
 
 			{{#if isLoadingMetadata}}
 				<div style="color: white;">LOADING ...</div>
@@ -41,7 +38,7 @@
 			{{else}}
 
 				{{#if fileInfo}}
-					<!-- <h3 class="title" style="color: white;">{{fileInfoShortName}}</h3> -->
+					<h3 class="title" style="color: white;">{{fileInfoShortName}}</h3>
 					{{#if errors}}
 						{{#each error in errors}}
 							<div>Type: {{error.type}}</div>
@@ -51,10 +48,11 @@
 						{{buildm-viewer file=fileInfo}}
 					{{/if}}
 				{{else}}
-					<h2 class="title" style="color: white;">To show details by clicking on a file.</h2>
+					<h2 class="title" style="color: white;">To show details use the <i class="fa fa-eye"></i> icon on a file.</h2>
 					<h3 style="color: white;">Depending on the file size it may take some seconds/minutes for the first metadata extraction.</h3>
 				{{/if}}
 			{{/if}}
 
-		{{/if}}
-	</div>
+		</div>
+	{{/if}}
+</div>
