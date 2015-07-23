@@ -1,9 +1,14 @@
 .c-link-list {
-  	margin-left: rhythm(1);
-  	margin-right: rhythm(1);
-  	padding-right: rhythm(1);
-	width: 50%;
-	float: left; 
+  	@include span(6 of 12);
+  	padding-left: rhythm(0.6);
+}
+.c-link-list-right {
+  	@include span(last 2 of 12);
+  	position: relative;
+  	float: right;
+  	>.c-link-list-grid-small>button {
+  		@include span(12 of 12);
+  	}
 }
 
 .c-link-list-grid-small {
@@ -13,9 +18,8 @@
 	padding-left: 15px;
 	padding-right: 15px;
 	width: 50%;
-
-	
 }
+
 .c-link-list-back, .c-link-list-next {
 	h3:hover {
 		text-decoration: underline;

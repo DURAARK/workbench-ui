@@ -1,6 +1,3 @@
-<div class="c-button-list">
-  <div class="c-button-list__content">
-
    <div class="c-link-list">
       <div {{action 'back'}} class="c-link-list-grid-small">
         <div class="c-link-list-back">
@@ -13,17 +10,19 @@
         </div>
       </div>
     </div>
+    <div class="c-link-list-right">
+      <div {{action 'save'}} class="c-link-list-grid-small">
+           <button {{action "save"}}>Save</button>
+      </div>
+    </div>
 
-    <div {{action 'save'}} class="c-button">
+    {{!-- <div {{action 'save'}} class="c-button">
       <div class="c-button__frame t-button-files">
         <div class="c-button__name">
           <h3>Save</h3>
         </div>
       </div>
-    </div>
-
-  </div>
-</div>
+    </div> --}}
 
 <div class="l-files">
 
@@ -32,13 +31,13 @@
     {{#file-list files=digitalObjects as |do|}}
       <div>
 
-        {{physical-asset-item item=do details="showDetails"}}
+        {{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
 
         {{#each topic in do.semMD.topics}}
           {{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
         {{/each}}
 
-        {{add-item select="showTopicSelection" item=do}}
+        {{!-- {{add-item select="showTopicSelection" item=do}} --}}
       </div>
     {{/file-list}}
 
