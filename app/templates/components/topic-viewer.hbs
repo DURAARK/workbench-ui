@@ -6,11 +6,13 @@
         <div class="c-card-image">
           <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
         </div>
-        <div class="c-card-header">
-          <a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a>
-        </div>
-        <div class="c-card-copy">
-          <p>Score: {{candidate.score}}</p>
+        <div class="c-card-bg">
+          <div class="c-card-header">
+            <a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a>
+          </div>
+          <div class="c-card-copy">
+            <p>Score: {{candidate.score}}</p>
+          </div>
         </div>
       </div>
     {{/each}}

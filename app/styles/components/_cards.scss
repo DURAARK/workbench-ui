@@ -23,9 +23,9 @@
   // @include flex-basis(15em);
   // @include flex-grow(1);
   @include transition (all 0.2s ease-in-out);
-  background-color: $card-background;
+  
 
-  color: #3D3E40;
+  color: color(dark-gray);
 
   border-radius: $base-border-radius;
   border: $card-border;
@@ -52,23 +52,35 @@
 
   .c-card-header {
     @include transition (all 0.2s ease-in-out);
-    background-color: $card-header-background;
+    @include gradient(color(light-green), color(mid-green), 40px);
     border-bottom: $card-border;
     border-radius: $base-border-radius $base-border-radius 0 0;
     font-weight: bold;
     line-height: 1.5em;
     padding: ($base-spacing / 3) ($base-spacing / 2);
+    a {
+      color: color(white);
+      :hover {
+        text-decoration: underline;
+      }
+    }
+    &:hover {
+      a {
+        text-decoration: underline;
+      }
+    }
   }
 
   .c-card-copy {
     font-size: 0.9em;
     line-height: 1.5em;
     padding: ($base-spacing / 2) ($base-spacing / 2);
-
+    @include gradient(color(light-gray), color(mid-gray), 100%);
     p {
       margin: 0 0 ($base-spacing / 2);
     }
   }
+
 
   &:focus,
   &:hover {
@@ -86,4 +98,8 @@
       background-color: $card-background;
     }
   }
+}
+
+.c-card-bg {
+  @include gradient(color(light-gray), color(mid-gray), 100%);
 }
