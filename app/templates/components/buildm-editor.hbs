@@ -2,40 +2,43 @@
 <ul class="dropdown-list-container">
 
   <!--Second List-->
-  <li class="dropdown-list">
+  <li class="dropdown-list dropdown-list-metadata-title">
     <!--List Title-->
-    <a dropdown-prop="title" {{action "save"}}>{{label}}: <br> {{formDescription.itemName}}</a>
+      <a dropdown-prop="title" {{action "save"}}>{{label}}: <br> {{formDescription.itemName}}</a>
 
-    {{#if showSaveButton}}
-      <button {{action "save"}}>Save</button>
-      <button {{action "restore"}}>Cancel</button>
-    {{/if}}
+      {{#if showSaveButton}}
+        <div class="dropdown-list-buttons">
+            <button {{action "save"}}>Save</button>
+            <button {{action "restore"}}>Cancel</button>
+        </div>
+      {{/if}}
 
     <!--List Items-->
     <div class="dropdown-list-items dropdown-list-open dropdown-list-metadata">
       <fieldset>
-
         {{#each item in formDescription}}
+          <div class="dropdownlist-grid-large">
+            <label class="dropdown-list-metadata-labels">{{item.label}}:</label>
+            {{#if item.mandatory}}*{{/if}}
 
-          <label class="dropdown-list-metadata-labels">{{item.label}}:</label>
-          {{#if item.mandatory}}*{{/if}}
-
-          <div class="dropdown-list-description">{{item.doc}}</div>
-
-          {{#each value in item.values}}
-            {{input class="dropdown-list-metadata-labels" value=value.value action="metadataChanged" on="key-press"}}
-          {{/each}}
-
+            <div class="dropdown-list-description">{{item.doc}}</div>
+            {{#each value in item.values}}
+              {{input class="dropdown-list-metadata-labels" value=value.value action="metadataChanged" on="key-press"}}
+            {{/each}}
+          </div>
           {{#if item.multiples}}
-            {{input class="dropdown-list-metadata-labels dropdown-list-placehoder" placeholder=item.addLabel value=item.newValue action="metadataChanged" on="key-press"}}
-            <button type="button" {{action "addItem" item}}>+</button>
-          {{else}}
-            {{#if item.values.length}}
+              <div class="dropdownlist-grid-medium">
+                {{input class="dropdown-list-metadata-labels dropdown-list-placehoder" placeholder=item.addLabel value=item.newValue action="metadataChanged" on="key-press"}}
+              </div>
+              <div class="dropdownlist-grid-small">
+                <button type="button" {{action "addItem" item}}><i class="fa fa-plus"></i></button>
+              </div>
             {{else}}
-              {{input class="dropdown-list-metadata-labels" value=item.newValue action="metadataChanged" on="key-press"}}
+              {{#if item.values.length}}
+              {{else}}
+                {{input class="dropdown-list-metadata-labels" value=item.newValue action="metadataChanged" on="key-press"}}
+              {{/if}}
             {{/if}}
-          {{/if}}
-
         {{/each}}
       </fieldset>
     </div>

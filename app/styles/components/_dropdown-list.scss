@@ -19,11 +19,7 @@
 .dropdown-list {
   position      : relative;
   margin-bottom : 1px;
-  @include gradient(color(light-orange), color(mid-orange), 40px);
-  
-  &:hover {
-    @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
-  }
+  background-color: color(light-gray);
 
   &:first-child {
     @include round-top-corners($amount: 10px);
@@ -35,7 +31,22 @@
 
   &.dropdown-list-no-round-corners {
     @include round-top-corners($amount: 0px);
-}
+  }
+
+  &:nth-child(even) {
+    @include gradient(color(light-orange), color(mid-orange), 40px);
+    &:hover {
+      @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+    }
+  }
+
+  &:nth-child(odd) {
+    @include gradient(color(light-orange), color(mid-orange), 40px);
+    &:hover {
+      @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+    }
+  }
+
 
   [dropdown-prop="title"] {
     color           : $text;
@@ -44,6 +55,23 @@
     text-decoration : none;
     font-size: 0.9em;
   }
+
+  &.dropdown-list-metadata-title { 
+    @include round-top-corners($amount: 10px);
+    @include gradient(color(light-green), color(mid-green), 40px);
+    &:hover {
+      @include gradient(color(light-green), color(mid-green), 40px);
+    }
+    [dropdown-prop="title"] {
+      color           : color(dark-gray);
+      padding         : 0.5em 2.0em;
+      display         : block;
+      text-decoration : none;
+      text-align: center;
+      font-size: 0.9em;
+    }
+  }
+
 }
 
 .dropdown-list-no-round-corners {
@@ -110,27 +138,78 @@
   width: 33%;
 }
 
+.dropdownlist-grid-medium {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 66%;
+}
+.dropdownlist-grid-large {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
 .dropdown-list-description {
   font-size: 0.8em;
   min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.dropdown-list-metadata-labels {
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-
-  input[type="text"], textarea {
-    min-height: 1px;
-    padding-left: 15px !important;
-    padding-right: 15px;
-  }
 }
 
 .dropdown-list-placehoder {
   float: left;
   position: relative;
   width: 80%;
+}
+
+.dropdown-list-metadata-labels{
+  padding-top: rhythm(0.5);
+}
+
+.dropdownlist-title {
+  float: left;
+  width: 100%;
+}
+
+.dropdown-list-buttons {
+  margin-left:80%;
+  width: 20%;
+  padding-bottom: 15px;
+  align: right;
+}
+
+
+#{$all-button-inputs},
+button {
+  @include appearance(none);
+  -webkit-font-smoothing: antialiased;
+  @include gradient(color(light-orange), color(mid-orange), 100%);
+  border-radius: $base-border-radius;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+    color: #fff;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }

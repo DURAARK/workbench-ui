@@ -68,6 +68,28 @@
     text-align: right;
   }
 
+  .c-file-building {
+    min-height: 1px;
+    height: rhythm(5);
+    width: 100%;
+
+    .c-file-building__pic {
+      position: relative;
+      float: left;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+      max-width: 33%;
+
+      img {
+        height: rhythm(5);
+      }
+    }
+
+    .c-file-building__name {
+    }
+  }
+ 
   &:hover {
     @include gradient(color(light-gray), color(natural-gray), 100%);
   }
@@ -126,3 +148,4 @@
     border-right: 5px solid color(white);
   }
 }
+

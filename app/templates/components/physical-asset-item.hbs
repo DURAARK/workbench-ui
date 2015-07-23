@@ -1,4 +1,4 @@
-<div class="l-file c-file {{if item.isSelected 'is-selected'}}">
+<div class="l-file-large c-file {{if item.isSelected 'is-selected'}} {{if isIFC 'l-file-small'}} {{if isE57 'l-file-small'}}">
 	<div {{action "showDetails" item}}>
 
 		{{#if isIFC}}
@@ -11,14 +11,27 @@
 					Pointcloud (E57)
 				</div>
 			{{else}}
-				<div class="c-file__header t-file c-file__header-building">
+				<div class="c-file__header t-file">
 					Building
 				</div>
 			{{/if}}
 		{{/if}}
 
 		<div class="c-file__name">
-			{{name}}
+			{{#if isIFC}}
+				{{name}}
+			{{else}}
+				{{#if isE57}}
+					{{name}}
+				{{else}}
+					<div class="c-file-building">
+						<div class="c-file-building__pic"><img src="/images/building_placeholder.png"> </div>
+						{{name}}  <br><br>
+						blablabalba
+						{{adress}}
+					</div>
+				{{/if}}
+			{{/if}}
 		</div>
 
 	</div>
