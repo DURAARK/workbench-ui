@@ -11,6 +11,15 @@
   	}
 }
 
+.c-link-list-right__generation {
+  	@include span(last 6 of 12);
+  	position: relative;
+  	float: right;
+  	>.c-link-list-grid-small>button {
+  		@include span(12 of 12);
+  	}
+}
+
 .c-link-list-grid-small {
 	float: left;
 	position: relative;  
