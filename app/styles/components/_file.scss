@@ -37,6 +37,8 @@
   border-top: 5px solid color(dark-gray);
   border-left: 5px solid color(dark-gray);
   border-right: 5px solid color(dark-gray);
+  font-size: 0.9em;
+  font-weight: bold;
 }
 
 .ifc {
@@ -45,6 +47,10 @@
 
 .pointcloud {
   @include gradient(color(very-green), color(dark-green), 40px);
+}
+
+.c-file__header-building {
+  width: 100%;
 }
 
 .c-file__name {
@@ -60,6 +66,10 @@
   .c-file__size {
     padding-top:  rhythm(0.5);
     text-align: right;
+  }
+
+  &:hover {
+    @include gradient(color(light-gray), color(natural-gray), 100%);
   }
 }
 

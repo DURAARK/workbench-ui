@@ -12,27 +12,27 @@
     {{/if}}
 
     <!--List Items-->
-    <div class="dropdown-list-items dropdown-list-open">
+    <div class="dropdown-list-items dropdown-list-open dropdown-list-metadata">
       <fieldset>
 
         {{#each item in formDescription}}
 
-          <label>{{item.label}}:</label>
+          <label class="dropdown-list-metadata-labels">{{item.label}}:</label>
           {{#if item.mandatory}}*{{/if}}
 
-          <div>{{item.doc}}</div>
+          <div class="dropdown-list-description">{{item.doc}}</div>
 
           {{#each value in item.values}}
-            {{input value=value.value action="metadataChanged" on="key-press"}}
+            {{input class="dropdown-list-metadata-labels" value=value.value action="metadataChanged" on="key-press"}}
           {{/each}}
 
           {{#if item.multiples}}
-            {{input placeholder=item.addLabel value=item.newValue action="metadataChanged" on="key-press"}}
+            {{input class="dropdown-list-metadata-labels dropdown-list-placehoder" placeholder=item.addLabel value=item.newValue action="metadataChanged" on="key-press"}}
             <button type="button" {{action "addItem" item}}>+</button>
           {{else}}
             {{#if item.values.length}}
             {{else}}
-              {{input value=item.newValue action="metadataChanged" on="key-press"}}
+              {{input class="dropdown-list-metadata-labels" value=item.newValue action="metadataChanged" on="key-press"}}
             {{/if}}
           {{/if}}
 

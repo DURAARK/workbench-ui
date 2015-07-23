@@ -9,13 +9,12 @@
   //width      : 250px;
   list-style : none;
   color: black;
-  padding: 2em;
+  padding: 0 2em 2em 0;
   
   -webkit-transform           : translateZ(0);
   -webkit-backface-visibility : hidden;
-
-
 }
+
 
 .dropdown-list {
   position      : relative;
@@ -34,13 +33,23 @@
     @include round-bottom-corners($amount: 10px);
   }
 
+  &.dropdown-list-no-round-corners {
+    @include round-top-corners($amount: 0px);
+}
+
   [dropdown-prop="title"] {
     color           : $text;
     padding         : 0.5em 2.0em;
     display         : block;
     text-decoration : none;
+    font-size: 0.9em;
   }
 }
+
+.dropdown-list-no-round-corners {
+    @include round-top-corners($amount: 0px);
+}
+
 
 .dropdown-list-items {
 	@include transition(max-height 0.4s ease-in);
@@ -72,6 +81,15 @@
   height: 100%;
 	max-height : 30em;
   overflow: auto;
+
+  fieldset {
+    background-color: none;
+    border: none;
+  }
+}
+
+.dropdown-list-metadata {
+  max-height: 100em;
 }
 
 .dropdown-icon-open {
@@ -90,4 +108,29 @@
   padding-left: 15px;
   padding-right: 15px;
   width: 33%;
+}
+
+.dropdown-list-description {
+  font-size: 0.8em;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.dropdown-list-metadata-labels {
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  input[type="text"], textarea {
+    min-height: 1px;
+    padding-left: 15px !important;
+    padding-right: 15px;
+  }
+}
+
+.dropdown-list-placehoder {
+  float: left;
+  position: relative;
+  width: 80%;
 }

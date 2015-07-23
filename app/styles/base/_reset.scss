@@ -61,3 +61,14 @@ img {
   height: auto;
   width: auto;
 }
+
+
+fieldset {
+  @include gradient(color(light-gray), color(mid-gray), 100%);
+  border: none;
+}
+
+
+input[type="text"], textarea, label {
+  font-size: 0.8em;
+}
