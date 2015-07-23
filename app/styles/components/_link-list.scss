@@ -1,0 +1,37 @@
+.c-link-list {
+  	margin-left: rhythm(1);
+  	margin-right: rhythm(1);
+  	padding-right: rhythm(1);
+	width: 50%;
+	float: left; 
+}
+
+.c-link-list-grid-small {
+	float: left;
+	position: relative;  
+	min-height: 1px;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 50%;
+
+	
+}
+.c-link-list-back, .c-link-list-next {
+	h3:hover {
+		text-decoration: underline;
+	}
+}
+
+.c-link-list-back {
+	text-align: left;
+}
+
+.c-link-list-next {
+  	padding-right: rhythm(1);
+	text-align: right;
+}
+
+.c-link-list-stats {
+	padding-right: rhythm(1);
+	text-align: right;
+}
