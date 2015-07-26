@@ -30,25 +30,31 @@ export default Ember.Controller.extend({
       this.set('fileInfo', digObj);
     },
 
-    clickedTool: function(topic) {
+    clickedTool: function(tool) {
       var selectedDigitalObject = this.get('fileInfo'),
         currentTools = selectedDigitalObject.get('geoTools');
 
       var isTopic = currentTools.find(function(item) {
-        return topic.get('label') === item.label;
+        return tool.get('label') === item.label;
       });
 
       if (isTopic) {
-        currentTools.removeObject(topic);
+        currentTools.removeObject(tool);
       } else {
-        currentTools.pushObject(topic);
+        currentTools.pushObject(tool);
       }
+
+      tool.set('isLoading', true);
+      setTimeout(function() {
+        tool.set('isLoading', false);
+      }, 5000);
     },
 
     // FIXXME: change name!
-    removeTopic: function(digObj, topic) {
-      topic.toggleProperty('isSelected');
-      digObj.get('geoTools').removeObject(topic);
+    removeTopic: function(digObj, tool) {
+      tool.toggleProperty('isSelected');
+      tool.set('isLoading', false);
+      digObj.get('geoTools').removeObject(tool);
     },
 
     // FIXXME: change name!

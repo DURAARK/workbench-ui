@@ -1,11 +1,15 @@
 <div class="l-file c-file highlight-border">
+	{{#if topic.isLoading}}
+		{{loading-spinner-small}}
+	{{/if}}
+
 	<div {{action "select" topic}}>
 
-		<div class="c-help-box__header">
+		<div class="c-tool-item__header">
 			<i class="fa fa-wrench"></i>
 		</div>
 
-		<div class="c-file__name center">
+		<div class="c-file__name" style="text-align: center;">
 			{{topic.label}}
 		</div>
 

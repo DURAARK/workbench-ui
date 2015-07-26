@@ -1,17 +1,27 @@
 .l-help-box {
   padding: 2em;
+
+  background: #ddd;
+  color: black;
 }
 .c-help-box__header {
   margin-top: 0.5ex;
-  margin-bottom: 1ex;
+  margin-bottom: 3.5ex;
+  // color: color(white);
+  text-align: center;
+}
+.c-tool-item__header {
+  margin-top: 0.5ex;
+  margin-bottom: 1.5ex;
   color: color(white);
   text-align: center;
 }
+
 .c-help-box__content {
 
 }
 .c-help-box__hint {
-  color: color(white);
+  // color: color(white);
   font-size: 20px;
   text-align: justify;
 }
