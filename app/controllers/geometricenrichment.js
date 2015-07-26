@@ -47,6 +47,7 @@ export default Ember.Controller.extend({
 
     // FIXXME: change name!
     removeTopic: function(digObj, topic) {
+      topic.toggleProperty('isSelected');
       digObj.get('geoTools').removeObject(topic);
     },
 

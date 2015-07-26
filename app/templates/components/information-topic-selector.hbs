@@ -2,15 +2,18 @@
 
   {{#each topic in topics}}
   <div class="l-card c-card" {{action "click" topic}}>
-    <div class="c-card-image">
+    <!-- <div class="c-card-image">
       <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+    </div> -->
+    <div class="c-help-box__header">
+      <i class="fa fa-wrench"></i>
     </div>
     <div class="c-card-bg">
       <div class="c-card-header">
         {{topic.label}}
       </div>
       <div class="c-card-copy">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+        <p>{{topic.description}}</p>
       </div>
     </div>
   </div>

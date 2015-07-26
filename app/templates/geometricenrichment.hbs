@@ -1,56 +1,33 @@
-    <div class="c-link-list">
-      <div {{action 'back'}} class="c-link-list-grid-small">
-        <div class="c-link-list-back">
-          <h3><i class="fa fa-chevron-left"> </i> Semantic Enrichment </h3>
-        </div>
-      </div>
-      <div {{action 'next'}} class="c-link-list-grid-small"> 
-        <div class="c-link-list-next">
-          <h3>Archive Generation <i class="fa fa-chevron-right"> </i></h3>
-        </div>
-      </div>
+<div class="c-link-list">
+  <div {{action 'back'}} class="c-link-list-grid-small">
+    <div class="c-link-list-back">
+      <h3><i class="fa fa-chevron-left"> </i> Semantic Enrichment </h3>
     </div>
-    <div class="c-link-list-right">
-      <div class="c-link-list-grid-small">
-           <button {{action "save"}}>Save</button>
-      </div>
+  </div>
+  <div {{action 'next'}} class="c-link-list-grid-small">
+    <div class="c-link-list-next">
+      <h3>Archive Generation <i class="fa fa-chevron-right"> </i></h3>
     </div>
-    
-{{!--     <div {{action 'save'}} class="c-button">
-      <div class="c-button__frame t-button-files">
-        <div class="c-button__name">
-          <h3>Save</h3>
-        </div>
-      </div>
-    </div> --}}
+  </div>
+</div>
+
+<!-- <div class="c-link-list-right">
+  <div class="c-link-list-grid-small">
+    <button {{action "save"}}>Save</button>
+  </div>
+</div> -->
 
 <div class="l-files">
- 
-  <div class="l-file-list"> 
-   
-
-    <!-- {{#file-list files=session.digitalObjects as |do|}}
-        {{physical-asset-item item=do details="showDetails"}}
-
-        {{geo-tool label="IFC Reconstruction" digitalObject=do toggleSelection="toggleToolSelection"}}
-        {{geo-tool label="Electrical Appliance Detection" digitalObject=do toggleSelection="toggleToolSelection"}}
-
-        {{add-item select="showTopicSelection" item=do}}
-    {{/file-list}} -->
-
+  <div class="l-file-list">
     {{#file-list files=digitalObjects as |do|}}
       <div>
-
         {{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
 
         {{#each tool in do.geoTools}}
           {{topic-item topic=tool digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
         {{/each}}
-
-       {{!--  {{add-item select="showTopicSelection" item=do}} --}}
-      </div>
+        --}} </div>
     {{/file-list}}
-
   </div>
 
   {{#if model}}
@@ -62,12 +39,26 @@
       {{else}}
 
         {{#if fileInfo}}
-          {{information-topic-selector digitalObject=do topics=tools click="clickedTool" }}
+          {{tool-selector digitalObject=do tools=tools click="clickedTool"}}
         {{else}}
           {{#if tool}}
             TODO: Display information on currently selected tool!
           {{else}}
-            <h2 class="title" style="color: white;">For each point cloud scan a set of tools can be applied, e.g. a reconstruction of a BIM model as IFC file or the automatic detection of in-wall electrical applicances. Enable a tool in activating the respective tile.</h2>
+            {{#help-box}}
+              <div class="c-help-box__hint">
+                For each point cloud scan you can apply tools which extract geometric information out of the scan.
+                <br>
+                <br> Supported are
+                <br>
+                <br>
+
+                <ul>
+                  <li style="list-style-type: disc;">the reconstruction of a BIM model and</li>
+                  <li style="list-style-type: disc;">the detection of electrical applicances in walls.</li>
+                </ul>
+                <br> Use the <i class="fa fa-plus"></i> sign on the file to select tools you want to apply to the point cloud scan.
+              </div>
+            {{/help-box}}
           {{/if}}
         {{/if}}
       {{/if}}

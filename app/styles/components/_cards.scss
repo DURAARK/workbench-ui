@@ -23,7 +23,7 @@
   // @include flex-basis(15em);
   // @include flex-grow(1);
   @include transition (all 0.2s ease-in-out);
-  
+
 
   color: color(dark-gray);
 
@@ -100,6 +100,45 @@
   }
 }
 
+.c-card__action {
+  display: inline-block;
+  color: color(black);
+  width: 100%;
+  padding-top: rhythm(0.5);
+  padding-bottom: rhythm(0.5);
+  text-align: center;
+  @include gradient(color(natural-gray), color(natural-gray), 100%);
+
+  // &:hover {
+  //       @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+  // }
+}
+
 .c-card-bg {
   @include gradient(color(light-gray), color(mid-gray), 100%);
 }
+
+// .is-selected {
+//
+//   .c-card__action {
+//     @include gradient(color(mid-gray), color(dark-gray), 100%);
+//     border-bottom: 5px solid color(white);
+//     border-left: 5px solid color(white);
+//     border-right: 5px solid color(white);
+//
+//     &:hover {
+//         @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+//     }
+//   }
+//   .c-file__header {
+//     @include gradient(color(light-green), color(mid-green), 40px);
+//     border-top: 5px solid color(white);
+//     border-left: 5px solid color(white);
+//     border-right: 5px solid color(white);
+//   }
+//
+//   .c-file__name {
+//     border-left: 5px solid color(white);
+//     border-right: 5px solid color(white);
+//   }
+// }

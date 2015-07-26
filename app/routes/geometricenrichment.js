@@ -35,10 +35,10 @@ export default Ember.Route.extend({
     // FIXXME: create Topic model to enable saving and linking into session model!
     var tools = [Ember.Object.create({
       label: 'IFC Reconstruction',
-      description: 'If enabled an IFC file is reconstructed from the point cloud scan and added to the archive.'
+      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan.'
     }), Ember.Object.create({
-      label: 'Electrical Applicane Detection',
-      description: 'If enabled an IFC file is generated containing a hypothesis of the in-wall electrical applicances of the building, which are extracted from the point cloud scan.'
+      label: 'Electrical Appliance Detection',
+      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical applicances of the building.'
     })];
 
     // FIXXME: incorporate selected tools from session!
