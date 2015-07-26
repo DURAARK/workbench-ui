@@ -24,12 +24,11 @@
     border-width: 0 0 0 2px;
   }
 }
-
 .selectable.c-file:hover {
   background: rgba(color(natural-gray),1);
 }
 .c-file__header {
-  
+
   @include round-top-corners($amount: 10px);
   padding-top: rhythm(0.5);
   padding-bottom: rhythm(0.5);
@@ -89,7 +88,7 @@
     .c-file-building__name {
     }
   }
- 
+
   &:hover {
     @include gradient(color(light-gray), color(natural-gray), 100%);
   }
@@ -125,7 +124,7 @@
   }
 }
 .is-selected {
-  
+
   .c-file__action {
     @include gradient(color(mid-gray), color(dark-gray), 100%);
     border-bottom: 5px solid color(white);
@@ -148,4 +147,3 @@
     border-right: 5px solid color(white);
   }
 }
-

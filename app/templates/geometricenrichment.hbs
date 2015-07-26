@@ -6,16 +6,10 @@
   </div>
   <div {{action 'next'}} class="c-link-list-grid-small">
     <div class="c-link-list-next">
-      <h3>Archive Generation <i class="fa fa-chevron-right"> </i></h3>
+      <h3>Archive Transfer <i class="fa fa-chevron-right"> </i></h3>
     </div>
   </div>
 </div>
-
-<!-- <div class="c-link-list-right">
-  <div class="c-link-list-grid-small">
-    <button {{action "save"}}>Save</button>
-  </div>
-</div> -->
 
 <div class="l-files">
   <div class="l-file-list">
@@ -52,11 +46,13 @@
                 <br>
                 <br>
 
-                <ul>
+                <ul style="margin-left: 1.5em;">
                   <li style="list-style-type: disc;">the reconstruction of a BIM model and</li>
-                  <li style="list-style-type: disc;">the detection of electrical applicances in walls.</li>
+                  <li style="list-style-type: disc;">the detection of electrical applicances in walls</li>
                 </ul>
-                <br> Use the <i class="fa fa-plus"></i> sign on the file to select tools you want to apply to the point cloud scan.
+                <br> from the point cloud scan.
+                <br><br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a point
+                cloud file to select the tools which should be applied. The resulting files will be ingested into the archive.
               </div>
             {{/help-box}}
           {{/if}}

@@ -2,9 +2,6 @@
 
   {{#each tool in tools}}
     <div class="l-tool c-card {{if tool.isSelected 'is-selected'}}" {{action "click" tool}}>
-      <!-- <div class="c-card-image">
-      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
-    </div> -->
       <div class="c-help-box__header">
         <i class="fa fa-wrench"></i>
       </div>
@@ -16,12 +13,6 @@
           <p>{{tool.description}}</p>
         </div>
         <div class="c-card__action">
-          <!-- {{#if tool.isSelected}}
-            <i class="fa fa-close"></i>
-          {{else}}
-            <i class="fa fa-check"></i>
-          {{/if}} -->
-
           <label class="c-label-switch">
             {{input type="checkbox" checked=tool.isSelected}}
             <div class="checkbox"></div>
