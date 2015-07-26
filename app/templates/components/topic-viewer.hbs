@@ -1,6 +1,40 @@
 <div class="l-cards c-cards">
 
   {{#if topic.candidates.length}}
+
+    <table class="c-candidate-list">
+      <thead>
+        <tr>
+          <!-- <th></th> -->
+          <th>Information Link</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each candidate in topic.candidates}}
+          {{#if candidate.score}}
+            <tr>
+              <!-- <td><button>Show</button></td> -->
+              <!-- <td><a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a></td> -->
+              <td><a href= {{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a></td>
+              <td>
+                <p>Score: {{candidate.score}}</p>
+              </td>
+            </tr>
+          {{/if}}
+        {{/each}}
+      </tbody>
+    </table>
+
+  {{else}}
+    {{#help-box}}
+      <div class="c-help-box__hint">
+        Information on topic "{{topic.label}}" is gathered in the background, please be patient and come back later.
+      </div>
+    {{/help-box}}
+  {{/if}}
+
+  <!-- {{#if topic.candidates.length}}
     {{#each candidate in topic.candidates}}
       <div class="l-card c-card">
         <div class="c-card-image">
@@ -19,6 +53,6 @@
 
   {{else}}
     <h2 class="title" style="color: white;">Information on that topic is gathered in the background, please be patient and come back later.</h2>
-  {{/if}}
+  {{/if}} -->
 
 </div>

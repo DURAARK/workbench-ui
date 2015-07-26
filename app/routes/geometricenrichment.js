@@ -41,7 +41,7 @@ export default Ember.Route.extend({
       walls: 0
     }), Ember.Object.create({
       label: 'Electrical Appliance Detection',
-      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical applicances of the building.',
+      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical appliances of the building.',
       rooms: 0,
       walls: 0,
       elecDetectImages: [{

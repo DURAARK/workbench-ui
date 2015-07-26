@@ -13,14 +13,19 @@
 
 <div class="l-files">
   <div class="l-file-list">
+
+    <h2 style="margin-top: 1em;">Geometric Enrichment</h2>
+
+		<hr>
+
     {{#file-list files=digitalObjects as |do|}}
       <div>
-        {{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
+        {{digital-object-sementic item=do details="showDetails" select="showToolSelection"}}
 
         {{#each tool in do.geoTools}}
-          {{topic-item topic=tool digitalObject=do select="showSelectedTopic" remove="removeTopic" infoClicked="showTopicInfo"}}
+          {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
         {{/each}}
-        --}} </div>
+      </div>
     {{/file-list}}
   </div>
 
@@ -62,7 +67,7 @@
 
                 <br>
                 <br> The tools will take some time to finish the processing of the point cloud. A loading spinner will be shown when a process is working in the background. You can continue the pre-ingest workflow during this processing, it is not necessary
-                to wait for the process.
+                to wait for the process. When the process is finished you can click on the <i class="fa fa-info" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon to see the result of the tool.
 
                 <br>
                 <br> If the result is already cached, the processing will only last a few seconds.

@@ -7,6 +7,7 @@
   transition: background 0.2s;
   background: rgba(color(gallery), 0.1);
   @include round-corners($amount: 10px);
+
   &.separate {
 
   margin-bottom: 0;

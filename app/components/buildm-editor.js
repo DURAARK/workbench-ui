@@ -84,9 +84,9 @@ export default Ember.Component.extend({
   label: function() {
     var type = this.get('type');
     if (type === 'digitalObject') {
-      return 'Digital Representation Metadata';
+      return 'Digital representation metadata for';
     } else if (type === 'physicalAsset') {
-      return 'Tangible Building Metadata';
+      return 'Building metadata for';
     } else {
       return 'Unknown Metadata Type';
     }

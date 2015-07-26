@@ -1,0 +1,29 @@
+<div class="l-file c-file highlight-border">
+	{{#if tool.isLoading}}
+		{{loading-spinner-small}}
+	{{/if}}
+
+	<div {{action "select" tool}}>
+
+		<div class="c-tool-item__header"  {{action "infoClicked" tool}}>
+			<i class="fa fa-wrench"></i>
+			{{#unless tool.isLoading}}
+				<span style="float: right; margin-right: 2.9em; margin-top: 0.1em;">
+				  <i class="fa fa-info-circle"></i>
+				</span>
+			{{/unless}}
+		</div>
+
+		<div class="c-file__name" style="text-align: center;">
+			{{tool.label}}
+		</div>
+
+	</div>
+
+	<div class="c-file__actions">
+		<div {{action "remove" tool}} class="c-file__action" style="float: left;">
+			<i class="fa fa-remove"></i>
+		</div>
+	</div>
+
+</div>

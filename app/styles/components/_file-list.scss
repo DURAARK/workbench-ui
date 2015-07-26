@@ -4,6 +4,8 @@
   position: relative;
 
   color: color(dark-gray);
+
+  @include clearfix;
 }
 
 .c-file-list__category {

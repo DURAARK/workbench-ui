@@ -46,8 +46,6 @@ article {
 }
 
 .highlight-border {
-  border-radius: 3px;
-
   @include round-top-corners($amount: 10px);
   @include round-bottom-corners($amount: 10px);
 

@@ -39,11 +39,13 @@ export default Ember.Controller.extend({
       if (candidates.length) {
         console.log('candidates received: #' + candidates.length);
         // FIXXME: implement pagination and sorting by relevance to manage the huge amount of results!
-        topic.candidates = candidates.slice(0,100);
+        topic.candidates = candidates.slice(0, 100);
         // FIXXME: create a topic model to enable saving!
         controller.get('session').save().then(function() {
           console.log('stored candidates');
           controller.send('removePendingAction');
+
+          topic.set('isLoading', false);
         });
       } else {
         console.log('No candidates yet, retrying in 60 seconds ...');
@@ -57,7 +59,7 @@ export default Ember.Controller.extend({
   actions: {
     save: function() {
       var session = this.get('session'),
-        url = sessionEndpoint + '/sessions/' + session.get('id'),
+        url = sdaEndpoint.host + '/sessions/' + session.get('id'),
         controller = this;
 
       var digObjs = this.get('digitalObjects');
@@ -87,7 +89,7 @@ export default Ember.Controller.extend({
 
     next: function() {
 
-      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
+      // FIXXME: check if everything is saved in the buildm-editor and display modal in case of unsaved changes!
 
       var session = this.get('session');
       this.transitionToRoute('geometricenrichment', session);
@@ -95,7 +97,7 @@ export default Ember.Controller.extend({
 
     back: function() {
 
-      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
+      // FIXXME: check if everything is saved in the buildm-editor and display modal in case of unsaved changes!
 
       var session = this.get('session');
       this.transitionToRoute('metadata', session);
@@ -122,13 +124,24 @@ export default Ember.Controller.extend({
         currentTopics.removeObject(topic);
       } else {
         currentTopics.pushObject(topic);
+
+        if (!topic.get('candidates').length) {
+          topic.set('isLoading', true);
+        };
       }
+
+      this.send('save');
+
+      // setTimeout(function() {
+      //   topic.set('isLoading', false);
+      // }, 1000);
     },
 
     removeTopic: function(digObj, topic) {
       // var selectedDigitalObject = this.get('fileInfo');
       // selectedDigitalObject.get('semMD.topics').removeObject(topic);
       digObj.get('semMD.topics').removeObject(topic);
+      topic.toggleProperty('isSelected');
     },
 
     showTopic: function(topic) {

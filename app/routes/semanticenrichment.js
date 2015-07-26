@@ -35,6 +35,7 @@ default Ember.Route.extend({
     // FIXXME: create Topic model to enable saving and linking into session model!
     var topics = [Ember.Object.create({
       label: 'Haus 30',
+      description: "Enriches the file with information on ...",
       seeds: ['http://dbpedia.org/resource/Ludwig_Hoffmann_(architect)', 'http://dbpedia.org/resource/Märkisches_Museum', 'http://dbpedia.org/resource/Pergamon_Museum', 'http://dbpedia.org/resource/Märchenbrunnen', 'http://dbpedia.org/resource/Academy_of_Arts', 'http://dbpedia.org/resource/Altes_Stadthaus'],
       dependencies: [{
         type: 'physicalAsset',
@@ -47,6 +48,7 @@ default Ember.Route.extend({
       crawlId: -1
     }), Ember.Object.create({
       label: 'Architectural Style',
+      description: "Enriches the file with information on ...",
       seeds: ['http://energy-efficiency.io', 'http://sustainable-materials.io'],
       dependencies: [{
         type: 'physicalAsset',

@@ -4,7 +4,7 @@
 			<h3><i class="fa fa-chevron-left"> </i> Files</h3>
 		</div>
 	</div>
-	<div {{action 'next'}} class="c-link-list-grid-small"> 
+	<div {{action 'next'}} class="c-link-list-grid-small">
 		<div class="c-link-list-next">
 			<h3>Semantic Enrichment <i class="fa fa-chevron-right"> </i></h3>
 		</div>
@@ -13,13 +13,19 @@
 
 <div class="l-files">
 
-	
-
 	<div class="l-file-list">
+
+		<h2 style="margin-top: 1em;">Building Metadata</h2>
+
+		<hr>
 
 		{{#file-list files=session.physicalAssets as |pa|}}
 			{{physical-asset-item item=pa details="showDetails"}}
 		{{/file-list}}
+
+		<h2 style="margin-top: 1em;">Digital Representation Metadata</h2>
+
+		<hr>
 
 		{{#file-list files=session.digitalObjects as |do|}}
 			{{physical-asset-item item=do details="showDetails"}}
@@ -50,7 +56,23 @@
 
 
 				{{else}}
-					<h2 class="title" style="color: white;">Select a building or a plan on the left to edit its metadata.</h2>
+					{{#help-box}}
+						<div class="c-help-box__hint">
+							The left side shows the metadata extracted from the files selected in the previous
+							step. The files contain metadata for the building, as well as for the files itself,
+							which are digital representations of the building.
+
+							<br><br>
+
+							To edit the metadata click the <i class="fa fa-pencil" style="margin-left: 0.5em; margin-right: 0.5em;"></i>
+							symbol on either the building, or on one of the selected digital representations.
+
+							<br><br>
+
+							The metadata will be stored within the archival package which is created at the end of the
+							pre-ingest workflow.
+						</div>
+					{{/help-box}}
 				{{/if}}
 			{{/if}}
 

@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
       }
     },
 
-    showTopicSelection: function(digObj) {
+    showToolSelection: function(digObj) {
       this.set('fileInfo', digObj);
     },
 
@@ -34,36 +34,40 @@ export default Ember.Controller.extend({
       var selectedDigitalObject = this.get('fileInfo'),
         currentTools = selectedDigitalObject.get('geoTools');
 
-      var isTopic = currentTools.find(function(item) {
+      var isTool = currentTools.find(function(item) {
         return tool.get('label') === item.label;
       });
 
-      if (isTopic) {
+      if (isTool) {
         currentTools.removeObject(tool);
       } else {
         currentTools.pushObject(tool);
-      }
 
-      tool.set('isLoading', true);
-      setTimeout(function() {
-        tool.set('isLoading', false);
-      }, 1000);
+        tool.set('isLoading', true);
+        setTimeout(function() {
+          tool.set('isLoading', false);
+        }, 1000);
+      }
     },
 
-    // FIXXME: change name!
-    removeTopic: function(digObj, tool) {
+    removeTool: function(digObj, tool) {
       tool.toggleProperty('isSelected');
       tool.set('isLoading', false);
       digObj.get('geoTools').removeObject(tool);
+
+      // if (!digObj.get('geoTools').get('length')) {
+      //   this.set('fileInfo', null);
+      // this.set('tool', null);
+      // }
     },
 
     // FIXXME: change name!
-    showSelectedTopic: function(digObj, tool) {
+    showSelectedTool: function(digObj, tool) {
       this.set('fileInfo', null);
       this.set('tool', tool);
     },
 
-    showTopicInfo: function(digObj, tool) {
+    showToolInfo: function(digObj, tool) {
       console.log('tool: ' + tool);
     }
   },

@@ -1,27 +1,23 @@
 .l-help-box {
   padding: 2em;
-
-  background: #ddd;
-  color: black;
+  background: rgba(221, 221, 221, 0.17);
+  color: white;
+  @include round-top-corners($amount: 5px);
+  @include round-bottom-corners($amount: 5px);
+  border-top: 1px solid color(white);
+  border-bottom: 1px solid color(white);
+  border-left: 1px solid color(white);
+  border-right: 1px solid color(white);
 }
 .c-help-box__header {
   margin-top: 0.5ex;
   margin-bottom: 3.5ex;
-  // color: color(white);
   text-align: center;
 }
-.c-tool-item__header {
-  margin-top: 0.5ex;
-  margin-bottom: 1.5ex;
-  color: color(white);
-  text-align: center;
-}
-
 .c-help-box__content {
 
 }
 .c-help-box__hint {
-  // color: color(white);
   font-size: 20px;
   text-align: justify;
 }

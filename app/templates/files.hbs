@@ -1,43 +1,17 @@
 <div class="c-link-list">
 	<div {{action 'back'}} class="c-link-list-grid-small">
-		<div class="c-link-list-back">
-		</div>
+		<div class="c-link-list-back"></div>
 	</div>
-	<div {{action 'next'}} class="c-link-list-grid-small"> 
+	<div {{action 'next'}} class="c-link-list-grid-small">
 		<div class="c-link-list-next">
 			<h3>Metadata <i class="fa fa-chevron-right"> </i></h3>
 		</div>
 	</div>
 </div>
 
-
-{{!-- 
-<div class="c-button-list">
-	<div class="c-button-list__content">
-
-		<div {{action 'next'}} class="c-button">
-			<div class="c-button__frame t-button-files">
-				<div class="c-button__name">
-					<h3>Next</h3>
-				</div>
-			</div>
-		</div>
-
-		<div class="c-button">
-			<div class="c-button__frame t-button-files">
-				<div class="c-button__name">
-					<h3>Back</h3>
-				</div>
-			</div>
-		</div>
-
-	</div>
-</div>
- --}}
 <div class="l-files">
 
 	<div class="l-file-list">
-
 		{{#file-list files=files as |file|}}
 			{{file-item item=file select="toggleSelection" details="showDetails"}}
 		{{/file-list}}
@@ -64,13 +38,23 @@
 						{{buildm-viewer file=fileInfo}}
 					{{/if}}
 				{{else}}
-					<div>
-						<h2 class="title" style="color: white;">To show details click on a file.</h2>
-						<h3 style="color: white;">Depending on the file size it may take some seconds/minutes for the first metadata extraction.</h3>
-					</div>
-				{{/if}}
-			{{/if}}
+					{{#help-box}}
+						<div class="c-help-box__hint">
+							To start the pre-ingest workflow select the 3D input data files you want to work on with the
+								<i class="fa fa-check" style="margin-left: 0.5em; margin-right: 0.5em;"></i> symbol below
+								the respective file.
 
+							<br>
+							<br> When clicking on the file item its metadata is shown to help to select the correct file.
+
+							<br>
+							<br> Depending on the size of the file the metadata extraction may take some seconds or even minutes. The metadata gets cached after the first extraction to save time for the next views on the data.
+
+						</div>
+					{{/help-box}}
+				{{/if}}
+
+			{{/if}}
 		</div>
 	{{/if}}
 </div>

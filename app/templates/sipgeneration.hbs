@@ -1,36 +1,10 @@
 <div class="c-link-list">
-	      <div {{action 'back'}} class="c-link-list-grid-small">
-	        <div class="c-link-list-back">
-	          <h3><i class="fa fa-chevron-left"> </i> Metadata</h3>
-	        </div>
-	      </div>
-	      <div class="c-link-list-right__generation">
-		      <div class="c-link-list-grid-small"> 
-		        	<button {{action "createRosettaSIP"}}>Rosetta SIP</button>
-		      </div>
-		      <div  class="c-link-list-grid-small"> 
-		        	<button {{action "createBagItSIP"}}>BagIt SIP</button>
-		      </div>
-		  </div>
-	  </div>
-
-
-		{{!-- <div {{action 'createRosettaSIP'}} class="c-button">
-			<div class="c-button__frame t-button-files">
-				<div class="c-button__name">
-					<h3>Rosetta SIP</h3>
-				</div>
-			</div>
+	<div {{action 'back'}} class="c-link-list-grid-small">
+		<div class="c-link-list-back">
+			<h3><i class="fa fa-chevron-left"> </i> Metadata</h3>
 		</div>
-
-    <div {{action 'createBagItSIP'}} class="c-button">
-			<div class="c-button__frame t-button-files">
-				<div class="c-button__name">
-					<h3>BagIt SIP</h3>
-				</div>
-			</div>
-		</div>
- --}}
+	</div>
+</div>
 
 <div class="l-files">
 
@@ -41,17 +15,18 @@
 		{{/file-list}}
 
 		{{#file-list files=session.digitalObjects as |do|}}
-		<div>
-			{{physical-asset-item item=do details="showDetails"}}
+			<div>
+				{{physical-asset-item item=do details="showDetails"}}
 
-			{{#each topic in do.semMD.topics}}
-				{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
-			{{/each}}
+				{{#each topic in do.semMD.topics}}
+					{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
+				{{/each}}
 
-			{{geo-tool label="IFC Reconstruction" digitalObject=do toggleSelection="toggleToolSelection"}}
-			{{geo-tool label="Electrical Appliance Detection" digitalObject=do toggleSelection="toggleToolSelection"}}
-			
-		</div>
+				{{#each tool in do.geoTools}}
+					{{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
+				{{/each}}
+
+			</div>
 		{{/file-list}}
 
 	</div>
@@ -78,7 +53,28 @@
 					{{/if}}
 
 				{{else}}
-					<h2 class="title" style="color: white;">On the left an overview of the archive is shown. Check the content of the data with a click on the respective tile.</h2>
+					{{#help-box}}
+						<div class="c-help-box__hint">
+							On the left an overview of the items which will be packaged into a Rosetta SIP to be deposit to the Rosetta DPS or a BagIt SIP for downloading locally.
+
+							<br>
+							<br> It is necessary that all items are ready before the packaging process.
+
+							<br>
+							<br> A loading spinner indicates, that an item is still being processed.
+						</div>
+					{{/help-box}}
+
+					<div style="margin-left: auto; margin-right: auto; margin-top: 3em">
+						<div class="c-link-list-right__generation">
+							<div class="c-link-list-grid-small">
+								<button {{action "createRosettaSIP"}}>Deposit to Rosetta</button>
+							</div>
+							<div class="c-link-list-grid-small">
+								<button {{action "createBagItSIP"}}>Download BagIt SIP</button>
+							</div>
+						</div>
+					</div>
 				{{/if}}
 
 			{{/if}}

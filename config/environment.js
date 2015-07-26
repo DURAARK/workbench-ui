@@ -85,8 +85,8 @@ module.exports = function(environment) {
     }
   }
 
-  console.log('API Endpoints:\n' + JSON.stringify(ENV.DURAARKAPI, null, 4));
-  
+  // console.log('API Endpoints:\n' + JSON.stringify(ENV.DURAARKAPI, null, 4));
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
