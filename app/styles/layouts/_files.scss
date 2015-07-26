@@ -1,24 +1,19 @@
 // Layout: files
 // =============
-
 .l-file-list {
   @include span(6 of 12);
   padding-left: rhythm(0.6);
-
   .l-file {
     @include gallery(1 of 3);
   }
-
   .l-file-large {
     @include gallery(3 of 3);
     padding-bottom: rhythm(0.8);
-
     &.l-file-small {
       @include gallery(1 of 3);
       padding-bottom: rhythm (0.4);
     }
   }
-
   .l-building {
     @include gallery(2 of 3);
   }
@@ -31,21 +26,14 @@
   position: relative;
 
   // position: fixed;
-
   // right: 0;
   // top: 0;
-
   // width: 50%;
-
   // overflow-y: none;
-
   // @include span(6 last);
   // height: 100vh;
-
   // background: blue;
 }
-
-
 .l-file-details-titel {
   @include round-top-corners($amount: 10px);
   @include gradient(color(light-green), color(mid-green), 40px);
@@ -53,7 +41,6 @@
   padding-bottom: rhythm(0.5);
   margin-right: 2em;
   text-align: center;
-
   .title {
     color: color(dark-gray);
     font-size: 0.9em;

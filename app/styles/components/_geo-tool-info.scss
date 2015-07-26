@@ -1,0 +1,20 @@
+// Layout: files
+// =============
+.l-image-presenter {
+  @include clearfix;
+  .l-image-presenter__header {
+    font-size: 24px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .l-image-list {
+    .l-image {
+      @include gallery(1 of 3);
+      margin-bottom: gutter();
+
+      > img {
+        height: 10em;
+      }
+    }
+  }
+}

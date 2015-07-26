@@ -1,0 +1,13 @@
+// Layout: files
+// =============
+.l-tool {
+  @include gallery(1 of 2);
+}
+
+.c-tool__header {
+  color: color(white);
+
+  margin-top: 0.5ex;
+  margin-bottom: 1ex;
+  text-align: center;
+}

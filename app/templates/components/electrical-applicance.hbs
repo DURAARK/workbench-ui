@@ -1,0 +1,56 @@
+<h1>;lkja;dsflkja;sdlfkja;sldkfja;sldkfj;aldjsf;lajksdf;lkj</h1>
+
+<div class="c-help-box__content">
+
+<!-- <div class="l-image-presenter"> -->
+  <h2 style="text-align: center;"><i style="margin-right: 1em;"class="fa fa-unlink"></i> Eletrical Appliance Detection</h2>
+
+  <hr>
+
+  <!-- <ul>
+  <li>Rooms: {{tool.rooms}}</li>
+  <li>Walls: {{tool.walls}}</li>
+</ul> -->
+<!-- </div> -->
+
+<div class="l-image-presenter">
+  <div class="l-image-presenter__header"><i style="margin-right: 0.4em;"class="fa fa-image"></i> Hypothesis Results</div>
+
+  <div class="l-image-list">
+    {{#each img in tool.hypothesisImages}}
+      <div class="l-image">
+        <img src="{{img.src}}" alt="Hypothesis Result Image" />
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<hr>
+
+<div class="l-image-presenter">
+  <div class="l-image-presenter__header"><i style="margin-right: 0.4em;"class="fa fa-image"></i> Rule Set</div>
+
+  <div class="l-image-list">
+    {{#each img in tool.ruleSetImages}}
+      <div class="l-image">
+        <img src="{{img.src}}" alt="Rule Set Image" />
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<hr>
+
+<div class="l-image-presenter">
+  <h2 class="l-image-presenter__header"><i style="margin-right: 0.4em;"class="fa fa-image"></i> Detection Results</h2>
+
+  <div class="l-image-list">
+    {{#each img in tool.elecDetectImages}}
+      <div class="l-image">
+        <img src="{{img.src}}" alt="Detection Result Image" />
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+</div>

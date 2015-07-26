@@ -5,8 +5,13 @@
 
 	<div {{action "select" topic}}>
 
-		<div class="c-tool-item__header">
+		<div class="c-tool-item__header"  {{action "infoClicked" topic}}>
 			<i class="fa fa-wrench"></i>
+			{{#unless topic.isLoading}}
+				<span style="float: right; margin-right: 2.9em; margin-top: 0.1em;">
+				  <i class="fa fa-info-circle"></i>
+				</span>
+			{{/unless}}
 		</div>
 
 		<div class="c-file__name" style="text-align: center;">
@@ -16,7 +21,7 @@
 	</div>
 
 	<div class="c-file__actions">
-		<div {{action "remove" topic}} class="c-file__action">
+		<div {{action "remove" topic}} class="c-file__action" style="float: left;">
 			<i class="fa fa-remove"></i>
 		</div>
 	</div>

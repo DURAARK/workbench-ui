@@ -2,12 +2,12 @@
 
   {{#each tool in tools}}
     <div class="l-tool c-card {{if tool.isSelected 'is-selected'}}" {{action "click" tool}}>
-      <div class="c-help-box__header">
+      <div class="c-tool__header">
         <i class="fa fa-wrench"></i>
       </div>
       <div class="c-card-bg">
         <div class="c-card-header">
-          {{tool.label}} {{#if tool.isSelected}}(enabled){{/if}}
+          {{tool.label}}
         </div>
         <div class="c-card-copy">
           <p>{{tool.description}}</p>

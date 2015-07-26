@@ -24,7 +24,6 @@
   // @include flex-grow(1);
   @include transition (all 0.2s ease-in-out);
 
-
   color: color(dark-gray);
 
   border-radius: $base-border-radius;
@@ -75,6 +74,9 @@
     font-size: 0.9em;
     line-height: 1.5em;
     padding: ($base-spacing / 2) ($base-spacing / 2);
+
+    height: 9em;
+
     @include gradient(color(light-gray), color(mid-gray), 100%);
     p {
       margin: 0 0 ($base-spacing / 2);

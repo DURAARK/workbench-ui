@@ -47,7 +47,7 @@ export default Ember.Controller.extend({
       tool.set('isLoading', true);
       setTimeout(function() {
         tool.set('isLoading', false);
-      }, 5000);
+      }, 1000);
     },
 
     // FIXXME: change name!
@@ -61,6 +61,22 @@ export default Ember.Controller.extend({
     showSelectedTopic: function(digObj, tool) {
       this.set('fileInfo', null);
       this.set('tool', tool);
+    },
+
+    showTopicInfo: function(digObj, tool) {
+      console.log('tool: ' + tool);
     }
-  }
+  },
+
+  isElectricalApplianceDetectionTool: function() {
+    var toolname = this.get('tool.label');
+    return (toolname === 'Electrical Appliance Detection');
+  }.property('tool'),
+
+  isIFCReconstructionTool: function() {
+    var tool = this.get('tool');
+    return (tool.get('label') === 'IFC Reconstruction');
+  }.property('tool'),
+
+
 });

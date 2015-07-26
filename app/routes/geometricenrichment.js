@@ -35,10 +35,54 @@ export default Ember.Route.extend({
     // FIXXME: create Topic model to enable saving and linking into session model!
     var tools = [Ember.Object.create({
       label: 'IFC Reconstruction',
-      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan.'
+      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan.',
+      rooms: 0,
+      area: 0,
+      walls: 0
     }), Ember.Object.create({
       label: 'Electrical Appliance Detection',
-      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical applicances of the building.'
+      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical applicances of the building.',
+      rooms: 0,
+      walls: 0,
+      elecDetectImages: [{
+        src: '/nygade/elecdetect-test-set/results/wall0-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall1-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall2-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall3-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall4-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall5-result.jpg'
+      }],
+      ruleSetImages: [{
+        src: '/nygade/elecdetect-test-set/results/wall0-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall1-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall2-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall3-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall4-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall5-result.jpg'
+      }],
+      hypothesisImages: [{
+        src: '/nygade/elecdetect-test-set/results/wall0-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall1-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall2-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall3-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall4-result.jpg'
+      },{
+        src: '/nygade/elecdetect-test-set/results/wall5-result.jpg'
+      }]
     })];
 
     // FIXXME: incorporate selected tools from session!

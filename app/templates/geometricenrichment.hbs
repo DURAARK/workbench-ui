@@ -18,7 +18,7 @@
         {{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
 
         {{#each tool in do.geoTools}}
-          {{topic-item topic=tool digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
+          {{topic-item topic=tool digitalObject=do select="showSelectedTopic" remove="removeTopic" infoClicked="showTopicInfo"}}
         {{/each}}
         --}} </div>
     {{/file-list}}
@@ -36,7 +36,13 @@
           {{tool-selector digitalObject=do tools=tools click="clickedTool"}}
         {{else}}
           {{#if tool}}
-            TODO: Display information on currently selected tool!
+            {{#if isElectricalApplianceDetectionTool}}
+              {{electrical-appliance tool=tool}}
+            {{/if}}
+
+            {{#if isIFCReconstructionTool}}
+              {{ifc-reconstruction tool=tool}}
+            {{/if}}
           {{else}}
             {{#help-box}}
               <div class="c-help-box__hint">
@@ -51,18 +57,15 @@
                   <li style="list-style-type: disc;">the detection of electrical applicances in walls</li>
                 </ul>
                 <br> from the point cloud scan.
-                <br><br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a point
-                cloud file to select the tools which should be applied. The resulting files will be ingested into the archive.
+                <br>
+                <br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a point cloud file to select the tools which should be applied. The resulting files will be ingested into the archive.
 
-                <br><br>
+                <br>
+                <br> The tools will take some time to finish the processing of the point cloud. A loading spinner will be shown when a process is working in the background. You can continue the pre-ingest workflow during this processing, it is not necessary
+                to wait for the process.
 
-                The tools will take some time to finish the processing of the point cloud. A loading spinner will be shown when
-                a process is working in the background. You can continue the pre-ingest workflow during this processing, it is not
-                necessary to wait for the process.
-
-                <br><br>
-
-                If the result is already cached, the processing will only last a few seconds.
+                <br>
+                <br> If the result is already cached, the processing will only last a few seconds.
               </div>
             {{/help-box}}
           {{/if}}
