@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
 
       // Take files and create a physicalAsset and digitalObjects from the files:
       var pa = {
-        label: "Building Site Name",
+        label: 'Building Site Name',
         buildm: {}
       };
 
@@ -40,7 +40,10 @@ export default Ember.Controller.extend({
         // For programming reasons we request the metadata for all files. Internally the 'addMetadataTo' will
         // return a present 'metadata' object and not request the metadata again. The reason for getting the
         // metadata for *all* files is that the data is then present in the
-        if (!file.get('metadata')) {
+        //if (!file.get('metadata')) {
+
+        // FIXXME!
+        if (file.get('path') !== '/duraark-storage/files/Nygade_Scan1001.e57') {
           promises.push(controller.addMetadataTo(file));
         }
       });
@@ -50,15 +53,32 @@ export default Ember.Controller.extend({
         // the files which did not have metadata before, which could be empty even.
 
         files.forEach(function(file) {
+          var hasMetadata = true;
+
+          if (file.get('path') === '/duraark-storage/files/Nygade_Scan1001.e57') {
+            hasMetadata = false;
+          }
+
           // FIXXME: how to combine pa data from all files?
-          var paMD = file.get('metadata').physicalAsset;
+          var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
+            '@type': ['http://data.duraark.eu/vocab/PhysicalAsset'],
+            'http://data.duraark.eu/vocab/name': [{
+              '@value': 'Nygade Building'
+            }]
+          };;
+
           pa.buildm = paMD;
           session.set('physicalAssets', [pa]);
 
-          var daMD = file.get('metadata').digitalObject;
+          var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
+            '@type': ['http://data.duraark.eu/vocab/E57File'],
+            'http://data.duraark.eu/vocab/name': [{
+              '@value': 'Nygade Scan'
+            }]
+          };
 
           var digOb = Ember.Object.create({
-            label: daMD['http://data.duraark.eu/vocab/name'][0]['@value'] || "Edit name",
+            label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/name'][0]['@value'] : 'Edit name',
             buildm: daMD,
             semMD: Ember.Object.create({
               topics: []
@@ -80,6 +100,8 @@ export default Ember.Controller.extend({
           das.pushObject(digOb);
           session.set('digitalObjects', das);
         });
+      }).catch(function(err) {
+        throw new Error(err);
       });
 
       session.save().then(function(session) {
@@ -166,7 +188,8 @@ export default Ember.Controller.extend({
           return reject(result.get('extractionErrors'));
         }
 
-        file.set('metadata', result.get('metadata'));
+        var metadata = result.get('metadata');
+        file.set('metadata', metadata);
 
         file.save().then(function(file) {
           resolve(file);
