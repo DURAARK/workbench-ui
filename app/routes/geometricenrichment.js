@@ -45,44 +45,44 @@ export default Ember.Route.extend({
       rooms: 0,
       walls: 0,
       elecDetectImages: [{
-        src: '/nygade/elecdetect-test-set/results/wall0-result.jpg'
-      },{
         src: '/nygade/elecdetect-test-set/results/wall1-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall2-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall3-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall4-result.jpg'
-      },{
+      }, {
+        src: '/nygade/elecdetect-test-set/results/wall0-result.jpg'
+      }, {
         src: '/nygade/elecdetect-test-set/results/wall5-result.jpg'
+      }, {
+        src: '/nygade/elecdetect-test-set/results/wall4-result.jpg'
+      }, {
+        src: '/nygade/elecdetect-test-set/results/wall2-result.jpg'
+      }, {
+        src: '/nygade/elecdetect-test-set/results/wall3-result.jpg'
       }],
       ruleSetImages: [{
-        src: '/nygade/elecdetect-test-set/results/wall0-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall1-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall2-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall3-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall4-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall5-result.jpg'
+        src: '/nygade/wiregen/output/svg_grammar/wall1.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_grammar/wall0.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_grammar/wall5.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_grammar/wall4.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_grammar/wall2.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_grammar/wall3.svg'
       }],
       hypothesisImages: [{
-        src: '/nygade/elecdetect-test-set/results/wall0-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall1-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall2-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall3-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall4-result.jpg'
-      },{
-        src: '/nygade/elecdetect-test-set/results/wall5-result.jpg'
-      }]
+        src: '/nygade/wiregen/output/svg_hypothesis/wall1.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_hypothesis/wall0.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_hypothesis/wall5.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_hypothesis/wall4.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_hypothesis/wall2.svg'
+      }, {
+        src: '/nygade/wiregen/output/svg_hypothesis/wall3.svg'
+      }],
     })];
 
     // FIXXME: incorporate selected tools from session!

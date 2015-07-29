@@ -9,7 +9,8 @@
   }
   .l-image-list {
     .l-image {
-      @include gallery(1 of 3);
+      // @include gallery(1 of 3);
+      display: inline-block;
       margin-bottom: gutter();
 
       > img {
