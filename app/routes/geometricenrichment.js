@@ -23,7 +23,7 @@ export default Ember.Route.extend({
         semMD: Ember.Object.create(digObj.semMD),
         techMD: digObj.techMD,
         derivatives: digObj.derivatives,
-        geoTools: []
+        geoMD: Ember.Object.create({tools: Ember.A()}),
       });
 
       digObjs.pushObject(obj);

@@ -7,7 +7,7 @@
     @include gallery(1 of 3);
   }
   .l-file-large {
-    @include gallery(3 of 3);
+    @include gallery(1 of 3);
     padding-bottom: rhythm(0.8);
     &.l-file-small {
       @include gallery(1 of 3);

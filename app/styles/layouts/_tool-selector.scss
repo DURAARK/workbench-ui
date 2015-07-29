@@ -4,6 +4,10 @@
   @include gallery(1 of 2);
 }
 
+.l-query {
+  @include gallery(1 of 3);
+}
+
 .c-tool__header {
   color: color(white);
 

@@ -1,0 +1,22 @@
+<div class="l-tools c-cards">
+
+  {{#each query in tools}}
+    <div class="l-query c-card {{if query.isSelected 'is-selected'}}" {{action "click" query}}>
+      <div class="c-tool__header">
+        <i class="fa {{icon}}"></i>
+      </div>
+      <div class="c-card-bg">
+        <div class="c-card-header">
+          {{query.label}}
+        </div>
+        <div class="c-card-copy">
+          <p>{{query.description}}</p>
+        </div>
+        <div class="c-card__action">
+          <button {{action "search" query}}>Search</button>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+
+</div>

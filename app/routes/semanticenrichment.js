@@ -34,8 +34,8 @@ default Ember.Route.extend({
     // FIXXME: get from SDA service!
     // FIXXME: create Topic model to enable saving and linking into session model!
     var topics = [Ember.Object.create({
-      label: 'Haus 30',
-      description: "Enriches the file with information on ...",
+      label: 'Haus 30 (general context)',
+      description: "Adds information on the building, architecture and the region around the building.",
       seeds: ['http://dbpedia.org/resource/Ludwig_Hoffmann_(architect)', 'http://dbpedia.org/resource/Märkisches_Museum', 'http://dbpedia.org/resource/Pergamon_Museum', 'http://dbpedia.org/resource/Märchenbrunnen', 'http://dbpedia.org/resource/Academy_of_Arts', 'http://dbpedia.org/resource/Altes_Stadthaus'],
       dependencies: [{
         type: 'physicalAsset',
@@ -47,8 +47,8 @@ default Ember.Route.extend({
       candidates: [],
       crawlId: -1
     }), Ember.Object.create({
-      label: 'Architectural Style',
-      description: "Enriches the file with information on ...",
+      label: 'Haus 30 (political context)',
+      description: "Adds information on the political context at the location (Berlin) of the building. E.g., political parties and organizations in Berlin.",
       seeds: ['http://energy-efficiency.io', 'http://sustainable-materials.io'],
       dependencies: [{
         type: 'physicalAsset',

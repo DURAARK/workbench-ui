@@ -1,13 +1,43 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
+
+var sdaEndpoint = ENV.DURAARKAPI.sda;
 
 export default Ember.Controller.extend({
   actions: {
+    save: function() {
+      var session = this.get('session'),
+        url = sdaEndpoint.host + '/sessions/' + session.get('id'),
+        controller = this;
+
+      var digObjs = this.get('digitalObjects');
+
+      // digObjs.forEach(function(digObj) {
+      //   digObj.get('semMD.topics').forEach(function(topic) {
+      //
+      //     if (!topic.candidates.length) {
+      //       var topicCrawler = new DURAARK.TopicCrawler({
+      //           apiEndpoint: sdaEndpoint,
+      //         }),
+      //         crawlId = topic.crawlId;
+      //
+      //       console.log('crawlId: ' + crawlId);
+      //
+      //       if (crawlId === -1) {
+      //         controller.initiateCrawl(topicCrawler, topic);
+      //       } else {
+      //         controller.askForCandidates(topicCrawler, topic);
+      //       }
+      //     }
+      //   });
+      // });
+
+      session.save().then(function() {});
+    },
+
     next: function() {
-
-      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
-
       var session = this.get('session');
-      this.transitionToRoute('sipgeneration', session);
+      this.transitionToRoute('digitalpreservation', session);
     },
 
     back: function() {
@@ -31,31 +61,35 @@ export default Ember.Controller.extend({
     },
 
     clickedTool: function(tool) {
-      var selectedDigitalObject = this.get('fileInfo'),
-        currentTools = selectedDigitalObject.get('geoTools');
+      var selectedDigitalObject = this.get('fileInfo');
+      selectedDigitalObject.set('geoMD.tools', Ember.A());
+      var digObjTools = selectedDigitalObject.get('geoMD.tools');
 
-      var isTool = currentTools.find(function(item) {
-        return tool.get('label') === item.label;
-      });
+      // var isTool = digObjTools.find(function(item) {
+      //   return tool.get('label') === item.label;
+      // });
 
-      if (isTool) {
-        currentTools.removeObject(tool);
-      } else {
-        currentTools.pushObject(tool);
+      // if (isTool) {
+      //   digObjTools.removeObject(tool);
+      // } else {
+      digObjTools.pushObject(tool);
+      selectedDigitalObject.set('geoMD.tools', digObjTools);
 
-        tool.set('isLoading', true);
-        setTimeout(function() {
-          tool.set('isLoading', false);
-        }, 1000);
-      }
+      tool.set('isLoading', true);
+      setTimeout(function() {
+        tool.set('isLoading', false);
+      }, 1000);
+
+      this.send('save');
+      // }
     },
 
     removeTool: function(digObj, tool) {
       tool.toggleProperty('isSelected');
       tool.set('isLoading', false);
-      digObj.get('geoTools').removeObject(tool);
+      digObj.get('geoMD.tools').removeObject(tool);
 
-      // if (!digObj.get('geoTools').get('length')) {
+      // if (!digObj.get('geoMD.tools').get('length')) {
       //   this.set('fileInfo', null);
       // this.set('tool', null);
       // }
