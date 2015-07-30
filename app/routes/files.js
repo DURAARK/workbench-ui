@@ -14,6 +14,7 @@ default Ember.Route.extend({
     this._super(controller, model);
 
     var session = model;
+    this.modelFor('application').set('session', session);
 
     controller.set('session', session);
     controller.set('showSidebar', true);

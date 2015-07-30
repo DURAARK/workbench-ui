@@ -6,33 +6,10 @@ var sdaEndpoint = ENV.DURAARKAPI.sda;
 export default Ember.Controller.extend({
   actions: {
     save: function() {
-      var session = this.get('session'),
-        url = sdaEndpoint.host + '/sessions/' + session.get('id'),
-        controller = this;
-
-      var digObjs = this.get('digitalObjects');
-
-      // digObjs.forEach(function(digObj) {
-      //   digObj.get('semMD.topics').forEach(function(topic) {
-      //
-      //     if (!topic.candidates.length) {
-      //       var topicCrawler = new DURAARK.TopicCrawler({
-      //           apiEndpoint: sdaEndpoint,
-      //         }),
-      //         crawlId = topic.crawlId;
-      //
-      //       console.log('crawlId: ' + crawlId);
-      //
-      //       if (crawlId === -1) {
-      //         controller.initiateCrawl(topicCrawler, topic);
-      //       } else {
-      //         controller.askForCandidates(topicCrawler, topic);
-      //       }
-      //     }
-      //   });
-      // });
-
-      session.save().then(function() {});
+      var session = this.get('session');
+      session.save().catch(function(err) {
+        throw new Error(err)
+      });
     },
 
     next: function() {
@@ -62,30 +39,34 @@ export default Ember.Controller.extend({
 
     clickedTool: function(tool) {
       var selectedDigitalObject = this.get('fileInfo');
-      selectedDigitalObject.set('geoMD.tools', Ember.A());
+      // selectedDigitalObject.set('geoMD.tools', Ember.A());
       var digObjTools = selectedDigitalObject.get('geoMD.tools');
+debugger;
+      var isTool = digObjTools.find(function(item) {
+        return tool.get('label') === item.label;
+      });
 
-      // var isTool = digObjTools.find(function(item) {
-      //   return tool.get('label') === item.label;
-      // });
-
-      // if (isTool) {
-      //   digObjTools.removeObject(tool);
-      // } else {
-      digObjTools.pushObject(tool);
-      selectedDigitalObject.set('geoMD.tools', digObjTools);
+      if (isTool) {
+        digObjTools.removeObject(tool);
+      } else {
+        digObjTools.pushObject(tool);
+      }
 
       tool.set('isLoading', true);
       setTimeout(function() {
         tool.set('isLoading', false);
       }, 1000);
 
+        var session = this.get('session');
+      selectedDigitalObject.set('geoMD.tools', digObjTools);
+
       this.send('save');
       // }
     },
 
     removeTool: function(digObj, tool) {
-      tool.toggleProperty('isSelected');
+      // tool.toggleProperty('isSelected');
+      tool.set('isSelected', false);
       tool.set('isLoading', false);
       digObj.get('geoMD.tools').removeObject(tool);
 

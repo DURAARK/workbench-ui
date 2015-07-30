@@ -1,14 +1,14 @@
 <div class="c-link-list">
-  <div {{action 'back'}} class="c-link-list-grid-small">
-    <div class="c-link-list-back">
-      <h3><i class="fa fa-chevron-left"> </i> Metadata</h3>
-    </div>
-  </div>
-  <div {{action 'next'}} class="c-link-list-grid-small">
-    <div class="c-link-list-next">
-      <h3>Geometric Enrichment <i class="fa fa-chevron-right"> </i></h3>
-    </div>
-  </div>
+	<div {{action 'back'}} class="c-link-list-grid-small">
+		<div class="c-link-list-back">
+			<h3><i class="fa fa-chevron-left"> </i> Metadata</h3>
+		</div>
+	</div>
+	<div {{action 'next'}} class="c-link-list-grid-small">
+		<div class="c-link-list-next">
+			<h3>Geometric Enrichment <i class="fa fa-chevron-right"> </i></h3>
+		</div>
+	</div>
 </div>
 
 <!-- <div class="c-link-list-right">
@@ -19,57 +19,57 @@
 
 <div class="l-files">
 
-  <div class="l-file-list">
+	<div class="l-file-list">
 
-    <h2 style="margin-top: 1em;">Semantic Enrichment</h2>
+		<h2 style="margin-top: 1em;">Semantic Enrichment</h2>
 
-    <hr>
+		<hr>
 
-    {{#file-list files=digitalObjects as |do|}}
-      <div>
-        {{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
+		{{#file-list files=digitalObjects as |do|}}
+			<div>
+				{{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
 
-        {{#each topic in do.semMD.topics}}
-          {{tool-item tool=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
-        {{/each}}
-      </div>
-    {{/file-list}}
+				{{#each topic in do.semMD.topics}}
+					{{tool-item tool=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
+				{{/each}}
+			</div>
+		{{/file-list}}
 
-    </div>
+	</div>
 
-    {{#if model}}
-      <div class="l-file-details">
+	{{#if model}}
+		<div class="l-file-details">
 
-        {{#if isLoadingMetadata}}
-          <div style="color: white;">LOADING ...</div>
-          {{loading-spinner-center}}
-        {{else}}
+			{{#if isLoadingMetadata}}
+				<div style="color: white;">LOADING ...</div>
+				{{loading-spinner-center}}
+			{{else}}
 
-          {{#if fileInfo}}
-            {{tool-selector digitalObject=do tools=topics click="clickedTopic" icon="fa-file-text-o"}}
-          {{else}}
-            {{#if topic}}
-              {{topic-viewer digitalObject=do topic=topic}}
-            {{else}}
-              {{#help-box}}
-                <div class="c-help-box__hint">
-                  For each 3D input file it is possible to add information topics. To show all available topics use the
-                  <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
+				{{#if fileInfo}}
+					{{tool-selector digitalObject=do tools=topics click="clickedTopic" icon="fa-file-text-o"}}
+				{{else}}
+					{{#if topic}}
+						{{topic-viewer digitalObject=do topic=topic}}
+					{{else}}
+						{{#help-box}}
+							<div class="c-help-box__hint">
+								For each 3D input file it is possible to add information topics. To show all available topics use the
+								<i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
 
-                  <br>
-                  <br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
+								<br>
+								<br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
 
-                  <br>
-                  <br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
+								<br>
+								<br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
 
-                  <br>
-                  <br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
-                </div>
-              {{/help-box}}
-            {{/if}}
-          {{/if}}
-        {{/if}}
+								<br>
+								<br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
+							</div>
+						{{/help-box}}
+					{{/if}}
+				{{/if}}
+			{{/if}}
 
-      </div>
-    {{/if}}
-  </div>
+		</div>
+	{{/if}}
+</div>

@@ -16,13 +16,14 @@
   	position: relative;
   	float: right;
   	>.c-link-list-grid-small>button {
-  		@include span(12 of 12);
+      font-size: 20px;
+  		// @include span(12 of 12);
   	}
 }
 
 .c-link-list-grid-small {
 	float: left;
-	position: relative;  
+	position: relative;
 	min-height: 1px;
 	padding-left: 15px;
 	padding-right: 15px;

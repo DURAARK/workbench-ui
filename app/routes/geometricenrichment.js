@@ -17,18 +17,27 @@ export default Ember.Route.extend({
     controller.set('session', model);
 
     session.get('digitalObjects').forEach(function(digObj) {
+      var geoMD = digObj.geoMD;
+      debugger;
+      if (!geoMD) {
+        geoMD = {
+          tools: []
+        };
+      }
+
       var obj = Ember.Object.create({
         label: digObj.label,
         buildm: digObj.buildm,
         semMD: Ember.Object.create(digObj.semMD),
+        geoMD: Ember.Object.create(geoMD),
         techMD: digObj.techMD,
         derivatives: digObj.derivatives,
-        geoMD: Ember.Object.create({tools: Ember.A()}),
       });
 
       digObjs.pushObject(obj);
     });
 
+    model.set('digitalObjects', digObjs);
     controller.set('digitalObjects', digObjs);
 
     // FIXXME: get from SDA service!

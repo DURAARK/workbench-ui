@@ -7,17 +7,19 @@
 	{{/if}}
 {{/if}}
 
-<!-- <div class="l-app-header">
-	<div class="l-nav">
-		<div class="c-breadcrumb">
-			{{#link-to "files" 1}}Files{{/link-to}}
-			{{#link-to "metadata" 1}}Metadata{{/link-to}}
-			{{#link-to "semanticenrichment" 1}}Semantic Enrichment{{/link-to}}
-			{{#link-to "geometricenrichment" 1}}Geometric Enrichment{{/link-to}}
-			{{#link-to "digitalpreservation" 1}}Digital Preservation{{/link-to}}
+{{#unless model.hideNavbar}}
+	<div class="l-app-header">
+		<div class="l-nav">
+			<div class="c-breadcrumb">
+				{{#link-to "files" session}}Files{{/link-to}}
+				{{#link-to "metadata" session}}Metadata{{/link-to}}
+				{{#link-to "semanticenrichment" session}}Semantic Enrichment{{/link-to}}
+				{{#link-to "geometricenrichment" session}}Geometric Enrichment{{/link-to}}
+				{{#link-to "digitalpreservation" session}}Digital Preservation{{/link-to}}
+			</div>
 		</div>
 	</div>
-</div> -->
+{{/unless}}
 
 <div class="l-canvas">
 	{{outlet}}
