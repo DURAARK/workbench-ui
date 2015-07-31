@@ -43,7 +43,8 @@ export default Ember.Controller.extend({
         //if (!file.get('metadata')) {
 
         // FIXXME!
-        if (file.get('path') !== '/duraark-storage/files/Nygade_Scan1001.e57') {
+        // if (file.get('path') !== '/duraark-storage/files/Nygade_Scan1001.e57') {
+        if (file.get('path').endsWith('.ifc')) {
           promises.push(controller.addMetadataTo(file));
         }
       });
@@ -55,7 +56,7 @@ export default Ember.Controller.extend({
         files.forEach(function(file) {
           var hasMetadata = true;
 
-          if (file.get('path') === '/duraark-storage/files/Nygade_Scan1001.e57') {
+          if (file.get('path').endsWith('e57')) {
             hasMetadata = false;
           }
 
@@ -65,27 +66,40 @@ export default Ember.Controller.extend({
             'http://data.duraark.eu/vocab/name': [{
               '@value': 'Nygade Building'
             }]
-          };;
+          };
+
+          var sessionName = controller.get('sessionName');
+
+          paMD['http://data.duraark.eu/vocab/name'] = [{
+            '@value': sessionName
+          }];
 
           pa.buildm = paMD;
           session.set('physicalAssets', [pa]);
 
+          var name = file.get('path').replace('/duraark-storage/files/', ''); // FIXXME!
           var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
             '@type': ['http://data.duraark.eu/vocab/E57File'],
             'http://data.duraark.eu/vocab/name': [{
-              '@value': 'Nygade Scan'
+              '@value': name
             }]
           };
 
+          daMD['http://data.duraark.eu/vocab/name'] = [{
+            '@value': name
+          }];
+
           var digOb = Ember.Object.create({
             label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/name'][0]['@value'] : 'Edit name',
+            // label: file.get('path'),
             buildm: daMD,
             semMD: Ember.Object.create({
               topics: []
             }),
             techMD: {},
             derivatives: {},
-            path: file.get('path')
+            path: file.get('path'),
+            size: file.get('size')
           });
 
           console.log('PATH: ' + file.get('path'));
