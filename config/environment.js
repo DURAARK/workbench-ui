@@ -51,7 +51,7 @@ module.exports = function(environment) {
         host: apiEndpoint + '/api/v0.7/sessions'
       },
       metadata: {
-        host: apiEndpoint + '/api/v0.7/metadata-extraction'
+        host: apiEndpoint + '/api/v0.7/metadata'
       },
       sda: {
         host: apiEndpoint + '/api/v0.7/sda'
@@ -60,7 +60,7 @@ module.exports = function(environment) {
       //   host: apiEndpoint + ':5014'
       // },
       sipgenerator: {
-        host: apiEndpoint + '/api/v0.7/archival'
+        host: apiEndpoint + '/api/v0.7/digitalpreservation'
       }
     }
   };
