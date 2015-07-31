@@ -7,7 +7,6 @@ default Ember.Route.extend({
     var sessions = this.modelFor('application');
     var session = sessions.objectAt(params.id - 1);
 
-debugger;
     if (parseInt(params.id) === 1) {
       this.sessionName = 'Haus 30';
     } else if (parseInt(params.id) === 2) {

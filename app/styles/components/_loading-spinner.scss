@@ -1,9 +1,19 @@
+.loading-message {
+  position: absolute;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+}
+
 .spinner {
+  position: absolute;
   z-index: 10;
 
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   margin: 1em auto;
   width: 50px;
   height: 30px;

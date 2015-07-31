@@ -147,6 +147,10 @@ export default Ember.Controller.extend({
     },
 
     showDetails: function(file) {
+      if (file.get('path').endsWith('e57')) {
+        return;
+      }
+
       var controller = this;
 
       // Reset details pane:
@@ -162,9 +166,21 @@ export default Ember.Controller.extend({
         // console.log('md: ' + JSON.stringify(md, null, 4));
 
         // NOTE: override 'name' from extraction with filename:
-        var name = file.get('path').split('/').pop();
-        file.get('metadata.digitalObject')['http://data.duraark.eu/vocab/name'][0]['@value'] = name;
-        file.get('metadata.physicalAsset')['http://data.duraark.eu/vocab/name'][0]['@value'] = 'Session Name'; // FIXXME: set session name!
+        var name = file.get('path').split('/').pop(),
+          digObj = file.get('metadata.digitalObject'),
+          pa = file.get('metadata.physicalAsset');
+
+        if (digObj['http://data.duraark.eu/vocab/name']) {
+          digObj['http://data.duraark.eu/vocab/name'] = [{
+            '@value': name
+          }];
+        }
+
+        if (pa['http://data.duraark.eu/vocab/name']) {
+          pa['http://data.duraark.eu/vocab/name'] = [{
+            '@value': 'Session Name' // FIXXME: set session name
+          }];
+        }
 
         controller.set('fileInfo', file);
         controller.send('isLoading', false);
