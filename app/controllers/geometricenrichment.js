@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
       var selectedDigitalObject = this.get('fileInfo');
       // selectedDigitalObject.set('geoMD.tools', Ember.A());
       var digObjTools = selectedDigitalObject.get('geoMD.tools');
-debugger;
+
       var isTool = digObjTools.find(function(item) {
         return tool.get('label') === item.label;
       });
@@ -97,5 +97,19 @@ debugger;
     return (tool.get('label') === 'IFC Reconstruction');
   }.property('tool'),
 
+  tools: function() {
+    let allTools = this.get('allTools'),
+      myTools = this.get('session.config.geometricenrichment.tools'),
+      results = [];
 
+      myTools.forEach(function(myTool) {
+        var result = allTools.find(function(topic, index, enumerable) {
+          console.log('left: ' + myTool + ' | ' + 'right: ' + topic.get('label'));
+          return myTool === topic.get('label');
+        });
+        results.push(result);
+      });
+
+      return results;
+  }.property('session.config'),
 });

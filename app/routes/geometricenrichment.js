@@ -18,7 +18,7 @@ export default Ember.Route.extend({
 
     session.get('digitalObjects').forEach(function(digObj) {
       var geoMD = digObj.geoMD;
-      debugger;
+
       if (!geoMD) {
         geoMD = {
           tools: []
@@ -99,6 +99,6 @@ export default Ember.Route.extend({
       tool.set('isSelected', false);
     });
 
-    controller.set('tools', tools);
+    controller.set('allTools', tools);
   }
 });

@@ -63,14 +63,13 @@ export default Ember.Controller.extend({
 
       myTopics.forEach(function(myTopic) {
         var result = allTopics.find(function(topic, index, enumerable) {
-          console.log('left: ' + myTopic + ' | ' + 'right: ' + topic.get('label'));
           return myTopic === topic.get('label');
         });
         results.push(result);
       });
 
       return results;
-  }.property('config'),
+  }.property('session.config'),
 
   actions: {
     save: function() {

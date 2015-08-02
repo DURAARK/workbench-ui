@@ -22,7 +22,7 @@
       <div>
         {{digital-object-sementic item=do details="showDetails" select="showToolSelection"}}
 
-        {{#each tool in do.geoMD.tools}}
+        {{#each tool in tools}}
           {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
         {{/each}}
       </div>
