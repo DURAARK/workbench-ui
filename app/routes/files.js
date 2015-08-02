@@ -7,14 +7,6 @@ default Ember.Route.extend({
     var sessions = this.modelFor('application');
     var session = sessions.objectAt(params.id - 1);
 
-    if (parseInt(params.id) === 1) {
-      this.sessionName = 'Haus 30';
-    } else if (parseInt(params.id) === 2) {
-      this.sessionName = 'Nygade';
-    } else {
-      this.sessionName = 'New Building Session';
-    }
-
     return session;
   },
 
@@ -28,7 +20,6 @@ default Ember.Route.extend({
     controller.set('showSidebar', true);
     controller.set('selectedFile', null);
     controller.set('selectedFiles', []);
-    controller.set('sessionName', this.sessionName);
 
     // controller.send('isLoading', true, 'Loading files ...');
     controller.send('isLoading', true);

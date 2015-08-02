@@ -104,7 +104,6 @@ export default Ember.Controller.extend({
 
       myTools.forEach(function(myTool) {
         var result = allTools.find(function(topic, index, enumerable) {
-          console.log('left: ' + myTool + ' | ' + 'right: ' + topic.get('label'));
           return myTool === topic.get('label');
         });
         results.push(result);

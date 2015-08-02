@@ -68,10 +68,10 @@ export default Ember.Controller.extend({
             }]
           };
 
-          var sessionName = controller.get('sessionName');
+          var sessionLabel = controller.get('session.label');
 
           paMD['http://data.duraark.eu/vocab/name'] = [{
-            '@value': sessionName
+            '@value': sessionLabel
           }];
 
           pa.buildm = paMD;
