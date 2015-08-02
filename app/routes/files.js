@@ -33,7 +33,7 @@ default Ember.Route.extend({
 
       session.get('fixedInputFiles').forEach(function(item) {
         var file = controller.store.createRecord('file', item);
-        file.set('path', item.get('path'));
+        file.set('path', item.path);
         files.pushObject(file);
       });
 
