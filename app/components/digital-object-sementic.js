@@ -29,9 +29,9 @@ default Ember.Component.extend({
 	}.property('item'),
 
 	size: function() {
-		var size = this.get('item.size');
-		return numeral(size).format('0 b');
-	}.property('item'),
+    var size = this.get('item.size');
+    return numeral(size).format('0 b');
+  }.property('item'),
 
 	extension: function() {
 		var path = this.get('item.path');

@@ -20,9 +20,15 @@
 		<div class="c-file__name">
 			{{#if isIFC}}
 				{{name}}
+				<div class="c-file__size">
+					<h4>{{size}}</h4>
+				</div>
 			{{else}}
 				{{#if isE57}}
 					{{name}}
+					<div class="c-file__size">
+						<h4>{{size}}</h4>
+					</div>					
 				{{else}}
 					<div class="c-file-building">
 						<div class="c-file-building__pic"><img src="/images/building_placeholder.png"> </div>

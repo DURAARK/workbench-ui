@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
     save: function() {
       var session = this.get('session');
       session.save().catch(function(err) {
-        throw new Error(err)
+        throw new Error(err);
       });
     },
 

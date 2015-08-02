@@ -4,6 +4,7 @@ export default DS.Model.extend({
   subject: DS.attr('string'),
   type: DS.attr('string'),
   creator: DS.attr('string'),
+  size: DS.attr(),
   dateCreated: DS.attr('string'),
   event: DS.attr('string'),
   filename: DS.attr('string'),

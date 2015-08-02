@@ -7,6 +7,8 @@ default Ember.Route.extend({
     var sessions = this.modelFor('application');
     var session = sessions.objectAt(params.id - 1);
 
+    session.files = [];
+
     return session;
   },
 
@@ -24,15 +26,33 @@ default Ember.Route.extend({
     // controller.send('isLoading', true, 'Loading files ...');
     controller.send('isLoading', true);
 
-    this.store.find('file').then(function(files) {
-      controller.set('files', files);
+    // A session can define which files are presented to the user for selection
+    // to allow the creation of 'showcases':
+    if (session.get('fixedInputFiles')) {
+      var files = [];
 
-      files.forEach(function(file) {
-        file.set('isSelected', false);
+      session.get('fixedInputFiles').forEach(function(item) {
+        var file = controller.store.createRecord('file', item);
+        file.set('path', item.get('path'));
+        files.pushObject(file);
       });
 
+      // For showcase sessions remove files which could have been stored before:
+
+      controller.set('files', files);
       controller.send('isLoading', false);
-    })
+
+    } else {
+      this.store.find('file').then(function(files) {
+        controller.set('files', files);
+
+        files.forEach(function(file) {
+          file.set('isSelected', false);
+        });
+
+        controller.send('isLoading', false);
+      });
+    }
   }
 
 });

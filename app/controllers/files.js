@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
         console.log('  * ' + file.get('path'));
       });
 
-      var session = this.get('session'),//this.store.createRecord('session'),
+      var session = this.get('session'), //this.store.createRecord('session'),
         files = this.get('selectedFiles');
 
       session.set('files', files);
@@ -52,6 +52,8 @@ export default Ember.Controller.extend({
       Ember.RSVP.Promise.all(promises).then(function() {
         // NOTE: work on the 'files' variable from the outer context, as this function only gets
         // the files which did not have metadata before, which could be empty even.
+
+        var das = [];
 
         files.forEach(function(file) {
           var hasMetadata = true;
@@ -104,26 +106,21 @@ export default Ember.Controller.extend({
 
           console.log('PATH: ' + file.get('path'));
 
-          var das = null;
-
-          var das = session.get('digitalObjects');
-          if (!das) {
-            das = [];
-          }
 
           das.pushObject(digOb);
-          session.set('digitalObjects', das);
+        });
+
+        session.set('digitalObjects', das);
+        
+        session.save().then(function(session) {
+          controller.transitionToRoute('metadata', session);
+          controller.send('isLoading', false);
+        }).catch(function(err) {
+          controller.send('isLoading', false);
+          alert(err);
         });
       }).catch(function(err) {
         throw new Error(err);
-      });
-
-      session.save().then(function(session) {
-        controller.transitionToRoute('metadata', session);
-        controller.send('isLoading', false);
-      }).catch(function(err) {
-        controller.send('isLoading', false);
-        alert(err);
       });
     },
 

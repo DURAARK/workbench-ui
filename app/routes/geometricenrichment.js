@@ -12,13 +12,12 @@ export default Ember.Route.extend({
     this._super(controller, model);
 
     var session = model,
-      digObjs = [];
+      digObjs = [],
+      pointClouds = [];
 
     controller.set('session', model);
 
     session.get('digitalObjects').forEach(function(digObj) {
-      debugger;
-      if (digObj.label.endsWith('e57')) {
         var geoMD = digObj.geoMD;
 
         if (!geoMD) {
@@ -34,14 +33,19 @@ export default Ember.Route.extend({
           geoMD: Ember.Object.create(geoMD),
           techMD: digObj.techMD,
           derivatives: digObj.derivatives,
+          size: digObj.size,
+          path: digObj.path
         });
 
         digObjs.pushObject(obj);
-      }
+
+        if (digObj.path && digObj.path.endsWith('e57')) {
+          pointClouds.pushObject(obj);
+        }
     });
 
     model.set('digitalObjects', digObjs);
-    controller.set('digitalObjects', digObjs);
+    controller.set('pointClouds', pointClouds);
 
     // FIXXME: get from SDA service!
     // FIXXME: create Topic model to enable saving and linking into session model!

@@ -24,7 +24,8 @@ default Ember.Route.extend({
         semMD: Ember.Object.create(digObj.semMD),
         geoMD: Ember.Object.create(digObj.geoMD),
         techMD: digObj.techMD,
-        derivatives: digObj.derivatives
+        derivatives: digObj.derivatives,
+        size: digObj.size
       });
 
       digObjs.pushObject(obj);

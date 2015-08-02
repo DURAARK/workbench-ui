@@ -37,6 +37,7 @@
 			<div>
 				{{physical-asset-item item=do details="showDetails"}}
 
+{{log do.semMD.topics}}
 				{{#each topic in do.semMD.topics}}
 					{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
 				{{/each}}

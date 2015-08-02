@@ -18,10 +18,10 @@
 
 		<hr>
 
-    {{#if digitalObjects.length}}
-    {{#file-list files=digitalObjects as |do|}}
+    {{#if pointClouds.length}}
+    {{#file-list files=pointClouds as |pc|}}
       <div>
-        {{digital-object-sementic item=do details="showDetails" select="showToolSelection"}}
+        {{digital-object-sementic item=pc details="showDetails" select="showToolSelection"}}
 
         {{#each tool in do.geoMD.tools}}
           {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}

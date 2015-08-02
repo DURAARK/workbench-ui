@@ -6,6 +6,7 @@ var Session = DS.Model.extend({
     physicalAssets: DS.attr(),
     digitalObjects: DS.attr(),
     config: DS.attr(),
+    fixedInputFiles: DS.attr(),
 
     createdAt: DS.attr('date'),
     updatedAt: DS.attr('date')
