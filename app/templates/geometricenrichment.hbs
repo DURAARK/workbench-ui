@@ -18,15 +18,19 @@
 
 		<hr>
 
+    {{#if digitalObjects.length}}
     {{#file-list files=digitalObjects as |do|}}
       <div>
         {{digital-object-sementic item=do details="showDetails" select="showToolSelection"}}
 
-        {{#each tool in tools}}
+        {{#each tool in do.geoMD.tools}}
           {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
         {{/each}}
       </div>
     {{/file-list}}
+    {{else}}
+      <h3>To use the geometric enrichment tools at least one point cloud file (E57) has to be selected.</h3>
+    {{/if}}
   </div>
 
   {{#if model}}

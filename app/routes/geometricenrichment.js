@@ -17,24 +17,27 @@ export default Ember.Route.extend({
     controller.set('session', model);
 
     session.get('digitalObjects').forEach(function(digObj) {
-      var geoMD = digObj.geoMD;
+      debugger;
+      if (digObj.label.endsWith('e57')) {
+        var geoMD = digObj.geoMD;
 
-      if (!geoMD) {
-        geoMD = {
-          tools: []
-        };
+        if (!geoMD) {
+          geoMD = {
+            tools: []
+          };
+        }
+
+        var obj = Ember.Object.create({
+          label: digObj.label,
+          buildm: digObj.buildm,
+          semMD: Ember.Object.create(digObj.semMD),
+          geoMD: Ember.Object.create(geoMD),
+          techMD: digObj.techMD,
+          derivatives: digObj.derivatives,
+        });
+
+        digObjs.pushObject(obj);
       }
-
-      var obj = Ember.Object.create({
-        label: digObj.label,
-        buildm: digObj.buildm,
-        semMD: Ember.Object.create(digObj.semMD),
-        geoMD: Ember.Object.create(geoMD),
-        techMD: digObj.techMD,
-        derivatives: digObj.derivatives,
-      });
-
-      digObjs.pushObject(obj);
     });
 
     model.set('digitalObjects', digObjs);
