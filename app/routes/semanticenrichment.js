@@ -5,7 +5,7 @@ default Ember.Route.extend({
   model: function(params) {
     var sessions = this.modelFor('application');
     var session = sessions.objectAt(params.id - 1);
-debugger;
+
     return session;
   },
 
@@ -34,7 +34,7 @@ debugger;
 
     // FIXXME: get from SDA service!
     // FIXXME: create Topic model to enable saving and linking into session model!
-    var topics = [Ember.Object.create({
+    var allTopics = [Ember.Object.create({
       label: 'Haus 30 (general context)',
       description: "Adds information on the building, architecture and the region around the building.",
       seeds: ['http://dbpedia.org/resource/Berlin,http://dbpedia.org/resource/List_of_museums,http://de.dbpedia.org/resource/Ludwig_Hoffmann(Architekt),http://de.dbpedia.org/resource/Bogensee_(Berlin-Buch),http://de.dbpedia.org/resource/Bucher_Forst,http://de.dbpedia.org/resource/Karpfenteiche_(Berlin-Buch),http://de.dbpedia.org/resource/Kategorie:Ehemaliges_Krankenhaus_in_Berlin'],
@@ -46,14 +46,20 @@ debugger;
       seeds: ['http://dbpedia.org/resource/Berlin,http://dbpedia.org/resource/Social_Democratic_Party_of_Germany,http://de.dbpedia.org/resource/Ludwig_Hoffmann(Architekt),http://de.dbpedia.org/resource/Mosse-Stift,http://de.dbpedia.org/resource/Landesgeschichtliche_Vereinigung_für_die_Mark_Brandenburg'],
       crawlId: 14,
       candidates: []
+    }), Ember.Object.create({
+      label: 'Nygade (general context)',
+      description: "Adds information on the building, architecture and the region around the building.",
+      seeds: ['http://dbpedia.org/resource/Rosenborg_Castle,http://dbpedia.org/resource/Copenhagen_Opera_House,http://dbpedia.org/resource/Copenhagen,http://dbpedia.org/resource/Capital_Region_of_Denmark,http://dbpedia.org/resource/List_of_museums'],
+      crawlId: 15,
+      candidates: []
     })];
 
-    // FIXXME: incorporate selected topics from session!
-    topics.forEach(function(topic) {
+    // FIXXME: incorporate selected allTopics from session!
+    allTopics.forEach(function(topic) {
       topic.set('isSelected', false);
     });
 
-    controller.set('topics', topics);
+    controller.set('allTopics', allTopics);
   }
 
 });

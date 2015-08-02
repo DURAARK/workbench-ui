@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
         console.log('  * ' + file.get('path'));
       });
 
-      var session = this.store.createRecord('session'),
+      var session = this.get('session'),//this.store.createRecord('session'),
         files = this.get('selectedFiles');
 
       session.set('files', files);

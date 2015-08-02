@@ -27,8 +27,8 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self'",
       'font-src': "'self'",
-      'connect-src': "'self' http://juliet.cgv.tugraz.at/api/v0.7/sessions/ http://juliet.cgv.tugraz.at/api/v0.7/metadata-extraction/ http://juliet.cgv.tugraz.at/api/v0.7/sda/ http://juliet.cgv.tugraz.at/api/v0.7/archival/",
-      'img-src': "'self' a.tiles.mapbox.com",
+      'connect-src': "'self' http://juliet.cgv.tugraz.at/api/v0.7/sessions/ http://juliet.cgv.tugraz.at/api/v0.7/metadata/ http://juliet.cgv.tugraz.at/api/v0.7/sda/ http://juliet.cgv.tugraz.at/api/v0.7/geometricenrichment/ http://juliet.cgv.tugraz.at/api/v0.7/digitalpreservation/ http://mimas.cgv.tugraz.at/api/v0.7/sessions/ http://mimas.cgv.tugraz.at/api/v0.7/metadata/ http://mimas.cgv.tugraz.at/api/v0.7/sda/ http://mimas.cgv.tugraz.at/api/v0.7/geometricenrichment/ http://mimas.cgv.tugraz.at/api/v0.7/digitalpreservation/ http://localhost:5011/sessions http://localhost:5011/files http://localhost:5012/metadata http://localhost:5013/sda http://localhost:5014/geometricenrichment http://localhost:5015/digitalpreservation",
+      'img-src': "'self'",
       'style-src': "'self' 'unsafe-inline'",
     },
     EmberENV: {
@@ -56,10 +56,10 @@ module.exports = function(environment) {
       sda: {
         host: apiEndpoint + '/api/v0.7/sda'
       },
-      // geometricenrichment: {
-      //   host: apiEndpoint + ':5014'
-      // },
-      sipgenerator: {
+      geometricenrichment: {
+        host: apiEndpoint + '/api/v0.7/geometricenrichment'
+      },
+      digitalpreservation: {
         host: apiEndpoint + '/api/v0.7/digitalpreservation'
       }
     }
@@ -76,10 +76,10 @@ module.exports = function(environment) {
       sda: {
         host: apiEndpoint + ':5013'
       },
-      // geometricenrichment: {
-      //   host: apiEndpoint + ':5014'
-      // },
-      sipgenerator: {
+      geometricenrichment: {
+        host: apiEndpoint + ':5014'
+      },
+      digitalpreservation: {
         host: apiEndpoint + ':5015'
       }
     }
