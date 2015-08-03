@@ -46,6 +46,7 @@ export default Ember.Controller.extend({
     },
 
     showToolInfo: function(tool) {
+      this.set('selectedDigitalObject', null);
       this.set('tool', tool);
     },
 
@@ -69,7 +70,7 @@ export default Ember.Controller.extend({
         });
 
         // FIXXME: delegate this over to duraark-geometricenrichment service!
-        if (t.get('label') === 'Electical Applicance Detection') {
+        if (t.get('label') === 'Electrical Appliance Detection') {
           t.set('electDetectImages', tool.get('elecDetectImages'));
           t.set('ruleSetImages', tool.get('ruleSetImages'));
           t.set('hypothesisImages', tool.get('hypothesisImages'));
