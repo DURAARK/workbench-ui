@@ -236,7 +236,22 @@ export default Ember.Controller.extend({
 
         if (!t.get('candidates').length) {
           t.set('isLoading', true);
-        };
+
+          if (!t.candidates.length) {
+            var topicCrawler = new DURAARK.TopicCrawler({
+                apiEndpoint: sdaEndpoint,
+              }),
+              crawlId = t.crawlId;
+
+            console.log('crawlId: ' + crawlId);
+
+            if (crawlId === -1) {
+              this.initiateCrawl(topicCrawler, t);
+            } else {
+              this.askForCandidates(topicCrawler, t);
+            }
+          }
+        }
       }
 
       // this.send('save');
