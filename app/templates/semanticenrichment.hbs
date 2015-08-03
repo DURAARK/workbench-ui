@@ -45,8 +45,8 @@
 				{{loading-spinner-center}}
 			{{else}}
 
-				{{#if selectedFile}}
-					{{tool-selector digitalObject=do tools=topics click="clickedTopic" icon="fa-file-text-o"}}
+				{{#if selectedDigitalObject}}
+					{{tool-selector tools=topics click="clickedTopic" icon="fa-file-text-o"}}
 				{{else}}
 					{{#if topic}}
 						{{topic-viewer digitalObject=do topic=topic}}

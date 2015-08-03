@@ -18,12 +18,12 @@
 
     <hr>
 
-    {{#if pointClouds.length}}
-      {{#file-list files=pointClouds as |pc|}}
-        <div>
-          {{digital-object-sementic item=pc details="showDetails" select="showToolSelection"}}
+    {{#if digitalObjects.length}}
+      {{#file-list files=digitalObjects as |do|}}
+        <div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
+          {{digital-object-sementic item=do details="showDetails" select="showToolSelection"}}
 
-          {{#each tool in pc.geoMD.tools}}
+          {{#each tool in do.geoMD.tools}}
             {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
           {{/each}}
         </div>
@@ -41,8 +41,8 @@
         {{loading-spinner-center}}
       {{else}}
 
-        {{#if fileInfo}}
-          {{tool-selector digitalObject=do tools=tools click="clickedTool" icon="fa-wrench"}}
+        {{#if selectedDigitalObject}}
+          {{tool-selector tools=tools click="clickedTool" icon="fa-wrench"}}
         {{else}}
           {{#if tool}}
             {{#if isElectricalApplianceDetectionTool}}

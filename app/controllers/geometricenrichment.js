@@ -34,56 +34,44 @@ export default Ember.Controller.extend({
     },
 
     showToolSelection: function(digObj) {
-      this.set('fileInfo', digObj);
+      this.set('selectedDigitalObject', digObj);
+      this.toggleDigitalObjectSelection(digObj);
     },
 
     clickedTool: function(tool) {
-      var selectedDigitalObject = this.get('fileInfo');
-      // selectedDigitalObject.set('geoMD.tools', Ember.A());
-      var digObjTools = selectedDigitalObject.get('geoMD.tools');
+      var selectedDigitalObject = this.get('selectedDigitalObject'),
+        currentTools = selectedDigitalObject.get('geoMD.tools');
 
-      var isTool = digObjTools.find(function(item) {
+      var selectedTool = currentTools.find(function(item) {
         return tool.get('label') === item.label;
       });
 
-      if (isTool) {
-        digObjTools.removeObject(tool);
+      if (selectedTool) {
+        currentTools.removeObject(selectedTool);
       } else {
-        digObjTools.pushObject(tool);
+        // Create new instance of tool to be added to 'geoMD.tools'. It is not
+        // possible to directly use the 'tool' instance, as multiple files can
+        // have the same tool assigned.
+        var t = Ember.Object.create({
+          label: tool.get('label'),
+          description: tool.get('description')
+        });
+        currentTools.pushObject(t);
       }
 
-      tool.set('isLoading', true);
-      setTimeout(function() {
-        tool.set('isLoading', false);
-      }, 1000);
-
-        var session = this.get('session');
-      selectedDigitalObject.set('geoMD.tools', digObjTools);
-
       this.send('save');
-      // }
     },
 
-    removeTool: function(digObj, tool) {
-      // tool.toggleProperty('isSelected');
-      tool.set('isSelected', false);
-      tool.set('isLoading', false);
-      digObj.get('geoMD.tools').removeObject(tool);
+    removeTool: function(digObj, topic) {
+      // Set the 'selectedDigitalObject' property to the file the topic belongs to:
+      this.selectDigitalObject(digObj);
 
-      // if (!digObj.get('geoMD.tools').get('length')) {
-      //   this.set('fileInfo', null);
-      // this.set('tool', null);
-      // }
+      digObj.get('geoMD.tools').removeObject(topic);
     },
 
-    // FIXXME: change name!
     showSelectedTool: function(digObj, tool) {
       this.set('fileInfo', null);
       this.set('tool', tool);
-    },
-
-    showToolInfo: function(digObj, tool) {
-      console.log('tool: ' + tool);
     }
   },
 
@@ -98,17 +86,68 @@ export default Ember.Controller.extend({
   }.property('tool'),
 
   tools: function() {
-    let allTools = this.get('allTools'),
-      myTools = this.get('session.config.geometricenrichment.tools'),
-      results = [];
+    // Bail out if no digital object is selected:
+    if (!this.get('selectedDigitalObject')) {
+      return;
+    }
 
-      myTools.forEach(function(myTool) {
-        var result = allTools.find(function(topic, index, enumerable) {
-          return myTool === topic.get('label');
-        });
-        results.push(result);
+    let allTools = this.get('allTools'),
+      configuredTools = this.get('session.config.geometricenrichment.tools'),
+      selectedDigitalObject = this.get('selectedDigitalObject'),
+      digObjTools = selectedDigitalObject.get('geoMD.tools'),
+      shownTools = [];
+
+    configuredTools.forEach(function(myTool) {
+      var tool = allTools.find(function(tool, index, enumerable) {
+        return myTool === tool.get('label');
+      });
+      shownTools.push(tool);
+    });
+
+    // Set selection state based on selected file:
+    shownTools.forEach(function(shownTool, index, enumerable) {
+      var curFileTool = digObjTools.find(function(fileTool, index, enumerable) {
+        return fileTool.label === shownTool.get('label');
       });
 
-      return results;
-  }.property('session.config'),
+      // If the file contains the tool from the selection set the selection
+      // state in the shown tool accordingly:
+      if (curFileTool) {
+        shownTool.set('isSelected', true);
+      } else {
+        shownTool.set('isSelected', false);
+      }
+    });
+
+    return shownTools;
+  }.property('session.config', 'selectedDigitalObject.geoMD.tools.@each'),
+
+  toggleDigitalObjectSelection: function(digObj) {
+    var flag = digObj.get('isSelected');
+
+    this.get('digitalObjects').forEach(function(obj) {
+      obj.set('isSelected', false);
+    });
+
+    digObj.set('isSelected', !flag);
+
+    this.set('selectedDigitalObject', digObj);
+
+    if (digObj.get('isSelected') === false) {
+      this.set('selectedDigitalObject', null);
+    }
+  },
+
+  selectDigitalObject: function(digObj) {
+    var flag = digObj.get('isSelected');
+
+    if (flag) return;
+
+    this.get('digitalObjects').forEach(function(obj) {
+      obj.set('isSelected', false);
+    });
+
+    digObj.set('isSelected', true);
+    this.set('selectedDigitalObject', digObj);
+  }
 });

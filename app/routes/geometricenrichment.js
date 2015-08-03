@@ -45,7 +45,7 @@ export default Ember.Route.extend({
     });
 
     model.set('digitalObjects', digObjs);
-    controller.set('pointClouds', pointClouds);
+    controller.set('digitalObjects', pointClouds);
 
     // FIXXME: get from SDA service!
     // FIXXME: create Topic model to enable saving and linking into session model!

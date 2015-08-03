@@ -5,7 +5,7 @@ import ENV from '../config/environment';
 var sdaEndpoint = ENV.DURAARKAPI.sda;
 
 export default Ember.Controller.extend({
-  selectedFile: null,
+  selectedDigitalObject: null,
 
   initiateCrawl: function(crawler, topic) {
     var controller = this;
@@ -57,15 +57,15 @@ export default Ember.Controller.extend({
   },
 
   topics: function() {
-    // Bail out if no file is selected currently:
-    if (!this.get('selectedFile')) {
+    // Bail out if no digital object is selected:
+    if (!this.get('selectedDigitalObject')) {
       return;
     }
 
     let allTopics = this.get('allTopics'),
       configuredTopics = this.get('session.config.sda.topics'),
-      selectedFile = this.get('selectedFile'),
-      fileTopics = selectedFile.get('semMD.topics'),
+      selectedDigitalObject = this.get('selectedDigitalObject'),
+      digObjTopics = selectedDigitalObject.get('semMD.topics'),
       shownTopics = [];
 
     configuredTopics.forEach(function(myTopic) {
@@ -77,7 +77,7 @@ export default Ember.Controller.extend({
 
     // Set selection state based on selected file:
     shownTopics.forEach(function(shownTopic, index, enumerable) {
-      var curFileTopic = fileTopics.find(function(fileTopic, index, enumerable) {
+      var curFileTopic = digObjTopics.find(function(fileTopic, index, enumerable) {
         return fileTopic.label === shownTopic.get('label');
       });
 
@@ -91,7 +91,7 @@ export default Ember.Controller.extend({
     });
 
     return shownTopics;
-  }.property('session.config', 'selectedFile.semMD.topics.@each'),
+  }.property('session.config', 'selectedDigitalObject.semMD.topics.@each'),
 
   toggleDigitalObjectSelection: function(digObj) {
     var flag = digObj.get('isSelected');
@@ -102,10 +102,10 @@ export default Ember.Controller.extend({
 
     digObj.set('isSelected', !flag);
 
-    this.set('selectedFile', digObj);
+    this.set('selectedDigitalObject', digObj);
 
     if (digObj.get('isSelected') === false) {
-      this.set('selectedFile', null);
+      this.set('selectedDigitalObject', null);
     }
   },
 
@@ -119,7 +119,7 @@ export default Ember.Controller.extend({
     });
 
     digObj.set('isSelected', true);
-    this.set('selectedFile', digObj);
+    this.set('selectedDigitalObject', digObj);
   },
 
   actions: {
@@ -164,17 +164,17 @@ export default Ember.Controller.extend({
     },
 
     showTopicSelection: function(digObj) {
-      this.set('selectedFile', digObj);
+      this.set('selectedDigitalObject', digObj);
       this.toggleDigitalObjectSelection(digObj);
     },
 
     showSelectedTopic: function(digObj, topic) {
-      this.set('selectedFile', null);
+      this.set('selectedDigitalObject', null);
       this.set('topic', topic);
     },
 
     clickedTopic: function(topic) {
-      var selectedDigitalObject = this.get('selectedFile'),
+      var selectedDigitalObject = this.get('selectedDigitalObject'),
         currentTopics = selectedDigitalObject.get('semMD.topics');
 
       var selectedTopic = currentTopics.find(function(item) {
@@ -203,26 +203,13 @@ export default Ember.Controller.extend({
       }
 
       this.send('save');
-
-      // setTimeout(function() {
-      //   topic.set('isLoading', false);
-      // }, 1000);
     },
 
     removeTopic: function(digObj, topic) {
-      // Set the 'selectedFile' property to the file the topic belongs to:
+      // Set the 'selectedDigitalObject' property to the file the topic belongs to:
       this.selectDigitalObject(digObj);
 
       digObj.get('semMD.topics').removeObject(topic);
-
-      // // Deselect tools shown on the right:
-      // var selectedTopic = this.get('topics').find(function(item) {
-      //   return topic.get('label') === item.get('label');
-      // });
-      //
-      // if (selectedTopic) {
-      //   selectedTopic.toggleProperty('isSelected');
-      // }
     },
 
     showTopic: function(topic) {
