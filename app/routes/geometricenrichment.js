@@ -21,10 +21,22 @@ export default Ember.Route.extend({
         var geoMD = digObj.geoMD;
 
         if (!geoMD) {
-          geoMD = {
+          geoMD = Ember.Object.create({
             tools: []
-          };
+          });
+        } else {
+          geoMD = Ember.Object.create({
+            tools: digObj.geoMD.tools
+          });
         }
+
+        var tools = [];
+
+        _.forEach(geoMD.tools, function(tool) {
+            tools.pushObject(Ember.Object.create(tool));
+        });
+
+        geoMD.set('tools', tools);
 
         var obj = Ember.Object.create({
           label: digObj.label,

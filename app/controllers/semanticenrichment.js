@@ -124,34 +124,41 @@ export default Ember.Controller.extend({
 
   actions: {
     save: function() {
-      var session = this.get('session'),
-        url = sdaEndpoint.host + '/sessions/' + session.get('id'),
-        controller = this;
-
-      var digObjs = this.get('digitalObjects');
-
-      digObjs.forEach(function(digObj) {
-        digObj.get('semMD.topics').forEach(function(topic) {
-
-          if (!topic.candidates.length) {
-            var topicCrawler = new DURAARK.TopicCrawler({
-                apiEndpoint: sdaEndpoint,
-              }),
-              crawlId = topic.crawlId;
-
-            console.log('crawlId: ' + crawlId);
-
-            if (crawlId === -1) {
-              controller.initiateCrawl(topicCrawler, topic);
-            } else {
-              controller.askForCandidates(topicCrawler, topic);
-            }
-          }
-        });
+      var session = this.get('session');
+      session.save().catch(function(err) {
+        throw new Error(err);
       });
-
-      session.save();
     },
+
+    // save: function() {
+    //   var session = this.get('session'),
+    //     url = sdaEndpoint.host + '/sessions/' + session.get('id'),
+    //     controller = this;
+    //
+    //   var digObjs = this.get('digitalObjects');
+    //
+    //   digObjs.forEach(function(digObj) {
+    //     digObj.get('semMD.topics').forEach(function(topic) {
+    //
+    //       if (!topic.candidates.length) {
+    //         var topicCrawler = new DURAARK.TopicCrawler({
+    //             apiEndpoint: sdaEndpoint,
+    //           }),
+    //           crawlId = topic.crawlId;
+    //
+    //         console.log('crawlId: ' + crawlId);
+    //
+    //         if (crawlId === -1) {
+    //           controller.initiateCrawl(topicCrawler, topic);
+    //         } else {
+    //           controller.askForCandidates(topicCrawler, topic);
+    //         }
+    //       }
+    //     });
+    //   });
+    //
+    //   session.save();
+    // },
 
     next: function() {
       var session = this.get('session');
@@ -210,6 +217,8 @@ export default Ember.Controller.extend({
       this.selectDigitalObject(digObj);
 
       digObj.get('semMD.topics').removeObject(topic);
+
+      this.send('save');
     },
 
     showTopic: function(topic) {

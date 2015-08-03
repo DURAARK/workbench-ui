@@ -18,13 +18,13 @@ default Ember.Route.extend({
     controller.set('session', session);
 
     session.get('digitalObjects').forEach(function(digObj) {
-      var semMD = Ember.Object.create(),
-      topics = [];
+      var semMD = digObj.semMD;
 
-      _.forEach(digObj.semMD.topics, function(topic) {
-        topics.pushObject(Ember.Object.create(topic));
-      });
-      semMD.set('topics', topics);
+      if (!semMD) {
+        semMD = {
+          topics: []
+        };
+      }
 
       var obj = Ember.Object.create({
         label: digObj.label,

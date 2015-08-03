@@ -7,6 +7,16 @@ export default Ember.Controller.extend({
   actions: {
     save: function() {
       var session = this.get('session');
+
+      session.get('digitalObjects').forEach(function(digObj) {
+        // FIXXME: remove ember-data and plain javascript models ASAP!
+        if (_.isFunction(digObj.get)) {
+          let geoMD = digObj.get('geoMD'),
+            tmp = JSON.parse(JSON.stringify(geoMD));
+          digObj.set('geoMD', tmp);
+        }
+      });
+
       session.save().catch(function(err) {
         throw new Error(err);
       });
@@ -18,9 +28,6 @@ export default Ember.Controller.extend({
     },
 
     back: function() {
-
-      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
-
       var session = this.get('session');
       this.transitionToRoute('semanticenrichment', session);
     },
@@ -36,6 +43,10 @@ export default Ember.Controller.extend({
     showToolSelection: function(digObj) {
       this.set('selectedDigitalObject', digObj);
       this.toggleDigitalObjectSelection(digObj);
+    },
+
+    showToolInfo: function(tool) {
+      this.set('tool', tool);
     },
 
     clickedTool: function(tool) {
@@ -56,6 +67,13 @@ export default Ember.Controller.extend({
           label: tool.get('label'),
           description: tool.get('description')
         });
+
+        // FIXXME: delegate this over to duraark-geometricenrichment service!
+        if (t.get('label') === 'Electical Applicance Detection') {
+          t.set('electDetectImages', tool.get('elecDetectImages'));
+          t.set('ruleSetImages', tool.get('ruleSetImages'));
+          t.set('hypothesisImages', tool.get('hypothesisImages'));
+        }
         currentTools.pushObject(t);
       }
 
@@ -67,6 +85,8 @@ export default Ember.Controller.extend({
       this.selectDigitalObject(digObj);
 
       digObj.get('geoMD.tools').removeObject(topic);
+
+      this.send('save');
     },
 
     showSelectedTool: function(digObj, tool) {
