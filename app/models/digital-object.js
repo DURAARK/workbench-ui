@@ -23,6 +23,8 @@ export default DS.Model.extend({
   isPartOf: DS.attr('string'),
   isRepresentedBy: DS.attr('string'),
 
+  isSelected: DS.attr(),
+  
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date')
 });

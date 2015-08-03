@@ -18,14 +18,23 @@ default Ember.Route.extend({
     controller.set('session', session);
 
     session.get('digitalObjects').forEach(function(digObj) {
+      var semMD = Ember.Object.create(),
+      topics = [];
+
+      _.forEach(digObj.semMD.topics, function(topic) {
+        topics.pushObject(Ember.Object.create(topic));
+      });
+      semMD.set('topics', topics);
+
       var obj = Ember.Object.create({
         label: digObj.label,
         buildm: digObj.buildm,
-        semMD: Ember.Object.create(digObj.semMD),
+        semMD: semMD,
         geoMD: Ember.Object.create(digObj.geoMD),
         techMD: digObj.techMD,
         derivatives: digObj.derivatives,
-        size: digObj.size
+        size: digObj.size,
+        isSelected: false
       });
 
       digObjs.pushObject(obj);
@@ -39,20 +48,23 @@ default Ember.Route.extend({
       label: 'Haus 30 (general context)',
       description: "Adds information on the building, architecture and the region around the building.",
       seeds: ['http://dbpedia.org/resource/Berlin,http://dbpedia.org/resource/List_of_museums,http://de.dbpedia.org/resource/Ludwig_Hoffmann(Architekt),http://de.dbpedia.org/resource/Bogensee_(Berlin-Buch),http://de.dbpedia.org/resource/Bucher_Forst,http://de.dbpedia.org/resource/Karpfenteiche_(Berlin-Buch),http://de.dbpedia.org/resource/Kategorie:Ehemaliges_Krankenhaus_in_Berlin'],
+      crawlId: 13,
       candidates: [],
-      crawlId: 13
+      isSelected: false
     }), Ember.Object.create({
       label: 'Haus 30 (political context)',
       description: "Adds information on the political context at the location (Berlin) of the building. E.g., political parties and organizations in Berlin.",
       seeds: ['http://dbpedia.org/resource/Berlin,http://dbpedia.org/resource/Social_Democratic_Party_of_Germany,http://de.dbpedia.org/resource/Ludwig_Hoffmann(Architekt),http://de.dbpedia.org/resource/Mosse-Stift,http://de.dbpedia.org/resource/Landesgeschichtliche_Vereinigung_für_die_Mark_Brandenburg'],
       crawlId: 14,
-      candidates: []
+      candidates: [],
+      isSelected: false
     }), Ember.Object.create({
       label: 'Nygade (general context)',
       description: "Adds information on the building, architecture and the region around the building.",
       seeds: ['http://dbpedia.org/resource/Rosenborg_Castle,http://dbpedia.org/resource/Copenhagen_Opera_House,http://dbpedia.org/resource/Copenhagen,http://dbpedia.org/resource/Capital_Region_of_Denmark,http://dbpedia.org/resource/List_of_museums'],
       crawlId: 15,
-      candidates: []
+      candidates: [],
+      isSelected: false
     })];
 
     // FIXXME: incorporate selected allTopics from session!

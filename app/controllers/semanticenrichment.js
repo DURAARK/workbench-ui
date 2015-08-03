@@ -5,7 +5,7 @@ import ENV from '../config/environment';
 var sdaEndpoint = ENV.DURAARKAPI.sda;
 
 export default Ember.Controller.extend({
-  seeds: null,
+  selectedFile: null,
 
   initiateCrawl: function(crawler, topic) {
     var controller = this;
@@ -57,19 +57,70 @@ export default Ember.Controller.extend({
   },
 
   topics: function() {
-    let allTopics = this.get('allTopics'),
-      myTopics = this.get('session.config.sda.topics'),
-      results = [];
+    // Bail out if no file is selected currently:
+    if (!this.get('selectedFile')) {
+      return;
+    }
 
-      myTopics.forEach(function(myTopic) {
-        var result = allTopics.find(function(topic, index, enumerable) {
-          return myTopic === topic.get('label');
-        });
-        results.push(result);
+    let allTopics = this.get('allTopics'),
+      configuredTopics = this.get('session.config.sda.topics'),
+      selectedFile = this.get('selectedFile'),
+      fileTopics = selectedFile.get('semMD.topics'),
+      shownTopics = [];
+
+    configuredTopics.forEach(function(myTopic) {
+      var topic = allTopics.find(function(topic, index, enumerable) {
+        return myTopic === topic.get('label');
+      });
+      shownTopics.push(topic);
+    });
+
+    // Set selection state based on selected file:
+    shownTopics.forEach(function(shownTopic, index, enumerable) {
+      var curFileTopic = fileTopics.find(function(fileTopic, index, enumerable) {
+        return fileTopic.label === shownTopic.get('label');
       });
 
-      return results;
-  }.property('session.config'),
+      // If the file contains the topic from the selection set the selection
+      // state in the shown topic accordingly:
+      if (curFileTopic) {
+        shownTopic.set('isSelected', true);
+      } else {
+        shownTopic.set('isSelected', false);
+      }
+    });
+
+    return shownTopics;
+  }.property('session.config', 'selectedFile.semMD.topics.@each'),
+
+  toggleDigitalObjectSelection: function(digObj) {
+    var flag = digObj.get('isSelected');
+
+    this.get('digitalObjects').forEach(function(obj) {
+      obj.set('isSelected', false);
+    });
+
+    digObj.set('isSelected', !flag);
+
+    this.set('selectedFile', digObj);
+
+    if (digObj.get('isSelected') === false) {
+      this.set('selectedFile', null);
+    }
+  },
+
+  selectDigitalObject: function(digObj) {
+    var flag = digObj.get('isSelected');
+
+    if (flag) return;
+
+    this.get('digitalObjects').forEach(function(obj) {
+      obj.set('isSelected', false);
+    });
+
+    digObj.set('isSelected', true);
+    this.set('selectedFile', digObj);
+  },
 
   actions: {
     save: function() {
@@ -103,45 +154,51 @@ export default Ember.Controller.extend({
     },
 
     next: function() {
-
-      // FIXXME: check if everything is saved in the buildm-editor and display modal in case of unsaved changes!
-
       var session = this.get('session');
       this.transitionToRoute('geometricenrichment', session);
     },
 
     back: function() {
-
-      // FIXXME: check if everything is saved in the buildm-editor and display modal in case of unsaved changes!
-
       var session = this.get('session');
       this.transitionToRoute('metadata', session);
     },
 
     showTopicSelection: function(digObj) {
-      this.set('fileInfo', digObj);
+      this.set('selectedFile', digObj);
+      this.toggleDigitalObjectSelection(digObj);
     },
 
     showSelectedTopic: function(digObj, topic) {
-      this.set('fileInfo', null);
+      this.set('selectedFile', null);
       this.set('topic', topic);
     },
 
     clickedTopic: function(topic) {
-      var selectedDigitalObject = this.get('fileInfo'),
+      var selectedDigitalObject = this.get('selectedFile'),
         currentTopics = selectedDigitalObject.get('semMD.topics');
 
-      var isTopic = currentTopics.find(function(item) {
+      var selectedTopic = currentTopics.find(function(item) {
         return topic.get('label') === item.label;
       });
 
-      if (isTopic) {
-        currentTopics.removeObject(topic);
+      if (selectedTopic) {
+        currentTopics.removeObject(selectedTopic);
       } else {
-        currentTopics.pushObject(topic);
+        // Create new instance of topic to be added to 'semMD.topics'. It is not
+        // possible to directly use the 'topic' instance, as multiple files can
+        // have the same topic assigned.
+        var t = Ember.Object.create({
+          label: topic.get('label'),
+          description: topic.get('description'),
+          seeds: topic.get('seeds'),
+          crawlId: topic.get('crawlId'),
+          candidates: topic.get('candidates'),
+          isLoading: false
+        });
+        currentTopics.pushObject(t);
 
-        if (!topic.get('candidates').length) {
-          topic.set('isLoading', true);
+        if (!t.get('candidates').length) {
+          t.set('isLoading', true);
         };
       }
 
@@ -153,10 +210,19 @@ export default Ember.Controller.extend({
     },
 
     removeTopic: function(digObj, topic) {
-      // var selectedDigitalObject = this.get('fileInfo');
-      // selectedDigitalObject.get('semMD.topics').removeObject(topic);
+      // Set the 'selectedFile' property to the file the topic belongs to:
+      this.selectDigitalObject(digObj);
+
       digObj.get('semMD.topics').removeObject(topic);
-      topic.toggleProperty('isSelected');
+
+      // // Deselect tools shown on the right:
+      // var selectedTopic = this.get('topics').find(function(item) {
+      //   return topic.get('label') === item.get('label');
+      // });
+      //
+      // if (selectedTopic) {
+      //   selectedTopic.toggleProperty('isSelected');
+      // }
     },
 
     showTopic: function(topic) {

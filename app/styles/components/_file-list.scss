@@ -6,6 +6,16 @@
   color: color(dark-gray);
 
   @include clearfix;
+
+  .files-wrapper {
+    @include clearfix;
+  }
+
+  .file-is-selected {
+    margin-top: 0;
+    padding: 0;
+    background: blue;
+  }
 }
 
 .c-file-list__category {
