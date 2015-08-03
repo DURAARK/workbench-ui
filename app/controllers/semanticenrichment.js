@@ -161,13 +161,43 @@ export default Ember.Controller.extend({
     // },
 
     next: function() {
-      var session = this.get('session');
-      this.transitionToRoute('geometricenrichment', session);
+      var session = this.get('session'),
+        controller = this;
+
+      session.get('digitalObjects').forEach(function(digObj) {
+        // FIXXME: remove ember-data and plain javascript models ASAP!
+        if (_.isFunction(digObj.get)) {
+          let semMD = digObj.get('semMD'),
+            tmp = JSON.parse(JSON.stringify(semMD));
+          digObj.set('semMD', tmp);
+        }
+      });
+
+      session.save().then(function(session) {
+        controller.transitionToRoute('geometricenrichment', session);
+      }).catch(function(err) {
+        throw new Error(err);
+      });
     },
 
     back: function() {
-      var session = this.get('session');
-      this.transitionToRoute('metadata', session);
+      var session = this.get('session'),
+        controller = this;
+
+      session.get('digitalObjects').forEach(function(digObj) {
+        // FIXXME: remove ember-data and plain javascript models ASAP!
+        if (_.isFunction(digObj.get)) {
+          let semMD = digObj.get('semMD'),
+            tmp = JSON.parse(JSON.stringify(semMD));
+          digObj.set('semMD', tmp);
+        }
+      });
+
+      session.save().then(function(session) {
+        controller.transitionToRoute('metadata', session);
+      }).catch(function(err) {
+        throw new Error(err);
+      });
     },
 
     showTopicSelection: function(digObj) {
@@ -209,7 +239,7 @@ export default Ember.Controller.extend({
         };
       }
 
-      this.send('save');
+      // this.send('save');
     },
 
     removeTopic: function(digObj, topic) {
@@ -218,7 +248,7 @@ export default Ember.Controller.extend({
 
       digObj.get('semMD.topics').removeObject(topic);
 
-      this.send('save');
+      // this.send('save');
     },
 
     showTopic: function(topic) {

@@ -23,13 +23,43 @@ export default Ember.Controller.extend({
     },
 
     next: function() {
-      var session = this.get('session');
-      this.transitionToRoute('digitalpreservation', session);
+      var session = this.get('session'),
+        controller = this;
+
+      session.get('digitalObjects').forEach(function(digObj) {
+        // FIXXME: remove ember-data and plain javascript models ASAP!
+        if (_.isFunction(digObj.get)) {
+          let geoMD = digObj.get('geoMD'),
+            tmp = JSON.parse(JSON.stringify(geoMD));
+          digObj.set('geoMD', tmp);
+        }
+      });
+
+      session.save().then(function(session) {
+        controller.transitionToRoute('digitalpreservation', session);
+      }).catch(function(err) {
+        throw new Error(err);
+      });
     },
 
     back: function() {
-      var session = this.get('session');
-      this.transitionToRoute('semanticenrichment', session);
+      var session = this.get('session'),
+        controller = this;
+
+      session.get('digitalObjects').forEach(function(digObj) {
+        // FIXXME: remove ember-data and plain javascript models ASAP!
+        if (_.isFunction(digObj.get)) {
+          let geoMD = digObj.get('geoMD'),
+            tmp = JSON.parse(JSON.stringify(geoMD));
+          digObj.set('geoMD', tmp);
+        }
+      });
+
+      session.save().then(function(session) {
+        controller.transitionToRoute('semanticenrichment', session);
+      }).catch(function(err) {
+        throw new Error(err);
+      });
     },
 
     toggleToolSelection: function(digObj, toolName, isChecked) {
@@ -78,7 +108,7 @@ export default Ember.Controller.extend({
         currentTools.pushObject(t);
       }
 
-      this.send('save');
+      // this.send('save');
     },
 
     removeTool: function(digObj, topic) {
@@ -87,7 +117,7 @@ export default Ember.Controller.extend({
 
       digObj.get('geoMD.tools').removeObject(topic);
 
-      this.send('save');
+      // this.send('save');
     },
 
     showSelectedTool: function(digObj, tool) {
