@@ -16,18 +16,18 @@
 
     <h2 style="margin-top: 1em;">Geometric Enrichment</h2>
 
-		<hr>
+    <hr>
 
     {{#if pointClouds.length}}
-    {{#file-list files=pointClouds as |pc|}}
-      <div>
-        {{digital-object-sementic item=pc details="showDetails" select="showToolSelection"}}
+      {{#file-list files=pointClouds as |pc|}}
+        <div>
+          {{digital-object-sementic item=pc details="showDetails" select="showToolSelection"}}
 
-        {{#each tool in do.geoMD.tools}}
-          {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
-        {{/each}}
-      </div>
-    {{/file-list}}
+          {{#each tool in pc.geoMD.tools}}
+            {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
+          {{/each}}
+        </div>
+      {{/file-list}}
     {{else}}
       <h3>To use the geometric enrichment tools at least one point cloud file (E57) has to be selected.</h3>
     {{/if}}
