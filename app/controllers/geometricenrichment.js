@@ -88,8 +88,28 @@ export default Ember.Controller.extend({
         return tool.get('label') === item.label;
       });
 
+      var path = selectedDigitalObject.get('path'),
+        derivative = null;
+
+      // FIXXME!
+      if (tool.get('label') === 'IFC Reconstruction') {
+        if (path.endsWith('Nygade_Scan1001.e57')) {
+          derivative = {
+            path: '/duraark-storage/files/Nygade_Scan1001_RECONSTRUCTED.ifc'
+          };
+        } else if (path.endsWith('Plan3D_OG_subsampled.e57')) {
+          derivative = {
+            path: '/duraark-storage/files/Plan3D_OG_subsampled_RECONSTRUCTED.ifc'
+          };
+        }
+      }
+
       if (selectedTool) {
         currentTools.removeObject(selectedTool);
+        if (derivative) {
+          var idx = selectedDigitalObject.derivatives.indexOf(derivative);
+          selectedDigitalObject.derivatives.splice(idx, 1);
+        }
       } else {
         // Create new instance of tool to be added to 'geoMD.tools'. It is not
         // possible to directly use the 'tool' instance, as multiple files can
@@ -106,6 +126,10 @@ export default Ember.Controller.extend({
           t.set('hypothesisImages', tool.get('hypothesisImages'));
         }
         currentTools.pushObject(t);
+
+        if (derivative) {
+          selectedDigitalObject.derivatives.push(derivative);
+        }
       }
 
       // this.send('save');

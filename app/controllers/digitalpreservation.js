@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
     createRosettaSIP: function() {
       // FIXXME: add authentification mechanism!
       alert('Data deposit to Rosetta is disabled for the public version, to not overload the system. You can use the "Download BagIt SIP" option.');
-      
+
       // console.log('Schedule BagIt SIP creation ...');
       //
       // let session = this.get('session'),
