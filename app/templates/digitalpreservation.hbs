@@ -8,10 +8,14 @@
 	<div style="">
 		<div class="c-link-list-right__generation">
 			<div class="c-link-list-grid-small">
-						<button {{action "createBagItSIP"}}>Download BagIt SIP</button>
+						<button {{action "createBagItSIP"}}>
+							{{#unless bagIsCreating}}Download BagIt SIP{{else}}Creating SIP ...{{/unless}}
+							</button>
 					</div>
 			<div class="c-link-list-grid-small">
-				<button {{action "createRosettaSIP"}}>Deposit to Rosetta</button>
+				<button {{action "createRosettaSIP"}}>
+					{{#unless rosettaIsCreating}}Deposit to Rosetta{{else}}Depositing SIP ...{{/unless}}
+					</button>
 			</div>
 		</div>
 	</div>
