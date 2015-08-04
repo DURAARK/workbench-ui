@@ -8,7 +8,7 @@
   }
   .l-file-large {
     @include gallery(1 of 3);
-    padding-bottom: rhythm(0.8);
+    // padding-bottom: rhythm(0.8);
     &.l-file-small {
       @include gallery(1 of 3);
       padding-bottom: rhythm (0.4);

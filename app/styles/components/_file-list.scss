@@ -9,12 +9,15 @@
 
   .files-wrapper {
     @include clearfix;
+    margin-bottom: 2em;
   }
 
   .file-is-selected {
-    margin-top: 0;
-    padding: 0;
-    background: blue;
+    padding: 1em;
+    background: rgba(128, 128, 128, 0.33);
+    border: 3px dashed #ccc;
+    @include round-corners($amount: 2px);
+    @include clearfix;
   }
 }
 
