@@ -9,14 +9,14 @@
   sockets, e.g. power switches, is shown.
 
   <hr>
-  
+
   <div class="l-image-presenter">
     <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Hypothesis Results</div>
 
     <div class="l-image-list">
       {{#each img in tool.hypothesisImages}}
         <div class="l-image">
-          <img src="{{img.src}}" alt="Hypothesis Result Image" />
+          <img {{action "clickImage" img}} src="{{img.src}}" alt="Hypothesis Result Image" />
         </div>
       {{/each}}
     </div>
@@ -30,7 +30,7 @@
     <div class="l-image-list">
       {{#each img in tool.ruleSetImages}}
         <div class="l-image">
-          <img src="{{img.src}}" alt="Rule Set Image" />
+          <img {{action "clickImage" img}} src="{{img.src}}" alt="Rule Set Image" />
         </div>
       {{/each}}
     </div>
@@ -44,7 +44,7 @@
     <div class="l-image-list">
       {{#each img in tool.elecDetectImages}}
         <div class="l-image">
-          <img src="{{img.src}}" alt="Detection Result Image" />
+          <img {{action "clickImage" img}} src="{{img.src}}" alt="Detection Result Image" />
         </div>
       {{/each}}
     </div>
