@@ -29,36 +29,36 @@ function post(url, data) {
 export default Ember.Controller.extend({
   actions: {
     createRosettaSIP: function() {
-      // FIXXME: add authentification mechanism!
-      alert('Data deposit to Rosetta is disabled for the public version, to not overload the system. You can use the "Download BagIt SIP" option.');
+      //// FIXXME: add authentification mechanism!
+      //alert('Data deposit to Rosetta is disabled for the public version, to not overload the system. You can use the "Download BagIt SIP" option.');
 
-      // console.log('Schedule BagIt SIP creation ...');
-      //
-      // let session = this.get('session'),
-      //   url = sipGeneratorEndpoint.host + '/sip',
-      //   controller = this;
-      //
-      // var plainSession = {};
-      //
-      // plainSession['physicalAssets'] = session.get('physicalAssets').toArray();
-      // plainSession['digitalObjects'] = session.get('digitalObjects').toArray();
-      //
-      // let body = {
-      //   session: [plainSession],
-      //   output: {
-      //     type: 'rosetta'
-      //   }
-      // };
-      //
-      // controller.set('rosettaIsCreating', true);
-      //
-      // _post(url, body).then(function(result) {
-      //   console.log('Sucessfully created Rosetta SIP at: ' + JSON.stringify(result, 4, null));
-      //   controller.set('rosettaIsCreating', false);
-      // }).catch(function(err) {
-      //   controller.set('rosettaIsCreating', false);
-      //   throw new Error(err);
-      // });
+      console.log('Schedule Rosetta SIP creation and deposit ...');
+
+      let session = this.get('session'),
+        url = sipGeneratorEndpoint.host + '/sip',
+        controller = this;
+
+      var plainSession = {};
+
+      plainSession['physicalAssets'] = session.get('physicalAssets').toArray();
+      plainSession['digitalObjects'] = session.get('digitalObjects').toArray();
+
+      let body = {
+        session: [plainSession],
+        output: {
+          type: 'rosetta'
+        }
+      };
+
+      controller.set('rosettaIsCreating', true);
+
+      _post(url, body).then(function(result) {
+        console.log('Sucessfully created Rosetta SIP at: ' + JSON.stringify(result, 4, null));
+        controller.set('rosettaIsCreating', false);
+      }).catch(function(err) {
+        controller.set('rosettaIsCreating', false);
+        throw new Error(err);
+      });
     },
 
     createBagItSIP: function() {
