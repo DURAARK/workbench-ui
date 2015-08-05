@@ -228,7 +228,6 @@ export default Ember.Controller.extend({
   },
 
   unselectDigitalObjects: function() {
-    debugger;
     this.get('digitalObjects').forEach(function(obj) {
       obj.set('isSelected', false);
     });
