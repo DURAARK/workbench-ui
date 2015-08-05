@@ -36,6 +36,7 @@ export default Ember.Controller.extend({
       });
 
       session.save().then(function(session) {
+        controller.unselectDigitalObjects();
         controller.transitionToRoute('digitalpreservation', session);
       }).catch(function(err) {
         throw new Error(err);
@@ -224,5 +225,12 @@ export default Ember.Controller.extend({
 
     digObj.set('isSelected', true);
     this.set('selectedDigitalObject', digObj);
+  },
+
+  unselectDigitalObjects: function() {
+    debugger;
+    this.get('digitalObjects').forEach(function(obj) {
+      obj.set('isSelected', false);
+    });
   }
 });

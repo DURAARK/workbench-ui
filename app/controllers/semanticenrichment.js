@@ -122,6 +122,13 @@ export default Ember.Controller.extend({
     this.set('selectedDigitalObject', digObj);
   },
 
+  unselectDigitalObjects: function() {
+    debugger;
+    this.get('digitalObjects').forEach(function(obj) {
+      obj.set('isSelected', false);
+    });
+  },
+
   actions: {
     save: function() {
       var session = this.get('session');
@@ -129,36 +136,6 @@ export default Ember.Controller.extend({
         throw new Error(err);
       });
     },
-
-    // save: function() {
-    //   var session = this.get('session'),
-    //     url = sdaEndpoint.host + '/sessions/' + session.get('id'),
-    //     controller = this;
-    //
-    //   var digObjs = this.get('digitalObjects');
-    //
-    //   digObjs.forEach(function(digObj) {
-    //     digObj.get('semMD.topics').forEach(function(topic) {
-    //
-    //       if (!topic.candidates.length) {
-    //         var topicCrawler = new DURAARK.TopicCrawler({
-    //             apiEndpoint: sdaEndpoint,
-    //           }),
-    //           crawlId = topic.crawlId;
-    //
-    //         console.log('crawlId: ' + crawlId);
-    //
-    //         if (crawlId === -1) {
-    //           controller.initiateCrawl(topicCrawler, topic);
-    //         } else {
-    //           controller.askForCandidates(topicCrawler, topic);
-    //         }
-    //       }
-    //     });
-    //   });
-    //
-    //   session.save();
-    // },
 
     next: function() {
       var session = this.get('session'),
@@ -174,6 +151,7 @@ export default Ember.Controller.extend({
       });
 
       session.save().then(function(session) {
+        controller.unselectDigitalObjects();
         controller.transitionToRoute('geometricenrichment', session);
       }).catch(function(err) {
         throw new Error(err);
