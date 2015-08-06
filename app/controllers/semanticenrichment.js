@@ -222,11 +222,11 @@ export default Ember.Controller.extend({
 
             console.log('crawlId: ' + crawlId);
 
-            if (crawlId === -1) {
+            // if (crawlId === -1) {
               this.initiateCrawl(topicCrawler, t);
-            } else {
-              this.askForCandidates(topicCrawler, t);
-            }
+            // } else {
+            //   this.askForCandidates(topicCrawler, t);
+            // }
           }
         }
       }

@@ -12,7 +12,7 @@ TopicCrawler.prototype.initiateCrawl = function(topic, params) {
   // var url = this.apiEndpoint + '/topics';
 
   var seeds = topic.seeds.join(';');
-  var url = that.apiEndpoint + 'crawl?seeds=' + seeds + '&user=' + params.user + '&depth=' + params.depth;
+  var url = that.apiEndpoint.host + '/crawls?seeds=' + seeds + '&user=' + params.user + '&depth=' + params.depth;
 
   console.log('url: ' + url);
 
