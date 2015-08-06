@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  results: null,
 
   actions: {
     click: function(topic) {

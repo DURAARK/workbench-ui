@@ -1,22 +1,26 @@
 <div class="l-cards c-cards">
 
-  {{#if result.length}}
+  {{#if result.candidates.results.bindings}}
 
     <table class="c-candidate-list">
       <thead>
         <tr>
-          <!-- <th></th> -->
-          <th>Result</th>
+          {{#each col in result.candidates.head.vars}}
+            <th>{{col}}</th>
+          {{/each}}
         </tr>
       </thead>
       <tbody>
-        {{#each item in result}}
-            <tr>
-              <td><a href={{item.buildingName.value}} target="_blank">
-                <!-- {{strip-namespace item.buildingname.value}} -->
-                {{item.buildingName.value}}
-                </a></td>
-            </tr>
+        {{#each row in result.candidates.results.bindings}}
+          <tr>
+            {{#each propName in result.candidates.head.vars}}
+              <td>
+                <a href={{get-prop row propName}} target="_blank">
+                  {{get-prop-stripped row propName}}
+                </a>
+              </td>
+            {{/each}}
+          </tr>
         {{/each}}
       </tbody>
     </table>

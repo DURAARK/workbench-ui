@@ -9,12 +9,12 @@ TopicCrawler.prototype.initiateCrawl = function(topic, params) {
 
   var that = this;
 
-  var url = this.apiEndpoint + '/topics';
+  // var url = this.apiEndpoint + '/topics';
 
-  // var seeds = topic.seeds.join(';');
-  // var url = that.apiEndpoint + 'crawl?seeds=' + seeds + '&user=' + params.user + '&depth=' + params.depth;
-  //
-  // console.log('url: ' + url);
+  var seeds = topic.seeds.join(';');
+  var url = that.apiEndpoint + 'crawl?seeds=' + seeds + '&user=' + params.user + '&depth=' + params.depth;
+
+  console.log('url: ' + url);
 
   return new Ember.RSVP.Promise(function(resolve, reject) {
     return that._post(url, topic).then(function(result) {
@@ -30,7 +30,11 @@ TopicCrawler.prototype.getCandidates = function(crawlId) {
 
   var that = this;
 
-  var url = 'http://localhost:5005/topics/candidates?crawl_id=' + crawlId;
+  // var url = this.apiEndpoint.host + '/crawls?crawl_id=' + crawlId;
+  var url = this.apiEndpoint.host + '/crawls',
+    data = {
+      crawl_id: crawlId
+    };
 
   // var seeds = topic.seeds.join(';');
   // var url = that.apiEndpoint + 'crawl?seeds=' + seeds + '&user=' + params.user + '&depth=' + params.depth;
@@ -38,7 +42,7 @@ TopicCrawler.prototype.getCandidates = function(crawlId) {
   console.log('url: ' + url);
 
   return new Ember.RSVP.Promise(function(resolve, reject) {
-    return that._get(url).then(function(result) {
+    return that._post(url, data).then(function(result) {
       resolve(result);
     }).catch(function(err) {
       reject(err);
@@ -65,18 +69,18 @@ TopicCrawler.prototype._get = function(url) {
 }
 
 TopicCrawler.prototype._post = function(url, data) {
-    var that = this;
+  var that = this;
 
-    return new Ember.RSVP.Promise(function(resolve, reject) {
-        function handler(data, status, jqxhr) {
-            if (status === 'success') {
-                resolve(data);
-            } else {
-                reject(new Error('[MetadataExtractionAPIMixin::_post]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
-            }
-        }
+  return new Ember.RSVP.Promise(function(resolve, reject) {
+    function handler(data, status, jqxhr) {
+      if (status === 'success') {
+        resolve(data);
+      } else {
+        reject(new Error('[MetadataExtractionAPIMixin::_post]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
+      }
+    }
 
-        Ember.$.post(url, data, handler);
-    });
+    Ember.$.post(url, data, handler);
+  });
 }
 export default TopicCrawler;

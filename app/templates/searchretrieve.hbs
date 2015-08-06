@@ -48,8 +48,8 @@
           {{loading-spinner-center}}
         {{else}}
 
-          {{#if result}}
-            {{query-result-viewer result=result.candidates.results.bindings icon="fa-file-text-o"}}
+          {{#if result.candidates}}
+            {{query-result-viewer result=result icon="fa-file-text-o"}}
           {{else}}
               {{#help-box}}
                 <div class="c-help-box__hint">
