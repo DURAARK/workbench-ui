@@ -23,6 +23,7 @@ export default Ember.Controller.extend({
 
       controller.get('session').save().then(function() {
         controller.send('addPendingAction');
+        topic.set('isLoading', false);
         controller.askForCandidates(crawler, topic);
       });
 
@@ -220,7 +221,7 @@ export default Ember.Controller.extend({
               }),
               crawlId = t.crawlId;
 
-            console.log('crawlId: ' + crawlId);
+            // console.log('crawlId: ' + crawlId);
 
             // if (crawlId === -1) {
               this.initiateCrawl(topicCrawler, t);
