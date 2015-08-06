@@ -17,14 +17,14 @@ export default Ember.Controller.extend({
 
     crawler.initiateCrawl(JSON.parse(JSON.stringify(topic)), params).then(function(result) {
       console.log('result for: ' + topic.label);
-      console.log(JSON.stringify(result, null, 4));
+      // console.log(JSON.stringify(result, null, 4));
 
-      topic.crawlId = result.crawl_id;
+      topic.candidates = result;
 
       controller.get('session').save().then(function() {
         controller.send('addPendingAction');
         topic.set('isLoading', false);
-        controller.askForCandidates(crawler, topic);
+        // controller.askForCandidates(crawler, topic);
       });
 
     }).catch(function(err) {
