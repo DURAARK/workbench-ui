@@ -59,7 +59,7 @@ export default Ember.Controller.extend({
         // FIXXME!
         // if (file.get('path') !== '/duraark-storage/files/Nygade_Scan1001.e57') {
         if (file.get('path').endsWith('.ifc')) {
-          promises.push(controller.addTechnicalMetadata(file));
+          promises.push(controller.addDescriptiveMetadataTo(file));
         }
       });
 
@@ -235,9 +235,13 @@ export default Ember.Controller.extend({
       }).catch(function(err) {
         reject(err);
       });
+    });
+  },
 
-      return;
+  addDescriptiveMetadataTo: function(file) {
+    var controller = this;
 
+    return new Ember.RSVP.Promise(function(resolve, reject) {
       // // Do not request metadata if already present:
       // var asdf = file.get('metadata');
       // if (typeof(file.get('metadata')) !== 'undefined') {
@@ -249,7 +253,7 @@ export default Ember.Controller.extend({
       // NOTE: requests metadata for the given file via the
       //       'metadata-extraction' service
       // FIXXME: utilize store as cache, do not request every time!
-      var md = controller.store.createRecord('metadatum');
+      var md = controller.store.createRecord('buildm');
       md.set('path', file.get('path'));
       md.set('type', file.get('type'));
 
