@@ -1,0 +1,33 @@
+<!--List Container-->
+<ul class="dropdown-list-container">
+
+  <!--First List-->
+  <li class="dropdown-list dropdown-list-no-round-corners">
+    <!--List Title-->
+    <a dropdown-prop="title">Technical Details<i class="dropdown-icon"></i></a>
+    <!--List Items-->
+    <div class="dropdown-list-items dropdown-list-open dropdownlist-grid">
+      <fieldset>
+           {{#each item in overview}}
+            <div class="dropdownlist-grid">
+              <label>{{item.key}}:</label>
+              {{#each value in item.values}}
+                {{input readonly=true value=value}}
+              {{/each}}
+            </div>
+          {{/each}}
+      </fieldset>
+    </div>
+  </li>
+
+  <!-- <li class="dropdown-list">
+    <a dropdown-prop="title">File Details<i class="dropdown-icon"></i></a>
+    <div class="dropdown-list-items dropdownlist-grid">
+      <fieldset>
+        <div class="dropdownlist-grid-small">
+          <label>Coming soon!</label>
+        </div>
+      </fieldset>
+    </div>
+  </li> -->
+</ul>

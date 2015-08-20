@@ -9,7 +9,8 @@ var File = DS.Model.extend({
   atime: DS.attr('date'),
   ctime: DS.attr('date'),
 
-  metadata: DS.attr()
+  metadata: DS.attr(),
+  techMD: DS.attr()
 });
 
 export

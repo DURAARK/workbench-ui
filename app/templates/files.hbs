@@ -35,7 +35,13 @@
 							<div>Message: {{error.msg}}</div>
 						{{/each}}
 					{{else}}
-						{{buildm-viewer file=fileInfo}}
+						{{#if fileInfoIsE57}}
+							{{e57m-viewer file=fileInfo}}
+						{{/if}}
+
+						{{#if fileInfoIsIFC}}
+							{{ifcm-viewer file=fileInfo}}
+						{{/if}}
 					{{/if}}
 				{{else}}
 					{{#help-box}}

@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
   actions: {
     next: function() {
 
-      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
+      // FIXXME: check if everything is saved in the buildm-editor and display modal in case of unsaved changes!
 
       var session = this.get('session');
       this.transitionToRoute('semanticenrichment', session);
@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
 
     back: function() {
 
-      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
+      // FIXXME: check if everything is saved in the buildm-editor and display modal in case of unsaved changes!
 
       var session = this.get('session');
       this.transitionToRoute('files', session);

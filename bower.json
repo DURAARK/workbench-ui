@@ -22,7 +22,8 @@
     "font-awesome": "~4.3.0",
     "vie": "~2.2.0",
     "backbone-forms": "~0.14.0",
-    "numeral": "~1.5.3"
+    "numeral": "~1.5.3",
+    "xml2json": "~1.1.1"
   },
   "resolutions": {
     "ember": ">= 1.8.1 < 2.0.0",

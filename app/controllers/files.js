@@ -11,6 +11,20 @@ export default Ember.Controller.extend({
     return path.replace('/duraark-storage/files/', ''); // FIXXME!
   }.property('fileInfo'),
 
+  fileInfoIsE57: function() {
+    if (!this.get('fileInfo')) return false;
+
+    var path = this.get('fileInfo.path');
+    return path.endsWith('.e57');
+  }.property('fileInfo'),
+
+  fileInfoIsIFC: function() {
+    if (!this.get('fileInfo')) return false;
+
+    var path = this.get('fileInfo.path');
+    return path.endsWith('.ifc');
+  }.property('fileInfo'),
+
   actions: {
     next: function() {
       var controller = this;
@@ -37,7 +51,7 @@ export default Ember.Controller.extend({
       var promises = [];
 
       files.forEach(function(file) {
-        // For programming reasons we request the metadata for all files. Internally the 'addMetadataTo' will
+        // For programming reasons we request the metadata for all files. Internally the 'addTechnicalMetadata' will
         // return a present 'metadata' object and not request the metadata again. The reason for getting the
         // metadata for *all* files is that the data is then present in the
         //if (!file.get('metadata')) {
@@ -45,7 +59,7 @@ export default Ember.Controller.extend({
         // FIXXME!
         // if (file.get('path') !== '/duraark-storage/files/Nygade_Scan1001.e57') {
         if (file.get('path').endsWith('.ifc')) {
-          promises.push(controller.addMetadataTo(file));
+          promises.push(controller.addTechnicalMetadata(file));
         }
       });
 
@@ -111,7 +125,7 @@ export default Ember.Controller.extend({
         });
 
         session.set('digitalObjects', das);
-        
+
         session.save().then(function(session) {
           controller.transitionToRoute('metadata', session);
           controller.send('isLoading', false);
@@ -144,10 +158,6 @@ export default Ember.Controller.extend({
     },
 
     showDetails: function(file) {
-      if (file.get('path').endsWith('e57')) {
-        return;
-      }
-
       var controller = this;
 
       // Reset details pane:
@@ -156,31 +166,33 @@ export default Ember.Controller.extend({
 
       controller.send('isLoading', true, 'Extracting metadata ...');
 
-      this.addMetadataTo(file).then(function(file) {
+      this.addTechnicalMetadata(file).then(function(file) {
         var md = file.get('metadata');
 
-        console.log('showing details for file:   ' + file.get('path'));
-        // console.log('md: ' + JSON.stringify(md, null, 4));
-
-        // NOTE: override 'name' from extraction with filename:
-        var name = file.get('path').split('/').pop(),
-          digObj = file.get('metadata.digitalObject'),
-          pa = file.get('metadata.physicalAsset');
-
-        if (digObj['http://data.duraark.eu/vocab/name']) {
-          digObj['http://data.duraark.eu/vocab/name'] = [{
-            '@value': name
-          }];
-        }
-
-        if (pa['http://data.duraark.eu/vocab/name']) {
-          pa['http://data.duraark.eu/vocab/name'] = [{
-            '@value': 'Session Name' // FIXXME: set session name
-          }];
-        }
+        console.log('showing technical metadata for:   ' + file.get('path'));
 
         controller.set('fileInfo', file);
         controller.send('isLoading', false);
+
+        // // NOTE: override 'name' from extraction with filename:
+        // var name = file.get('path').split('/').pop(),
+        //   digObj = file.get('metadata.digitalObject'),
+        //   pa = file.get('metadata.physicalAsset');
+        //
+        // if (digObj['http://data.duraark.eu/vocab/name']) {
+        //   digObj['http://data.duraark.eu/vocab/name'] = [{
+        //     '@value': name
+        //   }];
+        // }
+        //
+        // if (pa['http://data.duraark.eu/vocab/name']) {
+        //   pa['http://data.duraark.eu/vocab/name'] = [{
+        //     '@value': 'Session Name' // FIXXME: set session name
+        //   }];
+        // }
+        //
+        // controller.set('fileInfo', file);
+        // controller.send('isLoading', false);
       }).catch(function(err) {
         controller.send('isLoading', false);
         // FIXXME: use either one of those two error handling methods!
@@ -191,10 +203,41 @@ export default Ember.Controller.extend({
     }
   },
 
-  addMetadataTo: function(file) {
-    var controller = this;
+  addTechnicalMetadata: function(file) {
+    var mdInstance = null,
+      controller = this;
+
+    console.log('[addTechnicalMetadata] file type: ' + file.get('type'));
+
+    if (file.get('path').endsWith('ifc')) {
+      mdInstance = controller.store.createRecord('ifcm');
+    } else if (file.get('path').endsWith('e57')) {
+      mdInstance = controller.store.createRecord('e57m');
+    } else {
+      throw Error('File type not supported: ' + file.get('path'));
+    }
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
+      mdInstance.set('path', file.get('path'));
+      mdInstance.set('type', file.get('type'));
+
+      mdInstance.save().then(function(result) {
+        if (result.get('extractionErrors')) {
+          return reject(result.get('extractionErrors'));
+        }
+
+        var metadata = result.get('metadata');
+        file.set('techMD', metadata);
+
+        file.save().then(function(file) {
+          resolve(file);
+        });
+      }).catch(function(err) {
+        reject(err);
+      });
+
+      return;
+
       // // Do not request metadata if already present:
       // var asdf = file.get('metadata');
       // if (typeof(file.get('metadata')) !== 'undefined') {
