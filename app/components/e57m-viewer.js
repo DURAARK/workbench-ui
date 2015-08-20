@@ -13,10 +13,28 @@ export default Ember.Component.extend({
     }
 
     _.each(techMD.e57m.e57scan, function(value, key) {
-      result.push({
-        key: key,
-        values: [value]
-      });
+      if (key !== 'sensor_hardware_version' &&
+        key !== 'temperature' &&
+        key !== 'relative_humidity' &&
+        key !== 'atmospheric_pressure' &&
+        key !== 'pose' &&
+        key !== 'index_bounds' &&
+        key !== 'cartesian_bounds' &&
+        key !== 'sphericalbounds' &&
+        key !== 'intensity_limits' &&
+        key !== 'color_limits' &&
+        key !== 'pointSize' &&
+        key !== 'point_fields') {
+
+        if (key === 'description' || key === 'sensor_firmware_version') {
+          value = _.unescape(value);
+        }
+
+        result.push({
+          key: key,
+          values: [value]
+        });
+      }
     });
 
     return result;
