@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('digitalpreservation', { path: "/digitalpreservation/:id" });
 
   this.route('searchretrieve', { path: "/searchretrieve" });
+  this.route('admin');
 });
 
 export default Router;

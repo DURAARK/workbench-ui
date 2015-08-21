@@ -1,0 +1,48 @@
+<div class="c-api-config">
+
+  <h1>API Configuration</h1>
+  <hr>
+
+  <div class="c-api-config__item">
+    <fieldset>
+      <label style="color: black">duraark-sessions</label>
+      {{input readonly=false value=sessionsEndpoint}}
+    </fieldset>
+    <button type="button" {{action "setSessionsEndpoint"}}>Save</button>
+  </div>
+
+  <div class="c-api-config__item">
+    <fieldset>
+      <label style="color: black">duraark-metadata</label>
+      {{input readonly=false value=metadataEndpoint}}
+    </fieldset>
+    <button type="button" {{action "setMetadataEndpoint"}}>Save</button>
+  </div>
+
+  <div class="c-api-config__item">
+    <fieldset>
+      <label style="color: black">duraark-sda</label>
+      {{input readonly=false value=sdaEndpoint}}
+    </fieldset>
+    <button type="button" {{action "setSDAEndpoint"}}>Save</button>
+  </div>
+
+  <div class="c-api-config__item">
+    <fieldset>
+      <label style="color: black">duraark-geometricenrichment</label>
+      {{input readonly=false value=geometricEnrichmentEndpoint}}
+    </fieldset>
+    <button type="button" {{action "setGeometricEnrichmentEndpoint"}}>Save</button>
+  </div>
+
+  <div class="c-api-config__item">
+    <fieldset>
+      <label style="color: black">duraark-digitalpreservation</label>
+      {{input readonly=false value=digitalPreservationEndpoint}}
+    </fieldset>
+    <button type="button" {{action "setDigitalPreservationEndpoint"}}>Save</button>
+  </div>
+
+  {{#link-to 'application'}}WorkbenchUI{{/link-to}}
+
+</div>

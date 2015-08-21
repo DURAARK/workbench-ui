@@ -8,10 +8,14 @@ console.log('Connecting to "metadata/e57m" API via: ' + apiConfig.host);
 
 export
 default ApplicationAdapter.extend({
-    host: apiConfig.host,
+  host: function() {
+    var apiEndpoint = this.duraark.getAPIEndpoint('metadata');
+    console.log('"duraark-metadata" endpoint: ' + apiEndpoint);
+    return apiEndpoint;
+  }.property().volatile(),
 
-    pathForType: function(type) {
-        var camelized = Ember.String.camelize(type);
-        return Ember.String.pluralize(camelized);
-    }
+  pathForType: function(type) {
+    var camelized = Ember.String.camelize(type);
+    return Ember.String.pluralize(camelized);
+  }
 });
