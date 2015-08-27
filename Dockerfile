@@ -6,19 +6,14 @@ RUN DEBIAN_FRONTEND=noninteractive
 RUN apt-get update --fix-missing
 RUN apt-get install -y git build-essential python
 
-RUN npm install -g ember ember-cli
-RUN npm install -g bower
+RUN npm install -g ember ember-cli bower nodemon
 
 # Pull in source code:
 COPY ./ /duraark/workbench-ui
 WORKDIR /duraark/workbench-ui
 
 RUN npm install
-RUN bower install --allow-root
+RUN mv .git .git-tmp && bower install --allow-root; mv .git-tmp .git
 
 EXPOSE 4200
-
-#ENV DURAARK_API_ENDPOINT=http://juliet.cgv.tugraz.at/api/v0.1/
-
-#ENTRYPOINT ["ember", "serve", "--prod", "--proxy", "http://api-gatekeeper"]
-ENTRYPOINT ["ember", "serve"]
+CMD ["ember", "serve", "--prod"]
