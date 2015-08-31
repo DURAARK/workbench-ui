@@ -1,0 +1,7 @@
+workbench-ui:
+  image: duraark/workbench-ui:0.7.0
+  ports:
+    - "4200:4200"
+  environment:
+    - DURAARK_API_ENDPOINT=http://mimas.cgv.tugraz.at
+    #- DURAARK_API_USE_PORTS

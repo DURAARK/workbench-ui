@@ -1,0 +1,12 @@
+workbench-ui:
+  # image: duraark/workbench-ui:0.7.0
+  build: .
+  entrypoint: ember
+  command: serve --watcher=polling
+  ports:
+    - "4200:4200"
+  environment:
+    - DURAARK_API_ENDPOINT=http://localhost
+    # - DURAARK_API_USE_PORTS
+  volumes:
+    - .:/duraark/workbench-ui
