@@ -1,4 +1,4 @@
-# duraark-metadata
+# workbench-ui
 
 [![Circle CI](https://circleci.com/gh/DURAARK/workbench-ui.svg?style=svg)](https://circleci.com/gh/DURAARK/workbench-ui)
 
