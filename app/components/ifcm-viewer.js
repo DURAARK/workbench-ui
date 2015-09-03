@@ -6,7 +6,7 @@ export default Ember.Component.extend({
       result = [],
       controller = this;
 
-    techMD = JSON.parse(techMD);
+    // techMD = JSON.parse(techMD);
 
     console.log('techMD: ' + JSON.stringify(techMD, null, 4));
 

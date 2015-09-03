@@ -1,43 +1,59 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  overview: function() {
+  scans: function() {
     var techMD = this.get('file.techMD.application/json'),
-      result = [],
+      scans = [],
       controller = this;
 
-    techMD = JSON.parse(techMD);
+    // techMD = JSON.parse(techMD);
 
     if (!techMD) {
       return [];
     }
 
-    _.each(techMD.e57m.e57scan, function(value, key) {
-      if (key !== 'sensor_hardware_version' &&
-        key !== 'temperature' &&
-        key !== 'relative_humidity' &&
-        key !== 'atmospheric_pressure' &&
-        key !== 'pose' &&
-        key !== 'index_bounds' &&
-        key !== 'cartesian_bounds' &&
-        key !== 'sphericalbounds' &&
-        key !== 'intensity_limits' &&
-        key !== 'color_limits' &&
-        key !== 'pointSize' &&
-        key !== 'point_fields') {
+    // FIXXME: always return array for e57scan from duraark-metadata service!
+    if (!_.isArray(techMD.e57m.e57scan)) {
+      techMD.e57m.e57scan = [techMD.e57m.e57scan];
+    }
 
-        if (key === 'description' || key === 'sensor_firmware_version') {
-          value = _.unescape(value);
+    _.each(techMD.e57m.e57scan, function(scan, key) {
+
+      let result = [];
+
+      _.each(scan, function(value, key) {
+        if (key !== 'sensor_hardware_version' &&
+          key !== 'temperature' &&
+          key !== 'relative_humidity' &&
+          key !== 'atmospheric_pressure' &&
+          key !== 'pose' &&
+          key !== 'index_bounds' &&
+          key !== 'cartesian_bounds' &&
+          key !== 'sphericalbounds' &&
+          key !== 'intensity_limits' &&
+          key !== 'color_limits' &&
+          key !== 'pointSize' &&
+          key !== 'point_fields') {
+
+          if (key === 'description' || key === 'sensor_firmware_version') {
+            value = _.isEmpty(value) ? 'undefined' : _.unescape(value);
+          }
+
+          result.push({
+            key: key,
+            values: _.isEmpty(value) ? ['undefined'] : [value]
+          });
         }
+      });
 
-        result.push({
-          key: key,
-          values: [value]
-        });
-      }
+      scans.push({
+        id: key + 1, // NOTE: for user experience reasons start counter at 1, not 0.
+        data: result,
+        show: ((key+1) === 1) ? true : false
+      });
     });
 
-    return result;
+    return scans;
   }.property('file'),
 
   didInsertElement: function() {

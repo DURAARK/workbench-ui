@@ -103,7 +103,7 @@ export default Ember.Component.extend({
     // console.log('form: ' + JSON.stringify(buildm, null, 4));
 
     var formTemplate = this.buildFormTemplate(buildm);
-    formTemplate['itemName'] = buildm['http://data.duraark.eu/vocab/name'][0]['@value'];
+    formTemplate['itemName'] = buildm['http://data.duraark.eu/vocab/buildm/name'][0]['@value'];
 
     this.set('formDescription', formTemplate);
   }.observes('buildm').on('init'),
@@ -122,7 +122,7 @@ export default Ember.Component.extend({
 
     _.each(schemaForType, function(element) {
       var entry = FormEntry.create({
-        origKey: 'http://data.duraark.eu/vocab/' + element.name,
+        origKey: 'http://data.duraark.eu/vocab/buildm/' + element.name,
         key: element.name,
         type: element.type,
         mandatory: (element.minOccurs === '1') ? true : false,
@@ -143,7 +143,7 @@ export default Ember.Component.extend({
       // FIXXME: Working around schema incorrectness in extracted metadata:
       var values = null,
         origKey = entry.get('origKey'),
-        base = 'http://data.duraark.eu/vocab/',
+        base = 'http://data.duraark.eu/vocab/buildm/',
         key = origKey.replace(base, '');
 
       if (key.toLowerCase() === 'identifier') {
