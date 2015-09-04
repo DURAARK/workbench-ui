@@ -19,7 +19,7 @@ default Ember.Component.extend({
 
 	name: function() {
 		var buildm = this.get('item.buildm');
-		var name = buildm['http://data.duraark.eu/vocab/name'][0]['@value'];
+		var name = buildm['http://data.duraark.eu/vocab/buildm/name'][0]['@value'];
 
 		if (name) {
 			return name;
@@ -44,17 +44,17 @@ default Ember.Component.extend({
 
 	isPhysicalAsset: function() {
 			var type = this.get('item')['buildm']['@type'][0];
-			return type === 'http://data.duraark.eu/vocab/PhysicalAsset';
+			return type === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset';
 	},
 
 	isIFC: function() {
 		var type = this.get('item')['buildm']['@type'][0];
-		return type === 'http://data.duraark.eu/vocab/IFCSPFFile';
+		return type === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
 	}.property('item'),
 
 	isE57: function() {
 		var type = this.get('item')['buildm']['@type'][0];
-		return type === 'http://data.duraark.eu/vocab/E57File';
+		return type === 'http://data.duraark.eu/vocab/buildm/E57File';
 	}.property('item')
 });
 

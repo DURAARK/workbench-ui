@@ -53,10 +53,10 @@ export default Ember.Controller.extend({
       var entityToUpdate = null,
         entityCandidates = null;
 
-      if (entityType === 'http://data.duraark.eu/vocab/PhysicalAsset') {
+      if (entityType === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset') {
         console.log('About to update PhysicalAsset');
         entityCandidates = session.get('physicalAssets');
-      } else if (entityType === 'http://data.duraark.eu/vocab/IFCSPFFile' || entityType === 'http://data.duraark.eu/vocab/E57File') {
+      } else if (entityType === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' || entityType === 'http://data.duraark.eu/vocab/buildm/E57File') {
         console.log('About to update DigitalObject');
         entityCandidates = session.get('digitalObjects');
       }
@@ -107,17 +107,17 @@ export default Ember.Controller.extend({
 
   isPhysicalAsset: function() {
     var type = this.get('fileInfo')['buildm']['@type'][0];
-    return type === 'http://data.duraark.eu/vocab/PhysicalAsset';
+    return type === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset';
   }.property('fileInfo'),
 
   isIFC: function() {
     var type = this.get('fileInfo')['buildm']['@type'][0];
-    return type === 'http://data.duraark.eu/vocab/IFCSPFFile';
+    return type === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
   }.property('fileInfo'),
 
   isE57: function() {
     var type = this.get('fileInfo')['buildm']['@type'][0];
-    return type === 'http://data.duraark.eu/vocab/E57File';
+    return type === 'http://data.duraark.eu/vocab/buildm/E57File';
   }.property('fileInfo')
 
 });

@@ -67,6 +67,7 @@ export default Ember.Component.extend({
     newBuildm['@id'] = originalBuildm['@id'];
     newBuildm['@type'] = originalBuildm['@type'];
 
+debugger;
     formDescription.forEach(function(item) {
       var cur = newBuildm[item.get('origKey')] = [];
 
@@ -179,7 +180,7 @@ export default Ember.Component.extend({
   getSchema: function(key) {
     var schemaInfo = {};
 
-    // NOTE: conversion from xsd via http://www.utilities-online.info/xmltojson
+    // NOTE: buildm2.2 conversion from xsd via http://www.utilities-online.info/xmltojson
     var schema = {
       "xs:schema": {
         "-xmlns:xs": "http://www.w3.org/2001/XMLSchema",

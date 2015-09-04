@@ -8,7 +8,7 @@ export default Ember.Component.extend({
 
     // techMD = JSON.parse(techMD);
 
-    console.log('techMD: ' + JSON.stringify(techMD, null, 4));
+    // console.log('techMD: ' + JSON.stringify(techMD, null, 4));
 
     if (!techMD) {
       return [];

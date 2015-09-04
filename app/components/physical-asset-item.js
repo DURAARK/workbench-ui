@@ -21,8 +21,8 @@ default Ember.Component.extend({
       var buildm = this.get('item.buildm');
       var name = "Session";
 
-      if (buildm['http://data.duraark.eu/vocab/name'] && buildm['http://data.duraark.eu/vocab/name'].length) {
-        name = buildm['http://data.duraark.eu/vocab/name'][0]['@value'];
+      if (buildm['http://data.duraark.eu/vocab/buildm/name'] && buildm['http://data.duraark.eu/vocab/buildm/name'].length) {
+        name = buildm['http://data.duraark.eu/vocab/buildm/name'][0]['@value'];
       }
       return name;
     }

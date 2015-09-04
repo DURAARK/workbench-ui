@@ -78,15 +78,15 @@ export default Ember.Controller.extend({
 
           // FIXXME: how to combine pa data from all files?
           var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
-            '@type': ['http://data.duraark.eu/vocab/PhysicalAsset'],
-            'http://data.duraark.eu/vocab/name': [{
+            '@type': ['http://data.duraark.eu/vocab/buildm/PhysicalAsset'],
+            'http://data.duraark.eu/vocab/buildm/name': [{
               '@value': 'Nygade Building'
             }]
           };
 
           var sessionLabel = controller.get('session.label');
 
-          paMD['http://data.duraark.eu/vocab/name'] = [{
+          paMD['http://data.duraark.eu/vocab/buildm/name'] = [{
             '@value': sessionLabel
           }];
 
@@ -95,18 +95,18 @@ export default Ember.Controller.extend({
 
           var name = file.get('path').replace('/duraark-storage/files/', ''); // FIXXME!
           var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
-            '@type': ['http://data.duraark.eu/vocab/E57File'],
-            'http://data.duraark.eu/vocab/name': [{
+            '@type': ['http://data.duraark.eu/vocab/buildm/E57File'],
+            'http://data.duraark.eu/vocab/buildm/name': [{
               '@value': name
             }]
           };
 
-          daMD['http://data.duraark.eu/vocab/name'] = [{
+          daMD['http://data.duraark.eu/vocab/buildm/name'] = [{
             '@value': name
           }];
 
           var digOb = Ember.Object.create({
-            label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/name'][0]['@value'] : 'Edit name',
+            label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/buildm/name'][0]['@value'] : 'Edit name',
             // label: file.get('path'),
             buildm: daMD,
             semMD: Ember.Object.create({
@@ -179,14 +179,14 @@ export default Ember.Controller.extend({
         //   digObj = file.get('metadata.digitalObject'),
         //   pa = file.get('metadata.physicalAsset');
         //
-        // if (digObj['http://data.duraark.eu/vocab/name']) {
-        //   digObj['http://data.duraark.eu/vocab/name'] = [{
+        // if (digObj['http://data.duraark.eu/vocab/buildm/name']) {
+        //   digObj['http://data.duraark.eu/vocab/buildm/name'] = [{
         //     '@value': name
         //   }];
         // }
         //
-        // if (pa['http://data.duraark.eu/vocab/name']) {
-        //   pa['http://data.duraark.eu/vocab/name'] = [{
+        // if (pa['http://data.duraark.eu/vocab/buildm/name']) {
+        //   pa['http://data.duraark.eu/vocab/buildm/name'] = [{
         //     '@value': 'Session Name' // FIXXME: set session name
         //   }];
         // }

@@ -1,11 +1,26 @@
 <!--List Container-->
 <ul class="dropdown-list-container">
 
-  <!--First List-->
+  {{#each scan in scans}}
   <li class="dropdown-list dropdown-list-no-round-corners">
-    <!--List Title-->
+    <a dropdown-prop="title">Scanner Run #{{scan.id}}<i class="dropdown-icon"></i></a>
+    <div class="dropdown-list-items {{if scan.show 'dropdown-list-open'}} dropdownlist-grid">
+      <fieldset>
+           {{#each item in scan.data}}
+            <div class="dropdownlist-grid">
+              <label>{{item.key}}:</label>
+              {{#each value in item.values}}
+                {{input readonly=true value=value}}
+              {{/each}}
+            </div>
+          {{/each}}
+      </fieldset>
+    </div>
+  </li>
+  {{/each}}
+
+  <!-- <li class="dropdown-list dropdown-list-no-round-corners">
     <a dropdown-prop="title">Technical Details<i class="dropdown-icon"></i></a>
-    <!--List Items-->
     <div class="dropdown-list-items dropdown-list-open dropdownlist-grid">
       <fieldset>
            {{#each item in overview}}
@@ -18,7 +33,7 @@
           {{/each}}
       </fieldset>
     </div>
-  </li>
+  </li> -->
 
   <!-- <li class="dropdown-list">
     <a dropdown-prop="title">File Details<i class="dropdown-icon"></i></a>
