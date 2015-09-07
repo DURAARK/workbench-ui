@@ -54,3 +54,8 @@ article {
   border-left: 2px solid color(white);
   border-right: 2px solid color(white);
 }
+
+// override 'material' design defaults
+tbody {
+  color: black;
+}

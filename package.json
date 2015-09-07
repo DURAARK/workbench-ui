@@ -37,6 +37,7 @@
     "ember-export-application-global": "^1.0.2"
   },
   "dependencies": {
+    "node-sass": "^3.3.2",
     "vie": "^2.1.2"
   }
 }

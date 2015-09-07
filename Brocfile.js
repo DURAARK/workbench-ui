@@ -13,6 +13,9 @@ var app = new EmberApp({
 app.import('bower_components/please-wait/build/please-wait.min.js');
 app.import('bower_components/please-wait/build/please-wait.css');
 
+app.import('bower_components/material-design-lite/material.min.css');
+app.import('bower_components/material-design-lite/material.min.js');
+
 var fontFiles = funnel('bower_components/font-awesome/fonts', {
     destDir: 'fonts'
 });
