@@ -2,16 +2,42 @@ import Ember from 'ember';
 import ENV from '../config/environment';
 
 var defaultHost = ENV.DURAARKAPI.defaultHost || 'http://mimas.cgv.tugraz.at';
+var usePorts = ENV.DURAARKAPI.usePorts;
 
 export default Ember.Service.extend({
-  sessionsEndpoint: defaultHost + '/api/v0.7/sessions',
-  metadataEndpoint: defaultHost + '/api/v0.7/metadata',
-  sdaEndpoint: defaultHost + '/api/v0.7/sda',
-  geometricEnrichmentEndpoint: defaultHost + '/api/v0.7/geometricEnrichment',
-  digitalPreservationEndpoint: defaultHost + '/api/v0.7/digitalPreservation',
+  sessionsEndpoint: {
+    url: defaultHost + '/api/v0.7/sessions',
+    port: 5011
+  },
+  metadataEndpoint: {
+    url: defaultHost + '/api/v0.7/metadata',
+    port: 5012
+  },
+  sdaEndpoint: {
+    url: defaultHost + '/api/v0.7/sda',
+    port: 5013
+  },
+  geometricEnrichmentEndpoint: {
+    url: defaultHost + '/api/v0.7/geometricEnrichment',
+    port: 5014
+  },
+  digitalPreservationEndpoint: {
+    url: defaultHost + '/api/v0.7/digitalPreservation',
+    port: 5015
+  },
 
   getAPIEndpoint: function(service) {
-    return this.get(service + 'Endpoint');
+    var url;
+
+    if (usePorts) {
+      url = defaultHost + ':' + this.get(service + 'Endpoint').port;
+    } else {
+      url = this.get(service + 'Endpoint');
+    }
+
+    console.log('url: ' + url);
+
+    return url;
   },
 
   storeInSDAS: function(session) {
