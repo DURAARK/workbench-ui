@@ -2,19 +2,15 @@ import Ember from 'ember';
 
 export
 default Ember.Route.extend({
-    model: function() {
-        return this.modelFor('application');
+    // beforeModel: function() {
+    //     this.transitionTo('index');
+    // },
+
+    activate: function() {
+            this.modelFor('application').set('hideNavbar', true);
     },
 
-    setupController: function(controller, model) {
-        var sessions = model.get('content');
-
-        // Add the 'view model' properties to the sessions:
-        sessions.forEach(function(session) {
-            session.set('isSelected', false);
-        });
-
-        controller.set('model', model);
-        controller.set('sessions', sessions);
+    deactivate: function() {
+          this.modelFor('application').set('hideNavbar', false);
     }
 });

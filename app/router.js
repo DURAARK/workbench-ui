@@ -6,7 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('overview', { path: "/overview" });
+  this.resource('preingest', { path: "/preingest" });
+  this.resource('retrieve', { path: "/retrieve" });
+
   this.route('files', { path: "/files/:id" });
   this.route('metadata', { path: "/metadata/:id" });
   this.route('semanticenrichment', { path: "/semanticenrichment/:id" });

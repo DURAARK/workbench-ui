@@ -34,6 +34,6 @@ default Ember.Component.extend({
 
     circle.addEventListener('click', openMenu, false);
 
-    win.addEventListener('click', closeMenu, false);
+    //win.addEventListener('click', closeMenu, false);
   }
 });
