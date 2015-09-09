@@ -1,14 +1,1 @@
-<div class="c-preingest">
-
-<header>Current Sessions</header>
-
-<div class="c-tile-list">
-  {{#each session in model}}
-    {{session-card session=session deleteClicked="deleteSession"}}
-  {{/each}}
-
-</div>
-
-{{material-menu createClicked="createSession"}}
-
-</div>
+{{outlet}}

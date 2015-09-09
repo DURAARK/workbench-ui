@@ -1,0 +1,72 @@
+<div class="c-link-list">
+	<div {{action 'back'}} class="c-link-list-grid-small">
+		<div class="c-link-list-back"></div>
+	</div>
+	<div {{action 'next'}} class="c-link-list-grid-small">
+		<div class="c-link-list-next">
+			<h3>Metadata <i class="fa fa-chevron-right"> </i></h3>
+		</div>
+	</div>
+</div>
+
+<div class="c-workflow-page">
+	<header>Files</header>
+
+	<form action="/upload-target" class="dropzone"></form>
+	
+	<div class="l-files">
+
+		<div class="l-file-list">
+			{{#file-list files=files as |file|}}
+				{{file-item item=file select="toggleSelection" details="showDetails"}}
+			{{/file-list}}
+		</div>
+
+		{{#if showSidebar}}
+			<div class="l-file-details">
+
+				{{#if isLoadingMetadata}}
+					<div style="color: white;">LOADING ...</div>
+					{{loading-spinner-center}}
+				{{else}}
+
+					{{#if fileInfo}}
+						<div class="l-file-details-titel">
+							<h3 class="title">{{fileInfoShortName}}</h3>
+						</div>
+						{{#if errors}}
+							{{#each error in errors}}
+								<div>Type: {{error.type}}</div>
+								<div>Message: {{error.msg}}</div>
+							{{/each}}
+						{{else}}
+							{{#if fileInfoIsE57}}
+								{{e57m-viewer file=fileInfo}}
+							{{/if}}
+
+							{{#if fileInfoIsIFC}}
+								{{ifcm-viewer file=fileInfo}}
+							{{/if}}
+						{{/if}}
+					{{else}}
+						{{#help-box}}
+							<div class="c-help-box__hint">
+								To start the pre-ingest workflow select the 3D input data files you want to work on with the
+								<i class="fa fa-check" style="margin-left: 0.5em; margin-right: 0.5em;"></i> symbol below the respective file.
+
+								<br>
+								<br> When clicking on an IFC file item its metadata is shown to help to select the correct file (E57 to come soon).
+
+								<br>
+								<br> Depending on the size of the file the metadata extraction may take some seconds or even minutes. The metadata gets cached after the first extraction to save time for the next views on the data.
+
+							</div>
+						{{/help-box}}
+					{{/if}}
+
+				{{/if}}
+			</div>
+		{{/if}}
+	</div>
+
+</div>

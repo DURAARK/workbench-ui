@@ -16,6 +16,10 @@ export default Ember.Component.extend({
   }.property('session'),
 
   actions: {
+    editClicked: function(session) {
+      this.sendAction('editClicked', session);
+    },
+
     deleteClicked: function(session) {
       this.sendAction('deleteClicked', session);
     }

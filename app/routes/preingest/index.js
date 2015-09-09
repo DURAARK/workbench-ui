@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
-	model: function() {
-		return this.modelFor('preingest');
-	}
+export
+default Ember.Route.extend({
+  model: function() {
+    return this.modelFor('preingest');
+  }
 });
