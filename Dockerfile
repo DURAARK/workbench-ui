@@ -6,7 +6,7 @@ RUN DEBIAN_FRONTEND=noninteractive
 RUN apt-get update --fix-missing
 RUN apt-get install -y git build-essential python
 
-RUN npm install -g ember ember-cli bower nodemon
+RUN npm install -g ember-cli bower nodemon
 
 # Pull in source code:
 COPY ./ /duraark/workbench-ui
