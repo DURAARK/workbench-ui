@@ -1,15 +1,19 @@
 import DS from 'ember-data';
 
 var Session = DS.Model.extend({
-    label: DS.attr('string'),
-    files: DS.attr(),
-    physicalAssets: DS.attr(),
-    digitalObjects: DS.attr(),
-    config: DS.attr(),
-    fixedInputFiles: DS.attr(),
+  label: DS.attr('string'),
+  state: DS.attr('string'),
+  address: DS.attr('string'),
+  description: DS.attr('string'),
 
-    createdAt: DS.attr('date'),
-    updatedAt: DS.attr('date')
+  physicalAssets: DS.attr(),
+  digitalObjects: DS.attr(),
+  config: DS.attr(),
+  files: DS.attr(),
+  fixedInputFiles: DS.attr(),
+
+  createdAt: DS.attr('date'),
+  updatedAt: DS.attr('date'),
 });
 
 export

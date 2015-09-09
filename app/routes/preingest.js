@@ -2,15 +2,15 @@ import Ember from 'ember';
 
 export
 default Ember.Route.extend({
-    // beforeModel: function() {
-    //     this.transitionTo('index');
-    // },
+  model: function() {
+    return this.store.find('session');
+  },
 
-    activate: function() {
-            this.modelFor('application').set('hideNavbar', true);
-    },
+  activate: function() {
+    this.modelFor('application').set('hideNavbar', true);
+  },
 
-    deactivate: function() {
-          this.modelFor('application').set('hideNavbar', false);
-    }
+  deactivate: function() {
+    this.modelFor('application').set('hideNavbar', false);
+  }
 });

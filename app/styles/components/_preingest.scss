@@ -1,0 +1,17 @@
+.c-preingest {
+  margin: 3em;
+
+  header {
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+}
+
+.c-tile-list {
+  @include clearfix;
+
+  .building-card-wide {
+    @include gallery(4);
+    margin-bottom: gutter();
+  }
+}
