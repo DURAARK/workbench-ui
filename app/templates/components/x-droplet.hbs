@@ -1,0 +1,37 @@
+<h1>Upload Files ({{files.length}} in total)</h1>
+
+<ul class="counts">
+  <li class="valid">Valid: {{validFiles.length}}</li>
+  <li class="invalid">Invalid: {{invalidFiles.length}}</li>
+  <li class="uploaded">Uploaded: {{uploadedFiles.length}}</li>
+  <li class="deleted">Deleted: {{deletedFiles.length}}</li>
+</ul>
+
+<div class="buttons">
+  <button class="btn" {{action "uploadFiles"}}>Upload All</button>
+  <button class="btn" {{action "clearFiles"}}>Clear</button>
+  <button class="btn" {{action "abortUpload"}}>Abort</button>
+</div>
+
+{{#if uploadStatus.uploading}}
+  <h3 class="uploading-percentage">Uploaded Percentage: {{uploadStatus.percentComplete}}%</h3>
+{{/if}}
+
+{{#x-droplet-area}}
+
+  {{#if uploadStatus.error}}
+    <div class="error">An error occurred during the upload process. Please try again later.</div>
+  {{/if}}
+
+  {{#each validFiles as |file|}}
+
+    <div class="file">
+      {{name}}
+      <a class="remove" {{action "deleteFiles" file}}>Discard.</a> {{x-droplet-preview image=file}}
+    </div>
+
+  {{/each}}
+
+  {{x-droplet-input}}
+
+{{/x-droplet-area}}
