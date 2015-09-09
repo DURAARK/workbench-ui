@@ -1,0 +1,72 @@
+.c-tile-list {
+  > .building-card-wide {
+    @include gallery(4);
+  }
+}
+.building-card-wide > .mdl-card__status {
+  $height: 2em;
+  $opacity: 0.9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $height;
+  padding-right: 0.5em;
+  line-height: $height;
+  text-align: right;
+  color: white;
+  font-weight: bold;
+
+  &.new {
+    background: blue;
+    opacity: $opacity;
+  }
+  &.in-progress {
+    background: orange;
+    opacity: $opacity;
+  }
+  &.archived {
+    background: green;
+    opacity: $opacity;
+  }
+}
+.building-card-wide.mdl-card {
+  position: relative;
+}
+.building-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url("/images/holmenkollen.jpg") center / cover;
+  padding: 0;
+  width: 100%;
+}
+// .building-card-wide > .mdl-card__menu {
+//   color: #fff;
+// }
+.building-card-wide .mdl-card__title-text {
+  padding: 0.2em;
+  color: #000;
+  font-weight: bold;
+  text-align: right;
+  // background: rgba(100,100,100, 0.5);
+  background: white;
+}
+.search-card-wide.mdl-card {
+  display: inline-block;
+  /*width: 512px;*/
+  width: 400px;
+  height: 300px;
+}
+.search-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url("/images/search.jpg") center / cover;
+}
+.search-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+.search-card-wide .mdl-card__title-text {
+  color: #000;
+  font-weight: bold;
+  text-align: right;
+}

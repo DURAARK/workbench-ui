@@ -160,8 +160,8 @@ main {
   transition: all .35s ease-out;
 
   &.active {
-    // opacity: 0;
-    transform: translate(-10vw, 0px);
+    opacity: 0.5;
+    transform: translate(-2vw, 0px);
   }
 
   p {

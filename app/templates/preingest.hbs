@@ -1,107 +1,81 @@
 {{#material-menu}}
-<hr>
+  <!-- <hr> -->
+  <br>
 
-<p>Buildings:</p>
+  <p>Current Sessions</p>
 
-<br>
-<br>
+  <br>
+  <br>
 
-  <!-- Wide card with share menu button -->
-  <style>
-    .building-card-wide.mdl-card {
-      display: inline-block;
-      /*width: 512px;*/
-      width: 400px;
-    }
+  <div class="c-tile-list">
 
-    .building-card-wide > .mdl-card__title {
-      color: #fff;
-      height: 176px;
-      background: url('images/holmenkollen.jpg') center / cover;
-    }
-
-    .building-card-wide > .mdl-card__menu {
-      color: #fff;
-    }
-
-    .building-card-wide .mdl-card__title-text {
-      color: #000;
-      font-weight: bold;
-      text-align: right;
-    }
-
-    .search-card-wide.mdl-card {
-      display: inline-block;
-      /*width: 512px;*/
-      width: 400px;
-      height: 300px;
-    }
-
-    .search-card-wide > .mdl-card__title {
-      color: #fff;
-      height: 176px;
-      background: url('images/search.jpg') center / cover;
-    }
-
-    .search-card-wide > .mdl-card__menu {
-      color: #fff;
-    }
-
-    .search-card-wide .mdl-card__title-text {
-      color: #000;
-      font-weight: bold;
-      text-align: right;
-    }
-  </style>
-
-  <div class="building-card-wide mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text">Haus 30</h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-      Test the "Pre-ingest Workflow" with the <strong>Haus 30</strong> data set.
-    </div>
-    <div class="mdl-card__actions mdl-card--border">
-      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+    <div class="building-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__status in-progress">
+        In Progress
+      </div>
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Haus 30</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        Test the "Pre-ingest Workflow" with the
+        <strong>Haus 30</strong> data set.
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
         EDIT
       </a>
-    </div>
-    <div class="mdl-card__menu">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        REMOVE
+      </a>
+      </div>
+      <!-- <div class="mdl-card__menu">
       <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
         <i class="material-icons">share</i>
       </button>
+    </div> -->
     </div>
-  </div>
 
-  <div class="building-card-wide mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text">Nygade</h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-      Test the "Pre-ingest Workflow" with the <strong>Nygade</strong> data set.
-    </div>
-    <div class="mdl-card__actions mdl-card--border">
-      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+    <div class="building-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__status archived">
+        Archived
+      </div>
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Nygade</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        Test the "Pre-ingest Workflow" with the
+        <strong>Nygade</strong> data set.
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
         EDIT
       </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        REMOVE
+      </a>
+      </div>
     </div>
-    <div class="mdl-card__menu">
-      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-        <i class="material-icons">share</i>
-      </button>
+
+    <div class="building-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__status new">
+        New
+      </div>
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Bygade 72</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        Test the "Pre-ingest Workflow" with the
+        <strong>Bygade 72</strong> data set.
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        EDIT
+      </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        REMOVE
+      </a>
+      </div>
     </div>
-  </div>
 
-  <br>
-  <br>
-
-  <hr>
-
-  <p>Searches:</p>
-
-  <br>
-  <br>
-
-
-
+  </div> <!--  c-tile-list -->
 {{/material-menu}}
