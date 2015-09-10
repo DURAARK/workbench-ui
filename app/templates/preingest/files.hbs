@@ -1,45 +1,3 @@
-{{#x-droplet}}
-
-	<h1>Upload Files ({{files.length}} in total)</h1>
-
-	<ul class="counts">
-		<li class="valid">Valid: {{validFiles.length}}</li>
-		<li class="invalid">Invalid: {{invalidFiles.length}}</li>
-		<li class="uploaded">Uploaded: {{uploadedFiles.length}}</li>
-		<li class="deleted">Deleted: {{deletedFiles.length}}</li>
-	</ul>
-
-	<div class="buttons">
-		<button class="btn" {{action "uploadFiles"}}>Upload All</button>
-		<button class="btn" {{action "clearFiles"}}>Clear</button>
-		<button class="btn" {{action "abortUpload"}}>Abort</button>
-	</div>
-
-	{{#if uploadStatus.uploading}}
-		<h3 class="uploading-percentage">Uploaded Percentage: {{uploadStatus.percentComplete}}%</h3>
-	{{/if}}
-
-	{{#x-droplet-area}}
-
-		{{#if uploadStatus.error}}
-			<div class="error">An error occurred during the upload process. Please try again later.</div>
-		{{/if}}
-
-		{{#each validFiles as |file|}}
-
-			<div class="file">
-				{{name}}
-				<a class="remove" {{action "deleteFiles" file}}>Discard.</a> {{x-droplet-preview image=file}}
-			</div>
-
-		{{/each}}
-
-		{{x-droplet-input}}
-
-	{{/x-droplet-area}}
-
-{{/x-droplet}}
-
 <div class="c-link-list">
 	<div {{action 'back'}} class="c-link-list-grid-small">
 		<div class="c-link-list-back"></div>
@@ -92,7 +50,7 @@
 						{{#help-box}}
 							<div class="c-help-box__hint">
 								To start the pre-ingest workflow select the 3D input data files you want to work on with the
-								<i class="fa fa-check" style="margin-left: 0.5em; margin-right: 0.5em;"></i> symbol below the respective file.
+								<i class="fa fa-check" style="margin-left: 0.5em; margin-right: 0.5em;"></i> symbol below the respective file. l
 
 								<br>
 								<br> When clicking on an IFC file item its metadata is shown to help to select the correct file (E57 to come soon).
@@ -101,7 +59,13 @@
 								<br> Depending on the size of the file the metadata extraction may take some seconds or even minutes. The metadata gets cached after the first extraction to save time for the next views on the data.
 
 							</div>
+
 						{{/help-box}}
+
+						<div class="c-file-upload">
+							{{x-droplet onFilesUploaded="addFiles"}}
+						</div>
+
 					{{/if}}
 
 				{{/if}}

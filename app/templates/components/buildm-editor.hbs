@@ -16,13 +16,13 @@
     <!--List Items-->
     <div class="dropdown-list-items dropdown-list-open dropdown-list-metadata">
       <fieldset>
-        {{#each item in formDescription}}
+        {{#each formDescription as |item|}}
           <div class="dropdownlist-grid-large">
             <label class="dropdown-list-metadata-labels">{{item.label}}:</label>
             {{#if item.mandatory}}*{{/if}}
 
             <div class="dropdown-list-description">{{item.doc}}</div>
-            {{#each value in item.values}}
+            {{#each item.values as |value|}}
               {{input class="dropdown-list-metadata-labels" value=value.value action="metadataChanged" on="key-press"}}
             {{/each}}
           </div>

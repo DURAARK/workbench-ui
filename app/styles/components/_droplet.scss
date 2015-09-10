@@ -1,23 +1,33 @@
 div.droppable {
-    background-color: #eee;
-    height: auto;
-    min-height: 300px;
-    width: 620px;
-    position: relative;
-    padding: 20px 20px 40px 20px;
-    overflow: hidden;
+  padding: 20px;
+  margin: 10px;
+
+  height: auto;
+  min-height: 300px;
+
+  background: rgba(221, 221, 221, 0.17);
+  color: #fff;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1.3em;
+  border: 4px dashed #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 0 4px rgba(221, 221, 221, 0.17), 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  // text-shadow: -1px -1px #aa3030;
+  font-weight: normal;
+  text-align: center;
 }
 
-div.droppable:after {
-    content: "Drop your files here, petal.";
-    font-family: "Times New Roman", serif;
-    color: darkgray;
-    font-size: 14px;
-    font-style: italic;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
+// div.droppable:after {
+//     content: "DROP FILES HERE";
+//     font-family: "Times New Roman", serif;
+//     color: white;
+//     font-size: 3em;
+//     font-style: italic;
+//     position: absolute;
+//     top: 20px;
+//     left: 20px;
+// }
 
 div.droppable div.file {
     width: 100px;

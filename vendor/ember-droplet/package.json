@@ -1,0 +1,56 @@
+{
+  "name": "ember-droplet",
+  "version": "1.0.1",
+  "author": "Adam Timberlake",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.4.1",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-karma": "0.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0",
+    "jasmine": "^2.3.2",
+    "jasmine-core": "^2.3.4",
+    "js-yaml": "^3.3.1",
+    "jshint-stylish": "^2.0.1",
+    "karma": "^0.12.37",
+    "karma-babel-preprocessor": "^5.2.1",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.6",
+    "karma-spec-reporter": "0.0.20",
+    "multer": "^1.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:Wildhoney/EmberDroplet.git"
+  },
+  "description": "Ember HTML5 file uploading with drag & drop and image/file preview.",
+  "bugs": {
+    "url": "https://github.com/Wildhoney/EmberDroplet/issues"
+  },
+  "main": "dist/ember-droplet.js",
+  "directories": {
+    "doc": "docs",
+    "example": "example",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "gulp test",
+    "build": "gulp build",
+    "prepare": "bower i",
+    "start": "node example/server/default.js"
+  },
+  "keywords": [
+    "HTML5 drag and drop",
+    "HTML5 drag & drop",
+    "drag and drop",
+    "drag & drop",
+    "ember image upload",
+    "ember drag and drop",
+    "ember drag & drop"
+  ],
+  "license": "MIT"
+}

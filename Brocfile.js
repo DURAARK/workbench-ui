@@ -13,8 +13,7 @@ var app = new EmberApp({
 app.import('bower_components/material-design-lite/material.min.css');
 app.import('bower_components/material-design-lite/material.min.js');
 
-app.import('bower_components/ember-droplet/dist/ember-droplet.min.js');
-app.import('vendor/bootstrap-v2.3.2.min.css');
+app.import('vendor/ember-droplet/dist/ember-droplet.js');
 
 var fontFiles = funnel('bower_components/font-awesome/fonts', {
     destDir: 'fonts'

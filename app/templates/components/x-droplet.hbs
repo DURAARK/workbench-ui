@@ -1,21 +1,8 @@
-<h1>Upload Files ({{files.length}} in total)</h1>
-
-<ul class="counts">
-  <li class="valid">Valid: {{validFiles.length}}</li>
-  <li class="invalid">Invalid: {{invalidFiles.length}}</li>
-  <li class="uploaded">Uploaded: {{uploadedFiles.length}}</li>
-  <li class="deleted">Deleted: {{deletedFiles.length}}</li>
-</ul>
-
-<div class="buttons">
-  <button class="btn" {{action "uploadFiles"}}>Upload All</button>
-  <button class="btn" {{action "clearFiles"}}>Clear</button>
-  <button class="btn" {{action "abortUpload"}}>Abort</button>
-</div>
-
 {{#if uploadStatus.uploading}}
   <h3 class="uploading-percentage">Uploaded Percentage: {{uploadStatus.percentComplete}}%</h3>
 {{/if}}
+
+<h1>DROP FILES HERE</h1>
 
 {{#x-droplet-area}}
 
@@ -32,6 +19,19 @@
 
   {{/each}}
 
-  {{x-droplet-input}}
+  <!-- {{x-droplet-input}} -->
 
 {{/x-droplet-area}}
+
+<ul class="counts">
+  <li class="valid">Valid: {{validFiles.length}}</li>
+  <li class="invalid">Invalid: {{invalidFiles.length}}</li>
+  <li class="uploaded">Uploaded: {{uploadedFiles.length}}</li>
+  <!-- <li class="deleted">Deleted: {{deletedFiles.length}}</li> -->
+</ul>
+
+<div class="buttons">
+  <button class="btn" {{action "uploadFiles"}}>Upload All</button>
+  <button class="btn" {{action "clearFiles"}}>Clear</button>
+  <button class="btn" {{action "abortUpload"}}>Abort</button>
+</div>

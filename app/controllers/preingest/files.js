@@ -134,6 +134,7 @@ export default Ember.Controller.extend({
           alert(err);
         });
       }).catch(function(err) {
+        alert('Error extracting metadata for selected file(s)');
         throw new Error(err);
       });
     },
@@ -200,6 +201,20 @@ export default Ember.Controller.extend({
         controller.send('showError', err);
         throw new Error(err);
       });
+    },
+
+    addFiles: function(files) {
+      this.store.findAll('file').then(function(files) {
+        controller.set('files', files);
+      });
+
+      // for (var idx = 0; idx < files.length; idx++) {
+      //   var file = files[idx];
+      //   delete file.id;
+      //   var record = this.store.createRecord('file', file);
+      //   this.get('files').pushObject(record);
+      //   // this.store.push(this.store.normalize('file', file));
+      // }
     }
   },
 
@@ -214,6 +229,7 @@ export default Ember.Controller.extend({
     } else if (file.get('path').endsWith('e57')) {
       mdInstance = controller.store.createRecord('e57m');
     } else {
+      alert('File type not supported: ' + file.get('path'));
       throw Error('File type not supported: ' + file.get('path'));
     }
 

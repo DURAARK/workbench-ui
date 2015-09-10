@@ -1,0 +1,30 @@
+{
+  "name": "ember-droplet",
+  "version": "1.0.1",
+  "homepage": "https://github.com/Wildhoney/EmberDroplet",
+  "authors": [
+    "Adam Timberlake <adam.timberlake@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "dependencies": {
+    "ember": ">=2.0.0",
+    "handlebars": ">=3.0.3"
+  },
+  "devDependencies": {},
+  "_release": "1.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.1",
+    "commit": "02665cc21ad60a1c3344f9d99f1b61d9e6be925f"
+  },
+  "_source": "git://github.com/Wildhoney/EmberDroplet.git",
+  "_target": "~1.0.1",
+  "_originalSource": "ember-droplet",
+  "_direct": true
+}
