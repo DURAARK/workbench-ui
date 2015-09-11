@@ -3,7 +3,7 @@ import Ember from 'ember';
 export
 default Ember.Route.extend({
 
-  model: function(params) {
+  model(params) {
     var sessions = this.modelFor('application');
     var session = sessions.objectAt(params.id - 1);
 
@@ -12,7 +12,15 @@ default Ember.Route.extend({
     return session;
   },
 
-  setupController: function(controller, model) {
+  activate() {
+    this.modelFor('preingest').set('hideNavbar', false);
+  },
+
+  deactivate() {
+    this.modelFor('preingest').set('hideNavbar', true);
+  },
+
+  setupController(controller, model) {
     this._super(controller, model);
 
     var session = model;
