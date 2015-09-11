@@ -5,15 +5,15 @@
     <table class="c-candidate-list">
       <thead>
         <tr>
-          {{#each col in result.candidates.head.vars}}
+          {{#each result.candidates.head.vars as |col|}}
             <th>{{col}}</th>
           {{/each}}
         </tr>
       </thead>
       <tbody>
-        {{#each row in result.candidates.results.bindings}}
+        {{#each result.candidates.results.bindings as |row|}}
           <tr>
-            {{#each propName in result.candidates.head.vars}}
+            {{#each result.candidates.head.vars as |propName|}}
               <td>
                 <a href={{get-prop row propName}} target="_blank">
                   {{get-prop-stripped row propName}}

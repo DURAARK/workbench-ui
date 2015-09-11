@@ -1,6 +1,6 @@
 <div class="l-tools c-cards">
 
-  {{#each query in tools}}
+  {{#each tools as |query|}}
     <div class="l-query c-card {{if query.isSelected 'is-selected'}}" {{action "click" query}}>
       <div class="c-tool__header">
         <i class="fa {{icon}}"></i>
