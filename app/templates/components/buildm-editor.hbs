@@ -23,12 +23,12 @@
 
             <div class="dropdown-list-description">{{item.doc}}</div>
             {{#each item.values as |value|}}
-              {{input class="dropdown-list-metadata-labels" value=value.value action="" key-press="metadataChanged"}}
+              {{input class="dropdown-list-metadata-labels" value=value.value key-press="metadataChanged"}}
             {{/each}}
           </div>
           {{#if item.multiples}}
               <div class="dropdownlist-grid-medium">
-                {{input class="dropdown-list-metadata-labels dropdown-list-placehoder" placeholder=item.addLabel value=item.newValue action="metadataChanged" on="key-press"}}
+                {{input class="dropdown-list-metadata-labels dropdown-list-placehoder" placeholder=item.addLabel value=item.newValue key-press="metadataChanged"}}
               </div>
               <div class="dropdownlist-grid-small">
                 <button type="button" {{action "addItem" item}}><i class="fa fa-plus"></i></button>
@@ -36,7 +36,7 @@
             {{else}}
               {{#if item.values.length}}
               {{else}}
-                {{input class="dropdown-list-metadata-labels" value=item.newValue action="metadataChanged" on="key-press"}}
+                {{input class="dropdown-list-metadata-labels" value=item.newValue key-press="metadataChanged"}}
               {{/if}}
             {{/if}}
         {{/each}}

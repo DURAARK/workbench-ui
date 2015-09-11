@@ -27,6 +27,7 @@
 
 		{{#file-list files=digitalObjects as |do|}}
 			<div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
+				<!-- FIXXME: unify *-item components! -->
 				{{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
 
 				{{#each do.semMD.topics as |topic|}}

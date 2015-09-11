@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
       // FIXXME: check if everything is saved in the buildm-editor and display modal in case of unsaved changes!
 
       var session = this.get('session');
-      this.transitionToRoute('files', session);
+      this.transitionToRoute('preingest.files', session);
     },
 
     showDetails: function(item) {

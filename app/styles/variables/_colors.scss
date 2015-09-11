@@ -19,32 +19,38 @@
 // Sublime gutter: https://sublime.wbond.net/packages/Gutter%20Color
 // See the colors you used in the gutter (Awesome if you use sublime text)
 // ==========
-$colors: ( 
-	white: #fff, 
-	silver: #c2c2c2, 
-	gray: #8c8c8c, 
-	light-gray: #F6F6FF, 
-	mid-gray: #cdcbcb, 
-	natural-gray: #e8e8e8, 
-	dark-gray: #3d3e40, 
-	gallery: #3D3E40, 
-	concrete: #f2f2f2, 
-	royal-purple: rgba(85, 26, 139, 0.99), 
-	tuna: rgba(50, 50, 62, 0.5), 
-	woodsmoke:#101014, 
-	shark: #edece4, 
+
+$btn-orange: #a56f39;
+$btn-blue: #3581A5;
+$gui-green: green;
+$gui-main-font: white;
+
+$colors: (
+	white: #fff,
+	silver: #c2c2c2,
+	gray: #8c8c8c,
+	light-gray: #F6F6FF,
+	mid-gray: #cdcbcb,
+	natural-gray: #e8e8e8,
+	dark-gray: #3d3e40,
+	gallery: #3D3E40,
+	concrete: #f2f2f2,
+	royal-purple: rgba(85, 26, 139, 0.99),
+	tuna: rgba(50, 50, 62, 0.5),
+	woodsmoke:#101014,
+	shark: #edece4,
 	yellow: #FAEC39,
 	dirty-yellow: #baaf22,
-	light-orange: #e6892b, 
+	light-orange: #e6892b,
 	mid-orange: #ab5703,
 	light-orange-highlight: #F3BA21,
 	mid-orange-highlight: #a67e13,
-	dark-brown: #55504b, 
-	light-green: #D3E33F, 
-	mid-green: #a4b411, 
+	dark-brown: #55504b,
+	light-green: #D3E33F,
+	mid-green: #a4b411,
 	dark-green: #3a7429,
-	very-green: #75da5e, 
-	flashy-green: #0066A8, 
+	very-green: #75da5e,
+	flashy-green: #0066A8,
 	light-blue: #70ADD5);
 
 .is-selected {
@@ -78,5 +84,3 @@ $text: #fff;
 $background: #34495e;
 $list-header: #16a085;
 $list-item: #1abc9c;
-
-

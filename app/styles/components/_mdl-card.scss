@@ -9,20 +9,20 @@
   padding-right: 0.5em;
   line-height: $height;
   text-align: right;
-  color: white;
+  color: $gui-main-font;
   font-weight: bold;
 
   &.new {
-    background: blue;
     opacity: $opacity;
+    background: $btn-blue;
   }
   &.wip {
-    background: orange;
     opacity: $opacity;
+    background: $btn-orange;
   }
   &.archived {
-    background: green;
     opacity: $opacity;
+    background: $gui-green;
   }
 }
 .building-card-wide.mdl-card {

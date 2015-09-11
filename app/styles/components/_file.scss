@@ -42,11 +42,13 @@
 }
 
 .ifc {
-  @include gradient(color(light-green), color(mid-green), 40px);
+  background: $gui-green;
+  color: $gui-main-font;
 }
 
 .pointcloud {
-  @include gradient(color(very-green), color(dark-green), 40px);
+  background: $btn-blue;
+  color: $gui-main-font;
 }
 
 .c-file__header-building {
@@ -101,7 +103,7 @@
   width: 100%;
   .c-file__actions__button {
       width: 100%;
-      color: color(white);
+      // color: $btn-orange;
     }
 }
 
@@ -109,13 +111,12 @@
 .c-file__action {
   float: center;
   display: inline-block;
-  color: color(white);
+  color: $gui-main-font;
   //width: rhythm(1);
   width: 100%;
   padding-top: rhythm(0.5);
   padding-bottom: rhythm(0.5);
-  @include gradient(color(light-orange), color(mid-orange), 100%);
-  @include round-bottom-corners($amount: 10px);
+  background: $btn-orange;
 
   border-bottom: 5px solid color(dark-gray);
   border-left: 5px solid color(dark-gray);

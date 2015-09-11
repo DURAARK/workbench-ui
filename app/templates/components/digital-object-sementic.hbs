@@ -2,19 +2,13 @@
 	<div {{action "showDetails" item}}>
 
 		{{#if isIFC}}
-			<div class="c-file__header t-file">
+			<div class="c-file__header t-file ifc">
 				3D Model (IFC)
 			</div>
 		{{else}}
-			{{#if isE57}}
-				<div class="c-file__header t-file">
-					Pointcloud (E57)
-				</div>
-			{{else}}
-				<div class="c-file__header t-file">
-					Building
-				</div>
-			{{/if}}
+			<div class="c-file__header t-file pointcloud">
+				Pointcloud (E57)
+			</div>
 		{{/if}}
 
 		<div class="c-file__name">
@@ -28,7 +22,7 @@
 					{{name}}
 					<div class="c-file__size">
 						<h4>{{size}}</h4>
-					</div>					
+					</div>
 				{{else}}
 					<div class="c-file-building">
 						<div class="c-file-building__pic"><img src="/images/building_placeholder.png"> </div>
@@ -42,8 +36,12 @@
 	</div>
 
 	<div class="c-file__actions">
-		<div {{action "select" item}} class="c-file__action">
-			<i class="fa fa-plus"></i>
+		<div {{action "selectItem" item}} class="c-file__action">
+			{{#if item.isSelected}}
+				<i class="fa fa-close"></i>
+			{{else}}
+				<i class="fa fa-check"></i>
+			{{/if}}
 		</div>
 	</div>
 

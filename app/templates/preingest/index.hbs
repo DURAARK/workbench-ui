@@ -9,7 +9,7 @@
 
   </div>
 
-  {{#toggle-menu createClicked="createSession"}}
+  {{#toggle-menu}}
     <nav>
       <ul style="color: black;">
         <li><a href="">Add Session</a>
@@ -41,7 +41,7 @@
         </li>
 
         <li>
-          <button {{action "createClicked"}} class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          <button {{action "createSession"}} class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
             CREATE
           </button>
         </li>

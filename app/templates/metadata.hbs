@@ -21,6 +21,8 @@
 
 		{{#file-list files=session.physicalAssets as |pa|}}
 			{{physical-asset-item item=pa details="showDetails"}}
+			<!-- FIXXME: unify *-item components! -->
+			<!-- {{file-item item=pa details="showDetails"}} -->
 		{{/file-list}}
 
 		<h2 style="margin-top: 1em;">Digital Representation Metadata</h2>
