@@ -1,7 +1,7 @@
 <div class="c-link-list">
 	<div {{action 'back'}} class="c-link-list-grid-small">
 		<div class="c-link-list-back">
-			<h3><i class="fa fa-chevron-left"> </i> Geometric Enrichment</h3>
+			<h3><i class="fa fa-chevron-left"> </i> Geometric Tools</h3>
 		</div>
 	</div>
 
@@ -9,12 +9,17 @@
 		<div class="c-link-list-right__generation">
 			<div class="c-link-list-grid-small">
 						<button {{action "createBagItSIP"}}>
-							{{#unless bagIsCreating}}Download BagIt SIP{{else}}Creating SIP ...{{/unless}}
+							{{#unless bagIsCreating}}Download ZIP{{else}}Creating ZIP ...{{/unless}}
+							</button>
+					</div>
+			<div class="c-link-list-grid-small">
+						<button {{action "createBagItSIP"}}>
+							{{#unless bagIsCreating}}Download BagIt{{else}}Creating BagIt ...{{/unless}}
 							</button>
 					</div>
 			<div class="c-link-list-grid-small">
 				<button {{action "createRosettaSIP"}}>
-					{{#unless rosettaIsCreating}}Deposit to Rosetta{{else}}Depositing SIP ...{{/unless}}
+					{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{/unless}}
 					</button>
 			</div>
 		</div>
@@ -25,7 +30,7 @@
 
 	<div class="l-file-list">
 
-		<h2 style="margin-top: 1em;">Building</h2>
+		<h2 style="margin-top: 1em;">Metadata</h2>
 
 		<hr>
 
@@ -33,7 +38,7 @@
 			{{physical-asset-item item=pa details="showDetails" static=true}}
 		{{/file-list}}
 
-		<h2 style="margin-top: 1em;">Digital Representations</h2>
+		<h2 style="margin-top: 1em;">Files</h2>
 
 		<hr>
 
