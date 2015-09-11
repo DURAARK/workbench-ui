@@ -29,7 +29,7 @@
 			<div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
 				{{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
 
-				{{#each topic in do.semMD.topics}}
+				{{#each do.semMD.topics as |topic|}}
 					{{tool-item tool=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
 				{{/each}}
 			</div>

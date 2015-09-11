@@ -199,7 +199,7 @@
      * @constant COMPUTED_OBSERVER
      * @type {Array}
      */
-    const COMPUTED_OBSERVER = String.w('files.length files.@each.statusType');
+    const COMPUTED_OBSERVER = String.w('files.length files.[].statusType');
 
     /**
      * @constant MESSAGES

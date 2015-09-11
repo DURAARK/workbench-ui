@@ -196,7 +196,7 @@ export default Ember.Controller.extend({
     });
 
     return shownTools;
-  }.property('session.config', 'selectedDigitalObject.geoMD.tools.@each'),
+  }.property('session.config', 'selectedDigitalObject.geoMD.tools.[]'),
 
   toggleDigitalObjectSelection: function(digObj) {
     var flag = digObj.get('isSelected');

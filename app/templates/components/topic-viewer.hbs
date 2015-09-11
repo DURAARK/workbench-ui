@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each candidate in topic.candidates}}
+        {{#each topic.candidates as |candidate|}}
           {{#if candidate.score}}
             <tr>
               <!-- <td><button>Show</button></td> -->

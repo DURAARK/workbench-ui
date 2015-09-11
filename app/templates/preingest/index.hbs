@@ -9,6 +9,44 @@
 
   </div>
 
-  {{material-menu createClicked="createSession"}}
+  {{#toggle-menu createClicked="createSession"}}
+    <nav>
+      <ul style="color: black;">
+        <li><a href="">Add Session</a>
+          <hr>
+        </li>
+        <!-- <li>{{#link-to "searchretrieve"}}Add new search{{/link-to}}</li> -->
+
+        <li>
+          <span>Building Name</span>
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+              {{input class="mdl-textfield__input" type="text" value=name placeholder="Name ..."}}
+            </div>
+          </form>
+
+          <span>Building Address</span>
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+              {{input class="mdl-textfield__input" type="text" value=address placeholder="Address ..."}}
+            </div>
+          </form>
+
+          <span>Building Description</span>
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+              {{input class="mdl-textfield__input" type="text" value=description placeholder="Description ..."}}
+            </div>
+          </form>
+        </li>
+
+        <li>
+          <button {{action "createClicked"}} class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            CREATE
+          </button>
+        </li>
+      </ul>
+    </nav>
+  {{/toggle-menu}}
 
 </div>

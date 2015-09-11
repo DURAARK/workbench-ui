@@ -50,7 +50,7 @@ export default Ember.Service.extend({
 
   storeInSDAS: function(session) {
     let duraark = this,
-      sdaEndpoint = duraark.getAPIEndpoint('sda') + '/sdas';
+      sdaEndpoint = duraark.getAPIEndpoint('sda') + '/store';
 
     console.log('[DURAARK::storeInSDAS] successfully stored session: ' + session.get('label'));
 

@@ -23,7 +23,7 @@
         <div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
           {{digital-object-sementic item=do details="showDetails" select="showToolSelection"}}
 
-          {{#each tool in do.geoMD.tools}}
+          {{#each do.geoMD.tools as |tool| }}
             {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
           {{/each}}
         </div>

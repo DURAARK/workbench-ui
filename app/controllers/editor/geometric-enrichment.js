@@ -61,6 +61,6 @@ export default Ember.Controller.extend({
 				item.set('hasHiddenFeatures', false);
 			}
 		});
-	}.observes('enrichments.@each.ifcReconstruction', 'enrichments.@each.hiddenFeatures')
+	}.observes('enrichments.[].ifcReconstruction', 'enrichments.[].hiddenFeatures')
 
 });

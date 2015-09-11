@@ -92,7 +92,7 @@ export default Ember.Controller.extend({
     });
 
     return shownTopics;
-  }.property('session.config', 'selectedDigitalObject.semMD.topics.@each'),
+  }.property('session.config', 'selectedDigitalObject.semMD.topics.[]'),
 
   toggleDigitalObjectSelection: function(digObj) {
     var flag = digObj.get('isSelected');
