@@ -41,11 +41,11 @@
 			<div>
 				{{physical-asset-item item=do details="showDetails" static=true}}
 
-				{{#each topic in do.semMD.topics}}
+				{{#each do.semMD.topics as |topic|}}
 					{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic" static=true}}
 				{{/each}}
 
-				{{#each tool in do.geoMD.tools}}
+				{{#each do.geoMD.tools as |tool|}}
           {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo" static=true}}
         {{/each}}
 

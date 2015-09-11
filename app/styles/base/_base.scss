@@ -45,15 +45,15 @@ article {
   text-align: center;
 }
 
-.highlight-border {
-  @include round-top-corners($amount: 10px);
-  @include round-bottom-corners($amount: 10px);
-
-  border-top: 2px solid color(white);
-  border-bottom: 2px solid color(white);
-  border-left: 2px solid color(white);
-  border-right: 2px solid color(white);
-}
+// .highlight-border {
+//   @include round-top-corners($amount: 10px);
+//   @include round-bottom-corners($amount: 10px);
+//
+//   border-top: 2px solid color(white);
+//   border-bottom: 2px solid color(white);
+//   border-left: 2px solid color(white);
+//   border-right: 2px solid color(white);
+// }
 
 // override 'material' design defaults
 tbody {

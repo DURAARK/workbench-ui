@@ -51,14 +51,16 @@
 
   .c-card-header {
     @include transition (all 0.2s ease-in-out);
-    @include gradient(color(light-green), color(mid-green), 40px);
-    border-bottom: $card-border;
-    border-radius: $base-border-radius $base-border-radius 0 0;
+
+    background: $btn-blue;
+    color: $gui-main-font;
+
+    text-align: center;
+
     font-weight: bold;
     line-height: 1.5em;
     padding: ($base-spacing / 3) ($base-spacing / 2);
     a {
-      color: color(white);
       :hover {
         text-decoration: underline;
       }
@@ -77,7 +79,7 @@
 
     height: 9em;
 
-    @include gradient(color(light-gray), color(mid-gray), 100%);
+    // @include gradient(color(light-gray), color(mid-gray), 100%);
     p {
       margin: 0 0 ($base-spacing / 2);
     }
@@ -109,7 +111,7 @@
   padding-top: rhythm(0.5);
   padding-bottom: rhythm(0.5);
   text-align: center;
-  @include gradient(color(natural-gray), color(natural-gray), 100%);
+  // @include gradient(color(natural-gray), color(natural-gray), 100%);
 
   // &:hover {
   //       @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
@@ -117,7 +119,7 @@
 }
 
 .c-card-bg {
-  @include gradient(color(light-gray), color(mid-gray), 100%);
+  background: white
 }
 
 // .is-selected {
