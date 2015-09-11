@@ -11,6 +11,7 @@
     "ember-resolver": "~0.1.18",
     "font-awesome": "~4.3.0",
     "jquery": "^2.1.4",
+    "leaflet": "~0.7.5",
     "loader.js": "ember-cli/loader.js#3.2.1",
     "material-design-lite": "~1.0.4",
     "normalize-scss": "~3.0.3",
