@@ -23,7 +23,7 @@
 
             <div class="dropdown-list-description">{{item.doc}}</div>
             {{#each item.values as |value|}}
-              {{input class="dropdown-list-metadata-labels" value=value.value action="metadataChanged" on="key-press"}}
+              {{input class="dropdown-list-metadata-labels" value=value.value action="" key-press="metadataChanged"}}
             {{/each}}
           </div>
           {{#if item.multiples}}

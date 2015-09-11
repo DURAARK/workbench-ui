@@ -1,10 +1,12 @@
-# Base system on DURAARK's 'bootstrap' system for microservices, which works well for our purpose, too
-FROM duraark/microservice-base
+FROM ubuntu:14.04
 
-# Install system dependencies
 RUN DEBIAN_FRONTEND=noninteractive
-RUN apt-get update --fix-missing
-RUN apt-get install -y git build-essential python
+
+RUN apt-get install curl git python -y
+RUN apt-get -f install
+#RUN apt-get install build-essential -y
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+RUN apt-get -y install nodejs -y
 
 RUN npm install -g ember-cli bower nodemon
 

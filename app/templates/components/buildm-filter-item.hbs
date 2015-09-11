@@ -1,0 +1,61 @@
+<!-- <div class="c-filter-item">
+
+  <div class="c-filter-item__buildm-options">
+    {{#x-select value=buildmProperty.name action="selectProperty" }}
+      {{#each buildmProps as |prop|}}
+        {{#x-option value=prop}}{{prop}}{{/x-option}}
+      {{/each}}
+    {{/x-select}}
+  </div>
+
+  <form action="#">
+    <div class="mdl-textfield mdl-js-textfield">
+      {{input class="mdl-textfield__input" type="text" value=buildmProperty.value placeholder=type}}
+    </div>
+  </form>
+
+</div> -->
+
+<!-- <button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">more_vert</i>
+</button>
+<ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="menu-speed">
+  {{#each buildmProps as |prop|}}
+    <li class="mdl-menu__item">{{prop}}</li>
+  {{/each}}
+</ul> -->
+
+<div class="c-filter-item">
+
+  <div class="mdl-shadow--2dp">
+    <div class="bar">
+
+      <span id="{{buildmProperty.menuId}}" class="mdl-button mdl-button--icon" data-upgraded=",MaterialButton">
+        <i class="material-icons">search</i>
+      </span>
+
+      <button {{action "clickedDelete" this}} id="{{buildmProperty.menuId}}" style="float: right;" class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton">
+        <i class="material-icons">delete</i>
+      </button>
+
+      <!-- <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{buildmProperty.menuId}}">
+        {{#each buildmProps as |prop|}}
+          <li {{action "selectProperty" prop}} class="mdl-menu__item">{{prop}}</li>
+        {{/each}}
+      </ul> -->
+
+    </div>
+
+    <div class="c-filter-item__content">
+      {{#x-select value=buildmProperty.name action="selectProperty" }}
+        {{#each buildmProps as |prop|}}
+          {{#x-option value=prop}}{{prop}}{{/x-option}}
+        {{/each}}
+      {{/x-select}}
+
+      {{input class="mdl-textfield__input" type="text" value=buildmProperty.value placeholder=buildmProperty.name}}
+    </div>
+
+  </div>
+
+</div>

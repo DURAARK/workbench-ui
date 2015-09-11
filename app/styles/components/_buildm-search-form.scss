@@ -1,0 +1,12 @@
+.c-buildm-search-form {
+  padding: 1em;
+
+  > .c-buildm-search-form__search {
+    margin-bottom: 1.5em;
+    @include clearfix;
+  }
+
+  > .c-buildm-search-form__add-filter {
+    margin-top: 0.4em;
+  }
+}

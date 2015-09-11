@@ -1,0 +1,19 @@
+.c-filter-item {
+  .bar {
+    background: blue;
+  }
+  input {
+    display: inline;
+    color: black;
+    width: 59%;
+  }
+  select {
+    display: inline;
+    width: 39%;
+    margin-top: 10px;
+    color: black;
+  }
+  .c-filter-item__content {
+    margin: 0.1em;
+  }
+}

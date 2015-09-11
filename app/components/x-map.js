@@ -27,7 +27,7 @@ export default Ember.Component.extend({
   places: [],
 
   didInsertElement: function() {
-    var map = L.map('map').setView([47.032666667, 15.47], 142);
+    var map = L.map('map');
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -41,5 +41,7 @@ export default Ember.Component.extend({
         .bindPopup(place.label)
         .openPopup();
     });
+
+    map.setView([47.032666667, 15.37], 12);
   }
 });

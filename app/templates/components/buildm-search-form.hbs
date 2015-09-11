@@ -1,0 +1,20 @@
+<div class="c-buildm-search-form">
+
+  <!-- <br>
+  <h1>Search</h1>
+  <hr> -->
+
+  <div class="c-buildm-search-form__search">
+    <button {{action "searchSDAS"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      SEARCH
+    </button>
+  </div>
+<hr>
+  {{#each buildmProperties as |prop|}}
+    {{buildm-filter-item buildmProperty=prop clickedDelete="removeFilter"}}
+  {{/each}}
+
+  <div class="c-buildm-search-form__add-filter">
+    <button {{action "addFilter"}} class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="fa fa-plus"></i> Add Filter</button>
+  </div>
+</div>
