@@ -1,11 +1,12 @@
-{{building-sidebar}}
+{{building-sidebar selectedBuilding="showInViewer"}}
 <!-- {{x-map places=places}} -->
 {{x-map}}
 
 {{#toggle-menu}}
   <nav>
     <ul style="color: black;">
-      <li>{{#link-to "searchretrieve"}}Advanced Search{{/link-to}}
+      <li>
+        {{#link-to "searchretrieve"}}Advanced Search{{/link-to}}
         <hr>
       </li>
       <li><a href="">Hide/Show Map</a>
@@ -15,11 +16,14 @@
   </nav>
 {{/toggle-menu}}
 
-<!-- Wide card with share menu button -->
+{{#if selectedBuildm}}
+  {{result-sidebar selectedBuildm=selectedBuildm}}
+{{/if}}
+
+<!--
 <style>
   .search-card-wide.mdl-card {
     display: inline-block;
-    /*width: 512px;*/
     width: 400px;
     height: 300px;
   }
@@ -160,4 +164,4 @@
       <i class="material-icons">share</i>
     </button>
   </div>
-</div>
+</div> -->

@@ -57,13 +57,13 @@
   }
 
   &.dropdown-list-metadata-title {
-    @include round-top-corners($amount: 10px);
-    @include gradient(color(light-green), color(mid-green), 40px);
-    &:hover {
-      @include gradient(color(light-green), color(mid-green), 40px);
-    }
+    // @include round-top-corners($amount: 10px);
+    background: $btn-orange;
+    // &:hover {
+    //   @include gradient(color(light-green), color(mid-green), 40px);
+    // }
     [dropdown-prop="title"] {
-      color           : color(dark-gray);
+      color           : $gui-main-font;
       padding         : 0.5em 2.0em;
       display         : block;
       text-decoration : none;
@@ -187,7 +187,7 @@
 button {
   @include appearance(none);
   -webkit-font-smoothing: antialiased;
-  @include gradient(color(light-orange), color(mid-orange), 100%);
+  // @include gradient(color(light-orange), color(mid-orange), 100%);
   border-radius: $base-border-radius;
   border: none;
   color: #fff;
