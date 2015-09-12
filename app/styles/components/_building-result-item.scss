@@ -1,0 +1,21 @@
+.c-building-result-item {
+  .bar {
+    // margin: 0.4em;
+    padding: 0.5em;
+
+    background: $btn-blue;
+    color: $gui-main-font;
+
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-width: white;
+
+    .c-building-result-item__label {
+      float: right;
+    }
+  }
+
+  :hover {
+    background: lighten($btn-blue, 20%);
+  }
+}

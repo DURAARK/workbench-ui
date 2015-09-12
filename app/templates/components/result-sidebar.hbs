@@ -14,7 +14,34 @@
     {{/em-tab-panel}}
   {{/em-tabs}} -->
 
-  <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+
+    {{#each buildings.results.bindings as |building|}}
+      <div class="c-building-result-item">
+
+        <div class="bar">
+
+          <span id="{{buildmProperty.menuId}}" class="mdl-button mdl-button--icon" data-upgraded=",MaterialButton">
+            <i class="material-icons">search</i>
+          </span>
+
+          <span class="c-building-result-item__label">
+            {{building.label.value}}
+          </span>
+
+          <p>
+            {{building.description.value}}
+          </p>
+          <!-- <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{buildmProperty.menuId}}">
+            {{#each buildmProps as |prop|}}
+              <li {{action "selectProperty" prop}} class="mdl-menu__item">{{prop}}</li>
+            {{/each}}
+          </ul> -->
+
+        </div>
+      </div>
+    {{/each}}
+
+  <!-- <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
     <thead>
       <tr>
         <th class="mdl-data-table__cell--non-numeric">Label</th>
@@ -30,6 +57,6 @@
         </tr>
       {{/each}}
     </tbody>
-  </table>
+  </table> -->
 
 </div>
