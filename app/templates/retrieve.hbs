@@ -1,6 +1,11 @@
 {{building-sidebar selectedBuilding="showInViewer"}}
+
 {{x-map places=places}}
-<!-- {{x-map}} -->
+
+{{#if selectedBuildm}}
+  {{result-sidebar buildings=buildings}}
+{{/if}}
+
 
 {{#toggle-menu}}
   <nav>
@@ -15,10 +20,6 @@
     </ul>
   </nav>
 {{/toggle-menu}}
-
-{{#if selectedBuildm}}
-  {{result-sidebar selectedBuildm=selectedBuildm}}
-{{/if}}
 
 <!--
 <style>

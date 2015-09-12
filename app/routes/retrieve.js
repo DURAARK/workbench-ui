@@ -2,18 +2,23 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    return this.duraark.getPhysicalAssets();
-  },
+      return this.duraark.getAllPhysicalAssets();
+    },
 
-  setupController(controller, model) {
-    this._super(controller, model);
+    setupController(controller, model) {
+      this._super(controller, model);
 
-    var places = [{
-      name: 'Haus 30',
-      latitude: 15.37,
-      longitude: 47
-    }];
+      let places = [];
 
-    controller.set('places', places);
-  }
+      model.results.bindings.forEach(function(building) {
+        places.push({
+          name: building.label.value,
+          latitude: building.latitude.value,
+          longitude: building.longitude.value
+        });
+      });
+
+      controller.set('buildings', model);
+      controller.set('places', places);
+    }
 });

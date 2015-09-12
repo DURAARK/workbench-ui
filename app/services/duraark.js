@@ -104,7 +104,7 @@ export default Ember.Service.extend({
     });
   },
 
-  getPhysicalAssets() {
+  getAllPhysicalAssets() {
     let duraark = this,
       // sdaEndpoint = duraark.getAPIEndpoint('sda') + '/concepts/physicalAssets';
       sdaEndpoint = 'http://localhost:5013/concepts/physicalAssets';

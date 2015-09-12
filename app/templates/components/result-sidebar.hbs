@@ -1,6 +1,6 @@
 <div class="c-result-sidebar">
 
-    {{buildm-editor buildm=selectedBuildm type="physicalAsset"}}
+  <!-- {{buildm-editor buildm=selectedBuildm type="physicalAsset"}} -->
 
   <!-- {{#em-tabs}}
     {{#em-tab-list}}
@@ -13,5 +13,23 @@
     {{#em-tab-panel}}
     {{/em-tab-panel}}
   {{/em-tabs}} -->
+
+  <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+    <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Label</th>
+        <th class="mdl-data-table__cell--non-numeric">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each buildings.results.bindings as |item|}}
+        <tr>
+          {{log item}}
+          <td class="mdl-data-table__cell--non-numeric">{{item.label.value}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{item.description.value}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 
 </div>
