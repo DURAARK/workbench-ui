@@ -27,6 +27,10 @@ export default Ember.Component.extend({
   places: [],
 
   didInsertElement: function() {
+    // NOTE: manually copied over leaflet/dist/images/* to the following folder
+    // to display markers:
+    L.Icon.Default.imagePath = '/images';
+
     var map = L.map('map');
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -36,9 +40,9 @@ export default Ember.Component.extend({
     var places = this.get('places');
 
     places.forEach(function(place) {
-      console.log('Adding marker at: lat: ' + place.lat + '/' + place.lng);
-      L.marker([place.lng, place.lat]).addTo(map)
-        .bindPopup(place.label)
+      console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude);
+      L.marker([place.longitude, place.latitude]).addTo(map)
+        .bindPopup(place.name)
         .openPopup();
     });
 

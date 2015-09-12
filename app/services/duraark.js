@@ -37,7 +37,7 @@ export default Ember.Service.extend({
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let sessionsEndpoint = duraark.getAPIEndpoint('sessions') + '/sessions/',
-      sessionId = session.get('id');
+        sessionId = session.get('id');
 
       var model = sessionsEndpoint + sessionId;
       duraark._delete(model).then(function(session) {
@@ -85,7 +85,6 @@ export default Ember.Service.extend({
         duraark._post(sdaEndpoint, {
           buildm: item.buildm
         }).then(function(doBuildm) {
-          debugger;
           // Update 'isRepresentedBy' triple for PhysicalAsset:
           if (!paBuildm['http://data.duraark.eu/vocab/buildm/isRepresentedBy']) {
             paBuildm['http://data.duraark.eu/vocab/buildm/isRepresentedBy'] = [];
@@ -101,6 +100,34 @@ export default Ember.Service.extend({
         }).catch(function(err) {
           throw new Error(err);
         });
+      });
+    });
+  },
+
+  getPhysicalAssets() {
+    let duraark = this,
+      // sdaEndpoint = duraark.getAPIEndpoint('sda') + '/concepts/physicalAssets';
+      sdaEndpoint = 'http://localhost:5013/concepts/physicalAssets';
+
+    console.log('[DURAARK::getPhysicalAssets] requesting from SDAS ...');
+
+    return duraark._get(sdaEndpoint);
+  },
+
+  _get: function(url) {
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      function handler(data, status, jqxhr) {
+        if (status === 'success') {
+          resolve(data);
+        } else {
+          reject(new Error('[DURAARK::_get]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
+        }
+      }
+
+      var jqxhr = Ember.$.get(url, handler);
+
+      jqxhr.fail(function() {
+        reject(new Error('[DURAARK::_get]: "' + url + '" failed with status: [' + jqxhr.status + ']'));
       });
     });
   },
