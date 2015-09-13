@@ -2,8 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    showInViewer(buildm) {
-      this.set('selectedBuildm', buildm);
+    showInViewer(buildings) {
+      this.set('buildings');
+      this.set('showBuildingList');
     }
   }
 });
