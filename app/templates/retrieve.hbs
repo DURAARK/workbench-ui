@@ -1,24 +1,26 @@
-{{result-sidebar buildings=buildings}}
+{{building-list buildings=buildings showDetailsClicked="showDetails"}}
 
 {{x-map places=places}}
-
-{{#if showFilterSidebar}}
-  {{building-sidebar selectedBuilding="showInViewer"}}
-{{/if}}
 
 {{#toggle-menu}}
   <nav>
     <ul style="color: black;">
       <li>
-        {{#link-to "searchretrieve"}}Advanced Search{{/link-to}}
-        <hr>
-      </li>
-      <li><a href="">Hide/Show Map</a>
-        <hr>
+        {{filter-view selectedBuilding="showBuildings"}}
       </li>
     </ul>
   </nav>
 {{/toggle-menu}}
+
+{{#if showDetailsSidebar}}
+  <div class="c-sidebar-details">
+    {{#if selectedBuilding}}
+      {{buildm-editor buildm=selectedBuilding type="physicalAsset"}}
+    {{else}}
+      <h2>No building selected.</h2>
+    {{/if}}
+  </div>
+{{/if}}
 
 <!--
 <style>

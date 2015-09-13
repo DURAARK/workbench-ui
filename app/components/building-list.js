@@ -1,0 +1,29 @@
+import Ember from 'ember';
+
+export
+default Ember.Component.extend({
+  selectedBuilding: null,
+
+  actions: {
+    openBuilding(building) {
+        // get session ...
+        //this.transitionToRoute()
+      },
+
+      showDetails(building) {
+        // FIXXME: get buildm based on 'building'!
+        const buildm = {
+          '@type': [
+            'http://data.duraark.eu/vocab/buildm/PhysicalAsset'
+          ],
+          'http://data.duraark.eu/vocab/buildm/name': [{
+            '@value': building.label.value
+          }]
+        };
+
+        console.log('Selected buildm:\n' + JSON.stringify(buildm, null, 4));
+
+        this.sendAction('showDetailsClicked', buildm);
+      }
+  }
+});

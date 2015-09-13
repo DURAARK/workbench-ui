@@ -14,8 +14,15 @@
       float: right;
     }
 
+    @include clearfix;
+
     .c-building-result-item__actions {
-      float: right;
+      margin-top: 1em;
+      button {
+        // margin: 2em;
+        width: 49%;
+        background: $btn-orange;
+      }
     }
   }
 

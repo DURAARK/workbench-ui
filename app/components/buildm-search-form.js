@@ -32,18 +32,8 @@ export default Ember.Component.extend({
         this.get('buildmProperties').removeObject(buildmProperty);
       },
 
-      selectBuilding() {
-        const buildm = {
-          '@type': [
-            'http://data.duraark.eu/vocab/buildm/PhysicalAsset'
-          ],
-          'http://data.duraark.eu/vocab/buildm/name': [{
-            '@value': "Haus 30"
-          }]
-        };
-
-        console.log('buildm search-form:\n' + JSON.stringify(buildm, null, 4));
-        this.sendAction('selectedBuilding', buildm);
+      selectBuilding(building) {
+        this.sendAction('selectedBuilding', building);
       }
   }
 });

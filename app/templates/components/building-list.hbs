@@ -1,7 +1,5 @@
 <div class="c-result-sidebar">
 
-  <!-- {{buildm-editor buildm=selectedBuildm type="physicalAsset"}} -->
-
   <!-- {{#em-tabs}}
     {{#em-tab-list}}
       {{#em-tab}}One{{/em-tab}}
@@ -38,8 +36,8 @@
           </ul> -->
 
           <div class="c-building-result-item__actions">
-            <button type="button" {{action "editBuilding"}}>Edit</button>
-            <button type="button" {{action "showDetails"}}>Details</button>
+            <button type="button" {{action "openBuilding" building}}>Open</button>
+            <button type="button" {{action "showDetails" building}}>Details</button>
           </div>
         </div>
       </div>

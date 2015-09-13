@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  showFilterSidebar: false,
+  selectedBuilding: null,
 
   actions: {
-    showInViewer(buildings) {
-      this.set('buildings');
-      this.set('showFilterSidebar');
+    showDetails(building) {
+      this.set('showDetailsSidebar', true);
+      this.set('selectedBuilding', building);
     }
   }
 });
