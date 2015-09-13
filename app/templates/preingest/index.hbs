@@ -12,7 +12,7 @@
   {{#toggle-menu}}
     <nav>
       <ul style="color: black;">
-        <li><a href="">Add Session</a>
+        <li><a href="">Add</a>
           <hr>
         </li>
         <!-- <li>{{#link-to "searchretrieve"}}Add new search{{/link-to}}</li> -->
@@ -41,9 +41,32 @@
         </li>
 
         <li>
-          <button {{action "createSession"}} class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          <button {{action "createSession"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
             CREATE
           </button>
+        </li>
+
+        <li>
+          <a href="">Load</a>
+          <hr>
+        </li>
+
+        <li>
+          <button {{action "searchInArchive"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            SEARCH IN ARCHIVE
+          </button>
+        </li>
+
+        <li style="text-align: center;">
+          OR PROVIDE
+        </li>
+
+        <li>
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+              {{input class="mdl-textfield__input" type="text" value=sdasReference placeholder="Archive Reference ..."}}
+            </div>
+          </form>
         </li>
       </ul>
     </nav>

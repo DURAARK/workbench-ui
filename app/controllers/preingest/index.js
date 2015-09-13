@@ -27,6 +27,10 @@ export default Ember.Controller.extend({
         }).catch(function(err) {
           throw new Error(err);
         });
+      },
+
+      searchInArchive() {
+        this.transitionToRoute('retrieve');
       }
     }
 });
