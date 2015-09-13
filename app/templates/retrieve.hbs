@@ -1,9 +1,9 @@
-{{building-sidebar selectedBuilding="showInViewer"}}
+{{result-sidebar buildings=buildings}}
 
 {{x-map places=places}}
 
-{{#if showBuildingList}}
-  {{result-sidebar buildings=buildings}}
+{{#if showFilterSidebar}}
+  {{building-sidebar selectedBuilding="showInViewer"}}
 {{/if}}
 
 {{#toggle-menu}}

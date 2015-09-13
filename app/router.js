@@ -21,6 +21,7 @@ Router.map(function() {
 
   this.route('searchretrieve', { path: '/searchretrieve' });
   this.route('admin');
+  this.route('file-browser');
 });
 
 export default Router;

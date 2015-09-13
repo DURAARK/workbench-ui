@@ -18,6 +18,8 @@ app.import('vendor/ember-droplet/dist/ember-droplet.js');
 app.import('bower_components/leaflet/dist/leaflet.js');
 app.import('bower_components/leaflet/dist/leaflet.css');
 
+app.import('vendor/jsc3d/bin/jsc3d.min.js');
+
 var fontFiles = funnel('bower_components/font-awesome/fonts', {
     destDir: 'fonts'
 });

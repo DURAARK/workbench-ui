@@ -148,6 +148,8 @@ export default Ember.Controller.extend({
     showSelectedTool: function(digObj, tool) {
       this.set('fileInfo', null);
       this.set('tool', tool);
+
+      this.transitionToRoute('file-browser');
     }
   },
 
