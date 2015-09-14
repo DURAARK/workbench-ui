@@ -19,6 +19,7 @@
     "qunit": "~1.18.0",
     "sass-hidpi": "~2.0.0",
     "susy": "~2.2.5",
+    "underscore": "~1.8.3",
     "vertical-rhythms-without-compass": "~1.0.1"
   },
   "resolutions": {

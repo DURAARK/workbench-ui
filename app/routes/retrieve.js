@@ -1,4 +1,5 @@
 import Ember from 'ember';
+// import _ from 'underscore';
 
 export default Ember.Route.extend({
   model() {
@@ -10,11 +11,11 @@ export default Ember.Route.extend({
 
       let places = [];
 
-      model.results.bindings.forEach(function(building) {
+      _.each(model, function(building) {
         places.push({
-          name: building.label.value,
-          latitude: building.latitude.value,
-          longitude: building.longitude.value
+          name: building['http://data.duraark.eu/vocab/buildm/name'][0]['value'],
+          latitude: building['http://data.duraark.eu/vocab/buildm/latitude'][0]['value'],
+          longitude: building['http://data.duraark.eu/vocab/buildm/longitude'][0]['value'],
         });
       });
 

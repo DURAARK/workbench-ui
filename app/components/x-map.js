@@ -42,7 +42,7 @@ export default Ember.Component.extend({
     var places = this.get('places');
 
     places.forEach(function(place) {
-      console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude);
+      console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + name);
       L.marker([place.latitude, place.longitude]).addTo(map)
         .bindPopup(place.name)
         .openPopup();
@@ -65,8 +65,8 @@ export default Ember.Component.extend({
     if (building) {
       // this.get('map').setView([building.get('longitude'), building.get('latitued'), 12]);
       // FIXXME: get data from buildling!
-      const lat = building['http://data.duraark.eu/vocab/buildm/latitude'][0]['@value'];
-      const lng = building['http://data.duraark.eu/vocab/buildm/longitude'][0]['@value'];
+      const lat = building['http://data.duraark.eu/vocab/buildm/latitude'][0]['value'];
+      const lng = building['http://data.duraark.eu/vocab/buildm/longitude'][0]['value'];
       this.get('map').setView([lat, lng, 12]);
   }
 }

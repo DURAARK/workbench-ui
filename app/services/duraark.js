@@ -106,12 +106,15 @@ export default Ember.Service.extend({
 
   getAllPhysicalAssets() {
     let duraark = this,
-      sdaEndpoint = duraark.getAPIEndpoint('sda') + '/concepts/physicalAssets';
-      // sdaEndpoint = 'http://localhost:5013/concepts/physicalAssets';
+      // sdaEndpoint = duraark.getAPIEndpoint('sda') + '/concepts/physicalAssets';
+      sdaEndpoint = 'http://localhost:5013/concepts/physicalAssets';
 
     console.log('[DURAARK::getPhysicalAssets] requesting from SDAS ...');
 
-    return duraark._get(sdaEndpoint);
+    return duraark._get(sdaEndpoint).then(results => {
+      // console.log('jsonld: ' + JSON.stringify(results, null, 4));
+      return results;
+    });
   },
 
   _get: function(url) {
