@@ -18,10 +18,16 @@ default Ember.Component.extend({
           ],
           'http://data.duraark.eu/vocab/buildm/name': [{
             '@value': building.label.value
+          }],
+          'http://data.duraark.eu/vocab/buildm/latitude': [{
+            '@value': building.latitude.value
+          }],
+          'http://data.duraark.eu/vocab/buildm/longitude': [{
+            '@value': building.longitude.value
           }]
         };
 
-        console.log('Selected buildm:\n' + JSON.stringify(buildm, null, 4));
+        // console.log('Selected buildm:\n' + JSON.stringify(buildm, null, 4));
 
         this.sendAction('showDetailsClicked', buildm);
       }
