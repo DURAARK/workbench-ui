@@ -54,7 +54,7 @@ export default Ember.Service.extend({
     });
   },
 
-  createSessionFromBuilding(building) {
+  createSessionFromBuilding(uri, building) {
     let duraark = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -66,39 +66,42 @@ export default Ember.Service.extend({
         description = building[vocab + 'name'][0]['value']
       };
 
-      const initialSessionData = {
-        state: 'new',
-        label: building[vocab + 'name'][0]['value'],
-        description: description,
-        physicalAssets: [{
+      // get full buildm record from SDAS:
+      duraark.getPhysicalAsset(uri).then(function(buildm) {
+        const initialSessionData = {
+          state: 'new',
           label: building[vocab + 'name'][0]['value'],
-          buildm: building
-        }],
-        // FIXXME: get digitalObjects from 'represents' predicate!
-        // digitalObjects: [{
-        //   buildm: {}
-        // }]
-        config: {
-          sda: {
-            topics: [
-              "Haus 30 (general context)",
-              "Haus 30 (political context)"
-            ]
-          },
-          geometricenrichment: {
-            tools: [
-              "IFC Reconstruction"
-            ]
+          description: description,
+          physicalAssets: [{
+            label: building[vocab + 'name'][0]['value'],
+            buildm: buildm
+          }],
+          // FIXXME: get digitalObjects from 'represents' predicate!
+          // digitalObjects: [{
+          //   buildm: {}
+          // }]
+          config: {
+            sda: {
+              topics: [
+                "Haus 30 (general context)",
+                "Haus 30 (political context)"
+              ]
+            },
+            geometricenrichment: {
+              tools: [
+                "IFC Reconstruction"
+              ]
+            }
           }
         }
-      }
 
-      duraark._post(sessionsEndpoint, initialSessionData).then(function(session) {
-        resolve(session);
-      }).catch(function(err) {
-        reject(err);
+        duraark._post(sessionsEndpoint, initialSessionData).then(function(session) {
+          resolve(session);
+        }).catch(function(err) {
+          reject(err);
+        });
       });
-    })
+    });
   },
 
   deleteSession(session) {
@@ -123,7 +126,7 @@ export default Ember.Service.extend({
 
     console.log('[DURAARK::storeInSDAS] successfully stored session: ' + session.get('label'));
 
-    // session.get('physicalAssets').forEach(function(item) {
+    // session.get('physicalAssets').forEach(function(item) {/metadata/14
     //   console.log('[DURAARK::storeInSDAS] Storing physicalAsset metadata: ' + item.label);
     //
     //   duraark._post(sdaEndpoint, {
@@ -197,17 +200,14 @@ export default Ember.Service.extend({
 
   getPhysicalAsset(uri) {
     let duraark = this,
-      sdaEndpoint = duraark.getAPIEndpoint('sda') + '/concepts/physicalAssetMetadata';
+      sdaEndpoint = duraark.getAPIEndpoint('sda') + '/concepts/physicalAsset';
     //sdaEndpoint = 'http://localhost:5013/concepts/physicalAssets';
 
     console.log('[DURAARK::getPhysicalAssets] requesting from SDAS ...');
 
     let url = sdaEndpoint + '/?uri=' + uri;
 
-    return duraark._get(sdaEndpoint).then(results => {
-      // console.log('jsonld: ' + JSON.stringify(results, null, 4));
-      return results;
-    });
+    return duraark._get(url);
   },
 
   _get(url) {
