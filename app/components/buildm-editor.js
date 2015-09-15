@@ -67,7 +67,6 @@ export default Ember.Component.extend({
     newBuildm['@id'] = originalBuildm['@id'];
     newBuildm['@type'] = originalBuildm['@type'];
 
-debugger;
     formDescription.forEach(function(item) {
       var cur = newBuildm[item.get('origKey')] = [];
 

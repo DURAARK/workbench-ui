@@ -29,9 +29,9 @@
 
 		<hr>
 
-		{{#file-list files=session.digitalObjects as |do|}}
+		<!-- {{#file-list files=session.digitalObjects as |do|}}
 			{{physical-asset-item item=do details="showDetails"}}
-		{{/file-list}}
+		{{/file-list}} -->
 
 	</div>
 
@@ -45,11 +45,11 @@
 
 				{{#if fileInfo}}
 					{{#if isIFC}}
-						{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+						<!-- {{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}} -->
 					{{/if}}
 
 					{{#if isE57}}
-						{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+						<!-- {{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}} -->
 					{{/if}}
 
 					{{#if isPhysicalAsset}}

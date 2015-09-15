@@ -48,13 +48,13 @@ default Ember.Component.extend({
   },
 
   isIFC: function() {
-    var type = this.get('item')['buildm']['@type'][0];
-    return type === 'http://data.duraark.eu/vocab/IFCSPFFile';
+    //var type = this.get('item')['buildm']['@type'][0];
+    //return type === 'http://data.duraark.eu/vocab/IFCSPFFile';
   }.property('item'),
 
   isE57: function() {
-    var type = this.get('item')['buildm']['@type'][0];
-    return type === 'http://data.duraark.eu/vocab/E57File';
+    //var type = this.get('item')['buildm']['@type'][0];
+    //return type === 'http://data.duraark.eu/vocab/E57File';
   }.property('item')
 });
 

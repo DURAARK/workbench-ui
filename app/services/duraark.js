@@ -82,6 +82,7 @@ export default Ember.Service.extend({
 
       // get full buildm record from SDAS:
       duraark.getPhysicalAsset(uri).then(function(buildm) {
+        // console.log('buildm: ' + JSON.stringify(buildm, null, 4));
         const initialSessionData = {
           state: 'new',
           uri: uri,

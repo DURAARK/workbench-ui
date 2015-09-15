@@ -11,11 +11,7 @@ export default Ember.Controller.extend({
         let result = this.duraark.querySession({
           uri: uri
         }).then(function(existingSession) {
-          var bla = JSON.stringify(existingSession);
-
-          console.log('asdf: ' + JSON.stringify(existingSession, null, 4));
-
-          debugger;
+          // console.log('existingSession: ' + JSON.stringify(existingSession, null, 4));
 
           if (existingSession.length) {
             let id = existingSession[0].id;
@@ -24,15 +20,16 @@ export default Ember.Controller.extend({
             // of the 'preingest.files' route gets called. Currently we have a mix of
             // ember-data and native objects for 'session' models, which makes this
             // necessary.
-            controller.transitionToRoute('preingest.files', id);
+            controller.transitionToRoute('metadata', id);
           } else {
             console.log('no session exists for building, creating new ...');
             controller.duraark.createSessionFromBuilding(uri, building).then(function(newSession) {
+              debugger;
               // NOTE: Providing the 'id' of the session here so that the 'model' hook
               // of the 'preingest.files' route gets called. Currently we have a mix of
               // ember-data and native objects for 'session' models, which makes this
               // necessary.
-              controller.transitionToRoute('preingest.files', newSession.id);
+              controller.transitionToRoute('metadata', newSession.id);
             });
           }
         });
