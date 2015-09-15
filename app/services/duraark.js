@@ -40,11 +40,25 @@ export default Ember.Service.extend({
     return duraark._get(sessionUrl);
   },
 
+  querySession(params) {
+    let duraark = this,
+      sessionUrl = duraark.getAPIEndpoint('sessions') + '/sessions/?' + $.param(params);
+    //sessionUrl = 'http://localhost:5013/concepts/physicalAssets';
+
+    console.log('[DURAARK::getAllSessions] querying session: ' + sessionUrl);
+
+    return duraark._get(sessionUrl);
+  },
+
   createSession(initialSessionData) {
     let duraark = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let sessionsEndpoint = duraark.getAPIEndpoint('sessions') + '/sessions';
+
+      initialSessionData = _.extend(initialSessionData, {
+          uri: null
+      });
 
       duraark._post(sessionsEndpoint, initialSessionData).then(function(session) {
         resolve(session);
@@ -70,6 +84,7 @@ export default Ember.Service.extend({
       duraark.getPhysicalAsset(uri).then(function(buildm) {
         const initialSessionData = {
           state: 'new',
+          uri: uri,
           label: building[vocab + 'name'][0]['value'],
           description: description,
           physicalAssets: [{

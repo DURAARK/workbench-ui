@@ -6,10 +6,7 @@ default Ember.Component.extend({
 
   actions: {
     openBuilding(uri, building) {
-        let controller = this;
-        this.duraark.createSessionFromBuilding(uri, building).then(function(session) {
-          controller.sendAction('openBuilding', session);
-        });
+        this.sendAction('openBuilding', uri, building);
       },
 
       showDetails(building) {
