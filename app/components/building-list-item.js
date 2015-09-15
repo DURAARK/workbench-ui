@@ -11,6 +11,13 @@ export default Ember.Component.extend({
     return this._extractKeyFromBuildm(building, 'description');
   }),
 
+  actions: {
+    showDetails(building) {
+      console.log('building-list-item::showDetails: ' + JSON.stringify(building, null, 4));
+      this.sendAction('showDetailsClicked', building);
+    }
+  },
+
   _extractKeyFromBuildm(buildm, key) {
     let buildmKey = 'http://data.duraark.eu/vocab/buildm/' + key,
       item = buildm[buildmKey];

@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
 
   actions: {
     showDetails(building) {
+      debugger;
       this.set('showSidebarDetails', true);
       this.set('selectedBuilding', building);
     }

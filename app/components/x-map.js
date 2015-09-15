@@ -42,13 +42,13 @@ export default Ember.Component.extend({
     var places = this.get('places');
 
     places.forEach(function(place) {
-      console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + name);
+      console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + place.name);
       L.marker([place.latitude, place.longitude]).addTo(map)
         .bindPopup(place.name)
         .openPopup();
     });
 
-    map.setView([47.032666667, 15.37], 12);
+    map.setView([47.032666667, 15.37], 5);
 
     let selectedBuilding = this.get('selected');
     if (selectedBuilding) {
