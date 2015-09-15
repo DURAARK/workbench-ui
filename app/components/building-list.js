@@ -31,5 +31,15 @@ default Ember.Component.extend({
 
         this.sendAction('showDetailsClicked', buildm);
       }
-  }
+  },
+
+  buildingsArray: Ember.computed('buildings', function() {
+    debugger;
+    let buildings = this.get('buildings'),
+      buildingsArray = [];
+
+    buildings.forEach((key, value) => {
+      buildingsArray.pushObject(value);
+    });
+  })
 });

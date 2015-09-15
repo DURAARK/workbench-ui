@@ -12,54 +12,8 @@
     {{/em-tab-panel}}
   {{/em-tabs}} -->
 
-
-    {{#each buildings as |building|}}
-    {{log building}}
-      <div class="c-building-result-item">
-
-        <div class="bar">
-
-          <span id="{{buildmProperty.menuId}}" class="mdl-button mdl-button--icon" data-upgraded=",MaterialButton">
-            <i class="material-icons">search</i>
-          </span>
-
-          <span class="c-building-result-item__label">
-            {{building}}
-          </span>
-
-          <p>
-            {{building.description.value}}
-          </p>
-          <!-- <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="{{buildmProperty.menuId}}">
-            {{#each buildmProps as |prop|}}
-              <li {{action "selectProperty" prop}} class="mdl-menu__item">{{prop}}</li>
-            {{/each}}
-          </ul> -->
-
-          <div class="c-building-result-item__actions">
-            <button type="button" {{action "openBuilding" building}}>Open</button>
-            <button type="button" {{action "showDetails" building}}>Details</button>
-          </div>
-        </div>
-      </div>
-    {{/each}}
-
-  <!-- <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-    <thead>
-      <tr>
-        <th class="mdl-data-table__cell--non-numeric">Label</th>
-        <th class="mdl-data-table__cell--non-numeric">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each buildings.results.bindings as |item|}}
-        <tr>
-          {{log item}}
-          <td class="mdl-data-table__cell--non-numeric">{{item.label.value}}</td>
-          <td class="mdl-data-table__cell--non-numeric">{{item.description.value}}</td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table> -->
+  {{#each-in buildings as |uri building|}}
+    {{building-list-item uri=uri model=building}}
+  {{/each-in}}
 
 </div>

@@ -1,0 +1,22 @@
+<div class="c-building-result-item">
+
+  <div class="bar">
+
+    <span id="{{buildmProperty.menuId}}" class="mdl-button mdl-button--icon" data-upgraded=",MaterialButton">
+      <i class="material-icons">search</i>
+    </span>
+
+    <span class="c-building-result-item__label">
+      {{name}}
+    </span>
+
+    <p>
+      {{description}}
+    </p>
+
+    <div class="c-building-result-item__actions">
+      <button type="button" {{action "openBuilding" building}}>Open</button>
+      <button type="button" {{action "showDetails" building}}>Details</button>
+    </div>
+  </div>
+</div>
