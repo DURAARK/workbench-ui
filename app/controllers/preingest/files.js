@@ -32,14 +32,15 @@ export default Ember.Controller.extend({
       controller.send('isLoading', true, 'Extracting metadata ...');
 
       console.log('Selected files:');
-      this.get('selectedFiles').forEach(function(file) {
+      controller.get('selectedFiles').forEach(function(file) {
         console.log('  * ' + file.get('path'));
       });
 
-      var session = this.get('session'), //this.store.createRecord('session'),
-        files = this.get('selectedFiles');
+      var session = controller.get('session'),
+        files = controller.get('selectedFiles');
 
-      session.set('files', files);
+      // session.set('files', files);
+      session['files'] = files;
 
       // Take files and create a physicalAsset and digitalObjects from the files:
       var pa = {

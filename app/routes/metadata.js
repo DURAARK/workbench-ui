@@ -2,11 +2,8 @@ import Ember from 'ember';
 export
 default Ember.Route.extend({
 
-  model: function(params) {
-    var sessions = this.modelFor('application').get('content');
-    var session = sessions[params.id - 1];
-
-    return session;
+  model(params) {
+    return this.store.find('session', params.id);
   },
 
   setupController: function(controller, model) {

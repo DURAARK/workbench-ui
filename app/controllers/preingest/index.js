@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
         this.duraark.createSession(initialSessionData).then(function(session) {
           console.log('Created new session:\n' + JSON.stringify(session, null, 4));
           // See https://github.com/emberjs/data/issues/3402:
-          store.push(store.normalize('session', session));
+          // store.push(store.normalize('session', session));
         }).catch(function(err) {
           console.log('err: ' + err);
         })

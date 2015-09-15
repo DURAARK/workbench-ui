@@ -3,7 +3,7 @@ import Ember from 'ember';
 export
 default Ember.Route.extend({
     model: function() {
-        return this.modelFor('application');
+        return this.modelFor('preingest');
     },
 
     setupController: function(controller, model) {

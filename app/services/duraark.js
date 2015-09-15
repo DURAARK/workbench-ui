@@ -14,11 +14,33 @@ export default Ember.Service.extend({
   geometricEnrichmentEndpoint: defaultHost + '/api/v0.7/geometricEnrichment',
   digitalPreservationEndpoint: defaultHost + '/api/v0.7/digitalPreservation',
 
-  getAPIEndpoint: function(service) {
+  vocabBase: 'http://data.duraark.eu/vocab/buildm/',
+
+  getAPIEndpoint(service) {
     return this.get(service + 'Endpoint');
   },
 
-  createSession: function(initialSessionData) {
+  getAllSessions() {
+    let duraark = this,
+      sessionsEndpoint = duraark.getAPIEndpoint('sessions') + '/sessions';
+    //sessionsEndpoint = 'http://localhost:5013/concepts/physicalAssets';
+
+    console.log('[DURAARK::getAllSessions] requesting from sessions ...');
+
+    return duraark._get(sessionsEndpoint);
+  },
+
+  getSession(id) {
+    let duraark = this,
+      sessionUrl = duraark.getAPIEndpoint('sessions') + '/sessions/' + id;
+    //sessionUrl = 'http://localhost:5013/concepts/physicalAssets';
+
+    console.log('[DURAARK::getAllSessions] requesting session from: ' + sessionUrl);
+
+    return duraark._get(sessionUrl);
+  },
+
+  createSession(initialSessionData) {
     let duraark = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -29,10 +51,57 @@ export default Ember.Service.extend({
       }).catch(function(err) {
         reject(err);
       });
+    });
+  },
+
+  createSessionFromBuilding(building) {
+    let duraark = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      let sessionsEndpoint = duraark.getAPIEndpoint('sessions') + '/sessions',
+        vocab = duraark.vocabBase,
+        description = 'No description';
+
+      if (building[vocab + 'description'] && building[vocab + 'description'][0]) {
+        description = building[vocab + 'name'][0]['value']
+      };
+
+      const initialSessionData = {
+        state: 'new',
+        label: building[vocab + 'name'][0]['value'],
+        description: description,
+        physicalAssets: [{
+          label: building[vocab + 'name'][0]['value'],
+          buildm: building
+        }],
+        // FIXXME: get digitalObjects from 'represents' predicate!
+        // digitalObjects: [{
+        //   buildm: {}
+        // }]
+        config: {
+          sda: {
+            topics: [
+              "Haus 30 (general context)",
+              "Haus 30 (political context)"
+            ]
+          },
+          geometricenrichment: {
+            tools: [
+              "IFC Reconstruction"
+            ]
+          }
+        }
+      }
+
+      duraark._post(sessionsEndpoint, initialSessionData).then(function(session) {
+        resolve(session);
+      }).catch(function(err) {
+        reject(err);
+      });
     })
   },
 
-  deleteSession: function(session) {
+  deleteSession(session) {
     let duraark = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -48,7 +117,7 @@ export default Ember.Service.extend({
     })
   },
 
-  storeInSDAS: function(session) {
+  storeInSDAS(session) {
     let duraark = this,
       sdaEndpoint = duraark.getAPIEndpoint('sda') + '/store';
 
@@ -126,7 +195,22 @@ export default Ember.Service.extend({
     });
   },
 
-  _get: function(url) {
+  getPhysicalAsset(uri) {
+    let duraark = this,
+      sdaEndpoint = duraark.getAPIEndpoint('sda') + '/concepts/physicalAssetMetadata';
+    //sdaEndpoint = 'http://localhost:5013/concepts/physicalAssets';
+
+    console.log('[DURAARK::getPhysicalAssets] requesting from SDAS ...');
+
+    let url = sdaEndpoint + '/?uri=' + uri;
+
+    return duraark._get(sdaEndpoint).then(results => {
+      // console.log('jsonld: ' + JSON.stringify(results, null, 4));
+      return results;
+    });
+  },
+
+  _get(url) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       function handler(data, status, jqxhr) {
         if (status === 'success') {
@@ -144,7 +228,7 @@ export default Ember.Service.extend({
     });
   },
 
-  _post: function(url, data) {
+  _post(url, data) {
     var that = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
@@ -166,7 +250,7 @@ export default Ember.Service.extend({
     });
   },
 
-  _delete: function(url) {
+  _delete(url) {
     var that = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {

@@ -58,7 +58,7 @@ export default Ember.Route.extend({
 
   // actions: {
   // 	highlightSession: function(session) {
-  // 		var sessions = this.modelFor('application');
+  // 		var sessions = this.modelFor('preingest');
 
   // 		sessions.forEach(function(item) {
   // 			item.set('isSelected', false);

@@ -242,10 +242,6 @@ export default Ember.Controller.extend({
       digObj.get('semMD.topics').removeObject(topic);
 
       // this.send('save');
-    },
-
-    showTopic: function(topic) {
-      console.log('showing topic details: ' + topic.get('label'));
     }
   }
 });

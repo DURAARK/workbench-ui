@@ -21,7 +21,7 @@
     {{#if digitalObjects.length}}
       {{#file-list files=digitalObjects as |do|}}
         <div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
-          {{digital-object-sementic item=do details="showDetails" select="showToolSelection"}}
+          {{digital-object-sementic item=do select="showToolSelection"}}
 
           {{#each do.geoMD.tools as |tool| }}
             {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}

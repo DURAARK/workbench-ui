@@ -4,12 +4,7 @@ export
 default Ember.Route.extend({
 
   model(params) {
-    var sessions = this.modelFor('application');
-    var session = sessions.objectAt(params.id - 1);
-
-    session.files = [];
-
-    return session;
+    return this.store.find('session', params.id);
   },
 
   activate() {
@@ -23,10 +18,7 @@ default Ember.Route.extend({
   setupController(controller, model) {
     this._super(controller, model);
 
-    var session = model;
-    this.modelFor('application').set('session', session);
-
-    controller.set('session', session);
+    controller.set('session', model);
     controller.set('showSidebar', true);
     controller.set('selectedFile', null);
 

@@ -6,23 +6,15 @@ default Ember.Component.extend({
 
   actions: {
     openBuilding(building) {
-        // get session ...
-        //this.transitionToRoute()
+        let controller = this;
+        this.duraark.createSessionFromBuilding(building).then(function(session) {
+          controller.sendAction('openBuilding', session);
+        });
       },
 
       showDetails(building) {
-        console.log('Selected building:\n' + JSON.stringify(building, null, 4));
+        // console.log('Selected building:\n' + JSON.stringify(building, null, 4));
         this.sendAction('showBuildingDetails', building);
       }
-  },
-
-  buildingsArray: Ember.computed('buildings', function() {
-    debugger;
-    let buildings = this.get('buildings'),
-      buildingsArray = [];
-
-    buildings.forEach((key, value) => {
-      buildingsArray.pushObject(value);
-    });
-  })
+  }
 });
