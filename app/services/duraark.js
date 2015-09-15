@@ -79,8 +79,12 @@ export default Ember.Service.extend({
         item.buildm['http://data.duraark.eu/vocab/buildm/represents'] = [{
           '@value': paURI
         }];
-
         // console.log('buildm_represents: ' + JSON.stringify(item.buildm, null, 4));
+
+        // FIXXME: temporary download URL from Rosetta:
+        item.buildm['http://data.duraark.eu/vocab/buildm/downloadUrl'] = [{
+          '@value': "http://rosetta.develop.lza.tib.eu/delivery/DeliveryManagerServlet?dps_pid=FL668512&dps_func=stream"
+        }];
 
         duraark._post(sdaEndpoint, {
           buildm: item.buildm
@@ -93,6 +97,11 @@ export default Ember.Service.extend({
           paBuildm['http://data.duraark.eu/vocab/buildm/isRepresentedBy'].push({
             '@value': doBuildm['@id']
           });
+
+          // FIXXME: temporary download URL from Rosetta:
+          doBuildm['http://data.duraark.eu/vocab/buildm/downloadUrl'] = [{
+            '@value': "http://rosetta.develop.lza.tib.eu/delivery/DeliveryManagerServlet?dps_pid=FL668512&dps_func=stream"
+          }];
 
           duraark._post(sdaEndpoint, {
             buildm: paBuildm
@@ -107,7 +116,7 @@ export default Ember.Service.extend({
   getAllPhysicalAssets() {
     let duraark = this,
       sdaEndpoint = duraark.getAPIEndpoint('sda') + '/concepts/physicalAssets';
-      //sdaEndpoint = 'http://localhost:5013/concepts/physicalAssets';
+    //sdaEndpoint = 'http://localhost:5013/concepts/physicalAssets';
 
     console.log('[DURAARK::getPhysicalAssets] requesting from SDAS ...');
 
