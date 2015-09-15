@@ -2,13 +2,20 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     actions: {
-      createSession: function(initialSessionData) {
-        var store = this.store;
+      createSession: function() {
+        let store = this.store,
+        initialSessionData = {
+          label: this.get('name'),
+          address: this.get('address'),
+          description: this.get('description')
+        };
+
+        console.log('initialSessionData: ' + JSON.stringify(initialSessionData, null, 4));
 
         this.duraark.createSession(initialSessionData).then(function(session) {
           console.log('Created new session:\n' + JSON.stringify(session, null, 4));
           // See https://github.com/emberjs/data/issues/3402:
-          // store.push(store.normalize('session', session));
+          store.push(store.normalize('session', session));
         }).catch(function(err) {
           console.log('err: ' + err);
         })

@@ -39,14 +39,14 @@ export default Ember.Controller.extend({
       var session = controller.get('session'),
         files = controller.get('selectedFiles');
 
-      // session.set('files', files);
-      session['files'] = files;
+      session.set('files', files);
+      // session['files'] = files;
 
-      // Take files and create a physicalAsset and digitalObjects from the files:
-      var pa = {
-        label: 'Building Site Name',
-        buildm: {}
-      };
+      // // Take files and create a physicalAsset and digitalObjects from the files:
+      // var pa = {
+      //   label: 'Building Site Name',
+      //   buildm: {}
+      // };
 
       // Check if files have metadata attached already. If not, get it from the metadata service.
       var promises = [];
@@ -77,39 +77,54 @@ export default Ember.Controller.extend({
             hasMetadata = false;
           }
 
-          // FIXXME: how to combine pa data from all files?
-          var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
-            '@type': ['http://data.duraark.eu/vocab/buildm/PhysicalAsset'],
-            'http://data.duraark.eu/vocab/buildm/name': [{
-              '@value': 'Nygade Building'
-            }]
-          };
+          // // FIXXME: how to combine pa data from all files?
+          // var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
+          //   'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
+          //     '@value': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset'
+          //   }],
+          //   'http://data.duraark.eu/vocab/buildm/name': [{
+          //     '@value': 'Nygade Building'
+          //   }]
+          // };
 
-          var sessionLabel = controller.get('session.label');
+          // var sessionLabel = controller.get('session.label');
+          //
+          // paMD['http://data.duraark.eu/vocab/buildm/name'] = [{
+          //   '@value': sessionLabel
+          // }];
 
-          paMD['http://data.duraark.eu/vocab/buildm/name'] = [{
-            '@value': sessionLabel
-          }];
-
-          pa.buildm = paMD;
-          session.set('physicalAssets', [pa]);
+          // pa.buildm = paMD;
+          // session.set('physicalAssets', [pa]);
 
           var name = file.get('path').replace('/duraark-storage/files/', ''); // FIXXME!
           var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
-            '@type': ['http://data.duraark.eu/vocab/buildm/E57File'],
+            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
+              '@value': 'http://data.duraark.eu/vocab/buildm/E57File'
+            }],
             'http://data.duraark.eu/vocab/buildm/name': [{
               '@value': name
             }]
           };
 
+          if (hasMetadata) {
+            daMD['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'] = [{
+              '@value': 'http://data.duraark.eu/vocab/buildm/IFCSPFFile'
+            }];
+          }
+
           daMD['http://data.duraark.eu/vocab/buildm/name'] = [{
             '@value': name
           }];
+
+          var duraarkType = (hasMetadata) ? 'http://data.duraark.eu/vocab/buildm/IFCFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
+          let type = duraarkType.split('/').pop().toLowerCase();
+          var uri = 'http://data.duraark.eu/' + type + '_' + uuid.v4();
 
           var digOb = Ember.Object.create({
             label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/buildm/name'][0]['@value'] : 'Edit name',
             // label: file.get('path'),
             buildm: daMD,
+            uri: uri,
             semMD: Ember.Object.create({
               topics: []
             }),
@@ -121,9 +136,9 @@ export default Ember.Controller.extend({
 
           console.log('PATH: ' + file.get('path'));
 
-
           das.pushObject(digOb);
         });
+
 
         session.set('digitalObjects', das);
 

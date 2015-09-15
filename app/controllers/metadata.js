@@ -43,8 +43,8 @@ export default Ember.Controller.extend({
 
     updateMetadata: function(buildm) {
       var session = this.get('session'),
-        entityType = buildm['@type'][0],
-        entityId = buildm['@id'],
+        //entityType = buildm['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'][0]['@value'],
+        // entityId = buildm['@id'],
         controller = this;
 
       // console.log('entityType: ' + entityType);
@@ -53,19 +53,29 @@ export default Ember.Controller.extend({
       var entityToUpdate = null,
         entityCandidates = null;
 
-      if (entityType === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset') {
+      // if (entityType === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset') {
+      //   console.log('About to update PhysicalAsset');
+      //   entityCandidates = session.get('physicalAssets');
+      // } else if (entityType === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' || entityType === 'http://data.duraark.eu/vocab/buildm/E57File') {
+      //   console.log('About to update DigitalObject');
+      //   entityCandidates = session.get('digitalObjects');
+      // }
+
+      var entityType = this.get('entityType');
+      if (entityType === 'physicalAsset') {
         console.log('About to update PhysicalAsset');
         entityCandidates = session.get('physicalAssets');
       } else if (entityType === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' || entityType === 'http://data.duraark.eu/vocab/buildm/E57File') {
         console.log('About to update DigitalObject');
         entityCandidates = session.get('digitalObjects');
       }
+      entityToUpdate = session.get('physicalAssets')[0];
 
-      entityCandidates.forEach(function(candidate) {
-        if (candidate.buildm['@id'] === entityId) {
-          entityToUpdate = candidate;
-        }
-      });
+      // entityCandidates.forEach(function(candidate) {
+      //   if (candidate.buildm['@id'] === entityId) {
+      //     entityToUpdate = candidate;
+      //   }
+      // });
 
       // FIXXME: I found no other way to update the buildm object, due to ember error messages. ..
       _.forEach(buildm, function(value, key) {
@@ -79,14 +89,16 @@ export default Ember.Controller.extend({
 
       var payload = session.toJSON();
       var ds = [];
-      payload.digitalObjects.forEach(function(item) {
-        ds.push(JSON.parse(JSON.stringify(item)));
-      });
+      if (payload.digitalObjects) {
+        payload.digitalObjects.forEach(function(item) {
+          ds.push(JSON.parse(JSON.stringify(item)));
+        });
+      }
       payload.digitalObjects = ds;
 
       var pa = [];
       payload.physicalAssets.forEach(function(item) {
-        ds.push(JSON.parse(JSON.stringify(item)));
+        pa.push(JSON.parse(JSON.stringify(item)));
       });
       payload.physicalAssets = pa;
 
@@ -119,13 +131,14 @@ export default Ember.Controller.extend({
   }.property('fileInfo'),
 
   isIFC: function() {
-    //var type = this.get('fileInfo')['buildm']['@type'][0];
-    //return type === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
+    var buildm = this.get('fileInfo')['buildm'];
+    var type = buildm['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'][0]['@value'];
+    return type === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
   }.property('fileInfo'),
 
   isE57: function() {
-    //var type = this.get('fileInfo')['buildm']['@type'][0];
-    //return type === 'http://data.duraark.eu/vocab/buildm/E57File';
+    var type = this.get('fileInfo')['buildm']['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'][0]['@value'];
+    return type === 'http://data.duraark.eu/vocab/buildm/E57File';
   }.property('fileInfo')
 
 });

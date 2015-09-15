@@ -15,6 +15,8 @@ app.import('bower_components/material-design-lite/material.min.js');
 
 app.import('vendor/ember-droplet/dist/ember-droplet.js');
 
+app.import('vendor/node-uuid/uuid.js');
+
 app.import('bower_components/leaflet/dist/leaflet.js');
 app.import('bower_components/leaflet/dist/leaflet.css');
 

@@ -41,6 +41,7 @@
   "dependencies": {
     "emberx-select": "^2.0.1",
     "node-sass": "^3.3.2",
+    "node-uuid": "^1.4.3",
     "underscore": "^1.8.3"
   }
 }

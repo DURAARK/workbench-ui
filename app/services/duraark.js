@@ -51,16 +51,44 @@ export default Ember.Service.extend({
   },
 
   createSession(initialSessionData) {
-    let duraark = this;
+    let duraark = this,
+      sessionTemplate = {
+        state: "new",
+        uri: this._generateURI('http://data.duraark.eu/vocab/buildm/PhysicalAsset'),
+        label: initialSessionData.label,
+        address: initialSessionData.address,
+        description: initialSessionData.description || "No description",
+        physicalAssets: [{
+          label: initialSessionData.label,
+          buildm: {
+            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
+              '@value': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset'
+            }],
+            'http://data.duraark.eu/vocab/buildm/name': [{
+              '@value': initialSessionData.label
+            }]
+          }
+        }],
+        digitalObjects: [],
+        config: {
+          sda: {
+            topics: [
+              "Haus 30 (general context)",
+              "Haus 30 (political context)"
+            ]
+          },
+          geometricenrichment: {
+            tools: [
+              "IFC Reconstruction"
+            ]
+          }
+        }
+      };
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let sessionsEndpoint = duraark.getAPIEndpoint('sessions') + '/sessions';
 
-      initialSessionData = _.extend(initialSessionData, {
-          uri: null
-      });
-
-      duraark._post(sessionsEndpoint, initialSessionData).then(function(session) {
+      duraark._post(sessionsEndpoint, sessionTemplate).then(function(session) {
         resolve(session);
       }).catch(function(err) {
         reject(err);
@@ -283,5 +311,10 @@ export default Ember.Service.extend({
         success: handler
       });
     });
+  },
+
+  _generateURI(duraarkType) {
+    let type = duraarkType.split('/').pop().toLowerCase();
+    return 'http://data.duraark.eu/' + type + '_' + uuid.v4();
   }
 });
