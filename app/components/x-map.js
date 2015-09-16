@@ -30,7 +30,7 @@ export default Ember.Component.extend({
   didInsertElement: function() {
     // NOTE: manually copied over leaflet/dist/images/* to the following folder
     // to display markers:
-    L.Icon.Default.imagePath = '/images';
+    L.Icon.Default.imagePath = '/assets/images';
 
     var map = L.map('map');
     this.set('map', map);
