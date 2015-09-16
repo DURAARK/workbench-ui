@@ -92,7 +92,7 @@ export default Ember.Component.extend({
     }
   }.property('buildm'),
 
-  buildmChanged: function() {
+  buildmChanged: Ember.on('init', Ember.observer('buildm', function() {
     var buildm = this.get('buildm'),
       formDescription = [],
       schemaDesc = this.getSchema(),
@@ -106,7 +106,7 @@ export default Ember.Component.extend({
     formTemplate['itemName'] = buildm['http://data.duraark.eu/vocab/buildm/name'][0]['@value'];
 
     this.set('formDescription', formTemplate);
-  }.observes('buildm').on('init'),
+  })),
 
   buildFormTemplate: function(buildm) {
     var schemaFull = this.getSchema(),

@@ -24,7 +24,6 @@ export default Ember.Controller.extend({
           } else {
             console.log('no session exists for building, creating new ...');
             controller.duraark.createSessionFromBuilding(uri, building).then(function(newSession) {
-              debugger;
               // NOTE: Providing the 'id' of the session here so that the 'model' hook
               // of the 'preingest.files' route gets called. Currently we have a mix of
               // ember-data and native objects for 'session' models, which makes this
@@ -35,9 +34,10 @@ export default Ember.Controller.extend({
         });
       },
 
-      showDetails(building) {
+      showDetails(uri, building) {
         this.set('showSidebarDetails', true);
         this.set('selectedBuilding', building);
+        this.set('selectedUri', uri);
       }
   }
 });

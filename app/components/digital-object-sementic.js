@@ -43,19 +43,19 @@ default Ember.Component.extend({
 	}.property('item'),
 
 	isPhysicalAsset: function() {
-			var type = this.get('item')['buildm']['@type'][0];
-			return type === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset';
-	},
+    let buildm = this.get('item')['buildm'];
+    return this.duraark.isOfType(buildm, 'http://data.duraark.eu/vocab/buildm/PhysicalAsset');
+  }.property('item'),
 
-	isIFC: function() {
-		var type = this.get('item')['buildm']['@type'][0];
-		return type === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
-	}.property('item'),
+  isIFC: function() {
+    let buildm = this.get('item')['buildm'];
+    return this.duraark.isOfType(buildm, 'http://data.duraark.eu/vocab/buildm/IFCSPFFile');
+  }.property('item'),
 
-	isE57: function() {
-		var type = this.get('item')['buildm']['@type'][0];
-		return type === 'http://data.duraark.eu/vocab/buildm/E57File';
-	}.property('item')
+  isE57: function() {
+    let buildm = this.get('item')['buildm'];
+    return this.duraark.isOfType(buildm, 'http://data.duraark.eu/vocab/buildm/E57File');
+  }.property('item')
 });
 
 function _getFileExtension(filepath) {

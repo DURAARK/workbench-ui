@@ -19,7 +19,7 @@ export default Ember.Component.extend({
 
     showDetails(building) {
       // console.log('building-list-item::showDetails: ' + JSON.stringify(building, null, 4));
-      this.sendAction('showDetailsClicked', building);
+      this.sendAction('showDetailsClicked', this.get('uri'), building);
     }
   },
 

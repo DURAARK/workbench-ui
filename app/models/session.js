@@ -3,6 +3,7 @@ import DS from 'ember-data';
 var Session = DS.Model.extend({
   label: DS.attr('string'),
   state: DS.attr('string'),
+  uri: DS.attr('string'),
   address: DS.attr('string'),
   description: DS.attr('string'),
 

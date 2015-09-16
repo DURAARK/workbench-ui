@@ -1,11 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  buildingChanged: Ember.observer('building', function() {
-    let building = this.get('building');
-    debugger;
-    console.log('[sidebar-details] Retrieving metadata for: ' + building)
+  buildingChanged: Ember.on('init', Ember.observer('building', function() {
+    let building = this.get('building'),
+      uri = this.get('uri'),
+      controller = this;
 
-    this.duraark.getPhysicalAsset(uri);
-  })
+    console.log('[sidebar-details] Retrieving metadata for: ' + uri)
+
+    this.duraark.getPhysicalAsset(uri).then(function(building) {
+      controller.set('buildingFull', building);
+    });
+  }))
 });

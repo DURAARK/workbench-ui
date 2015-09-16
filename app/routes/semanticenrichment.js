@@ -14,30 +14,32 @@ default Ember.Route.extend({
 
     controller.set('session', session);
 
-    session.get('digitalObjects').forEach(function(digObj) {
-      var semMD = digObj.semMD;
+    if (session.get('digitalObjects')) {
+      session.get('digitalObjects').forEach(function(digObj) {
+        var semMD = digObj.semMD;
 
-      if (!semMD) {
-        semMD = {
-          topics: []
-        };
-      }
+        if (!semMD) {
+          semMD = {
+            topics: []
+          };
+        }
 
-      var obj = Ember.Object.create({
-        label: digObj.label,
-        buildm: digObj.buildm,
-        semMD: semMD,
-        geoMD: Ember.Object.create(digObj.geoMD),
-        techMD: digObj.techMD,
-        derivatives: digObj.derivatives,
-        size: digObj.size,
-        isSelected: false
+        var obj = Ember.Object.create({
+          label: digObj.label,
+          buildm: digObj.buildm,
+          semMD: semMD,
+          geoMD: Ember.Object.create(digObj.geoMD),
+          techMD: digObj.techMD,
+          derivatives: digObj.derivatives,
+          size: digObj.size,
+          isSelected: false
+        });
+
+        digObjs.pushObject(obj);
       });
 
-      digObjs.pushObject(obj);
-    });
-
-    controller.set('digitalObjects', digObjs);
+      controller.set('digitalObjects', digObjs);
+    }
 
     // FIXXME: get from SDA service!
     // FIXXME: create Topic model to enable saving and linking into session model!

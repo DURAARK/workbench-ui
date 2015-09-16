@@ -16,6 +16,20 @@ export default Ember.Service.extend({
 
   vocabBase: 'http://data.duraark.eu/vocab/buildm/',
 
+  getType(buildm) {
+    let type = null;
+    if (buildm['@type']) {
+      type = buildm['@type'];
+    }
+
+    return type;
+  },
+
+  isOfType(buildm, typeName) {
+    var type = this.getType(buildm);
+    return type === typeName;
+  },
+
   getAPIEndpoint(service) {
     return this.get(service + 'Endpoint');
   },
@@ -54,16 +68,14 @@ export default Ember.Service.extend({
     let duraark = this,
       sessionTemplate = {
         state: "new",
-        uri: this._generateURI('http://data.duraark.eu/vocab/buildm/PhysicalAsset'),
         label: initialSessionData.label,
         address: initialSessionData.address,
         description: initialSessionData.description || "No description",
         physicalAssets: [{
           label: initialSessionData.label,
           buildm: {
-            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
-              '@value': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset'
-            }],
+            '@id': this._generateURI('http://data.duraark.eu/vocab/buildm/PhysicalAsset'),
+            '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
             'http://data.duraark.eu/vocab/buildm/name': [{
               '@value': initialSessionData.label
             }]
@@ -111,14 +123,20 @@ export default Ember.Service.extend({
       // get full buildm record from SDAS:
       duraark.getPhysicalAsset(uri).then(function(buildm) {
         // console.log('buildm: ' + JSON.stringify(buildm, null, 4));
+
+        buildm = _.extend(buildm, {
+          '@id': uri,
+          '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
+        });
+
         const initialSessionData = {
           state: 'new',
-          uri: uri,
           label: building[vocab + 'name'][0]['value'],
           description: description,
           physicalAssets: [{
             label: building[vocab + 'name'][0]['value'],
-            buildm: buildm
+            buildm: buildm,
+            buildmOriginal: buildm
           }],
           // FIXXME: get digitalObjects from 'represents' predicate!
           // digitalObjects: [{
@@ -184,48 +202,51 @@ export default Ember.Service.extend({
     var pa = session.get('physicalAssets').objectAt(0);
 
     duraark._post(sdaEndpoint, {
-      buildm: pa.buildm
+      buildm: pa.buildm,
+      buildmOriginal: pa.buildmOriginal,
     }).then(function(paBuildm) {
-      session.get('digitalObjects').forEach(function(item) {
-        console.log('[DURAARK::storeInSDAS] Storing digitalObject metadata: ' + item.label);
+      if (session.get('digitalObjects')) {
+        session.get('digitalObjects').forEach(function(item) {
+          console.log('[DURAARK::storeInSDAS] Storing digitalObject metadata: ' + item.label);
 
-        var paURI = paBuildm['@id'];
-        // console.log('paURI: ' + paURI);
+          var paURI = paBuildm['@id'];
+          // console.log('paURI: ' + paURI);
 
-        item.buildm['http://data.duraark.eu/vocab/buildm/represents'] = [{
-          '@value': paURI
-        }];
-        // console.log('buildm_represents: ' + JSON.stringify(item.buildm, null, 4));
-
-        // FIXXME: temporary download URL from Rosetta:
-        item.buildm['http://data.duraark.eu/vocab/buildm/downloadUrl'] = [{
-          '@value': "http://rosetta.develop.lza.tib.eu/delivery/DeliveryManagerServlet?dps_pid=FL668512&dps_func=stream"
-        }];
-
-        duraark._post(sdaEndpoint, {
-          buildm: item.buildm
-        }).then(function(doBuildm) {
-          // Update 'isRepresentedBy' triple for PhysicalAsset:
-          if (!paBuildm['http://data.duraark.eu/vocab/buildm/isRepresentedBy']) {
-            paBuildm['http://data.duraark.eu/vocab/buildm/isRepresentedBy'] = [];
-          }
-
-          paBuildm['http://data.duraark.eu/vocab/buildm/isRepresentedBy'].push({
-            '@value': doBuildm['@id']
-          });
+          item.buildm['http://data.duraark.eu/vocab/buildm/represents'] = [{
+            '@value': paURI
+          }];
+          // console.log('buildm_represents: ' + JSON.stringify(item.buildm, null, 4));
 
           // FIXXME: temporary download URL from Rosetta:
-          doBuildm['http://data.duraark.eu/vocab/buildm/downloadUrl'] = [{
+          item.buildm['http://data.duraark.eu/vocab/buildm/downloadUrl'] = [{
             '@value': "http://rosetta.develop.lza.tib.eu/delivery/DeliveryManagerServlet?dps_pid=FL668512&dps_func=stream"
           }];
 
           duraark._post(sdaEndpoint, {
-            buildm: paBuildm
+            buildm: item.buildm
+          }).then(function(doBuildm) {
+            // Update 'isRepresentedBy' triple for PhysicalAsset:
+            if (!paBuildm['http://data.duraark.eu/vocab/buildm/isRepresentedBy']) {
+              paBuildm['http://data.duraark.eu/vocab/buildm/isRepresentedBy'] = [];
+            }
+
+            paBuildm['http://data.duraark.eu/vocab/buildm/isRepresentedBy'].push({
+              '@value': doBuildm['@id']
+            });
+
+            // FIXXME: temporary download URL from Rosetta:
+            doBuildm['http://data.duraark.eu/vocab/buildm/downloadUrl'] = [{
+              '@value': "http://rosetta.develop.lza.tib.eu/delivery/DeliveryManagerServlet?dps_pid=FL668512&dps_func=stream"
+            }];
+
+            duraark._post(sdaEndpoint, {
+              buildm: paBuildm
+            });
+          }).catch(function(err) {
+            throw new Error(err);
           });
-        }).catch(function(err) {
-          throw new Error(err);
         });
-      });
+      }
     });
   },
 

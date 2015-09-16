@@ -118,27 +118,18 @@ export default Ember.Controller.extend({
   },
 
   isPhysicalAsset: function() {
-    let buildm = this.get('fileInfo')['buildm'],
-      type = null;
-    // FIXXME: we currently support two formats for buildm serialized data, which
-    // is crazy!
-    if (buildm['@type']) {
-      type = buildm['@type'][0];
-    } else {
-      type = buildm['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'][0]['@value'];
-    }
-    return type === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset';
+    let buildm = this.get('fileInfo')['buildm'];
+    return this.duraark.isOfType(buildm, 'http://data.duraark.eu/vocab/buildm/PhysicalAsset');
   }.property('fileInfo'),
 
   isIFC: function() {
-    var buildm = this.get('fileInfo')['buildm'];
-    var type = buildm['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'][0]['@value'];
-    return type === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
+    let buildm = this.get('fileInfo')['buildm'];
+    return this.duraark.isOfType(buildm, 'http://data.duraark.eu/vocab/buildm/IFCSPFFile');
   }.property('fileInfo'),
 
   isE57: function() {
-    var type = this.get('fileInfo')['buildm']['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'][0]['@value'];
-    return type === 'http://data.duraark.eu/vocab/buildm/E57File';
+    let buildm = this.get('fileInfo')['buildm'];
+    return this.duraark.isOfType(buildm, 'http://data.duraark.eu/vocab/buildm/E57File');
   }.property('fileInfo')
 
 });

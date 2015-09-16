@@ -98,33 +98,30 @@ export default Ember.Controller.extend({
 
           var name = file.get('path').replace('/duraark-storage/files/', ''); // FIXXME!
           var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
-            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
-              '@value': 'http://data.duraark.eu/vocab/buildm/E57File'
-            }],
+            '@type': 'http://data.duraark.eu/vocab/buildm/E57File',
             'http://data.duraark.eu/vocab/buildm/name': [{
               '@value': name
             }]
           };
 
           if (hasMetadata) {
-            daMD['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'] = [{
-              '@value': 'http://data.duraark.eu/vocab/buildm/IFCSPFFile'
-            }];
+            daMD['@type'] = 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
           }
 
           daMD['http://data.duraark.eu/vocab/buildm/name'] = [{
             '@value': name
           }];
 
-          var duraarkType = (hasMetadata) ? 'http://data.duraark.eu/vocab/buildm/IFCFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
+          var duraarkType = (hasMetadata) ? 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
           let type = duraarkType.split('/').pop().toLowerCase();
           var uri = 'http://data.duraark.eu/' + type + '_' + uuid.v4();
+
+          daMD['@id'] = uri;
 
           var digOb = Ember.Object.create({
             label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/buildm/name'][0]['@value'] : 'Edit name',
             // label: file.get('path'),
             buildm: daMD,
-            uri: uri,
             semMD: Ember.Object.create({
               topics: []
             }),
@@ -134,7 +131,7 @@ export default Ember.Controller.extend({
             size: file.get('size')
           });
 
-          console.log('PATH: ' + file.get('path'));
+          // console.log('PATH: ' + file.get('path'));
 
           das.pushObject(digOb);
         });

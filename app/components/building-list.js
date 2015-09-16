@@ -9,9 +9,9 @@ default Ember.Component.extend({
         this.sendAction('openBuilding', uri, building);
       },
 
-      showDetails(building) {
+      showDetails(uri, building) {
         // console.log('Selected building:\n' + JSON.stringify(building, null, 4));
-        this.sendAction('showBuildingDetails', building);
+        this.sendAction('showBuildingDetails', uri, building);
       }
   }
 });
