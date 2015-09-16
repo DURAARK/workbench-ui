@@ -51,14 +51,16 @@ export default Ember.Controller.extend({
       var session = this.get('session'),
         controller = this;
 
-      session.get('digitalObjects').forEach(function(digObj) {
-        // FIXXME: remove ember-data and plain javascript models ASAP!
-        if (_.isFunction(digObj.get)) {
-          let geoMD = digObj.get('geoMD'),
-            tmp = JSON.parse(JSON.stringify(geoMD));
-          digObj.set('geoMD', tmp);
-        }
-      });
+      if (session.get('digitalObjects')) {
+        session.get('digitalObjects').forEach(function(digObj) {
+          // FIXXME: remove ember-data and plain javascript models ASAP!
+          if (_.isFunction(digObj.get)) {
+            let geoMD = digObj.get('geoMD'),
+              tmp = JSON.parse(JSON.stringify(geoMD));
+            digObj.set('geoMD', tmp);
+          }
+        });
+      }
 
       session.save().then(function(session) {
         controller.transitionToRoute('semanticenrichment', session);

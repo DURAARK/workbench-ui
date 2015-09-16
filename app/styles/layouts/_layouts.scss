@@ -23,7 +23,7 @@ body,
 .l-canvas {
   @include container();
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   height: 100vh;
 }
 .l-content-header,

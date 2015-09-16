@@ -1,5 +1,5 @@
 .title {
-  color       : $text;
+  color       : $gui-main-font;
   // font-size   : 2.0em;
   //font-family : $page-font;
 }
@@ -9,7 +9,7 @@
   //width      : 250px;
   list-style : none;
   color: black;
-  padding: 0 2em 2em 0;
+  //padding: 0 2em 2em 0;
 
   -webkit-transform           : translateZ(0);
   -webkit-backface-visibility : hidden;
@@ -22,11 +22,11 @@
   background-color: color(light-gray);
 
   &:first-child {
-    @include round-top-corners($amount: 10px);
+  //  @include round-top-corners($amount: 10px);
   }
 
   &:last-child {
-    @include round-bottom-corners($amount: 10px);
+    //@include round-bottom-corners($amount: 10px);
   }
 
   &.dropdown-list-no-round-corners {

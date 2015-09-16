@@ -43,9 +43,13 @@ export default Ember.Component.extend({
 
     places.forEach(function(place) {
       console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + place.name);
+      try {
       L.marker([place.latitude, place.longitude]).addTo(map)
         .bindPopup(place.name)
         .openPopup();
+      } catch(err) {
+        console.log('Adding marker error: ' + err);
+      };
     });
 
     map.setView([47.032666667, 15.37], 5);

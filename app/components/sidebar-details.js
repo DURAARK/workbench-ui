@@ -9,6 +9,7 @@ export default Ember.Component.extend({
     console.log('[sidebar-details] Retrieving metadata for: ' + uri)
 
     this.duraark.getPhysicalAsset(uri).then(function(building) {
+      console.log('buildling: ' + JSON.stringify(building, null, 4));
       controller.set('buildingFull', building);
     });
   }))

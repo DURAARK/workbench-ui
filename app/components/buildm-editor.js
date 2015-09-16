@@ -103,7 +103,10 @@ export default Ember.Component.extend({
     // console.log('form: ' + JSON.stringify(buildm, null, 4));
 
     var formTemplate = this.buildFormTemplate(buildm);
-    formTemplate['itemName'] = buildm['http://data.duraark.eu/vocab/buildm/name'][0]['@value'];
+
+    if (buildm['http://data.duraark.eu/vocab/buildm/name']) {
+      formTemplate['itemName'] = buildm['http://data.duraark.eu/vocab/buildm/name'][0]['@value'];
+    }
 
     this.set('formDescription', formTemplate);
   })),

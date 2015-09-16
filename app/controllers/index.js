@@ -7,6 +7,9 @@ export default Ember.Controller.extend({
     },
     showRetrieveWorkflow: function() {
       this.transitionToRoute('retrieve');
+    },
+    showKnowledgeGraph: function() {
+      this.transitionToRoute('searchretrieve');
     }
   }
 });

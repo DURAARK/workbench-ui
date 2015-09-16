@@ -10,6 +10,9 @@ body {
   color            : $text;
 //  background: $background;
   background-image: url("/images/bg_footer_lodyas.png");
+
+  overflow: auto;
+  // padding: 1em;
 }
 
 // Adaptation of Lobotomized Owls Selector on p elements
