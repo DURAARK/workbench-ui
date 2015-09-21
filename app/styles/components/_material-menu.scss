@@ -85,11 +85,12 @@ $main-width: 75vw;
 }
 
 .material-content {
-  padding: 10% 15%;
+  // padding: 10% 15%;
   position: absolute;
   z-index: 3;
   top: 0;
   right: 0;
+  width: 100%;
 }
 
 nav {

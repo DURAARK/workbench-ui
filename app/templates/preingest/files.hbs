@@ -10,7 +10,11 @@
 </div>
 
 <div class="c-workflow-page">
-	<header>Files</header>
+	{{#if selectedFiles.length}}
+		<header>Files ({{selectedFiles.length}} selected)</header>
+	{{else}}
+		<header>Files</header>
+	{{/if}}
 
 	<div class="l-files">
 

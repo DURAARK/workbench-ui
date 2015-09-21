@@ -29,6 +29,11 @@ export default Ember.Controller.extend({
     next: function() {
       var controller = this;
 
+      if (!this.get('selectedFiles.length')) {
+        alert('Select one or multiple files first!');
+        return;
+      }
+
       controller.send('isLoading', true, 'Extracting metadata ...');
 
       console.log('Selected files:');
