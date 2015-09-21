@@ -8,10 +8,10 @@
     <!--List Items-->
     <div class="dropdown-list-items dropdown-list-open dropdownlist-grid">
       <fieldset>
-           {{#each item in overview}}
+           {{#each overview as |item|}}
             <div class="dropdownlist-grid">
               <label>{{item.key}}:</label>
-              {{#each value in item.values}}
+              {{#each item.values as |value|}}
                 {{input readonly=true value=value}}
               {{/each}}
             </div>

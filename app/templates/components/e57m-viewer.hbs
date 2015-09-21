@@ -1,15 +1,15 @@
 <!--List Container-->
 <ul class="dropdown-list-container">
 
-  {{#each scan in scans}}
+  {{#each scans as |scan|}}
   <li class="dropdown-list dropdown-list-no-round-corners">
     <a dropdown-prop="title">Scanner Run #{{scan.id}}<i class="dropdown-icon"></i></a>
     <div class="dropdown-list-items {{if scan.show 'dropdown-list-open'}} dropdownlist-grid">
       <fieldset>
-           {{#each item in scan.data}}
+           {{#each scan.data as |item|}}
             <div class="dropdownlist-grid">
               <label>{{item.key}}:</label>
-              {{#each value in item.values}}
+              {{#each item.values as |value|}}
                 {{input readonly=true value=value}}
               {{/each}}
             </div>

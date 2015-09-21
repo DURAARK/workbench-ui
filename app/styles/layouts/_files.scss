@@ -35,11 +35,13 @@
   // background: blue;
 }
 .l-file-details-titel {
-  @include round-top-corners($amount: 10px);
-  @include gradient(color(light-green), color(mid-green), 40px);
+  @include round-top-corners($amount: 4px);
+  //@include gradient(color(light-green), color(mid-green), 40px);
+  // background: color(light-green);
+  background: #F1F1F9;
   padding-top: rhythm(0.5);
   padding-bottom: rhythm(0.5);
-  margin-right: 2em;
+  //margin-right: 2em;
   text-align: center;
   .title {
     color: color(dark-gray);

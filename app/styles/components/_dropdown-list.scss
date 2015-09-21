@@ -34,17 +34,19 @@
   }
 
   &:nth-child(even) {
-    @include gradient(color(light-orange), color(mid-orange), 40px);
-    &:hover {
+    //@include gradient(color(light-orange), color(mid-orange), 40px);
+    background: $btn-orange;
+/*     &:hover {
       @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
-    }
+    } */
   }
 
   &:nth-child(odd) {
-    @include gradient(color(light-orange), color(mid-orange), 40px);
-    &:hover {
+    //include gradient(color(light-orange), color(mid-orange), 40px);
+    background: $btn-orange;
+/*     &:hover {
       @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
-    }
+    } */
   }
 
 
