@@ -18,4 +18,4 @@ RUN npm install
 RUN mv .git .git-tmp && bower install --allow-root; mv .git-tmp .git
 
 EXPOSE 4200
-CMD ["ember", "serve", "--prod"]
+CMD ["ember", "serve"]
