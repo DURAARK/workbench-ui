@@ -9,17 +9,15 @@ Router.map(function() {
   this.route('preingest', { resetNamespace: true }, function() {
     this.route('index', { path: '/'} );
     this.route('files', { path: ':id/files' });
+    this.route('metadata', { path: ':id/metadata' });
+    this.route('semanticenrichment', { path: ':id/semanticenrichment' });
+    this.route('geometricenrichment', { path: ':id/geometricenrichment' });
+    this.route('digitalpreservation', { path: ':id/digitalpreservation' });    
   });
 
   this.route('retrieve', { resetNamespace: true });
-
-  // this.route('files', { path: '/files/:id' });
-  this.route('metadata', { path: '/metadata/:id' });
-  this.route('semanticenrichment', { path: '/semanticenrichment/:id' });
-  this.route('geometricenrichment', { path: '/geometricenrichment/:id' });
-  this.route('digitalpreservation', { path: '/digitalpreservation/:id' });
-
   this.route('searchretrieve', { path: '/searchretrieve' });
+
   this.route('admin');
   this.route('file-browser');
 });

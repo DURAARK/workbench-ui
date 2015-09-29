@@ -58,6 +58,7 @@ default Ember.Route.extend({
       // }
       // }
 
+      // setup 'duraark-header' component:
       var label = model.get('label');
       this.send('setTitle', 'Data Archival - ' + label);
       this.send('showWorkflowSteps', true);

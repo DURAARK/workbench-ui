@@ -13,10 +13,10 @@
       {{#if showWorkflowSteps}}
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
           {{#link-to 'preingest.files' session classBinding=":mdl-layout__tab filesActive:is-active"}}Files{{/link-to}}
-          {{#link-to 'metadata' session classBinding=":mdl-layout__tab metadataActive:is-active"}}Metadata{{/link-to}}
-          {{#link-to 'semanticenrichment' session classBinding=":mdl-layout__tab semanticenrichmentActive:is-active"}}Context Information{{/link-to}}
-          {{#link-to 'geometricenrichment' session classBinding=":mdl-layout__tab geometricenrichmentActive:is-active"}}Geometric Tools{{/link-to}}
-          {{#link-to 'digitalpreservation' session classBinding=":mdl-layout__tab digitalpreservationActive:is-active"}}Digital Preservation{{/link-to}}
+          {{#link-to 'preingest.metadata' session classBinding=":mdl-layout__tab metadataActive:is-active"}}Metadata{{/link-to}}
+          {{#link-to 'preingest.semanticenrichment' session classBinding=":mdl-layout__tab semanticenrichmentActive:is-active"}}Context Information{{/link-to}}
+          {{#link-to 'preingest.geometricenrichment' session classBinding=":mdl-layout__tab geometricenrichmentActive:is-active"}}Geometric Tools{{/link-to}}
+          {{#link-to 'preingest.digitalpreservation' session classBinding=":mdl-layout__tab digitalpreservationActive:is-active"}}Digital Preservation{{/link-to}}
         </div>
       {{/if}}
     </header>

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DURAARK from 'workbench-ui/bindings/duraark';
-import ENV from '../config/environment';
+import ENV from '../../config/environment';
 
 var sdaEndpoint = ENV.DURAARKAPI.sda;
 
