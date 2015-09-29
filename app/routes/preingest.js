@@ -9,14 +9,24 @@ default Ember.Route.extend({
     setupController(controller, model) {
       this._super(controller, model);
 
-      model.set('hideNavbar', true);
       model.set('title', 'Data Archival - Sessions');
+      model.set('showWorkflowSetps', false);
     },
 
     actions: {
       setTitle(title) {
         let model = this.modelFor('preingest');
         model.set('title', title);
+      },
+
+      showWorkflowSteps(flag) {
+        let model = this.modelFor('preingest');
+        model.set('showWorkflowSteps', flag);
+      },
+
+      setActiveStep(stepName) {
+        let model = this.modelFor('preingest');
+        model.set('activeStep', stepName);        
       },
 
       setSession(session) {

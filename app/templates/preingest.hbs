@@ -1,20 +1,8 @@
-{{duraark-header session=model.session title=model.title showWorkflowSteps=true}}
+{{duraark-header session=model.session
+								 title=model.title
+								 showWorkflowSteps=model.showWorkflowSteps
+								 activeStep=model.activeStep}}
 
 <div class="l-page-with-header">
-	<!-- {{#unless model.hideNavbar}}
-		<div class="l-app-header">
-			<div class="l-nav">
-				<div class="c-breadcrumb">
-					{{#link-to "files" session}}Files{{/link-to}}
-					{{#link-to "metadata" session}}Metadata{{/link-to}}
-					{{#link-to "semanticenrichment" session}}Context Information{{/link-to}}
-					{{#link-to "geometricenrichment" session}}Geometric Tools{{/link-to}}
-					{{#link-to "digitalpreservation" session}}Digital Preservation{{/link-to}}
-				</div>
-			</div>
-		</div>
-	{{/unless}} -->
-
 	{{outlet}}
-
 </div>

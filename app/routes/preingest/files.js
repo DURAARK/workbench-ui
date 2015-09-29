@@ -60,7 +60,9 @@ default Ember.Route.extend({
 
       var label = model.get('label');
       this.send('setTitle', 'Data Archival - ' + label);
+      this.send('showWorkflowSteps', true);
       this.send('setSession', model);
+      this.send('setActiveStep', 'files');
     },
 
     highlightSelectedFiles(files) {
