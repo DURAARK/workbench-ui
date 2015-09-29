@@ -75,7 +75,7 @@ $main-width: 75vw;
     z-index: -1;
     width: 75px;
     height: 75px;
-    background: white;
+    background: $btn-blue;
     border-radius: 50%;
     box-shadow: 0 5px 10px rgba(black, 0.5);
     cursor: pointer;
@@ -144,12 +144,13 @@ nav {
 .material-hamburger {
 	transition: all .3s ease-out;
 
-	.material-patty {
+  .material-patty {
 		will-change: transform, opacity;
 		width: 32px;
 		height: 3px;
 		margin: 0 0 6px 0;
-		background: lighten(black, 20);
+		// background: lighten(black, 20);
+		background: white;
 		opacity: 1;
 		transform: translate(0) rotate(0deg);
 		transition: all .2s ease-out;
@@ -159,16 +160,34 @@ nav {
 		}
 	}
 
+  .material-patty-vertical {
+		will-change: transform, opacity;
+		width: 32px;
+		height: 3px;
+    margin-top: -9px;
+		// margin: 0 0 6px 0;
+		// background: lighten(black, 20);
+		background: white;
+		opacity: 1;
+		transform: translate(0) rotate(90deg);
+		transition: all .2s ease-out;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
 	&.material-close {
-    transform: rotate(-180deg);
+    // transform: rotate(-180deg);
+    transform: rotate(45deg);
 
-		.material-patty:nth-child(1) {
-			transform: translate(-10px, 4px) rotate(-45deg) scale(0.5, 1);
-		}
-
-		.material-patty:nth-child(3) {
-			transform: translate(-10px, -4px) rotate(45deg) scale(0.5, 1);
-		}
+		// .material-patty:nth-child(1) {
+		// 	transform: translate(-10px, 4px) rotate(-45deg) scale(0.5, 1);
+		// }
+    //
+		// .material-patty:nth-child(3) {
+		// 	transform: translate(-10px, -4px) rotate(45deg) scale(0.5, 1);
+		// }
 	}
 }
 
