@@ -293,6 +293,11 @@ default Ember.Route.extend({
     });
 
     controller.set('queries', queries);
+
+    this.send('setTitle', 'Explore Knowledge Graph');
+
+    var appState = this.modelFor('application');
+    controller.set('knowledgeState', appState.get('knowledge'));
   }
 
 });

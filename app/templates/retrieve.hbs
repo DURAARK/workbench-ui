@@ -1,19 +1,21 @@
-{{duraark-header title="Search Buildings"}}
+{{duraark-header session=retrieveState.session title=retrieveState.title showWorkflowSteps=retrieveState.showWorkflowSteps activeStep=retrieveState.activeStep}}
 
-{{building-list buildings=buildings openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}}
+<div class="l-page-with-header">
 
-{{x-map places=places selected=selectedBuilding}}
+  {{building-list buildings=buildings openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}} {{x-map places=places selected=selectedBuilding}}
 
-{{#toggle-menu}}
-  <nav>
-    <ul style="color: black;">
-      <li>
-        {{filter-view selectedBuilding="showBuildings"}}
-      </li>
-    </ul>
-  </nav>
-{{/toggle-menu}}
+  {{#toggle-menu}}
+    <nav>
+      <ul style="color: black;">
+        <li>
+          {{filter-view selectedBuilding="showBuildings"}}
+        </li>
+      </ul>
+    </nav>
+  {{/toggle-menu}}
 
-{{#if showSidebarDetails}}
-  {{sidebar-details building=selectedBuilding uri=selectedUri}}
-{{/if}}
+  {{#if showSidebarDetails}}
+    {{sidebar-details building=selectedBuilding uri=selectedUri}}
+  {{/if}}
+
+</div>

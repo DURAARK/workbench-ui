@@ -9,6 +9,12 @@ export default Ember.Route.extend({
         title: 'No Name',
         showWorkflowSteps: false,
         activeStep: 'files'
+      },
+      retrieve: {
+        title: 'No Name'
+      },
+      knowledge: {
+        title: 'No Name'
       }
     });
   },
@@ -17,6 +23,8 @@ export default Ember.Route.extend({
     setTitle(title) {
         let model = this.modelFor('application');
         model.set('preingest.title', title);
+        model.set('retrieve.title', title); // FIXXME: this is weird...
+        model.set('knowledge.title', title); // FIXXME: this is weird...
       },
 
       showWorkflowSteps(flag) {

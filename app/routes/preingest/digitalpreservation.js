@@ -11,7 +11,7 @@ export default Ember.Route.extend({
       controller.set('session', model);
 
       var label = model.get('label');
-      this.send('setTitle', 'Data Archival - ' + label);
+      this.send('setTitle', 'Archive Buildings - ' + label);
       this.send('showWorkflowSteps', true);
       this.send('setActiveStep', 'digitalpreservation');
       this.send('setSession', model);

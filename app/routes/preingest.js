@@ -9,7 +9,7 @@ default Ember.Route.extend({
     setupController(controller, model) {
       this._super(controller, model);
 
-      this.send('setTitle', 'Data Archival - Sessions');
+      this.send('setTitle', 'Archive Buildings - Sessions');
       this.send('showWorkflowSteps', false);
 
       var appState = this.modelFor('application');

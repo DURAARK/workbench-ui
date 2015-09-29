@@ -21,5 +21,10 @@ export default Ember.Route.extend({
 
       controller.set('buildings', model);
       controller.set('places', places);
+
+      this.send('setTitle', 'Search Buildings');
+
+      var appState = this.modelFor('application');
+      controller.set('retrieveState', appState.get('retrieve'));
     }
 });

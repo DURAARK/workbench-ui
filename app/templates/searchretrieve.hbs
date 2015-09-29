@@ -1,14 +1,15 @@
-{{duraark-header title="Search Knowledge Graph"}}
+{{duraark-header session=knowledgeState.session title=knowledgeState.title showWorkflowSteps=knowledgeState.showWorkflowSteps activeStep=knowledgeState.activeStep}}
 
-<div class="l-files">
+<div class="l-page-with-header">
+  <div class="l-files">
 
-  <div class="l-file-list">
+    <div class="l-file-list">
 
-    <h2 style="margin-top: 3em;"></h2>
+      <h2 style="margin-top: 3em;"></h2>
 
-    <!-- <hr> -->
+      <!-- <hr> -->
 
-    <!-- {{#file-list files=digitalObjects as |do|}}
+      <!-- {{#file-list files=digitalObjects as |do|}}
       <div>
         {{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
 
@@ -34,24 +35,25 @@
           {{#if result.candidates}}
             {{query-result-viewer result=result icon="fa-file-text-o"}}
           {{else}}
-              {{#help-box}}
-                <div class="c-help-box__hint">
-                  For each 3D input file it is possible to add information topics. To show all available topics use the
-                  <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
+            {{#help-box}}
+              <div class="c-help-box__hint">
+                For each 3D input file it is possible to add information topics. To show all available topics use the
+                <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
 
-                  <br>
-                  <br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
+                <br>
+                <br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
 
-                  <br>
-                  <br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
+                <br>
+                <br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
 
-                  <br>
-                  <br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
-                </div>
-              {{/help-box}}
+                <br>
+                <br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
+              </div>
+            {{/help-box}}
           {{/if}}
         {{/if}}
 
       </div>
     {{/if}}
   </div>
+</div>

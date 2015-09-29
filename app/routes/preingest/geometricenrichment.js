@@ -123,7 +123,7 @@ export default Ember.Route.extend({
           this.send('setSession', model);
 
           var label = model.get('label');
-          this.send('setTitle', 'Data Archival - ' + label);
+          this.send('setTitle', 'Archive Buildings - ' + label);
           this.send('showWorkflowSteps', true);
           this.send('setActiveStep', 'geometricenrichment');
         }
