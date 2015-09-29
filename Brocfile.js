@@ -12,6 +12,9 @@ var app = new EmberApp({
 
 app.import('bower_components/material-design-lite/material.min.css');
 app.import('bower_components/material-design-lite/material.min.js');
+// app.import('bower_components/mdi/css/materialdesignicons.min.css');
+
+app.import('bower_components/font-awesome/css/font-awesome.min.css');
 
 app.import('vendor/ember-droplet/dist/ember-droplet.js');
 

@@ -73,12 +73,13 @@ default Ember.Route.extend({
 
     controller.set('allTopics', allTopics);
 
-    // setup 'duraark-header' component:
+    // setup 'duraark-header' component ('setSession' has to be called first!):
+    this.send('setSession', model);
+
     var label = model.get('label');
     this.send('setTitle', 'Data Archival - ' + label);
     this.send('showWorkflowSteps', true);
-    this.send('setSession', model);
-    this.send('setActiveStep', 'semanticenrichment');    
+    this.send('setActiveStep', 'semanticenrichment');
   }
 
 });
