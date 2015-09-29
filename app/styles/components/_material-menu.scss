@@ -15,6 +15,7 @@ $main-width: 75vw;
   position: absolute;
   bottom: 0;
   right: 0;
+  top: -36px;
   height: 100vh;
   width: $sidebar-width;
   overflow: hidden;
@@ -40,31 +41,31 @@ $main-width: 75vw;
   justify-content: center;
   flex-wrap: wrap;
   position: absolute;
-  z-index: 1;
-  bottom: 20px;
+  z-index: 1001;
+  bottom: $header-height + 20px;
   right: 20px;
   width: 75px;
   height: 75px;
   background: transparent;
   cursor: pointer;
 
-  &.active {
-
-    &:before {
-      transform: scale(18);
-
-      @media (min-height: 800px) {
-        transform: scale(25);
-      }
-    }
-  }
-
-  &:active {
-
-    &:before {
-      opacity: 0.75;
-    }
-  }
+  // &.active {
+  //
+  //   &:before {
+  //     transform: scale(18);
+  //
+  //     @media (min-height: 800px) {
+  //       transform: scale(25);
+  //     }
+  //   }
+  // }
+  //
+  // &:active {
+  //
+  //   &:before {
+  //     opacity: 0.75;
+  //   }
+  // }
 
   &:before {
     content: "";
@@ -85,12 +86,24 @@ $main-width: 75vw;
 }
 
 .material-content {
-  // padding: 10% 15%;
+  padding: 1em;
+  display: hidden;
   position: absolute;
-  z-index: 3;
+  z-index: -1;
   top: 0;
   right: 0;
   width: 100%;
+  height: 100%;
+
+  opacity: 0;
+}
+
+.active .material-content {
+  display: block;
+  z-index: 1000;
+
+  background: white;
+  opacity: 1;
 }
 
 nav {

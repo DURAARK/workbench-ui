@@ -1,7 +1,5 @@
 <div class="c-preingest">
 
-  <header>Current Sessions</header>
-
   <div class="c-tile-list">
     {{#each model as |session|}}
       {{session-card session=session editClicked="editSession" deleteClicked="deleteSession"}}

@@ -20,6 +20,12 @@ body,
 .l-sitenav {
   height: 100%;
 }
+.l-page-with-header {
+  margin-top: $header-height;
+}
+.l-page-no-header {
+  margin-top: 0;
+}
 .l-canvas {
   @include container();
   position: relative;
