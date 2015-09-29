@@ -57,6 +57,10 @@ default Ember.Route.extend({
       });
       // }
       // }
+
+      var label = model.get('label');
+      this.send('setTitle', 'Data Archival - ' + label);
+      this.send('setSession', model);
     },
 
     highlightSelectedFiles(files) {

@@ -5,3 +5,7 @@ background: #a56f39;
 .mdl-layout__header {
   background-color: $btn-blue;
 }
+
+.mdl-layout__tab-bar {
+  background-color: lighten($btn-blue, 10%);
+}

@@ -1,19 +1,24 @@
-<!-- Always shows a header, even in smaller screens. -->
 <div class="duraark-header">
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
-        <!-- Title -->
         <span class="mdl-layout-title">{{title}}</span>
-        <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
-        <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           {{#link-to "preingest" class="mdl-navigation__link" }}| Archive Buildings{{/link-to}}
           {{#link-to "retrieve" class="mdl-navigation__link" }}| Search Buildings{{/link-to}}
           {{#link-to "searchretrieve" class="mdl-navigation__link" }}| Search Knowledge Graph{{/link-to}}
         </nav>
       </div>
+      {{#if showWorkflowSteps}}
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+          {{#link-to 'preingest.files' session class="mdl-layout__tab is-active"}}Files{{/link-to}}
+          {{#link-to 'metadata' session class="mdl-layout__tab"}}Metadata{{/link-to}}
+          {{#link-to 'semanticenrichment' session class="mdl-layout__tab"}}Context Information{{/link-to}}
+          {{#link-to 'geometricenrichment' session class="mdl-layout__tab"}}Geometric Tools{{/link-to}}
+          {{#link-to 'digitalpreservation' session class="mdl-layout__tab"}}Digital Preservation{{/link-to}}
+        </div>
+      {{/if}}
     </header>
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">{{title}}</span>
@@ -23,5 +28,7 @@
         {{#link-to "searchretrieve" class="mdl-navigation__link" }}| Search Knowledge Graph{{/link-to}}
       </nav>
     </div>
+    <main class="mdl-layout__content"></main>
   </div>
+
 </div>
