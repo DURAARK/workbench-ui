@@ -10,7 +10,7 @@
   {{#toggle-menu}}
     <nav>
       <ul style="color: black;">
-        <li><a href="">Add</a>
+        <li><a href="">Add Session</a>
           <hr>
         </li>
 
@@ -43,18 +43,19 @@
           </button>
         </li>
 
-        <li>
-          <a href="">Load</a>
-          <hr>
+        <hr>
+        
+        <li style="text-align: center;">
+          <a href="">or</a>
         </li>
 
         <li>
           <button {{action "searchInArchive"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            SEARCH IN ARCHIVE
+            LOAD FROM ARCHIVE
           </button>
         </li>
 
-        <li style="text-align: center;">
+        <!-- <li style="text-align: center;">
           OR PROVIDE
         </li>
 
@@ -64,7 +65,7 @@
               {{input class="mdl-textfield__input" type="text" value=sdasReference placeholder="Archive Reference ..."}}
             </div>
           </form>
-        </li>
+        </li> -->
       </ul>
     </nav>
   {{/toggle-menu}}

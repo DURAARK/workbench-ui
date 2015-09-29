@@ -6,28 +6,30 @@ default Ember.Component.extend({
   address: '',
   description: '',
 
-  actions: {
-    createClicked: function() {
-      this.sendAction('createClicked', {
-        label: this.get('name'),
-        address: this.get('address'),
-        description: this.get('description'),
-        state: 'new'
-      });
-
-      this.get('closeMenu')();
-    }
-  },
+  // actions: {
+  //   createClicked: function() {
+  //     this.sendAction('createClicked', {
+  //       label: this.get('name'),
+  //       address: this.get('address'),
+  //       description: this.get('description'),
+  //       state: 'new'
+  //     });
+  //
+  //     this.get('closeMenu')();
+  //   }
+  // },
 
   didInsertElement: function(item) {
-    var menu = document.querySelector('.material-menu');
     var circle = document.querySelector('.material-btn');
-    var link = document.querySelector('.material-content').querySelectorAll('li');
-    var ham = document.querySelector('.material-hamburger');
-    var main = document.querySelector('main');
-    var win = window;
 
-    function openMenu(event) {
+    function toggleMenu(event) {
+      var menu = document.querySelector('.material-menu');
+      var circle = document.querySelector('.material-btn');
+      var link = document.querySelector('.material-content').querySelectorAll('li');
+      var ham = document.querySelector('.material-hamburger');
+      var main = document.querySelector('main');
+      var win = window;
+
       if (!menu.classList.contains('active')) {
         menu.classList.add('active');
 
@@ -52,20 +54,8 @@ default Ember.Component.extend({
       }
     }
 
-    function closeMenu() {
-      if (circle.classList.contains('active')) {
-        circle.classList.remove('active');
-        for (var i = 0; i < link.length; i++) {
-          link[i].classList.toggle('active');
-        }
-        ham.classList.remove('material-close');
-        main.classList.remove('active');
-        menu.classList.remove('active');
-      }
-    }
+    circle.addEventListener('click', toggleMenu, false);
 
-    circle.addEventListener('click', openMenu, false);
-
-    this.set('closeMenu', closeMenu);
+    // this.set('closeMenu', toggleMenu);
   }
 });
