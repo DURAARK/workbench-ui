@@ -26,8 +26,8 @@ body,
 .l-page-with-header-and-workflow-steps {
   margin-top: $header-height * 2;
 }
-.l-page-no-header {
-  margin-top: 0;
+.l-preingest-page {
+  margin-top: 5em;
 }
 .l-canvas {
   @include container();

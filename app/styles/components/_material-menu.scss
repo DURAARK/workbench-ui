@@ -42,7 +42,7 @@ $main-width: 75vw;
   flex-wrap: wrap;
   position: absolute;
   z-index: 1001;
-  bottom: $header-height + 20px;
+  bottom: $header-height + $footer-height + 15px;
   right: 20px;
   width: 75px;
   height: 75px;
@@ -53,7 +53,7 @@ $main-width: 75vw;
 
     &:before {
       background: $btn-orange;
-      // transform: scale(18);
+      transform: translate(0, $footer-height);
       //
       // @media (min-height: 800px) {
       //   transform: scale(25);
@@ -175,7 +175,7 @@ nav {
 
 	&.material-close {
     // transform: rotate(-180deg);
-    transform: rotate(45deg);
+    transform: translate(0, $footer-height) rotate(45deg);
 
 		// .material-patty:nth-child(1) {
 		// 	transform: translate(-10px, 4px) rotate(-45deg) scale(0.5, 1);
