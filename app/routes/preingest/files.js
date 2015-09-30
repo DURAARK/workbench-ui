@@ -7,15 +7,16 @@ default Ember.Route.extend({
       return this.store.find('session', params.id);
     },
 
-    activate() {
-      this.modelFor('preingest').set('hideNavbar', false);
-    },
-
     deactivate() {
-      this.modelFor('preingest').set('hideNavbar', true);
+      // NOTE: When linking back to the 'preingest' route the 'setupController'
+      // hook of 'preingest' does not get called to remove the workflow step bar.
+      // (that's because the 'preingest' model is already set and did not change).
+      // Therefore we do this 'cleanup' here in any case:
+      this.send('showWorkflowSteps', false);
     },
 
     setupController(controller, model) {
+      console.log('setupController');
       this._super(controller, model);
 
       let router = this;
@@ -58,13 +59,13 @@ default Ember.Route.extend({
       // }
       // }
 
-      // setup 'duraark-header' component ('setSession' has to be called first!):
-      this.send('setSession', model);
+
+      console.log('activate');
       var label = model.get('label');
-      
       this.send('setTitle', 'Archive Buildings - ' + label);
       this.send('showWorkflowSteps', true);
       this.send('setActiveStep', 'files');
+      this.send('setSession', model);
     },
 
     highlightSelectedFiles(files) {
