@@ -8,3 +8,26 @@
 
   overflow: hidden;
 }
+
+img.logo-small-left {
+  position: fixed;
+  top: 10px;
+  left: 0;
+
+  z-index: 100;
+  width: 3.5em;
+  height: 2em;
+}
+
+img.logo-small-right {
+  position: fixed;
+  top: 10px;
+  right: 0;
+
+  width: 3.5em;
+  height: auto;
+}
+
+.separator {
+  margin-left: 3em;
+}

@@ -9,3 +9,10 @@ background: #a56f39;
 .mdl-layout__tab-bar {
   background-color: lighten($btn-blue, 10%);
 }
+
+// FIXXME: the inclusion of the drawer button (via 'mdl-js-layout' class in 'duraark-header.hbs') is necessary
+// to make the highlighting of the workflow steps work ('mdl-layout__tab' class in 'duraark-header.hbs'). This
+// is a workaround to include it, but hide it in the UI.
+.mdl-layout__drawer-button {
+  display: none;
+}
