@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
         if (session.get('digitalObjects')) {
           controller.unselectDigitalObjects();
         }
-        controller.transitionToRoute('digitalpreservation', session);
+        controller.transitionToRoute('preingest.digitalpreservation', session);
       }).catch(function(err) {
         throw new Error(err);
       });
@@ -63,7 +63,7 @@ export default Ember.Controller.extend({
       }
 
       session.save().then(function(session) {
-        controller.transitionToRoute('semanticenrichment', session);
+        controller.transitionToRoute('preingest.semanticenrichment', session);
       }).catch(function(err) {
         throw new Error(err);
       });

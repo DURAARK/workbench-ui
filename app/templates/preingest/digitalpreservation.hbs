@@ -1,101 +1,104 @@
-<div class="c-link-list">
-	<!-- <div {{action 'back'}} class="c-link-list-grid-small">
-		<div class="c-link-list-back">
-			<h3><i class="fa fa-chevron-left"> </i> Geometric Tools</h3>
-		</div>
-	</div> -->
+<div class="l-page-with-header-and-workflow-steps">
 
-	<div>
-		<div class="c-link-list-right__generation">
-			<!-- <div class="c-link-list-grid-small">
+	<div class="c-workflow-page">
+		{{#workflow-step-header onBack="back" disableNext=true}}
+			<header>DIGITAL PRESERVATION</header>
+		{{/workflow-step-header}}
+
+		<div class="c-link-list">
+			<div>
+				<div class="c-link-list-right__generation">
+					<!-- <div class="c-link-list-grid-small">
 						<button {{action "createBagItSIP"}}>
 							{{#unless bagIsCreating}}Download ZIP{{else}}Creating ZIP ...{{/unless}}
 							</button>
 					</div> -->
-			<div class="c-link-list-grid-small">
+					<div class="c-link-list-grid-small">
 						<button {{action "createBagItSIP"}}>
 							{{#unless bagIsCreating}}Download BagIt{{else}}Creating BagIt ...{{/unless}}
-							</button>
+						</button>
 					</div>
-			<div class="c-link-list-grid-small">
-				<button {{action "createRosettaSIP"}}>
-					{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{/unless}}
-					</button>
+					<div class="c-link-list-grid-small">
+						<button {{action "createRosettaSIP"}}>
+							{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{/unless}}
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
-<div class="l-files">
+		<div class="l-files">
 
-	<div class="l-file-list">
+			<div class="l-file-list">
 
-		<h2 style="margin-top: 1em;">Metadata</h2>
+				<h2 style="margin-top: 1em;">Metadata</h2>
 
-		<hr>
+				<hr>
 
-		{{#file-list files=session.physicalAssets as |pa|}}
-			{{physical-asset-item item=pa details="showDetails" static=true}}
-		{{/file-list}}
+				{{#file-list files=session.physicalAssets as |pa|}}
+					{{physical-asset-item item=pa details="showDetails" static=true}}
+				{{/file-list}}
 
-		<h2 style="margin-top: 1em;">Files</h2>
+				<h2 style="margin-top: 1em;">Files</h2>
 
-		<hr>
+				<hr>
 
-		{{#file-list files=session.digitalObjects as |do|}}
-			<div>
-				{{physical-asset-item item=do details="showDetails" static=true}}
+				{{#file-list files=session.digitalObjects as |do|}}
+					<div>
+						{{physical-asset-item item=do details="showDetails" static=true}}
 
-				{{#each do.semMD.topics as |topic|}}
-					{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic" static=true}}
-				{{/each}}
+						{{#each do.semMD.topics as |topic|}}
+							{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic" static=true}}
+						{{/each}}
 
-				{{#each do.geoMD.tools as |tool|}}
-          {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo" static=true}}
-        {{/each}}
+						{{#each do.geoMD.tools as |tool|}}
+							{{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo" static=true}}
+						{{/each}}
+
+					</div>
+				{{/file-list}}
 
 			</div>
-		{{/file-list}}
 
-	</div>
+			{{#if model}}
+				<div class="l-file-details">
 
-	{{#if model}}
-		<div class="l-file-details">
+					{{#if isLoadingMetadata}}
+						<div style="color: white;">LOADING ...</div>
+						{{loading-spinner-center}}
+					{{else}}
 
-			{{#if isLoadingMetadata}}
-				<div style="color: white;">LOADING ...</div>
-				{{loading-spinner-center}}
-			{{else}}
+						{{#if fileInfo}}
+							{{#if isIFC}}
+								{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+							{{/if}}
 
-				{{#if fileInfo}}
-					{{#if isIFC}}
-						{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+							{{#if isE57}}
+								{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+							{{/if}}
+
+							{{#if isPhysicalAsset}}
+								{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
+							{{/if}}
+
+						{{else}}
+							{{#help-box}}
+								<div class="c-help-box__hint">
+									On the left an overview of the items which will be packaged into a Rosetta SIP to be deposit to the Rosetta DPS or a BagIt SIP for local download.
+
+									<br>
+									<br> It is necessary that all items are ready before the packaging process.
+
+									<br>
+									<br> A loading spinner indicates, that an item is still being processed.
+								</div>
+							{{/help-box}}
+						{{/if}}
+
 					{{/if}}
 
-					{{#if isE57}}
-						{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
-					{{/if}}
-
-					{{#if isPhysicalAsset}}
-						{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
-					{{/if}}
-
-				{{else}}
-					{{#help-box}}
-						<div class="c-help-box__hint">
-							On the left an overview of the items which will be packaged into a Rosetta SIP to be deposit to the Rosetta DPS or a BagIt SIP for local download.
-
-							<br>
-							<br> It is necessary that all items are ready before the packaging process.
-
-							<br>
-							<br> A loading spinner indicates, that an item is still being processed.
-						</div>
-					{{/help-box}}
-				{{/if}}
-
+				</div>
 			{{/if}}
-
 		</div>
-	{{/if}}
+	</div>
 </div>

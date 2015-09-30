@@ -1,11 +1,11 @@
 <div class="l-page-with-header-and-workflow-steps">
 
 	<div class="c-workflow-page">
-		{{#workflow-step-header onNext="next"}}
+		{{#workflow-step-header onNext="next" disableBack=true}}
 			{{#if selectedFiles.length}}
-				<header>Files ({{selectedFiles.length}} selected)</header>
+				<header>FILES ({{selectedFiles.length}} selected)</header>
 			{{else}}
-				<header>Files</header>
+				<header>FILES</header>
 			{{/if}}
 		{{/workflow-step-header}}
 

@@ -1,13 +1,17 @@
 <div class="c-workflow-step-header">
-  <div {{action "backClicked"}} class="c-workflow-step-header__go-left">
-    <i class="fa fa-arrow-circle-o-left fa-2x"></i>
-    <!-- <span>Previous</span> -->
-  </div>
+  {{#unless disableBack}}
+    <div {{action "backClicked"}} class="c-workflow-step-header__go-left">
+      <i class="fa fa-arrow-circle-o-left fa-2x"></i>
+      <!-- <span>Previous</span> -->
+    </div>
+  {{/unless}}
 
   {{yield}}
 
-  <div {{action "nextClicked"}} class="c-workflow-step-header__go-right">
-    <!-- <span>Next</span> -->
-    <i class="fa fa-arrow-circle-o-right fa-2x c-workflow-step-header__go-right"></i>
-  </div>
+  {{#unless disableNext}}
+    <div {{action "nextClicked"}} class="c-workflow-step-header__go-right">
+      <!-- <span>Next</span> -->
+      <i class="fa fa-arrow-circle-o-right fa-2x c-workflow-step-header__go-right"></i>
+    </div>
+  {{/unless}}
 </div>

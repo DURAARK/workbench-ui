@@ -1,86 +1,83 @@
-<!-- <div class="c-link-list">
-  <div {{action 'back'}} class="c-link-list-grid-small">
-    <div class="c-link-list-back">
-      <h3><i class="fa fa-chevron-left"> </i> Semantic Context</h3>
-    </div>
-  </div>
-  <div {{action 'next'}} class="c-link-list-grid-small">
-    <div class="c-link-list-next">
-      <h3>Digital Preservation<i class="fa fa-chevron-right"> </i></h3>
-    </div>
-  </div>
-</div> -->
+<div class="l-page-with-header-and-workflow-steps">
 
-<div class="l-files">
-  <div class="l-file-list">
+  <div class="c-workflow-page">
+    {{#workflow-step-header onNext="next" onBack="back" }}
+      <header>GEOMETRIC TOOLS</header>
+    {{/workflow-step-header}}
 
-    <!-- <h2 style="margin-top: 1em;">Point Cloud Tools</h2>
+    <div class="l-files">
+      <div class="l-file-list">
+
+        <!-- <h2 style="margin-top: 1em;">Point Cloud Tools</h2>
 
     <hr> -->
 
-    {{#if digitalObjects.length}}
-      {{#file-list files=digitalObjects as |do|}}
-        <div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
-          {{digital-object-sementic item=do select="showToolSelection"}}
+        {{#if digitalObjects.length}}
+          {{#file-list files=digitalObjects as |do|}}
+            <div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
+              {{digital-object-sementic item=do select="showToolSelection"}}
 
-          {{#each do.geoMD.tools as |tool| }}
-            {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
-          {{/each}}
-        </div>
-      {{/file-list}}
-    {{else}}
-      <h3>To use the geometric enrichment tools at least one point cloud file (E57) has to be selected.</h3>
-    {{/if}}
-  </div>
-
-  {{#if model}}
-    <div class="l-file-details">
-
-      {{#if isLoadingMetadata}}
-        <div style="color: white;">LOADING ...</div>
-        {{loading-spinner-center}}
-      {{else}}
-
-        {{#if selectedDigitalObject}}
-          {{tool-selector tools=tools click="clickedTool" icon="fa-wrench"}}
+              {{#each do.geoMD.tools as |tool| }}
+                {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
+              {{/each}}
+            </div>
+          {{/file-list}}
         {{else}}
-          {{#if tool}}
-            {{#if isElectricalApplianceDetectionTool}}
-              {{electrical-appliance tool=tool}}
-            {{/if}}
-
-            {{#if isIFCReconstructionTool}}
-              {{ifc-reconstruction tool=tool}}
-            {{/if}}
-          {{else}}
-            {{#help-box}}
-              <div class="c-help-box__hint">
-                For each point cloud scan you can apply tools which extract geometric information out of the scan.
-                <br>
-                <br> Supported are
-                <br>
-                <br>
-
-                <ul style="margin-left: 1.5em;">
-                  <li style="list-style-type: disc;">the reconstruction of a BIM model and</li>
-                  <li style="list-style-type: disc;">the detection of electrical applicances in walls</li>
-                </ul>
-                <br> from the point cloud scan.
-                <br>
-                <br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a point cloud file to select the tools which should be applied. The resulting files will be ingested into the archive.
-
-                <br>
-                <br> The tools will take some time to finish the processing of the point cloud. A loading spinner will be shown when a process is working in the background. You can continue the pre-ingest workflow during this processing, it is not necessary
-                to wait for the process. When the process is finished you can click on the <i class="fa fa-info" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon to see the result of the tool.
-
-                <br>
-                <br> If the result is already cached, the processing will only last a few seconds.
-              </div>
-            {{/help-box}}
-          {{/if}}
+          <h3>To use the geometric enrichment tools at least one point cloud file (E57) has to be selected.</h3>
         {{/if}}
-      {{/if}}
+      </div>
 
+      {{#if model}}
+        <div class="l-file-details">
+
+          {{#if isLoadingMetadata}}
+            <div style="color: white;">LOADING ...</div>
+            {{loading-spinner-center}}
+          {{else}}
+
+            {{#if selectedDigitalObject}}
+              {{tool-selector tools=tools click="clickedTool" icon="fa-wrench"}}
+            {{else}}
+              {{#if tool}}
+                {{#if isElectricalApplianceDetectionTool}}
+                  {{electrical-appliance tool=tool}}
+                {{/if}}
+
+                {{#if isIFCReconstructionTool}}
+                  {{ifc-reconstruction tool=tool}}
+                {{/if}}
+              {{else}}
+                {{#help-box}}
+                  <div class="c-help-box__hint">
+                    For each point cloud scan you can apply tools which extract geometric information out of the scan.
+                    <br>
+                    <br> Supported are
+                    <br>
+                    <br>
+
+                    <ul style="margin-left: 1.5em;">
+                      <li style="list-style-type: disc;">the reconstruction of a BIM model and</li>
+                      <li style="list-style-type: disc;">the detection of electrical applicances in walls</li>
+                    </ul>
+                    <br> from the point cloud scan.
+                    <br>
+                    <br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a point cloud file to select the tools which should be applied. The resulting files will be ingested into the archive.
+
+                    <br>
+                    <br> The tools will take some time to finish the processing of the point cloud. A loading spinner will be shown when a process is working in the background. You can continue the pre-ingest workflow during this processing, it is not necessary
+                    to wait for the process. When the process is finished you can click on the <i class="fa fa-info" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon to see the result of the tool.
+
+                    <br>
+                    <br> If the result is already cached, the processing will only last a few seconds.
+                  </div>
+                {{/help-box}}
+              {{/if}}
+            {{/if}}
+          {{/if}}
+
+        </div>
+      {{/if}}
     </div>
-  {{/if}}
+
+  </div>
 </div>

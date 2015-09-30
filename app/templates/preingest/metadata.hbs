@@ -1,82 +1,73 @@
-<!-- <div class="c-link-list">
-	<div {{action 'back'}} class="c-link-list-grid-small">
-		<div class="c-link-list-back">
-			<h3><i class="fa fa-chevron-left"> </i> Files</h3>
-		</div>
-	</div>
-	<div {{action 'next'}} class="c-link-list-grid-small">
-		<div class="c-link-list-next">
-			<h3>Context Information <i class="fa fa-chevron-right"> </i></h3>
-		</div>
-	</div>
-</div> -->
+<div class="l-page-with-header-and-workflow-steps">
 
-<div class="l-files">
+	<div class="c-workflow-page">
+		{{#workflow-step-header onNext="next" onBack="back"}}
+				<header>METADATA</header>
+		{{/workflow-step-header}}
 
-	<div class="l-file-list">
+		<div class="l-files">
 
-		<h2 style="margin-top: 1em;">Building Metadata</h2>
+			<div class="l-file-list">
 
-		<hr>
-		{{#file-list files=session.physicalAssets as |pa|}}
-			{{physical-asset-item item=pa details="showDetails"}}
-			<!-- FIXXME: unify *-item components! -->
-			<!-- {{file-item item=pa details="showDetails"}} -->
-		{{/file-list}}
+				<h2 style="margin-top: 1em;">Building Metadata</h2>
 
-		<h2 style="margin-top: 1em;">File Metadata</h2>
+				<hr>
+				{{#file-list files=session.physicalAssets as |pa|}}
+					{{physical-asset-item item=pa details="showDetails"}}
+					<!-- FIXXME: unify *-item components! -->
+					<!-- {{file-item item=pa details="showDetails"}} -->
+				{{/file-list}}
 
-		<hr>
+				<h2 style="margin-top: 1em;">File Metadata</h2>
 
-		{{#file-list files=session.digitalObjects as |do|}}
-			{{physical-asset-item item=do details="showDetails"}}
-		{{/file-list}}
+				<hr>
 
-	</div>
+				{{#file-list files=session.digitalObjects as |do|}}
+					{{physical-asset-item item=do details="showDetails"}}
+				{{/file-list}}
 
-	{{#if model}}
-		<div class="l-file-details">
+			</div>
 
-			{{#if isLoadingMetadata}}
-				<div style="color: white;">LOADING ...</div>
-				{{loading-spinner-center}}
-			{{else}}
+			{{#if model}}
+				<div class="l-file-details">
 
-				{{#if fileInfo}}
-					{{#if isIFC}}
-						{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+					{{#if isLoadingMetadata}}
+						<div style="color: white;">LOADING ...</div>
+						{{loading-spinner-center}}
+					{{else}}
+
+						{{#if fileInfo}}
+							{{#if isIFC}}
+								{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+							{{/if}}
+
+							{{#if isE57}}
+								{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+							{{/if}}
+
+							{{#if isPhysicalAsset}}
+								{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
+							{{/if}}
+
+
+						{{else}}
+							{{#help-box}}
+								<div class="c-help-box__hint">
+									The left side shows the metadata extracted from the files selected in the previous step. The files contain metadata for the building, as well as for the files itself, which are digital representations of the building.
+
+									<br>
+									<br> To edit the metadata click the <i class="fa fa-pencil" style="margin-left: 0.5em; margin-right: 0.5em;"></i> symbol on either the building, or on one of the selected digital representations.
+
+									<br>
+									<br> The metadata will be stored within the archival package which is created at the end of the pre-ingest workflow.
+								</div>
+							{{/help-box}}
+						{{/if}}
 					{{/if}}
 
-					{{#if isE57}}
-						{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
-					{{/if}}
-
-					{{#if isPhysicalAsset}}
-						{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
-					{{/if}}
-
-
-				{{else}}
-					{{#help-box}}
-						<div class="c-help-box__hint">
-							The left side shows the metadata extracted from the files selected in the previous
-							step. The files contain metadata for the building, as well as for the files itself,
-							which are digital representations of the building.
-
-							<br><br>
-
-							To edit the metadata click the <i class="fa fa-pencil" style="margin-left: 0.5em; margin-right: 0.5em;"></i>
-							symbol on either the building, or on one of the selected digital representations.
-
-							<br><br>
-
-							The metadata will be stored within the archival package which is created at the end of the
-							pre-ingest workflow.
-						</div>
-					{{/help-box}}
-				{{/if}}
+				</div>
 			{{/if}}
-
 		</div>
-	{{/if}}
+
+	</div>
 </div>

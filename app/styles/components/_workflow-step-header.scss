@@ -30,7 +30,7 @@
 }
 
 .c-workflow-step-header__go-left:hover {
-  color: gray;
+  color: $btn-orange;
   transition: color 0.15s ease-out;
 }
 
@@ -47,6 +47,6 @@
 }
 
 .c-workflow-step-header__go-right:hover {
-  color: gray;
+  color: $btn-orange;
   transition: color 0.15s ease-out;
 }
