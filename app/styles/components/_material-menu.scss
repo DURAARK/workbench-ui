@@ -49,23 +49,17 @@ $main-width: 75vw;
   background: transparent;
   cursor: pointer;
 
-  // &.active {
-  //
-  //   &:before {
-  //     transform: scale(18);
-  //
-  //     @media (min-height: 800px) {
-  //       transform: scale(25);
-  //     }
-  //   }
-  // }
-  //
-  // &:active {
-  //
-  //   &:before {
-  //     opacity: 0.75;
-  //   }
-  // }
+  &.active {
+
+    &:before {
+      background: $btn-orange;
+      // transform: scale(18);
+      //
+      // @media (min-height: 800px) {
+      //   transform: scale(25);
+      // }
+    }
+  }
 
   &:before {
     content: "";
@@ -86,6 +80,7 @@ $main-width: 75vw;
 }
 
 .material-content {
+  will-change: opacity;
   padding: 1em;
   display: hidden;
   position: absolute;
@@ -96,6 +91,7 @@ $main-width: 75vw;
   height: 100%;
 
   opacity: 0;
+  transition: opacity .25s ease-in-out;
 }
 
 .active .material-content {
