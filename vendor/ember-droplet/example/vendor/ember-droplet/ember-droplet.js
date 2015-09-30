@@ -565,6 +565,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
        * @return {Ember.RSVP.Promise}
        */
       uploadFiles: function uploadFiles() {
+        debugger;
         var _this5 = this;
 
         var models = get(this, 'files').filter(function (file) {

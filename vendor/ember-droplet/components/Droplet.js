@@ -526,7 +526,7 @@
              * @return {Ember.RSVP.Promise}
              */
             uploadFiles() {
-
+debugger;
                 const models  = get(this, 'files').filter(file => file.statusType & STATUS_TYPES.VALID);
                 const request = this.getRequest();
 

@@ -2,7 +2,7 @@
   <h3 class="uploading-percentage">Uploaded Percentage: {{uploadStatus.percentComplete}}%</h3>
 {{/if}}
 
-<h1>DROP FILES HERE</h1>
+<!-- <h1>DROP FILES HERE TO ADD</h1> -->
 
 {{#x-droplet-area}}
 
@@ -23,12 +23,12 @@
 
 {{/x-droplet-area}}
 
-<ul class="counts">
+<!-- <ul class="counts">
   <li class="valid">Valid: {{validFiles.length}}</li>
   <li class="invalid">Invalid: {{invalidFiles.length}}</li>
   <li class="uploaded">Uploaded: {{uploadedFiles.length}}</li>
-  <!-- <li class="deleted">Deleted: {{deletedFiles.length}}</li> -->
-</ul>
+  <li class="deleted">Deleted: {{deletedFiles.length}}</li>
+</ul> -->
 
 <div class="buttons">
   <button class="btn" {{action "uploadFiles"}}>Upload All</button>

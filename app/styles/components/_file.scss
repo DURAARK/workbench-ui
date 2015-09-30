@@ -94,7 +94,8 @@
   }
 
   &:hover {
-    @include gradient(color(light-gray), color(natural-gray), 100%);
+    // @include gradient(color(light-gray), color(natural-gray), 100%);
+    background: color(natural-gray);
   }
 }
 
@@ -109,6 +110,7 @@
 
 
 .c-file__action {
+  will-change: background;
   float: center;
   display: inline-block;
   color: $gui-main-font;
@@ -123,13 +125,16 @@
   border-right: 5px solid color(dark-gray);
 
   &:hover {
-        @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+        // @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+        background: color(mid-orange-highlight);
+        transition: background 0.25s ease-out;
   }
 }
 .is-selected {
 
   .c-file__action {
     @include gradient(color(mid-gray), color(dark-gray), 100%);
+    // background-color: color(dark-gray);
     border-bottom: 5px solid color(white);
     border-left: 5px solid color(white);
     border-right: 5px solid color(white);
