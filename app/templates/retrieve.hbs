@@ -2,7 +2,13 @@
 
 <div class="l-page-with-header">
 
-  {{building-list buildings=buildings openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}} {{x-map places=places selected=selectedBuilding}}
+  {{#if showResults}}
+    {{building-list buildings=buildings openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}}
+  {{/if}}
+
+  {{x-map places=places selected=selectedBuilding}}
+
+  {{duraark-footer}}
 
   {{#toggle-menu}}
     <nav>

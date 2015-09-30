@@ -1,19 +1,5 @@
 <div class="c-result-sidebar">
-
-  <!-- {{#em-tabs}}
-    {{#em-tab-list}}
-      {{#em-tab}}One{{/em-tab}}
-      {{#em-tab}}Two{{/em-tab}}
-    {{/em-tab-list}}
-    {{#em-tab-panel}}
-      One Content...
-    {{/em-tab-panel}}
-    {{#em-tab-panel}}
-    {{/em-tab-panel}}
-  {{/em-tabs}} -->
-
   {{#each-in buildings as |uri building|}}
     {{building-list-item uri=uri model=building showDetailsClicked="showDetails" openBuildingClicked="openBuilding"}}
   {{/each-in}}
-
 </div>

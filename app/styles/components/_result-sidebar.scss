@@ -2,12 +2,12 @@
   z-index: 1001;
 
   position: absolute;
-  top: 2px;
+  top: 1px;
   left: 0;
-  bottom: 0;
+  bottom: $footer-height + $header-height;
 
   width: 25%;
   overflow: auto;
 
-  background-image: url("/images/bg_footer_lodyas.png");
+  // background-image: url("/images/bg_footer_lodyas.png");
 }
