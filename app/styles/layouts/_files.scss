@@ -3,6 +3,9 @@
 .l-file-list {
   @include span(6 of 12);
   padding-left: rhythm(0.6);
+
+  overflow: auto;
+  
   .l-file {
     @include gallery(1 of 3);
   }
@@ -19,23 +22,25 @@
   }
 }
 .l-file-details {
-  @include span(last 6 of 12);
-  margin-top: rhythm(1.5);
-  padding-left: 2em;
-  padding-right: 2em;
-  position: relative;
+  // @include span(last 6 of 12);
+  // margin-top: rhythm(1.5);
+  // padding-left: 2em;
+  // padding-right: 2em;
+  // position: relative;
 
   // position: fixed;
-  // right: 0;
+  // bottom: 0;
   // top: 0;
-  // width: 50%;
-  // overflow-y: none;
-  // @include span(6 last);
-  // height: 100vh;
+  width: 50%;
+
+  @include span(6 last);
+  height: 100vh;
   // background: blue;
+  float: right;
+  overflow: auto;
 }
 .l-file-details-titel {
-  @include round-top-corners($amount: 4px);
+  // @include round-top-corners($amount: 4px);
   //@include gradient(color(light-green), color(mid-green), 40px);
   // background: color(light-green);
   background: #F1F1F9;

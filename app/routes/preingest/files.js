@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export
 default Ember.Route.extend({
-
   model(params) {
       return this.store.find('session', params.id);
     },
@@ -59,8 +58,6 @@ default Ember.Route.extend({
       // }
       // }
 
-
-      console.log('activate');
       var label = model.get('label');
       this.send('setTitle', 'Archive Buildings - ' + label);
       this.send('showWorkflowSteps', true);
@@ -87,5 +84,4 @@ default Ember.Route.extend({
         })
       });
     }
-
 });

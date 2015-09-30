@@ -145,7 +145,7 @@ export default Ember.Controller.extend({
         session.set('digitalObjects', das);
 
         session.save().then(function(session) {
-          controller.transitionToRoute('metadata', session);
+          controller.transitionToRoute('preingest.metadata', session);
           controller.send('isLoading', false);
         }).catch(function(err) {
           controller.send('isLoading', false);

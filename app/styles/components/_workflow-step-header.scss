@@ -1,0 +1,52 @@
+.c-workflow-step-header {
+  @include clearfix;
+  // width: 100%;
+  margin-top: -16px;
+  padding-top: 0.5em;
+  background: lighten($btn-blue, 30%);
+
+  header {
+    margin: 0;
+    padding-top: 1.3em;
+    position: absolute;
+    // top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6em;
+  }
+}
+
+.c-workflow-step-header__go-left {
+  will-change: color;
+  float: left;
+  margin-left: 1em;
+  margin-bottom: 0.17em;
+
+  span {
+    font-size: 1.6em;
+    margin-left: 0.2em;
+  }
+}
+
+.c-workflow-step-header__go-left:hover {
+  color: gray;
+  transition: color 0.15s ease-out;
+}
+
+.c-workflow-step-header__go-right {
+  will-change: color;
+  float: right;
+  margin-right: 0.2em;
+  margin-bottom: 0.17em;
+
+  span {
+    font-size: 1.6em;
+    margin-right: 0.2em;
+  }
+}
+
+.c-workflow-step-header__go-right:hover {
+  color: gray;
+  transition: color 0.15s ease-out;
+}

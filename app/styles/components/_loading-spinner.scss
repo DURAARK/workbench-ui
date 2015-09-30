@@ -8,29 +8,27 @@
 }
 
 .spinner {
-  z-index: 10;
-
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  margin: 1em auto;
-  width: 50px;
-  height: 30px;
-  text-align: center;
-  font-size: 10px;
-}
-
-.spinner-fullscreen {
-  z-index: 10;
+  z-index: 2000;
 
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: 1em auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-size: 4em;
+}
+
+.spinner-fullscreen {
+  z-index: 2001;
+
   width: 50px;
   height: 30px;
-  text-align: center;
-  font-size: 10px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 .spinner-black {
@@ -39,8 +37,8 @@
 }
 
 .background {
-  // z-index: 9;
-  position: fixed;
+  z-index: 2000;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;

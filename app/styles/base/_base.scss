@@ -8,11 +8,12 @@ body {
   font-size        : 20px;
   font-family      : $page-font;
   color            : $text;
-//  background: $background;
+
+ // background: $background;
   background-image: url("/images/bg_footer_lodyas.png");
 
+  height: 100%;
   overflow: hidden;
-  // padding: 1em;
 }
 
 // Adaptation of Lobotomized Owls Selector on p elements
