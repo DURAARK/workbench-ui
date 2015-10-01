@@ -21,16 +21,16 @@
 // ==========
 
 // susy
-@import "../../bower_components/susy/sass/susy";
+@import "../../public/vendor/susy/sass/susy";
 
 // normalize-scss
-@import "../../bower_components/normalize-scss/_normalize.scss";
+@import "../../public/vendor/normalize-scss/_normalize.scss";
 
 // breakpoints-sass
-// @import "../../bower_components/breakpoint-sass/stylesheets/_breakpoint.scss";
+// @import "../../public/vendor/breakpoint-sass/stylesheets/_breakpoint.scss";
 
 // Vertical rhythms (without compass)
-@import "../../bower_components/vertical-rhythms-without-compass/_vertical-rhythms.scss";
+@import "../../public/vendor/vertical-rhythms-without-compass/_vertical-rhythms.scss";
 
 // adaptive-placeholders
 @import "../../vendor/adaptive-placeholders/_adaptive-placeholders.scss";
@@ -39,4 +39,4 @@
 // @import "hmps-animate-scss/animate.scss";
 
 // sass-hidpi for responsive images
-@import "../../bower_components/sass-hidpi/_hidpi.scss";
+@import "../../public/vendor/sass-hidpi/_hidpi.scss";

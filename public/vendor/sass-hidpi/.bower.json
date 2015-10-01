@@ -1,0 +1,38 @@
+{
+  "name": "sass-hidpi",
+  "description": "hidpi() is a Sass mixin that serves high resolution graphics to high density (Retina-like) displays",
+  "keywords": [
+    "hidpi",
+    "sass",
+    "retina",
+    "compass",
+    "resolution"
+  ],
+  "version": "2.0.0",
+  "main": "_hidpi.scss",
+  "author": "Kaelig Deloumeau-Prigent",
+  "ignore": [
+    "**/.*",
+    "examples"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/kaelig/hidpi/blob/master/LICENSE.md"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaelig/hidpi"
+  },
+  "homepage": "https://github.com/kaelig/hidpi",
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.0",
+    "commit": "3fe86800810e2f0e9dd60503aa8ec8a9bc019158"
+  },
+  "_source": "git://github.com/kaelig/hidpi.git",
+  "_target": "~2.0.0",
+  "_originalSource": "sass-hidpi"
+}
