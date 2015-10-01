@@ -38,7 +38,11 @@ export default Ember.Controller.extend({
     },
 
     showDetails: function(item) {
-      this.set('fileInfo', item);
+      if (item) {
+        this.set('fileInfo', item);
+      } else {
+        this.set('fileInfo', null);
+      }
     },
 
     updateMetadata: function(buildm) {

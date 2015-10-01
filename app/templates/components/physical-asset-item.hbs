@@ -1,14 +1,14 @@
 <div class="l-file c-file {{if item.isSelected 'is-selected'}}">
-	<div {{action "showDetails" item}}>
+	<div>
 
 		{{#if isIFC}}
 			<div class="c-file__header ifc">
-				3D Model (IFC)
+				3D Model Metadata
 			</div>
 		{{else}}
 			{{#if isE57}}
 				<div class="c-file__header pointcloud">
-					Pointcloud (E57)
+					Pointcloud Metadata
 				</div>
 			{{else}}
 				<div class="c-file__header pointcloud">
@@ -31,11 +31,11 @@
 					</div>
 				{{else}}
 					<div class="c-file-building">
-						<div class="c-file-building__pic">
-							<img src="/images/building_placeholder.png"> </div>
+						<!-- <div class="c-file-building__pic">
+							<img src="/images/building_placeholder.png">
+						</div> -->
 						{{name}}
-						<br>
-						<br> {{adress}}
+						<br> {{address}}
 					</div>
 				{{/if}}
 			{{/if}}
@@ -43,12 +43,12 @@
 
 	</div>
 
-	<div class="c-file__actions">
-		<div {{action "selectItem" item}} class="c-file__action">
+	<div {{action "showDetails" item}} class="c-file__actions">
+		<div class="c-file__action">
 			{{#if item.isSelected}}
-				<i class="fa fa-close"> Deselect</i>
+				<i class="fa fa-file-text"></i>
 			{{else}}
-				<i class="fa fa-pencil"></i>
+				<i class="fa fa-file-text-o"></i>
 			{{/if}}
 		</div>
 	</div>

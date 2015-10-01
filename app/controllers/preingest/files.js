@@ -44,6 +44,7 @@ export default Ember.Controller.extend({
       var session = controller.get('session'),
         files = controller.get('selectedFiles'),
         sessionLabel = controller.get('session.label'),
+        buildingAddress = controller.get('session.address'),
         hasPA = session.get('physicalAssets').length,
         paNew = {};
 
@@ -94,6 +95,9 @@ export default Ember.Controller.extend({
               '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
               'http://data.duraark.eu/vocab/buildm/name': [{
                 '@value': 'Nygade Building'
+              }],
+              'http://data.duraark.eu/vocab/buildm/streetAddress': [{
+                '@value': buildingAddress
               }]
             };
 

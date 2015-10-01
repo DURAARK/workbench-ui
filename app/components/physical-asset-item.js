@@ -9,7 +9,12 @@ default Ember.Component.extend({
       this.sendAction('select', item);
     },
     showDetails: function(item) {
-      this.sendAction('details', item);
+      this.toggleProperty('item.isSelected');
+      if (this.get('item.isSelected')) {
+        this.sendAction('details', item);
+      } else {
+        this.sendAction('details', null);
+      }
     },
   },
 
@@ -28,6 +33,20 @@ default Ember.Component.extend({
     }
   }.property('item'),
 
+  address: function() {
+    var address = this.get('item.buildm')['http://data.duraark.eu/vocab/buildm/streetAddress'];
+
+    if (!address) {
+      return 'No address';
+    }
+    
+    if (address.length) {
+      return address[0]['@value'];
+    } else {
+      return 'No address given.'
+    }
+  }.property('item'),
+
   size: function() {
     var size = this.get('item.size');
     return numeral(size).format('0 b');
@@ -43,18 +62,18 @@ default Ember.Component.extend({
   }.property('item'),
 
   isPhysicalAsset: function() {
-    var type = this.get('item')['buildm']['@type'];
-    return type === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset';
-  },
+    let buildm = this.get('item')['buildm'];
+    return this.duraark.isOfType(buildm, 'http://data.duraark.eu/vocab/buildm/PhysicalAsset');
+  }.property('item'),
 
   isIFC: function() {
-    var type = this.get('item')['buildm']['@type'];
-    return type === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
+    let buildm = this.get('item')['buildm'];
+    return this.duraark.isOfType(buildm, 'http://data.duraark.eu/vocab/buildm/IFCSPFFile');
   }.property('item'),
 
   isE57: function() {
-    var type = this.get('item')['buildm']['@type'];
-    return type === 'http://data.duraark.eu/vocab/buildm/E57File';
+    let buildm = this.get('item')['buildm'];
+    return this.duraark.isOfType(buildm, 'http://data.duraark.eu/vocab/buildm/E57File');
   }.property('item')
 });
 

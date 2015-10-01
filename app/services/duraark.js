@@ -27,6 +27,10 @@ export default Ember.Service.extend({
 
   isOfType(buildm, typeName) {
     var type = this.getType(buildm);
+    // FIXXME: PhysicalAsset type comes as array:
+    if (_.isArray(type)) {
+      type = type[0];
+    }
     return type === typeName;
   },
 
