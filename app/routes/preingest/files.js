@@ -15,7 +15,6 @@ default Ember.Route.extend({
     },
 
     setupController(controller, model) {
-      console.log('setupController');
       this._super(controller, model);
 
       let router = this;
@@ -48,10 +47,12 @@ default Ember.Route.extend({
       //
       //   } else {
 
-      this.store.findAll('file').then(function(files) {
-        controller.set('files', files);
+      this.store.findAll('file').then(function(availableFiles) {
+        controller.set('files', availableFiles);
 
-        router.highlightSelectedFiles(files);
+        let selectedFiles = model.get('files');
+
+        router.send('highlightSelectedFiles', availableFiles, selectedFiles);
 
         controller.send('isLoading', false);
       });
@@ -65,23 +66,29 @@ default Ember.Route.extend({
       this.send('setSession', model);
     },
 
-    highlightSelectedFiles(files) {
-      let selectedFiles = this.get('selectedFiles');
+    actions: {
+      highlightSelectedFiles(availableFiles, selectedFiles) {
+        let route = this;
 
-      if (!selectedFiles) {
-        return;
-      };
+        if (!selectedFiles) {
+          return;
+        };
 
-      files.forEach(function(file) {
-        file.set('isSelected', false);
-
-        var matchingFiles = selectedFiles.filter(function(selectedFile, index, self) {
-          return selectedFile.get('name') == file.get('name');
+        availableFiles.forEach(function(availableFile) {
+          availableFile.set('isSelected', false);
         });
 
-        matchingFiles.forEach(function(fileToSelect) {
-          fileToSelect.set('isSelected', true);
-        })
-      });
+        selectedFiles.forEach(function(selectedFile) {
+          var matchingFiles = availableFiles.filter(function(availableFile, index, self) {
+            console.log('path: ' + availableFile.get('path'));
+            return selectedFile.path == availableFile.get('path');
+          });
+
+          matchingFiles.forEach(function(fileToSelect) {
+            fileToSelect.set('isSelected', true);
+            route.get('controller.selectedFiles').pushObject(fileToSelect);
+          })
+        });
+      }
     }
 });
