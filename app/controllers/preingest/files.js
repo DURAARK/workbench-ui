@@ -42,18 +42,22 @@ export default Ember.Controller.extend({
       // });
 
       var session = controller.get('session'),
-        files = controller.get('selectedFiles');
+        files = controller.get('selectedFiles'),
+        sessionLabel = controller.get('session.label'),
+        hasPA = session.get('physicalAssets').length,
+        paNew = {};
 
       session.set('files', files);
       // session['files'] = files;
 
       // Take files and create a physicalAsset and digitalObjects from the files:
 
-      var sessionLabel = controller.get('session.label'),
-        pa = {
+      if (!hasPA) {
+        paNew = {
           label: sessionLabel,
           buildm: {}
         };
+      }
 
       // Check if files have metadata attached already. If not, get it from the metadata service.
       var promises = [];
@@ -84,20 +88,22 @@ export default Ember.Controller.extend({
             hasMetadata = false;
           }
 
-          // FIXXME: how to combine pa data from all files?
-          var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
-            '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
-            'http://data.duraark.eu/vocab/buildm/name': [{
-              '@value': 'Nygade Building'
-            }]
-          };
+          if (!hasPA) {
+            // FIXXME: how to combine pa data from all files?
+            var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
+              '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
+              'http://data.duraark.eu/vocab/buildm/name': [{
+                '@value': 'Nygade Building'
+              }]
+            };
 
-          paMD['http://data.duraark.eu/vocab/buildm/name'] = [{
-            '@value': sessionLabel
-          }];
+            paMD['http://data.duraark.eu/vocab/buildm/name'] = [{
+              '@value': sessionLabel
+            }];
 
-          pa.buildm = paMD;
-          session.set('physicalAssets', [pa]);
+            paNew.buildm = paMD;
+            session.set('physicalAssets', [paNew]);
+          }
 
           var name = file.get('path').replace('/duraark-storage/files/', ''); // FIXXME!
           var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
@@ -138,7 +144,6 @@ export default Ember.Controller.extend({
 
           das.pushObject(digOb);
         });
-
 
         session.set('digitalObjects', das);
 
