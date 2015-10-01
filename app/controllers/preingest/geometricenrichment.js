@@ -90,7 +90,7 @@ export default Ember.Controller.extend({
     closeToolUI: function() {
       this.set('tool', null)
     },
-    
+
     clickedTool: function(tool) {
       var selectedDigitalObject = this.get('selectedDigitalObject'),
         currentTools = selectedDigitalObject.get('geoMD.tools');
@@ -179,35 +179,37 @@ export default Ember.Controller.extend({
       return;
     }
 
-    let allTools = this.get('allTools'),
-      configuredTools = this.get('session.config.geometricenrichment.tools'),
-      selectedDigitalObject = this.get('selectedDigitalObject'),
-      digObjTools = selectedDigitalObject.get('geoMD.tools'),
-      shownTools = [];
+    return this.get('allTools');
 
-    configuredTools.forEach(function(myTool) {
-      var tool = allTools.find(function(tool, index, enumerable) {
-        return myTool === tool.get('label');
-      });
-      shownTools.push(tool);
-    });
-
-    // Set selection state based on selected file:
-    shownTools.forEach(function(shownTool, index, enumerable) {
-      var curFileTool = digObjTools.find(function(fileTool, index, enumerable) {
-        return fileTool.label === shownTool.get('label');
-      });
-
-      // If the file contains the tool from the selection set the selection
-      // state in the shown tool accordingly:
-      if (curFileTool) {
-        shownTool.set('isSelected', true);
-      } else {
-        shownTool.set('isSelected', false);
-      }
-    });
-
-    return shownTools;
+    // let allTools = this.get('allTools'),
+    //   configuredTools = this.get('session.config.geometricenrichment.tools'),
+    //   selectedDigitalObject = this.get('selectedDigitalObject'),
+    //   digObjTools = selectedDigitalObject.get('geoMD.tools'),
+    //   shownTools = [];
+    //
+    // configuredTools.forEach(function(myTool) {
+    //   var tool = allTools.find(function(tool, index, enumerable) {
+    //     return myTool === tool.get('label');
+    //   });
+    //   shownTools.push(tool);
+    // });
+    //
+    // // Set selection state based on selected file:
+    // shownTools.forEach(function(shownTool, index, enumerable) {
+    //   var curFileTool = digObjTools.find(function(fileTool, index, enumerable) {
+    //     return fileTool.label === shownTool.get('label');
+    //   });
+    //
+    //   // If the file contains the tool from the selection set the selection
+    //   // state in the shown tool accordingly:
+    //   if (curFileTool) {
+    //     shownTool.set('isSelected', true);
+    //   } else {
+    //     shownTool.set('isSelected', false);
+    //   }
+    // });
+    //
+    // return shownTools;
   }.property('session.config', 'selectedDigitalObject.geoMD.tools.[]'),
 
   toggleDigitalObjectSelection: function(digObj) {

@@ -42,6 +42,7 @@ export default Ember.Route.extend({
           tools.pushObject(Ember.Object.create(tool));
         });
 
+debugger;
         geoMD.set('tools', tools);
 
         var obj = Ember.Object.create({
