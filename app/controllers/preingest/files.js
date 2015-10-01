@@ -36,10 +36,10 @@ export default Ember.Controller.extend({
 
       controller.send('isLoading', true, 'Extracting metadata ...');
 
-      console.log('Selected files:');
-      controller.get('selectedFiles').forEach(function(file) {
-        console.log('  * ' + file.get('path'));
-      });
+      // console.log('Selected files:');
+      // controller.get('selectedFiles').forEach(function(file) {
+      //   console.log('  * ' + file.get('path'));
+      // });
 
       var session = controller.get('session'),
         files = controller.get('selectedFiles');
@@ -47,11 +47,13 @@ export default Ember.Controller.extend({
       session.set('files', files);
       // session['files'] = files;
 
-      // // Take files and create a physicalAsset and digitalObjects from the files:
-      // var pa = {
-      //   label: 'Building Site Name',
-      //   buildm: {}
-      // };
+      // Take files and create a physicalAsset and digitalObjects from the files:
+
+      var sessionLabel = controller.get('session.label'),
+        pa = {
+          label: sessionLabel,
+          buildm: {}
+        };
 
       // Check if files have metadata attached already. If not, get it from the metadata service.
       var promises = [];
@@ -82,24 +84,20 @@ export default Ember.Controller.extend({
             hasMetadata = false;
           }
 
-          // // FIXXME: how to combine pa data from all files?
-          // var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
-          //   'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': [{
-          //     '@value': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset'
-          //   }],
-          //   'http://data.duraark.eu/vocab/buildm/name': [{
-          //     '@value': 'Nygade Building'
-          //   }]
-          // };
+          // FIXXME: how to combine pa data from all files?
+          var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
+            '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
+            'http://data.duraark.eu/vocab/buildm/name': [{
+              '@value': 'Nygade Building'
+            }]
+          };
 
-          // var sessionLabel = controller.get('session.label');
-          //
-          // paMD['http://data.duraark.eu/vocab/buildm/name'] = [{
-          //   '@value': sessionLabel
-          // }];
+          paMD['http://data.duraark.eu/vocab/buildm/name'] = [{
+            '@value': sessionLabel
+          }];
 
-          // pa.buildm = paMD;
-          // session.set('physicalAssets', [pa]);
+          pa.buildm = paMD;
+          session.set('physicalAssets', [pa]);
 
           var name = file.get('path').replace('/duraark-storage/files/', ''); // FIXXME!
           var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
@@ -153,6 +151,7 @@ export default Ember.Controller.extend({
         });
       }).catch(function(err) {
         alert('Error extracting metadata for selected file(s)');
+        controller.send('isLoading', false);
         throw new Error(err);
       });
     },

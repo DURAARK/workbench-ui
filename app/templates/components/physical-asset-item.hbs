@@ -6,9 +6,15 @@
 				3D Model (IFC)
 			</div>
 		{{else}}
-			<div class="c-file__header pointcloud">
-				Pointcloud (E57)
-			</div>
+			{{#if isE57}}
+				<div class="c-file__header pointcloud">
+					Pointcloud (E57)
+				</div>
+			{{else}}
+				<div class="c-file__header pointcloud">
+					Building Metadata
+				</div>
+			{{/if}}
 		{{/if}}
 
 		<div class="c-file__name">

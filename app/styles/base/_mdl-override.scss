@@ -16,3 +16,13 @@ background: #a56f39;
 .mdl-layout__drawer-button {
   display: none;
 }
+
+// Take this into account in $footer-height in _variables.scss
+.mdl-mini-footer {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.mdl-layout--fixed-header {
+  overflow: hidden;
+}

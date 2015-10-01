@@ -2,23 +2,23 @@
 
 	<div class="c-workflow-page">
 		{{#workflow-step-header onNext="next" onBack="back"}}
-				<header>METADATA</header>
+				<header><i class="fa fa-file-text-o"></i>&nbsp; 2 | METADATA</header>
 		{{/workflow-step-header}}
 
 		<div class="l-files">
 
 			<div class="l-file-list">
 
-				<h2 style="margin-top: 1em;">Building Metadata</h2>
+				<!-- <h2 style="margin-top: 1em;">Building Metadata</h2>
 
-				<hr>
+				<hr> -->
 				{{#file-list files=session.physicalAssets as |pa|}}
 					{{physical-asset-item item=pa details="showDetails"}}
 					<!-- FIXXME: unify *-item components! -->
 					<!-- {{file-item item=pa details="showDetails"}} -->
 				{{/file-list}}
 
-				<h2 style="margin-top: 1em;">File Metadata</h2>
+				<!-- <h2 style="margin-top: 1em;">File Metadata</h2> -->
 
 				<hr>
 

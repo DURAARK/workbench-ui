@@ -43,18 +43,18 @@ default Ember.Component.extend({
   }.property('item'),
 
   isPhysicalAsset: function() {
-    var type = this.get('item')['buildm']['@type'][0];
-    return type === 'http://data.duraark.eu/vocab/PhysicalAsset';
+    var type = this.get('item')['buildm']['@type'];
+    return type === 'http://data.duraark.eu/vocab/buildm/PhysicalAsset';
   },
 
   isIFC: function() {
-    //var type = this.get('item')['buildm']['@type'][0];
-    //return type === 'http://data.duraark.eu/vocab/IFCSPFFile';
+    var type = this.get('item')['buildm']['@type'];
+    return type === 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
   }.property('item'),
 
   isE57: function() {
-    //var type = this.get('item')['buildm']['@type'][0];
-    //return type === 'http://data.duraark.eu/vocab/E57File';
+    var type = this.get('item')['buildm']['@type'];
+    return type === 'http://data.duraark.eu/vocab/buildm/E57File';
   }.property('item')
 });
 
