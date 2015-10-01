@@ -9,11 +9,12 @@ default Ember.Component.extend({
       this.sendAction('select', item);
     },
     showDetails: function(item) {
-      this.toggleProperty('item.isSelected');
       if (this.get('item.isSelected')) {
-        this.sendAction('details', item);
-      } else {
+        this.set('item.isSelected', false);
         this.sendAction('details', null);
+      } else {
+        this.set('item.isSelected', true);
+        this.sendAction('details', item);
       }
     },
   },
@@ -39,7 +40,7 @@ default Ember.Component.extend({
     if (!address) {
       return 'No address';
     }
-    
+
     if (address.length) {
       return address[0]['@value'];
     } else {

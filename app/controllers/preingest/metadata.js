@@ -37,6 +37,16 @@ export default Ember.Controller.extend({
       this.transitionToRoute('preingest.files', session);
     },
 
+    // deselectAllItems() {
+    //   this.get('physicalAssets').forEach(function(item) {
+    //     item.isSelected = false;
+    //   });
+    //
+    //   this.get('digitalObjects').forEach(function(item) {
+    //     item.isSelected = false;
+    //   });
+    // },
+
     showDetails: function(item) {
       if (item) {
         this.set('fileInfo', item);
