@@ -5,7 +5,7 @@
   padding-left: rhythm(0.6);
 
   overflow: auto;
-  
+
   .l-file {
     @include gallery(1 of 3);
   }
@@ -22,20 +22,10 @@
   }
 }
 .l-file-details {
-  // @include span(last 6 of 12);
-  // margin-top: rhythm(1.5);
-  // padding-left: 2em;
-  // padding-right: 2em;
-  // position: relative;
-
-  // position: fixed;
-  // bottom: 0;
-  // top: 0;
   width: 50%;
 
   @include span(6 last);
-  height: 100vh;
-  // background: blue;
+  height: 77.5vh;
   float: right;
   overflow: auto;
 }
