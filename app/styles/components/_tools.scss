@@ -1,6 +1,14 @@
 .c-tool-item__header {
-  margin-top: 0.5ex;
-  margin-bottom: 1.5ex;
-  text-align: center;
-  color: color(white);
+  @include round-top-corners($amount: 10px);
+  padding-top: rhythm(0.5);
+  padding-bottom: rhythm(0.5);
+
+  border-top: 5px solid color(dark-gray);
+  border-left: 5px solid color(dark-gray);
+  border-right: 5px solid color(dark-gray);
+  font-size: 0.9em;
+  font-weight: bold;
+
+  background: $btn-blue;
+  color: $gui-main-font;
 }

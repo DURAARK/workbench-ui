@@ -1,0 +1,26 @@
+.l-ifc-reconstruction-tool {
+  position: relative;
+  
+  margin-top: -2em;
+  padding: 1.5em;
+  height: 77.5vh;
+}
+
+.c-ifc-reconstruction-tool {
+  will-change: color;
+  background: rgba(221, 221, 221, 0.2);
+  color: white;
+
+  overflow: auto;
+}
+
+.c-ifc-reconstruction-tool__close-icon {
+  float: right;
+  margin-top: -0.2em;
+  margin-right: -0.35em;
+
+  &:hover {
+    color: $btn-orange;
+    transition: color 0.2s;
+  }
+}

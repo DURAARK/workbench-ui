@@ -18,9 +18,11 @@
               {{digital-object-sementic item=do select="showToolSelection"}}
 
               {{#each do.geoMD.tools as |tool| }}
-                {{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo"}}
+                {{tool-item isLoading=true tool=tool digitalObject=do remove="removeTool" infoClicked="showToolUI"}}
               {{/each}}
             </div>
+
+            <hr>
           {{/file-list}}
         {{else}}
           <h3>To use the geometric enrichment tools at least one point cloud file (E57) has to be selected.</h3>
@@ -29,52 +31,54 @@
 
       {{#if model}}
         <div class="l-file-details">
+          <div class="l-tool-box">
 
-          {{#if isLoadingMetadata}}
-            <div style="color: white;">LOADING ...</div>
-            {{loading-spinner-center}}
-          {{else}}
-
-            {{#if selectedDigitalObject}}
-              {{tool-selector tools=tools click="clickedTool" icon="fa-wrench"}}
+            {{#if isLoadingMetadata}}
+              <div style="color: white;">LOADING ...</div>
+              {{loading-spinner-center}}
             {{else}}
-              {{#if tool}}
-                {{#if isElectricalApplianceDetectionTool}}
-                  {{electrical-appliance tool=tool}}
-                {{/if}}
 
-                {{#if isIFCReconstructionTool}}
-                  {{ifc-reconstruction tool=tool}}
-                {{/if}}
+              {{#if selectedDigitalObject}}
+                {{tool-selector tools=tools click="clickedTool" icon="fa-wrench"}}
               {{else}}
-                {{#help-box}}
-                  <div class="c-help-box__hint">
-                    For each point cloud scan you can apply tools which extract geometric information out of the scan.
-                    <br>
-                    <br> Supported are
-                    <br>
-                    <br>
+                {{#if tool}}
+                  {{#if isElectricalApplianceDetectionTool}}
+                    {{electrical-appliance tool=tool}}
+                  {{/if}}
 
-                    <ul style="margin-left: 1.5em;">
-                      <li style="list-style-type: disc;">the reconstruction of a BIM model and</li>
-                      <li style="list-style-type: disc;">the detection of electrical applicances in walls</li>
-                    </ul>
-                    <br> from the point cloud scan.
-                    <br>
-                    <br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a point cloud file to select the tools which should be applied. The resulting files will be ingested into the archive.
+                  {{#if isIFCReconstructionTool}}
+                    {{ifc-reconstruction tool=tool close="closeToolUI"}}
+                  {{/if}}
+                {{else}}
+                  {{#help-box}}
+                    <div class="c-help-box__hint">
+                      For each poin cloud scan you can apply tools which extract geometric information from the scan.
+                      <br>
+                      <br> Supported are
+                      <br>
+                      <br>
 
-                    <br>
-                    <br> The tools will take some time to finish the processing of the point cloud. A loading spinner will be shown when a process is working in the background. You can continue the pre-ingest workflow during this processing, it is not necessary
-                    to wait for the process. When the process is finished you can click on the <i class="fa fa-info" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon to see the result of the tool.
+                      <ul style="margin-left: 1.5em;">
+                        <li style="list-style-type: disc;">the reconstruction of a BIM model and</li>
+                        <li style="list-style-type: disc;">the detection of electrical applicances in walls</li>
+                      </ul>
+                      <br> from the point cloud scan.
+                      <br>
+                      <br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a point cloud file to select the tools which should be applied. The resulting IFC file(s) will be stored in the archive.
 
-                    <br>
-                    <br> If the result is already cached, the processing will only last a few seconds.
-                  </div>
-                {{/help-box}}
+                      <br>
+                      <br> The tools will take some time to finish the processing of the point cloud. A loading spinner will be shown when a process is working in the background. You can continue the pre-ingest workflow during this processing, it is not necessary
+                      to wait for the process. When the process is finished you can click on the <i class="fa fa-info" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon to see the result of the tool.
+
+                      <br>
+                      <br> If the result is already cached, the processing will only last a few seconds.
+                    </div>
+                  {{/help-box}}
+                {{/if}}
               {{/if}}
             {{/if}}
-          {{/if}}
 
+          </div>
         </div>
       {{/if}}
     </div>

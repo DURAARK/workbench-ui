@@ -1,17 +1,14 @@
-<div class="l-file c-file highlight-border">
-	<!-- {{#if tool.isLoading}} -->
-		<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-	<!-- {{/if}} -->
-
-	<div {{action "select" tool}}>
+<div class="l-file c-file">
+	<div style="position: relative;">
+		{{#if tool.isLoading}}
+			{{loading-spinner-small}}
+		{{/if}}
 
 		<div class="c-tool-item__header" {{action "infoClicked" tool}}>
-			<i class="fa fa-wrench"></i>
-			{{#unless tool.isLoading}}
-				<span style="float: right; margin-right: 2.9em; margin-top: 0.1em;">
+		Details &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+			<!-- <span style="float: right; margin-right: 2.9em; margin-top: 0.1em;">
 					<i class="fa fa-info-circle"></i>
-				</span>
-			{{/unless}}
+				</span> -->
 		</div>
 
 		<div class="c-file__name" style="text-align: center;">
@@ -19,7 +16,6 @@
 		</div>
 
 	</div>
-
 	<div class="c-file__actions">
 		<div {{action "remove" tool}} class="c-file__action" style="float: left;">
 			{{#unless static}}

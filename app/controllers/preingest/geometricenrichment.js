@@ -82,11 +82,15 @@ export default Ember.Controller.extend({
       this.toggleDigitalObjectSelection(digObj);
     },
 
-    showToolInfo: function(tool) {
+    showToolUI: function(digObj, tool) {
       this.set('selectedDigitalObject', null);
       this.set('tool', tool);
     },
 
+    closeToolUI: function() {
+      this.set('tool', null)
+    },
+    
     clickedTool: function(tool) {
       var selectedDigitalObject = this.get('selectedDigitalObject'),
         currentTools = selectedDigitalObject.get('geoMD.tools');
@@ -165,8 +169,8 @@ export default Ember.Controller.extend({
   }.property('tool'),
 
   isIFCReconstructionTool: function() {
-    var tool = this.get('tool');
-    return (tool.get('label') === 'IFC Reconstruction');
+    var toolname = this.get('tool.label');
+    return (toolname === 'IFC Reconstruction');
   }.property('tool'),
 
   tools: function() {
