@@ -18,7 +18,7 @@
               {{digital-object-sementic item=do select="showToolSelection"}}
 
               {{#each do.geoMD.tools as |tool| }}
-                {{tool-item isLoading=true tool=tool digitalObject=do remove="removeTool" infoClicked="showToolUI"}}
+                {{tool-item tool=tool digitalObject=do remove="removeTool" infoClicked="showToolUI"}}
               {{/each}}
             </div>
 
@@ -38,17 +38,17 @@
               {{loading-spinner-center}}
             {{else}}
 
-              {{#if selectedDigitalObject}}
-                {{tool-selector tools=tools click="clickedTool" icon="fa-wrench"}}
-              {{else}}
-                {{#if tool}}
-                  {{#if isElectricalApplianceDetectionTool}}
-                    {{electrical-appliance tool=tool}}
-                  {{/if}}
+              {{#if tool}}
+                {{#if isElectricalApplianceDetectionTool}}
+                  {{electrical-appliance tool=tool}}
+                {{/if}}
 
-                  {{#if isIFCReconstructionTool}}
-                    {{ifc-reconstruction tool=tool close="closeToolUI"}}
-                  {{/if}}
+                {{#if isIFCReconstructionTool}}
+                  {{ifc-reconstruction tool=tool close="closeToolUI"}}
+                {{/if}}
+              {{else}}
+                {{#if selectedDigitalObject}}
+                  {{tool-selector tools=tools click="clickedTool" icon="fa-circle-o"}}
                 {{else}}
                   {{#help-box}}
                     <div class="c-help-box__hint">

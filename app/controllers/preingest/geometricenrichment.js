@@ -83,7 +83,12 @@ export default Ember.Controller.extend({
     },
 
     showToolUI: function(digObj, tool) {
-      this.set('selectedDigitalObject', null);
+      let curDigitalObject = this.get('selectedDigitalObject');
+      if (curDigitalObject.get('path') != digObj.get('path')) {
+        this.toggleDigitalObjectSelection(digObj);
+      }
+
+      this.set('selectedDigitalObject', digObj);
       this.set('tool', tool);
     },
 
@@ -149,18 +154,17 @@ export default Ember.Controller.extend({
     removeTool: function(digObj, topic) {
       // Set the 'selectedDigitalObject' property to the file the topic belongs to:
       this.selectDigitalObject(digObj);
-
       digObj.get('geoMD.tools').removeObject(topic);
 
       // this.send('save');
     },
 
-    showSelectedTool: function(digObj, tool) {
-      this.set('fileInfo', null);
-      this.set('tool', tool);
-
-      this.transitionToRoute('file-browser');
-    }
+    // showSelectedTool: function(digObj, tool) {
+    //   this.set('fileInfo', null);
+    //   this.set('tool', tool);
+    //
+    //   this.transitionToRoute('file-browser');
+    // }
   },
 
   isElectricalApplianceDetectionTool: function() {
@@ -179,37 +183,37 @@ export default Ember.Controller.extend({
       return;
     }
 
-    return this.get('allTools');
+    // return this.get('allTools');
 
-    // let allTools = this.get('allTools'),
-    //   configuredTools = this.get('session.config.geometricenrichment.tools'),
-    //   selectedDigitalObject = this.get('selectedDigitalObject'),
-    //   digObjTools = selectedDigitalObject.get('geoMD.tools'),
-    //   shownTools = [];
-    //
-    // configuredTools.forEach(function(myTool) {
-    //   var tool = allTools.find(function(tool, index, enumerable) {
-    //     return myTool === tool.get('label');
-    //   });
-    //   shownTools.push(tool);
-    // });
-    //
-    // // Set selection state based on selected file:
-    // shownTools.forEach(function(shownTool, index, enumerable) {
-    //   var curFileTool = digObjTools.find(function(fileTool, index, enumerable) {
-    //     return fileTool.label === shownTool.get('label');
-    //   });
-    //
-    //   // If the file contains the tool from the selection set the selection
-    //   // state in the shown tool accordingly:
-    //   if (curFileTool) {
-    //     shownTool.set('isSelected', true);
-    //   } else {
-    //     shownTool.set('isSelected', false);
-    //   }
-    // });
-    //
-    // return shownTools;
+    let allTools = this.get('allTools'),
+      configuredTools = this.get('session.config.geometricenrichment.tools'),
+      selectedDigitalObject = this.get('selectedDigitalObject'),
+      digObjTools = selectedDigitalObject.get('geoMD.tools'),
+      shownTools = [];
+
+    configuredTools.forEach(function(myTool) {
+      var tool = allTools.find(function(tool, index, enumerable) {
+        return myTool === tool.get('label');
+      });
+      shownTools.push(tool);
+    });
+
+    // Set selection state based on selected file:
+    shownTools.forEach(function(shownTool, index, enumerable) {
+      var curFileTool = digObjTools.find(function(fileTool, index, enumerable) {
+        return fileTool.label === shownTool.get('label');
+      });
+
+      // If the file contains the tool from the selection set the selection
+      // state in the shown tool accordingly:
+      if (curFileTool) {
+        shownTool.set('isSelected', true);
+      } else {
+        shownTool.set('isSelected', false);
+      }
+    });
+
+    return shownTools;
   }.property('session.config', 'selectedDigitalObject.geoMD.tools.[]'),
 
   toggleDigitalObjectSelection: function(digObj) {
