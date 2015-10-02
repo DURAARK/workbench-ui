@@ -38,14 +38,13 @@
             {{#if tool}}
               {{#if isElectricalApplianceDetectionTool}}
                 {{#duraark-tool title="Electrical Appliance Detection" close="closeToolUI" fullscreen="maximizeToolUI"}}
-                  {{electrical-appliance tool=tool}}
+                  {{electrical-appliance tool=tool wallConfig=wallConfig}}
                 {{/duraark-tool}}
               {{/if}}
 
               {{#if isIFCReconstructionTool}}
                 {{#duraark-tool title="IFC Reconstruction" close="closeToolUI" fullscreen="maximizeToolUI"}}
-                  {{electrical-appliance tool=tool}}
-                  <!-- {{ifc-reconstruction tool=tool}} -->
+                  {{ifc-reconstruction tool=tool wallConfig=wallConfig}}
                 {{/duraark-tool}}
               {{/if}}
             {{else}}

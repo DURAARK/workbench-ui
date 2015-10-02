@@ -1,18 +1,17 @@
 <div class="l-rise-tool c-rise-tool">
+  {{#if wallConfig}}
+    <div class="l-rise-tool__floorplan">
+      {{duraark-floorplan wallConfig=wallConfig}}
+    </div>
+  {{else}}
+    This tool generates a hypothesis of the in-wall electrical appliance configuration from a pointcloud scan. The generation is currently in progress, be patient.
 
-  This tool generates a hypothesis of the in-wall electrical appliance configuration from a pointcloud scan. The generation is currently in progress, be patient.
+    <br>
+    <br> After the generation is finished the results will be displayed here. The images below show the result of the electrical appliance detection in three groups. For each detected wall the hypothesis of the electrical appliance is shown, together with
+    the rule set applied to the algorithm. As third group the detection of electrical sockets, e.g. power switches, is shown.
+  {{/if}}
 
-  <br><br>
-
-  After the generation is finished the results will be displayed here.
-
-  The images below show the result of the electrical appliance detection in three groups. For each detected wall the hypothesis of
-  the electrical appliance is shown, together with the rule set applied to the algorithm. As third group the detection of electrical
-  sockets, e.g. power switches, is shown.
-
-  <div id='rise-canvas'></div>
-
-<!-- <div class="l-image-presenter">
+  <!-- <div class="l-image-presenter">
     <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Hypothesis Results</div>
 
     <div class="l-image-list">

@@ -1,12 +1,12 @@
 <div class="c-ifc-reconstruction-tool">
+  {{#if wallConfig}}
+    {{duraark-floorplan wallConfig=wallConfig}}
+  {{else}}
+    The reconstruction process generates a BIM model based on the point cloud information. The generated model is stored as IFC file within the archive.
 
-  {{loading-spinner-fullscreen background=false}}
-
-  The reconstruction process generates a BIM model based on the point cloud information. The generated model is stored as IFC file within the archive.
-
-  <br><br>
-
-  Currently the reconstruction is in progress, the IFC model will be available in a few minutes or hours, depending on the file size of the point cloud scan.
+    <br>
+    <br> Currently the reconstruction is in progress, the IFC model will be available in a few minutes or hours, depending on the file size of the point cloud scan.
+  {{/if}}
 
   <!-- <br><br>
 

@@ -120,6 +120,11 @@ export default Ember.Route.extend({
       }],
     })];
 
+    // FIXXME!
+    Ember.$.get('/assets/bygade/wall.json').then(function(response) {
+      controller.set('wallConfig', response);
+    });
+
     // FIXXME: incorporate selected tools from session!
     tools.forEach(function(tool) {
       tool.set('isSelected', false);
