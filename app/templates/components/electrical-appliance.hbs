@@ -1,7 +1,7 @@
 <div class="l-rise-tool c-rise-tool">
   {{#if wallConfig}}
     <div class="l-rise-tool__floorplan">
-      {{duraark-floorplan wallConfig=wallConfig}}
+      {{duraark-floorplan wallConfig=wallConfig roomClicked="roomClicked"}}
     </div>
   {{else}}
     This tool generates a hypothesis of the in-wall electrical appliance configuration from a pointcloud scan. The generation is currently in progress, be patient.

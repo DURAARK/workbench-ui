@@ -9,7 +9,7 @@ export default Ember.Component.extend({
     this.addGeoFunctions();
   },
 
-  didInsertElement: function() {    
+  didInsertElement: function() {
     if (!this.isRendered && this.wallConfig) {
       this.renderFloorplan(this.wallConfig);
       this.isRendered = true;
@@ -18,8 +18,9 @@ export default Ember.Component.extend({
 
   renderFloorplan: function(wallConfig) {
     // create floor plan: process wall jsons
-    var ROOMS = [];
-    var room2wall = {};
+    var ROOMS = [],
+      room2wall = {},
+      that = this;
 
     _.forEach(wallConfig.Walls, function(wall) {
       // build room->walls index
@@ -100,6 +101,12 @@ export default Ember.Component.extend({
       scale(room.center);
     });
 
+    // FIXXME: find a better way to bind d3's 'onclick' handler to a function in this
+    // component's scope!
+    window.__onRoomClick = function(roomName) {
+      that.sendAction('roomClicked', roomName);
+    };
+
     //The SVG Container
     var svgContainer = d3.select('#rise-canvas').append("svg")
       .attr("width", TARGET_WIDTH)
@@ -117,7 +124,9 @@ export default Ember.Component.extend({
       .attr("onmouseover", "evt.target.setAttribute('opacity', '0.5');")
       .attr("onmouseout", "evt.target.setAttribute('opacity', '1');")
       .attr("onclick", function(d) {
-        return "alert('" + d.label + "');";
+        // FIXXME: find a better way to bind d3's 'onclick' handler to a function in this
+        // component's scope!
+        return 'window.__onRoomClick("' + d.label + '")';
       });
 
     var roomnames = svgContainer.selectAll("text")
@@ -135,7 +144,9 @@ export default Ember.Component.extend({
         return d.label;
       })
       .attr("onclick", function(d) {
-        return "alert('" + d.label + "');";
+        // FIXXME: find a better way to bind d3's 'onclick' handler to a function in this
+        // component's scope!
+        return 'window.__onRoomClick("' + d.label + '")';
       });
 
     // console.log('roomnames: ' + JSON.stringify(roomnames, null, 4));

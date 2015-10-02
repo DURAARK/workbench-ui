@@ -1,6 +1,6 @@
 <div class="c-ifc-reconstruction-tool">
   {{#if wallConfig}}
-    {{duraark-floorplan wallConfig=wallConfig}}
+    {{duraark-floorplan wallConfig=wallConfig roomClicked="roomClicked"}}
   {{else}}
     The reconstruction process generates a BIM model based on the point cloud information. The generated model is stored as IFC file within the archive.
 
