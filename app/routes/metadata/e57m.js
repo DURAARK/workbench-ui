@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 		this._super(controller, model);
 		
 		var filename = model.get('file');
-		// controller.set('isLoading', true);
+		// controller.set('showLoadingSpinner', true);
 
 		console.log('updating e57m  for file: ' + filename);
 
@@ -23,7 +23,7 @@ export default Ember.Route.extend({
 			var e57m = model;
 			e57m.set('instance', md.e57m.instance);
 
-			controller.set('isLoading', false);
+			controller.set('showLoadingSpinner', false);
 		});
 	}
 });

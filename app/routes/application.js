@@ -4,6 +4,7 @@ export default Ember.Route.extend({
   model: function() {
     // Stores application state:
     return Ember.Object.create({
+      showLoadingSpinner: false,
       preingest: {
         session: null,
         title: 'No Name',
@@ -42,9 +43,9 @@ export default Ember.Route.extend({
         model.set('preingest.session', session);
       },
 
-      isLoading(flag, message) {
+      showLoadingSpinner(flag, message) {
         let model = this.modelFor('application');
-        model.set('isLoading', flag)
+        model.set('showLoadingSpinner', flag)
         model.set('loadingMessage', message);
       }
   }

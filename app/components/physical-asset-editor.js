@@ -10,14 +10,14 @@ default Ember.Component.extend({
 
             console.log('updating physical asset for file: ' + file);
 
-            controller.set('isLoading', true);
+            controller.set('showLoadingSpinner', true);
 
             metadataAPI.getMetadataFor({
                 path: file
             }).then(function(md) {
                 var physicalAsset = controller.get('model');
                 physicalAsset.set('instance', md.physicalAsset.instance);
-                controller.set('isLoading', false);
+                controller.set('showLoadingSpinner', false);
             });
         }
     },

@@ -99,7 +99,7 @@ export default Ember.Controller.extend({
       var sessionId = session.get('id'),
         url = sessionEndpoint.host + '/sessions/' + sessionId;
 
-      controller.send('isLoading', true);
+      controller.send('showLoadingSpinner', true);
 
       var payload = session.toJSON();
       var ds = [];
@@ -121,10 +121,10 @@ export default Ember.Controller.extend({
       // this does the job, too:
       post(url, payload).then(function(result) {
         console.log('stored session ...');
-        controller.send('isLoading', false);
+        controller.send('showLoadingSpinner', false);
         // controller.send('sessionChanged');
       }).catch(function(err) {
-        controller.send('isLoading', false);
+        controller.send('showLoadingSpinner', false);
         throw new Error(err);
       });
 

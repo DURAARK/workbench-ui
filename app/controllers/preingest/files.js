@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
         return;
       }
 
-      controller.send('isLoading', true, 'Extracting metadata ...');
+      controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
 
       // console.log('Selected files:');
       // controller.get('selectedFiles').forEach(function(file) {
@@ -153,14 +153,14 @@ export default Ember.Controller.extend({
 
         session.save().then(function(session) {
           controller.transitionToRoute('preingest.metadata', session);
-          controller.send('isLoading', false);
+          controller.send('showLoadingSpinner', false);
         }).catch(function(err) {
-          controller.send('isLoading', false);
+          controller.send('showLoadingSpinner', false);
           alert(err);
         });
       }).catch(function(err) {
         alert('Error extracting metadata for selected file(s)');
-        controller.send('isLoading', false);
+        controller.send('showLoadingSpinner', false);
         throw new Error(err);
       });
     },
@@ -191,7 +191,7 @@ export default Ember.Controller.extend({
       controller.set('errors', null);
       controller.set('fileInfo', null);
 
-      controller.send('isLoading', true, 'Extracting metadata ...');
+      controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
 
       this.addTechnicalMetadata(file).then(function(file) {
         var md = file.get('metadata');
@@ -199,7 +199,7 @@ export default Ember.Controller.extend({
         console.log('showing technical metadata for:   ' + file.get('path'));
 
         controller.set('fileInfo', file);
-        controller.send('isLoading', false);
+        controller.send('showLoadingSpinner', false);
 
         // // NOTE: override 'name' from extraction with filename:
         // var name = file.get('path').split('/').pop(),
@@ -219,9 +219,9 @@ export default Ember.Controller.extend({
         // }
         //
         // controller.set('fileInfo', file);
-        // controller.send('isLoading', false);
+        // controller.send('showLoadingSpinner', false);
       }).catch(function(err) {
-        controller.send('isLoading', false);
+        controller.send('showLoadingSpinner', false);
         // FIXXME: use either one of those two error handling methods!
         controller.set('errors', err);
         controller.send('showError', err);

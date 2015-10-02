@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
 
       controller.get('session').save().then(function() {
         controller.send('addPendingAction');
-        topic.set('isLoading', false);
+        topic.set('showLoadingSpinner', false);
         // controller.askForCandidates(crawler, topic);
       });
 
@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
           console.log('stored candidates');
           controller.send('removePendingAction');
 
-          topic.set('isLoading', false);
+          topic.set('showLoadingSpinner', false);
         });
       } else {
         console.log('No candidates yet, retrying in 60 seconds ...');
@@ -219,7 +219,7 @@ export default Ember.Controller.extend({
         currentTopics.pushObject(t);
 
         if (!t.get('candidates').length) {
-          t.set('isLoading', true);
+          t.set('showLoadingSpinner', true);
 
           if (!t.candidates.length) {
             var topicCrawler = new DURAARK.TopicCrawler({

@@ -28,6 +28,8 @@
   height: $content-height;
   float: right;
   overflow: auto;
+
+  background: rgba(221, 221, 221, 0.2);
 }
 .l-file-details-titel {
   // @include round-top-corners($amount: 4px);

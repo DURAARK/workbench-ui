@@ -31,7 +31,7 @@ export default Ember.Component.extend({
 
 			console.log('creating sip with files: #' + files.get('length'));
 
-			controller.set('isLoading', true);
+			controller.set('showLoadingSpinner', true);
 
 			var poFiles = [];
 			files.forEach(function(file) {
@@ -47,7 +47,7 @@ export default Ember.Component.extend({
 				files: poFiles
 			}).then(function(data) {
 				controller.set('downloadUrl', host + data.url);
-				controller.set('isLoading', false);
+				controller.set('showLoadingSpinner', false);
 				controller.set('creationFinished', true);
 			});
 		}

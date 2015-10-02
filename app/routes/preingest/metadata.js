@@ -16,6 +16,9 @@ default Ember.Route.extend({
 
     setupController: function(controller, model) {
       this._super(controller, model);
+
+      controller.set('app', this.modelFor('app'));
+      
       controller.set('session', model);
       controller.set('fileInfo', null);
 

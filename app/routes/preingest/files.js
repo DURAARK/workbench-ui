@@ -19,15 +19,17 @@ default Ember.Route.extend({
 
       let router = this;
 
+      controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!
+
       controller.set('session', model);
       controller.set('showSidebar', true);
       controller.set('selectedFile', null);
 
-      // controller.send('isLoading', true, 'Loading files ...');
+      // controller.send('showLoadingSpinner', true, 'Loading files ...');
 
       // if (!controller.get('files')) {
       //   controller.set('selectedFiles', []);
-      //   controller.send('isLoading', true);
+      //   controller.send('showLoadingSpinner', true);
       //   var files = [];
       //
       //   // A session can define which files are presented to the user for selection
@@ -43,7 +45,7 @@ default Ember.Route.extend({
       //     // For showcase sessions remove files which could have been stored before:
       //
       //     controller.set('files', files);
-      //     controller.send('isLoading', false);
+      //     controller.send('showLoadingSpinner', false);
       //
       //   } else {
 
@@ -54,7 +56,7 @@ default Ember.Route.extend({
 
         router.send('highlightSelectedFiles', availableFiles, selectedFiles);
 
-        controller.send('isLoading', false);
+        controller.send('showLoadingSpinner', false);
       });
       // }
       // }

@@ -45,7 +45,7 @@ export default Ember.Controller.extend({
           console.log('stored candidates');
           controller.send('removePendingAction');
 
-          topic.set('isLoading', false);
+          topic.set('showLoadingSpinner', false);
         });
       } else {
         console.log('No candidates yet, retrying in 60 seconds ...');
