@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
               // of the 'preingest.files' route gets called. Currently we have a mix of
               // ember-data and native objects for 'session' models, which makes this
               // necessary.
-              controller.transitionToRoute('metadata', newSession.id);
+              controller.transitionToRoute('preingest.metadata', newSession.id);
             });
           }
         });
