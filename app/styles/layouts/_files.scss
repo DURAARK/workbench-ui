@@ -25,7 +25,7 @@
   width: 50%;
 
   @include span(6 last);
-  height: 77.5vh;
+  height: $content-height;
   float: right;
   overflow: auto;
 }

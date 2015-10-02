@@ -1,14 +1,8 @@
 .l-help-box {
-  margin: 2em;
+  height: $content-height;
   padding: 2em;
   background: rgba(221, 221, 221, 0.17);
   color: white;
-  @include round-top-corners($amount: 5px);
-  @include round-bottom-corners($amount: 5px);
-  border-top: 1px solid color(white);
-  border-bottom: 1px solid color(white);
-  border-left: 1px solid color(white);
-  border-right: 1px solid color(white);
 }
 .c-help-box__header {
   margin-top: 0.5ex;
