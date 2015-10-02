@@ -35,24 +35,22 @@
 					{{else}}
 
 						{{#if selectedDigitalObject}}
-							{{tool-selector tools=topics click="clickedTopic" icon="fa-file-text-o"}}
+							{{tool-selector tools=topics click="clickedTopic" icon="fa-lightbulb-o" title="Add context information topics to the selected file:"}}
 						{{else}}
 							{{#if topic}}
 								{{topic-viewer digitalObject=do topic=topic}}
 							{{else}}
 								{{#help-box}}
 									<div class="c-help-box__hint">
-										For each 3D input file it is possible to add information topics. To show all available topics use the
-										<i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
+										Each 3D model (BIM or point cloud file) can be enriched with context information. Context information is available as 'topics'. We support the topics
+										'history', 'environment' and 'legal' at the moment. Add a topic to a file in clicking the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i>
+										icon on the respective file and select the topics of interest.
 
 										<br>
-										<br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
+										<br> When adding a topic a dynamic search for related information is started. Linked data is crawled and added to the archive.
 
 										<br>
-										<br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
-
-										<br>
-										<br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
+										<br> The search will take some time to finish. The 'Details <i class="fa fa-arrow-circle-o-right"></i>' button allows you to inspect the progress and the results of the search.
 									</div>
 								{{/help-box}}
 							{{/if}}
