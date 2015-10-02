@@ -1,18 +1,17 @@
 .c-workflow-step-header {
   @include clearfix;
-  // width: 100%;
+
   margin-top: -16px;
   padding-top: 0.5em;
   background: lighten($btn-blue, 30%);
 
   header {
-    margin: 0;
-    padding-top: 1.3em;
     position: absolute;
-    // top: 50%;
+    margin-top: 0.7em;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    
     font-size: 1.6em;
   }
 }
