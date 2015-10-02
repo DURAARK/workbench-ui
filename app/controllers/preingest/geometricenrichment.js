@@ -84,7 +84,7 @@ export default Ember.Controller.extend({
 
     showToolUI: function(digObj, tool) {
       let curDigitalObject = this.get('selectedDigitalObject');
-      if (curDigitalObject.get('path') != digObj.get('path')) {
+      if (curDigitalObject && curDigitalObject.get('path') != digObj.get('path')) {
         this.toggleDigitalObjectSelection(digObj);
       }
 
@@ -93,7 +93,7 @@ export default Ember.Controller.extend({
     },
 
     maximizeToolUI() {
-      
+
     },
 
     closeToolUI: function() {

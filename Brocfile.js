@@ -23,6 +23,8 @@ app.import('vendor/node-uuid/uuid.js');
 app.import('bower_components/leaflet/dist/leaflet.js');
 app.import('bower_components/leaflet/dist/leaflet.css');
 
+app.import('bower_components/d3/d3.min.js');
+
 app.import('vendor/jsc3d/bin/jsc3d.min.js');
 
 app.import('bower_components/underscore/underscore-min.js');

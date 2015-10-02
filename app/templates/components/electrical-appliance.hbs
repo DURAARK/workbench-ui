@@ -1,12 +1,4 @@
-<div class="l-ifc-reconstruction-tool c-ifc-reconstruction-tool">
-
-  <i {{action "close"}} class="fa fa-remove fa-2x c-ifc-reconstruction-tool__close-icon"></i>
-
-  <h2 style="text-align: center;"><i class="fa fa-unlink"></i>&nbsp; Electrical Appliance Detection</h2>
-
-  <hr>
-
-  {{loading-spinner-fullscreen background=false}}
+<div class="l-rise-tool c-rise-tool">
 
   This tool generates a hypothesis of the in-wall electrical appliance configuration from a pointcloud scan. The generation is currently in progress, be patient.
 
@@ -17,6 +9,8 @@
   The images below show the result of the electrical appliance detection in three groups. For each detected wall the hypothesis of
   the electrical appliance is shown, together with the rule set applied to the algorithm. As third group the detection of electrical
   sockets, e.g. power switches, is shown.
+
+  <div id='rise-canvas'></div>
 
 <!-- <div class="l-image-presenter">
     <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Hypothesis Results</div>

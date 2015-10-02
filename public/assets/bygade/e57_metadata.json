@@ -1,0 +1,2591 @@
+{
+  "e57m": {
+    "E57root": {
+      "guid": "{9ED146FF-82BF-4E62-8880-DFDFB169607C}",
+      "version": 1,
+      "creation_datetime": "2015-07-30T12:37:07.807Z",
+      "coordinate_metadata": "Not in use.",
+      "scan_count": 23,
+      "image_count": 0,
+      "scan_size": 23,
+      "image_size": 0
+    },
+    "e57scan": [{
+      "guid": "1b2ed9c7-05ef-4b39-9a5e-e5e7f5b49afa",
+      "name": "Byg72_gang_1005",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;21 8189 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.5214012027822942,
+          "x": 0.003726290636392842,
+          "y": 0.0006237485594253879,
+          "z": -0.853303293930713
+        },
+        "translation": {
+          "x": -0.00856496799999995,
+          "y": -0.014391659000000168,
+          "z": 29.555624254999998
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -17.199819564819336,
+        "x_maximum": 131.575927734375,
+        "y_minimum": -4.0780348777771,
+        "y_maximum": 77.2384262084961,
+        "z_minimum": -5.790937900543213,
+        "z_maximum": 23.415485382080078
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.3173699975013733,
+        "range_maximum": 152.05438232421875,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264215816104116,
+        "azimuth_maximum": -0.002549093781009701
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27831592,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "50f0488d-89c0-4b18-93a1-a11daf94b36b",
+      "name": "Byg72_gang_2006",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;13 8197 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.176981728409052,
+          "x": -0.005227997375498152,
+          "y": -0.0036179574964565857,
+          "z": 0.9841936020094523
+        },
+        "translation": {
+          "x": 1.6912184909999999,
+          "y": 2.7142502410000002,
+          "z": 29.5517175052
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -149.25332641601563,
+        "x_maximum": 2.487999677658081,
+        "y_minimum": -38.83626174926758,
+        "y_maximum": 20.998062133789063,
+        "z_minimum": -1.6358109712600708,
+        "z_maximum": 4.562800884246826
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.5462100505828857,
+        "range_maximum": 149.26336669921875,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.26433915326446,
+        "azimuth_maximum": -0.002416015780633665
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27537072,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "44c4bf8e-532e-4663-9761-fb77cdfdd0fc",
+      "name": "Byg72_gang_3007",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;20 8190 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.520818859526755,
+          "x": 0.0006051744595697656,
+          "y": 0.00000782925755658717,
+          "z": -0.853667001390956
+        },
+        "translation": {
+          "x": 3.8871746679999997,
+          "y": 8.437409823,
+          "z": 29.546406303199998
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -32.913291931152344,
+        "x_maximum": 41.77338409423828,
+        "y_minimum": -144.80447387695313,
+        "y_maximum": 137.71543884277344,
+        "z_minimum": -13.615732192993164,
+        "z_maximum": 39.92537307739258
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.940000057220459,
+        "range_maximum": 149.8004150390625,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264389011711787,
+        "azimuth_maximum": -0.0024124382144710653
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27740450,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "cfe84a8c-1ce0-49f5-9066-626f9eb358c5",
+      "name": "Byg72000",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;19 8191 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.1972344087257238,
+          "x": -0.0019389926709322209,
+          "y": 0.008509066849371734,
+          "z": 0.9803175118824458
+        },
+        "translation": {
+          "x": -1.1728261409999998,
+          "y": -4.146488584,
+          "z": 29.691162416999997
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -97.76380157470703,
+        "x_maximum": 4.532120704650879,
+        "y_minimum": -27.26372528076172,
+        "y_maximum": 118.72919464111328,
+        "z_minimum": -9.13882827758789,
+        "z_maximum": 9.629220962524414
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.49549999833106995,
+        "range_maximum": 149.16529846191406,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264140498498263,
+        "azimuth_maximum": -0.00262099913044184
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 0
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 255,
+        "color_green_minimum": 0,
+        "color_green_maximum": 255,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 255
+      },
+      "pointSize": 27843432,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": false,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0,
+          "color_red_field": true,
+          "color_green_field": true,
+          "color_blue_field": true,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "7506f781-4a0b-4d7f-90cf-088aace5c29c",
+      "name": "Byg72002",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;19 8191 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.21609843229587794,
+          "x": -0.005419376775421836,
+          "y": 0.00324193305684609,
+          "z": 0.9763511600775024
+        },
+        "translation": {
+          "x": 0.9200267289999999,
+          "y": -6.107107087999999,
+          "z": 29.632196674
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -61.847694396972656,
+        "x_maximum": 40.09756088256836,
+        "y_minimum": -137.13661193847656,
+        "y_maximum": 143.93052673339844,
+        "z_minimum": -16.7156982421875,
+        "z_maximum": 7.172233581542969
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.9776900410652161,
+        "range_maximum": 150.34481811523438,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.263859701613375,
+        "azimuth_maximum": -0.0027936073716965455
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 0
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 255,
+        "color_green_minimum": 0,
+        "color_green_maximum": 255,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 255
+      },
+      "pointSize": 27513257,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": false,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0,
+          "color_red_field": true,
+          "color_green_field": true,
+          "color_blue_field": true,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "4530bc70-0c27-45d5-87d8-432c1cb28746",
+      "name": "Byg72_004008",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;22 8188 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.8086145693480254,
+          "x": -0.006810926741307054,
+          "y": 0.006360211761137403,
+          "z": 0.5882649379500579
+        },
+        "translation": {
+          "x": 4.152015018,
+          "y": 1.7232641400000004,
+          "z": 29.55385818
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -23.369516372680664,
+        "x_maximum": 1.6997616291046143,
+        "y_minimum": -143.38999938964844,
+        "y_maximum": 6.750783443450928,
+        "z_minimum": -1.8269989490509033,
+        "z_maximum": 4.819082736968994
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.7055599689483643,
+        "range_maximum": 145.34754943847656,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.26386486132544,
+        "azimuth_maximum": -0.002716872929684693
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27625501,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "86c8710e-3caf-473b-92df-ae0b1b3a290e",
+      "name": "Byg72_gang_4014",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;23 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;20 8188 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.4803755966978767,
+          "x": 0.0030821871308762605,
+          "y": 0.000436062704807991,
+          "z": -0.8770573505016458
+        },
+        "translation": {
+          "x": 5.972178326,
+          "y": 12.453208358000001,
+          "z": 29.516142384
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8207,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -37.311805725097656,
+        "x_maximum": 20.77376365661621,
+        "y_minimum": -7.321798801422119,
+        "y_maximum": 27.406126022338867,
+        "z_minimum": -1.524531602859497,
+        "z_maximum": 4.923018932342529
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.46248000860214233,
+        "range_maximum": 38.069278717041016,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.2645581989143055,
+        "azimuth_maximum": -0.003082303282754364
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27750160,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "43265a16-6893-4e92-bf88-2c50deb2a0b8",
+      "name": "Byg72_009018",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;18 8192 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.46939493151937545,
+          "x": -0.004540944171619042,
+          "y": 0.007627142993045806,
+          "z": -0.8829437155219548
+        },
+        "translation": {
+          "x": 1.860808676,
+          "y": 9.320217048,
+          "z": 29.533651567099998
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -5.738456726074219,
+        "x_maximum": 139.14523315429688,
+        "y_minimum": -144.3133544921875,
+        "y_maximum": 29.24406623840332,
+        "z_minimum": -16.7103271484375,
+        "z_maximum": 59.23548126220703
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.568310022354126,
+        "range_maximum": 147.70693969726563,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.263873297242544,
+        "azimuth_maximum": -0.0029540543749580414
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27436674,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "8571ed7b-c52d-40ad-9ba7-c13b0ae5bf7a",
+      "name": "Byg72_gang_5019",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;5 8205 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.9752858489719746,
+          "x": -0.002532149832623085,
+          "y": 0.0006944999873666617,
+          "z": -0.2209312532938864
+        },
+        "translation": {
+          "x": 6.837548182,
+          "y": 15.553645021,
+          "z": 29.530591793
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -60.36665725708008,
+        "x_maximum": 149.18206787109375,
+        "y_minimum": -24.117290496826172,
+        "y_maximum": 128.98011779785156,
+        "z_minimum": -7.46513032913208,
+        "z_maximum": 21.25789451599121
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.7714399695396423,
+        "range_maximum": 149.8103485107422,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264325286263987,
+        "azimuth_maximum": -0.0024040315557283085
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27808736,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "96118c18-c04f-4d8d-90ef-4fb795f5a501",
+      "name": "Byg72_009016",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;19 8191 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.9478567499560026,
+          "x": 0.0016449028312545163,
+          "y": 0.008362651591220063,
+          "z": -0.3185827081244111
+        },
+        "translation": {
+          "x": -0.3371998430000005,
+          "y": 4.198009437,
+          "z": 29.532556686
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -122.83358001708984,
+        "x_maximum": 2.282724142074585,
+        "y_minimum": -104.95408630371094,
+        "y_maximum": 91.07339477539063,
+        "z_minimum": -16.87609100341797,
+        "z_maximum": 48.982078552246094
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.798259973526001,
+        "range_maximum": 146.88656616210938,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264304834225053,
+        "azimuth_maximum": -0.002437658190698448
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27456655,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "f0d9d5bf-9406-4436-8494-7d49cac68ef4",
+      "name": "Byg72_009017",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;17 8193 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.9099085526727075,
+          "x": -0.0033512210896397714,
+          "y": 0.006017241342921733,
+          "z": -0.41475171837725777
+        },
+        "translation": {
+          "x": 0.6569149919999999,
+          "y": 6.917974592,
+          "z": 29.528954566
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -124.91355895996094,
+        "x_maximum": 4.490333080291748,
+        "y_minimum": -148.06375122070313,
+        "y_maximum": 11.337890625,
+        "z_minimum": -15.215250968933105,
+        "z_maximum": 36.864471435546875
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.6853200197219849,
+        "range_maximum": 148.44265747070313,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264174098997772,
+        "azimuth_maximum": -0.0025886240218883703
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27501863,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "43607bf0-cfae-4f40-be53-abf31b08077d",
+      "name": "Byg72_005009",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;21 8189 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.6775688035461873,
+          "x": -0.0028434332755939797,
+          "y": -0.005309488711980852,
+          "z": 0.7354347290397788
+        },
+        "translation": {
+          "x": 6.256199182,
+          "y": 5.396047663,
+          "z": 29.551974893599997
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -137.7709503173828,
+        "x_maximum": 25.85556411743164,
+        "y_minimum": -62.25950622558594,
+        "y_maximum": 4.900876045227051,
+        "z_minimum": -4.499692440032959,
+        "z_maximum": 40.4018669128418
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.7560999989509583,
+        "range_maximum": 147.94537353515625,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264286850508714,
+        "azimuth_maximum": -0.002451968455349735
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27448962,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "41fa33c5-f48e-47dd-9179-997ec65868a7",
+      "name": "Byg72_006012",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;12 8198 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.486706498034162,
+          "x": 0.0033035158063005007,
+          "y": -0.005202728479967377,
+          "z": 0.8735438186897115
+        },
+        "translation": {
+          "x": 6.891413794,
+          "y": 8.592828478,
+          "z": 29.546178376399997
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -139.3973388671875,
+        "x_maximum": 6.992517471313477,
+        "y_minimum": -31.706470489501953,
+        "y_maximum": 56.481327056884766,
+        "z_minimum": -1.5763522386550903,
+        "z_maximum": 8.261970520019531
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.7475999593734741,
+        "range_maximum": 150.1314697265625,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.26448136947619,
+        "azimuth_maximum": -0.0023878971923157527
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27595581,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "0eddba6e-4481-4bec-adb6-5f5f0cff1c8a",
+      "name": "Byg72_008015",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;23 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;19 8189 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.8293831149110785,
+          "x": -0.008270537300201941,
+          "y": 0.0019956238466334267,
+          "z": 0.5586154888638746
+        },
+        "translation": {
+          "x": 9.508331403,
+          "y": 13.829162523,
+          "z": 29.513221206999997
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8207,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -1.5899738073349,
+        "x_maximum": 5.88267707824707,
+        "y_minimum": -26.454120635986328,
+        "y_maximum": 23.906654357910156,
+        "z_minimum": -1.68036687374115,
+        "z_maximum": 6.589588165283203
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.7412099838256836,
+        "range_maximum": 27.83932876586914,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264481216507679,
+        "azimuth_maximum": -0.00304044700212932
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27722468,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "1412b9a6-8db9-4fda-ae4f-e75eb47fc352",
+      "name": "Byg72_gang025",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;18 8192 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.9803543067285865,
+          "x": 0.009083089098330638,
+          "y": 0.0002923587916594607,
+          "z": -0.1970351372153747
+        },
+        "translation": {
+          "x": 1.645435026,
+          "y": 17.755677722999998,
+          "z": 29.627933305
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -40.60581970214844,
+        "x_maximum": 26.06529426574707,
+        "y_minimum": -1.4851592779159546,
+        "y_maximum": 149.3669891357422,
+        "z_minimum": -27.727705001831055,
+        "z_maximum": 25.960012435913086
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.7234600186347961,
+        "range_maximum": 149.9180450439453,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.2638203366822385,
+        "azimuth_maximum": -0.002865512721128685
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 0
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27916901,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": false,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "d96f252b-5099-457e-858a-b983440fd0d3",
+      "name": "Byg72_gang026",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;20 8190 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.1972909221563986,
+          "x": -0.008813033235596826,
+          "y": -0.0038847383228119386,
+          "z": 0.9802976748355723
+        },
+        "translation": {
+          "x": -1.165251487,
+          "y": 18.369937885,
+          "z": 29.571572252
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -46.91911697387695,
+        "x_maximum": 38.77564239501953,
+        "y_minimum": -6.503475666046143,
+        "y_maximum": 149.1187744140625,
+        "z_minimum": -17.27617835998535,
+        "z_maximum": 30.723424911499023
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.7284799814224243,
+        "range_maximum": 150.79627990722656,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.263780971751102,
+        "azimuth_maximum": -0.0029864294835115113
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 0
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27888836,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": false,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "5fede71e-10db-4ebb-a785-8a9735318503",
+      "name": "Byg72_023",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;20 8190 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.028176300571131414,
+          "x": 0.0014200935074807762,
+          "y": -0.009075435766341435,
+          "z": -0.9995607614778634
+        },
+        "translation": {
+          "x": 1.6248237589999999,
+          "y": 21.123886279,
+          "z": 29.628174974999997
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -127.57659149169922,
+        "x_maximum": 24.080076217651367,
+        "y_minimum": -146.4099578857422,
+        "y_maximum": 18.560199737548828,
+        "z_minimum": -14.450976371765137,
+        "z_maximum": 31.55625343322754
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.7306200265884399,
+        "range_maximum": 152.8672332763672,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.263897401743736,
+        "azimuth_maximum": -0.002773216488048432
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27578213,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "22fed4d6-bc07-4c35-aa2b-cc60f39f8bab",
+      "name": "Byg72_021",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;20 8190 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.4802586164401771,
+          "x": 0.00638326361835383,
+          "y": -0.006944704563880762,
+          "z": 0.8770762146809512
+        },
+        "translation": {
+          "x": 4.773146218,
+          "y": 20.604103387000002,
+          "z": 29.555413836
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -31.229564666748047,
+        "x_maximum": 137.1390838623047,
+        "y_minimum": -149.6872100830078,
+        "y_maximum": 6.121189117431641,
+        "z_minimum": -9.697339057922363,
+        "z_maximum": 21.269376754760742
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.8321499824523926,
+        "range_maximum": 150.91888427734375,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.263760415557712,
+        "azimuth_maximum": -0.003125588102883486
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27319791,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "186c4d28-9f6c-45d1-be5c-249d5f57296a",
+      "name": "Byg72_020",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;19 8191 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.5964845174305172,
+          "x": 0.003498722558503848,
+          "y": 0.0043751472647829215,
+          "z": 0.8026050320628154
+        },
+        "translation": {
+          "x": 10.428168590999999,
+          "y": 17.746249112999998,
+          "z": 29.52529366
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -91.88434600830078,
+        "x_maximum": 136.23460388183594,
+        "y_minimum": -140.7847137451172,
+        "y_maximum": 11.238040924072266,
+        "z_minimum": -10.243579864501953,
+        "z_maximum": 42.71168518066406
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.5734300017356873,
+        "range_maximum": 147.71096801757813,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.263991477616661,
+        "azimuth_maximum": -0.002755151644146693
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27561922,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "36dd0a72-37b7-40d6-98d7-9417a04426a3",
+      "name": "Byg72_lotz028",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;21 8189 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.9748386048377069,
+          "x": 0.0011763002176882688,
+          "y": -0.004146679006134512,
+          "z": -0.22287017720882085
+        },
+        "translation": {
+          "x": -2.207974709,
+          "y": 15.932606124,
+          "z": 29.572372271
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -22.7833309173584,
+        "x_maximum": 87.15177917480469,
+        "y_minimum": -146.00686645507813,
+        "y_maximum": 107.75154876708984,
+        "z_minimum": -42.418190002441406,
+        "z_maximum": 40.104251861572266
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.5564599633216858,
+        "range_maximum": 148.0747833251953,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.26423632328975,
+        "azimuth_maximum": -0.002575453804229811
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 0
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27702082,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": false,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "c1132395-4805-431a-a5f6-78d714ceb8c2",
+      "name": "Byg72_lotz027",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;20 8190 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.9922996162132064,
+          "x": -0.00034626124892688746,
+          "y": -0.004116699912360526,
+          "z": 0.12379177900047493
+        },
+        "translation": {
+          "x": -0.4738543230000003,
+          "y": 14.668389954,
+          "z": 29.576412042999998
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -145.6358184814453,
+        "x_maximum": 68.08512878417969,
+        "y_minimum": -135.91705322265625,
+        "y_maximum": 135.43991088867188,
+        "z_minimum": -45.009952545166016,
+        "z_maximum": 43.13837432861328
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.8571699857711792,
+        "range_maximum": 148.73516845703125,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.263789495443292,
+        "azimuth_maximum": -0.0028642611947115714
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 0
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27760943,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": false,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "8515e055-cd16-4d38-9519-790b1a3fcba4",
+      "name": "Byg72_024",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;21 8189 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.9914904961373631,
+          "x": -0.00006875452323172234,
+          "y": 0.003386241834474994,
+          "z": -0.13013502491005094
+        },
+        "translation": {
+          "x": 3.359924338302591,
+          "y": 12.85774770353755,
+          "z": 29.63069879827306
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -1.5434554815292358,
+        "x_maximum": 2.270202159881592,
+        "y_minimum": -2.61714506149292,
+        "y_maximum": 4.957408428192139,
+        "z_minimum": -1.5956491231918335,
+        "z_maximum": 1.707586646080017
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.80513995885849,
+        "range_maximum": 5.125069618225098,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264275737228642,
+        "azimuth_maximum": -0.002508312013713918
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27806173,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }, {
+      "guid": "ef07c450-3632-42a5-a308-afb253eed44e",
+      "name": "Byg72_gang029",
+      "description": "&lt;AttrContainer&gt;\n&lt;Attr type=&quot;String&quot;&gt;\n&lt;Name value=&quot;&apos;Name&apos;&quot; /&gt;\n&lt;Value value=&quot;&apos;E57ExportScanInfos&apos;&quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf1&apos;&quot; /&gt;\n&lt;Value value=&quot;24 4081 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;Attr type=&quot;SVec2i&quot;&gt;\n&lt;Name value=&quot;&apos;OverlapHalf2&apos;&quot; /&gt;\n&lt;Value value=&quot;19 8191 &quot; /&gt;\n&lt;/Attr&gt;\n&lt;/AttrContainer&gt;",
+      "sensor_vendor": "FARO Scanner Production GmbH",
+      "sensor_model": "FARO Focus 3D S 120",
+      "sensor_serial_number": "LLS061203105",
+      "sensor_hardware_version": {},
+      "sensor_software_version": "5.4.4.41689",
+      "sensor_firmware_version": "&quot;iQLib&quot; 5.0.6.30068",
+      "temperature": 340282346638528860000000000000000000000,
+      "relative_humidity": 340282346638528860000000000000000000000,
+      "atmospheric_pressure": 340282346638528860000000000000000000000,
+      "acquisition_start": "1980-02-06T00:00:00.000Z",
+      "acquisition_end": "1980-02-06T00:00:00.000Z",
+      "pose": {
+        "rotation": {
+          "w": 0.8390595218779487,
+          "x": -0.005018851262735543,
+          "y": -0.0105691510165812,
+          "z": 0.5439138010059492
+        },
+        "translation": {
+          "x": 4.464924603878017,
+          "y": 16.232288508963517,
+          "z": 29.550699127637245
+        }
+      },
+      "index_bounds": {
+        "row_minimum": 0,
+        "row_maximum": 3413,
+        "col_minimum": 0,
+        "col_maximum": 8209,
+        "return_minimum": 0,
+        "return_maximum": 0
+      },
+      "cartesian_bounds": {
+        "x_minimum": -14.106082916259766,
+        "x_maximum": 10.510884284973145,
+        "y_minimum": -150.99285888671875,
+        "y_maximum": 18.348575592041016,
+        "z_minimum": -3.699946165084839,
+        "z_maximum": 10.642271041870117
+      },
+      "sphericalbounds": {
+        "range_minimum": 0.985759973526001,
+        "range_maximum": 151.39048767089844,
+        "elevation_minimum": -1.0459598204934397,
+        "elevation_maximum": 1.5694096034770006,
+        "azimuth_minimum": 6.264226135528246,
+        "azimuth_maximum": -0.0026449675802525537
+      },
+      "intensity_limits": {
+        "intensity_minimum": 0,
+        "intensity_maximum": 1
+      },
+      "color_limits": {
+        "color_red_minimum": 0,
+        "color_red_maximum": 0,
+        "color_green_minimum": 0,
+        "color_green_maximum": 0,
+        "color_blue_minimum": 0,
+        "color_blue_maximum": 0
+      },
+      "pointSize": 27903525,
+      "point_fields": {
+        "cartesian_fields": {
+          "cartesian_x_field": true,
+          "cartesian_y_field": true,
+          "cartesian_z_field": true,
+          "cartesian_invalid_state_field": true
+        },
+        "spherical_fields": {
+          "spherical_range_field": false,
+          "spherical_elevation_field": false,
+          "spherical_azimuth_field": false,
+          "spherical_invalid_state_field": false
+        },
+        "point_range": {
+          "point_range_minimum": -340282346638528860000000000000000000000,
+          "point_range_maximum": 340282346638528860000000000000000000000,
+          "point_range_scaled_integer": 0
+        },
+        "angles": {
+          "angle_minimum": 0,
+          "angle_maximum": 0,
+          "angle_scaled_integer": 0
+        },
+        "index_fields": {
+          "row_index_field": true,
+          "row_index_maximum": 4294967295,
+          "column_index_field": true,
+          "column_index_maximum": 4294967295,
+          "return_index_field": false,
+          "return_count_field": false,
+          "return_maximum": 0
+        },
+        "time_fields": {
+          "time_stamp_field": false,
+          "is_Time_Stamp_invalid": false,
+          "time_Maximum": 0
+        },
+        "intensity_color_fields": {
+          "intensity_field": true,
+          "is_intensity_invalid_field": false,
+          "intensity_scaled_integer": 0.0004885197850512946,
+          "color_red_field": false,
+          "color_green_field": false,
+          "color_blue_field": false,
+          "is_color_invalid_field": false
+        }
+      }
+    }]
+  }
+}
