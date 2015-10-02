@@ -1,6 +1,32 @@
 .l-rise-tool {
-
   &.fullscreen {
 
   }
+}
+#rise-canvas {
+  text-align: center;
+}
+.l-rise-tool__floorplan {
+  svg {
+    display: inline;
+  }
+}
+.c-rise-tool__header {
+  @include clearfix;
+  width: 100%;
+}
+.c-rise-tool__back {
+  float: left;
+  margin-right: 1em;
+  line-height: 1.5em;
+  min-width: 100px;
+}
+.c-rise-tool__edit {
+  float: right;
+  line-height: 1.5em;
+  min-width: 100px;
+}
+.c-rise-tool__label {
+  font-size: 1.5em;
+  line-height: 1.5em;
 }
