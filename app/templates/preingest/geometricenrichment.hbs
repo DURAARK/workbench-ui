@@ -1,7 +1,7 @@
 <div class="l-page-with-header-and-workflow-steps">
 
   <div class="c-workflow-page">
-    {{#workflow-step-header onNext="next" onBack="back" }}
+    {{#workflow-step-header onNext="next" onBack="back"}}
       <header><i class="fa fa-circle-o"></i>&nbsp; 3 | GEOMETRIC TOOLS</header>
     {{/workflow-step-header}}
 
@@ -44,7 +44,7 @@
                 {{/if}}
 
                 {{#if isIFCReconstructionTool}}
-                  {{ifc-reconstruction tool=tool close="closeToolUI"}}
+                  {{ifc-reconstruction tool=tool close="closeToolUI" fullscreen="maximizeToolUI"}}
                 {{/if}}
               {{else}}
                 {{#if selectedDigitalObject}}

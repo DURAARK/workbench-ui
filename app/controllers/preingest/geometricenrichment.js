@@ -92,6 +92,10 @@ export default Ember.Controller.extend({
       this.set('tool', tool);
     },
 
+    maximizeToolUI() {
+      
+    },
+
     closeToolUI: function() {
       this.set('tool', null)
     },

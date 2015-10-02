@@ -1,9 +1,21 @@
 .l-ifc-reconstruction-tool {
+  will-change: background;
   position: relative;
-  
+
   margin-top: -2em;
   padding: 1.5em;
   height: 77.5vh;
+
+  &.fullscreen {
+    position: fixed;
+    top: 212px; // FIXXME: use variables!
+    left: 0;
+    right: 0;
+    bottom: 34px; // FIXXME: use variables!
+
+    background: #424242;
+    transition: background 0.5s;
+  }
 }
 
 .c-ifc-reconstruction-tool {
