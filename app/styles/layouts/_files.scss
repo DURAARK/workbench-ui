@@ -4,6 +4,7 @@
   @include span(6 of 12);
   padding-left: rhythm(0.6);
 
+  height: $content-height;
   overflow: auto;
 
   .l-file {
