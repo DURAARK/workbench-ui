@@ -5,33 +5,19 @@
 			<header><i class="fa fa-database"></i>&nbsp; 5 | DIGITAL PRESERVATION</header>
 		{{/workflow-step-header}}
 
-		<div class="c-link-list">
-			<div>
-				<div class="c-link-list-right__generation">
-					<!-- <div class="c-link-list-grid-small">
-						<button {{action "createBagItSIP"}}>
-							{{#unless bagIsCreating}}Download ZIP{{else}}Creating ZIP ...{{/unless}}
-							</button>
-					</div> -->
-					<div class="c-link-list-grid-small">
-						<button {{action "createBagItSIP"}}>
-							{{#unless bagIsCreating}}Download BagIt{{else}}Creating BagIt ...{{/unless}}
-						</button>
-					</div>
-					<div class="c-link-list-grid-small">
-						<button {{action "createRosettaSIP"}}>
-							{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{/unless}}
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<div class="l-files">
 
 			<div class="l-file-list">
-
-				<h2 style="margin-top: 1em;">OVERVIEW</h2>
+				<h2 style="margin-top: 1em;"><i class="fa fa-database"></i>&nbsp; 5 | Check archive content:
+					<div style="float: right;">
+						<button {{action "createBagItSIP"}}>
+							{{#unless bagIsCreating}}Download BagIt{{else}}Creating BagIt ...{{/unless}}
+						</button>
+						<button style="margin-left: 1.5em;" {{action "createRosettaSIP"}}>
+							{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{/unless}}
+						</button>
+					</div>
+				</h2>
 
 				<hr>
 
@@ -54,7 +40,6 @@
 						{{#each do.geoMD.tools as |tool|}}
 							{{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo" static=true}}
 						{{/each}}
-
 					</div>
 				{{/file-list}}
 
@@ -84,13 +69,8 @@
 						{{else}}
 							{{#help-box}}
 								<div class="c-help-box__hint">
-									On the left an overview of the items which will be packaged into a Rosetta SIP to be deposit to the Rosetta DPS or a BagIt SIP for local download.
+									This page gives an overview of the data that will go into the archive. The data will be packaged into a Rosetta SIP to be deposit to the Rosetta DPS or you can download it as a BagIt SIP for local storage.
 
-									<br>
-									<br> It is necessary that all items are ready before the packaging process.
-
-									<br>
-									<br> A loading spinner indicates, that an item is still being processed.
 								</div>
 							{{/help-box}}
 						{{/if}}

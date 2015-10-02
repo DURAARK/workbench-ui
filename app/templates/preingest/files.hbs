@@ -8,6 +8,9 @@
 		<div class="l-files">
 
 			<div class="l-file-list">
+				<h2 style="margin: 1em;"><i class="fa fa-folder-o"></i>&nbsp; 1 | Add files to archive:</h2>
+				<hr>
+
 				{{#file-list files=files as |file|}}
 					{{file-item item=file select="toggleSelection" details="showDetails"}}
 				{{/file-list}}

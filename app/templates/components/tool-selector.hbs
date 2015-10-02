@@ -1,25 +1,29 @@
 <div class="l-tools c-cards">
 
-  {{#each tools as |tool|}}
-    <div class="l-tool c-card {{if tool.isSelected 'is-selected'}}" {{action "click" tool}}>
-      <div class="c-tool__header">
-        <i class="fa {{icon}}"></i>
-      </div>
-      <div class="c-card-bg">
-        <div class="c-card-header">
-          {{tool.label}}
-        </div>
-        <div class="c-card-copy">
-          <p>{{tool.description}}</p>
-        </div>
-        <div class="c-card__action">
-          <label class="c-label-switch">
-            {{input type="checkbox" checked=tool.isSelected}}
-            <div class="checkbox"></div>
-          </label>
-        </div>
-      </div>
-    </div>
-  {{/each}}
+  <h2>{{title}}</h2>
 
+  <div class="l-tool-gallery">
+    {{#each tools as |tool|}}
+      <div class="l-tool c-card {{if tool.isSelected 'is-selected'}}" {{action "click" tool}}>
+        <div class="c-tool__header">
+          <i class="fa {{icon}}"></i>
+        </div>
+        <div class="c-card-bg">
+          <div class="c-card-header">
+            {{tool.label}}
+          </div>
+          <div class="c-card-copy">
+            <p>{{tool.description}}</p>
+          </div>
+          <div class="c-card__action">
+            <label class="c-label-switch">
+              {{input type="checkbox" checked=tool.isSelected}}
+              <div class="checkbox"></div>
+            </label>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+
+  </div>
 </div>

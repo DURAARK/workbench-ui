@@ -9,9 +9,8 @@
 
 			<div class="l-file-list">
 
-				<!-- <h2 style="margin-top: 1em;">Context Information</h2> -->
-
-				<!-- <hr> -->
+				<h2 style="margin: 1em;"><i class="fa fa-lightbulb-o"></i>&nbsp; 4 | Add context information:</h2>
+        <hr>
 
 				{{#file-list files=digitalObjects as |do|}}
 					<div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
@@ -22,6 +21,8 @@
 							{{tool-item tool=topic digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
 						{{/each}}
 					</div>
+
+					<hr>
 				{{/file-list}}
 
 			</div>
