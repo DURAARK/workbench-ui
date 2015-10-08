@@ -21,22 +21,22 @@
 // ==========
 
 // susy
-@import "../../public/vendor/susy/sass/susy";
+@import "../0-plugins/susy/sass/susy";
 
 // normalize-scss
-@import "../../public/vendor/normalize-scss/_normalize.scss";
+@import "../0-plugins/normalize-scss/_normalize.scss";
 
 // breakpoints-sass
-// @import "../../public/vendor/breakpoint-sass/stylesheets/_breakpoint.scss";
+// @import "../0-plugins/breakpoint-sass/stylesheets/_breakpoint.scss";
 
 // Vertical rhythms (without compass)
-@import "../../public/vendor/vertical-rhythms-without-compass/_vertical-rhythms.scss";
+@import "../0-plugins/vertical-rhythms-without-compass/_vertical-rhythms.scss";
 
 // adaptive-placeholders
-@import "../../vendor/adaptive-placeholders/_adaptive-placeholders.scss";
+@import "../0-plugins/adaptive-placeholders/_adaptive-placeholders.scss";
 
 // hmps-animate-scss
 // @import "hmps-animate-scss/animate.scss";
 
 // sass-hidpi for responsive images
-@import "../../public/vendor/sass-hidpi/_hidpi.scss";
+@import "../0-plugins/sass-hidpi/_hidpi.scss";
