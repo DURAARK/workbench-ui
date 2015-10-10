@@ -1,0 +1,30 @@
+{
+  "name": "lmv-viewer",
+  "version": "0.1.4",
+  "description": "Custom Element for Autodesk LMV",
+  "license": "BSD 3-Clause",
+  "main": "lmv-viewer.html",
+  "keywords": [
+    "web-components",
+    "lmv",
+    "autodesk"
+  ],
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "^0.7.0"
+  },
+  "homepage": "https://github.com/nopjia/lmv-viewer",
+  "_release": "0.1.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.4",
+    "commit": "e4a3b1b7e65d3b93227f0ff56c91698b83401e95"
+  },
+  "_source": "git://github.com/nopjia/lmv-viewer.git",
+  "_target": "~0.1.4",
+  "_originalSource": "lmv-viewer",
+  "_direct": true
+}

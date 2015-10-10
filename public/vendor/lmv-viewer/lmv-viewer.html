@@ -1,0 +1,232 @@
+<template id="lmv-viewer">
+  <style>
+  :host {
+    display: block;
+    width: 600px;
+    height: 400px;
+  }
+  </style>
+</template>
+
+<script>
+(function() {
+
+  //---------------------------------------------------------
+  // SCOPE VARS
+  //---------------------------------------------------------
+
+  var avp = Autodesk.Viewing.Private;
+
+  function isUrn(url) {
+    return url.indexOf("urn:") === 0;
+  }
+
+  function endsWith(s, suffix) {
+    return s.indexOf(suffix, s.length - suffix.length) !== -1;
+  }
+
+
+
+  //---------------------------------------------------------
+  // HTML ELEMENT
+  //---------------------------------------------------------
+
+  // Creates an object based in the HTML Element prototype
+
+  var element = Object.create(HTMLElement.prototype);
+
+  // Get template magic
+
+  // Refers to the "importer", which is index.html
+  var thatDoc = document;
+  // Refers to the "importee", which is src/hello-world.html
+  var thisDoc =  (thatDoc._currentScript || thatDoc.currentScript).ownerDocument;
+  // Gets content from <template>
+  var template = thisDoc.querySelector("template").content;
+
+  // Fires when an instance of the element is created
+  element.createdCallback = function() {
+    console.log("lmv-viewer created");
+
+    var clone = thatDoc.importNode(template, true);
+    var shadowRoot = this.createShadowRoot();
+    shadowRoot.appendChild(clone);
+
+    this.init();
+  };
+
+  // Fires when an instance was inserted into the document
+  element.attachedCallback = function() {
+    console.log("lmv-viewer attached");
+  };
+
+  // Fires when an instance was removed from the document
+  element.detachedCallback = function() {
+    console.log("lmv-viewer detached");
+  };
+
+  // Fires when an attribute was added, removed, or updated
+  element.attributeChangedCallback = function(attr, oldVal, newVal) {
+    console.log("lmv-viewer '" + attr + "' changed from '" + oldVal + "' to '" + newVal + "'");
+
+    // sync instance vars
+    if (this.hasOwnProperty(attr))
+      this[attr] = newVal;
+
+    // call changed handlers
+    if (this[attr+"Changed"])
+      this[attr+"Changed"](oldVal, newVal);
+  };
+
+
+
+  //---------------------------------------------------------
+  // INIT
+  //---------------------------------------------------------
+
+  element.init = function() {
+    var self = this;
+
+    this.ready = false;                   // ready to load url
+    this.url = this.getAttribute("url");  // url to load
+
+    this.doc = undefined;                 // reference to av.Document, if exists
+
+    this.env = this.getAttribute("env");
+    if (!this.env && this.url && !isUrn(this.url)) {  // detect for Local, otherwise let avp handle
+      this.env = "Local";
+      this.setAttribute("env", "Local");  // reflect in attr
+    }                                     // TODO_NOP: but results in ugly case in envChanged()
+
+    var token = this.getAttribute("token");
+
+    this.viewer = new Autodesk.Viewing.Viewer3D(this.shadowRoot, {});
+    Autodesk.Viewing.Initializer({
+        accessToken: token,
+        env: self.env
+      },
+      function() {
+        self.viewer.initialize();
+        self.ready = true;
+        if (self.url)
+          self.loadUrl(self.url);
+        else
+          console.log("No URL given");
+      }
+    );
+  };
+
+
+
+  //---------------------------------------------------------
+  // CHANGED HANDLERS
+  //---------------------------------------------------------
+
+  element.urlChanged = function() {
+    this.loadUrl(this.url);
+  };
+
+  element.envChanged = function(oldVal, newVal) {
+    if (oldVal===null && newVal==="Local")  // TODO_NOP: ugly hardcode case only for initialization
+      return;
+    avp.initializeEnvironmentVariable({env: newVal});
+    avp.initializeServiceEndPoints({env: newVal});
+    avp.initializeLogger();
+  };
+
+  element.tokenChanged = function(oldVal, newVal) {
+    this.ready = false;
+    var self = this;
+    avp.initializeAuth(function() {
+      self.ready = true;
+      if (self.url) // automatically load url once token set
+          self.loadUrl(self.url);
+    }, {accessToken: newVal});
+  };
+
+
+
+  //---------------------------------------------------------
+  // MODEL LOADING
+  //---------------------------------------------------------
+
+  // load URL, handles both svf and bubble.json document
+  element.loadUrl = function(url) {
+    if (!url) {
+      console.log("ERROR: URL is empty");
+      return;
+    }
+
+    if (!this.ready) {
+      console.log("Viewer not ready. URL will load once it is.");
+      return;
+    }
+
+    this.doc = undefined;
+
+    if (endsWith(url, ".svf")) {
+      console.log("Load URL: SVF model");
+      this.loadModel(url);
+    }
+    else if (endsWith(url, ".f2d")) {
+      console.log("Load URL: F2D file");
+      this.loadModel(url);
+    }
+    else if (isUrn(url)) {
+      console.log("Load URL: JSON document");
+      this.loadDocument(url);
+    }
+    else {
+      console.log("Load URL: unrecognized, attempt to load document");
+      this.loadDocument(url);
+    }
+  };
+
+  // load model, basically just calling Viewer3D.loadModel() with some callbacks
+  element.loadModel = function(url) {
+    this.viewer.impl.unloadCurrentModel();
+    this.viewer.loadModel(url, undefined, undefined,
+      function() {
+        console.log("Success: loaded model " + url);
+      },
+      function() {
+        console.log("ERROR: cannot load model " + url);
+      }
+    );
+  };
+
+  // load document
+  element.loadDocument = function(url, initialItemId) {
+    var self = this;
+    Autodesk.Viewing.Document.load(url,
+      function(doc, errors) { // onLoadCallback
+        if (errors && errors.length > 0)
+          console.log(errors);
+        var geometryItems = [];
+        if (initialItemId) {
+          geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {"guid":initialItemId}, true);
+        }
+        else if (geometryItems.length === 0) {
+          geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {"type":"geometry", "role":"3d"}, true);
+        }
+        if (geometryItems.length > 0) {
+          var url = doc.getViewablePath(geometryItems[0]);
+          self.loadModel(url);
+          self.doc = doc;
+        }
+        else {
+          console.log("Did not load anything from document");
+        }
+      },
+      function(errorCode, errorMsg, errors) { // onErrorCallback
+        console.log({errorCode:errorCode, errorMsg:errorMsg, errors:errors});
+      }
+    );
+  };
+
+  // Registers custom element
+  document.registerElement("lmv-viewer", {
+    prototype: element
+  });
+}());
+</script>
