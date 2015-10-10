@@ -4,16 +4,18 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>WorkbenchUi</title>
-  <meta name="description" content="">
+  <title>DURAARK WorbenchUI</title>
+  <meta name="description" content="'DURAARK WorkbenchUI' is a graphical frontend for the 'DURAARK Service Platform' to manage architectural data over the a building's life cycle.">
   <meta name="viewport" content="width=device-width, initial-scale=1"> {{content-for 'head'}}
 
   <link rel="stylesheet" href="assets/vendor.css">
   <link rel="stylesheet" href="assets/workbench-ui.css">
-  <!-- <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css"> -->
+
+  <!-- Load Google's 'material light' theme -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <!-- <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">  -->
-  {{content-for 'head-footer'}}
+  <!-- <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css"> -->
+
+   {{content-for 'head-footer'}}
 </head>
 
 <body>
@@ -22,15 +24,21 @@
   <script src="assets/vendor.js"></script>
   <script src="assets/workbench-ui.js"></script>
 
-  {{content-for 'body-footer'}}
+  <!-- Load Autodesk 'lmv-viewer' -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.3/webcomponents.min.js"></script>
+  <script src="http://autodeskviewer.com/viewers-dev/latest/firefly.js"></script>
+  <link rel="import" href="https://rawgit.com/nopjia/lmv-viewer/develop/lmv-viewer.html">
 
+  <!-- Load Google's 'material light' theme -->
+  <!-- <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script> -->
+
+  <!-- Load vendor stuff -->
   <script type="text/javascript" src="vendor/ember-data-sails-adapter.js"></script>
   <script type="text/javascript" src="vendor/underscore-min.js"></script>
   <script type="text/javascript" src="vendor/numeral/min/numeral.min.js"></script>
   <script type="text/javascript" src="vendor/numeral/min/languages.min.js"></script>
-  <!-- <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script> -->
-  <!-- <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script> -->
 
+  {{content-for 'body-footer'}}
 </body>
 
 </html>

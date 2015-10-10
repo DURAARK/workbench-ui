@@ -20,6 +20,7 @@ Router.map(function() {
 
   this.route('admin');
   this.route('file-browser');
+  this.route('ifc-viewer');
 });
 
 export default Router;

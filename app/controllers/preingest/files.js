@@ -182,6 +182,19 @@ export default Ember.Controller.extend({
       // files.forEach(function(file) {
       //   console.log('  * ' + file.get('path'));
       // });
+
+      var isE57 = file.get('path').endsWith('.e57');
+      var isIfc = file.get('path').endsWith('.ifc');
+      if (isIfc) {
+        this.transitionToRoute('ifc-viewer');
+      } else if (isE57) {
+        Ember.run(function() {
+          location = '/viewer/pointcloud';
+        });
+        this.transitionToRoute('ifc-viewer');
+      } else {
+        console.log('[ifc-viewer] Format not supported.');
+      }
     },
 
     showDetails: function(file) {
