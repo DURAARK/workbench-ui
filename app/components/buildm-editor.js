@@ -324,12 +324,12 @@ export default Ember.Component.extend({
 
     if (element.name === 'latitude') {
       key = 'Latitude (leave emtpy to set it automatically from address)';
-      hide = false;
+      hide = true;
     }
 
     if (element.name === 'longitude') {
       key = 'Longitude (leave emtpy to set it automatically from address)';
-      hide = false;
+      hide = true;
     }
 
     //
