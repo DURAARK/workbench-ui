@@ -61,7 +61,7 @@ export default Ember.Controller.extend({
 
       // Check if files have metadata attached already. If not, get it from the metadata service.
       var promises = [],
-      newFiles = [];
+        newFiles = [];
 
       files.forEach(function(file) {
         var hasMD = _.isObject(file.get('metadata'));
@@ -108,50 +108,15 @@ export default Ember.Controller.extend({
             session.set('physicalAssets', [paNew]);
           }
 
-          var name = file.get('path').split('/').pop();
-          var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
-            '@type': 'http://data.duraark.eu/vocab/buildm/E57File',
-            'http://data.duraark.eu/vocab/buildm/name': [{
-              '@value': name
-            }]
-          };
+          let digObj = controller.createDigitalObjectFromFile(file, hasMetadata);
 
-          if (hasMetadata) {
-            daMD['@type'] = 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
-          }
-
-          daMD['http://data.duraark.eu/vocab/buildm/name'] = [{
-            '@value': name
-          }];
-
-          var duraarkType = (hasMetadata) ? 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
-          let type = duraarkType.split('/').pop().toLowerCase();
-          var uri = 'http://data.duraark.eu/' + type + '_' + uuid.v4();
-
-          daMD['@id'] = uri;
-
-          var digOb = Ember.Object.create({
-            label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/buildm/name'][0]['@value'] : 'Edit name',
-            // label: file.get('path'),
-            buildm: daMD,
-            semMD: Ember.Object.create({
-              topics: []
-            }),
-            techMD: {},
-            derivatives: {},
-            path: file.get('path'),
-            size: file.get('size')
-          });
-
-          // console.log('PATH: ' + file.get('path'));
-
-          das.pushObject(digOb);
+          das.pushObject(digObj);
         });
 
         var sessionDAs = session.get('digitalObjects');
         if (!sessionDAs) {
           sessionDAs = [];
-          session.set('sessionDAs', sessionDAs);
+          session.set('sessionDAs', das);
         }
         das.forEach(function(da) {
           sessionDAs.pushObject(da);
@@ -261,6 +226,47 @@ export default Ember.Controller.extend({
       this.unselectFile(this.get('fileInfo'));
       this.set('fileInfo', null);
     }
+  },
+
+  createDigitalObjectFromFile(file, hasMetadata) {
+    var name = file.get('path').split('/').pop();
+    var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
+      '@type': 'http://data.duraark.eu/vocab/buildm/E57File',
+      'http://data.duraark.eu/vocab/buildm/name': [{
+        '@value': name
+      }]
+    };
+
+    if (hasMetadata) {
+      daMD['@type'] = 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
+    }
+
+    daMD['http://data.duraark.eu/vocab/buildm/name'] = [{
+      '@value': name
+    }];
+
+    var duraarkType = (hasMetadata) ? 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
+    let type = duraarkType.split('/').pop().toLowerCase();
+    var uri = 'http://data.duraark.eu/' + type + '_' + uuid.v4();
+
+    daMD['@id'] = uri;
+
+    var digOb = Ember.Object.create({
+      label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/buildm/name'][0]['@value'] : 'Edit name',
+      // label: file.get('path'),
+      buildm: daMD,
+      semMD: Ember.Object.create({
+        topics: []
+      }),
+      techMD: {},
+      derivatives: {},
+      path: file.get('path'),
+      size: file.get('size')
+    });
+
+    // console.log('PATH: ' + file.get('path'));
+
+    return digOb;
   },
 
   showInViewer(file) {

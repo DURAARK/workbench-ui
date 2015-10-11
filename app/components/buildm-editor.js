@@ -93,7 +93,6 @@ export default Ember.Component.extend({
   }.property('buildm'),
 
   buildmChanged: Ember.on('init', Ember.observer('buildm', function() {
-    debugger;
     var buildm = this.get('buildm'),
       formDescription = [],
       schemaDesc = this.getSchema(),

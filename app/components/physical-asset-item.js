@@ -23,7 +23,7 @@ default Ember.Component.extend({
   name: function() {
     var path = this.get('item.path');
     if (path) {
-      return path.replace('/duraark-storage/files/', ''); // FIXXME!
+      return path.split('/').pop();
     } else {
       var buildm = this.get('item.buildm');
       var name = "Session";
