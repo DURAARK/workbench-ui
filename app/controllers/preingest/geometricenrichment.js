@@ -192,12 +192,15 @@ export default Ember.Controller.extend({
       digObjTools = selectedDigitalObject.get('geoMD.tools'),
       shownTools = [];
 
-    configuredTools.forEach(function(myTool) {
-      var tool = allTools.find(function(tool, index, enumerable) {
-        return myTool === tool.get('label');
-      });
-      shownTools.push(tool);
-    });
+    // NOTE: we enable all tools for all datasets, bypassing the custom config
+    // in disabling this code block:
+    // configuredTools.forEach(function(myTool) {
+    //   var tool = allTools.find(function(tool, index, enumerable) {
+    //     return myTool === tool.get('label');
+    //   });
+    //   shownTools.push(tool);
+    // });
+    shownTools = allTools;
 
     // Set selection state based on selected file:
     shownTools.forEach(function(shownTool, index, enumerable) {

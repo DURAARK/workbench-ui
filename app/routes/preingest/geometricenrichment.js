@@ -69,14 +69,14 @@ export default Ember.Route.extend({
     // FIXXME: get from SDA service!
     // FIXXME: create Topic model to enable saving and linking into session model!
     var tools = [Ember.Object.create({
-      label: 'IFC Reconstruction',
+      label: 'Reconstruct BIM Model',
       description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan.',
-      rooms: 0,
-      area: 0,
-      walls: 0
     }), Ember.Object.create({
-      label: 'Electrical Appliance Detection',
+      label: 'Detect Power Lines',
       description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical appliances of the building.',
+    }), Ember.Object.create({
+      label: 'Extract Floor Plan and Room Information',
+      description: 'Enable this tool to extract a floor plan with additional geometric information for each room.',
       rooms: 0,
       walls: 0
     })];
