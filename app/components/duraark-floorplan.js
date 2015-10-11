@@ -6,6 +6,7 @@ export default Ember.Component.extend({
 
   // FIXXME: refactor into own lib!
   init() {
+    this._super();
     this.addGeoFunctions();
   },
 
