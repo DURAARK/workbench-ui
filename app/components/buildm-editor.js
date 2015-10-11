@@ -189,6 +189,10 @@ export default Ember.Component.extend({
     let key,
       hide = false;
 
+    //
+    // PhysicalAsset elements:
+    //
+
     if (element.name === 'identifier' || element.name === 'Identifier') {
       hide = true;
     }
@@ -245,12 +249,77 @@ export default Ember.Component.extend({
 
     if (element.name === 'postalCodeStart') {
       key = 'Postal Code (start)';
-      hide = true;
+      hide = false;
     }
 
     if (element.name === 'postalCodeEnd') {
       key = 'Postal Code (end)';
-      hide = true;
+      hide = false;
+    }
+
+    if (element.name === 'postOfficeBoxNumber') {
+      key = 'Post Office Box Number';
+      hide = false;
+    }
+
+    if (element.name === 'addressRegion') {
+      key = 'Address Region';
+      hide = false;
+    }
+
+    if (element.name === 'postalLocality') {
+      key = 'Postal Locality';
+      hide = false;
+    }
+
+    if (element.name === 'architect') {
+      key = 'Architect(s)';
+      hide = false;
+    }
+
+    if (element.name === 'contributor') {
+      key = 'Contributor(s)';
+      hide = false;
+    }
+
+    if (element.name === 'startDate') {
+      key = 'Construction Start Date';
+      hide = false;
+    }
+
+    if (element.name === 'completionDate') {
+      key = 'Construction Completion Date';
+      hide = false;
+    }
+
+    if (element.name === 'constructionTime') {
+      key = 'Construction Duration';
+      hide = false;
+    }
+
+    if (element.name === 'rebuildingDate') {
+      key = 'Rebuilding Start';
+      hide = false;
+    }
+
+    if (element.name === 'modificationDetails') {
+      key = 'Modification Description';
+      hide = false;
+    }
+
+    if (element.name === 'cost') {
+      key = 'Building Cost';
+      hide = false;
+    }
+
+    if (element.name === 'modificationDetails') {
+      key = 'Modification Description';
+      hide = false;
+    }
+
+    if (element.name === 'rightsDetails') {
+      key = 'Rights Description';
+      hide = false;
     }
 
     if (element.name === 'latitude') {
@@ -260,6 +329,70 @@ export default Ember.Component.extend({
 
     if (element.name === 'longitude') {
       key = 'Longitude (leave emtpy to set it automatically from address)';
+      hide = false;
+    }
+
+    //
+    // DigitalObject elements:
+    //
+
+    if (element.name === 'creator') {
+      key = 'Creator(s)';
+      hide = false;
+    }
+
+    if (element.name === 'dateCreated') {
+      key = 'Creation Date';
+      hide = false;
+    }
+
+    if (element.name === 'isPartOf') {
+      key = 'Part Of ...';
+      hide = false;
+    }
+
+    if (element.name === 'hasPart') {
+      key = 'Parent Of ...';
+      hide = false;
+    }
+
+    if (element.name === 'format') {
+      key = 'File Format';
+      hide = false;
+    }
+
+    if (element.name === 'hasType') {
+      key = 'File Type';
+      hide = false;
+    }
+
+    if (element.name === 'hasFormatDetails') {
+      key = 'File Details';
+      hide = false;
+    }
+
+    if (element.name === 'provenance') {
+      key = 'Provenance Description';
+      hide = false;
+    }
+
+    if (element.name === 'license') {
+      key = 'License';
+      hide = false;
+    }
+
+    if (element.name === 'levelOfDetail') {
+      key = 'Level Of Detail';
+      hide = false;
+    }
+
+    if (element.name === 'unitCode') {
+      key = 'Unit Code(s)';
+      hide = true;
+    }
+
+    if (element.name === 'event') {
+      key = 'Purpose';
       hide = false;
     }
 
@@ -542,7 +675,7 @@ export default Ember.Component.extend({
                       "-minOccurs": "0",
                       "-maxOccurs": "unbounded",
                       "xs:annotation": {
-                        "xs:documentation": "Links the digital object to an overaching digital object it is a part of, e.g. in the case of plans for different fllors the object may link to an overall plan view of all the physical asset’s rooms. The corresponding overaching object shall be identified through it’s identifier."
+                        "xs:documentation": "Links the digital object to an overaching digital object it is a part of, e.g. in the case of plans for different floors the object may link to an overall plan view of all the physical asset’s rooms. The corresponding overaching object shall be identified through it’s identifier."
                       }
                     }, {
                       "-name": "hasPart",

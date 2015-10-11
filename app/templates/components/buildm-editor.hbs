@@ -1,47 +1,41 @@
 <!--List Container-->
-<ul class="dropdown-list-container">
+<div class="l-buildm-editor c-buildm-editor">
 
-  <!--Second List-->
-  <li class="dropdown-list dropdown-list-metadata-title">
-    <!--List Title-->
-      <a dropdown-prop="title" {{action "save"}}>{{label}}: <br> {{formDescription.itemName}}</a>
+  <div class="c-buildm-editor__title">
+    <h2 {{action "save"}}>{{formDescription.itemName}}</h2>
 
-      {{#if showSaveButton}}
-        <div class="dropdown-list-buttons">
-            <button {{action "save"}}>Save</button>
-            <button {{action "restore"}}>Cancel</button>
-        </div>
-      {{/if}}
+    {{#if showSaveButton}}
+      <div class="c-buildm-editor__save">
+        <button {{action "save"}}>Save</button>
+        <button {{action "restore"}}>Cancel</button>
+      </div>
+    {{/if}}
+  </div>
 
-    <!--List Items-->
-    <div class="dropdown-list-items dropdown-list-open dropdown-list-metadata">
-      <fieldset>
-        {{#each formDescription as |item|}}
-          <div class="dropdownlist-grid-large">
-            <label class="dropdown-list-metadata-labels">{{item.label}}:</label>
-            {{#if item.mandatory}}*{{/if}}
+  <div class="c-buildm-editor__properties">
+    <fieldset>
+      {{#each formDescription as |item|}}
+        <label><i class="fa fa-dot-circle-o"></i>&nbsp; {{item.label}}</label>
+        {{#if item.mandatory}}*{{/if}}
 
-            <div class="dropdown-list-description">{{item.doc}}</div>
-            {{#each item.values as |value|}}
-              {{input class="dropdown-list-metadata-labels" value=value.value key-press="metadataChanged"}}
-            {{/each}}
-          </div>
-          {{#if item.multiples}}
-              <div class="dropdownlist-grid-medium">
-                {{input class="dropdown-list-metadata-labels dropdown-list-placehoder" placeholder=item.addLabel value=item.newValue key-press="metadataChanged"}}
-              </div>
-              <div class="dropdownlist-grid-small">
-                <button type="button" {{action "addItem" item}}><i class="fa fa-plus"></i></button>
-              </div>
-            {{else}}
-              {{#if item.values.length}}
-              {{else}}
-                {{input class="dropdown-list-metadata-labels" value=item.newValue key-press="metadataChanged"}}
-              {{/if}}
-            {{/if}}
+        <div class="c-buildm-editor__description">{{item.doc}}</div>
+        {{#each item.values as |value|}}
+          {{input class="dropdown-list-metadata-labels" value=value.value key-press="metadataChanged"}}
         {{/each}}
-      </fieldset>
-    </div>
-  </li>
+        {{#if item.multiples}}
+          {{input class="dropdown-list-metadata-labels dropdown-list-placehoder" placeholder=item.addLabel value=item.newValue key-press="metadataChanged"}}
+          <div class="c-buildm-editor__add">
+            <button type="button" {{action "addItem" item}}><i class="fa fa-plus"></i></button>
+          </div>
+        {{else}}
+          {{#if item.values.length}}
+          {{else}}
+            {{input class="dropdown-list-metadata-labels" value=item.newValue key-press="metadataChanged"}}
+          {{/if}}
+        {{/if}}
+        <hr>
+      {{/each}}
+    </fieldset>
+  </div>
 
-</ul>
+</div>

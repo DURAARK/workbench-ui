@@ -1,0 +1,219 @@
+.title {
+  color       : $gui-main-font;
+  // font-size   : 2.0em;
+  //font-family : $page-font;
+}
+
+.dropdown-list-container {
+  //padding    : 0 2.0em;
+  //width      : 250px;
+  list-style : none;
+  color: black;
+  //padding: 0 2em 2em 0;
+
+  // -webkit-transform           : translateZ(0);
+  // -webkit-backface-visibility : hidden;
+
+  overflow: auto;
+}
+
+
+.dropdown-list {
+  position      : relative;
+  margin-bottom : 1px;
+  background-color: color(light-gray);
+
+  &:first-child {
+  //  @include round-top-corners($amount: 10px);
+  }
+
+  &:last-child {
+    //@include round-bottom-corners($amount: 10px);
+  }
+
+  &.dropdown-list-no-round-corners {
+    @include round-top-corners($amount: 0px);
+  }
+
+  &:nth-child(even) {
+    //@include gradient(color(light-orange), color(mid-orange), 40px);
+    background: $btn-orange;
+/*     &:hover {
+      @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+    } */
+  }
+
+  &:nth-child(odd) {
+    //include gradient(color(light-orange), color(mid-orange), 40px);
+    background: $btn-orange;
+/*     &:hover {
+      @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+    } */
+  }
+
+
+  [dropdown-prop="title"] {
+    color           : $text;
+    padding         : 0.5em 2.0em;
+    display         : block;
+    text-decoration : none;
+    font-size: 0.9em;
+  }
+
+  &.dropdown-list-metadata-title {
+    // @include round-top-corners($amount: 10px);
+    background: $btn-orange;
+    // &:hover {
+    //   @include gradient(color(light-green), color(mid-green), 40px);
+    // }
+    [dropdown-prop="title"] {
+      color           : $gui-main-font;
+      padding         : 0.5em 2.0em;
+      display         : block;
+      text-decoration : none;
+      text-align: center;
+      font-size: 0.9em;
+    }
+  }
+
+}
+
+.dropdown-list-no-round-corners {
+    @include round-top-corners($amount: 0px);
+}
+
+
+.dropdown-list-items {
+	@include transition(max-height 0.4s ease-in);
+  padding    : 0;
+  max-height : 0;
+	list-style : none;
+	overflow   : hidden;
+}
+
+.dropdown-icon {
+  @include transition(transform .4s ease-in);
+  @include transform(rotate(0deg));
+
+  position  : absolute;
+  display   : block;
+  top       : 0.5em;
+  left      : 0.5em;
+  font-size : 1.0em;
+  padding   : 0;
+  color     : $text;
+  &:before {
+    content: '\25BA';
+  }
+}
+
+.dropdown-list-open {
+	@include transition(max-height 0.4s ease-out);
+  // @include gradient(color(light-gray), color(mid-gray), 100%);
+  // height: 100vh;
+	max-height : 100vh;
+  overflow: hidden;
+
+  fieldset {
+    background-color: none;
+    border: none;
+  }
+}
+
+.dropdown-list-metadata {
+  max-height: 100em;
+}
+
+.dropdown-icon-open {
+  @include transition(transform .4s ease-out);
+	@include transform(rotate(90deg));
+}
+
+.dropdownlist-grid {
+  width: 100%;
+}
+
+.dropdownlist-grid-small {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 33%;
+}
+
+.dropdownlist-grid-medium {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 66%;
+}
+.dropdownlist-grid-large {
+  position: relative;
+  float: left;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+.dropdown-list-description {
+  font-size: 0.8em;
+  min-height: 1px;
+}
+
+.dropdown-list-placehoder {
+  float: left;
+  position: relative;
+  width: 80%;
+}
+
+.dropdown-list-metadata-labels{
+  padding-top: rhythm(0.5);
+}
+
+.dropdownlist-title {
+  float: left;
+  width: 100%;
+}
+
+.dropdown-list-buttons {
+  margin-left:75%;
+  width: 20%;
+  padding-bottom: 15px;
+  align: right;
+}
+
+
+#{$all-button-inputs},
+button {
+  @include appearance(none);
+  -webkit-font-smoothing: antialiased;
+  // @include gradient(color(light-orange), color(mid-orange), 100%);
+  border-radius: $base-border-radius;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    @include gradient(color(light-orange-highlight), color(mid-orange-highlight), 100%);
+    color: #fff;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

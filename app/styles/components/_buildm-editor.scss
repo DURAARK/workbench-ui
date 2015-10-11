@@ -1,0 +1,44 @@
+.l-buildm-editor {
+  height: $content-height;
+}
+.c-buildm-editor {
+  color: black;
+
+  label {
+    font-size: 1em;
+  }
+}
+.c-buildm-editor__title {
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  //
+  // width: 100%;
+  padding: 1em;
+  text-align: center;
+
+  background: $btn-orange;
+}
+
+.c-buildm-editor__save {
+  margin-top: 0.8em;
+
+  button {
+    margin-right: 1em;
+    background: $btn-blue;
+  }
+}
+
+.c-buildm-editor__description {
+  margin-bottom: 0.5em;
+}
+
+.c-buildm-editor__add {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+.c-buildm-editor__properties {
+  height: 100%;
+  overflow: auto;
+}
