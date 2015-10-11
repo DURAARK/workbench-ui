@@ -170,12 +170,12 @@ export default Ember.Controller.extend({
 
   isElectricalApplianceDetectionTool: function() {
     var toolname = this.get('tool.label');
-    return (toolname === 'Electrical Appliance Detection');
+    return (toolname === 'Detect Power Lines' || toolname === 'Extract Floor Plan and Room Information');
   }.property('tool'),
 
   isIFCReconstructionTool: function() {
     var toolname = this.get('tool.label');
-    return (toolname === 'IFC Reconstruction');
+    return (toolname === 'Reconstruct BIM Model');
   }.property('tool'),
 
   tools: function() {
