@@ -48,6 +48,7 @@ export default Ember.Controller.extend({
     // },
 
     showDetails: function(item) {
+      debugger;
       if (item) {
         this.set('fileInfo', item);
       } else {
@@ -83,7 +84,7 @@ export default Ember.Controller.extend({
         console.log('About to update DigitalObject');
         entityCandidates = session.get('digitalObjects');
       }
-      entityToUpdate = session.get('physicalAssets')[0];
+      entityToUpdate = this.get('fileInfo');//session.get('physicalAssets')[0];
 
       // entityCandidates.forEach(function(candidate) {
       //   if (candidate.buildm['@id'] === entityId) {

@@ -93,6 +93,7 @@ export default Ember.Component.extend({
   }.property('buildm'),
 
   buildmChanged: Ember.on('init', Ember.observer('buildm', function() {
+    debugger;
     var buildm = this.get('buildm'),
       formDescription = [],
       schemaDesc = this.getSchema(),
@@ -149,8 +150,9 @@ export default Ember.Component.extend({
         base = 'http://data.duraark.eu/vocab/buildm/',
         key = origKey.replace(base, '');
 
-      if (key.toLowerCase() === 'identifier') {
-        values = buildm[base + 'identifier'];
+      // if (key.toLowerCase() === 'identifier') {
+      if (key === 'Identifier') {
+        values = buildm[base + 'Identifier'];
       } else {
         values = buildm[entry.get('origKey')];
       }
