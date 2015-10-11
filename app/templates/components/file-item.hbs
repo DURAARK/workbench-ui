@@ -27,12 +27,14 @@
 	</div>
 
 	<div class="c-file__actions">
-		<div {{action "selectItem" item}} class="c-file__action">
-			{{#if item.isSelected}}
+		<!-- <div {{action "selectItem" item}} class="c-file__action"> -->
+		<div {{action "showDetails" item}} class="c-file__action">
+			<i class="fa fa-eye"></i>
+			<!-- {{#if item.isSelected}}
 				<i class="fa fa-check"></i>
 			{{else}}
 			<i class="fa fa-plus-circle"></i>
-			{{/if}}
+			{{/if}} -->
 		</div>
 	</div>
 </div>

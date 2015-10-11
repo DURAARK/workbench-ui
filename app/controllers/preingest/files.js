@@ -28,7 +28,6 @@ export default Ember.Controller.extend({
   actions: {
     next: function() {
       var controller = this;
-
       if (!this.get('selectedFiles.length')) {
         alert('Select one or multiple files first!');
         return;
@@ -186,6 +185,12 @@ export default Ember.Controller.extend({
 
     showDetails: function(file) {
       var controller = this;
+      if (file.get('isSelected')) {
+        this.unselectFile(file);
+        return;
+      }
+
+      this.selectFile(file);
 
       // Reset details pane:
       controller.set('errors', null);
@@ -244,8 +249,9 @@ export default Ember.Controller.extend({
       //   // this.store.push(this.store.normalize('file', file));
       // }
     },
-    
+
     closeToolUI() {
+      this.unselectFile(this.get('fileInfo'));
       this.set('fileInfo', null);
     }
   },
@@ -266,12 +272,11 @@ export default Ember.Controller.extend({
     }
   },
 
-
   addTechnicalMetadata: function(file) {
     var mdInstance = null,
       controller = this;
 
-    console.log('[addTechnicalMetadata] file type: ' + file.get('type'));
+    console.log('[addTechnicalMetadata] file type: ' + file.type);
 
     if (file.get('path').endsWith('ifc')) {
       mdInstance = controller.store.createRecord('ifcm');
@@ -294,13 +299,28 @@ export default Ember.Controller.extend({
         var metadata = result.get('metadata');
         file.set('techMD', metadata);
 
-        file.save().then(function(file) {
-          resolve(file);
-        });
+        // file.save().then(function(file) {
+        resolve(file);
+        // });
       }).catch(function(err) {
         reject(err);
       });
     });
+  },
+
+  selectFile(file) {
+    let fileInfo = this.get('fileInfo');
+    if (fileInfo) {
+      fileInfo.set('isSelected', false);
+    }
+
+    file.set('isSelected', true);
+    file.set('fileInfo', file);
+  },
+
+  unselectFile(file) {
+    this.set('fileInfo', null);
+    file.set('isSelected', false);
   },
 
   addDescriptiveMetadataTo: function(file) {

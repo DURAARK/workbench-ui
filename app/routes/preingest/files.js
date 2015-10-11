@@ -25,39 +25,23 @@ default Ember.Route.extend({
       controller.set('showSidebar', true);
       controller.set('selectedFile', null);
 
-      // controller.send('showLoadingSpinner', true, 'Loading files ...');
-
-      // if (!controller.get('files')) {
-      //   controller.set('selectedFiles', []);
-      //   controller.send('showLoadingSpinner', true);
-      //   var files = [];
-      //
-      //   // A session can define which files are presented to the user for selection
-      //   // to allow the creation of 'showcases':
-      //   if (session.get('fixedInputFiles')) {
-      //
-      //     session.get('fixedInputFiles').forEach(function(item) {
-      //       var file = controller.store.createRecord('file', item);
-      //       file.set('path', item.path);
-      //       files.pushObject(file);
-      //     });
-      //
-      //     // For showcase sessions remove files which could have been stored before:
-      //
-      //     controller.set('files', files);
-      //     controller.send('showLoadingSpinner', false);
-      //
-      //   } else {
-
-      this.store.findAll('file').then(function(availableFiles) {
-        controller.set('files', availableFiles);
-
-        let selectedFiles = model.get('files');
-
-        router.send('highlightSelectedFiles', availableFiles, selectedFiles);
-
-        controller.send('showLoadingSpinner', false);
+      // NOTE: We are not using ember-data's relations here (maybe in the future). Therefore we have to convert the
+      // plain javascript file objects to Ember.Records here to work with them in the Controller:
+      let files = [];
+      model.get('files').forEach(function(file) {
+        files.pushObject(router.store.createRecord('file', file));
       });
+      controller.set('files', files);
+
+//       this.store.findAll('file').then(function(availableFiles) {
+//         controller.set('files', availableFiles);
+//
+//         let selectedFiles = model.get('files');
+// debugger;
+//         router.send('highlightSelectedFiles', availableFiles, selectedFiles);
+//
+//         controller.send('showLoadingSpinner', false);
+//       });
       // }
       // }
 
