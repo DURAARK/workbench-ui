@@ -37,22 +37,12 @@ export default Ember.Controller.extend({
       this.transitionToRoute('preingest.files', session);
     },
 
-    // deselectAllItems() {
-    //   this.get('physicalAssets').forEach(function(item) {
-    //     item.isSelected = false;
-    //   });
-    //
-    //   this.get('digitalObjects').forEach(function(item) {
-    //     item.isSelected = false;
-    //   });
-    // },
-
     showDetails: function(item) {
-      debugger;
+      console.log('item: ' + item);
       if (item) {
-        this.set('fileInfo', item);
+        this.selectItem(item);
       } else {
-        this.set('fileInfo', null);
+        this.unselectItem();
       }
     },
 
@@ -84,7 +74,7 @@ export default Ember.Controller.extend({
         console.log('About to update DigitalObject');
         entityCandidates = session.get('digitalObjects');
       }
-      entityToUpdate = this.get('fileInfo');//session.get('physicalAssets')[0];
+      entityToUpdate = this.get('fileInfo'); //session.get('physicalAssets')[0];
 
       // entityCandidates.forEach(function(candidate) {
       //   if (candidate.buildm['@id'] === entityId) {
@@ -130,6 +120,28 @@ export default Ember.Controller.extend({
       });
 
     }
+  },
+
+  selectItem(item) {
+    var fileInfo = this.get('fileInfo');
+    if (fileInfo) {
+      fileInfo.set('isSelected', false);
+    }
+
+    item.set('isSelected', true);
+    this.set('fileInfo', item);
+
+    // this.get('physicalAssets').forEach(function(item) {
+    //   item.isSelected = false;
+    // });
+    //
+    // this.get('digitalObjects').forEach(function(item) {
+    //   item.isSelected = false;
+    // });
+  },
+
+  unselectItem(item) {
+    this.set('fileInfo', null);
   },
 
   isPhysicalAsset: function() {

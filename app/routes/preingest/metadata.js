@@ -18,7 +18,7 @@ default Ember.Route.extend({
       this._super(controller, model);
 
       controller.set('app', this.modelFor('app'));
-      
+
       controller.set('session', model);
       controller.set('fileInfo', null);
 
@@ -29,6 +29,26 @@ default Ember.Route.extend({
       this.send('setTitle', 'Archive Buildings - ' + label);
       this.send('showWorkflowSteps', true);
       this.send('setActiveStep', 'metadata');
+
+      var pas = [];
+
+      model.get('physicalAssets').forEach(function(pa) {
+        var item = Ember.Object.create(pa);
+        item.set('isSelected', false);
+        pas.pushObject(item);
+      });
+
+      model.set('physicalAssets', pas);
+
+      var das = [];
+
+      model.get('digitalObjects').forEach(function(dobj) {
+        var item = Ember.Object.create(dobj);
+        item.set('isSelected', false);
+        das.pushObject(item);
+      });
+
+      model.set('digitalObjects', das);
     },
 
     actions: {

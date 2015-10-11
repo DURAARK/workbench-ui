@@ -1,6 +1,5 @@
-<!-- <div class="l-file c-file {{if item.isSelected 'is-selected'}}"> -->
-<div class="l-file c-file">
-	<div>
+<div class="l-file c-file {{if item.isSelected 'is-selected'}}">
+	<div {{action "toggleSelection" item}}>
 
 		{{#if isIFC}}
 			<div class="c-file__header ifc">
@@ -44,7 +43,7 @@
 
 	</div>
 
-	<div {{action "showDetails" item}} class="c-file__actions">
+	<div {{action "toggleSelection" item}} class="c-file__actions">
 		<div class="c-file__action">
 			{{#if item.isSelected}}
 				<i class="fa fa-file-text"></i>

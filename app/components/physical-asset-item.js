@@ -8,7 +8,8 @@ default Ember.Component.extend({
     selectItem: function(item) {
       this.sendAction('select', item);
     },
-    showDetails: function(item) {
+
+    toggleSelection: function(item) {
       if (this.get('item.isSelected')) {
         this.set('item.isSelected', false);
         this.sendAction('details', null);
