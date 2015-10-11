@@ -8,7 +8,7 @@
 		<div class="l-files">
 
 			<div class="l-file-list">
-				<h2 style="margin: 1em;"><i class="fa fa-folder-o"></i>&nbsp; 1 | Add files to archive:</h2>
+				<h2 style="margin: 1em;"><i class="fa fa-folder-o"></i>&nbsp; 1 | Master Files:</h2>
 				<hr>
 
 				{{#file-list files=files as |file|}}
@@ -23,7 +23,14 @@
 						{{loading-spinner-center}}
 					{{else}}
 
-						{{#if fileInfo}}
+						{{#unless fileInfo}}
+							{{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true"}}
+								<div class="c-file-upload">
+									{{x-droplet onFilesUploaded="addFiles"}}
+								</div>
+							{{/duraark-tool}}
+					{{else}}
+						{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI"}}
 							<div class="l-file-details-titel">
 								<h3 class="title">{{fileInfoShortName}}</h3>
 							</div>
@@ -34,35 +41,17 @@
 								{{/each}}
 							{{else}}
 								{{#if fileInfoIsE57}}
-									{{e57m-viewer file=fileInfo}}
+									<!-- {{e57m-viewer file=fileInfo}} -->
+									{{duraark-pointcloud-viewer file=fileInfo}}
 								{{/if}}
 
 								{{#if fileInfoIsIFC}}
-									{{ifcm-viewer file=fileInfo}}
+									<!-- {{ifcm-viewer file=fileInfo}} -->
+									{{duraark-ifc-viewer file=fileInfo}}
 								{{/if}}
 							{{/if}}
-						{{else}}
-							<!-- {{#help-box}}
-								<div class="c-help-box__hint">
-									Select the files which should be archived in clicking the
-									<i class="fa fa-plus-circle" style="margin-left: 0.5em; margin-right: 0.5em;"></i> symbol below the respective file.
-
-									<br>
-									<br> Clicking on the file name on the right showns the metadata stored within the file.
-
-									<br>
-									<br> Depending on the size of the file the metadata extraction may take some seconds or even minutes. Be patient.
-
-								</div>
-
-							{{/help-box}} -->
-
-							<div class="c-file-upload">
-								{{x-droplet onFilesUploaded="addFiles"}}
-							</div>
-
-						{{/if}}
-
+						{{/duraark-tool}}
+					{{/unless}}
 					{{/if}}
 				</div>
 			{{/if}}
