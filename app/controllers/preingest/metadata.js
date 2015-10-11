@@ -38,7 +38,6 @@ export default Ember.Controller.extend({
     },
 
     showDetails: function(item) {
-      console.log('item: ' + item);
       if (item) {
         this.selectItem(item);
       } else {

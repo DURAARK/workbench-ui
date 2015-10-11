@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
-var EntryLine = Ember.Object.extend({
+let EntryLine = Ember.Object.extend({
   value: null
 });
 
-var FormEntry = Ember.Object.extend({
+let FormEntry = Ember.Object.extend({
   origKey: null,
   key: null,
   type: null,
@@ -24,7 +24,7 @@ export default Ember.Component.extend({
 
   actions: {
     addItem: function(item) {
-      var newValue = item.get('newValue');
+      let newValue = item.get('newValue');
 
       if (newValue === '') {
         return;
@@ -38,17 +38,17 @@ export default Ember.Component.extend({
     },
 
     save: function() {
-      var formDescription = this.get('formDescription');
+      let formDescription = this.get('formDescription');
 
       // console.log('form: ' + JSON.stringify(formDescription, null, 4));
 
-      var buildm = this.convertFormToJSONLD(formDescription);
+      let buildm = this.convertFormToJSONLD(formDescription);
       this.sendAction('save', buildm);
       this.set('showSaveButton', false);
     },
 
     restore: function() {
-      var originalBuildm = this.get('originalBuildm');
+      let originalBuildm = this.get('originalBuildm');
       this.set('buildm', originalBuildm);
       this.set('showSaveButton', false);
 
@@ -61,14 +61,14 @@ export default Ember.Component.extend({
   },
 
   convertFormToJSONLD: function(formDescription) {
-    var originalBuildm = this.get('originalBuildm'),
+    let originalBuildm = this.get('originalBuildm'),
       newBuildm = {};
 
     newBuildm['@id'] = originalBuildm['@id'];
     newBuildm['@type'] = originalBuildm['@type'];
 
     formDescription.forEach(function(item) {
-      var cur = newBuildm[item.get('origKey')] = [];
+      let cur = newBuildm[item.get('origKey')] = [];
 
       item.get('values').forEach(function(value) {
         cur.pushObject({
@@ -82,7 +82,7 @@ export default Ember.Component.extend({
   },
 
   label: function() {
-    var type = this.get('type');
+    let type = this.get('type');
     if (type === 'digitalObject') {
       return 'Digital representation metadata for';
     } else if (type === 'physicalAsset') {
@@ -93,7 +93,7 @@ export default Ember.Component.extend({
   }.property('buildm'),
 
   buildmChanged: Ember.on('init', Ember.observer('buildm', function() {
-    var buildm = this.get('buildm'),
+    let buildm = this.get('buildm'),
       formDescription = [],
       schemaDesc = this.getSchema(),
       controller = this;
@@ -102,7 +102,7 @@ export default Ember.Component.extend({
 
     // console.log('form: ' + JSON.stringify(buildm, null, 4));
 
-    var formTemplate = this.buildFormTemplate(buildm);
+    let formTemplate = this.buildFormTemplate(buildm);
 
     if (buildm['http://data.duraark.eu/vocab/buildm/name']) {
       formTemplate['itemName'] = buildm['http://data.duraark.eu/vocab/buildm/name'][0]['@value'];
@@ -112,10 +112,11 @@ export default Ember.Component.extend({
   })),
 
   buildFormTemplate: function(buildm) {
-    var schemaFull = this.getSchema(),
+    let schemaFull = this.getSchema(),
       schemaForType = null,
       metadataType = this.get('type'),
-      formTemplate = [];
+      formTemplate = [],
+      that = this;
 
     if (metadataType === 'physicalAsset') {
       schemaForType = schemaFull.physicalAsset;
@@ -124,9 +125,11 @@ export default Ember.Component.extend({
     }
 
     _.each(schemaForType, function(element) {
-      var entry = FormEntry.create({
+      let config = that.getConfigForElement(element);
+
+      let entry = FormEntry.create({
         origKey: 'http://data.duraark.eu/vocab/buildm/' + element.name,
-        key: element.name,
+        key: config.key,
         type: element.type,
         mandatory: (element.minOccurs === '1') ? true : false,
         multiples: (element.maxOccurs === 'unbounded') ? true : false,
@@ -138,13 +141,13 @@ export default Ember.Component.extend({
       });
 
       // FIXXME: set nice label for each
-      var label = entry.get('key');
+      let label = entry.get('key');
       entry.set('label', label);
       entry.set('addLabel', 'Add ' + label);
 
       // Extend values with existing values, if existing:
       // FIXXME: Working around schema incorrectness in extracted metadata:
-      var values = null,
+      let values = null,
         origKey = entry.get('origKey'),
         base = 'http://data.duraark.eu/vocab/buildm/',
         key = origKey.replace(base, '');
@@ -160,7 +163,7 @@ export default Ember.Component.extend({
         _.each(values, function(value, idx) {
           // console.log('key: ' + entry.key + ' | value: ' + value['@value']);
 
-          var v = value['@value'];
+          let v = value['@value'];
 
           if (v && v !== '') {
             entry.get('values').pushObject(EntryLine.create({
@@ -174,17 +177,110 @@ export default Ember.Component.extend({
         }));
       }
 
-      formTemplate.pushObject(entry);
+      if (!config.hide) {
+        formTemplate.pushObject(entry);
+      }
     });
 
     return formTemplate;
   },
 
+  getConfigForElement(element) {
+    let key,
+      hide = false;
+
+    if (element.name === 'identifier' || element.name === 'Identifier') {
+      hide = true;
+    }
+
+    if (element.name === 'name') {
+      key = 'Building Name';
+      hide = false;
+    }
+
+    if (element.name === 'owner') {
+      key = 'Building Owner';
+      hide = false;
+    }
+
+    if (element.name === 'buildingArea') {
+      key = 'Building Area (square meter)';
+      hide = false;
+    }
+
+    if (element.name === 'floorCount') {
+      key = 'Number of Floors';
+      hide = false;
+    }
+
+    if (element.name === 'numberOfRooms') {
+      key = 'Number of Rooms';
+      hide = false;
+    }
+
+    if (element.name === 'function') {
+      key = 'Building Function';
+      hide = false;
+    }
+
+    if (element.name === 'architecturalStyle') {
+      key = 'Architectural Style';
+      hide = false;
+    }
+
+    if (element.name === 'description') {
+      key = 'General Description';
+      hide = false;
+    }
+
+    if (element.name === 'location') {
+      key = 'Location Description';
+      hide = false;
+    }
+
+    if (element.name === 'streetAddress') {
+      key = 'Address';
+      hide = false;
+    }
+
+    if (element.name === 'postalCodeStart') {
+      key = 'Postal Code (start)';
+      hide = true;
+    }
+
+    if (element.name === 'postalCodeEnd') {
+      key = 'Postal Code (end)';
+      hide = true;
+    }
+
+    if (element.name === 'latitude') {
+      key = 'Latitude (leave emtpy to set it automatically from address)';
+      hide = false;
+    }
+
+    if (element.name === 'longitude') {
+      key = 'Longitude (leave emtpy to set it automatically from address)';
+      hide = false;
+    }
+
+    if (!key) {
+      key = element.name
+    }
+
+    return {
+      key: key,
+      hide: hide
+    };
+  },
+
   getSchema: function(key) {
-    var schemaInfo = {};
+    let schemaInfo = {
+      digitalObject: {},
+      physicalAsset: {}
+    };
 
     // NOTE: buildm2.2 conversion from xsd via http://www.utilities-online.info/xmltojson
-    var schema = {
+    let schema = {
       "xs:schema": {
         "-xmlns:xs": "http://www.w3.org/2001/XMLSchema",
         "-xmlns:vc": "http://www.w3.org/2007/XMLSchema-versioning",
@@ -532,19 +628,14 @@ export default Ember.Component.extend({
       }
     };
 
-    var schemaInfo = {
-      digitalObject: {},
-      physicalAsset: {}
-    };
-
-    var elements = schema['xs:schema']['xs:element']['xs:complexType']['xs:sequence']['xs:element'];
+    let elements = schema['xs:schema']['xs:element']['xs:complexType']['xs:sequence']['xs:element'];
     _.each(elements, function(element) {
 
-      var curElement = element['-name'];
+      let curElement = element['-name'];
 
       // console.log('ELEMENT: ' + curElement);
 
-      var si = null;
+      let si = null;
       if (curElement === 'digitalObject') {
         si = schemaInfo.digitalObject;
       } else if (curElement === 'physicalAsset') {
@@ -553,9 +644,9 @@ export default Ember.Component.extend({
         throw new Error('Schema for type "' + curElement + '" not found, aborting ...');
       }
 
-      var subels = element['xs:complexType']['xs:sequence']['xs:element'];
+      let subels = element['xs:complexType']['xs:sequence']['xs:element'];
       _.each(subels, function(els) {
-        var info = {},
+        let info = {},
           name = els['-name'];
 
         info['name'] = name;
