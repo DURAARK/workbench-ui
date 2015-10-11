@@ -28,20 +28,20 @@ export default Ember.Controller.extend({
   actions: {
     next: function() {
       var controller = this;
-      if (!this.get('selectedFiles.length')) {
-        alert('Select one or multiple files first!');
+      if (!this.get('files.length')) {
+        alert('Add at least one master file first!');
         return;
       }
 
       controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
 
-      // console.log('Selected files:');
-      // controller.get('selectedFiles').forEach(function(file) {
+      // console.log('Files:');
+      // controller.get('files').forEach(function(file) {
       //   console.log('  * ' + file.get('path'));
       // });
 
       var session = controller.get('session'),
-        files = controller.get('selectedFiles'),
+        files = controller.get('files'),
         sessionLabel = controller.get('session.label'),
         buildingAddress = controller.get('session.address'),
         hasPA = session.get('physicalAssets').length,
@@ -60,18 +60,18 @@ export default Ember.Controller.extend({
       }
 
       // Check if files have metadata attached already. If not, get it from the metadata service.
-      var promises = [];
+      var promises = [],
+      newFiles = [];
 
       files.forEach(function(file) {
-        // For programming reasons we request the metadata for all files. Internally the 'addTechnicalMetadata' will
-        // return a present 'metadata' object and not request the metadata again. The reason for getting the
-        // metadata for *all* files is that the data is then present in the
-        //if (!file.get('metadata')) {
-
-        // FIXXME!
-        // if (file.get('path') !== '/duraark-storage/files/Nygade_Scan1001.e57') {
-        if (file.get('path').endsWith('.ifc')) {
-          promises.push(controller.addDescriptiveMetadataTo(file));
+        var hasMD = _.isObject(file.get('metadata'));
+        if (!hasMD) {
+          newFiles.pushObject(file);
+          if (file.get('path').endsWith('.ifc')) {
+            promises.push(controller.addDescriptiveMetadataTo(file));
+          } else {
+            file.set('metadata', {});
+          }
         }
       });
 
@@ -81,7 +81,7 @@ export default Ember.Controller.extend({
 
         var das = [];
 
-        files.forEach(function(file) {
+        newFiles.forEach(function(file) {
           var hasMetadata = true;
 
           if (file.get('path').endsWith('e57')) {
@@ -108,7 +108,7 @@ export default Ember.Controller.extend({
             session.set('physicalAssets', [paNew]);
           }
 
-          var name = file.get('path').replace('/duraark-storage/files/', ''); // FIXXME!
+          var name = file.get('path').split('/').pop();
           var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
             '@type': 'http://data.duraark.eu/vocab/buildm/E57File',
             'http://data.duraark.eu/vocab/buildm/name': [{
@@ -148,7 +148,14 @@ export default Ember.Controller.extend({
           das.pushObject(digOb);
         });
 
-        session.set('digitalObjects', das);
+        var sessionDAs = session.get('digitalObjects');
+        if (!sessionDAs) {
+          sessionDAs = [];
+          session.set('sessionDAs', sessionDAs);
+        }
+        das.forEach(function(da) {
+          sessionDAs.pushObject(da);
+        })
 
         session.save().then(function(session) {
           controller.transitionToRoute('preingest.metadata', session);
@@ -348,11 +355,13 @@ export default Ember.Controller.extend({
         }
 
         var metadata = result.get('metadata');
-        file.set('metadata', metadata);
+        // FIXXME: workaround for faulty file.save():
+        file.metadata = metadata;
+        //file.set('metadata', metadata);
 
-        file.save().then(function(file) {
-          resolve(file);
-        });
+        //file.save().then(function(file) {
+        resolve(file);
+        //});
       }).catch(function(err) {
         reject(err);
       });
