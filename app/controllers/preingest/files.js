@@ -208,10 +208,18 @@ export default Ember.Controller.extend({
       this.showInViewer(file);
     },
 
-    addFiles: function(files) {
-      this.store.findAll('file').then(function(files) {
-        controller.set('files', files);
-      });
+    addFiles: function(uploadedFiles) {
+      let files = this.get('files');
+
+      if (!files) {
+        files = [];
+      }
+
+      _.forEach(uploadedFiles, function(file) {
+        files.pushObject(file);
+      })
+
+      controller.set('files', files);
 
       // for (var idx = 0; idx < files.length; idx++) {
       //   var file = files[idx];
