@@ -209,25 +209,19 @@ export default Ember.Controller.extend({
     },
 
     addFiles: function(uploadedFiles) {
-      let files = this.get('files');
+      let files = this.get('files'),
+      controller = this;
 
       if (!files) {
         files = [];
       }
 
       _.forEach(uploadedFiles, function(file) {
-        files.pushObject(file);
+        var record = controller.store.createRecord('file', file);
+        files.pushObject(record);
       })
 
       controller.set('files', files);
-
-      // for (var idx = 0; idx < files.length; idx++) {
-      //   var file = files[idx];
-      //   delete file.id;
-      //   var record = this.store.createRecord('file', file);
-      //   this.get('files').pushObject(record);
-      //   // this.store.push(this.store.normalize('file', file));
-      // }
     },
 
     closeToolUI() {
