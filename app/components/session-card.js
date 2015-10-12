@@ -16,8 +16,6 @@ export default Ember.Component.extend({
   }.property('session'),
 
   isDemoSession: function() {
-    var session = this.get('session');
-    debugger;
       return this.get('session.label') === 'Nygade';
   }.property('session'),
 

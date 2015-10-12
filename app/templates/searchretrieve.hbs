@@ -27,8 +27,7 @@
     {{#if model}}
       <div class="l-file-details">
 
-        {{#if isLoadingMetadata}}
-          <div style="color: white;">LOADING ...</div>
+        {{#if app.showLoadingSpinner}}
           {{loading-spinner-center}}
         {{else}}
 

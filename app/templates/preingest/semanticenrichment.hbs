@@ -29,12 +29,7 @@
 
 			{{#if model}}
 				<div class="l-file-details">
-
-					{{#if isLoadingMetadata}}
-						<div style="color: white;">LOADING ...</div>
-						{{loading-spinner-center}}
-					{{else}}
-
+					{{#if}}
 						{{#if selectedDigitalObject}}
 							{{tool-selector tools=topics click="clickedTopic" icon="fa-lightbulb-o" title="Add context information topics to the selected file:"}}
 						{{else}}
@@ -46,22 +41,19 @@
 								{{#help-box}}
 									<div class="c-help-box__hint">
 										Each 3D model (BIM or point cloud file) can be enriched with context information. Context information is available as 'topics'. We support the topics 'history', 'environment' and 'legal' at the moment. Add a topic to a file in clicking the
-										<i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i>
-											icon on the respective file and select the topics of interest.
+										<i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select the topics of interest.
 
-											<br>
-											<br> When adding a topic a dynamic search for related information is started. Linked data is crawled and added to the archive.
+										<br>
+										<br> When adding a topic a dynamic search for related information is started. Linked data is crawled and added to the archive.
 
-											<br>
-											<br> The search will take some time to finish. The 'Details <i class="fa fa-arrow-circle-o-right"></i>' button allows you to inspect the progress and the results of the search.
+										<br>
+										<br> The search will take some time to finish. The 'Details <i class="fa fa-arrow-circle-o-right"></i>' button allows you to inspect the progress and the results of the search.
 									</div>
 								{{/help-box}}
 							{{/if}}
 						{{/if}}
-					{{/if}}
-
 				</div>
-			{{/if}}
+				{{/if}}
 		</div>
 
 	</div>

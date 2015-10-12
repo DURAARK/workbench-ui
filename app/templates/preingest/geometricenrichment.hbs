@@ -31,9 +31,9 @@
       {{#if model}}
         <div class="l-file-details">
 
-          {{#if isLoadingMetadata}}
-            {{loading-spinner-center}}
-          {{else}}
+          {{#if app.showLoadingSpinner}}
+						{{loading-spinner-center}}
+					{{else}}
 
             {{#if tool}}
               {{#if isElectricalApplianceDetectionTool}}
