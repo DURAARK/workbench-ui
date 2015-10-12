@@ -2,7 +2,9 @@
 
   <div class="c-tile-list">
     {{#each model as |session|}}
-      {{session-card session=session editClicked="editSession" deleteClicked="deleteSession"}}
+      {{#unless (eq session.label "Haus 30")}}
+        {{session-card session=session editClicked="editSession" deleteClicked="deleteSession"}}
+      {{/unless}}
     {{/each}}
 
   </div>
@@ -44,7 +46,7 @@
         </li>
 
         <hr>
-        
+
         <li style="text-align: center;">
           <a href="">or</a>
         </li>

@@ -3,12 +3,7 @@ import Ember from 'ember';
 export
 default Ember.Route.extend({
   model(params) {
-      // return this.store.findAll('session');
-
-      // FIXXME: return only 'Nygade' session for testing
-      return this.store.find('session', 2).then(function(session) {
-        return [session];
-      });
+      return this.store.findAll('session');
     },
 
     setupController(controller, model) {

@@ -19,10 +19,6 @@
 
   <div class="mdl-card__actions mdl-card--border">
     <!-- <a {{action "editClicked"   session}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">EDIT</a> -->
-    {{#unless isDemoSession}}
       <a {{action "deleteClicked" session}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">DELETE</a>
-      {{else}}
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">DELETE (disabled for this demo session)</a>
-    {{/unless}}
   </div>
 </div>
