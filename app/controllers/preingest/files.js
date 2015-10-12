@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
     if (!this.get('fileInfo')) return 'No file selected';
 
     var path = this.get('fileInfo.path');
-    return path.replace('/duraark-storage/files/', ''); // FIXXME!
+    return path.split('/').pop();
   }.property('fileInfo'),
 
   fileInfoIsE57: function() {
@@ -41,28 +41,11 @@ export default Ember.Controller.extend({
       // });
 
       var session = controller.get('session'),
-        files = controller.get('files'),
-        sessionLabel = controller.get('session.label'),
-        buildingAddress = controller.get('session.address'),
-        hasPA = session.get('physicalAssets').length,
-        paNew = {};
-
-      session.set('files', files);
-      // session['files'] = files;
-
-      // Take files and create a physicalAsset and digitalObjects from the files:
-
-      if (!hasPA) {
-        paNew = {
-          label: sessionLabel,
-          buildm: {}
-        };
-      }
+        files = controller.get('files');
 
       // Check if files have metadata attached already. If not, get it from the metadata service.
       var promises = [],
         newFiles = [];
-
       files.forEach(function(file) {
         var hasMD = _.isObject(file.get('metadata'));
         if (!hasMD) {
@@ -81,58 +64,29 @@ export default Ember.Controller.extend({
 
         var das = [];
 
-        newFiles.forEach(function(file) {
-          var hasMetadata = true;
-
-          if (file.get('path').endsWith('e57')) {
-            hasMetadata = false;
-          }
-
-          if (!hasPA) {
-            // FIXXME: how to combine pa data from all files?
-            var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
-              '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
-              'http://data.duraark.eu/vocab/buildm/name': [{
-                '@value': 'Nygade Building'
-              }],
-              'http://data.duraark.eu/vocab/buildm/streetAddress': [{
-                '@value': buildingAddress
-              }]
-            };
-
-            paMD['http://data.duraark.eu/vocab/buildm/name'] = [{
-              '@value': sessionLabel
-            }];
-
-            paNew.buildm = paMD;
-            session.set('physicalAssets', [paNew]);
-          }
-
-          let digObj = controller.createDigitalObjectFromFile(file, hasMetadata);
-
-          das.pushObject(digObj);
-        });
-
-        var sessionDAs = session.get('digitalObjects');
-        if (!sessionDAs) {
-          sessionDAs = [];
-          session.set('sessionDAs', das);
+        if (!session.get('physicalAssets').length) {
+          controller.duraark.addPhysicalAssetFromFiles(session, newFiles);
         }
-        das.forEach(function(da) {
-          sessionDAs.pushObject(da);
-        })
 
-        session.save().then(function(session) {
-          controller.transitionToRoute('preingest.metadata', session);
-          controller.send('showLoadingSpinner', false);
-        }).catch(function(err) {
-          controller.send('showLoadingSpinner', false);
-          alert(err);
+        newFiles.forEach(function(file) {
+          controller.duraark.addDigitalObjectFromFile(session, file);
+
+          session.save().then(function(session) {
+            controller.transitionToRoute('preingest.metadata', session);
+            controller.send('showLoadingSpinner', false);
+          }).catch(function(err) {
+            controller.send('showLoadingSpinner', false);
+            alert(err);
+          });
         });
+
       }).catch(function(err) {
         alert('Error extracting metadata for selected file(s)');
         controller.send('showLoadingSpinner', false);
         throw new Error(err);
+      }).finally(function() {
+        controller.send('showLoadingSpinner', false);
+        controller.transitionToRoute('preingest.metadata', session);
       });
     },
 
@@ -228,46 +182,46 @@ export default Ember.Controller.extend({
     }
   },
 
-  createDigitalObjectFromFile(file, hasMetadata) {
-    var name = file.get('path').split('/').pop();
-    var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
-      '@type': 'http://data.duraark.eu/vocab/buildm/E57File',
-      'http://data.duraark.eu/vocab/buildm/name': [{
-        '@value': name
-      }]
-    };
-
-    if (hasMetadata) {
-      daMD['@type'] = 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
-    }
-
-    daMD['http://data.duraark.eu/vocab/buildm/name'] = [{
-      '@value': name
-    }];
-
-    var duraarkType = (hasMetadata) ? 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
-    let type = duraarkType.split('/').pop().toLowerCase();
-    var uri = 'http://data.duraark.eu/' + type + '_' + uuid.v4();
-
-    daMD['@id'] = uri;
-
-    var digOb = Ember.Object.create({
-      label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/buildm/name'][0]['@value'] : 'Edit name',
-      // label: file.get('path'),
-      buildm: daMD,
-      semMD: Ember.Object.create({
-        topics: []
-      }),
-      techMD: {},
-      derivatives: {},
-      path: file.get('path'),
-      size: file.get('size')
-    });
-
-    // console.log('PATH: ' + file.get('path'));
-
-    return digOb;
-  },
+  // createDigitalObjectFromFile(file, hasMetadata) {
+  //   var name = file.get('path').split('/').pop();
+  //   var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
+  //     '@type': 'http://data.duraark.eu/vocab/buildm/E57File',
+  //     'http://data.duraark.eu/vocab/buildm/name': [{
+  //       '@value': name
+  //     }]
+  //   };
+  //
+  //   if (hasMetadata) {
+  //     daMD['@type'] = 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
+  //   }
+  //
+  //   daMD['http://data.duraark.eu/vocab/buildm/name'] = [{
+  //     '@value': name
+  //   }];
+  //
+  //   var duraarkType = (hasMetadata) ? 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
+  //   let type = duraarkType.split('/').pop().toLowerCase();
+  //   var uri = 'http://data.duraark.eu/' + type + '_' + uuid.v4();
+  //
+  //   daMD['@id'] = uri;
+  //
+  //   var digOb = Ember.Object.create({
+  //     label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/buildm/name'][0]['@value'] : 'Edit name',
+  //     // label: file.get('path'),
+  //     buildm: daMD,
+  //     semMD: Ember.Object.create({
+  //       topics: []
+  //     }),
+  //     techMD: {},
+  //     derivatives: {},
+  //     path: file.get('path'),
+  //     size: file.get('size')
+  //   });
+  //
+  //   // console.log('PATH: ' + file.get('path'));
+  //
+  //   return digOb;
+  // },
 
   showInViewer(file) {
     return;

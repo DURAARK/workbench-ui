@@ -40,9 +40,10 @@ export default Ember.Component.extend({
     save: function() {
       let formDescription = this.get('formDescription');
 
-      // console.log('form: ' + JSON.stringify(formDescription, null, 4));
-
       let buildm = this.convertFormToJSONLD(formDescription);
+
+      console.log('form: ' + JSON.stringify(buildm, null, 4));
+      
       this.sendAction('save', buildm);
       this.set('showSaveButton', false);
     },

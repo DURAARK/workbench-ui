@@ -301,6 +301,41 @@ export default Ember.Service.extend({
     });
   },
 
+  addPhysicalAssetFromFiles(session, files) {
+    // Find first 'ifc' file and use its data to populate initial PhysicalAsset:
+    let ifcFile = files.find(function(file) {
+      return file.get('path').endsWith('ifc');
+    });
+
+    let buildm;
+
+    if (!ifcFile) {
+      buildm = {
+        '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
+        'http://data.duraark.eu/vocab/buildm/name': [{
+          '@value': session.get('label')
+        }],
+        'http://data.duraark.eu/vocab/buildm/streetAddress': [{
+          '@value': session.get('address')
+        }]
+      };
+    } else {
+      buildm = ifcFile.get('metadata').physicalAsset;
+    }
+
+    let pas = session.get('physicalAssets');
+
+    if (pas && !pas.length) {
+      pas = [];
+    }
+
+    pas.pushObject({
+      buildm: buildm
+    });
+
+    session.set('physicalAssets', pas);
+  },
+
   getAllPhysicalAssets() {
     let duraark = this,
       sdaEndpoint = duraark.getAPIEndpoint('sda') + '/concepts/physicalAssets';
@@ -324,6 +359,53 @@ export default Ember.Service.extend({
     let url = sdaEndpoint + '/?uri=' + uri;
 
     return duraark._get(url);
+  },
+
+  addDigitalObjectFromFile(session, file) {
+    var name = file.get('path').split('/').pop(),
+      isIfcFile = name.endsWith('ifc');
+
+    var daMD = (isIfcFile) ? file.get('metadata').digitalObject : {
+      '@type': 'http://data.duraark.eu/vocab/buildm/E57File',
+      'http://data.duraark.eu/vocab/buildm/name': [{
+        '@value': name
+      }]
+    };
+
+    if (isIfcFile) {
+      daMD['@type'] = 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
+    }
+
+    daMD['http://data.duraark.eu/vocab/buildm/name'] = [{
+      '@value': name
+    }];
+
+    var duraarkType = (isIfcFile) ? 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
+    let type = duraarkType.split('/').pop().toLowerCase();
+    var uri = 'http://data.duraark.eu/' + type + '_' + uuid.v4();
+
+    daMD['@id'] = uri;
+
+    var digObj = Ember.Object.create({
+      label: name,
+      buildm: daMD,
+      semMD: Ember.Object.create({
+        topics: []
+      }),
+      techMD: {},
+      derivatives: {},
+      path: file.get('path'),
+      size: file.get('size')
+    });
+
+    // console.log('PATH: ' + file.get('path'));
+
+    var digitalObjects = session.get('digitalObjects');
+    if (!digitalObjects) {
+      digitalObjects = [];
+      session.set('digitalObjects', digitalObjects);
+    }
+    digitalObjects.pushObject(digObj);
   },
 
   _get(url) {
