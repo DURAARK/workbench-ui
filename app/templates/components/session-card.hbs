@@ -1,24 +1,24 @@
-<div {{action "editClicked"   session}} class="building-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__status {{if isWIP 'wip'}}  {{if isArchived 'archived'}} {{if isNew 'new'}}">
+<div class="building-card-wide mdl-card mdl-shadow--2dp">
+  <div {{action "editClicked" session}} class="mdl-card__status {{if isWIP 'wip'}}  {{if isArchived 'archived'}} {{if isNew 'new'}}">
     {{#if isNew}}
-      New
-    {{else if isWIP}}
-      Work In Progress
-    {{else if isArchived}}
-      Archived
+      New {{else if isWIP}} Work In Progress {{else if isArchived}} Archived
     {{/if}}
   </div>
-  <div class="mdl-card__title">
+  <div {{action "editClicked" session}} class="mdl-card__title">
     <h2 class="mdl-card__title-text">{{session.label}}</h2>
   </div>
-  <div class="mdl-card__address">
+  <div {{action "editClicked" session}} class="mdl-card__address">
     {{session.address}}
   </div>
-  <div class="mdl-card__supporting-text">
+  <div {{action "editClicked" session}} class="mdl-card__supporting-text">
     {{session.description}}
   </div>
   <div class="mdl-card__actions mdl-card--border">
     <!-- <a {{action "editClicked"   session}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">EDIT</a> -->
-    <a {{action "deleteClicked" session}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">DELETE</a>
+    {{#unless isDemoSession}}
+      <a {{action "deleteClicked" session}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">DELETE</a>
+      {{else}}
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">DELETE (disabled for this demo session)</a>
+    {{/unless}}
   </div>
 </div>

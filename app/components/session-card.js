@@ -15,6 +15,12 @@ export default Ember.Component.extend({
     return this.get('session.state') === 'new';
   }.property('session'),
 
+  isDemoSession: function() {
+    var session = this.get('session');
+    debugger;
+      return this.get('session.label') === 'Nygade';
+  }.property('session'),
+
   actions: {
     editClicked: function(session) {
       this.sendAction('editClicked', session);
