@@ -1,4 +1,4 @@
-<div class="building-card-wide mdl-card mdl-shadow--2dp">
+<div {{action "editClicked"   session}} class="building-card-wide mdl-card mdl-shadow--2dp">
   <div class="mdl-card__status {{if isWIP 'wip'}}  {{if isArchived 'archived'}} {{if isNew 'new'}}">
     {{#if isNew}}
       New
@@ -18,7 +18,7 @@
     {{session.description}}
   </div>
   <div class="mdl-card__actions mdl-card--border">
-    <a {{action "editClicked"   session}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">EDIT</a>
+    <!-- <a {{action "editClicked"   session}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">EDIT</a> -->
     <a {{action "deleteClicked" session}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">DELETE</a>
   </div>
 </div>

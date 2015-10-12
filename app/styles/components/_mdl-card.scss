@@ -27,6 +27,9 @@
 }
 .building-card-wide.mdl-card {
   position: relative;
+  &:hover {
+    border: 2px solid white;
+  }
 }
 .building-card-wide > .mdl-card__title {
   color: #fff;
