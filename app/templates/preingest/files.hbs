@@ -11,9 +11,13 @@
 				<h2 style="margin: 1em;"><i class="fa fa-folder-o"></i>&nbsp; 1 | Master Files:</h2>
 				<hr>
 
-				{{#file-list files=files as |file|}}
-					{{file-item item=file select="toggleSelection" details="showDetails"}}
-				{{/file-list}}
+				{{#if files.length}}
+					{{#file-list files=files as |file|}}
+						{{file-item item=file select="toggleSelection" details="showDetails"}}
+					{{/file-list}}
+				{{else}}
+					<h1>No files added yet.</h1>
+				{{/if}}
 			</div>
 
 			{{#if showSidebar}}
@@ -24,13 +28,13 @@
 					{{else}}
 
 						{{#unless fileInfo}}
-							{{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true"}}
+							{{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true" }}
 								<div class="c-file-upload">
 									{{x-droplet onFilesUploaded="addFiles"}}
 								</div>
 							{{/duraark-tool}}
 					{{else}}
-						{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI"}}
+						{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
 							<div class="l-file-details-titel">
 								<h3 class="title">{{fileInfoShortName}}</h3>
 							</div>
@@ -51,7 +55,7 @@
 								{{/if}}
 							{{/if}}
 						{{/duraark-tool}}
-					{{/unless}}
+						{{/unless}}
 					{{/if}}
 				</div>
 			{{/if}}

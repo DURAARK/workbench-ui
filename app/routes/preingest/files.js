@@ -28,20 +28,23 @@ default Ember.Route.extend({
       // NOTE: We are not using ember-data's relations here (maybe in the future). Therefore we have to convert the
       // plain javascript file objects to Ember.Records here to work with them in the Controller:
       let files = [];
-      model.get('files').forEach(function(file) {
-        files.pushObject(router.store.createRecord('file', file));
-      });
+
+      if (model.get('files.length')) {
+        model.get('files').forEach(function(file) {
+          files.pushObject(router.store.createRecord('file', file));
+        });
+      }
       controller.set('files', files);
 
-//       this.store.findAll('file').then(function(availableFiles) {
-//         controller.set('files', availableFiles);
-//
-//         let selectedFiles = model.get('files');
-// debugger;
-//         router.send('highlightSelectedFiles', availableFiles, selectedFiles);
-//
-//         controller.send('showLoadingSpinner', false);
-//       });
+      //       this.store.findAll('file').then(function(availableFiles) {
+      //         controller.set('files', availableFiles);
+      //
+      //         let selectedFiles = model.get('files');
+      // debugger;
+      //         router.send('highlightSelectedFiles', availableFiles, selectedFiles);
+      //
+      //         controller.send('showLoadingSpinner', false);
+      //       });
       // }
       // }
 
