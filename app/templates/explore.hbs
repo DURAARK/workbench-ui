@@ -17,7 +17,7 @@
         {{else}}
 
           {{#if result.candidates}}
-            {{#duraark-tool class="large" title="Results" close="closeToolUI" fullscreen="maximizeToolUI" }}
+            {{#duraark-tool class="large" title="Results" hideClose=true fullscreen="maximizeToolUI" }}
               {{query-result-viewer result=result icon="fa-file-text-o"}}
             {{/duraark-tool}}
           {{else}}
