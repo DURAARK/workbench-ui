@@ -16,3 +16,9 @@
   font-size: 20px;
   text-align: justify;
 }
+
+.large {
+  .l-help-box {
+    height: $content-height-large;
+  }
+}

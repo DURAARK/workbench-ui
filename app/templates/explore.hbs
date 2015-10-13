@@ -1,9 +1,6 @@
 <div class="l-page-with-header">
-  <!-- <div class="l-preingest-page"> -->
-  <div class="c-explore">
+  <div class="c-explore large">
     {{duraark-header session=knowledgeState.session title=knowledgeState.title showWorkflowSteps=knowledgeState.showWorkflowSteps activeStep=knowledgeState.activeStep}}
-
-    <!-- {{query-selector digitalObject=do tools=queries click="setResult" icon="fa-search"}} -->
 
     <div class="l-files">
 
@@ -20,7 +17,7 @@
         {{else}}
 
           {{#if result.candidates}}
-            {{#duraark-tool title="Results" close="closeToolUI" fullscreen="maximizeToolUI" }}
+            {{#duraark-tool class="large" title="Results" close="closeToolUI" fullscreen="maximizeToolUI" }}
               {{query-result-viewer result=result icon="fa-file-text-o"}}
             {{/duraark-tool}}
           {{else}}

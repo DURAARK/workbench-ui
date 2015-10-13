@@ -2,36 +2,39 @@
   z-index: 1;
   will-change: background;
   position: relative;
-
   padding: 1.5em;
   height: $content-height;
-
   &.fullscreen {
     position: fixed;
-    top: $header-height;//172px; // FIXXME: use variables!
+    top: $header-height; //172px; // FIXXME: use variables!
     left: 0;
     right: 0;
-
     height: 87.5vh;
-
     background: #424242;
     transition: background 0.5s;
   }
 }
-
+.large {
+  .l-duraark-tool {
+    height: $content-height-large;
+  }
+}
 .c-duraark-tool {
   will-change: color;
   background: rgba(221, 221, 221, 0.2);
   color: white;
-
   overflow: auto;
 }
-
 .c-duraark-tool__close-icon {
   float: right;
   margin-top: -0.2em;
   margin-right: -0.35em;
-
+  &:hover {
+    color: $btn-orange;
+    transition: color 0.2s;
+  }
+}
+.c-duraark-tool__fullscreen-icon {
   &:hover {
     color: $btn-orange;
     transition: color 0.2s;
