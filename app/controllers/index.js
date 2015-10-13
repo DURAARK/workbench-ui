@@ -6,10 +6,10 @@ export default Ember.Controller.extend({
       this.transitionToRoute('preingest');
     },
     showRetrieveWorkflow: function() {
-      this.transitionToRoute('retrieve');
+      this.transitionToRoute('search');
     },
     showKnowledgeGraph: function() {
-      this.transitionToRoute('searchretrieve');
+      this.transitionToRoute('explore');
     }
   }
 });

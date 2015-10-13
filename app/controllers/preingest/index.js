@@ -44,7 +44,7 @@ export default Ember.Controller.extend({
     },
 
     searchInArchive() {
-      this.transitionToRoute('retrieve');
+      this.transitionToRoute('search');
     }
   }
 });

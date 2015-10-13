@@ -12,15 +12,16 @@ Router.map(function() {
     this.route('metadata', { path: ':id/metadata' });
     this.route('semanticenrichment', { path: ':id/semanticenrichment' });
     this.route('geometricenrichment', { path: ':id/geometricenrichment' });
-    this.route('digitalpreservation', { path: ':id/digitalpreservation' });    
+    this.route('digitalpreservation', { path: ':id/digitalpreservation' });
   });
 
-  this.route('retrieve', { resetNamespace: true });
-  this.route('searchretrieve', { path: '/searchretrieve' });
+  this.route('search', { resetNamespace: true });
+  this.route('explore', { path: '/explore' });
 
-  this.route('admin');
-  this.route('file-browser');
   this.route('ifc-viewer');
+  
+  // this.route('admin');
+  // this.route('file-browser');
 });
 
 export default Router;
