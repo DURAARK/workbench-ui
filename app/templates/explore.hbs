@@ -1,58 +1,82 @@
-{{duraark-header session=knowledgeState.session title=knowledgeState.title showWorkflowSteps=knowledgeState.showWorkflowSteps activeStep=knowledgeState.activeStep}}
-
 <div class="l-page-with-header">
-  <div class="l-files">
+  <div class="l-preingest-page">
+    <div class="c-explore">
+      {{duraark-header session=knowledgeState.session title=knowledgeState.title showWorkflowSteps=knowledgeState.showWorkflowSteps activeStep=knowledgeState.activeStep}}
 
-    <div class="l-file-list">
+      <!-- {{query-selector digitalObject=do tools=queries click="setResult" icon="fa-search"}} -->
 
-      <h2 style="margin-top: 3em;"></h2>
-
-      <!-- <hr> -->
-
-      <!-- {{#file-list files=digitalObjects as |do|}}
-      <div>
-        {{digital-object-sementic item=do details="showDetails" select="showTopicSelection"}}
-
-        {{#each query in queries}}
-          {{tool-item tool=query digitalObject=do select="showSelectedTopic" remove="removeTopic"}}
+      <div class="c-tile-list">
+        {{#each queries as |topic|}}
+          {{log topic}} {{search-card topic=topic editClicked="editSession" deleteClicked="deleteSession"}}
         {{/each}}
+
       </div>
-    {{/file-list}} -->
 
+      <!-- {{#if app.showLoadingSpinner}}
+        {{loading-spinner-center}}
+      {{else}}
 
-      {{query-selector digitalObject=do tools=queries click="setResult" icon="fa-search"}}
-
-    </div>
-
-    {{#if model}}
-      <div class="l-file-details">
-
-        {{#if app.showLoadingSpinner}}
-          {{loading-spinner-center}}
+        {{#if result.candidates}}
+          {{query-result-viewer result=result icon="fa-file-text-o"}}
         {{else}}
+          {{#help-box}}
+            <div class="c-help-box__hint">
+              For each 3D input file it is possible to add information topics. To show all available topics use the
+              <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
 
-          {{#if result.candidates}}
-            {{query-result-viewer result=result icon="fa-file-text-o"}}
-          {{else}}
-            {{#help-box}}
-              <div class="c-help-box__hint">
-                For each 3D input file it is possible to add information topics. To show all available topics use the
-                <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
+              <br>
+              <br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
 
-                <br>
-                <br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
+              <br>
+              <br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
 
-                <br>
-                <br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
-
-                <br>
-                <br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
-              </div>
-            {{/help-box}}
-          {{/if}}
+              <br>
+              <br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
+            </div>
+          {{/help-box}}
         {{/if}}
+      {{/if}} -->
 
-      </div>
-    {{/if}}
+      {{#toggle-menu}}
+        <nav>
+          <ul style="color: black;">
+            <li><a href="">Add Topics</a>
+              <hr>
+            </li>
+
+            <li>
+              <span>Topic Name</span>
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  {{input class="mdl-textfield__input" type="text" value=name placeholder="Name ..."}}
+                </div>
+              </form>
+
+              <span>Topic Description</span>
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  {{input class="mdl-textfield__input" type="text" value=description placeholder="Description ..."}}
+                </div>
+              </form>
+
+              <span>SPARQL Query</span>
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  {{textarea class="mdl-textfield__input" type="text" value=sparqlQuery rows=20 placeholder="SPARQL Query ..."}}
+                </div>
+              </form>
+            </li>
+
+            <li>
+              <button {{action "createSession"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                ADD
+              </button>
+            </li>
+          </ul>
+        </nav>
+      {{/toggle-menu}}
+
+      {{duraark-footer}}
+    </div>
   </div>
 </div>

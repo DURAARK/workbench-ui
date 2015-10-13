@@ -1,0 +1,20 @@
+<div class="l-search-card c-search-card mdl-card mdl-shadow--2dp">
+  <div {{action "editClicked" topic}} class="mdl-card__status {{if isWIP 'wip'}}  {{if isArchived 'archived'}} {{if isNew 'new'}}">
+    {{#if isNew}}
+      New {{else if isWIP}} Work In Progress {{else if isArchived}} Archived
+    {{/if}}
+  </div>
+
+  <div {{action "editClicked" topic}} class="mdl-card__title">
+    <h2 class="mdl-card__title-text">{{topic.label}}</h2>
+  </div>
+
+  <div {{action "editClicked" topic}} class="mdl-card__supporting-text">
+    {{topic.description}}
+  </div>
+
+  <div class="mdl-card__actions mdl-card--border">
+    <!-- <a {{action "editClicked"   topic}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">EDIT</a> -->
+      <a {{action "deleteClicked" topic}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">DELETE</a>
+  </div>
+</div>

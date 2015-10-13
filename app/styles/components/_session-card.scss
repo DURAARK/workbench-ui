@@ -1,4 +1,9 @@
-.building-card-wide > .mdl-card__status {
+.l-session-card {
+  @include gallery(4);
+  margin-bottom: gutter();
+}
+
+.c-session-card > .mdl-card__status {
   $height: 2em;
   $opacity: 0.9;
   position: absolute;
@@ -25,47 +30,28 @@
     background: $gui-green;
   }
 }
-.building-card-wide.mdl-card {
+.c-session-card.mdl-card {
   position: relative;
   &:hover {
     border: 2px solid white;
   }
 }
-.building-card-wide > .mdl-card__title {
+.c-session-card > .mdl-card__title {
   color: #fff;
   height: 176px;
   background: url("/images/holmenkollen.jpg") center / cover;
   padding: 0;
   width: 100%;
 }
-.building-card-wide > .mdl-card__address {
+.c-session-card > .mdl-card__address {
   color: #000;
   padding: 0.2em;
   width: 100%;
 }
-.building-card-wide .mdl-card__title-text {
-  padding: 0.2em;
-  color: #000;
-  font-weight: bold;
-  text-align: right;
-  // background: rgba(100,100,100, 0.5);
-  background: white;
-}
-.search-card-wide.mdl-card {
-  display: inline-block;
-  /*width: 512px;*/
-  width: 400px;
-  height: 300px;
-}
-.search-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 176px;
-  background: url("/images/search.jpg") center / cover;
-}
-.search-card-wide > .mdl-card__menu {
-  color: #fff;
-}
-.search-card-wide .mdl-card__title-text {
+// .c-session-card > .mdl-card__menu {
+//   color: #fff;
+// }
+.c-session-card .mdl-card__title-text {
   padding: 0.2em;
   color: #000;
   font-weight: bold;
