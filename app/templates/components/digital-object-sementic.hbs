@@ -1,5 +1,5 @@
-<div class="l-file-large c-file {{if item.isSelected 'is-selected'}} {{if isIFC 'l-file-small'}} {{if isE57 'l-file-small'}}">
-	<div {{action "showDetails" item}}>
+<div {{action "selectItem" item}} class="l-file-large c-file {{if item.isSelected 'is-selected'}} {{if isIFC 'l-file-small'}} {{if isE57 'l-file-small'}}">
+	<div>
 
 		{{#if isIFC}}
 			<div class="c-file__header t-file ifc">
@@ -36,7 +36,7 @@
 	</div>
 
 	<div class="c-file__actions">
-		<div {{action "selectItem" item}} class="c-file__action">
+		<div class="c-file__action">
 			{{#if item.isSelected}}
 				<i class="fa fa-check"></i>
 			{{else}}
