@@ -11,6 +11,19 @@
     display: inline;
   }
 }
+
+.l-rise-tool__room-info {
+}
+
+.fullscreen {
+  .l-rise-tool__floorplan {
+    @include span(6 of 12);
+  }
+
+  .l-rise-tool__room-info {
+    @include span(last 6 of 12);
+  }
+}
 .c-rise-tool__header {
   @include clearfix;
   width: 100%;

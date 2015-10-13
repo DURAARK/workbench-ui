@@ -1,60 +1,64 @@
 <div class="l-rise-tool c-rise-tool">
-  {{#if selectedRoom}}
-    <div class="c-rise-tool__header">
-      <button class="c-rise-tool__back" {{action "backToFloorplan"}}><i class="fa fa-arrow-left"></i>&nbsp; Back</button>
-      <header class="c-rise-tool__label">Selected:
-        <strong>{{selectedRoom.label}}</strong>
-        <button class="c-rise-tool__edit" {{action "backToFloorplan"}}><i class="fa fa-pencil"></i>&nbsp; Edit</button>
-      </header>
-    </div>
-    <hr>
-
-    <div class="l-image-presenter">
-      <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Hypothesis Results</div>
-
-      <div class="l-image-list">
-        {{#each selectedRoom.hypothesisImages as |img|}}
-          <div class="l-image">
-            <img {{action "clickImage" img}} src="{{img.src}}" alt="Hypothesis Result Image" />
-          </div>
-        {{/each}}
-      </div>
+  {{#if wallConfig}}
+    <div class="l-rise-tool__floorplan">
+      {{duraark-floorplan wallConfig=wallConfig roomClicked="roomClicked"}}
     </div>
 
-    <div class="l-image-presenter">
-      <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Rule Set</div>
+    <div class="l-rise-tool__room-info">
+      {{#if selectedRoom}}
+        <div class="c-rise-tool__header">
+          <button class="c-rise-tool__back" {{action "backToFloorplan"}}><i class="fa fa-arrow-left"></i>&nbsp; Back</button>
+          <header class="c-rise-tool__label">Selected:
+            <strong>{{selectedRoom.label}}</strong>
+            <button class="c-rise-tool__edit" {{action "backToFloorplan"}}><i class="fa fa-pencil"></i>&nbsp; Edit</button>
+          </header>
+        </div>
+        <hr>
 
-      <div class="l-image-list">
-        {{#each selectedRoom.ruleSetImages as |img|}}
-          <div class="l-image">
-            <img {{action "clickImage" img}} src="{{img.src}}" alt="Rule Set Image" />
+        <div class="l-image-presenter">
+          <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Hypothesis Results</div>
+
+          <div class="l-image-list">
+            {{#each selectedRoom.hypothesisImages as |img|}}
+              <div class="l-image">
+                <img {{action "clickImage" img}} src="{{img.src}}" alt="Hypothesis Result Image" />
+              </div>
+            {{/each}}
           </div>
-        {{/each}}
-      </div>
-    </div>
+        </div>
 
-    <div class="l-image-presenter">
-      <h2 class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Detection Results</h2>
+        <div class="l-image-presenter">
+          <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Rule Set</div>
 
-      <div class="l-image-list">
-        {{#each selectedRoom.elecDetectImages as |img|}}
-          <div class="l-image">
-            <img {{action "clickImage" img}} src="{{img.src}}" alt="Detection Result Image" />
+          <div class="l-image-list">
+            {{#each selectedRoom.ruleSetImages as |img|}}
+              <div class="l-image">
+                <img {{action "clickImage" img}} src="{{img.src}}" alt="Rule Set Image" />
+              </div>
+            {{/each}}
           </div>
-        {{/each}}
-      </div>
+        </div>
+
+        <div class="l-image-presenter">
+          <h2 class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Detection Results</h2>
+
+          <div class="l-image-list">
+            {{#each selectedRoom.elecDetectImages as |img|}}
+              <div class="l-image">
+                <img {{action "clickImage" img}} src="{{img.src}}" alt="Detection Result Image" />
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{else}} <!-- selectedRoom -->
+        <h1>Select a room on the floor plan!</h1>
+      {{/if}}
     </div>
   {{else}}
-    {{#if wallConfig}}
-      <div class="l-rise-tool__floorplan">
-        {{duraark-floorplan wallConfig=wallConfig roomClicked="roomClicked"}}
-      </div>
-    {{else}}
-      This tool generates a hypothesis of the in-wall electrical appliance configuration from a pointcloud scan. The generation is currently in progress, be patient.
+    This tool generates a hypothesis of the in-wall electrical appliance configuration from a pointcloud scan. The generation is currently in progress, be patient.
 
-      <br>
-      <br> After the generation is finished the results will be displayed here. The images below show the result of the electrical appliance detection in three groups. For each detected wall the hypothesis of the electrical appliance is shown, together with
-      the rule set applied to the algorithm. As third group the detection of electrical sockets, e.g. power switches, is shown.
-    {{/if}}
+    <br>
+    <br> After the generation is finished the results will be displayed here. The images below show the result of the electrical appliance detection in three groups. For each detected wall the hypothesis of the electrical appliance is shown, together with
+    the rule set applied to the algorithm. As third group the detection of electrical sockets, e.g. power switches, is shown.
   {{/if}}
 </div>
