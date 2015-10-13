@@ -1,8 +1,12 @@
-.c-explore {
-  margin-left: 2em;
-  width: 75vw;
+.l-explore__topics {
+  @include span(1 of 2);
+  height: 100%;
+  overflow: auto;
 }
-
-.c-tile-list {
-  @include clearfix;
+.l-explore__results {
+  @include span(last 1 of 2);
+  height: 100vh;
+}
+.c-explore__topics {
+  margin: 1.5em;
 }

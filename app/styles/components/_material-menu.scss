@@ -22,7 +22,7 @@ $main-width: 75vw;
 }
 
 .material-menu {
-  display: hidden;
+  display: none;
   position: relative;
   z-index: 1;
   width: 100%;
@@ -80,9 +80,9 @@ $main-width: 75vw;
 }
 
 .material-content {
+  // display: none;
   will-change: opacity;
   padding: 1em;
-  display: hidden;
   position: absolute;
   z-index: -1;
   top: 0;
@@ -95,7 +95,7 @@ $main-width: 75vw;
 }
 
 .active .material-content {
-  display: block;
+  // display: block;
   z-index: 1000;
 
   background: white;

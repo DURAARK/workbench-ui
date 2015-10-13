@@ -1,6 +1,6 @@
 .l-search-card {
-  @include gallery(4);
-  margin-bottom: gutter();
+  @include gallery(6 of 12);
+  margin-bottom: gutter() * 2;
 }
 
 .c-search-card > .mdl-card__status {
@@ -39,7 +39,7 @@
 .c-search-card > .mdl-card__title {
   color: #fff;
   height: 176px;
-  background: url("/images/search.jpg") center / cover;
+  background: url("/images/explore.jpg") center / cover;
   padding: 0;
   width: 100%;
 }
