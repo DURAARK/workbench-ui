@@ -45,8 +45,12 @@ article {
   }
 }
 
+// https://css-tricks.com/centering-css-complete-guide/
 .center {
-  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 // <h3><i class="fa fa-chevron-left"> </i> Building Context</h3> {
