@@ -149,7 +149,7 @@ export default Ember.Controller.extend({
         }
       }
 
-      // this.send('save');
+      this.send('save');
     },
 
     removeTool: function(digObj, topic) {
@@ -157,15 +157,9 @@ export default Ember.Controller.extend({
       this.selectDigitalObject(digObj);
       digObj.get('geoMD.tools').removeObject(topic);
 
-      // this.send('save');
+      this.send('closeToolUI');
+      this.send('save');
     },
-
-    // showSelectedTool: function(digObj, tool) {
-    //   this.set('fileInfo', null);
-    //   this.set('tool', tool);
-    //
-    //   this.transitionToRoute('file-browser');
-    // }
   },
 
   isElectricalApplianceDetectionTool: function() {
