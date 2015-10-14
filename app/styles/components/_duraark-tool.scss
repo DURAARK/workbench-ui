@@ -19,6 +19,26 @@
     height: $content-height-large;
   }
 }
+.l-duraark-tool__pane-one {
+  svg {
+    display: inline;
+  }
+}
+
+.l-duraark-tool__pane-two {
+  position: relative;
+}
+
+.fullscreen {
+  .l-duraark-tool__pane-one {
+    @include span(4 of 12);
+  }
+
+  .l-duraark-tool__pane-two {
+    // height: $content-height-large;
+    @include span(last 8 of 12);
+  }
+}
 .c-duraark-tool {
   will-change: color;
   background: rgba(221, 221, 221, 0.2);

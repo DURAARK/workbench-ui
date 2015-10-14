@@ -1,32 +1,7 @@
-.l-rise-tool {
-  &.fullscreen {
-
-  }
-}
 #rise-canvas {
   text-align: center;
 }
-.l-rise-tool__floorplan {
-  svg {
-    display: inline;
-  }
-}
 
-.l-rise-tool__room-info {
-  position: relative;
-  height: $content-height;
-}
-
-.fullscreen {
-  .l-rise-tool__floorplan {
-    @include span(4 of 12);
-  }
-
-  .l-rise-tool__room-info {
-    // height: $content-height-large;
-    @include span(last 8 of 12);
-  }
-}
 .c-rise-tool__header {
   @include clearfix;
   width: 100%;
