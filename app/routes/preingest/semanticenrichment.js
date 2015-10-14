@@ -55,21 +55,21 @@ default Ember.Route.extend({
         label: 'Haus 30 (general context)',
         description: "Adds information on the building, architecture and the region around the building.",
         seeds: ['http://dbpedia.org/resource/Berlin,http://dbpedia.org/resource/List_of_museums,http://de.dbpedia.org/resource/Ludwig_Hoffmann(Architekt),http://de.dbpedia.org/resource/Bogensee_(Berlin-Buch),http://de.dbpedia.org/resource/Bucher_Forst,http://de.dbpedia.org/resource/Karpfenteiche_(Berlin-Buch),http://de.dbpedia.org/resource/Kategorie:Ehemaliges_Krankenhaus_in_Berlin'],
-        crawlId: 13,
+        crawlId: 27,
         candidates: [],
         isSelected: false
       }), Ember.Object.create({
         label: 'Haus 30 (political context)',
         description: "Adds information on the political context at the location (Berlin) of the building. E.g., political parties and organizations in Berlin.",
         seeds: ['http://dbpedia.org/resource/Berlin,http://dbpedia.org/resource/Social_Democratic_Party_of_Germany,http://de.dbpedia.org/resource/Ludwig_Hoffmann(Architekt),http://de.dbpedia.org/resource/Mosse-Stift,http://de.dbpedia.org/resource/Landesgeschichtliche_Vereinigung_für_die_Mark_Brandenburg'],
-        crawlId: 14,
+        crawlId: 19,
         candidates: [],
         isSelected: false
       }), Ember.Object.create({
         label: 'Nygade (general context)',
         description: "Adds information on the building, architecture and the region around the building.",
         seeds: ['http://dbpedia.org/resource/Rosenborg_Castle,http://dbpedia.org/resource/Copenhagen_Opera_House,http://dbpedia.org/resource/Copenhagen,http://dbpedia.org/resource/Capital_Region_of_Denmark,http://dbpedia.org/resource/List_of_museums'],
-        crawlId: 15,
+        crawlId: 20,
         candidates: [],
         isSelected: false
       })];

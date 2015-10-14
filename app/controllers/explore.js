@@ -22,7 +22,6 @@ export default Ember.Controller.extend({
       topic.crawlId = result.crawl_id;
 
       controller.get('session').save().then(function() {
-        controller.send('addPendingAction');
         controller.askForCandidates(crawler, topic);
       });
 
@@ -34,7 +33,6 @@ export default Ember.Controller.extend({
   askForCandidates: function(crawler, topic) {
     var controller = this;
     console.log('asking for candidates...');
-    controller.send('addPendingAction');
     crawler.getCandidates(topic.crawlId).then(function(candidates) {
       if (candidates.length) {
         console.log('candidates received: #' + candidates.length);
@@ -43,7 +41,6 @@ export default Ember.Controller.extend({
         // FIXXME: create a topic model to enable saving!
         controller.get('session').save().then(function() {
           console.log('stored candidates');
-          controller.send('removePendingAction');
 
           topic.set('showLoadingSpinner', false);
         });

@@ -22,7 +22,6 @@ export default Ember.Controller.extend({
       topic.candidates = result;
 
       controller.get('session').save().then(function() {
-        controller.send('addPendingAction');
         topic.set('showLoadingSpinner', false);
         // controller.askForCandidates(crawler, topic);
       });
@@ -35,8 +34,8 @@ export default Ember.Controller.extend({
   askForCandidates: function(crawler, topic) {
     var controller = this;
     console.log('asking for candidates...');
-    controller.send('addPendingAction');
     crawler.getCandidates(topic.crawlId).then(function(candidates) {
+      candidates = JSON.parse(candidates);
       if (candidates.length) {
         console.log('candidates received: #' + candidates.length);
         // FIXXME: implement pagination and sorting by relevance to manage the huge amount of results!
@@ -44,7 +43,6 @@ export default Ember.Controller.extend({
         // FIXXME: create a topic model to enable saving!
         controller.get('session').save().then(function() {
           console.log('stored candidates');
-          controller.send('removePendingAction');
 
           topic.set('showLoadingSpinner', false);
         });
@@ -229,11 +227,11 @@ export default Ember.Controller.extend({
 
             // console.log('crawlId: ' + crawlId);
 
-            // if (crawlId === -1) {
+            if (crawlId === -1) {
             this.initiateCrawl(topicCrawler, t);
-            // } else {
-            //   this.askForCandidates(topicCrawler, t);
-            // }
+            } else {
+              this.askForCandidates(topicCrawler, t);
+            }
           }
         }
       }

@@ -1,11 +1,9 @@
 <div class="l-cards c-cards">
 
   {{#if topic.candidates.length}}
-
     <table class="c-candidate-list">
       <thead>
         <tr>
-          <!-- <th></th> -->
           <th>Information Link</th>
           <th>Score</th>
         </tr>
@@ -27,11 +25,13 @@
     </table>
 
   {{else}}
+
     {{#help-box}}
       <div class="c-help-box__hint">
         Information on topic "{{topic.label}}" is gathered in the background, please be patient and come back later.
       </div>
     {{/help-box}}
+
   {{/if}}
 
   <!-- {{#if topic.candidates.length}}

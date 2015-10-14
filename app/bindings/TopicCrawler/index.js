@@ -31,7 +31,7 @@ TopicCrawler.prototype.getCandidates = function(crawlId) {
   var that = this;
 
   // var url = this.apiEndpoint.host + '/crawls?crawl_id=' + crawlId;
-  var url = this.apiEndpoint.host + '/crawls',
+  var url = this.apiEndpoint.host + '/loadCrawl',
     data = {
       crawl_id: crawlId
     };

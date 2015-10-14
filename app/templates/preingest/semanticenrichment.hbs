@@ -12,9 +12,12 @@
 				<h2 style="margin: 1em;"><i class="fa fa-lightbulb-o"></i>&nbsp; 4 | Add context information:</h2>
 				<hr>
 
+				<!-- {{#file-list files=session.physicalAssets as |pa|}}
+					{{physical-asset-item item=pa details="showTopicSelection"}}
+				{{/file-list}} -->
+
 				{{#file-list files=digitalObjects as |do|}}
 					<div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
-						<!-- FIXXME: unify *-item components! -->
 						{{digital-object-sementic item=do select="showTopicSelection"}}
 
 						{{#each do.semMD.topics as |topic|}}
