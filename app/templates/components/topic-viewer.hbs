@@ -1,39 +1,62 @@
 <div class="l-cards c-cards">
 
-  {{#if topic.candidates.length}}
-    <table class="c-candidate-list">
-      <thead>
-        <tr>
-          <th>Information Link</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each topic.candidates as |candidate|}}
-          {{#if candidate.score}}
-            <tr>
-              <!-- <td><button>Show</button></td> -->
-              <!-- <td><a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a></td> -->
-              <td><a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a></td>
-              <td>
-                <p>Score: {{candidate.score}}</p>
-              </td>
-            </tr>
-          {{/if}}
-        {{/each}}
-      </tbody>
-    </table>
-
-  {{else}}
-
-    {{#help-box}}
-      <div class="c-help-box__hint">
-        Information on topic "{{topic.label}}" is gathered in the background, please be patient and come back later.
+  <div class="l-duraark-tool__pane-one">
+    {{#if selectedCandidate}}
+      <div class="c-rise-tool__header">
+        <button class="c-rise-tool__back" {{action "unselectCandidate"}}><i class="fa fa-arrow-left"></i>&nbsp; Back</button>
+        <header class="c-rise-tool__label">Selected:
+          <strong>{{selectedCandidate.entity}}</strong>
+          <button class="c-rise-tool__edit" {{action "removeCandidate" selectedCandidate}}><i class="fa fa-pencil"></i>&nbsp; Remove</button>
+        </header>
       </div>
-    {{/help-box}}
+      <hr>
 
-  {{/if}}
+      <h1>IFRAME WITH CANDIDATE LINK</h1>
+    {{else}}
+      <h1>Select a candidate!</h1>
+    {{/if}}
+  </div>
 
+  <div class="l-duraark-tool__pane-two">
+    {{#if topic.candidates.length}}
+      <table class="c-candidate-list">
+        <thead>
+          <tr>
+            <th><!-- Show button --></th>
+            <th>Information Link</th>
+            <th>Score</th>
+              <th><!-- Remove button --></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each topic.candidates as |candidate|}}
+            {{#if candidate.score}}
+              <tr>
+                <td><button {{action "selectCandidate" candidate}}>Show</button></td>
+                <!-- <td><a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a></td> -->
+                <td {{action "selectCandidate" candidate}}>
+                  <span>{{strip-namespace candidate.entity}}</span>
+                </td>
+                <td>
+                  <p>Score: {{candidate.score}}</p>
+                </td>
+                  <td><button {{action "removeCandidate" candidate}}>Remove</button></td>
+              </tr>
+            {{/if}}
+          {{/each}}
+        </tbody>
+      </table>
+
+    {{else}}
+
+      {{#help-box}}
+        <div class="c-help-box__hint">
+          Information on topic "{{topic.label}}" is gathered in the background, please be patient and come back later.
+        </div>
+      {{/help-box}}
+
+    {{/if}}
+  </div>
   <!-- {{#if topic.candidates.length}}
     {{#each candidate in topic.candidates}}
       <div class="l-card c-card">
