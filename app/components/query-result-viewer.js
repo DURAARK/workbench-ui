@@ -4,10 +4,13 @@ export default Ember.Component.extend({
   results: null,
 
   actions: {
-    click: function(topic) {
+    selectCandidate(row) {
+      var url = row.buildingName.value;
+      this.set('selectedCandidate', url);
+    },
 
-      topic.toggleProperty('isSelected');
-      this.sendAction('click', topic);
+    unselectCandidate() {
+      this.set('selectedCandidate', null);
     }
   }
 });

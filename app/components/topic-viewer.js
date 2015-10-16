@@ -6,7 +6,6 @@ export default Ember.Component.extend({
 
   actions: {
     click(topic) {
-
         topic.toggleProperty('isSelected');
         this.sendAction('click', topic);
       },

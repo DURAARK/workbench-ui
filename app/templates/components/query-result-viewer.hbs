@@ -1,30 +1,49 @@
 <div class="l-cards c-cards">
 
   {{#if result.candidates.results.bindings}}
+    <div class="l-duraark-tool__pane-two">
+      {{#if selectedCandidate}}
+        <div class="c-rise-tool__header">
+          <button class="c-rise-tool__back" {{action "unselectCandidate"}}><i class="fa fa-arrow-left"></i>&nbsp; Back</button>
+        </div>
+        <hr>
 
-    <table class="c-candidate-list">
-      <thead>
-        <tr>
-          {{#each result.candidates.head.vars as |col|}}
-            <th>{{col}}</th>
-          {{/each}}
-        </tr>
-      </thead>
-      <tbody>
-        {{#each result.candidates.results.bindings as |row|}}
+        <h1>IFRAME WITH CANDIDATE LINK: {{selectedCandidate}}</h1>
+      {{else}}
+        <h1>Select a result link ...</h1>
+      {{/if}}
+    </div>
+
+    <div class="l-duraark-tool__pane-one">
+      <table class="c-candidate-list">
+        <thead>
           <tr>
-            {{#each result.candidates.head.vars as |propName|}}
-              <td>
-                <a href={{get-prop row propName}} target="_blank">
-                  {{get-prop-stripped row propName}}
-                </a>
-              </td>
+            <th>
+              <!-- Show button -->
+            </th>
+            {{#each result.candidates.head.vars as |col|}}
+              <th>{{col}}</th>
             {{/each}}
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
-
+        </thead>
+        <tbody>
+          {{#each result.candidates.results.bindings as |row|}}
+            <tr>
+              <td>
+                <button {{action "selectCandidate" row}}>Show</button>
+              </td>
+              {{#each result.candidates.head.vars as |propName|}}
+                <td {{action "selectCandidate" row}}>
+                  <a href= {{get-prop row propName}} target="_blank">
+                  {{get-prop-stripped row propName}}
+                </a>
+                </td>
+              {{/each}}
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   {{else}}
     {{#help-box}}
       <div class="c-help-box__hint">
@@ -32,26 +51,5 @@
       </div>
     {{/help-box}}
   {{/if}}
-
-  <!-- {{#if topic.candidates.length}}
-    {{#each candidate in topic.candidates}}
-      <div class="l-card c-card">
-        <div class="c-card-image">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
-        </div>
-        <div class="c-card-bg">
-          <div class="c-card-header">
-            <a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a>
-          </div>
-          <div class="c-card-copy">
-            <p>Score: {{candidate.score}}</p>
-          </div>
-        </div>
-      </div>
-    {{/each}}
-
-  {{else}}
-    <h2 class="title" style="color: white;">Information on that topic is gathered in the background, please be patient and come back later.</h2>
-  {{/if}} -->
 
 </div>
