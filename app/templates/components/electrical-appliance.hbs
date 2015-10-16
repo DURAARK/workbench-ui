@@ -4,10 +4,8 @@
       {{#if selectedRoom}}
         <div class="c-rise-tool__header">
           <button class="c-rise-tool__back" {{action "backToFloorplan"}}><i class="fa fa-arrow-left"></i>&nbsp; Back</button>
-          <header class="c-rise-tool__label">Selected:
-            <strong>{{selectedRoom.label}}</strong>
-            <button class="c-rise-tool__edit" {{action "backToFloorplan"}}><i class="fa fa-pencil"></i>&nbsp; Edit</button>
-          </header>
+          <button class="c-rise-tool__edit" {{action "backToFloorplan"}}><i class="fa fa-pencil"></i>&nbsp; Edit</button>
+          <header class="c-rise-tool__label">Selected: <strong>{{selectedRoom.label}}</strong></header>
         </div>
         <hr>
 
