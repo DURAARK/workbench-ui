@@ -1,6 +1,8 @@
 <div class="l-cards c-cards">
 
-  <div class="l-duraark-tool__pane-one">
+  {{#if topic.crawlId}}
+  <!-- NOTE: A crawlId means that the topic was already crawled -->
+  <div class="l-duraark-tool__pane-two">
     {{#if selectedCandidate}}
       <div class="c-rise-tool__header">
         <button class="c-rise-tool__back" {{action "unselectCandidate"}}><i class="fa fa-arrow-left"></i>&nbsp; Back</button>
@@ -13,26 +15,32 @@
 
       <h1>IFRAME WITH CANDIDATE LINK</h1>
     {{else}}
-      <h1>Select a candidate!</h1>
+      <h1>Select a candidate to show its content ...</h1>
     {{/if}}
   </div>
 
-  <div class="l-duraark-tool__pane-two">
-    {{#if topic.candidates.length}}
+  <div class="l-duraark-tool__pane-one">
+    {{#if topic.candidateSelection.length}}
       <table class="c-candidate-list">
         <thead>
           <tr>
-            <th><!-- Show button --></th>
+            <th>
+              <!-- Show button -->
+            </th>
             <th>Information Link</th>
             <th>Score</th>
-              <th><!-- Remove button --></th>
+            <th>
+              <!-- Remove button -->
+            </th>
           </tr>
         </thead>
         <tbody>
-          {{#each topic.candidates as |candidate|}}
+          {{#each topic.candidateSelection as |candidate|}}
             {{#if candidate.score}}
               <tr>
-                <td><button {{action "selectCandidate" candidate}}>Show</button></td>
+                <td>
+                  <button {{action "selectCandidate" candidate}}>Show</button>
+                </td>
                 <!-- <td><a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a></td> -->
                 <td {{action "selectCandidate" candidate}}>
                   <span>{{strip-namespace candidate.entity}}</span>
@@ -40,42 +48,30 @@
                 <td>
                   <p>Score: {{candidate.score}}</p>
                 </td>
-                  <td><button {{action "removeCandidate" candidate}}>Remove</button></td>
+                <td>
+                  <button {{action "removeCandidate" candidate}}>Remove</button>
+                </td>
               </tr>
             {{/if}}
           {{/each}}
         </tbody>
       </table>
-
-    {{else}}
-
+    {{else}} <!-- if topic.candidateSelection.length -->
       {{#help-box}}
         <div class="c-help-box__hint">
-          Information on topic "{{topic.label}}" is gathered in the background, please be patient and come back later.
+          You removed all topic candidates.
+          <button {{action "reloadCandidates"}}>Reload Candidates</button>
         </div>
       {{/help-box}}
-
-    {{/if}}
+    {{/if}} <!-- if topic.candidateSelection.length -->
   </div>
-  <!-- {{#if topic.candidates.length}}
-    {{#each candidate in topic.candidates}}
-      <div class="l-card c-card">
-        <div class="c-card-image">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
-        </div>
-        <div class="c-card-bg">
-          <div class="c-card-header">
-            <a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a>
-          </div>
-          <div class="c-card-copy">
-            <p>Score: {{candidate.score}}</p>
-          </div>
-        </div>
+
+  {{else}} <!-- if topic.crawlId -->
+    {{#help-box}}
+      <div class="c-help-box__hint">
+        Information on topic "{{topic.label}}" is gathered in the background, please be patient and come back later.
+        {{loading-spinner-fullscreen}}
       </div>
-    {{/each}}
-
-  {{else}}
-    <h2 class="title" style="color: white;">Information on that topic is gathered in the background, please be patient and come back later.</h2>
-  {{/if}} -->
-
+    {{/help-box}}
+  {{/if}} <!-- if topic.crawlId -->
 </div>

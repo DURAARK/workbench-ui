@@ -129,7 +129,7 @@ default Ember.Route.extend({
         description: "Adds information on the building, architecture and the region around the building.",
         seeds: ['http://dbpedia.org/resource/Berlin,http://dbpedia.org/resource/List_of_museums,http://de.dbpedia.org/resource/Ludwig_Hoffmann(Architekt),http://de.dbpedia.org/resource/Bogensee_(Berlin-Buch),http://de.dbpedia.org/resource/Bucher_Forst,http://de.dbpedia.org/resource/Karpfenteiche_(Berlin-Buch),http://de.dbpedia.org/resource/Kategorie:Ehemaliges_Krankenhaus_in_Berlin'],
         crawlId: 27,
-        candidates: [{
+        candidateSelection: [{
           entity: 'http://blablub.at',
           score: 1
         },{

@@ -12,7 +12,7 @@ TopicCrawler.prototype.initiateCrawl = function(topic, params) {
   // var url = this.apiEndpoint + '/topics';
 
   var seeds = topic.seeds.join(';');
-  var url = that.apiEndpoint.host + '/crawls?seeds=' + seeds + '&user=' + params.user + '&depth=' + params.depth;
+  var url = that.apiEndpoint + '/crawls?seeds=' + seeds + '&user=' + params.user + '&depth=' + params.depth;
 
   console.log('url: ' + url);
 
@@ -30,8 +30,7 @@ TopicCrawler.prototype.getCandidates = function(crawlId) {
 
   var that = this;
 
-  // var url = this.apiEndpoint.host + '/crawls?crawl_id=' + crawlId;
-  var url = this.apiEndpoint.host + '/loadCrawl',
+  var url = this.apiEndpoint + '/loadCrawl',
     data = {
       crawl_id: crawlId
     };
