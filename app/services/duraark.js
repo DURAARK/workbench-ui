@@ -69,42 +69,12 @@ export default Ember.Service.extend({
   },
 
   createSession(initialSessionData) {
-    let duraark = this,
-      sessionTemplate = {
-        state: "new",
-        label: initialSessionData.label,
-        address: initialSessionData.address,
-        description: initialSessionData.description || "No description",
-        physicalAssets: [{
-          label: initialSessionData.label,
-          buildm: {
-            '@id': this._generateURI('http://data.duraark.eu/vocab/buildm/PhysicalAsset'),
-            '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
-            'http://data.duraark.eu/vocab/buildm/name': [{
-              '@value': initialSessionData.label
-            }]
-          }
-        }],
-        digitalObjects: [],
-        config: {
-          sda: {
-            topics: [
-              "Haus 30 (general context)",
-              "Haus 30 (political context)"
-            ]
-          },
-          geometricenrichment: {
-            tools: [
-              "IFC Reconstruction"
-            ]
-          }
-        }
-      };
+    let duraark = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let sessionsEndpoint = duraark.getAPIEndpoint('sessions') + '/sessions';
 
-      duraark._post(sessionsEndpoint, sessionTemplate).then(function(session) {
+      duraark._post(sessionsEndpoint, initialSessionData).then(function(session) {
         resolve(session);
       }).catch(function(err) {
         reject(err);
