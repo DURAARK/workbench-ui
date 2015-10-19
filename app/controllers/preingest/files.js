@@ -217,6 +217,9 @@ export default Ember.Controller.extend({
       }
 
       _.forEach(uploadedFiles, function(file) {
+        // The uploaded files are stored in the 'uploads' folder on the server. They have to
+        // be moved to this session's folder before proceeding:
+        controller.duraark.addFilesToSession(uploadedFiles, controller.get('session'));
         var record = controller.store.createRecord('file', file);
         files.pushObject(record);
       })

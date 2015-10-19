@@ -203,6 +203,17 @@ export default Ember.Service.extend({
     })
   },
 
+  addFilesToSession(files, session) {
+    let sessionsEndpoint = this.getAPIEndpoint('sessions') + '/sessions/addFilesToSession',
+      sessionId = session.get('id');
+
+      console.log('sessionId: ' + sessionId);
+      this._post(sessionsEndpoint, {
+        sessionId: sessionId,
+        files: files
+      });
+  },
+
   storeInSDAS(session) {
     let duraark = this,
       sdaEndpoint = duraark.getAPIEndpoint('sda') + '/store';
