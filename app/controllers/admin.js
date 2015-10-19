@@ -4,7 +4,6 @@ export default Ember.Controller.extend({
   actions: {
     setSessionsEndpoint: function() {
       var endpoint = this.get('sessionsEndpoint');
-      console.log('asdfasdf: ' + endpoint);
       this.duraark.set('sessionsEndpoint', endpoint);
     },
     setMetadataEndpoint: function() {

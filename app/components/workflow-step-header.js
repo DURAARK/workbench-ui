@@ -7,7 +7,6 @@ export default Ember.Component.extend({
     },
 
     backClicked() {
-      console.log('asdf');
       this.sendAction('onBack', true);
     }
   }

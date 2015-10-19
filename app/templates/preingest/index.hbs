@@ -2,9 +2,7 @@
 
   <div class="c-tile-list">
     {{#each model as |session|}}
-      {{#unless (eq session.label "Haus 30")}}
-        {{session-card session=session editClicked="editSession" deleteClicked="deleteSession"}}
-      {{/unless}}
+      {{session-card session=session editClicked="editSession" deleteClicked="deleteSession"}}
     {{/each}}
 
   </div>

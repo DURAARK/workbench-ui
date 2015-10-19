@@ -1,5 +1,10 @@
 import Ember from 'ember';
 
+function _generateURI(duraarkType) {
+  var type = duraarkType.split('/').pop().toLowerCase();
+  return 'http://data.duraark.eu/' + type + '_' + uuid.v4();
+}
+
 export default Ember.Controller.extend({
   selectedFiles: [],
   fileInfo: null,
@@ -82,15 +87,16 @@ export default Ember.Controller.extend({
         var das = [];
 
         newFiles.forEach(function(file) {
-          var hasMetadata = true;
+          var isIfcFile = true;
 
           if (file.get('path').endsWith('e57')) {
-            hasMetadata = false;
+            isIfcFile = false;
           }
 
           if (!hasPA) {
             // FIXXME: how to combine pa data from all files?
-            var paMD = (hasMetadata && file.get('metadata') && file.get('metadata').physicalAsset) ? file.get('metadata').physicalAsset : {
+            var paMD = (isIfcFile && file.get('metadata') && file.get('metadata').physicalAsset) ? file.get('metadata').physicalAsset : {
+              '@id': _generateURI('http://data.duraark.eu/vocab/buildm/PhysicalAsset'),
               '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
               'http://data.duraark.eu/vocab/buildm/name': [{
                 '@value': 'Nygade Building'
@@ -106,9 +112,11 @@ export default Ember.Controller.extend({
 
             paNew.buildm = paMD;
             session.set('physicalAssets', [paNew]);
+
+            hasPA = true;
           }
 
-          let digObj = controller.createDigitalObjectFromFile(file, hasMetadata);
+          let digObj = controller.createDigitalObjectFromFile(file, isIfcFile);
 
           das.pushObject(digObj);
         });
@@ -233,16 +241,18 @@ export default Ember.Controller.extend({
     }
   },
 
-  createDigitalObjectFromFile(file, hasMetadata) {
+  createDigitalObjectFromFile(file, isIfcFile) {
     var name = file.get('path').split('/').pop();
-    var daMD = (hasMetadata && file.get('metadata') && file.get('metadata').digitalObject) ? file.get('metadata').digitalObject : {
+    var daMD = (isIfcFile && file.get('metadata') && file.get('metadata').digitalObject) ? file.get('metadata').digitalObject : {
+      '@id': _generateURI('http://data.duraark.eu/vocab/buildm/E57File'),
       '@type': 'http://data.duraark.eu/vocab/buildm/E57File',
       'http://data.duraark.eu/vocab/buildm/name': [{
         '@value': name
       }]
     };
 
-    if (hasMetadata) {
+    if (isIfcFile) {
+      daMD['@id'] = _generateURI('http://data.duraark.eu/vocab/buildm/IFCSPFFile'),
       daMD['@type'] = 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
     }
 
@@ -250,14 +260,14 @@ export default Ember.Controller.extend({
       '@value': name
     }];
 
-    var duraarkType = (hasMetadata) ? 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
+    var duraarkType = (isIfcFile) ? 'http://data.duraark.eu/vocab/buildm/IFCSPFFile' : 'http://data.duraark.eu/vocab/buildm/E57File'
     let type = duraarkType.split('/').pop().toLowerCase();
     var uri = 'http://data.duraark.eu/' + type + '_' + uuid.v4();
 
     daMD['@id'] = uri;
 
     var digOb = Ember.Object.create({
-      label: (hasMetadata) ? daMD['http://data.duraark.eu/vocab/buildm/name'][0]['@value'] : 'Edit name',
+      label: (isIfcFile) ? daMD['http://data.duraark.eu/vocab/buildm/name'][0]['@value'] : 'Edit name',
       // label: file.get('path'),
       buildm: daMD,
       semMD: Ember.Object.create({

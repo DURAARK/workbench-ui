@@ -45,6 +45,7 @@
 							{{/if}}
 
 							{{#if isPhysicalAsset}}
+							{{log fileInfo}}
 								{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
 							{{/if}}
 
