@@ -6,9 +6,21 @@
 				3D Model
 			</div>
 		{{else}}
-			<div class="c-file__header t-file pointcloud">
-				Pointcloud
-			</div>
+			{{#if isE57}}
+				<div class="c-file__header t-file pointcloud">
+					Pointcloud
+				</div>
+			{{else}}
+				{{#if isPhysicalAsset}}
+					<div class="c-file__header t-file pointcloud">
+						Building Context
+					</div>
+				{{else}}
+					<div class="c-file__header t-file pointcloud">
+						Unknown Type
+					</div>
+				{{/if}}
+			{{/if}}
 		{{/if}}
 
 		<div class="c-file__name">
@@ -25,9 +37,11 @@
 					</div>
 				{{else}}
 					<div class="c-file-building">
-						<div class="c-file-building__pic"><img src="/images/building_placeholder.png"> </div>
-						{{name}}  <br><br>
-						{{adress}}
+						<div class="c-file-building__pic">
+							<img src="/images/building_placeholder.png"> </div>
+						{{name}}
+						<br>
+						<br> {{adress}}
 					</div>
 				{{/if}}
 			{{/if}}

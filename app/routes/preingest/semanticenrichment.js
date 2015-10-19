@@ -60,13 +60,13 @@ default Ember.Route.extend({
       this._super(controller, model);
 
       var session = model,
-        digObjs = [];
+        pas = [];
 
       controller.set('session', session);
 
-      if (session.get('digitalObjects')) {
-        session.get('digitalObjects').forEach(function(digObj) {
-          var semMD = digObj.semMD;
+      if (session.get('physicalAssets')) {
+        session.get('physicalAssets').forEach(function(pa) {
+          var semMD = pa.semMD;
 
           if (!semMD) {
             semMD = {
@@ -75,20 +75,16 @@ default Ember.Route.extend({
           }
 
           var obj = Ember.Object.create({
-            label: digObj.label,
-            buildm: digObj.buildm,
+            label: pa.label,
+            buildm: pa.buildm,
             semMD: semMD,
-            geoMD: Ember.Object.create(digObj.geoMD),
-            techMD: digObj.techMD,
-            derivatives: digObj.derivatives,
-            size: digObj.size,
             isSelected: false
           });
 
-          digObjs.pushObject(obj);
+          pas.pushObject(obj);
         });
 
-        controller.set('digitalObjects', digObjs);
+        controller.set('physicalAssets', pas);
       }
 
       // FIXXME: get from SDA service!

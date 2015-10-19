@@ -5,7 +5,7 @@ import ENV from '../../config/environment';
 var sdaEndpoint = ENV.DURAARKAPI.sda;
 
 export default Ember.Controller.extend({
-  selectedDigitalObject: null,
+  selectedPhysicalAsset: null,
 
   initiateCrawl: function(crawler, topic) {
     var controller = this;
@@ -57,14 +57,14 @@ export default Ember.Controller.extend({
 
   topics: function() {
     // Bail out if no digital object is selected:
-    if (!this.get('selectedDigitalObject')) {
+    if (!this.get('selectedPhysicalAsset')) {
       return;
     }
 
     let allTopics = this.get('allTopics'),
       configuredTopics = this.get('session.config.sda.topics'),
-      selectedDigitalObject = this.get('selectedDigitalObject'),
-      digObjTopics = selectedDigitalObject.get('semMD.topics'),
+      selectedPhysicalAsset = this.get('selectedPhysicalAsset'),
+      paTopics = selectedPhysicalAsset.get('semMD.topics'),
       shownTopics = [];
 
     configuredTopics.forEach(function(myTopic) {
@@ -76,7 +76,7 @@ export default Ember.Controller.extend({
 
     // Set selection state based on selected file:
     shownTopics.forEach(function(shownTopic, index, enumerable) {
-      var curFileTopic = digObjTopics.find(function(fileTopic, index, enumerable) {
+      var curFileTopic = paTopics.find(function(fileTopic, index, enumerable) {
         return fileTopic.label === shownTopic.get('label');
       });
 
@@ -90,39 +90,39 @@ export default Ember.Controller.extend({
     });
 
     return shownTopics;
-  }.property('session.config', 'selectedDigitalObject.semMD.topics.[]'),
+  }.property('session.config', 'selectedPhysicalAsset.semMD.topics.[]'),
 
-  toggleDigitalObjectSelection: function(digObj) {
-    var flag = digObj.get('isSelected');
+  togglePhysicalAssetSelection: function(pa) {
+    var flag = pa.get('isSelected');
 
-    this.get('digitalObjects').forEach(function(obj) {
+    this.get('physicalAssets').forEach(function(obj) {
       obj.set('isSelected', false);
     });
 
-    digObj.set('isSelected', !flag);
+    pa.set('isSelected', !flag);
 
-    this.set('selectedDigitalObject', digObj);
+    this.set('selectedPhysicalAsset', pa);
 
-    if (digObj.get('isSelected') === false) {
-      this.set('selectedDigitalObject', null);
+    if (pa.get('isSelected') === false) {
+      this.set('selectedPhysicalAsset', null);
     }
   },
 
-  selectDigitalObject: function(digObj) {
-    var flag = digObj.get('isSelected');
+  selectPhysicalAsset: function(pa) {
+    var flag = pa.get('isSelected');
 
     if (flag) return;
 
-    this.get('digitalObjects').forEach(function(obj) {
+    this.get('physicalAssets').forEach(function(obj) {
       obj.set('isSelected', false);
     });
 
-    digObj.set('isSelected', true);
-    this.set('selectedDigitalObject', digObj);
+    pa.set('isSelected', true);
+    this.set('selectedPhysicalAsset', pa);
   },
 
-  unselectDigitalObjects: function() {
-    this.get('digitalObjects').forEach(function(obj) {
+  unselectPhysicalAssets: function() {
+    this.get('physicalAssets').forEach(function(obj) {
       obj.set('isSelected', false);
     });
   },
@@ -139,20 +139,20 @@ export default Ember.Controller.extend({
       var session = this.get('session'),
         controller = this;
 
-      if (session.get('digitalObjects')) {
-        session.get('digitalObjects').forEach(function(digObj) {
+      if (session.get('physicalAssets')) {
+        session.get('physicalAssets').forEach(function(pa) {
           // FIXXME: remove ember-data and plain javascript models ASAP!
-          if (_.isFunction(digObj.get)) {
-            let semMD = digObj.get('semMD'),
+          if (_.isFunction(pa.get)) {
+            let semMD = pa.get('semMD'),
               tmp = JSON.parse(JSON.stringify(semMD));
-            digObj.set('semMD', tmp);
+            pa.set('semMD', tmp);
           }
         });
       }
 
       session.save().then(function(session) {
-        if (session.get('digitalObjects')) {
-          controller.unselectDigitalObjects();
+        if (session.get('physicalAssets')) {
+          controller.unselectPhysicalAssets();
         };
         controller.transitionToRoute('preingest.digitalpreservation', session);
       }).catch(function(err) {
@@ -164,13 +164,13 @@ export default Ember.Controller.extend({
       var session = this.get('session'),
         controller = this;
 
-      if (session.get('digitalObjects')) {
-        session.get('digitalObjects').forEach(function(digObj) {
+      if (session.get('physicalAssets')) {
+        session.get('physicalAssets').forEach(function(pa) {
           // FIXXME: remove ember-data and plain javascript models ASAP!
-          if (_.isFunction(digObj.get)) {
-            let semMD = digObj.get('semMD'),
+          if (_.isFunction(pa.get)) {
+            let semMD = pa.get('semMD'),
               tmp = JSON.parse(JSON.stringify(semMD));
-            digObj.set('semMD', tmp);
+            pa.set('semMD', tmp);
           }
         });
       }
@@ -182,21 +182,21 @@ export default Ember.Controller.extend({
       });
     },
 
-    showTopicSelection: function(digObj) {
+    showTopicSelection: function(pa) {
       this.set('topic', null);
-      this.set('selectedDigitalObject', digObj);
-      this.toggleDigitalObjectSelection(digObj);
+      this.set('selectedPhysicalAsset', pa);
+      this.togglePhysicalAssetSelection(pa);
     },
 
-    showEnrichmentCandidates: function(digObj, topic) {
+    showEnrichmentCandidates: function(pa, topic) {
       this.set('topic', topic);
-      this.set('selectedDigitalObject', digObj);
-      this.selectDigitalObject(digObj);
+      this.set('selectedPhysicalAsset', pa);
+      this.selectPhysicalAsset(pa);
     },
 
     clickedTopic: function(topic) {
-      var selectedDigitalObject = this.get('selectedDigitalObject'),
-        currentTopics = selectedDigitalObject.get('semMD.topics');
+      var selectedPhysicalAsset = this.get('selectedPhysicalAsset'),
+        currentTopics = selectedPhysicalAsset.get('semMD.topics');
 
       var selectedTopic = currentTopics.find(function(item) {
         return topic.get('label') === item.label;
@@ -239,12 +239,12 @@ export default Ember.Controller.extend({
       }
     },
 
-    removeTopic: function(digObj, topic) {
+    removeTopic: function(pa, topic) {
       this.set('topic', null);
-      this.set('selectedDigitalObject', digObj);
-      this.selectDigitalObject(digObj);
+      this.set('selectedPhysicalAsset', pa);
+      this.selectPhysicalAsset(pa);
 
-      digObj.get('semMD.topics').removeObject(topic);
+      pa.get('semMD.topics').removeObject(topic);
     },
 
     closeToolUI() {
