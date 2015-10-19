@@ -1,8 +1,5 @@
 import Ember from 'ember';
 import DURAARK from 'workbench-ui/bindings/duraark';
-import ENV from '../../config/environment';
-
-var sdaEndpoint = ENV.DURAARKAPI.sda;
 
 export default Ember.Controller.extend({
   selectedPhysicalAsset: null,
@@ -223,7 +220,7 @@ export default Ember.Controller.extend({
 
           if (!t.candidates.length) {
             var topicCrawler = new DURAARK.TopicCrawler({
-                apiEndpoint: sdaEndpoint,
+                apiEndpoint: this.duraark.getAPIEndpoint('sda'),
               }),
               crawlId = t.crawlId;
 

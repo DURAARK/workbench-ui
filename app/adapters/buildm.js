@@ -1,10 +1,5 @@
 import Ember from 'ember';
 import ApplicationAdapter from './application';
-import ENV from '../config/environment';
-
-var apiConfig = ENV.DURAARKAPI.metadata;
-
-console.log('Connecting to "metadata/buildm" API via: ' + apiConfig.host);
 
 export
 default ApplicationAdapter.extend({

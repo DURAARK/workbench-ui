@@ -1,8 +1,6 @@
 import Ember from 'ember';
-import ENV from '../../config/environment';
 
-var sipGeneratorEndpoint = ENV.DURAARKAPI.digitalpreservation,
-  enableRosettaDeposit = false;
+var enableRosettaDeposit = false;
 
 function post(url, data) {
   var that = this;
@@ -39,7 +37,7 @@ export default Ember.Controller.extend({
         console.log('Schedule Rosetta SIP creation and deposit ...');
 
         let session = this.get('session'),
-          url = sipGeneratorEndpoint.host + '/sip',
+          url = this.duraark.getAPIEndpoint('digitalpreservation') + '/sip',
           controller = this;
 
         var plainSession = {};
@@ -70,7 +68,7 @@ export default Ember.Controller.extend({
       console.log('Schedule BagIt SIP creation ...');
 
       let session = this.get('session'),
-        url = sipGeneratorEndpoint.host + '/sip',
+        url = this.duraark.getAPIEndpoint('digitalpreservation') + '/sip',
         controller = this;
 
       var plainSession = {};
@@ -89,7 +87,7 @@ export default Ember.Controller.extend({
 
       _post(url, body).then(function(result) {
         console.log('Sucessfully created BagIt SIP at: ' + JSON.stringify(result, 4, null));
-        console.log('Download-URL: ' + sipGeneratorEndpoint.host + result.url);
+        console.log('Download-URL: ' + controller.duraark.getAPIEndpoint('digitalpreservation') + result.url);
 
         function downloadURL(url) {
           var hiddenIFrameID = 'hiddenDownloader',
@@ -105,8 +103,8 @@ export default Ember.Controller.extend({
           controller.set('bagIsCreating', false);
         };
 
-        console.log('Downloading from: ' + sipGeneratorEndpoint.host + result.url);
-        downloadURL(sipGeneratorEndpoint.host + result.url);
+        console.log('Downloading from: ' + controller.duraark.getAPIEndpoint('digitalpreservation') + result.url);
+        downloadURL(controller.duraark.getAPIEndpoint('digitalpreservation') + result.url);
       }).catch(function(err) {
         controller.set('bagIsCreating', false);
         throw new Error(err);
