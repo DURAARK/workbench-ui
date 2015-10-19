@@ -108,6 +108,15 @@ export default Ember.Controller.extend({
     }
   },
 
+  // setDigitalObjectHighlight(digObj) {
+  //   this.get('digitalObjects').forEach(function(obj) {
+  //     obj.set('isSelected', false);
+  //   });
+  //
+  //   digObj.set('isSelected', true);
+  //   this.set('selectedDigitalObject', digObj);
+  // },
+
   selectDigitalObject: function(digObj) {
     var flag = digObj.get('isSelected');
 
@@ -183,13 +192,15 @@ export default Ember.Controller.extend({
     },
 
     showTopicSelection: function(digObj) {
+      this.set('topic', null);
       this.set('selectedDigitalObject', digObj);
       this.toggleDigitalObjectSelection(digObj);
     },
 
-    showSelectedTopic: function(digObj, topic) {
-      this.set('selectedDigitalObject', null);
+    showEnrichmentCandidates: function(digObj, topic) {
       this.set('topic', topic);
+      this.set('selectedDigitalObject', digObj);
+      this.selectDigitalObject(digObj);
     },
 
     clickedTopic: function(topic) {
@@ -228,24 +239,25 @@ export default Ember.Controller.extend({
             // console.log('crawlId: ' + crawlId);
 
             if (crawlId === -1) {
-            this.initiateCrawl(topicCrawler, t);
+              this.initiateCrawl(topicCrawler, t);
             } else {
               this.askForCandidates(topicCrawler, t);
             }
           }
         }
       }
-
-      // this.send('save');
     },
 
     removeTopic: function(digObj, topic) {
-      // Set the 'selectedDigitalObject' property to the file the topic belongs to:
+      this.set('topic', null);
+      this.set('selectedDigitalObject', digObj);
       this.selectDigitalObject(digObj);
 
       digObj.get('semMD.topics').removeObject(topic);
+    },
 
-      // this.send('save');
+    closeToolUI() {
+      this.set('topic', null);
     }
   }
 });
