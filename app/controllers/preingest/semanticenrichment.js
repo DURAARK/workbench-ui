@@ -108,15 +108,6 @@ export default Ember.Controller.extend({
     }
   },
 
-  // setDigitalObjectHighlight(digObj) {
-  //   this.get('digitalObjects').forEach(function(obj) {
-  //     obj.set('isSelected', false);
-  //   });
-  //
-  //   digObj.set('isSelected', true);
-  //   this.set('selectedDigitalObject', digObj);
-  // },
-
   selectDigitalObject: function(digObj) {
     var flag = digObj.get('isSelected');
 

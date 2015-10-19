@@ -78,19 +78,15 @@ export default Ember.Controller.extend({
     },
 
     showToolSelection: function(digObj) {
+      this.set('tool', null);
       this.set('selectedDigitalObject', digObj);
       this.toggleDigitalObjectSelection(digObj);
     },
 
     showToolUI: function(digObj, tool) {
-      let curDigitalObject = this.get('selectedDigitalObject');
-
-      if (curDigitalObject && curDigitalObject.get('path') != digObj.get('path')) {
-        this.toggleDigitalObjectSelection(digObj);
-      }
-
-      this.set('selectedDigitalObject', digObj);
       this.set('tool', tool);
+      this.set('selectedDigitalObject', digObj);
+      this.selectDigitalObject(digObj);
     },
 
     closeToolUI: function() {
