@@ -90,7 +90,7 @@ export default Ember.Controller.extend({
 
           if (!hasPA) {
             // FIXXME: how to combine pa data from all files?
-            var paMD = (hasMetadata) ? file.get('metadata').physicalAsset : {
+            var paMD = (hasMetadata && file.get('metadata') && file.get('metadata').physicalAsset) ? file.get('metadata').physicalAsset : {
               '@type': 'http://data.duraark.eu/vocab/buildm/PhysicalAsset',
               'http://data.duraark.eu/vocab/buildm/name': [{
                 '@value': 'Nygade Building'
@@ -232,7 +232,7 @@ export default Ember.Controller.extend({
 
   createDigitalObjectFromFile(file, hasMetadata) {
     var name = file.get('path').split('/').pop();
-    var daMD = (hasMetadata) ? file.get('metadata').digitalObject : {
+    var daMD = (hasMetadata && file.get('metadata') && file.get('metadata').digitalObject) ? file.get('metadata').digitalObject : {
       '@type': 'http://data.duraark.eu/vocab/buildm/E57File',
       'http://data.duraark.eu/vocab/buildm/name': [{
         '@value': name
@@ -357,7 +357,10 @@ export default Ember.Controller.extend({
       md.set('path', file.get('path'));
       md.set('type', file.get('type'));
 
+            controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
       md.save().then(function(result) {
+
+                    controller.send('showLoadingSpinner', false);
         if (result.get('extractionErrors')) {
           return reject(result.get('extractionErrors'));
         }

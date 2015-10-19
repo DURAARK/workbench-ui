@@ -40,7 +40,6 @@ default Ember.Route.extend({
       //         controller.set('files', availableFiles);
       //
       //         let selectedFiles = model.get('files');
-      // debugger;
       //         router.send('highlightSelectedFiles', availableFiles, selectedFiles);
       //
       //         controller.send('showLoadingSpinner', false);
