@@ -30,39 +30,40 @@ export default Ember.Component.extend({
           apiEndpoint: this.duraark.getAPIEndpoint('sda')
         });
 
-        let candidates = topicCrawler.getCandidates(topic.crawlId);
-        candidates = [{
-          entity: 'http://blablub.at',
-          score: 1
-        },{
-          entity: 'http://biblob.at',
-          score: 1
-        },{
-          entity: 'http://biblob.at',
-          score: 1
-        },{
-          entity: 'http://biblob.at',
-          score: 1
-        },{
-          entity: 'http://biblob.at',
-          score: 1
-        },{
-          entity: 'http://biblob.at',
-          score: 1
-        },{
-          entity: 'http://biblob.at',
-          score: 1
-        },{
-          entity: 'http://biblob.at',
-          score: 1
-        },{
-          entity: 'http://biblob.at',
-          score: 1
-        },{
-          entity: 'http://biblob.at',
-          score: 1
-        }];
-        this.set('topic.candidateSelection', candidates);
+        this.set('topic.candidateSelection', topicCrawler.getCandidates(topic.crawlId));
+        // let candidates = topicCrawler.getCandidates(topic.crawlId);
+        // candidates = [{
+        //   entity: 'http://blablub.at',
+        //   score: 1
+        // },{
+        //   entity: 'http://biblob.at',
+        //   score: 1
+        // },{
+        //   entity: 'http://biblob.at',
+        //   score: 1
+        // },{
+        //   entity: 'http://biblob.at',
+        //   score: 1
+        // },{
+        //   entity: 'http://biblob.at',
+        //   score: 1
+        // },{
+        //   entity: 'http://biblob.at',
+        //   score: 1
+        // },{
+        //   entity: 'http://biblob.at',
+        //   score: 1
+        // },{
+        //   entity: 'http://biblob.at',
+        //   score: 1
+        // },{
+        //   entity: 'http://biblob.at',
+        //   score: 1
+        // },{
+        //   entity: 'http://biblob.at',
+        //   score: 1
+        // }];
+        // this.set('topic.candidateSelection', candidates);
       }
   }
 });

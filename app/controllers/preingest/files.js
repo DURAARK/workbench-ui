@@ -218,21 +218,21 @@ export default Ember.Controller.extend({
 
     addFiles: function(uploadedFiles) {
       let files = this.get('files'),
-      controller = this;
+        controller = this;
 
       if (!files) {
         files = [];
+        controller.set('files', files);
       }
 
-      _.forEach(uploadedFiles, function(file) {
-        // The uploaded files are stored in the 'uploads' folder on the server. They have to
-        // be moved to this session's folder before proceeding:
-        controller.duraark.addFilesToSession(uploadedFiles, controller.get('session'));
-        var record = controller.store.createRecord('file', file);
-        files.pushObject(record);
-      })
-
-      controller.set('files', files);
+      // The uploaded files are stored in the 'uploads' folder on the server. They have to
+      // be moved to this session's folder before proceeding:
+      controller.duraark.addFilesToSession(uploadedFiles, controller.get('session')).then(function(session) {
+        _.forEach(session.files, function(file) {
+          var record = controller.store.createRecord('file', file);
+          files.pushObject(record);
+        });
+      });
     },
 
     closeToolUI() {
@@ -253,7 +253,7 @@ export default Ember.Controller.extend({
 
     if (isIfcFile) {
       daMD['@id'] = _generateURI('http://data.duraark.eu/vocab/buildm/IFCSPFFile'),
-      daMD['@type'] = 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
+        daMD['@type'] = 'http://data.duraark.eu/vocab/buildm/IFCSPFFile';
     }
 
     daMD['http://data.duraark.eu/vocab/buildm/name'] = [{
@@ -370,10 +370,10 @@ export default Ember.Controller.extend({
       md.set('path', file.get('path'));
       md.set('type', file.get('type'));
 
-            controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
+      controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
       md.save().then(function(result) {
 
-                    controller.send('showLoadingSpinner', false);
+        controller.send('showLoadingSpinner', false);
         if (result.get('extractionErrors')) {
           return reject(result.get('extractionErrors'));
         }

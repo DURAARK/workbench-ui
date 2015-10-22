@@ -95,7 +95,8 @@ export default Ember.Controller.extend({
 
     clickedTool: function(tool) {
       var selectedDigitalObject = this.get('selectedDigitalObject'),
-        currentTools = selectedDigitalObject.get('geoMD.tools');
+        currentTools = selectedDigitalObject.get('geoMD.tools'),
+        duraark = this.duraark;
 
       var selectedTool = currentTools.find(function(item) {
         return tool.get('label') === item.label;
@@ -103,19 +104,6 @@ export default Ember.Controller.extend({
 
       var path = selectedDigitalObject.get('path'),
         derivative = null;
-
-      // FIXXME!
-      if (tool.get('label') === 'IFC Reconstruction') {
-        if (path.endsWith('Nygade_Scan1001.e57')) {
-          derivative = {
-            path: '/duraark-storage/files/Nygade_Scan1001_RECONSTRUCTED.ifc'
-          };
-        } else if (path.endsWith('Plan3D_OG_subsampled.e57')) {
-          derivative = {
-            path: '/duraark-storage/files/Plan3D_OG_subsampled_RECONSTRUCTED.ifc'
-          };
-        }
-      }
 
       if (selectedTool) {
         currentTools.removeObject(selectedTool);
@@ -129,7 +117,9 @@ export default Ember.Controller.extend({
         // have the same tool assigned.
         var t = Ember.Object.create({
           label: tool.get('label'),
-          description: tool.get('description')
+          description: tool.get('description'),
+          isLoading: true,
+          hasError: false
         });
 
         // FIXXME: delegate this over to duraark-geometricenrichment service!
@@ -139,6 +129,56 @@ export default Ember.Controller.extend({
           t.set('hypothesisImages', tool.get('hypothesisImages'));
         }
         currentTools.pushObject(t);
+
+        // FIXXME: refactor and cleanup!
+        if (t.get('label') === 'Reconstruct BIM Model') {
+          let filename = selectedDigitalObject.get('path');
+          console.log('filename: ' + filename);
+          this.duraark.getIFCReconstruction(filename).then(function(pc2bim) {
+            console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
+            let that = this;
+            if (pc2bim.status === 'finished') {
+              console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
+              t.set('isLoading', false);
+              t.hasError('hasError', false);
+            }
+
+            if (pc2bim.status === 'error') {
+              t.set('hasError', true);
+              t.set('isLoading', false);
+            }
+            
+            if (pc2bim.status === 'pending') {
+              t.set('isLoading', true);
+              t.set('hasError', false);
+
+              var timer = setInterval(function() {
+                console.log('requesting pc2bim status for file: ' + pc2bim.inputFile);
+                duraark.getIFCReconstruction(filename).then(function(pc2bim) {
+                  console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
+
+                  if (pc2bim.status === 'finished') {
+                    console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
+                    t.set('isLoading', false);
+                    t.hasError('hasError', false);
+                    clearInterval(timer);
+                  }
+
+                  if (pc2bim.status === 'pending') {
+                    t.set('isLoading', true);
+                    t.set('hasError', false);
+                  }
+
+                  if (pc2bim.status === 'error') {
+                    t.set('hasError', true);
+                    t.set('isLoading', false);
+                    clearInterval(timer);
+                  }
+                });
+              }, 2000);
+            }
+          });
+        }
 
         if (derivative) {
           selectedDigitalObject.derivatives.push(derivative);

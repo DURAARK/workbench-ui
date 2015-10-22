@@ -11,7 +11,7 @@ export default Ember.Service.extend({
   sessionsEndpoint: defaultHost + '/api/v0.7/sessions',
   metadataEndpoint: defaultHost + '/api/v0.7/metadata',
   sdaEndpoint: defaultHost + '/api/v0.7/sda',
-  geometricEnrichmentEndpoint: defaultHost + '/api/v0.7/geometricEnrichment',
+  geometricEnrichmentEndpoint: defaultHost + '/api/v0.7/geometricenrichment',
   digitalPreservationEndpoint: defaultHost + '/api/v0.7/digitalPreservation',
 
   vocabBase: 'http://data.duraark.eu/vocab/buildm/',
@@ -204,14 +204,21 @@ export default Ember.Service.extend({
   },
 
   addFilesToSession(files, session) {
-    let sessionsEndpoint = this.getAPIEndpoint('sessions') + '/sessions/addFilesToSession',
-      sessionId = session.get('id');
+    let duraark = this;
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      let sessionsEndpoint = duraark.getAPIEndpoint('sessions') + '/sessions/addFilesToSession',
+        sessionId = session.get('id');
 
       console.log('sessionId: ' + sessionId);
-      this._post(sessionsEndpoint, {
+      duraark._post(sessionsEndpoint, {
         sessionId: sessionId,
         files: files
+      }).then(function(session) {
+        resolve(session);
+      }).catch(function(err) {
+        reject(err);
       });
+    });
   },
 
   storeInSDAS(session) {
@@ -305,6 +312,22 @@ export default Ember.Service.extend({
     let url = sdaEndpoint + '/?uri=' + uri;
 
     return duraark._get(url);
+  },
+
+  getIFCReconstruction(inputFile) {
+    let duraark = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      let geometricEnrichmentEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/pc2bim';
+
+      duraark._post(geometricEnrichmentEndpoint, {
+        inputFile: inputFile
+      }).then(function(pc2bim) {
+        resolve(pc2bim);
+      }).catch(function(err) {
+        reject(err);
+      });
+    })
   },
 
   _get(url) {

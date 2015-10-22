@@ -1,14 +1,18 @@
 <div class="l-file c-file">
 	<div {{action "infoClicked" tool}} style="position: relative;">
-		<!-- {{#if tool.isLoading}}
-			{{loading-spinner-small}}
-		{{/if}} -->
 
 		<div class="c-tool-item__header">
-		Details &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
-			<!-- <span style="float: right; margin-right: 2.9em; margin-top: 0.1em;">
-					<i class="fa fa-info-circle"></i>
-				</span> -->
+			{{log tool}}
+			{{#if tool.hasData}}
+				Details &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+			{{/if}}
+			{{#if tool.isLoading}}
+				Loading &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+				<!-- {{loading-spinner-small}} -->
+			{{/if}}
+			{{#if tool.hasError}}
+				Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+			{{/if}}
 		</div>
 
 		<div class="c-file__name" style="text-align: center;">
