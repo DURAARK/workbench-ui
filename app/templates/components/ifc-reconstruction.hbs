@@ -1,19 +1,17 @@
 <div class="c-ifc-reconstruction-tool">
-  {{#if wallConfig}}
-    {{duraark-floorplan wallConfig=wallConfig roomClicked="roomClicked"}}
-  {{else}}
-    The reconstruction process generates a BIM model based on the point cloud information. The generated model is stored as IFC file within the archive.
-
+  {{#if tool.hasError}}
+    The BIM reconstruction failed. The error message was:
     <br>
-    <br> Currently the reconstruction is in progress, the IFC model will be available in a few minutes or hours, depending on the file size of the point cloud scan.
+    <br> {{tool.errorText}}
+  {{else}}
+
+    {{#unless tool.isLoading}}
+      {{duraark-ifc-viewer}}
+    {{else}}
+      The reconstruction process generates a BIM model based on the point cloud information. The generated model is stored as IFC file within the archive.
+
+      <br>
+      <br> Currently the reconstruction is in progress, the IFC model will be available in a few minutes or hours, depending on the file size of the point cloud scan.
+    {{/unless}}
   {{/if}}
-
-  <!-- <br><br>
-
-  <ul>
-    <li>Number of rooms: {{tool.rooms}}</li>
-    <li>Number of walls: {{tool.walls}}</li>
-    <li>Total area: {{tool.area}}</li>
-  </ul> -->
-
 </div>

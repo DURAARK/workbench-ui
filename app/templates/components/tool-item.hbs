@@ -2,12 +2,11 @@
 	<div {{action "infoClicked" tool}} style="position: relative;">
 
 		<div class="c-tool-item__header">
-			{{log tool}}
 			{{#if tool.hasData}}
 				Details &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
 			{{/if}}
 			{{#if tool.isLoading}}
-				Loading &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+				Processing &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
 				<!-- {{loading-spinner-small}} -->
 			{{/if}}
 			{{#if tool.hasError}}

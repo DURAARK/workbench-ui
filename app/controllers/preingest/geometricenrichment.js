@@ -96,6 +96,7 @@ export default Ember.Controller.extend({
     clickedTool: function(tool) {
       var selectedDigitalObject = this.get('selectedDigitalObject'),
         currentTools = selectedDigitalObject.get('geoMD.tools'),
+        controller = this,
         duraark = this.duraark;
 
       var selectedTool = currentTools.find(function(item) {
@@ -112,45 +113,48 @@ export default Ember.Controller.extend({
           selectedDigitalObject.derivatives.splice(idx, 1);
         }
       } else {
-        // Create new instance of tool to be added to 'geoMD.tools'. It is not
-        // possible to directly use the 'tool' instance, as multiple files can
-        // have the same tool assigned.
-        var t = Ember.Object.create({
-          label: tool.get('label'),
-          description: tool.get('description'),
-          isLoading: true,
-          hasError: false
-        });
-
-        // FIXXME: delegate this over to duraark-geometricenrichment service!
-        if (t.get('label') === 'Electrical Appliance Detection') {
-          t.set('electDetectImages', tool.get('elecDetectImages'));
-          t.set('ruleSetImages', tool.get('ruleSetImages'));
-          t.set('hypothesisImages', tool.get('hypothesisImages'));
-        }
-        currentTools.pushObject(t);
-
         // FIXXME: refactor and cleanup!
-        if (t.get('label') === 'Reconstruct BIM Model') {
+        if (tool.get('label') === 'Reconstruct BIM Model') {
           let filename = selectedDigitalObject.get('path');
           console.log('filename: ' + filename);
           this.duraark.getIFCReconstruction(filename).then(function(pc2bim) {
-            console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
-            let that = this;
+            // Create new instance of tool to be added to 'geoMD.tools'. It is not
+            // possible to directly use the 'tool' instance, as multiple files can
+            // have the same tool assigned.
+            var t = Ember.Object.create({
+              label: tool.get('label'),
+              description: tool.get('description'),
+              isLoading: true,
+              hasError: false
+            });
+
+            // FIXXME: delegate this over to duraark-geometricenrichment service!
+            if (t.get('label') === 'Electrical Appliance Detection') {
+              t.set('electDetectImages', tool.get('elecDetectImages'));
+              t.set('ruleSetImages', tool.get('ruleSetImages'));
+              t.set('hypothesisImages', tool.get('hypothesisImages'));
+            }
+
+            // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
+
             if (pc2bim.status === 'finished') {
               console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
               t.set('isLoading', false);
-              t.hasError('hasError', false);
+              t.set('hasError', false);
+              t.set('hasData', true);
             }
 
             if (pc2bim.status === 'error') {
               t.set('hasError', true);
               t.set('isLoading', false);
+              t.set('errorText', pc2bim.errorText);
+              t.set('hasData', false);
             }
-            
+
             if (pc2bim.status === 'pending') {
               t.set('isLoading', true);
               t.set('hasError', false);
+              t.set('hasData', false);
 
               var timer = setInterval(function() {
                 console.log('requesting pc2bim status for file: ' + pc2bim.inputFile);
@@ -177,12 +181,15 @@ export default Ember.Controller.extend({
                 });
               }, 2000);
             }
+
+            var digObj = controller.get('selectedDigitalObject');
+            digObj.get('geoMD.tools').pushObject(t);
           });
         }
 
-        if (derivative) {
-          selectedDigitalObject.derivatives.push(derivative);
-        }
+        // if (derivative) {
+        //   selectedDigitalObject.derivatives.push(derivative);
+        // }
       }
 
       this.send('save');
