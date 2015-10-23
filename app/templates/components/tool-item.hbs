@@ -3,19 +3,25 @@
 
 		<div class="c-tool-item__header">
 			{{#if tool.hasData}}
-				Details &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+				Show Result &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
 			{{/if}}
 			{{#if tool.isLoading}}
-				Processing &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+				Processing ...
 				<!-- {{loading-spinner-small}} -->
 			{{/if}}
 			{{#if tool.hasError}}
-				Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+				Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
 			{{/if}}
 		</div>
 
 		<div class="c-file__name" style="text-align: center;">
-			{{tool.label}}
+			{{tool.label}}<br>
+			{{#if tool.isLoading}}
+			...
+			{{/if}}
+			{{#if tool.hasError}}
+			Failure!
+			{{/if}}
 		</div>
 
 	</div>

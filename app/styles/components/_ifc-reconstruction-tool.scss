@@ -7,3 +7,22 @@
   width: 100%;
   height: 100%;
 }
+.c-ifc-reconstruction-tool__retry {
+  display: inline;
+  margin: 2em;
+}
+.c-ifc-reconstruction-tool__error-header {
+  text-align: center;
+}
+.c-ifc-reconstruction-tool__error {
+  margin-top: 1em;
+  padding: 1em;
+
+  background: grey;
+
+  border-radius: 4px;
+
+  > h2 {
+    text-align: center;
+  }
+}

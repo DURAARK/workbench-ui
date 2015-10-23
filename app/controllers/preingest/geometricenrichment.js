@@ -111,6 +111,7 @@ export default Ember.Controller.extend({
               isLoading: true,
               hasError: false,
               hasData: false,
+              downloadUrl: null,
               filename: filename
             });
 
@@ -128,6 +129,7 @@ export default Ember.Controller.extend({
               t.set('isLoading', false);
               t.set('hasError', false);
               t.set('hasData', true);
+              t.set('downloadUrl', pc2bim.downloadUrl);
             }
 
             if (pc2bim.status === 'error') {
@@ -154,6 +156,7 @@ export default Ember.Controller.extend({
                     console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
                     t.set('isLoading', false);
                     t.set('hasError', false);
+                    t.set('downloadUrl', pc2bim.downloadUrl);
                     clearInterval(timer);
                   }
 

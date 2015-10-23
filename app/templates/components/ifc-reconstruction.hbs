@@ -1,15 +1,23 @@
 <div class="l-ifc-reconstruction-tool c-ifc-reconstruction-tool">
   {{#if tool.hasError}}
-    The BIM reconstruction failed. The error message was:
-    <br>
-    <br> {{tool.errorText}}
+    <h2 class="c-ifc-reconstruction-tool__error-header">
+      Reconstruction failed!
+    </h2>
 
-    <div>
-      <button {{action 'retry'}} class="o-selection-button__button">Retry</button>
+    <div style="text-align: center; width: 100%">
+      <button {{action "retry"}} class="c-ifc-reconstruction-tool__retry"><i class="fa fa-refresh"></i> Retry</button>
     </div>
+
+    <div class="c-ifc-reconstruction-tool__error">
+      <h2>Error</h2>
+      <br>
+      {{tool.errorText}}
+    </div>
+
   {{else}}
 
     {{#unless tool.isLoading}}
+      <button {{action "download"}} class="c-ifc-reconstruction-tool__download">Download</button>
       <div class="c-ifc-reconstruction-tool__viewer">
         {{duraark-ifc-viewer}}
       </div>
