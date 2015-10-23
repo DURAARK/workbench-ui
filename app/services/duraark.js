@@ -314,15 +314,13 @@ export default Ember.Service.extend({
     return duraark._get(url);
   },
 
-  getIFCReconstruction(inputFile) {
+  getIFCReconstruction(config) {
     let duraark = this;
-
+config.restart = true;
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let geometricEnrichmentEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/pc2bim';
 
-      duraark._post(geometricEnrichmentEndpoint, {
-        inputFile: inputFile
-      }).then(function(pc2bim) {
+      duraark._post(geometricEnrichmentEndpoint, config).then(function(pc2bim) {
         resolve(pc2bim);
       }).catch(function(err) {
         reject(err);

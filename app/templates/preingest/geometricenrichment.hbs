@@ -1,5 +1,9 @@
 <div class="l-page-with-header-and-workflow-steps">
 
+  {{#if app.showLoadingSpinner}}
+    {{loading-spinner-center}}
+  {{/if}}
+
   <div class="c-workflow-page">
     {{#workflow-step-header onNext="next" onBack="back" }}
       <header><i class="fa fa-building-o"></i>&nbsp; 3 | GEOMETRIC TOOLS</header>
@@ -17,7 +21,6 @@
               {{digital-object-sementic item=do select="showToolSelection"}}
 
               {{#each do.geoMD.tools as |tool| }}
-              <h1>#Tools: {{do.geoMD.tools.length}}</h1>
                 {{tool-item tool=tool item=do infoClicked="showToolUI" remove="removeTool" }}
               {{/each}}
             </div>

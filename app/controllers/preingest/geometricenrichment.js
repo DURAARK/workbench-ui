@@ -117,7 +117,13 @@ export default Ember.Controller.extend({
         if (tool.get('label') === 'Reconstruct BIM Model') {
           let filename = selectedDigitalObject.get('path');
           console.log('filename: ' + filename);
-          this.duraark.getIFCReconstruction(filename).then(function(pc2bim) {
+
+          controller.send('showLoadingSpinner', true, 'Scheduling BIM reconstruction ...');
+
+          this.duraark.getIFCReconstruction({
+            inputFile: filename,
+            restart: false
+          }).then(function(pc2bim) {
             // Create new instance of tool to be added to 'geoMD.tools'. It is not
             // possible to directly use the 'tool' instance, as multiple files can
             // have the same tool assigned.
@@ -158,7 +164,10 @@ export default Ember.Controller.extend({
 
               var timer = setInterval(function() {
                 console.log('requesting pc2bim status for file: ' + pc2bim.inputFile);
-                duraark.getIFCReconstruction(filename).then(function(pc2bim) {
+                duraark.getIFCReconstruction({
+                  inputFile: filename,
+                  restart: false
+                }).then(function(pc2bim) {
                   console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
 
                   if (pc2bim.status === 'finished') {
@@ -184,6 +193,8 @@ export default Ember.Controller.extend({
 
             var digObj = controller.get('selectedDigitalObject');
             digObj.get('geoMD.tools').pushObject(t);
+
+            controller.send('showLoadingSpinner', false);
           });
         }
 

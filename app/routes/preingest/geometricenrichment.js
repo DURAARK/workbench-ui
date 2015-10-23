@@ -100,5 +100,7 @@ export default Ember.Route.extend({
     this.send('setTitle', 'Archive Buildings - ' + label);
     this.send('showWorkflowSteps', true);
     this.send('setActiveStep', 'geometricenrichment');
+
+    controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!    
   }
 });
