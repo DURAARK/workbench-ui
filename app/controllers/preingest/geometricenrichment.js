@@ -131,7 +131,9 @@ export default Ember.Controller.extend({
               label: tool.get('label'),
               description: tool.get('description'),
               isLoading: true,
-              hasError: false
+              hasError: false,
+              hasData: false,
+              filename: filename
             });
 
             // FIXXME: delegate this over to duraark-geometricenrichment service!
@@ -188,7 +190,7 @@ export default Ember.Controller.extend({
                     clearInterval(timer);
                   }
                 });
-              }, 2000);
+              }, 10000);
             }
 
             var digObj = controller.get('selectedDigitalObject');

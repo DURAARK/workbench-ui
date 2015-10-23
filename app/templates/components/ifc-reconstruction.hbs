@@ -1,4 +1,4 @@
-<div class="c-ifc-reconstruction-tool">
+<div class="l-ifc-reconstruction-tool c-ifc-reconstruction-tool">
   {{#if tool.hasError}}
     The BIM reconstruction failed. The error message was:
     <br>
@@ -10,7 +10,9 @@
   {{else}}
 
     {{#unless tool.isLoading}}
-      {{duraark-ifc-viewer}}
+      <div class="c-ifc-reconstruction-tool__viewer">
+        {{duraark-ifc-viewer}}
+      </div>
   {{else}}
     The reconstruction process generates a BIM model based on the point cloud information. The generated model is stored as IFC file within the archive.
 
