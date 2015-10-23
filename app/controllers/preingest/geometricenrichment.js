@@ -8,14 +8,14 @@ export default Ember.Controller.extend({
     save: function() {
       var session = this.get('session');
 
-      session.get('digitalObjects').forEach(function(digObj) {
-        // FIXXME: remove ember-data and plain javascript models ASAP!
-        if (_.isFunction(digObj.get)) {
-          let geoMD = digObj.get('geoMD'),
-            tmp = JSON.parse(JSON.stringify(geoMD));
-          digObj.set('geoMD', tmp);
-        }
-      });
+      // session.get('digitalObjects').forEach(function(digObj) {
+      //   // FIXXME: remove ember-data and plain javascript models ASAP!
+      //   if (_.isFunction(digObj.get)) {
+      //     let geoTools = digObj.get('geoTools'),
+      //       tmp = JSON.parse(JSON.stringify(geoTools));
+      //     digObj.set('geoTools', tmp);
+      //   }
+      // });
 
       session.save().catch(function(err) {
         throw new Error(err);
@@ -25,17 +25,6 @@ export default Ember.Controller.extend({
     next: function() {
       var session = this.get('session'),
         controller = this;
-
-      if (session.get('digitalObjects')) {
-        session.get('digitalObjects').forEach(function(digObj) {
-          // FIXXME: remove ember-data and plain javascript models ASAP!
-          if (_.isFunction(digObj.get)) {
-            let geoMD = digObj.get('geoMD'),
-              tmp = JSON.parse(JSON.stringify(geoMD));
-            digObj.set('geoMD', tmp);
-          }
-        });
-      }
 
       session.save().then(function(session) {
         if (session.get('digitalObjects')) {
@@ -50,17 +39,6 @@ export default Ember.Controller.extend({
     back: function() {
       var session = this.get('session'),
         controller = this;
-
-      if (session.get('digitalObjects')) {
-        session.get('digitalObjects').forEach(function(digObj) {
-          // FIXXME: remove ember-data and plain javascript models ASAP!
-          if (_.isFunction(digObj.get)) {
-            let geoMD = digObj.get('geoMD'),
-              tmp = JSON.parse(JSON.stringify(geoMD));
-            digObj.set('geoMD', tmp);
-          }
-        });
-      }
 
       session.save().then(function(session) {
         controller.transitionToRoute('preingest.metadata', session);
@@ -95,7 +73,7 @@ export default Ember.Controller.extend({
 
     clickedTool: function(tool) {
       var selectedDigitalObject = this.get('selectedDigitalObject'),
-        currentTools = selectedDigitalObject.get('geoMD.tools'),
+        currentTools = selectedDigitalObject.get('geoTools'),
         controller = this,
         duraark = this.duraark;
 
@@ -124,7 +102,7 @@ export default Ember.Controller.extend({
             inputFile: filename,
             restart: false
           }).then(function(pc2bim) {
-            // Create new instance of tool to be added to 'geoMD.tools'. It is not
+            // Create new instance of tool to be added to 'geoTools'. It is not
             // possible to directly use the 'tool' instance, as multiple files can
             // have the same tool assigned.
             var t = Ember.Object.create({
@@ -175,7 +153,7 @@ export default Ember.Controller.extend({
                   if (pc2bim.status === 'finished') {
                     console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
                     t.set('isLoading', false);
-                    t.hasError('hasError', false);
+                    t.set('hasError', false);
                     clearInterval(timer);
                   }
 
@@ -193,9 +171,15 @@ export default Ember.Controller.extend({
               }, 10000);
             }
 
-            var digObj = controller.get('selectedDigitalObject');
-            digObj.get('geoMD.tools').pushObject(t);
+            var digObj = controller.get('selectedDigitalObject'),
+              session = controller.get('session');
 
+            // var selectedDigObj = session.get('digitalObjects').find(function(dob) {
+            //   return dob.get('label') === digObj.get('label');
+            // });
+            digObj.get('geoTools').pushObject(t);
+
+            controller.send('save');
             controller.send('showLoadingSpinner', false);
           });
         }
@@ -204,14 +188,12 @@ export default Ember.Controller.extend({
         //   selectedDigitalObject.derivatives.push(derivative);
         // }
       }
-
-      this.send('save');
     },
 
     removeTool: function(digObj, topic) {
       // Set the 'selectedDigitalObject' property to the file the topic belongs to:
       this.selectDigitalObject(digObj);
-      digObj.get('geoMD.tools').removeObject(topic);
+      digObj.get('geoTools').removeObject(topic);
 
       this.send('closeToolUI');
       this.send('save');
@@ -239,7 +221,7 @@ export default Ember.Controller.extend({
     let allTools = this.get('allTools'),
       configuredTools = this.get('session.config.geometricenrichment.tools'),
       selectedDigitalObject = this.get('selectedDigitalObject'),
-      digObjTools = selectedDigitalObject.get('geoMD.tools'),
+      digObjTools = selectedDigitalObject.get('geoTools'),
       shownTools = [];
 
     // NOTE: we enable all tools for all datasets, bypassing the custom config
@@ -268,7 +250,7 @@ export default Ember.Controller.extend({
     });
 
     return shownTools;
-  }.property('session.config', 'selectedDigitalObject.geoMD.tools.[]'),
+  }.property('session.config', 'selectedDigitalObject.geoTools.[]'),
 
   toggleDigitalObjectSelection: function(digObj) {
     var flag = digObj.get('isSelected');

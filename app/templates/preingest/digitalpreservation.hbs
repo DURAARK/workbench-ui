@@ -37,7 +37,7 @@
 							{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic" static=true}}
 						{{/each}}
 
-						{{#each do.geoMD.tools as |tool|}}
+						{{#each do.geoTools as |tool|}}
 							{{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo" static=true}}
 						{{/each}}
 					</div>

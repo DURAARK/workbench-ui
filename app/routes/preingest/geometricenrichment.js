@@ -24,31 +24,11 @@ export default Ember.Route.extend({
 
     if (session.get('digitalObjects')) {
       session.get('digitalObjects').forEach(function(digObj) {
-        var geoMD = digObj.geoMD;
-
-        if (!geoMD) {
-          geoMD = Ember.Object.create({
-            tools: []
-          });
-        } else {
-          geoMD = Ember.Object.create({
-            tools: digObj.geoMD.tools
-          });
-        }
-
-        var tools = [];
-
-        _.forEach(geoMD.tools, function(tool) {
-          tools.pushObject(Ember.Object.create(tool));
-        });
-
-        geoMD.set('tools', tools);
-
         var obj = Ember.Object.create({
           label: digObj.label,
           buildm: digObj.buildm,
           semMD: Ember.Object.create(digObj.semMD),
-          geoMD: Ember.Object.create(geoMD),
+          geoTools: digObj.geoTools ? digObj.geoTools : [],
           techMD: digObj.techMD,
           derivatives: [], // FIXXME?
           size: digObj.size,
@@ -92,6 +72,7 @@ export default Ember.Route.extend({
     });
 
     controller.set('allTools', tools);
+    controller.set('selectedDigitalObject', null);
 
     // setup 'duraark-header' component ('setSession' has to be called first!):
     this.send('setSession', model);
@@ -101,6 +82,6 @@ export default Ember.Route.extend({
     this.send('showWorkflowSteps', true);
     this.send('setActiveStep', 'geometricenrichment');
 
-    controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!    
+    controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!
   }
 });

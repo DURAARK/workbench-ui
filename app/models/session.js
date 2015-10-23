@@ -11,7 +11,7 @@ var Session = DS.Model.extend({
   digitalObjects: DS.attr(),
   config: DS.attr(),
   files: DS.attr(),
-  fixedInputFiles: DS.attr(),
+  geoTools: DS.attr(),
 
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
