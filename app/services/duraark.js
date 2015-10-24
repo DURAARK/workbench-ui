@@ -243,7 +243,7 @@ export default Ember.Service.extend({
     return str.join("&");
   },
 
-  getBuildingData(props) {
+  getBuildingInformation(props) {
     let duraark = this,
       sdaEndpoint = duraark.getAPIEndpoint('sda') + '/buildings',
       queryParams = this.serialize(props),
@@ -257,6 +257,26 @@ export default Ember.Service.extend({
 
       console.log('[duraark-sda] Query-URL: ' + url);
       return duraark._get(url).then(result => {
+        resolve(result);
+      }).catch(function(err) {
+        reject(err);
+      });
+    });
+  },
+
+  getBuildings(filters) {
+    let duraark = this,
+      url = duraark.getAPIEndpoint('sda') + '/buildings/filter';
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      console.log('[duraark-sda] POST /buildings/filter');
+      _.forEach(filters, function(filter) {
+        console.log('[duraark-sda]       * filter: ' + JSON.stringify(filter, null, 4));
+      });
+
+      return duraark._post(url, {
+        filters: filters
+      }).then(result => {
         resolve(result);
       }).catch(function(err) {
         reject(err);

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  buildings: [],
   selectedBuilding: null,
 
   actions: {
@@ -40,8 +41,26 @@ export default Ember.Controller.extend({
         this.set('selectedUri', uri);
       },
 
-      updateSelection(selection) {
-        console.log('[search] updateSelection: ' + JSON.stringify(selection, null, 4));
+      onFilterChanged(filters) {
+        var that = this;
+        console.log('[search] filters: ' + JSON.stringify(filters, null, 4));
+
+        this.duraark.getBuildings(filters).then(buildings => {
+          // console.log('buildings: ' + JSON.stringify(buildings));
+
+          var items = buildings.results.bindings.filter(item => {
+            return (item.result.value !== 'http://data.duraark.eu/resource/') ? item.result.value : false;
+          });
+
+          items = items.map(item => {
+            return {
+              url: item.result.value,
+              label: item.result.value.split('/').pop()
+            }
+          });
+
+          that.set('buildings', items);
+        });
       }
   }
 });

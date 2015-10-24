@@ -8,7 +8,7 @@ export default Ember.Component.extend({
 
     let that = this;
 
-    var addressCountryItems = this.duraark.getBuildingData({
+    var addressCountryItems = this.duraark.getBuildingInformation({
       props: ['addressCountry']
     }).then(function(body) {
       var items = body.results.bindings.map(function(item) {
@@ -22,10 +22,12 @@ export default Ember.Component.extend({
     //this.set('addressCountryItems', addressCountryItems);
   },
 
-  actions:{
-    updateSelectionChange() {
-      let selection = ['aasdfasdf'];
-      this.sendAction('updateSelectionChange', selection);
+  actions: {
+    filterChanged() {
+      let filters = [{
+        addressCountry: this.get('addressCountryItems')
+      }];
+      this.sendAction('filterChanged', filters);
     }
   }
 });

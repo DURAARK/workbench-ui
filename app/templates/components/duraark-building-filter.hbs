@@ -1,4 +1,4 @@
-<div class="c-result-sidebar">
+<div class="c-duraark-building-filter">
 
   <ul>
     {{#each addressCountryItems as |item|}}
@@ -8,4 +8,6 @@
   {{#each-in buildings as |uri building|}}
     {{building-list-item uri=uri model=building showDetailsClicked="showDetails" openBuildingClicked="openBuilding"}}
   {{/each-in}}
+
+  <button {{action "filterChanged"}}>Update</button>
 </div>

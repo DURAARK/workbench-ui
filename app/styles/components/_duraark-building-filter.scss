@@ -1,0 +1,13 @@
+.c-duraark-building-filter {
+  z-index: 1001;
+
+  position: absolute;
+  top: 1px;
+  right: 0;
+  bottom: $footer-height + $header-height;
+
+  width: 25%;
+  overflow: auto;
+
+  // background-image: url("/images/bg_footer_lodyas.png");
+}
