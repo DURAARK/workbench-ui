@@ -1,0 +1,12 @@
+<h2>Faux Select</h2>
+<div class="faux-select">
+  <div class="faux-select-box">
+    <span class="faux-select-selected">{{selected}}</span>
+    <span class="faux-select-graphic">&#x25BE;</span>
+  </div>
+  <select {{bindAttr name=name class=":faux-select className"}}>
+    {{#each choices as |choice|}}
+      <option {{bindAttr value=choice}}>{{choice}}</option>
+    {{/each}}
+  </select>
+</div>
