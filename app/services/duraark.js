@@ -38,6 +38,10 @@ export default Ember.Service.extend({
     return this.get(service + 'Endpoint');
   },
 
+  //
+  // Access to duraark-sessions
+  //
+
   getAllSessions() {
     let duraark = this,
       sessionsEndpoint = duraark.getAPIEndpoint('sessions') + '/sessions';
@@ -221,6 +225,45 @@ export default Ember.Service.extend({
     });
   },
 
+  //
+  // Access to duraark-sda
+  //
+
+  serialize: function(obj, prefix) {
+    var str = [];
+    for (var p in obj) {
+      if (obj.hasOwnProperty(p)) {
+        var k = prefix ? prefix + "[" + p + "]" : p,
+          v = obj[p];
+        str.push(typeof v == "object" ?
+          this.serialize(v, k) :
+          encodeURIComponent(k) + "=" + encodeURIComponent(v));
+      }
+    }
+    return str.join("&");
+  },
+
+  getBuildingData(props) {
+    let duraark = this,
+      sdaEndpoint = duraark.getAPIEndpoint('sda') + '/buildings',
+      queryParams = this.serialize(props),
+      url = sdaEndpoint + '?' + queryParams;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      console.log('[duraark-sda] GET /buildings');
+      _.forEach(props, function(prop) {
+        console.log('[duraark-sda]       * prop: ' + prop);
+      });
+
+      console.log('[duraark-sda] Query-URL: ' + url);
+      return duraark._get(url).then(result => {
+        resolve(result);
+      }).catch(function(err) {
+        reject(err);
+      });
+    });
+  },
+
   storeInSDAS(session) {
     let duraark = this,
       sdaEndpoint = duraark.getAPIEndpoint('sda') + '/store';
@@ -316,7 +359,7 @@ export default Ember.Service.extend({
 
   getIFCReconstruction(config) {
     let duraark = this;
-config.restart = true;
+    config.restart = true;
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let geometricEnrichmentEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/pc2bim';
 

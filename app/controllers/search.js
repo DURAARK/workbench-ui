@@ -38,6 +38,10 @@ export default Ember.Controller.extend({
         this.set('showSidebarDetails', true);
         this.set('selectedBuilding', building);
         this.set('selectedUri', uri);
+      },
+
+      updateSelection(selection) {
+        console.log('[search] updateSelection: ' + JSON.stringify(selection, null, 4));
       }
   }
 });

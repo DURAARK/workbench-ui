@@ -2,12 +2,13 @@
 
 <div class="l-page-with-header">
 
-  {{building-list buildings=buildings openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}}
+  {{duraark-search-buildings updateSelectionChange="updateSelection"}}
+
   {{#if showResults}}
     {{building-list buildings=buildings openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}}
   {{/if}}
 
-  {{x-map places=places selected=selectedBuilding}} {{duraark-footer}}
+  <!-- {{x-map places=places selected=selectedBuilding}} {{duraark-footer}} -->
 
   {{#toggle-menu}}
     <nav>
