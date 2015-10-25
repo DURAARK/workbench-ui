@@ -9,7 +9,8 @@ export default Ember.Component.extend({
     let items = this.get('items');
     this.get('choices').map(choice => {
       items.pushObject(Ember.Object.create({
-        label: choice,
+        label: choice.label,
+        id: choice.code,
         isSelected: false
       }));
     });
@@ -18,7 +19,7 @@ export default Ember.Component.extend({
 
     this.get('items').forEach(item => {
       initialSelection.forEach(selection => {
-        if (selection === item.label) {
+        if (selection === item.id) {
           item.set('isSelected', true);
         }
       })
@@ -36,7 +37,7 @@ export default Ember.Component.extend({
       onSelectionChange() {
         let selectedItems = this.get('items').filterBy('isSelected');
         let onlyLabels = selectedItems.map(item => {
-          return item.label;
+          return item.id;
         });
 
         let selection = {};

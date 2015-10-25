@@ -19,7 +19,17 @@ export default Ember.Component.extend({
         }).then(function(body) {
           if (body.results) {
             var items = body.results.bindings.map(function(item) {
-              return item.result.value;
+              let countryCode = item.result.value,
+                countryName = that.countries.code2name(countryCode);
+
+              if (!countryName) {
+                countryName = countryCode;
+              }
+
+              return {
+                label: countryName,
+                code: countryCode
+              }
             });
 
             that.set('addressCountryItems', items);

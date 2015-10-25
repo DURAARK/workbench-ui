@@ -82,6 +82,5 @@ export default Ember.Controller.extend({
     });
 
     this.set('places', places);
-    console.log('places update');
   }.observes('buildings').on('init')
 });

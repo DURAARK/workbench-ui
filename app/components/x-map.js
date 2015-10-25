@@ -64,9 +64,7 @@ export default Ember.Component.extend({
     places.forEach(function(place) {
       console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + place.label);
       try {
-        let marker = L.marker([place.latitude, place.longitude]).addTo(map)
-          .bindPopup(place.label);
-        // .openPopup();
+        let marker = L.marker([place.latitude, place.longitude]).addTo(map).bindPopup(place.label);
 
         currentMarkers.pushObject(marker);
       } catch (err) {
@@ -83,21 +81,23 @@ export default Ember.Component.extend({
         lng = selectedPlace.longitude,
         map = this.get('map');
 
-      var marker = this.get('currentMarkers').filter(marker => {
-        let location = marker.getLatLng();
-        return (location.lat.toString() === selectedPlace.latitude && location.lng.toString() === selectedPlace.longitude);
-      });
-
-      var selectedMarker =  this.get('currentlySelectedMarker');
-      if (selectedMarker) {
+      var selectedMarkers = this.get('currentlySelectedMarkers');
+      if (selectedMarkers) {
         var icon = L.icon({
           iconUrl: L.Icon.Default.imagePath + '/marker-icon.png',
           iconSize: [25, 41],
           iconAnchor: [12, 41],
           popupAnchor: [0, -35]
         });
-        selectedMarker.setIcon(icon);
+        selectedMarkers.forEach(marker => {
+          marker.setIcon(icon);
+        });
       }
+
+      var markersToSelect = this.get('currentMarkers').filter(marker => {
+        let location = marker.getLatLng();
+        return (location.lat.toString() === selectedPlace.latitude && location.lng.toString() === selectedPlace.longitude);
+      });
 
       var icon = L.icon({
         iconUrl: L.Icon.Default.imagePath + '/marker-icon-selected-2x.png',
@@ -105,9 +105,11 @@ export default Ember.Component.extend({
         iconAnchor: [25, 82],
         popupAnchor: [0, -65]
       });
-      marker[0].setIcon(icon).openPopup();
+      _.forEach(markersToSelect, function(marker) {
+        marker.setIcon(icon).openPopup();
+      });
       //bindPopup(selectedPlace.label).openPopup();
-      this.set('currentlySelectedMarker', marker[0]);
+      this.set('currentlySelectedMarkers', markersToSelect);
 
       map.setView([lat, lng, 12]);
     }

@@ -13,6 +13,7 @@ export default Ember.Component.extend({
 
   actions: {
     openBuilding(building) {
+      debugger;
       // console.log('building-list-item::showDetails: ' + JSON.stringify(building, null, 4));
       this.sendAction('openBuildingClicked', this.get('uri'), building);
     },
