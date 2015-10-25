@@ -65,7 +65,7 @@ export default Ember.Component.extend({
       console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + place.label);
       try {
         let marker = L.marker([place.latitude, place.longitude]).addTo(map)
-          .bindPopup(place.name);
+          .bindPopup(place.label);
         // .openPopup();
 
         currentMarkers.pushObject(marker);
@@ -93,7 +93,8 @@ export default Ember.Component.extend({
         var icon = L.icon({
           iconUrl: L.Icon.Default.imagePath + '/marker-icon.png',
           iconSize: [25, 41],
-          iconAnchor: [12, 41]
+          iconAnchor: [12, 41],
+          popupAnchor: [0, -35]
         });
         selectedMarker.setIcon(icon);
       }
@@ -101,9 +102,11 @@ export default Ember.Component.extend({
       var icon = L.icon({
         iconUrl: L.Icon.Default.imagePath + '/marker-icon-selected-2x.png',
         iconSize: [50, 82],
-        iconAnchor: [25, 82]
+        iconAnchor: [25, 82],
+        popupAnchor: [0, -65]
       });
-      marker[0].setIcon(icon);
+      marker[0].setIcon(icon).openPopup();
+      //bindPopup(selectedPlace.label).openPopup();
       this.set('currentlySelectedMarker', marker[0]);
 
       map.setView([lat, lng, 12]);
