@@ -27,6 +27,11 @@ background: #a56f39;
   overflow: hidden;
 }
 
+.mdl-layout__tab.is-active {
+  background: darken(#499DC4, 5%);
+  // background: darken(#3581A5, 5%);
+  // border-bottom: 1px solid red;
+}
 .mdl-navigation__link.active {
   // background: #e6892b;
   border-bottom: 1px solid red;
