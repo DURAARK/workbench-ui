@@ -246,20 +246,33 @@ export default Ember.Service.extend({
   getBuildingInformation(props) {
     let duraark = this,
       sdaEndpoint = duraark.getAPIEndpoint('sda') + '/buildings',
-      queryParams = this.serialize(props),
-      url = sdaEndpoint + '?' + queryParams;
+      url = sdaEndpoint;
+    // queryParams = this.serialize(props),
+    // url = sdaEndpoint + '?' + queryParams;
+
+    console.log('[duraark-sda] GET /buildings');
+    _.forEach(props, function(prop) {
+      console.log('[duraark-sda]       * prop: ' + prop);
+    });
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      console.log('[duraark-sda] GET /buildings');
-      _.forEach(props, function(prop) {
-        console.log('[duraark-sda]       * prop: ' + prop);
-      });
-
       console.log('[duraark-sda] Query-URL: ' + url);
-      return duraark._get(url).then(result => {
-        resolve(result);
+
+      // FIXXME: for some reason _get is not working correctly here whe initially
+      // loading the data. It returns a "" result. When you do a page reload the data
+      // is retrieved correctly. The server sends the data correctly in any case, but
+      // in _get something seems to go sideways...
+      // return duraark._get(url).then(result => {
+      //   // alert('result: ' + JSON.stringify(result, null, 4));
+      //   return resolve(result);
+      // }).catch(function(err) {
+      //   return reject(err);
+      // });
+
+      return duraark._post(url, props).then(result => {
+        return resolve(result);
       }).catch(function(err) {
-        reject(err);
+        return reject(err);
       });
     });
   },
@@ -394,6 +407,8 @@ export default Ember.Service.extend({
   _get(url) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       function handler(data, status, jqxhr) {
+        // alert('status: ' + status);
+        alert('status: ' + status + '\n' + 'data:' + JSON.stringify(jqxhr, null, 4));
         if (status === 'success') {
           resolve(data);
         } else {

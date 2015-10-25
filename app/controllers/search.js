@@ -45,7 +45,7 @@ export default Ember.Controller.extend({
         var that = this;
 
         console.log('[search] filters: ' + JSON.stringify(filters, null, 4));
-debugger;
+
         this.duraark.getBuildings(filters).then(buildings => {
           // console.log('buildings: ' + JSON.stringify(buildings));
 
