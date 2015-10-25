@@ -1,22 +1,17 @@
-<div class="c-building-result-item">
+<div class="c-building-list-item {{if building.isSelected "selected"}}">
 
-  <div class="bar">
+  <header {{action "showDetails" building}}>
+    {{building.label}}
+  </header>
 
-    <span id="{{buildmProperty.menuId}}" class="mdl-button mdl-button--icon" data-upgraded=",MaterialButton">
-      <i class="material-icons">search</i>
-    </span>
-
-    <span class="c-building-result-item__label">
-      {{model.label}}
-    </span>
-
-    <p>
+  <div {{action "showDetails" building}} class="c-building-list-item__content">
+    <div class="c-building-list-item__desc">
       {{description}}
-    </p>
-
-    <div class="c-building-result-item__actions">
-      <button type="button" {{action "openBuilding" model}}>Open</button>
-      <button type="button" {{action "showDetails" model}}>Details</button>
+    </div>
+    <div class="c-building-list-item__buttons">
+      <button {{action "showDetails" building}}><i class="fa fa-map-marker fa-lg"></i>&nbsp; Locate</button>
+      <button {{action "openBuilding" building}}><i class="fa fa-database"></i>&nbsp; Edit</button>
+      <button {{action "showDetails" building}}><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp; Explore</button>
     </div>
   </div>
 </div>

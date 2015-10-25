@@ -76,23 +76,24 @@ export default Ember.Component.extend({
 
   highlightPlace() {
     const selectedPlace = this.get('selected');
+
+    var selectedMarkers = this.get('currentlySelectedMarkers');
+    if (selectedMarkers) {
+      var icon = L.icon({
+        iconUrl: L.Icon.Default.imagePath + '/marker-icon.png',
+        iconSize: [25, 41]
+        // iconAnchor: [12, 41],
+        // popupAnchor: [0, -35]
+      });
+      selectedMarkers.forEach(marker => {
+        marker.setIcon(icon).closePopup();
+      });
+    }
+
     if (selectedPlace) {
       let lat = selectedPlace.latitude,
         lng = selectedPlace.longitude,
         map = this.get('map');
-
-      var selectedMarkers = this.get('currentlySelectedMarkers');
-      if (selectedMarkers) {
-        var icon = L.icon({
-          iconUrl: L.Icon.Default.imagePath + '/marker-icon.png',
-          iconSize: [25, 41],
-          iconAnchor: [12, 41],
-          popupAnchor: [0, -35]
-        });
-        selectedMarkers.forEach(marker => {
-          marker.setIcon(icon);
-        });
-      }
 
       var markersToSelect = this.get('currentMarkers').filter(marker => {
         let location = marker.getLatLng();
@@ -100,10 +101,11 @@ export default Ember.Component.extend({
       });
 
       var icon = L.icon({
-        iconUrl: L.Icon.Default.imagePath + '/marker-icon-selected-2x.png',
-        iconSize: [50, 82],
-        iconAnchor: [25, 82],
-        popupAnchor: [0, -65]
+        iconUrl: L.Icon.Default.imagePath + '/marker-icon-selected.png',
+        // iconSize: [50, 82],
+        iconSize: [25, 41]
+        // iconAnchor: [25, 82],
+        // popupAnchor: [0, -65]
       });
       _.forEach(markersToSelect, function(marker) {
         marker.setIcon(icon).openPopup();

@@ -15,10 +15,14 @@
     padding: 0.5em;
   }
   li {
-    @include gallery(4 of 12);
+    @include gallery(6 of 12);
     text-align: center;
+    border: 1px solid white;
+    border-radius: 3px;
+    margin-bottom: 0.2em;;
     &.selected {
-      background: blue;
+      background: $gui-green;
+      border: 0 solid white;
     }
   }
 }

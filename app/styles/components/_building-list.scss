@@ -3,7 +3,10 @@
 //     padding: 0;
 // }
 .c-building-list {
-  header {
+  background: lightgray;
+  padding-bottom: 0.5em;
+  > header {
+    margin-bottom: 1px;
     padding: 0.5em;
     text-align: center;
     background: $gui-green;
@@ -13,7 +16,6 @@
   padding: 1em;
   background: gray;
   text-align: center;
-
   i {
     display: block;
     margin-top: 0.5em;

@@ -1,27 +1,27 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  name: Ember.computed('model', function() {
-    let building = this.get('model');
+  name: Ember.computed('building', function() {
+    let building = this.get('building');
     return this._extractKeyFromBuildm(building, 'name');
   }),
 
-  description: Ember.computed('model', function() {
-    let building = this.get('model');
+  description: Ember.computed('building', function() {
+    let building = this.get('building');
     return this._extractKeyFromBuildm(building, 'description');
   }),
 
   actions: {
     openBuilding(building) {
-      debugger;
-      // console.log('building-list-item::showDetails: ' + JSON.stringify(building, null, 4));
-      this.sendAction('openBuildingClicked', this.get('uri'), building);
-    },
+        this.sendAction('openBuildingClicked', this.get('uri'), building);
+      },
 
-    showDetails(building) {
-      // console.log('building-list-item::showDetails: ' + JSON.stringify(building, null, 4));
-      this.sendAction('showDetailsClicked', this.get('uri'), building);
-    }
+      showDetails(building) {
+        this.sendAction('showDetailsClicked', this.get('uri'), building);
+        // FIXXME: toggle selected state in 'building-list' component, to have
+        // all the logic there!
+        building.toggleProperty('isSelected');
+      }
   },
 
   _extractKeyFromBuildm(buildm, key) {

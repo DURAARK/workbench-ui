@@ -1,0 +1,40 @@
+.c-building-list-item {
+  margin: 0.4em;
+  &:hover {
+    background: darken(gray, 10%);
+  }
+
+  // padding:
+  background: gray;
+  header {
+    background: $gui-green;
+    text-align: center;
+  }
+  .c-building-list-item__content {
+    @include container;
+  }
+  .c-building-list-item__desc {
+    @include span(8 of 12);
+    padding: 0.5em;
+    font-size: 16px;
+  }
+  .c-building-list-item__buttons {
+    @include span(4 of 12 last);
+    padding: 0.4em;
+  }
+  button {
+    width: 100%;
+    background-color: $action-color;
+    border-radius: $base-border-radius;
+    padding: 0.5em;
+    font-weight: 0;
+    font-size: 14px;
+    color: white;
+    &:hover {
+      background: darken($action-color, 10%);
+    }
+  }
+}
+.c-building-list-item.selected {
+  background: darken($gui-green, 10%);
+}
