@@ -25,6 +25,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   places: [],
+  currentMarkers: [],
   selected: null,
 
   didInsertElement: function() {
@@ -39,19 +40,6 @@ export default Ember.Component.extend({
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var places = this.get('places');
-
-    places.forEach(function(place) {
-      console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + place.name);
-      try {
-      L.marker([place.latitude, place.longitude]).addTo(map)
-        .bindPopup(place.name)
-        .openPopup();
-      } catch(err) {
-        console.log('Adding marker error: ' + err);
-      };
-    });
-
     map.setView([47.032666667, 15.37], 5);
 
     let selectedBuilding = this.get('selected');
@@ -64,6 +52,30 @@ export default Ember.Component.extend({
     Ember.run.once(this, '_centerBuildingOnMap');
   }),
 
+  onPlacesChanged: function() {
+    let places = this.get('places'),
+      currentMarkers = this.get('currentMarkers'),
+      map = this.get('map');
+
+    currentMarkers.forEach(marker => {
+      map.removeLayer(marker);
+    });
+
+    places.forEach(function(place) {
+      console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + place.name);
+      try {
+        let marker = L.marker([place.latitude, place.longitude]).addTo(map)
+          .bindPopup(place.name)
+          .openPopup();
+
+        currentMarkers.pushObject(marker);
+      } catch (err) {
+        console.log('Adding marker error: ' + err);
+      };
+    });
+
+  }.observes('places'),
+
   _centerBuildingOnMap() {
     const building = this.get('selected');
     if (building) {
@@ -72,6 +84,6 @@ export default Ember.Component.extend({
       const lat = building['http://data.duraark.eu/vocab/buildm/latitude'][0]['value'];
       const lng = building['http://data.duraark.eu/vocab/buildm/longitude'][0]['value'];
       this.get('map').setView([lat, lng, 12]);
+    }
   }
-}
 });

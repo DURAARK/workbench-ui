@@ -52,13 +52,15 @@ export default Ember.Controller.extend({
           // console.log('buildings: ' + JSON.stringify(buildings));
 
           var items = buildings.results.bindings.filter(item => {
-            return (item.result.value !== 'http://data.duraark.eu/resource/'); // ? item.result.value : false;
+            return (item.url.value !== 'http://data.duraark.eu/resource/'); // ? item.result.value : false;
           });
 
           items = items.map(item => {
             return {
-              url: item.result.value,
-              label: item.result.value.split('/').pop()
+              url: item.url.value,
+              label: item.url.value.split('/').pop(),
+              lat: item.lat.value,
+              lng: item.lng.value
             }
           });
 
@@ -66,21 +68,20 @@ export default Ember.Controller.extend({
         });
       }
   },
-  
-  onBuildingsChanged: function() {
-    let buildings = this.get('buildings');
-    debugger;
 
-    let places = [];
+  onBuildingsChanged: function() {
+    let buildings = this.get('buildings'),
+      places = [];
 
     buildings.forEach(building => {
       places.push({
-        name: building['http://data.duraark.eu/vocab/buildm/name'][0]['value'],
-        latitude: building['http://data.duraark.eu/vocab/buildm/latitude'][0]['value'],
-        longitude: building['http://data.duraark.eu/vocab/buildm/longitude'][0]['value'],
+        name: building.label,
+        latitude: building.lat,
+        longitude: building.lng
       });
     });
 
     this.set('places', places);
+    console.log('places update');
   }.observes('buildings').on('init')
 });
