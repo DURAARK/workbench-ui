@@ -1,0 +1,8 @@
+<div class="l-multi-select c-multi-select">
+  <header>{{label}}</header>
+  <ul>
+    {{#each items as |item|}}
+      <li {{action "toggleSelection" item}} class={{if item.isSelected "selected"}}>{{item.label}}</li>
+    {{/each}}
+  </ul>
+</div>

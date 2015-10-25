@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  filters: {},
   addressCountryItems: [],
+  initialCountrySelection: ['AT', 'AU', 'DE'],
 
   didInsertElement: function() {
-    let that = this;
-
     this.send('getAddressCountryNames');
   },
 
@@ -26,11 +26,15 @@ export default Ember.Component.extend({
       },
 
       filterChanged(filter) {
-        var newFilter = {};
-        newFilter[filter.filterName] = [filter.selected];
+        let filters = this.get('filters');
 
-        let filters = [newFilter];
-        this.sendAction('filterChanged', filters);
+        if (Object.keys(filter).length) {
+          var key = Object.keys(filter)[0];
+          filters[key] = filter[key];
+          this.sendAction('filterChanged', filters);
+        } else {
+          throw new Error('No key present in filter array, aborting ...');
+        }
       }
   }
 });

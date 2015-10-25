@@ -46,11 +46,13 @@ export default Ember.Controller.extend({
 
         console.log('[search] filters: ' + JSON.stringify(filters, null, 4));
 
-        this.duraark.getBuildings(filters).then(buildings => {
+        this.duraark.getBuildings({
+          filters: filters
+        }).then(buildings => {
           // console.log('buildings: ' + JSON.stringify(buildings));
 
           var items = buildings.results.bindings.filter(item => {
-            return (item.result.value !== 'http://data.duraark.eu/resource/') ? item.result.value : false;
+            return (item.result.value !== 'http://data.duraark.eu/resource/'); // ? item.result.value : false;
           });
 
           items = items.map(item => {

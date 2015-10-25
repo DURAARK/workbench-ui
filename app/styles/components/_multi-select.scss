@@ -1,0 +1,23 @@
+.l-multi-select {
+  margin: 0;
+  padding: 0;
+}
+.c-multi-select {
+  width: 100%;
+  background: gray;
+  header {
+    margin: 1em;
+    text-align: center;
+  }
+  ul {
+    @include container();
+    padding: 0.5em;
+  }
+  li {
+    @include gallery(4 of 12);
+    text-align: center;
+    &.selected {
+      background: blue;
+    }
+  }
+}
