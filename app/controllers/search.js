@@ -36,9 +36,9 @@ export default Ember.Controller.extend({
       },
 
       showDetails(uri, building) {
-        this.set('showSidebarDetails', true);
+        // this.set('showSidebarDetails', true);
         this.set('selectedBuilding', building);
-        this.set('selectedUri', uri);
+        // this.set('selectedUri', uri);
       },
 
       onFilterChanged(filters) {
@@ -59,8 +59,8 @@ export default Ember.Controller.extend({
             return {
               url: item.url.value,
               label: item.url.value.split('/').pop(),
-              lat: item.lat.value,
-              lng: item.lng.value
+              latitude: item.lat.value,
+              longitude: item.lng.value
             }
           });
 
@@ -75,9 +75,9 @@ export default Ember.Controller.extend({
 
     buildings.forEach(building => {
       places.push({
-        name: building.label,
-        latitude: building.lat,
-        longitude: building.lng
+        label: building.label,
+        latitude: building.latitude,
+        longitude: building.longitude
       });
     });
 

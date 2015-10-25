@@ -40,16 +40,16 @@ export default Ember.Component.extend({
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    map.setView([47.032666667, 15.37], 5);
+    map.setView([47.032666667, 15.43], 5);
 
     let selectedBuilding = this.get('selected');
     if (selectedBuilding) {
-      Ember.run.once(this, '_centerBuildingOnMap');
+      Ember.run.once(this, 'highlightPlace');
     }
   },
 
   selectDidChange: Ember.observer('selected', function() {
-    Ember.run.once(this, '_centerBuildingOnMap');
+    Ember.run.once(this, 'highlightPlace');
   }),
 
   onPlacesChanged: function() {
@@ -62,11 +62,11 @@ export default Ember.Component.extend({
     });
 
     places.forEach(function(place) {
-      console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + place.name);
+      console.log('Adding marker at: lat: ' + place.latitude + '/' + place.longitude + ' | ' + place.label);
       try {
         let marker = L.marker([place.latitude, place.longitude]).addTo(map)
-          .bindPopup(place.name)
-          .openPopup();
+          .bindPopup(place.name);
+        // .openPopup();
 
         currentMarkers.pushObject(marker);
       } catch (err) {
@@ -76,14 +76,37 @@ export default Ember.Component.extend({
 
   }.observes('places'),
 
-  _centerBuildingOnMap() {
-    const building = this.get('selected');
-    if (building) {
-      // this.get('map').setView([building.get('longitude'), building.get('latitued'), 12]);
-      // FIXXME: get data from buildling!
-      const lat = building['http://data.duraark.eu/vocab/buildm/latitude'][0]['value'];
-      const lng = building['http://data.duraark.eu/vocab/buildm/longitude'][0]['value'];
-      this.get('map').setView([lat, lng, 12]);
+  highlightPlace() {
+    const selectedPlace = this.get('selected');
+    if (selectedPlace) {
+      let lat = selectedPlace.latitude,
+        lng = selectedPlace.longitude,
+        map = this.get('map');
+
+      var marker = this.get('currentMarkers').filter(marker => {
+        let location = marker.getLatLng();
+        return (location.lat.toString() === selectedPlace.latitude && location.lng.toString() === selectedPlace.longitude);
+      });
+
+      var selectedMarker =  this.get('currentlySelectedMarker');
+      if (selectedMarker) {
+        var icon = L.icon({
+          iconUrl: L.Icon.Default.imagePath + '/marker-icon.png',
+          iconSize: [25, 41],
+          iconAnchor: [12, 41]
+        });
+        selectedMarker.setIcon(icon);
+      }
+
+      var icon = L.icon({
+        iconUrl: L.Icon.Default.imagePath + '/marker-icon-selected-2x.png',
+        iconSize: [50, 82],
+        iconAnchor: [25, 82]
+      });
+      marker[0].setIcon(icon);
+      this.set('currentlySelectedMarker', marker[0]);
+
+      map.setView([lat, lng, 12]);
     }
   }
 });
