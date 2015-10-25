@@ -17,7 +17,6 @@ export default Ember.Component.extend({
       },
 
       showDetails(building) {
-        debugger;
         this.sendAction('showDetailsClicked', this.get('uri'), building);
         // FIXXME: toggle selected state in 'building-list' component, to have
         // all the logic there!

@@ -108,78 +108,9 @@ export default Ember.Service.extend({
         });
 
         const initialSessionData = {
-          state: 'new',
-          label: building[vocab + 'name'][0]['value'],
-          description: description,
-          physicalAssets: [{
-            label: building[vocab + 'name'][0]['value'],
-            buildm: buildm,
-            buildmOriginal: buildm
-          }],
-          // FIXXME: get digitalObjects from 'represents' predicate!
-          // digitalObjects: [{
-          //   buildm: {}
-          // }]
-          digitalObjects: [{
-            "label": "Nygade_Scan1001.e57",
-            "buildm": {
-              "@id": "http://data.duraark.eu/ifcspffile_2529694f-7bbe-4653-b63f-f76c010b3afe",
-              "@type": "http://data.duraark.eu/vocab/buildm/E57File",
-              "http://data.duraark.eu/vocab/buildm/actorCount": [{
-                "@value": "0",
-                "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
-              }],
-              "http://data.duraark.eu/vocab/buildm/creator": [{
-                "@value": " "
-              }],
-              "http://data.duraark.eu/vocab/buildm/dateCreated": [{
-                "@value": "2015-07-24T15:54:00"
-              }],
-              "http://data.duraark.eu/vocab/buildm/entityCount": [{
-                "@value": "38",
-                "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
-              }],
-              "http://data.duraark.eu/vocab/buildm/filename": [{
-                "@value": "Nygade_Scan1001.e57"
-              }],
-              "http://data.duraark.eu/vocab/buildm/hasType": [{
-                "@value": "Model"
-              }, {
-                "@value": "Plan"
-              }],
-              "http://data.duraark.eu/vocab/buildm/instanceCount": [{
-                "@value": "359",
-                "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
-              }],
-              "http://data.duraark.eu/vocab/buildm/optionalAttributesSet": [{
-                "@value": "0.473404255319",
-                "@type": "http://www.w3.org/2001/XMLSchema#double"
-              }],
-              "http://data.duraark.eu/vocab/buildm/relationshipCount": [{
-                "@value": "35",
-                "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
-              }],
-              "http://data.duraark.eu/vocab/buildm/unit": [{
-                "@id": "http://qudt.org/vocab/unit#Millimeter"
-              }],
-              "http://data.duraark.eu/vocab/buildm/name": [{
-                "@value": "Nygade_Scan1001.e57"
-              }]
-            }
-          }],
-          config: {
-            sda: {
-              topics: [
-                "Haus 30 (general context)",
-                "Haus 30 (political context)"
-              ]
-            },
-            geometricenrichment: {
-              tools: [
-                "IFC Reconstruction"
-              ]
-            }
-          }
+          label: building.get('label'),
+          address: building.get('streetAddress') || 'No address given',
+          description: building.get('description') || 'No description given',
         };
 
         duraark._post(sessionsEndpoint, initialSessionData).then(function(session) {
@@ -407,8 +338,6 @@ export default Ember.Service.extend({
   _get(url) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       function handler(data, status, jqxhr) {
-        // alert('status: ' + status);
-        alert('status: ' + status + '\n' + 'data:' + JSON.stringify(jqxhr, null, 4));
         if (status === 'success') {
           resolve(data);
         } else {

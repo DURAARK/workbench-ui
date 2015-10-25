@@ -1,3 +1,7 @@
+.l-search-content {
+  position: relative;
+  margin-top: $header-height + 1px;
+}
 .l-search-left-sidebar {
   z-index: 1001;
 
@@ -15,7 +19,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  bottom: $footer-height;
+  bottom: $footer-height + $header-height + 1px;
 
   width: 25%;
   overflow: auto;
