@@ -6,7 +6,9 @@ export default Ember.Component.extend({
   initialCountrySelection: ['AT', 'AU', 'DE'],
 
   didInsertElement: function() {
-    this.send('getAddressCountryNames');
+    if (!this.get('addressCountryItems.length')) {
+      this.send('getAddressCountryNames');
+    }
   },
 
   actions: {
