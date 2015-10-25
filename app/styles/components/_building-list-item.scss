@@ -1,13 +1,15 @@
 .l-building-list-item {
-  margin: 0.4em;  
 }
 .c-building-list-item {
+  margin: 0.5em;
+  border: 1px solid gray;
   &:hover {
     background: darken(gray, 10%);
   }
 
   header {
     background: $gui-green;
+    font-size: $header-font-size;
     text-align: center;
   }
   .c-building-list-item__content {
@@ -25,10 +27,9 @@
   button {
     width: 100%;
     background-color: $action-color;
-    border-radius: $base-border-radius;
+    // border-radius: $base-border-radius;
     padding: 0.5em;
-    font-weight: 0;
-    font-size: 14px;
+    font-size: $header-font-size - 0.1em;
     color: white;
     &:hover {
       background: darken($action-color, 10%);

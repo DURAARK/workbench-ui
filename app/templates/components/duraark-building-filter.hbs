@@ -1,8 +1,13 @@
-<div class="c-duraark-building-filter">
-
-  {{#duraark-sidebar-item}}
-    {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection label="Select Country" onSelectionChange="filterChanged"}}
+<div class="l-duraark-building-filter c-duraark-building-filter">
+  {{#duraark-sidebar-item name="By Country ..." }}
+    {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection onSelectionChange="filterChanged"}}
   {{/duraark-sidebar-item}}
-  <!-- {{faux-select choices=addressCountryItems name="addressCountry" className="asdf" filterName="addressCountry" onSelectedChange="filterChanged"}} -->
-
+  <!-- FIXXME: name is not showing -->
+  <!-- {{#duraark-sidebar-item name="By Address ..." }}
+    {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection onSelectionChange="filterChanged"}}
+  {{/duraark-sidebar-item}} -->
+  <!-- {{#duraark-sidebar-item name="Select Address" }}
+    {{faux-select choices=addressCountryItems name="addressCountry" className="asdf" filterName="addressCountry" onSelectedChange="filterChanged"}} {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection
+    onSelectionChange="filterChanged"}}
+  {{/duraark-sidebar-item}} -->
 </div>

@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   filters: {},
   addressCountryItems: [],
-  initialCountrySelection: ['AT', 'AU', 'DE'],
+  initialCountrySelection: ['AT', 'DE'],
 
   didInsertElement: function() {
     if (!this.get('addressCountryItems.length')) {

@@ -1,7 +1,8 @@
-// .l-duraark-building-filter {
-//   margin: 0;
-//   padding: 0;
-// }
+.l-duraark-building-filter {
+  height: $content-height;
+  overflow: scroll; // FIXXME: is not working, why?
+}
+
 //
 // .c-duraark-building-filter {
 // }

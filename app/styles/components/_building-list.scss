@@ -1,16 +1,9 @@
-// .l-building-list {
-//     margin: 0;
-//     padding: 0;
-// }
+.l-building-list {
+    height: $content-height;
+    overflow: auto;
+}
 .c-building-list {
-  background: lightgray;
-  padding-bottom: 0.1em;
-  > header {
-    margin-bottom: 1px;
-    padding: 0.5em;
-    text-align: center;
-    background: $gui-green;
-  }
+  background-image: $duraark-background-default;
 }
 .c-building-list__empty {
   padding: 1em;
