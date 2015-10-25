@@ -2,10 +2,12 @@
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
   <!-- <div class="mdl-layout mdl-layout--fixed-header mdl-layout--fixed-tabs"> -->
     <header class="mdl-layout__header">
-      {{#link-to 'index'}}<img class='logo-small-left' src="logos/logo-duraark_white_icon-only.png" alt="DURAARK logo">{{/link-to}}
+      {{#link-to 'index'}}<img class='logo-small-left c-duraark-header-title' src="logos/logo-duraark_white_icon-only.png" alt="DURAARK logo">{{/link-to}}
       <!-- {{#link-to 'index'}}<img class='logo-small-right' src="logos/logo-eu.png" alt="DURAARK logo">{{/link-to}} -->
       <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title"><a href="/preingest" style="color: white"><strong>{{title}}</strong></a></span>
+        <!-- <span class="mdl-layout-title"><a href="/preingest" style="color: white"><strong>{{title}}</strong></a></span> -->
+        <!-- <span class="mdl-layout-title"><a href="/" style="color: white"><strong>DURAARK Workbench</strong></a></span> -->
+        <span class="mdl-layout-title">{{#link-to "index" class="c-duraark-header__title"}}DURAARK Workbench{{/link-to}}</span>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           {{#link-to "preingest" class="mdl-navigation__link" }}<i class="fa fa-database"></i>&nbsp; <strong>Archive Buildings </strong>{{/link-to}}
@@ -26,7 +28,8 @@
       {{/if}}
     </header>
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title"><strong>{{title}}</strong></span>
+      <!-- <span class="mdl-layout-title"><strong>{{title}}</strong></span> -->
+      <span class="mdl-layout-title"><strong>DURAARK Workbench</strong></span>
       <nav class="mdl-navigation">
         {{#link-to "preingest" class="mdl-navigation__link" }}<i class="mdi mdi-package"></i> Archive Buildings{{/link-to}}
         {{#link-to "search" class="mdl-navigation__link" }}| Search Buildings{{/link-to}}
