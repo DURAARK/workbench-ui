@@ -17,13 +17,12 @@
         </nav>
       </div>
       {{#if showWorkflowSteps}}
-        <!-- <div class="mdl-layout__tab-bar mdl-js-ripple-effect"> --> <!-- FIXXME: 'mdl-js-ripple-effect' seems to cause display error -->
-        <div class="mdl-layout__tab-bar c-duraark-header__spacer">
-          {{#link-to 'preingest.files' session classBinding=":mdl-layout__tab filesActive:is-active"}}<i class="fa fa-folder-o"></i>&nbsp; 1 | Files{{/link-to}}
-          {{#link-to 'preingest.metadata' session classBinding=":mdl-layout__tab metadataActive:is-active"}}<i class="fa fa-file-text-o"></i>&nbsp; 2 | Metadata{{/link-to}}
-          {{#link-to 'preingest.geometricenrichment' session classBinding=":mdl-layout__tab geometricenrichmentActive:is-active"}}<i class="fa fa-building-o"></i>&nbsp; 3 | Geometric Tools{{/link-to}}
-          {{#link-to 'preingest.semanticenrichment' session classBinding=":mdl-layout__tab semanticenrichmentActive:is-active"}}<i class="fa fa-lightbulb-o"></i>&nbsp; 4 | Context Information{{/link-to}}
-          {{#link-to 'preingest.digitalpreservation' session classBinding=":mdl-layout__tab digitalpreservationActive:is-active"}}<i class="fa fa-database"></i>&nbsp; 5 | Digital Preservation{{/link-to}}
+        <div class="c-duraark-header__workflow-steps">
+          {{#link-to 'preingest.files' session classBinding="filesActive:is-active"}}<i class="fa fa-folder-o"></i>&nbsp; 1 | Files{{/link-to}}
+          {{#link-to 'preingest.metadata' session classBinding="metadataActive:is-active"}}<i class="fa fa-file-text-o"></i>&nbsp; 2 | Metadata{{/link-to}}
+          {{#link-to 'preingest.geometricenrichment' session classBinding="geometricenrichmentActive:is-active"}}<i class="fa fa-building-o"></i>&nbsp; 3 | Geometric Tools{{/link-to}}
+          {{#link-to 'preingest.semanticenrichment' session classBinding="semanticenrichmentActive:is-active"}}<i class="fa fa-lightbulb-o"></i>&nbsp; 4 | Context Information{{/link-to}}
+          {{#link-to 'preingest.digitalpreservation' session classBinding="digitalpreservationActive:is-active"}}<i class="fa fa-database"></i>&nbsp; 5 | Digital Preservation{{/link-to}}
         </div>
       {{/if}}
     </header>

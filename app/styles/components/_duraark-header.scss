@@ -1,4 +1,6 @@
 .c-duraark-header {
+  @include container;
+
   // z-index: -1;
   position: fixed;
   top: 0;
@@ -28,13 +30,33 @@
 .c-duraark-header__spacer {
   margin-top: 2px;
 }
+
 // FIXXME: necessary for duraark-header title
 .c-duraark-header__title {
   color: white;
   font-weight: 600;
-
   &:hover {
     background: darken(#3581A5, 5%);
     color: white;
+  }
+}
+.c-duraark-header__workflow-steps {
+  margin-top: 1px; // NOTE: necessary for showing red border-bottom from duraark-header
+  background: #499dc4;
+  a {
+    @include span(5 of 25 0);
+    padding: 0.5em;
+    color: white;
+    text-align: center;
+    &:hover {
+      background: darken(#499DC4, 5%);
+    }
+  }
+  a:visited {
+    color: white;
+  }
+  a.is-active {
+    background: darken(#3581A5, 5%);
+    // border-bottom: 1px solid #ff4081;
   }
 }
