@@ -1,0 +1,15 @@
+.l-duraark-sidebar-item {
+  width: 100%;
+}
+
+.c-duraark-sidebar-item {
+  background-image: $duraark-background-default;
+
+  > header {
+    padding: 0.5em;
+    background: $btn-blue;
+    font-size: $header-font-size;
+    font-weight: 600;
+    text-align: center;
+  }
+}

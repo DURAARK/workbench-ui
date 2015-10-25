@@ -2,6 +2,15 @@
 // =======
 @import "layout-landingpage";
 
+.l-1-item {
+  // width: 100%;
+}
+.l-3-item {
+  @include span(3 of 9 0);
+}
+.l-4-item {
+  @include span(3 of 12 0);
+}
 .home {
   .bullets {
     @include outer-container;
@@ -25,7 +34,11 @@ body,
   margin-top: $header-height;
 }
 .l-page-with-header-and-workflow-steps {
-  margin-top: 24px;
+  position: relative;
+}
+.l-duraark-page {
+  position: relative;
+  margin-top: 2px;
 }
 .l-preingest-page {
   padding-top: 2em;

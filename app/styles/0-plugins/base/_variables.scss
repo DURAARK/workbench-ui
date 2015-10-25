@@ -2,8 +2,15 @@
 $base-font-family: $helvetica;
 $heading-font-family: $base-font-family;
 
+$h-space: 1px;
+
 // Font Sizes
 $base-font-size: 1em;
+$header-font-size: 0.7em;
+
+$color-1: #3581A5;
+$color-2: #499DC4;
+$color-3: #96c6dd;
 
 // Line height
 $base-line-height: 1.5;
@@ -16,6 +23,7 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
+$duraark-background-default: url("/images/bg_footer_lodyas.png");
 $light-orange: #e6892b;
 $dark-gray: #333;
 $medium-gray: #999;
@@ -36,5 +44,6 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 
 $header-height: 64px;
 $footer-height: 100px - 32px;
+$workflow-height: 64px;
 $content-height: 77.5vh; // global height to span content vertically over the visible screen (between header and footer)
 $content-height-large: 89vh;

@@ -1,25 +1,34 @@
-.l-multi-select {
-  margin: 0;
-  padding: 0;
-}
 .c-multi-select {
   width: 100%;
-  background: gray;
-  header {
+  background-image: $duraark-background-default;
+  > header {
+    // margin-bottom: $h-space;
     padding: 0.5em;
     text-align: center;
-    background: $gui-green;
+    font-size: $header-font-size;
+    background: $color-3;
+  }
+  .footer::after {
+    content: 'asdf';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: $color-3;
   }
   ul {
     @include container();
-    padding: 0.5em;
+    @include clearfix;
+    padding: gutter(3);
   }
   li {
-    @include gallery(6 of 12);
+    @include gallery(6 of 12 3);
     text-align: center;
     border: 1px solid white;
-    border-radius: 3px;
-    margin-bottom: 0.2em;;
+
+    // border-radius: 2px;
+    margin-bottom: 0.2em;
     &.selected {
       background: $gui-green;
       border: 0 solid white;

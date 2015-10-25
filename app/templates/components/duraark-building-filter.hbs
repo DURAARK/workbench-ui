@@ -1,7 +1,8 @@
 <div class="c-duraark-building-filter">
 
-  {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection label="Select Country" onSelectionChange="filterChanged"}}
-
+  {{#duraark-sidebar-item}}
+    {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection label="Select Country" onSelectionChange="filterChanged"}}
+  {{/duraark-sidebar-item}}
   <!-- {{faux-select choices=addressCountryItems name="addressCountry" className="asdf" filterName="addressCountry" onSelectedChange="filterChanged"}} -->
 
 </div>

@@ -1,10 +1,11 @@
+.l-building-list-item {
+  margin: 0.4em;  
+}
 .c-building-list-item {
-  margin: 0.4em;
   &:hover {
     background: darken(gray, 10%);
   }
 
-  background: gray;
   header {
     background: $gui-green;
     text-align: center;

@@ -1,5 +1,8 @@
-<div class="c-preingest">
+<div class="l-duraark-workflow-steps c-duraark-workflow-steps">
+  {{#link-to 'preingest.files' session classBinding="filesActive:is-active" }}<i class="fa fa-folder-o l-3-item"></i>&nbsp; Sessions {{/link-to}}
+</div>
 
+<div class="l-duraark-page">
   <div class="c-tile-list">
     {{#each model as |session|}}
       {{session-card session=session editClicked="editSession" deleteClicked="deleteSession"}}
