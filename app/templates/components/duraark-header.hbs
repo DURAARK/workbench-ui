@@ -1,4 +1,4 @@
-<div class="duraark-header">
+<div class="c-duraark-header">
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
   <!-- <div class="mdl-layout mdl-layout--fixed-header mdl-layout--fixed-tabs"> -->
     <header class="mdl-layout__header">
@@ -16,7 +16,7 @@
       </div>
       {{#if showWorkflowSteps}}
         <!-- <div class="mdl-layout__tab-bar mdl-js-ripple-effect"> --> <!-- FIXXME: 'mdl-js-ripple-effect' seems to cause display error -->
-        <div class="mdl-layout__tab-bar">
+        <div class="mdl-layout__tab-bar c-duraark-header__spacer">
           {{#link-to 'preingest.files' session classBinding=":mdl-layout__tab filesActive:is-active"}}<i class="fa fa-folder-o"></i>&nbsp; 1 | Files{{/link-to}}
           {{#link-to 'preingest.metadata' session classBinding=":mdl-layout__tab metadataActive:is-active"}}<i class="fa fa-file-text-o"></i>&nbsp; 2 | Metadata{{/link-to}}
           {{#link-to 'preingest.geometricenrichment' session classBinding=":mdl-layout__tab geometricenrichmentActive:is-active"}}<i class="fa fa-building-o"></i>&nbsp; 3 | Geometric Tools{{/link-to}}

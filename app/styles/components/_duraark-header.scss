@@ -1,4 +1,4 @@
-.duraark-header {
+.c-duraark-header {
   z-index: -1;
   position: fixed;
   top: 0;
@@ -24,4 +24,7 @@
   .separator {
     margin-left: 3em;
   }
+}
+.c-duraark-header__spacer {
+  margin-top: 2px;
 }
