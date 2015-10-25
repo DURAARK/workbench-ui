@@ -65,5 +65,22 @@ export default Ember.Controller.extend({
           that.set('buildings', items);
         });
       }
-  }
+  },
+  
+  onBuildingsChanged: function() {
+    let buildings = this.get('buildings');
+    debugger;
+
+    let places = [];
+
+    buildings.forEach(building => {
+      places.push({
+        name: building['http://data.duraark.eu/vocab/buildm/name'][0]['value'],
+        latitude: building['http://data.duraark.eu/vocab/buildm/latitude'][0]['value'],
+        longitude: building['http://data.duraark.eu/vocab/buildm/longitude'][0]['value'],
+      });
+    });
+
+    this.set('places', places);
+  }.observes('buildings').on('init')
 });

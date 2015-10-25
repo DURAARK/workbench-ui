@@ -1,9 +1,5 @@
-<div class="c-result-sidebar">
-  <!-- {{#each-in buildings as |uri building|}}
+<div class="l-building-list c-building-list">
+  {{#each-in buildings as |uri building|}}
     {{building-list-item uri=uri model=building showDetailsClicked="showDetails" openBuildingClicked="openBuilding"}}
-  {{/each-in}} -->
-
-  {{#each buildings as |building|}}
-    <h1><a href="{{building.url}}">{{building.label}}</a></h1>
-  {{/each}}
+  {{/each-in}}
 </div>

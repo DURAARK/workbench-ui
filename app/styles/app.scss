@@ -32,6 +32,7 @@
 @import "layouts/susy";
 @import "layouts/layouts";
 @import "layouts/application";
+@import "layouts/search";
 @import "layouts/files";
 @import "layouts/file-explorer";
 @import "layouts/tool-selector";
@@ -84,7 +85,7 @@
 @import "components/file-upload";
 @import "components/x-map";
 @import "components/building-sidebar";
-@import "components/result-sidebar";
+@import "components/building-list";
 @import "components/duraark-building-filter";
 @import "components/sidebar-details";
 @import "components/buildm-search-form";

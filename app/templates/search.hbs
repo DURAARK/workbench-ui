@@ -2,12 +2,17 @@
 
 <div class="l-page-with-header">
 
-  {{duraark-building-filter addressCountryItems=addressCountryItems filterChanged="onFilterChanged"}}
-  {{building-list buildings=buildings openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}}
+  <div class="l-search-left-sidebar">
+    {{duraark-building-filter addressCountryItems=addressCountryItems filterChanged="onFilterChanged"}}
+  </div>
 
-  <!-- {{x-map places=places selected=selectedBuilding}} {{duraark-footer}} -->
+  <div class="l-search-right-sidebar">
+    {{building-list buildings=buildings openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}}
+  </div>
 
-  {{#toggle-menu}}
+  {{x-map places=places selected=selectedBuilding}}
+
+  <!-- {{#toggle-menu}}
     <nav>
       <ul style="color: black;">
         <li>
@@ -19,6 +24,7 @@
 
   {{#if showSidebarDetails}}
     {{sidebar-details building=selectedBuilding uri=selectedUri}}
-  {{/if}}
+  {{/if}} -->
 
+  {{duraark-footer}}
 </div>
