@@ -6,8 +6,9 @@
   width: 100%;
   background: gray;
   header {
-    padding: 1em;
+    padding: 0.5em;
     text-align: center;
+    background: $gui-green;
   }
   ul {
     @include container();

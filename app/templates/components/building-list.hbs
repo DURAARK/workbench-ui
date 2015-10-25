@@ -1,5 +1,16 @@
 <div class="l-building-list c-building-list">
-  {{#each-in buildings as |uri building|}}
-    {{building-list-item uri=uri model=building showDetailsClicked="showDetails" openBuildingClicked="openBuilding"}}
-  {{/each-in}}
+  <header>
+    {{header}} ({{buildings.length}})
+  </header>
+  {{#if buildings.length}}
+    {{#each-in buildings as |uri building|}}
+      {{building-list-item uri=uri model=building showDetailsClicked="showDetails" openBuildingClicked="openBuilding"}}
+    {{/each-in}}
+  {{else}}
+    <div class="c-building-list__empty">
+      No buildings found matching current search criteria.
+
+      <i class="fa-chain-broken fa-2x"></i>
+    </div>
+  {{/if}}
 </div>

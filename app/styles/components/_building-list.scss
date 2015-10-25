@@ -2,5 +2,20 @@
 //     margin: 0;
 //     padding: 0;
 // }
-// .c-building-list {
-// }
+.c-building-list {
+  header {
+    padding: 0.5em;
+    text-align: center;
+    background: $gui-green;
+  }
+}
+.c-building-list__empty {
+  padding: 1em;
+  background: gray;
+  text-align: center;
+
+  i {
+    display: block;
+    margin-top: 0.5em;
+  }
+}
