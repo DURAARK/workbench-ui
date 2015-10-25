@@ -2,16 +2,19 @@
 
 <div class="l-page-with-header">
 
-  <div class="l-search-left-sidebar">
-    {{duraark-building-filter addressCountryItems=addressCountryItems filterChanged="onFilterChanged"}}
+  <div class="l-search-content">
+    <div class="l-search-left-sidebar">
+      {{duraark-building-filter addressCountryItems=addressCountryItems filterChanged="onFilterChanged"}}
+    </div>
+
+    <div class="l-search-right-sidebar">
+      {{building-list buildings=buildings header="Buildings" openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}}
+    </div>
+
+    <div class="l-search-map">
+      {{x-map places=places selected=selectedBuilding}}
+    </div>
   </div>
-
-  <div class="l-search-right-sidebar">
-    {{building-list buildings=buildings header="Buildings" openBuilding="openBuildingAsSession" showBuildingDetails="showDetails"}}
-  </div>
-
-  {{x-map places=places selected=selectedBuilding}}
-
   <!-- {{#toggle-menu}}
     <nav>
       <ul style="color: black;">

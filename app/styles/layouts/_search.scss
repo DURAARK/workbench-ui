@@ -4,7 +4,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  bottom: $footer-height + $header-height;
+  // bottom: $footer-height + $header-height;
 
   width: 25%;
   overflow: auto;
@@ -15,7 +15,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  bottom: $footer-height + $header-height;
+  bottom: $footer-height;
 
   width: 25%;
   overflow: auto;

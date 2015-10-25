@@ -28,5 +28,6 @@ background: #a56f39;
 }
 
 .mdl-navigation__link.active {
-  background: #e6892b;
+  // background: #e6892b;
+  border-bottom: 1px solid red;
 }
