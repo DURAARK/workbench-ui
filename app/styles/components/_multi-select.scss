@@ -8,15 +8,6 @@
     font-size: $header-font-size;
     background: $color-3;
   }
-  .footer::after {
-    content: 'asdf';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: $color-3;
-  }
   ul {
     @include container();
     @include clearfix;
@@ -31,7 +22,7 @@
     // border-radius: 2px;
     margin-bottom: 0.2em;
     &.selected {
-      background: $gui-green;
+      background: $btn-orange;
       color: white;
       border: 0 solid white;
     }
