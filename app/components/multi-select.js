@@ -1,12 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  tagName: '',
   choices: [],
   items: [],
   initialSelection: [],
 
   onChoicesChange: function() {
     let items = this.get('items');
+    items.clear();
+
     this.get('choices').map(choice => {
       items.pushObject(Ember.Object.create({
         label: choice.label,

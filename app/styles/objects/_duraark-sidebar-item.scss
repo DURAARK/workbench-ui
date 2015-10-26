@@ -1,4 +1,5 @@
 .l-duraark-sidebar-item {
+  @include clearfix;
   width: 100%;
 }
 

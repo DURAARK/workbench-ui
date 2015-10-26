@@ -2,12 +2,15 @@
   {{#duraark-sidebar-item name="By Country ..." }}
     {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection onSelectionChange="filterChanged"}}
   {{/duraark-sidebar-item}}
-  <!-- FIXXME: name is not showing -->
-  <!-- {{#duraark-sidebar-item name="By Address ..." }}
-    {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection onSelectionChange="filterChanged"}}
-  {{/duraark-sidebar-item}} -->
-  <!-- {{#duraark-sidebar-item name="Select Address" }}
-    {{faux-select choices=addressCountryItems name="addressCountry" className="asdf" filterName="addressCountry" onSelectedChange="filterChanged"}} {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection
-    onSelectionChange="filterChanged"}}
-  {{/duraark-sidebar-item}} -->
+
+  {{#duraark-sidebar-item name="By Address ..." }}
+    <div class="c-duraark-building-filter__address">
+      {{#duraark-auto-complete options=streetAddresses inputClass="foobar" selectedValue=addressSelection.code placeHolderText="Enter address ..." noMesssagePlaceHolderText="No addresses found" as |result|}}
+        <span>{{result.code}}</span>
+        <p>{{result.text}}</p>
+      {{/duraark-auto-complete}}
+    </div>
+
+    <!-- <h1>{{addressSelection.code}}</h1> -->
+  {{/duraark-sidebar-item}}
 </div>

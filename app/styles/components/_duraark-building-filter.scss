@@ -1,8 +1,8 @@
 .l-duraark-building-filter {
-  // height: $content-height;
-  // overflow-y: scroll;
+  height: $content-height;
+  overflow-y: scroll;
 }
 
-//
-// .c-duraark-building-filter {
-// }
+.c-duraark-building-filter__address {
+  padding: 0.5em;
+}

@@ -11,6 +11,32 @@ export default Ember.Component.extend({
     }
   },
 
+  init: function() {
+    this._super();
+    var that = this;
+    var Foo = Ember.Object.extend({});
+    var Bar = Ember.Object.extend({
+      code: ""
+    });
+
+    var streetAddresses = [];
+    streetAddresses.pushObject(Foo.create({
+      code: "Nygade",
+      text: "(Kopenhagen)"
+    }));
+    streetAddresses.pushObject(Foo.create({
+      code: "Inffeldgasse",
+      text: "(Austria)"
+    }));
+    streetAddresses.pushObject(Foo.create({
+      code: "Haus30 Strasse",
+      text: "(Germany)"
+    }));
+
+    this.set('addressSelection', Bar.create());
+    this.set('streetAddresses', streetAddresses);
+  },
+
   actions: {
     getAddressCountryNames() {
         let that = this;
