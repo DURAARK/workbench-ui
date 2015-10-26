@@ -35,7 +35,9 @@ background: #a56f39;
 .mdl-layout__tab.is-active:after {
   background: darken(#499DC4, 5%);
 }
-
+.mdl-navigation__link:hover {
+  background: darken(#499DC4, 5%);
+}
 .mdl-navigation__link.active {
   background: darken(#3581A5, 5%);
   // background: #e6892b;
