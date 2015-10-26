@@ -21,6 +21,10 @@ export default Ember.Component.extend({
         // FIXXME: toggle selected state in 'building-list' component, to have
         // all the logic there!
         building.toggleProperty('isSelected');
+      },
+
+      showMetadata(building) {
+        this.sendAction('showMetadataClicked', this.get('uri'), building);
       }
   },
 

@@ -3,7 +3,7 @@
     {{#duraark-sidebar-item name="Found Buildings" }}
       {{#if buildings.length}}
         {{#each-in buildings as |uri building|}}
-          {{building-list-item uri=uri building=building showDetailsClicked="showDetails" openBuildingClicked="openBuilding"}}
+          {{building-list-item uri=uri building=building showMetadataClicked="showMetadata" showDetailsClicked="showDetails" openBuildingClicked="openBuilding"}}
         {{/each-in}}
       {{else}}
         <div class="c-building-list__empty">

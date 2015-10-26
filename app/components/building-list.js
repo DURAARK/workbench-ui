@@ -24,6 +24,10 @@ default Ember.Component.extend({
 
         // console.log('Selected building:\n' + JSON.stringify(building, null, 4));
         this.sendAction('showBuildingDetails', uri, building);
+      },
+
+      showMetadata(uri, building) {
+        this.sendAction('showMetadata', uri, building);
       }
   }
 });
