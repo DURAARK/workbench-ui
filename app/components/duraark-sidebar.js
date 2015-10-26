@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   headerHeight: 64,
   workflowHeight: 40,
   footerHeight: 52,
-  offset: 18,
+  offset: 16,
 
   setFullHeight() {
     let $el = this.$(),
