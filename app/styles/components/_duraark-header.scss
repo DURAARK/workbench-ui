@@ -1,5 +1,6 @@
 .c-duraark-header {
   @include container;
+  z-index: 3;
 
   width: 100%;
   height: $header-height;

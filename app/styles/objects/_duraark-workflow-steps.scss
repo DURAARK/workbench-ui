@@ -1,5 +1,7 @@
 .l-duraark-workflow-steps {
   @include container;
+  z-index: 2;
+  position: relative; // to make z-index work
   margin-top: $h-space;
   width: 100%;
 }
