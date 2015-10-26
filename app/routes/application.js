@@ -14,8 +14,8 @@ export default Ember.Route.extend({
       retrieve: {
         title: 'No Name'
       },
-      knowledge: {
-        title: 'No Name'
+      explore: {
+        activeRoute: 'knowledgedatabase'
       }
     });
   },

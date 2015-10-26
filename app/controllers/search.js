@@ -44,7 +44,7 @@ export default Ember.Controller.extend({
       },
 
       showMetadata(uri, building) {
-        window.open(building.get('url'), '_blank');
+        this.transitionToRoute('explore.metadata', building);
       },
 
       onFilterChanged(filters) {

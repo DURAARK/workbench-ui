@@ -16,10 +16,14 @@ Router.map(function() {
   });
 
   this.route('search', { resetNamespace: true });
-  this.route('explore', { path: '/explore' });
+  this.route('explore', { path: '/explore' }, function() {
+    this.route('metadata', { path: ':id/metadata' });
+    this.route('context');
+    this.route('knowledgebase');
+  });
 
   this.route('ifc-viewer');
-  
+
   // this.route('admin');
   // this.route('file-browser');
 });
