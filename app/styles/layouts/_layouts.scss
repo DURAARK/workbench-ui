@@ -5,6 +5,9 @@
 .l-1-item {
   // width: 100%;
 }
+.l-2-item {
+  @include span(3 of 6 0);
+}
 .l-3-item {
   @include span(3 of 9 0);
 }

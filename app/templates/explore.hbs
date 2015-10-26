@@ -1,6 +1,11 @@
-<div class="l-page-with-header">
-  <div class="c-explore large">
-    {{duraark-header session=knowledgeState.session title=knowledgeState.title showWorkflowSteps=knowledgeState.showWorkflowSteps activeStep=knowledgeState.activeStep}}
+{{duraark-header session=retrieveState.session title=retrieveState.title showWorkflowSteps=retrieveState.showWorkflowSteps activeStep=retrieveState.activeStep}}
+
+<div class="l-duraark-workflow-steps c-duraark-workflow-steps">
+  {{#link-to 'preingest.files' session classBinding="filesActive:is-active" class="is-active l-2-item"}}<i class="fa fa-folder-o"></i>&nbsp; Building Exploration{{/link-to}}
+  {{#link-to 'preingest.metadata' session classBinding="metadataActive" class="l-2-item"}}<i class="fa fa-file-text-o"></i>&nbsp; Advanced Exploration{{/link-to}}
+</div>
+
+<div class="l-duraark-page">
 
     <div class="l-files">
 
@@ -82,5 +87,4 @@
     {{/toggle-menu}}
 
     {{duraark-footer}}
-  </div>
 </div>
