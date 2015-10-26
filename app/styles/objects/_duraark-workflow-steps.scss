@@ -6,6 +6,7 @@
 .c-duraark-workflow-steps {
   background: #499dc4;
   a {
+    position: relative; // for ::after element
     // @include span(5 of 25 0);
     padding: 0.5em;
     color: white;
@@ -24,10 +25,13 @@
     // border-bottom: 1px solid #ff4081;
   }
   a.is-active:after {
-    content: ' ';
+    $underline-height: 1px;
+    content: '';
     position: absolute;
-    top: 0;
+    bottom: -$underline-height;
     left: 0;
-    border: 1px solid red;
+    width: 100%;
+    height: $underline-height;
+    background: #ff4081;
   }
 }
