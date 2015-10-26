@@ -4,6 +4,7 @@
 
 import Ember from 'ember';
 import ENV from '../config/environment';
+import Buildm from './buildm';
 
 var defaultHost = ENV.DURAARKAPI.defaultHost || 'http://mimas.cgv.tugraz.at';
 
@@ -159,6 +160,26 @@ export default Ember.Service.extend({
   //
   // Access to duraark-sda
   //
+
+  getBuildmProperties(props) {
+    return this.getBuildingInformation({
+      props: props
+    }).then(function(body) {
+      if (body.results) {
+        let items = body.results.bindings.map(function(result) {
+          let item = {};
+
+          props.forEach(prop => {
+            item[prop] = result[prop].value;
+          });
+
+          return item;
+        });
+
+        return items;
+      }
+    });
+  },
 
   serialize: function(obj, prefix) {
     var str = [];

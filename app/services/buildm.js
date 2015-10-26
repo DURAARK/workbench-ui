@@ -738,9 +738,27 @@ export default Ember.Service.extend({
     "code": "ZW"
   }],
 
-  code2name(countryCode) {
-    var result = this.get('countries').findBy('code', countryCode);
-    return (result) ? result.name : 'unknown';
+  code2name(items, nameProp) {
+    if (!nameProp) {
+      nameProp = 'countryName';
+    }
+
+    let result = items.map(item => {
+      let code = item.addressCountry,
+        tmp = this.get('countries').findBy('code', code),
+        name;
+
+      if (!tmp) {
+        name = code;
+      } else {
+        name = tmp.name;
+      }
+
+      item[nameProp] = name;
+      return item;
+    });
+
+    return result;
   },
 
   name2code(countryName) {

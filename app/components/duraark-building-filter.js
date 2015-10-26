@@ -1,66 +1,38 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  filters: {},
+  filters: {
+    addressCountryItems: [],
+    addressLocalityItem: ''
+  },
   addressCountryItems: [],
+  addressLocalityItems: [],
   initialCountrySelection: ['AT', 'DE'],
 
   didInsertElement: function() {
     if (!this.get('addressCountryItems.length')) {
+      this.send('getStreetAddresses');
       this.send('getAddressCountryNames');
     }
   },
 
-  init: function() {
-    this._super();
-    var that = this;
-    var Foo = Ember.Object.extend({});
-    var Bar = Ember.Object.extend({
-      code: ""
-    });
-
-    var streetAddresses = [];
-    streetAddresses.pushObject(Foo.create({
-      code: "Nygade",
-      text: "(Kopenhagen)"
-    }));
-    streetAddresses.pushObject(Foo.create({
-      code: "Inffeldgasse",
-      text: "(Austria)"
-    }));
-    streetAddresses.pushObject(Foo.create({
-      code: "Haus30 Strasse",
-      text: "(Germany)"
-    }));
-
-    this.set('addressSelection', Bar.create());
-    this.set('streetAddresses', streetAddresses);
-  },
-
   actions: {
-    getAddressCountryNames() {
-        let that = this;
-        return that.duraark.getBuildingInformation({
-          props: ['addressCountry']
-        }).then(function(body) {
-          if (body.results) {
-            var items = body.results.bindings.map(function(item) {
-              let countryCode = item.result.value,
-                countryName = that.countries.code2name(countryCode);
+    getStreetAddresses() {
+        const buildmProps = ['addressLocality', 'addressCountry'];
 
-              if (!countryName) {
-                countryName = countryCode;
-              }
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          var data = this.buildm.code2name(data, 'countryName');
+          this.set('addressLocalityItems', data);
+        }.bind(this));
+      },
 
-              return {
-                label: countryName,
-                code: countryCode
-              }
-            });
+      getAddressCountryNames() {
+        const buildmProps = ['addressCountry'];
 
-            that.set('addressCountryItems', items);
-          }
-        });
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          var data = this.buildm.code2name(data, 'countryName');
+          this.set('addressCountries', data);
+        }.bind(this));
       },
 
       filterChanged(filter) {

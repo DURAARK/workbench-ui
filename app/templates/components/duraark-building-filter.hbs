@@ -6,13 +6,14 @@
 
     {{#duraark-sidebar-item name="By Address ..." }}
       <div class="c-duraark-building-filter__address">
-        {{#duraark-auto-complete options=streetAddresses inputClass="foobar" selectedValue=addressSelection.code placeHolderText="Enter address ..." noMesssagePlaceHolderText="No addresses found" as |result|}}
-          <span>{{result.code}}</span>
-          <p>{{result.text}}</p>
+        {{#duraark-auto-complete options=addressLocalityItems valueProperty="addressLocality" inputClass="foobar" selectedValue=filters.addressLocalityItem placeHolderText="Enter address ..." noMesssagePlaceHolderText="No addresses found" as |item|}}
+          <span>{{item.addressLocality}}</span>
+          <p>{{item.countryName}}</p>
         {{/duraark-auto-complete}}
       </div>
 
-      <!-- <h1>{{addressSelection.code}}</h1> -->
+      <h1>{{filters.addressLocalityItem}}</h1>
+      
     {{/duraark-sidebar-item}}
   {{/duraark-sidebar}}
 </div>
