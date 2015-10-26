@@ -1,16 +1,18 @@
 <div class="l-duraark-building-filter c-duraark-building-filter">
-  {{#duraark-sidebar-item name="By Country ..." }}
-    {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection onSelectionChange="filterChanged"}}
-  {{/duraark-sidebar-item}}
+  {{#duraark-sidebar}}
+    {{#duraark-sidebar-item name="By Country ..." }}
+      {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection onSelectionChange="filterChanged"}}
+    {{/duraark-sidebar-item}}
 
-  {{#duraark-sidebar-item name="By Address ..." }}
-    <div class="c-duraark-building-filter__address">
-      {{#duraark-auto-complete options=streetAddresses inputClass="foobar" selectedValue=addressSelection.code placeHolderText="Enter address ..." noMesssagePlaceHolderText="No addresses found" as |result|}}
-        <span>{{result.code}}</span>
-        <p>{{result.text}}</p>
-      {{/duraark-auto-complete}}
-    </div>
+    {{#duraark-sidebar-item name="By Address ..." }}
+      <div class="c-duraark-building-filter__address">
+        {{#duraark-auto-complete options=streetAddresses inputClass="foobar" selectedValue=addressSelection.code placeHolderText="Enter address ..." noMesssagePlaceHolderText="No addresses found" as |result|}}
+          <span>{{result.code}}</span>
+          <p>{{result.text}}</p>
+        {{/duraark-auto-complete}}
+      </div>
 
-    <!-- <h1>{{addressSelection.code}}</h1> -->
-  {{/duraark-sidebar-item}}
+      <!-- <h1>{{addressSelection.code}}</h1> -->
+    {{/duraark-sidebar-item}}
+  {{/duraark-sidebar}}
 </div>
