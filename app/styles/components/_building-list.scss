@@ -1,6 +1,6 @@
 .l-building-list {
     height: $content-height;
-    overflow: auto;
+    overflow-y: scroll;
 }
 .c-building-list {
   background-image: $duraark-background-default;
