@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   },
   addressCountryItems: [],
   addressLocalityItems: [],
-  initialCountrySelection: ['AT', 'DE'],
+  selectedAddressCountries: ['AT', 'DE'],
 
   didInsertElement: function() {
     if (!this.get('addressCountryItems.length')) {
@@ -35,18 +35,28 @@ export default Ember.Component.extend({
         }.bind(this));
       },
 
-      filterChanged(filter) {
-        let filters = this.get('filters');
+      // FIXXME: cleanup 'filter' and 'selection' mess!
+      filterChanged(selection) {
+        let selections = this.get('filters'),
+          filter = selection.filter;
 
-        if (Object.keys(filter).length) {
+        if (Object.keys(filter).length) { // FIXXME: check for correct keys 'filter' and 'data'!
           let filterKey = Object.keys(filter)[0];
-
+          debugger;
           if (filterKey === 'addressCountry') {
             this.set('filters.addressCountry', filter[filterKey]);
+          } else if (filterKey === 'addressLocality') {
+            var data = selection.data;
+            console.log('data.addressCountry: ' + data.addressCountry);
+            this.set('selectedAddressCountries', [data.addressCountry]);
           }
 
+          // Cache the current filter set:
           this.set('filters.' + filterKey, filter[filterKey]);
-          this.sendAction('filterChanged', filters);
+
+          // NOTE: The action only sends the currently changed filter, not the whole
+          // filter set.
+          this.sendAction('filterChanged', filter);
         } else {
           throw new Error('[duraark-building-filter] No "filterKey" present in filter: ' + JSON.stringify(filter, null, 4));
         }

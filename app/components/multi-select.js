@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   valueProperty: 'addressCountry',
   choices: [],
   items: [],
-  initialSelection: [],
+  selectedItems: [],
 
   onChoicesChange: function() {
     let items = this.get('items');
@@ -20,10 +20,10 @@ export default Ember.Component.extend({
       }));
     });
 
-    let initialSelection = this.get('initialSelection');
+    let selectedItems = this.get('selectedItems');
 
     this.get('items').forEach(item => {
-      initialSelection.forEach(selection => {
+      selectedItems.forEach(selection => {
         if (selection === item.id) {
           item.set('isSelected', true);
         }
@@ -31,7 +31,7 @@ export default Ember.Component.extend({
     });
 
     this.send('onSelectionChange');
-  }.observes('choices'),
+  }.observes('choices', 'selectedItems'),
 
   actions: {
     toggleSelection(item) {
@@ -47,8 +47,14 @@ export default Ember.Component.extend({
 
         // this.set('selectedValues', values);
 
-        let selection = {};
-        selection[this.get('valueProperty')] = values;
+        let filter = {};
+        filter[this.get('valueProperty')] = values;
+
+        let selection = {
+          filter: filter,
+          data: selectedItems
+        };
+
         this.sendAction('onSelectionChange', selection);
       }
   }

@@ -1,7 +1,7 @@
 <div class="l-duraark-building-filter c-duraark-building-filter">
   {{#duraark-sidebar}}
     {{#duraark-sidebar-item name="By Country ..." }}
-      {{multi-select choices=addressCountryItems labelProperty="countryName" valueProperty="addressCountry" onSelectionChange="filterChanged" initialSelection=initialCountrySelection}}
+      {{multi-select choices=addressCountryItems labelProperty="countryName" valueProperty="addressCountry" onSelectionChange="filterChanged" selectedItems=selectedAddressCountries}}
     {{/duraark-sidebar-item}}
 
     {{#duraark-sidebar-item name="By Locality ..." }}
@@ -11,11 +11,6 @@
           <p>{{item.countryName}}</p>
         {{/duraark-auto-complete}}
       </div>
-
-      <h1>{{filters.addressLocality}}</h1>
-      {{#each filters.addressCountry as |item|}}
-      <h1>{{item}}</h1>
-      {{/each}}
 
     {{/duraark-sidebar-item}}
   {{/duraark-sidebar}}

@@ -14,14 +14,20 @@ export default AutoComplete.extend({
   actions: {
     selectItem: function(item) {
       var valueProperty = this.get("valueProperty"),
-      selectedValue = Ember.get(item, valueProperty);
+        selectedValue = Ember.get(item, valueProperty);
+        
       this.set("selectedFromList", true);
       this.set("selectedValue", selectedValue);
 
       let filter = {};
       filter[valueProperty] = [selectedValue];
 
-      this.sendAction('onSelectionChange', filter);
+      var selection = {
+        filter: filter,
+        data: item
+      }
+
+      this.sendAction('onSelectionChange', selection);
     }
   }
 });
