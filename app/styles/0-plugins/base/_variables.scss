@@ -2,7 +2,7 @@
 $base-font-family: $helvetica;
 $heading-font-family: $base-font-family;
 
-$h-space: 1px;
+$h-space: 0;
 
 // Font Sizes
 $base-font-size: 1em;
@@ -11,6 +11,11 @@ $header-font-size: 0.65em;
 $color-1: #3581A5;
 $color-2: #499DC4;
 $color-3: #96c6dd;
+
+// Note: for the 'is-casting-shadow' class in _base.scss:
+$shadow-key-umbra-opacity: 0.2 !default;
+$shadow-key-penumbra-opacity: 0.14 !default;
+$shadow-ambient-shadow-opacity: 0.12 !default;
 
 // Line height
 $base-line-height: 1.5;

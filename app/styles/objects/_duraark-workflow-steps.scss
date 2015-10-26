@@ -1,6 +1,6 @@
 .l-duraark-workflow-steps {
   @include container;
-  margin-top: 1px;
+  margin-top: $h-space;
   width: 100%;
 }
 .c-duraark-workflow-steps {
@@ -22,6 +22,7 @@
   }
   a.is-active {
     background: darken(#3581A5, 5%);
+
     // border-bottom: 1px solid #ff4081;
   }
   a.is-active:after {

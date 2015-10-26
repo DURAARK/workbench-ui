@@ -1,17 +1,14 @@
 // Theme base
 // ----------
 @include establish-baseline;
-
-$page-font   : 'Lato', sans-serif;
-
+$page-font: 'Lato', sans-serif;
 body {
-  font-size        : 20px;
-  font-family      : $page-font;
-  color            : $text;
+  font-size: 20px;
+  font-family: $page-font;
+  color: $text;
 
- // background: $background;
+  // background: $background;
   background-image: url("/images/bg_footer_lodyas.png");
-
   height: 100vh;
   overflow: hidden;
 }
@@ -31,15 +28,12 @@ article {
   ol {
     margin-left: rhythm(1);
   }
-
   li + li {
     margin-top: rhythm(0.5);
   }
-
   ul li {
     list-style-type: disc;
   }
-
   ol li {
     list-style-type: decimal;
   }
@@ -62,8 +56,14 @@ article {
 //   border-left: 2px solid color(white);
 //   border-right: 2px solid color(white);
 // }
-
 // override 'material' design defaults
 tbody {
   color: black;
+}
+
+// Source: copied from Google's material light source at
+// https://github.com/google/material-design-lite/blob/0566f444a8fbe5e92abe5deaae939a88ca35a2d5/src/_mixins.scss
+// under the Apache 2.0 license
+.is-casting-shadow {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, $shadow-key-penumbra-opacity), 0 3px 1px -2px rgba(0, 0, 0, $shadow-key-umbra-opacity), 0 1px 5px 0 rgba(0, 0, 0, $shadow-ambient-shadow-opacity);
 }
