@@ -1,19 +1,22 @@
 <div class="l-duraark-building-filter c-duraark-building-filter">
   {{#duraark-sidebar}}
     {{#duraark-sidebar-item name="By Country ..." }}
-      {{multi-select choices=addressCountryItems selectionName="addressCountry" initialSelection=initialCountrySelection onSelectionChange="filterChanged"}}
+      {{multi-select choices=addressCountryItems labelProperty="countryName" valueProperty="addressCountry" onSelectionChange="filterChanged" initialSelection=initialCountrySelection}}
     {{/duraark-sidebar-item}}
 
-    {{#duraark-sidebar-item name="By Address ..." }}
+    {{#duraark-sidebar-item name="By Locality ..." }}
       <div class="c-duraark-building-filter__address">
-        {{#duraark-auto-complete options=addressLocalityItems valueProperty="addressLocality" inputClass="foobar" selectedValue=filters.addressLocalityItem placeHolderText="Enter address ..." noMesssagePlaceHolderText="No addresses found" as |item|}}
+        {{#duraark-auto-complete options=addressLocalityItems valueProperty="addressLocality" onSelectionChange="filterChanged" inputClass="foobar" selectedValue=filters.addressLocality placeHolderText="Enter address ..." noMesssagePlaceHolderText="No addresses found" as |item|}}
           <span>{{item.addressLocality}}</span>
           <p>{{item.countryName}}</p>
         {{/duraark-auto-complete}}
       </div>
 
-      <h1>{{filters.addressLocalityItem}}</h1>
-      
+      <h1>{{filters.addressLocality}}</h1>
+      {{#each filters.addressCountry as |item|}}
+      <h1>{{item}}</h1>
+      {{/each}}
+
     {{/duraark-sidebar-item}}
   {{/duraark-sidebar}}
 </div>

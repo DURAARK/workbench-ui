@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: '',
+  labelProperty: 'countryName',
+  valueProperty: 'addressCountry',
   choices: [],
   items: [],
   initialSelection: [],
@@ -12,8 +14,8 @@ export default Ember.Component.extend({
 
     this.get('choices').map(choice => {
       items.pushObject(Ember.Object.create({
-        label: choice.label,
-        id: choice.code,
+        label: choice[this.get('labelProperty')],
+        id: choice[this.get('valueProperty')],
         isSelected: false
       }));
     });
@@ -39,13 +41,14 @@ export default Ember.Component.extend({
 
       onSelectionChange() {
         let selectedItems = this.get('items').filterBy('isSelected');
-        let onlyLabels = selectedItems.map(item => {
+        let values = selectedItems.map(item => {
           return item.id;
         });
 
+        // this.set('selectedValues', values);
+
         let selection = {};
-        selection[this.get('selectionName')] = onlyLabels;
-        console.log('selection: ' + JSON.stringify(selection, null, 4));
+        selection[this.get('valueProperty')] = values;
         this.sendAction('onSelectionChange', selection);
       }
   }

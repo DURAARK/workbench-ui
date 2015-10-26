@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   filters: {
-    addressCountryItems: [],
-    addressLocalityItem: ''
+    addressCountry: [],
+    addressLocality: []
   },
   addressCountryItems: [],
   addressLocalityItems: [],
@@ -31,7 +31,7 @@ export default Ember.Component.extend({
 
         this.duraark.getBuildmProperties(buildmProps).then(data => {
           var data = this.buildm.code2name(data, 'countryName');
-          this.set('addressCountries', data);
+          this.set('addressCountryItems', data);
         }.bind(this));
       },
 
@@ -39,11 +39,16 @@ export default Ember.Component.extend({
         let filters = this.get('filters');
 
         if (Object.keys(filter).length) {
-          var key = Object.keys(filter)[0];
-          filters[key] = filter[key];
+          let filterKey = Object.keys(filter)[0];
+
+          if (filterKey === 'addressCountry') {
+            this.set('filters.addressCountry', filter[filterKey]);
+          }
+
+          this.set('filters.' + filterKey, filter[filterKey]);
           this.sendAction('filterChanged', filters);
         } else {
-          throw new Error('No key present in filter array, aborting ...');
+          throw new Error('[duraark-building-filter] No "filterKey" present in filter: ' + JSON.stringify(filter, null, 4));
         }
       }
   }
