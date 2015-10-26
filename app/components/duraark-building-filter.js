@@ -10,10 +10,11 @@ export default Ember.Component.extend({
   selectedAddressCountries: ['AT', 'DE'],
 
   didInsertElement: function() {
-    if (!this.get('addressCountryItems.length')) {
+    // if (!this.get('addressCountryItems.length')) {
       this.send('getStreetAddresses');
       this.send('getAddressCountryNames');
-    }
+      this.send('getFloorCountItems');
+    // }
   },
 
   actions: {
@@ -35,6 +36,14 @@ export default Ember.Component.extend({
         }.bind(this));
       },
 
+      getFloorCountItems() {
+        const buildmProps = ['addressCountry'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('floorCountItems', data);
+        }.bind(this));
+      },
+
       // FIXXME: cleanup 'filter' and 'selection' mess!
       filterChanged(selection) {
         let selections = this.get('filters'),
@@ -49,6 +58,8 @@ export default Ember.Component.extend({
             var data = selection.data;
             console.log('data.addressCountry: ' + data.addressCountry);
             this.set('selectedAddressCountries', [data.addressCountry]);
+
+            // TODO: FEATURE: synchronize with map view!
           }
 
           // Cache the current filter set:

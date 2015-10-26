@@ -43,13 +43,13 @@ export default Ember.Controller.extend({
         }
       },
 
-      onFilterChanged(filters) {
+      onFilterChanged(filter) {
         var that = this;
 
-        console.log('[search] filters: ' + JSON.stringify(filters, null, 4));
+        console.log('[search] filter: ' + JSON.stringify(filter, null, 4));
 
         this.duraark.getBuildings({
-          filters: filters
+          filters: filter
         }).then(buildings => {
           // console.log('buildings: ' + JSON.stringify(buildings));
 

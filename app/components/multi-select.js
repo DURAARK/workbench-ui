@@ -9,6 +9,7 @@ export default Ember.Component.extend({
   selectedItems: [],
 
   onChoicesChange: function() {
+    debugger;
     let items = this.get('items');
     items.clear();
 
