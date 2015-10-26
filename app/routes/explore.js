@@ -11,19 +11,20 @@ default Ember.Route.extend({
 
     actions: {
       setActiveRoute(routeName) {
-        // let controller = this.controllerFor('explore');
-        //
-        // controller.set('isActiveKnowledgeBase', false);
-        // controller.set('isActiveContext', false);
-        // controller.set('isActiveContext', false);
-        //
-        // if (routeName === 'knowledgebase') {
-        //   controller.set('isActiveKnowledgeBase', true);
-        // } else if (routeName === 'context') {
-        //   controller.set('isActiveContext', true);
-        // } else if (routeName === 'metadata') {
-        //   controller.set('isActiveContext', true);
-        // };
+        debugger;
+        let controller = this.controllerFor('explore');
+
+        controller.set('isActiveKnowledgeBase', false);
+        controller.set('isActiveContext', false);
+        controller.set('isActiveContext', false);
+
+        if (routeName === 'knowledgebase') {
+          controller.set('isActiveKnowledgeBase', true);
+        } else if (routeName === 'context') {
+          controller.set('isActiveContext', true);
+        } else if (routeName === 'metadata') {
+          controller.set('isActiveContext', true);
+        };
       }
     }
 });
