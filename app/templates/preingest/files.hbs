@@ -15,7 +15,7 @@
 
 				{{#if files.length}}
 
-					{{#duraark-sidebar}}
+					{{#duraark-sidebar overflowYAuto=true}}
 						{{#file-list files=files as |file|}}
 							{{file-item item=file select="toggleSelection" details="showDetails"}}
 						{{/file-list}}
@@ -26,7 +26,7 @@
 			</div>
 
 			{{#if showSidebar}}
-				{{#duraark-sidebar}}
+				{{#duraark-sidebar overflowYAuto=true}}
 					<div class="l-file-details">
 
 						{{#if app.showLoadingSpinner}}

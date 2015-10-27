@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNameBindings: ['overflowYScroll:has-overflow-y-scroll'],
+  classNameBindings: ['overflowYScroll:has-overflow-y-scroll', 'overflowYAuto:has-overflow-y-auto'],
   // FIXXME: get correct values for those!
   headerHeight: 64,
   workflowHeight: 35,
