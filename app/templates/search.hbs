@@ -1,6 +1,6 @@
 {{duraark-header session=retrieveState.session title=retrieveState.title showWorkflowSteps=retrieveState.showWorkflowSteps activeStep=retrieveState.activeStep}}
 
-<div class="l-duraark-workflow-steps c-duraark-workflow-steps is-casting-shadow">
+<div class="l-duraark-preingest-steps c-duraark-preingest-steps is-casting-shadow">
   {{#link-to 'preingest.files' session classBinding="filesActive:is-active" class="is-active l-4-item"}}<i class="fa fa-folder-o"></i>&nbsp; Location Search{{/link-to}}
   {{#link-to 'preingest.metadata' session classBinding="metadataActive" class="l-4-item"}}<i class="fa fa-file-text-o"></i>&nbsp; Geometric Search{{/link-to}}
   {{#link-to 'preingest.metadata' session classBinding="metadataActive" class="l-4-item"}}<i class="fa fa-file-text-o"></i>&nbsp; Metadata Search{{/link-to}}

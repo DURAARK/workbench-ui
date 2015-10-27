@@ -22,7 +22,6 @@
 				{{/if}}
 			</div>
 
-			{{#duraark-sidebar}}
 			{{#if showSidebar}}
 				<div class="l-file-details">
 
@@ -31,11 +30,13 @@
 					{{else}}
 
 						{{#unless fileInfo}}
+						{{#duraark-sidebar}}
 							{{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true" }}
 								<div class="c-file-upload">
 									{{x-droplet onFilesUploaded="addFiles"}}
 								</div>
 							{{/duraark-tool}}
+							{{/duraark-sidebar}}
 					{{else}}
 						{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
 							<div class="l-file-details-titel">
@@ -62,7 +63,6 @@
 					{{/if}}
 				</div>
 			{{/if}}
-			{{/duraark-sidebar}}
 		</div>
 
 	</div>
