@@ -14,34 +14,37 @@
 				<hr>
 
 				{{#if files.length}}
-					{{#file-list files=files as |file|}}
-						{{file-item item=file select="toggleSelection" details="showDetails"}}
-					{{/file-list}}
+
+					{{#duraark-sidebar}}
+						{{#file-list files=files as |file|}}
+							{{file-item item=file select="toggleSelection" details="showDetails"}}
+						{{/file-list}}
+					{{/duraark-sidebar}}
 				{{else}}
 					<h1>No files added yet.</h1>
 				{{/if}}
 			</div>
 
 			{{#if showSidebar}}
-				<div class="l-file-details">
+				{{#duraark-sidebar}}
+					<div class="l-file-details">
 
-					{{#if app.showLoadingSpinner}}
-						{{loading-spinner-center}}
-					{{else}}
+						{{#if app.showLoadingSpinner}}
+							{{loading-spinner-center}}
+						{{else}}
 
-						{{#unless fileInfo}}
-						{{#duraark-sidebar}}
-							{{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true" }}
-								<div class="c-file-upload">
-									{{x-droplet onFilesUploaded="addFiles"}}
+							{{#unless fileInfo}}
+								{{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true" }}
+									<div class="c-file-upload">
+										{{x-droplet onFilesUploaded="addFiles"}}
+									</div>
+								{{/duraark-tool}}
+						{{else}}
+							{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
+								<div class="l-file-details-titel">
+									<h3 class="title">{{fileInfoShortName}}</h3>
 								</div>
 							{{/duraark-tool}}
-							{{/duraark-sidebar}}
-					{{else}}
-						{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
-							<div class="l-file-details-titel">
-								<h3 class="title">{{fileInfoShortName}}</h3>
-							</div>
 							{{#if errors}}
 								{{#each error in errors}}
 									<div>Type: {{error.type}}</div>
@@ -58,10 +61,10 @@
 									{{duraark-ifc-viewer file=fileInfo}}
 								{{/if}}
 							{{/if}}
-						{{/duraark-tool}}
-						{{/unless}}
-					{{/if}}
-				</div>
+							{{/unless}}
+						{{/if}}
+					</div>
+				{{/duraark-sidebar}}
 			{{/if}}
 		</div>
 

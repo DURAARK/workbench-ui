@@ -49,34 +49,36 @@
 
 			{{#if model}}
 				<div class="l-file-details">
+					{{#duraark-sidebar}}
 
-					{{#if app.showLoadingSpinner}}
-						{{loading-spinner-center}}
-					{{else}}
-
-						{{#if fileInfo}}
-							{{#if isIFC}}
-								{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
-							{{/if}}
-
-							{{#if isE57}}
-								{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
-							{{/if}}
-
-							{{#if isPhysicalAsset}}
-								{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
-							{{/if}}
-
+						{{#if app.showLoadingSpinner}}
+							{{loading-spinner-center}}
 						{{else}}
-							{{#help-box}}
-								<div class="c-help-box__hint">
-									This page gives an overview of the data that will go into the archive. The data will be packaged into a Rosetta SIP to be deposit to the Rosetta DPS or you can download it as a BagIt SIP for local storage.
 
-								</div>
-							{{/help-box}}
+							{{#if fileInfo}}
+								{{#if isIFC}}
+									{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+								{{/if}}
+
+								{{#if isE57}}
+									{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+								{{/if}}
+
+								{{#if isPhysicalAsset}}
+									{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
+								{{/if}}
+
+							{{else}}
+								{{#help-box}}
+									<div class="c-help-box__hint">
+										This page gives an overview of the data that will go into the archive. The data will be packaged into a Rosetta SIP to be deposit to the Rosetta DPS or you can download it as a BagIt SIP for local storage.
+
+									</div>
+								{{/help-box}}
+							{{/if}}
+
 						{{/if}}
-
-					{{/if}}
+					{{/duraark-sidebar}}
 
 				</div>
 			{{/if}}

@@ -3,8 +3,8 @@
 <div class="l-page-with-header-and-workflow-steps">
 
 	<div class="c-workflow-page">
-		{{#workflow-step-header onNext="next" onBack="back"}}
-				<header><i class="fa fa-file-text-o"></i>&nbsp; 2 | METADATA</header>
+		{{#workflow-step-header onNext="next" onBack="back" }}
+			<header><i class="fa fa-file-text-o"></i>&nbsp; 2 | METADATA</header>
 		{{/workflow-step-header}}
 
 		<div class="l-files">
@@ -32,41 +32,39 @@
 
 			{{#if model}}
 				<div class="l-file-details">
-
 					{{#if app.showLoadingSpinner}}
 						{{loading-spinner-center}}
 					{{else}}
+						{{#duraark-sidebar}}
+							{{#if fileInfo}}
+								{{#if isIFC}}
+									{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+								{{/if}}
 
-						{{#if fileInfo}}
-							{{#if isIFC}}
-								{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+								{{#if isE57}}
+									{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
+								{{/if}}
+
+								{{#if isPhysicalAsset}}
+									{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
+								{{/if}}
+
+
+							{{else}}
+								{{#help-box}}
+									<div class="c-help-box__hint">
+										The left side shows the metadata extracted from the files selected in the previous step. The files contain metadata for the building, as well as for the files itself, which are digital representations of the building.
+
+										<br>
+										<br> To edit the metadata click the <i class="fa fa-pencil" style="margin-left: 0.5em; margin-right: 0.5em;"></i> symbol on either the building, or on one of the selected digital representations.
+
+										<br>
+										<br> The metadata will be stored within the archival package which is created at the end of the pre-ingest workflow.
+									</div>
+								{{/help-box}}
 							{{/if}}
-
-							{{#if isE57}}
-								{{buildm-editor buildm=fileInfo.buildm type="digitalObject" save="updateMetadata"}}
-							{{/if}}
-
-							{{#if isPhysicalAsset}}
-							{{log fileInfo}}
-								{{buildm-editor buildm=fileInfo.buildm type="physicalAsset" save="updateMetadata"}}
-							{{/if}}
-
-
-						{{else}}
-							{{#help-box}}
-								<div class="c-help-box__hint">
-									The left side shows the metadata extracted from the files selected in the previous step. The files contain metadata for the building, as well as for the files itself, which are digital representations of the building.
-
-									<br>
-									<br> To edit the metadata click the <i class="fa fa-pencil" style="margin-left: 0.5em; margin-right: 0.5em;"></i> symbol on either the building, or on one of the selected digital representations.
-
-									<br>
-									<br> The metadata will be stored within the archival package which is created at the end of the pre-ingest workflow.
-								</div>
-							{{/help-box}}
-						{{/if}}
+						{{/duraark-sidebar}}
 					{{/if}}
-
 				</div>
 			{{/if}}
 		</div>

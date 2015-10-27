@@ -3,7 +3,6 @@
   will-change: background;
   position: relative;
   padding: 1.5em;
-  height: $content-height;
   &.fullscreen {
     position: fixed;
     top: $header-height; //172px; // FIXXME: use variables!
@@ -16,7 +15,6 @@
 }
 .large {
   .l-duraark-tool {
-    height: $content-height-large;
   }
 }
 .l-duraark-tool__pane-one {
@@ -35,7 +33,6 @@
   }
 
   .l-duraark-tool__pane-two {
-    // height: $content-height-large;
     @include span(last 8 of 12);
   }
 }

@@ -1,7 +1,6 @@
 .l-help-box {
-  height: $content-height;
   padding: 2em;
-  background: rgba(221, 221, 221, 0.17);
+  // background: rgba(221, 221, 221, 0.17);
   color: white;
 }
 .c-help-box__header {
@@ -9,16 +8,7 @@
   margin-bottom: 3.5ex;
   text-align: center;
 }
-.c-help-box__content {
-
-}
 .c-help-box__hint {
   font-size: 20px;
   text-align: justify;
-}
-
-.large {
-  .l-help-box {
-    height: $content-height-large;
-  }
 }

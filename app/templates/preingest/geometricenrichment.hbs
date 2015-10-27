@@ -41,6 +41,7 @@
             {{loading-spinner-center}}
           {{else}}
 
+            {{#duraark-sidebar}}
             {{#if tool}}
               {{#if isElectricalApplianceDetectionTool}}
                 {{#duraark-tool title="Detect Power Lines" close="closeToolUI" fullscreen="maximizeToolUI" }}
@@ -79,6 +80,7 @@
                 {{/help-box}}
               {{/if}}
             {{/if}}
+            {{/duraark-sidebar}}
           {{/if}}
 
         </div>
