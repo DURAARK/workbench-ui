@@ -1,11 +1,11 @@
-.l-duraark-workflow-steps {
+.l-duraark-preingest-steps {
   @include container;
   z-index: 2;
   position: relative; // to make z-index work
   margin-top: $h-space;
   width: 100%;
 }
-.c-duraark-workflow-steps {
+.c-duraark-preingest-steps {
   background: #499dc4;
   a {
     position: relative; // for ::after element
@@ -22,12 +22,10 @@
   a:visited {
     color: white;
   }
-  a.is-active {
+  a.active {
     background: darken(#3581A5, 5%);
-
-    // border-bottom: 1px solid #ff4081;
   }
-  a.is-active:after {
+  a.active:after {
     $underline-height: 1px;
     content: '';
     position: absolute;

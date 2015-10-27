@@ -46,7 +46,6 @@
 @import "objects/selection-button";
 @import "objects/centering";
 @import "objects/duraark-page";
-@import "objects/duraark-workflow-steps";
 @import "objects/duraark-sidebar";
 @import "objects/duraark-sidebar-item";
 @import "objects/duraark-auto-complete";
@@ -107,6 +106,7 @@
 @import "components/duraark-ifc-viewer";
 @import "components/buildm-editor";
 @import "components/multi-select";
+@import "components/duraark-preingest-steps";
 
 //  fontawesome
  @import "bower_components/font-awesome/scss/font-awesome";

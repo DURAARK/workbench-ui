@@ -14,6 +14,9 @@
 .l-4-item {
   @include span(3 of 12 0);
 }
+.l-5-item {
+  @include span(5 of 25 0);
+}
 .home {
   .bullets {
     @include outer-container;
