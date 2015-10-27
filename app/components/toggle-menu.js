@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export
 default Ember.Component.extend({
+  tagName: '',
   name: '',
   address: '',
   description: '',

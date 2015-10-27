@@ -16,9 +16,9 @@ $main-width: 75vw;
   bottom: 0;
   right: 0;
   top: 0;
-  height: 100vh;
+  // height: 100vh;
   width: $sidebar-width;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .material-menu {
@@ -40,12 +40,15 @@ $main-width: 75vw;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+
   position: absolute;
   z-index: 1001;
-  bottom: $header-height + $footer-height + 15px;
-  right: 20px;
+  bottom: -0.5em;
+  right: 2em;
+
   width: 75px;
   height: 75px;
+
   background: transparent;
   cursor: pointer;
 

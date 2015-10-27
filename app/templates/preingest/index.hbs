@@ -1,76 +1,66 @@
 <div class="l-duraark-workflow-steps c-duraark-workflow-steps">
-  {{#link-to 'preingest.files' session classBinding="filesActive:is-active" }}<i class="fa fa-folder-o l-3-item"></i>&nbsp; Sessions {{/link-to}}
+  {{#link-to 'preingest.files' session class="l-1-item" }}Sessions{{/link-to}}
 </div>
 
 <div class="l-duraark-page">
-  <div class="c-tile-list">
-    {{#each model as |session|}}
-      {{session-card session=session editClicked="editSession" deleteClicked="deleteSession"}}
-    {{/each}}
 
-  </div>
+  {{#duraark-sidebar overflowYScroll=true}}
+    <div class="c-preingest__index">
+      {{#each model as |session|}}
+        {{session-card session=session editClicked="editSession" deleteClicked="deleteSession"}}
+      {{/each}}
+    </div>
 
-  {{#toggle-menu}}
-    <nav>
-      <ul style="color: black;">
-        <li><a href="">Add Session</a>
+    {{#toggle-menu}}
+      <nav>
+        <ul style="color: black;">
+          <li><a href="">Add Session</a>
+            <hr>
+          </li>
+
+          <li>
+            <span>Building Name</span>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                {{input class="mdl-textfield__input" type="text" value=name placeholder="Name ..."}}
+              </div>
+            </form>
+
+            <span>Building Address</span>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                {{input class="mdl-textfield__input" type="text" value=address placeholder="Address ..."}}
+              </div>
+            </form>
+
+            <span>Building Description</span>
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                {{input class="mdl-textfield__input" type="text" value=description placeholder="Description ..."}}
+              </div>
+            </form>
+          </li>
+
+          <li>
+            <button {{action "createSession"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+              CREATE
+            </button>
+          </li>
+
           <hr>
-        </li>
 
-        <li>
-          <span>Building Name</span>
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield">
-              {{input class="mdl-textfield__input" type="text" value=name placeholder="Name ..."}}
-            </div>
-          </form>
+          <li style="text-align: center;">
+            <a href="">or</a>
+          </li>
 
-          <span>Building Address</span>
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield">
-              {{input class="mdl-textfield__input" type="text" value=address placeholder="Address ..."}}
-            </div>
-          </form>
+          <li>
+            <button {{action "searchInArchive"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+              LOAD FROM ARCHIVE
+            </button>
+          </li>
+        </ul>
+      </nav>
+    {{/toggle-menu}}
 
-          <span>Building Description</span>
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield">
-              {{input class="mdl-textfield__input" type="text" value=description placeholder="Description ..."}}
-            </div>
-          </form>
-        </li>
-
-        <li>
-          <button {{action "createSession"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            CREATE
-          </button>
-        </li>
-
-        <hr>
-
-        <li style="text-align: center;">
-          <a href="">or</a>
-        </li>
-
-        <li>
-          <button {{action "searchInArchive"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            LOAD FROM ARCHIVE
-          </button>
-        </li>
-
-        <!-- <li style="text-align: center;">
-          OR PROVIDE
-        </li>
-
-        <li>
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield">
-              {{input class="mdl-textfield__input" type="text" value=sdasReference placeholder="Archive Reference ..."}}
-            </div>
-          </form>
-        </li> -->
-      </ul>
-    </nav>
-  {{/toggle-menu}}
-
+  {{/duraark-sidebar}}
 </div>

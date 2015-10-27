@@ -1,11 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNameBindings: ['overflowYScroll:has-overflow-y-scroll'],
+  // classNameBindings: ['isUrgent:urgent'],
+  // isUrgent: true
   // FIXXME: get correct values for those!
   headerHeight: 64,
   workflowHeight: 40,
   footerHeight: 52,
   offset: 16,
+  // overflowYScroll: true,
 
   setFullHeight() {
     let $el = this.$(),
@@ -15,7 +19,7 @@ export default Ember.Component.extend({
       offset = this.get('offset');
 
     var windowHeight = $(window).height();
-    console.log('[duraark-sidebar] windowHeight: ' + windowHeight);
+    // console.log('[duraark-sidebar] windowHeight: ' + windowHeight);
 
     var sidebarHeight = windowHeight - headerHeight - footerHeight - workflowHeight - offset;
 

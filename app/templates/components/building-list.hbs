@@ -1,6 +1,6 @@
 <div class="l-building-list c-building-list">
-  {{#duraark-sidebar}}
-    {{#duraark-sidebar-item name="Found Buildings" }}
+  {{#duraark-sidebar overflowYScroll=true}}
+    {{#duraark-sidebar-item name="Found Buildings"}}
       {{#if buildings.length}}
         {{#each-in buildings as |uri building|}}
           {{building-list-item uri=uri building=building showMetadataClicked="showMetadata" showDetailsClicked="showDetails" openBuildingClicked="openBuilding"}}

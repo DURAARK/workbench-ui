@@ -3,7 +3,7 @@
 @import "layout-landingpage";
 
 .l-1-item {
-  // width: 100%;
+  @include full;
 }
 .l-2-item {
   @include span(3 of 6 0);

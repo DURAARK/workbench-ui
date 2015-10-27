@@ -1,13 +1,5 @@
-.c-preingest {
-  margin-left: 2em;
-  margin-right: 2em;
-
-  header {
-    font-size: 2em;
-    margin-bottom: 1em;
-  }
-}
-
-.c-tile-list {
+.c-preingest__index {
+  @include clearfix;
+  position: relative;
   padding: 1em;
 }
