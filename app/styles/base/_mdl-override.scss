@@ -1,11 +1,10 @@
-.mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab {
-background: #a56f39;
+.mdl-button--accent.mdl-button--accent.mdl-button--raised,
+.mdl-button--accent.mdl-button--accent.mdl-button--fab {
+  background: #a56f39;
 }
-
 .mdl-layout__header {
   background-color: $btn-blue;
 }
-
 .mdl-layout__tab-bar {
   background-color: lighten($btn-blue, 10%);
 }
@@ -22,16 +21,14 @@ background: #a56f39;
   padding-top: 16px;
   padding-bottom: 16px;
 }
-
 .mdl-layout--fixed-header {
   overflow: hidden;
 }
-
 .mdl-layout__tab.is-active {
   background: darken(#499DC4, 5%);
+
   // background: #3581A5;
 }
-
 .mdl-layout__tab.is-active:after {
   background: darken(#499DC4, 5%);
 }
@@ -40,9 +37,14 @@ background: #a56f39;
 }
 .mdl-navigation__link.active {
   background: darken(#3581A5, 5%);
+
   // background: #e6892b;
   border-bottom: 1px solid #ff4081;
 }
 .mdl-layout__content {
   flex-grow: 0;
+}
+.right-side {
+  position: absolute;
+  right: 0;
 }

@@ -33,7 +33,8 @@
 .c-session-card.mdl-card {
   position: relative;
   &:hover {
-    border: 2px solid white;
+    opacity: 0.9;
+    background: lighten($color-2, 30%);
   }
 }
 .c-session-card > .mdl-card__title {
