@@ -1,13 +1,12 @@
-.c-preingest {
-  margin-left: 2em;
-  margin-right: 2em;
-
-  header {
-    font-size: 2em;
-    margin-bottom: 1em;
-  }
+.c-preingest__index {
+  @include clearfix;
+  position: relative;
+  padding: 1em;
 }
 
-.c-tile-list {
-  padding: 1em;
+.l-preingest__add-button {
+  position: absolute;
+  z-index: 1001;
+  bottom: $footer-height + 25px;
+  right: 20px;
 }
