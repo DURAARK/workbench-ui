@@ -11,7 +11,6 @@ default Ember.Route.extend({
 
     actions: {
       setActiveRoute(routeName) {
-        debugger;
         let controller = this.controllerFor('explore');
 
         controller.set('isActiveKnowledgeBase', false);

@@ -10,3 +10,20 @@
 .c-explore__topics {
   margin: 1.5em;
 }
+.c-explore__emtpy {
+  > h1 {
+    margin-bottom: 2em;
+    font-size: 2em;
+  }
+  > a {
+    margin-top: 2em;
+    padding: 1em;
+    background: $btn-orange;
+    color: white;
+    font-size: 1.5em;
+
+    &:hover {
+      background: darken($btn-orange, 10%);
+    }
+  }
+}

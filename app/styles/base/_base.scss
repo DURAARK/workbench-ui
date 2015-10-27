@@ -39,14 +39,6 @@ article {
   }
 }
 
-// https://css-tricks.com/centering-css-complete-guide/
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 // <h3><i class="fa fa-chevron-left"> </i> Building Context</h3> {
 //   @include round-top-corners($amount: 10px);
 //   @include round-bottom-corners($amount: 10px);

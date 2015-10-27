@@ -1,12 +1,18 @@
 {{duraark-header session=retrieveState.session title=retrieveState.title showWorkflowSteps=retrieveState.showWorkflowSteps activeStep=retrieveState.activeStep}}
 
-<div class="l-duraark-workflow-steps c-duraark-workflow-steps">
-  {{#link-to 'explore.metadata' classBinding "isActiveMetadata:is-active" class="l-3-item is-active"}}<i class="fa fa-file-text-o"></i>&nbsp; Metadata{{/link-to}}
-  {{#link-to 'explore.context' classBinding="isActiveMetadata" class="l-3-item"}}<i class="fa fa-folder-o"></i>&nbsp; Context Information{{/link-to}}
-  {{#link-to 'explore.knowledgebase' classBinding="isActiveMetadata" class="l-3-item"}}<i class="fa fa-lightbulb-o"></i>&nbsp; Explore Knowledge Base{{/link-to}}
-</div>
+<!-- <div class="l-duraark-workflow-steps c-duraark-workflow-steps">
+  {{#link-to 'explore' classBinding "isActiveMetadata:is-active" class="l-2-item" }}<i class="fa fa-file-text-o"></i>&nbsp; Metadata{{/link-to}}
+  {{#link-to 'explore' classBinding="isActiveMetadata" class="l-2-item" }}<i class="fa fa-folder-o"></i>&nbsp; Context Information{{/link-to}}
+</div> -->
 
 <div class="l-duraark-page">
-    {{outlet}}
-    {{duraark-footer}}
+  {{duraark-sidebar}}
+    <div class="o-screen-center c-explore__emtpy">
+      <h1>Select a building in the 'Search Building' tab first!</h1>
+      {{#link-to "search"}}Go to Search{{/link-to}}
+    </div>
+  {{duraark-sidebar}}
+
+  {{outlet}}
+  {{duraark-footer}}
 </div>

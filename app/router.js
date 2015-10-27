@@ -19,13 +19,12 @@ Router.map(function() {
   this.route('explore', { path: '/explore' }, function() {
     this.route('metadata', { path: ':id/metadata' });
     this.route('context');
-    this.route('knowledgebase');
   });
-
-  this.route('ifc-viewer');
 
   // this.route('admin');
   // this.route('file-browser');
+  this.route('ifc-viewer');
+  this.route('advancedsearch');
 });
 
 export default Router;

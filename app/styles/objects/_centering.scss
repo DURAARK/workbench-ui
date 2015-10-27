@@ -1,0 +1,14 @@
+// https://css-tricks.com/centering-css-complete-guide/
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+// FIXXME!
+.o-screen-center {
+  position: absolute;
+  top: 200px;
+  left: 25%;
+  text-align: center;
+}
