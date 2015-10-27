@@ -1,3 +1,17 @@
-{{#duraark-sidebar}}
-  <iframe src="{{building.url}}" width="100%" height="100%"></iframe>
-{{/duraark-sidebar}}
+<div class="l-duraark-workflow-steps c-duraark-workflow-steps">
+  {{#link-to 'explore.metadata' classBinding "isActiveMetadata:is-active" class="l-2-item is-active" }}<i class="fa fa-file-text-o"></i>&nbsp; Metadata{{/link-to}}
+  {{#link-to 'explore.context' classBinding="isActiveMetadata" class="l-2-item" }}<i class="fa fa-folder-o"></i>&nbsp; Context Information{{/link-to}}
+</div>
+
+{{#if building}}
+  {{#duraark-sidebar}}
+    <iframe src="{{building.url}}" width="100%" height="100%"></iframe>
+  {{/duraark-sidebar}}
+{{else}}
+  {{duraark-sidebar}}
+  <div class="o-screen-center c-explore__emtpy">
+    <h1>Search for a building first to explore it.</h1>
+    {{#link-to "search"}}Go to Search{{/link-to}}
+  </div>
+  {{duraark-sidebar}}
+{{/if}}

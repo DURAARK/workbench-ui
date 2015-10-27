@@ -1,13 +1,16 @@
 import Ember from 'ember';
 export
 default Ember.Route.extend({
-  // setupController(controller, model) {
-  //     this._super();
-  //     var appState = this.modelFor('application');
-  //     controller.set('appState', appState.get('explore'));
-  //
-  //     // this.send('setActiveRoute', appState.get('explore.activeRoute'));
-  //   },
+  beforeModel() {
+      this.transitionTo('explore.metadata');
+    },
+    // setupController(controller, model) {
+    //     this._super();
+    //     var appState = this.modelFor('application');
+    //     controller.set('appState', appState.get('explore'));
+    //
+    //     // this.send('setActiveRoute', appState.get('explore.activeRoute'));
+    //   },
 
     actions: {
       setActiveRoute(routeName) {

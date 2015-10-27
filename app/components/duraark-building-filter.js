@@ -42,7 +42,7 @@ export default Ember.Component.extend({
 
         if (Object.keys(filter).length) { // FIXXME: check for correct keys 'filter' and 'data'!
           let filterKey = Object.keys(filter)[0];
-          debugger;
+
           if (filterKey === 'addressCountry') {
             this.set('filters.addressCountry', filter[filterKey]);
           } else if (filterKey === 'addressLocality') {

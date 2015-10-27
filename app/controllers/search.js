@@ -44,6 +44,11 @@ export default Ember.Controller.extend({
       },
 
       showMetadata(uri, building) {
+        debugger;
+        var plainBuilding = JSON.parse(JSON.stringify(building));
+        var b = this.store.createRecord('building', plainBuilding);
+        plainBuilding['id'] = 0;
+        building.set('id', 3);
         this.transitionToRoute('explore.metadata', building);
       },
 
