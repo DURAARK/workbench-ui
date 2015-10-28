@@ -3,9 +3,25 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   buildings: [],
   selectedBuilding: null,
+  locationActive: true,
+  geometricActive: false,
+  metadataActive: false,
+  customActive: false,
+
+  unselectAllTabs() {
+    this.set('locationActive', false);
+    this.set('geometricActive', false);
+    this.set('metadataActive', false);
+    this.set('customActive', false);
+  },
 
   actions: {
-    openBuildingAsSession(uri, building) {
+    activateSearchTab(name) {
+        this.unselectAllTabs();
+        this.set(name + 'Active', true);
+      },
+
+      openBuildingAsSession(uri, building) {
         let controller = this;
 
         // Check if session already exists:

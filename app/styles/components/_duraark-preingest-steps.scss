@@ -9,7 +9,6 @@
   background: #499dc4;
   a {
     position: relative; // for ::after element
-    // @include span(5 of 25 0);
     padding: 0.5em;
     color: white;
     font-size: 0.8em;
@@ -26,6 +25,31 @@
     background: darken(#3581A5, 5%);
   }
   a.active:after {
+    $underline-height: 1px;
+    content: '';
+    position: absolute;
+    bottom: -$underline-height;
+    left: 0;
+    width: 100%;
+    height: $underline-height;
+    background: #ff4081;
+  }
+  // For 'non-routing' tabs we use div elements for the items
+  div {
+    position: relative; // for ::after element
+    padding: 0.5em;
+    color: white;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-align: center;
+    &:hover {
+      background: darken(#499DC4, 5%);
+    }
+  }
+  div.active {
+    background: darken(#3581A5, 5%);
+  }
+  div.active:after {
     $underline-height: 1px;
     content: '';
     position: absolute;
