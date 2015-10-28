@@ -26,8 +26,8 @@
 			</div>
 
 			{{#if showSidebar}}
+				<div class="l-file-details">
 				{{#duraark-sidebar overflowYAuto=true}}
-					<div class="l-file-details">
 
 						{{#if app.showLoadingSpinner}}
 							{{loading-spinner-center}}
@@ -63,8 +63,8 @@
 							{{/if}}
 							{{/unless}}
 						{{/if}}
-					</div>
 				{{/duraark-sidebar}}
+			</div>
 			{{/if}}
 		</div>
 
