@@ -6,7 +6,7 @@
 
       {{#duraark-sidebar-item name="Locality" }}
         <div class="c-duraark-building-filter__address">
-          {{#duraark-auto-complete options=addressLocalityItems valueProperty="addressLocality" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged" inputClass="foobar" placeHolderText="Enter locality ..." noMesssagePlaceHolderText="No addresses found"
+          {{#duraark-auto-complete options=addressLocalityItems valueProperty="addressLocality" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged" inputClass="foobar" placeHolderText="Enter locality ..." noMesssagePlaceHolderText="Type a text"
           as |item|}}
             <span>{{item.addressLocality}}</span>
             <p>{{item.countryName}}</p>
@@ -17,7 +17,7 @@
       {{#duraark-sidebar-item name="Country" }}
         {{multi-select choices=addressCountryItems labelProperty="countryName" valueProperty="addressCountry" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged" selectedItems=selectedAddressCountries}}
       {{/duraark-sidebar-item}}
-      
+
     {{/if}}
 
     {{#if (eq activeTab "geometric")}}
@@ -26,28 +26,46 @@
         {{multi-select choices=floorCountItems labelProperty="floorCount" valueProperty="floorCount" propertyType="http://www.w3.org/2001/XMLSchema#int" onSelectionChange="filterChanged"}}
       {{/duraark-sidebar-item}}
 
-      {{#duraark-sidebar-item name="Number of Rooms" }}
+      <!-- {{#duraark-sidebar-item name="Number of Rooms" }}
         {{multi-select choices=roomCountItems labelProperty="roomCount" valueProperty="roomCount" propertyType="http://www.w3.org/2001/XMLSchema#int" onSelectionChange="filterChanged"}}
-      {{/duraark-sidebar-item}}
+      {{/duraark-sidebar-item}} -->
 
     {{/if}}
 
     {{#if (eq activeTab "metadata")}}
 
-      {{#duraark-sidebar-item name="Locality" }}
-        <div class="c-duraark-building-filter__address">
-          {{#duraark-auto-complete options=addressLocalityItems labelProperty="addressLocality" valueProperty="addressLocality" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged" inputClass="foobar" placeHolderText="Enter locality ..." noMesssagePlaceHolderText="No addresses found"
-          as |item|}}
-            <span>{{item.addressLocality}}</span>
-            <p>{{item.countryName}}</p>
-          {{/duraark-auto-complete}}
-        </div>
+      <!-- {{#duraark-sidebar-item name="Architect" }}
+        {{multi-select choices=architectItems labelProperty="architect" valueProperty="architect" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged"}}
       {{/duraark-sidebar-item}}
+
+      {{#duraark-sidebar-item name="Contributor" }}
+        {{multi-select choices=contributorItems labelProperty="contributor" valueProperty="contributor" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged"}}
+      {{/duraark-sidebar-item}} -->
+
+      <!-- {{#duraark-sidebar-item name="Owner" }}
+        {{multi-select choices=ownerItems labelProperty="owner" valueProperty="owner" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged"}}
+      {{/duraark-sidebar-item}} -->
 
       {{#duraark-sidebar-item name="Creator" }}
-        {{multi-select choices=creatorItems labelProperty="creator" valueProperty="creator" propertyType="http://www.w3.org/2001/XMLSchema#string"  onSelectionChange="filterChanged"}}
+        {{multi-select choices=creatorItems labelProperty="creator" valueProperty="creator" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged"}}
       {{/duraark-sidebar-item}}
 
+      <!-- {{#duraark-sidebar-item name="Building Name" }}
+        <div class="c-duraark-building-filter__address">
+          {{#duraark-auto-complete options=nameItems valueProperty="name" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged" inputClass="foobar" placeHolderText="Enter name ..." noMesssagePlaceHolderText="No names"
+          as |item|}}
+            <span>{{item.name}}</span>
+          {{/duraark-auto-complete}}
+        </div>
+      {{/duraark-sidebar-item}} -->
+
+      {{#duraark-sidebar-item name="Format" }}
+        {{multi-select choices=formatItems labelProperty="format" valueProperty="format" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged"}}
+      {{/duraark-sidebar-item}}
+
+      <!-- {{#duraark-sidebar-item name="License" }}
+        {{multi-select choices=licenseItems labelProperty="license" valueProperty="format" propertyType="http://www.w3.org/2001/XMLSchema#string" onSelectionChange="filterChanged"}}
+      {{/duraark-sidebar-item}} -->
     {{/if}}
 
   {{/duraark-sidebar}}

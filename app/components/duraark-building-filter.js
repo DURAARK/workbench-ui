@@ -11,16 +11,31 @@ export default Ember.Component.extend({
 
   didInsertElement: function() {
     if (!this.get('addressCountryItems.length')) {
-      this.send('getStreetAddressItems');
+      // this.send('getStreetAddressItems');
+      this.send('getNameItems');
+      this.send('getLocalityItems');
       this.send('getAddressCountryItems');
+      this.send('getArchitectItems');
+      this.send('getContributorItems');
+      this.send('getOwnerItems');
       this.send('getCreatorItems');
       this.send('getFloorCountItems');
       this.send('getRoomCountItems');
+      this.send('getFormatItems');
+      this.send('getLicenseItems');
     }
   },
 
   actions: {
-    getStreetAddressItems() {
+    getNameItems() {
+        const buildmProps = ['name'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('nameItems', data);
+        }.bind(this));
+      },
+
+      getLocalityItems() {
         const buildmProps = ['addressLocality', 'addressCountry'];
 
         this.duraark.getBuildmProperties(buildmProps).then(data => {
@@ -35,6 +50,31 @@ export default Ember.Component.extend({
         this.duraark.getBuildmProperties(buildmProps).then(data => {
           var data = this.buildm.code2name(data, 'countryName');
           this.set('addressCountryItems', data);
+        }.bind(this));
+      },
+
+      getArchitectItems() {
+        const buildmProps = ['architect'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('architectItems', data);
+        }.bind(this));
+      },
+
+      getContributorItems() {
+        const buildmProps = ['contributor'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('contributorItems', data);
+        }.bind(this));
+      },
+
+      getOwnerItems() {
+        const buildmProps = ['owner'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          debugger;
+          this.set('ownerItems', data);
         }.bind(this));
       },
 
@@ -60,6 +100,22 @@ export default Ember.Component.extend({
 
         this.duraark.getBuildmProperties(buildmProps).then(data => {
           this.set('roomCountItems', data);
+        }.bind(this));
+      },
+
+      getFormatItems() {
+        const buildmProps = ['format'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('formatItems', data);
+        }.bind(this));
+      },
+
+      getLicenseItems() {
+        const buildmProps = ['license'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('licenseItems', data);
         }.bind(this));
       },
 
