@@ -1,17 +1,17 @@
 {{duraark-header session=retrieveState.session title=retrieveState.title showWorkflowSteps=retrieveState.showWorkflowSteps activeStep=retrieveState.activeStep}}
 
 <div class="l-duraark-preingest-steps c-duraark-preingest-steps is-casting-shadow">
-  {{#link-to 'preingest.files' session classBinding="filesActive:is-active" class="is-active l-4-item"}}<i class="fa fa-folder-o"></i>&nbsp; Location Search{{/link-to}}
-  {{#link-to 'preingest.metadata' session classBinding="metadataActive" class="l-4-item"}}<i class="fa fa-file-text-o"></i>&nbsp; Geometric Search{{/link-to}}
-  {{#link-to 'preingest.metadata' session classBinding="metadataActive" class="l-4-item"}}<i class="fa fa-file-text-o"></i>&nbsp; Metadata Search{{/link-to}}
-  {{#link-to 'preingest.metadata' session classBinding="metadataActive" class="l-4-item"}}<i class="fa fa-file-text-o"></i>&nbsp; Custom Search{{/link-to}}
+  <div {{action "activateSearchTab" "location"}} class="{{if locationActive "active"}} l-3-item"><i class="fa fa-folder-o"></i>&nbsp; Location Properties</div>
+  <div {{action "activateSearchTab" "geometric"}} class="{{if geometricActive "active"}} l-3-item"><i class="fa fa-folder-o"></i>&nbsp; Geometric Properties</div>
+  <div {{action "activateSearchTab" "metadata"}} class="{{if metadataActive "active"}} l-3-item"><i class="fa fa-folder-o"></i>&nbsp; Other Properties</div>
+  <!-- <div {{action "activateSearchTab" "custom"}} class="{{if customActive "active"}} l-4-item"><i class="fa fa-folder-o"></i>&nbsp; Custom Search</div> -->
 </div>
 
 <div class="l-duraark-page is-casting-shadow">
 
   <div class="l-search__content">
     <div class="l-search__left-sidebar">
-      {{duraark-building-filter addressCountryItems=addressCountryItems filterChanged="onFilterChanged"}}
+      {{duraark-building-filter addressCountryItems=addressCountryItems activeTab=activeTab filterChanged="onFilterChanged"}}
     </div>
 
     <div class="l-search__map">

@@ -3,9 +3,27 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   buildings: [],
   selectedBuilding: null,
+  activeTab: 'location',
+  locationActive: true,
+  geometricActive: false,
+  metadataActive: false,
+  customActive: false,
+
+  unselectAllTabs() {
+    this.set('locationActive', false);
+    this.set('geometricActive', false);
+    this.set('metadataActive', false);
+    this.set('customActive', false);
+  },
 
   actions: {
-    openBuildingAsSession(uri, building) {
+    activateSearchTab(name) {
+        this.unselectAllTabs();
+        this.set(name + 'Active', true);
+        this.set('activeTab', name);
+      },
+
+      openBuildingAsSession(uri, building) {
         let controller = this;
 
         // Check if session already exists:
@@ -52,13 +70,13 @@ export default Ember.Controller.extend({
         this.transitionToRoute('explore.metadata', building);
       },
 
-      onFilterChanged(filters) {
+      onFilterChanged(filter) {
         var that = this;
-
-        console.log('[search] filters: ' + JSON.stringify(filters, null, 4));
+        
+        // console.log('[search] filter: ' + JSON.stringify(filter, null, 4));
 
         this.duraark.getBuildings({
-          filters: filters
+          filters: [filter]
         }).then(buildings => {
           // console.log('buildings: ' + JSON.stringify(buildings));
 
@@ -70,8 +88,8 @@ export default Ember.Controller.extend({
             return Ember.Object.create({
               url: item.url.value,
               label: item.url.value.split('/').pop(),
-              latitude: item.lat.value,
-              longitude: item.lng.value,
+              latitude: (item.lat) ? item.lat.value : "", // because of OPTIONAL clause in SPARQL query
+              longitude: (item.lng) ? item.lng.value : "", // because of OPTIONAL clause in SPARQL query
               isSelected: false
             });
           });

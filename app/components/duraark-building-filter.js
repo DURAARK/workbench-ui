@@ -11,13 +11,31 @@ export default Ember.Component.extend({
 
   didInsertElement: function() {
     if (!this.get('addressCountryItems.length')) {
-      this.send('getStreetAddresses');
-      this.send('getAddressCountryNames');
+      // this.send('getStreetAddressItems');
+      this.send('getNameItems');
+      this.send('getLocalityItems');
+      this.send('getAddressCountryItems');
+      this.send('getArchitectItems');
+      this.send('getContributorItems');
+      this.send('getOwnerItems');
+      this.send('getCreatorItems');
+      this.send('getFloorCountItems');
+      this.send('getRoomCountItems');
+      this.send('getFormatItems');
+      this.send('getLicenseItems');
     }
   },
 
   actions: {
-    getStreetAddresses() {
+    getNameItems() {
+        const buildmProps = ['name'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('nameItems', data);
+        }.bind(this));
+      },
+
+      getLocalityItems() {
         const buildmProps = ['addressLocality', 'addressCountry'];
 
         this.duraark.getBuildmProperties(buildmProps).then(data => {
@@ -26,7 +44,7 @@ export default Ember.Component.extend({
         }.bind(this));
       },
 
-      getAddressCountryNames() {
+      getAddressCountryItems() {
         const buildmProps = ['addressCountry'];
 
         this.duraark.getBuildmProperties(buildmProps).then(data => {
@@ -35,30 +53,89 @@ export default Ember.Component.extend({
         }.bind(this));
       },
 
-      // FIXXME: cleanup 'filter' and 'selection' mess!
-      filterChanged(selection) {
-        let selections = this.get('filters'),
-          filter = selection.filter;
+      getArchitectItems() {
+        const buildmProps = ['architect'];
 
-        if (Object.keys(filter).length) { // FIXXME: check for correct keys 'filter' and 'data'!
-          let filterKey = Object.keys(filter)[0];
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('architectItems', data);
+        }.bind(this));
+      },
 
-          if (filterKey === 'addressCountry') {
-            this.set('filters.addressCountry', filter[filterKey]);
-          } else if (filterKey === 'addressLocality') {
-            var data = selection.data;
-            console.log('data.addressCountry: ' + data.addressCountry);
-            this.set('selectedAddressCountries', [data.addressCountry]);
+      getContributorItems() {
+        const buildmProps = ['contributor'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('contributorItems', data);
+        }.bind(this));
+      },
+
+      getOwnerItems() {
+        const buildmProps = ['owner'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          debugger;
+          this.set('ownerItems', data);
+        }.bind(this));
+      },
+
+      getCreatorItems() {
+        const buildmProps = ['creator'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('creatorItems', data);
+        }.bind(this));
+      },
+
+      getFloorCountItems() {
+        const buildmProps = ['floorCount'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          debugger;
+          this.set('floorCountItems', data);
+        }.bind(this));
+      },
+
+      getRoomCountItems() {
+        const buildmProps = ['roomCount'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('roomCountItems', data);
+        }.bind(this));
+      },
+
+      getFormatItems() {
+        const buildmProps = ['format'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('formatItems', data);
+        }.bind(this));
+      },
+
+      getLicenseItems() {
+        const buildmProps = ['license'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('licenseItems', data);
+        }.bind(this));
+      },
+
+      filterChanged(filter) {
+        if (filter.type && filter.predicate && filter.values) {
+          let predicate = filter.predicate;
+
+          if (predicate === 'addressCountry') {
+            this.set('filters.addressCountry', filter.values);
+          } else if (predicate === 'addressLocality') {
+            // this.set('selectedAddressCountries', [filter.userData.addressCountry]);
           }
 
           // Cache the current filter set:
-          this.set('filters.' + filterKey, filter[filterKey]);
+          this.set('filters.' + predicate, filter);
 
-          // NOTE: The action only sends the currently changed filter, not the whole
-          // filter set.
+          // NOTE: The action only sends the currently changed filter, not the whole filter set.
           this.sendAction('filterChanged', filter);
         } else {
-          throw new Error('[duraark-building-filter] No "filterKey" present in filter: ' + JSON.stringify(filter, null, 4));
+          throw new Error('[duraark-building-filter] No "type", "predicate", or "values" key present in filter: ' + JSON.stringify(filter, null, 4));
         }
       }
   }
