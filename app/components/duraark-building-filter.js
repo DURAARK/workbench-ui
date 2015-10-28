@@ -11,6 +11,7 @@ export default Ember.Component.extend({
 
   didInsertElement: function() {
     if (!this.get('addressCountryItems.length')) {
+      this.send('getFloorCountNumbers');
       this.send('getCreatorNames');
       this.send('getStreetAddresses');
       this.send('getAddressCountryNames');
@@ -41,6 +42,14 @@ export default Ember.Component.extend({
 
         this.duraark.getBuildmProperties(buildmProps).then(data => {
           this.set('creatorItems', data);
+        }.bind(this));
+      },
+
+      getFloorCountNumbers() {
+        const buildmProps = ['floorCount'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('floorCountItems', data);
         }.bind(this));
       },
 

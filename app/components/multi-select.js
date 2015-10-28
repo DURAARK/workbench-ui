@@ -4,17 +4,22 @@ export default Ember.Component.extend({
   tagName: '',
   // labelProperty: 'countryName',
   // valueProperty: 'addressCountry',
-  choices: [],
-  items: [],
-  selectedItems: [],
+  choices: null,
+  items: null,
+  selectedItems: null,
 
   // NOTE: necessary to not share state between multiple instantiations of this compoentn.
-  //       I have to investigate taht if there is time ...
+  //       I have to investigate that if there is time ...
+  // Possible match: http://stackoverflow.com/questions/26183693/ember-component-properties-not-acting-isolated
   init() {
     this._super();
     this.set('items', Ember.A());
-    this.set('choices', Ember.A());
-    this.set('selectedItems', Ember.A());
+    if (!this.get('choices')) {
+      this.set('choices', Ember.A());
+      this.set('selectedItems', Ember.A());
+    } else {
+      this.onChoicesChange();
+    }
   },
 
   onChoicesChange: function() {
@@ -30,6 +35,10 @@ export default Ember.Component.extend({
     });
 
     let selectedItems = this.get('selectedItems');
+    if (!selectedItems) {
+      selectedItems = [];
+      this.set('selectedItems', selectedItems);
+    }
 
     if (selectedItems.length) {
       this.get('items').forEach(item => {

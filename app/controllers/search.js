@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   buildings: [],
   selectedBuilding: null,
+  activeTab: 'location',
   locationActive: true,
   geometricActive: false,
   metadataActive: false,
@@ -19,6 +20,7 @@ export default Ember.Controller.extend({
     activateSearchTab(name) {
         this.unselectAllTabs();
         this.set(name + 'Active', true);
+        this.set('activeTab', name);
       },
 
       openBuildingAsSession(uri, building) {
