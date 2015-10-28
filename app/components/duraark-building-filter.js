@@ -11,6 +11,7 @@ export default Ember.Component.extend({
 
   didInsertElement: function() {
     if (!this.get('addressCountryItems.length')) {
+      this.send('getCreatorNames');
       this.send('getStreetAddresses');
       this.send('getAddressCountryNames');
     }
@@ -32,6 +33,14 @@ export default Ember.Component.extend({
         this.duraark.getBuildmProperties(buildmProps).then(data => {
           var data = this.buildm.code2name(data, 'countryName');
           this.set('addressCountryItems', data);
+        }.bind(this));
+      },
+
+      getCreatorNames() {
+        const buildmProps = ['creator'];
+
+        this.duraark.getBuildmProperties(buildmProps).then(data => {
+          this.set('creatorItems', data);
         }.bind(this));
       },
 

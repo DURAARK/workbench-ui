@@ -2,11 +2,20 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: '',
-  labelProperty: 'countryName',
-  valueProperty: 'addressCountry',
+  // labelProperty: 'countryName',
+  // valueProperty: 'addressCountry',
   choices: [],
   items: [],
   selectedItems: [],
+
+  // NOTE: necessary to not share state between multiple instantiations of this compoentn.
+  //       I have to investigate taht if there is time ...
+  init() {
+    this._super();
+    this.set('items', Ember.A());
+    this.set('choices', Ember.A());
+    this.set('selectedItems', Ember.A());
+  },
 
   onChoicesChange: function() {
     let items = this.get('items');
@@ -22,13 +31,15 @@ export default Ember.Component.extend({
 
     let selectedItems = this.get('selectedItems');
 
-    this.get('items').forEach(item => {
-      selectedItems.forEach(selection => {
-        if (selection === item.id) {
-          item.set('isSelected', true);
-        }
-      })
-    });
+    if (selectedItems.length) {
+      this.get('items').forEach(item => {
+        selectedItems.forEach(selection => {
+          if (selection === item.id) {
+            item.set('isSelected', true);
+          }
+        })
+      });
+    }
 
     this.send('onSelectionChange');
   }.observes('choices', 'selectedItems'),

@@ -1,17 +1,22 @@
 <div class="l-duraark-building-filter c-duraark-building-filter">
   {{#duraark-sidebar overflowYScroll=true}}
+    {{#duraark-sidebar-item name="By Creator ..." }}
+      {{multi-select choices=creatorItems labelProperty="creator" valueProperty="creator" onSelectionChange="filterChanged"}}
+    {{/duraark-sidebar-item}}
+
     {{#duraark-sidebar-item name="By Country ..." }}
       {{multi-select choices=addressCountryItems labelProperty="countryName" valueProperty="addressCountry" onSelectionChange="filterChanged" selectedItems=selectedAddressCountries}}
     {{/duraark-sidebar-item}}
 
     {{#duraark-sidebar-item name="By Locality ..." }}
       <div class="c-duraark-building-filter__address">
-        {{#duraark-auto-complete options=addressLocalityItems valueProperty="addressLocality" onSelectionChange="filterChanged" inputClass="foobar" selectedValue=filters.addressLocality placeHolderText="Enter locality ..." noMesssagePlaceHolderText="No addresses found" as |item|}}
+        {{#duraark-auto-complete options=addressLocalityItems valueProperty="addressLocality" onSelectionChange="filterChanged" inputClass="foobar" selectedValue=filters.addressLocality placeHolderText="Enter locality ..." noMesssagePlaceHolderText="No addresses found"
+        as |item|}}
           <span>{{item.addressLocality}}</span>
           <p>{{item.countryName}}</p>
         {{/duraark-auto-complete}}
       </div>
-
     {{/duraark-sidebar-item}}
+
   {{/duraark-sidebar}}
 </div>

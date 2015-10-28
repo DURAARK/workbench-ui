@@ -70,8 +70,8 @@ export default Ember.Controller.extend({
             return Ember.Object.create({
               url: item.url.value,
               label: item.url.value.split('/').pop(),
-              latitude: item.lat.value,
-              longitude: item.lng.value,
+              latitude: (item.lat) ? item.lat.value : "", // because of OPTIONAL clause in SPARQL query
+              longitude: (item.lng) ? item.lng.value : "", // because of OPTIONAL clause in SPARQL query
               isSelected: false
             });
           });
