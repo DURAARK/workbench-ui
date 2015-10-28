@@ -204,11 +204,11 @@ export default Ember.Service.extend({
 
     console.log('[duraark-sda] GET /buildings');
     _.forEach(props, function(prop) {
-      console.log('[duraark-sda]       * prop: ' + prop);
+      // console.log('[duraark-sda]       * prop: ' + prop);
     });
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      console.log('[duraark-sda] Query-URL: ' + url);
+      // console.log('[duraark-sda] Query-URL: ' + url);
 
       // FIXXME: for some reason _get is not working correctly here whe initially
       // loading the data. It returns a "" result. When you do a page reload the data
@@ -234,9 +234,9 @@ export default Ember.Service.extend({
       url = duraark.getAPIEndpoint('sda') + '/buildings/filter';
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      console.log('[duraark-sda] POST /buildings/filter');
+      // console.log('[duraark-sda] POST /buildings/filter');
       _.forEach(filters, function(filter) {
-        console.log('[duraark-sda]       * filter: ' + JSON.stringify(filter, null, 4));
+        // console.log('[duraark-sda]       * filter: ' + JSON.stringify(filter, null, 4));
       });
 
       return duraark._post(url, {

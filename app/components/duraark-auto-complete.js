@@ -1,33 +1,31 @@
-import Ember from "ember";
-import AutoComplete from "./auto-complete";
+import Ember from 'ember';
+import AutoComplete from './auto-complete';
 
 export default AutoComplete.extend({
-  valueProperty: "addressLocality",
+  valueProperty: 'addressLocality',
+  propertyType: null,
   determineSuggestions: function(options, input) {
     var list = options.filter(function(item) {
-      var bla = Ember.get(item, "addressLocality");
+      // let valueProperty = this.get('valueProperty');
       // FIXXME: using 'input.toString()' as input does not seem to be of type String?!
-      return Ember.get(item, "addressLocality").toLowerCase().indexOf(input.toString().toLowerCase()) > -1;
+      return Ember.get(item, 'addressLocality').toLowerCase().indexOf(input.toString().toLowerCase()) > -1;
     });
     return Ember.A(list);
   },
   actions: {
     selectItem: function(item) {
-      var valueProperty = this.get("valueProperty"),
-        selectedValue = Ember.get(item, valueProperty);
-        
-      this.set("selectedFromList", true);
-      this.set("selectedValue", selectedValue);
+      let valueProperty = this.get('valueProperty');
+      this.set('selectedFromList', true);
+      this.set('selectedValue', Ember.get(item, valueProperty));
 
-      let filter = {};
-      filter[valueProperty] = [selectedValue];
+      let filter = {
+        predicate: this.get('valueProperty'), // FIXXME: rename 'valueProperty' to 'predicate'
+        type: this.get('propertyType'),
+        values: [this.get('selectedValue')],
+        userData: item
+      };
 
-      var selection = {
-        filter: filter,
-        data: item
-      }
-
-      this.sendAction('onSelectionChange', selection);
+      this.sendAction('onSelectionChange', filter);
     }
   }
 });
