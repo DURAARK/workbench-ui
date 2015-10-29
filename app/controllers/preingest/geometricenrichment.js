@@ -8,14 +8,14 @@ export default Ember.Controller.extend({
     save: function() {
       var session = this.get('session');
 
-      // session.get('digitalObjects').forEach(function(digObj) {
-      //   // FIXXME: remove ember-data and plain javascript models ASAP!
-      //   if (_.isFunction(digObj.get)) {
-      //     let geoTools = digObj.get('geoTools'),
-      //       tmp = JSON.parse(JSON.stringify(geoTools));
-      //     digObj.set('geoTools', tmp);
-      //   }
-      // });
+      session.get('digitalObjects').forEach(function(digObj) {
+        // FIXXME: remove ember-data and plain javascript models ASAP!
+        if (_.isFunction(digObj.get)) {
+          let geoTools = digObj.get('geoTools'),
+            tmp = JSON.parse(JSON.stringify(geoTools));
+          digObj.set('geoTools', tmp);
+        }
+      });
 
       session.save().catch(function(err) {
         throw new Error(err);
@@ -92,6 +92,38 @@ export default Ember.Controller.extend({
         }
       } else {
         // FIXXME: refactor and cleanup!
+
+        // FIXXME: delegate this over to duraark-geometricenrichment service!
+        if (tool.get('label') === 'Detect Power Lines') {
+          // Create new instance of tool to be added to 'geoTools'. It is not
+          // possible to directly use the 'tool' instance, as multiple files can
+          // have the same tool assigned.
+          var t = Ember.Object.create({
+            label: tool.get('label'),
+            description: tool.get('description'),
+            isLoading: false,
+            hasError: false,
+            hasData: true,
+            downloadUrl: null,
+            // filename: filename
+          });
+
+          t.set('electDetectImages', tool.get('elecDetectImages'));
+          t.set('ruleSetImages', tool.get('ruleSetImages'));
+          t.set('hypothesisImages', tool.get('hypothesisImages'));
+
+          var digObj = controller.get('selectedDigitalObject'),
+            session = controller.get('session');
+
+          // var selectedDigObj = session.get('digitalObjects').find(function(dob) {
+          //   return dob.get('label') === digObj.get('label');
+          // });
+          digObj.get('geoTools').pushObject(t);
+
+          controller.send('save');
+          controller.send('showLoadingSpinner', false);
+        }
+
         if (tool.get('label') === 'Reconstruct BIM Model') {
           let filename = selectedDigitalObject.get('path');
           console.log('filename: ' + filename);
@@ -114,13 +146,6 @@ export default Ember.Controller.extend({
               downloadUrl: null,
               filename: filename
             });
-
-            // FIXXME: delegate this over to duraark-geometricenrichment service!
-            if (t.get('label') === 'Electrical Appliance Detection') {
-              t.set('electDetectImages', tool.get('elecDetectImages'));
-              t.set('ruleSetImages', tool.get('ruleSetImages'));
-              t.set('hypothesisImages', tool.get('hypothesisImages'));
-            }
 
             // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
 
