@@ -13,12 +13,18 @@
 			<div class="l-file-list">
 				<h2 style="margin-top: 1em;"><i class="fa fa-database"></i>&nbsp; 5 | Check archive content:
 					<div style="float: right;">
-						<button {{action "createBagItSIP"}}>
+						<!-- <button {{action "createBagItSIP"}}>
 							{{#unless bagIsCreating}}Download BagIt{{else}}Creating BagIt ...{{/unless}}
 						</button>
 						<button style="margin-left: 1.5em;" {{action "createRosettaSIP"}}>
 							{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{/unless}}
-						</button>
+						</button> -->
+						<div style="font-size: 0.7em; float: right; margin-left: 1em; margin-right: 1em; padding: 0.5em; margin-bottom: 1.5em; background: #E6892B" {{action "createBagItSIP"}}>
+							{{#unless bagIsCreating}}Download Data{{else}}Creating Package ...{{/unless}}
+						</div>
+						<div style="font-size: 0.7em; margin-left: 1em; float: right; padding: 0.5em; margin-left: 1.5em; background: #E6892B" {{action "createRosettaSIP"}}>
+							{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{/unless}}
+						</div>
 					</div>
 				</h2>
 
