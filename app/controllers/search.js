@@ -25,10 +25,10 @@ export default Ember.Controller.extend({
 
       openBuildingAsSession(uri, building) {
         let controller = this;
-
+debugger;
         // Check if session already exists:
         let result = this.duraark.querySession({
-          uri: uri
+          uri: encodeURIComponent(uri)
         }).then(function(existingSession) {
           // console.log('existingSession: ' + JSON.stringify(existingSession, null, 4));
 
@@ -62,7 +62,6 @@ export default Ember.Controller.extend({
       },
 
       showMetadata(uri, building) {
-        debugger;
         var plainBuilding = JSON.parse(JSON.stringify(building));
         var b = this.store.createRecord('building', plainBuilding);
         plainBuilding['id'] = 0;
@@ -72,7 +71,7 @@ export default Ember.Controller.extend({
 
       onFilterChanged(filter) {
         var that = this;
-        
+
         // console.log('[search] filter: ' + JSON.stringify(filter, null, 4));
 
         this.duraark.getBuildings({

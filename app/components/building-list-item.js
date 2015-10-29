@@ -13,7 +13,7 @@ export default Ember.Component.extend({
 
   actions: {
     openBuilding(building) {
-        this.sendAction('openBuildingClicked', this.get('uri'), building);
+        this.sendAction('openBuildingClicked', building.get('url'), building);
       },
 
       showDetails(building) {

@@ -9,7 +9,11 @@
       {{description}}
     </div>
     <div class="c-building-list-item__buttons">
-      <button><i class="fa fa-map-marker fa-lg"></i>&nbsp; Locate</button>
+      {{#if building.latitude}}
+        <button><i class="fa fa-map-marker fa-lg"></i>&nbsp; Locate</button>
+      {{else}}
+        <h4 style="text-align: center; color: white;">No location</h4>
+      {{/if}}
       <button {{action "openBuilding" building}}><i class="fa fa-database"></i>&nbsp; Edit</button>
       <button {{action "showMetadata" building}}><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp; Explore</button>
     </div>

@@ -1,8 +1,12 @@
 <div class="l-multi-select c-multi-select">
-  <ul>
-    {{#each items as |item|}}
-      <li {{action "toggleSelection" item}} class={{if item.isSelected "selected"}}>{{item.label}}</li>
-    {{/each}}
-  </ul>
+  {{#if items.length}}
+    <ul>
+      {{#each items as |item|}}
+        <li {{action "toggleSelection" item}} class= {{if item.isSelected "selected"}}>{{item.label}}</li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <h3 style="text-align: center; padding: 0.5em;">No entries found.</h3>
+  {{/if}}
   <!-- <div class="footer">l</div> -->
 </div>

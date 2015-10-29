@@ -73,7 +73,6 @@ export default Ember.Component.extend({
         const buildmProps = ['owner'];
 
         this.duraark.getBuildmProperties(buildmProps).then(data => {
-          debugger;
           this.set('ownerItems', data);
         }.bind(this));
       },
@@ -90,7 +89,6 @@ export default Ember.Component.extend({
         const buildmProps = ['floorCount'];
 
         this.duraark.getBuildmProperties(buildmProps).then(data => {
-          debugger;
           this.set('floorCountItems', data);
         }.bind(this));
       },
@@ -107,6 +105,7 @@ export default Ember.Component.extend({
         const buildmProps = ['format'];
 
         this.duraark.getBuildmProperties(buildmProps).then(data => {
+          data.push({format: 'E57 Point Cloud File'});
           this.set('formatItems', data);
         }.bind(this));
       },
