@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
 
       openBuildingAsSession(uri, building) {
         let controller = this;
-debugger;
+
         // Check if session already exists:
         let result = this.duraark.querySession({
           uri: encodeURIComponent(uri)

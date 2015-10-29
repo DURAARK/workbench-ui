@@ -4,7 +4,8 @@
 
 	<div class="c-workflow-page">
 		{{#workflow-step-header onNext="next" onBack="back" }}
-			<header><i class="fa fa-lightbulb-o"></i>&nbsp; 4 | CONTEXT INFORMATION</header>
+			<!-- <header><i class="fa fa-lightbulb-o"></i>&nbsp; 4 | CONTEXT INFORMATION</header> -->
+			<header><i class="fa fa-dot-circle-o"></i>&nbsp; Building: {{session.label}}</header>
 		{{/workflow-step-header}}
 
 		<div class="l-files">

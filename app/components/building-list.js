@@ -21,7 +21,7 @@ default Ember.Component.extend({
           building.set('isSelected', true);
         }
         building.toggleProperty('isSelected');
-debugger;
+
         // console.log('Selected building:\n' + JSON.stringify(building, null, 4));
         this.sendAction('showBuildingDetails', uri, building);
       },
