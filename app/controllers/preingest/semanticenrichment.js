@@ -36,7 +36,9 @@ export default Ember.Controller.extend({
       if (candidates.length) {
         console.log('candidates received: #' + candidates.length);
         // FIXXME: implement pagination and sorting by relevance to manage the huge amount of results!
-        topic.set('candidateSelection', candidates.slice(0, 100));
+        topic.set('candidateSelection', candidates.slice(0, 100).sortBy('score').reverse());
+        topic.set('isLoading', false);
+        topic.set('hasData', true);
         // FIXXME: create a topic model to enable saving!
         controller.get('session').save().then(function() {
           console.log('stored candidates');
@@ -209,7 +211,9 @@ export default Ember.Controller.extend({
           seeds: topic.get('seeds'),
           crawlId: topic.get('crawlId'),
           candidateSelection: topic.get('candidates'),
-          isLoading: false
+          isLoading: true,
+          hasError: false,
+          hasData: false,
         });
         currentTopics.pushObject(t);
 
