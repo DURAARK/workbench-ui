@@ -1,21 +1,13 @@
-FROM ubuntu:14.04
+FROM duraark/microservice-base
 
-RUN DEBIAN_FRONTEND=noninteractive
+MAINTAINER Martin Hecher <martin.hecher@fraunhofer.at>
 
-RUN apt-get install curl git python -y
-RUN apt-get -f install
-#RUN apt-get install build-essential -y
-RUN curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
-RUN apt-get -y install nodejs -y
-
-RUN npm install -g ember-cli bower nodemon
-
-# Pull in source code:
-COPY ./ /duraark/workbench-ui
-WORKDIR /duraark/workbench-ui
+COPY ./ /opt/workbench-ui
+WORKDIR /opt/workbench-ui
 
 RUN npm install
 RUN mv .git .git-tmp && bower install --allow-root; mv .git-tmp .git
 
 EXPOSE 4200
-CMD ["ember", "serve"]
+
+CMD ["ember", "serve", "--prod"]
