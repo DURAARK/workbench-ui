@@ -10,7 +10,7 @@ export default Ember.Component.extend({
   selectedAddressCountries: ['AT', 'DE'],
 
   didInsertElement: function() {
-    if (!this.get('addressCountryItems.length')) {
+    // if (!this.get('addressCountryItems.length')) {
       // this.send('getStreetAddressItems');
       this.send('getNameItems');
       this.send('getLocalityItems');
@@ -23,7 +23,7 @@ export default Ember.Component.extend({
       this.send('getRoomCountItems');
       this.send('getFormatItems');
       this.send('getLicenseItems');
-    }
+    // }
   },
 
   actions: {
