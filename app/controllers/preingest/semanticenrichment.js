@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
       if (candidates.length) {
         console.log('candidates received: #' + candidates.length);
         // FIXXME: implement pagination and sorting by relevance to manage the huge amount of results!
-        topic.set('candidateSelection', candidates.slice(0, 100).sortBy('score').reverse());
+        topic.set('candidateSelection', candidates.slice(0, 50).sortBy('score').reverse());
         topic.set('isLoading', false);
         topic.set('hasData', true);
         // FIXXME: create a topic model to enable saving!

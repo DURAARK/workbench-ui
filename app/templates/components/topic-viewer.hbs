@@ -11,16 +11,17 @@
         </div>
         <hr>
 
-        <!-- FIXXME: 'height' is hardcoded for now and equals 100 table rows -->
-        <iframe src="{{selectedCandidate.entity}}" width="100%" height="5500px"></iframe>
+        <!-- FIXXME: 'height' is hardcoded for now and equals 50 table rows -->
+        <iframe src="{{selectedCandidate.entity}}" width="100%" height="1850px"></iframe>
       {{else}}
-        <h1>Select a candidate to show its content ...</h1>
+        {{#unless topic.isLoading}}
+          <h1 style="text-align: center;padding: 1em;">Select a candidate to show its content ...</h1>
+        {{/unless}}
       {{/if}}
     </div>
 
     <div class="l-duraark-tool__pane-one">
-      {{#if topic.candidateSelection.length}}
-
+      {{#unless (lt topic.candidateSelection.length 1)}}
         <table class="c-candidate-list">
           <thead>
             <tr>
@@ -56,18 +57,22 @@
             {{/each}}
           </tbody>
         </table>
-      {{else}}
-        <!-- if topic.candidateSelection.length -->
+  {{else}}
+    <!-- if topic.candidateSelection.length -->
 
-        {{#duraark-sidebar}}
-          {{#help-box}}
-            <div class="c-help-box__hint">
-              You removed all topic candidates.
-              <button {{action "reloadCandidates"}}>Reload Candidates</button>
-            </div>
-          {{/help-box}}
-        {{/duraark-sidebar}}
-      {{/if}}
+    {{#duraark-sidebar}}
+      {{#help-box}}
+        <div class="c-help-box__hint">
+          {{#if topic.isLoading}}
+            <h1 style="text-align: center; padding: 1em;">LOADING ...</h1>
+          {{else}}
+            You removed all topic candidates.
+            <button {{action "reloadCandidates"}}>Reload Candidates</button>
+          {{/if}}
+        </div>
+      {{/help-box}}
+    {{/duraark-sidebar}}
+      {{/unless}}
       <!-- if topic.candidateSelection.length -->
     </div>
 
