@@ -19,7 +19,7 @@
 					<div class="files-wrapper {{if pa.isSelected "file-is-selected"}}">
 						{{digital-object-sementic item=pa select="showTopicSelection"}}
 
-						{{#each pa.semMD.topics as |topic|}}
+						{{#each pa.semTopics as |topic|}}
 							{{tool-item tool=topic item=pa infoClicked="showEnrichmentCandidates" remove="removeTopic"}}
 						{{/each}}
 					</div>
@@ -30,11 +30,14 @@
 			</div>
 
 			<div class="l-file-details">
-				{{#duraark-sidebar overflowYAuto=true}}
 					{{#if topic}}
-						{{#duraark-tool title="Candidate List" icon="fa-lightbulb-o" close="closeToolUI" fullscreen="maximizeToolUI" }}
-							{{topic-viewer topic=topic}}
-						{{/duraark-tool}}
+
+						{{#duraark-sidebar overflowYAuto=true}}
+							{{#duraark-tool title="Candidate List" icon="fa-lightbulb-o" close="closeToolUI" fullscreen="maximizeToolUI" }}
+								{{topic-viewer topic=topic}}
+							{{/duraark-tool}}
+
+								{{/duraark-sidebar}}
 					{{else}}
 						{{#if selectedPhysicalAsset}}
 							{{tool-selector tools=topics click="clickedTopic" icon="fa-lightbulb-o" title="Add context information topics to the selected file:"}}
@@ -54,7 +57,6 @@
 
 						{{/if}}
 					{{/if}}
-				{{/duraark-sidebar}}
 			</div>
 
 		</div>

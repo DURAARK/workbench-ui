@@ -5,7 +5,7 @@
   padding: 1.5em;
   &.fullscreen {
     position: fixed;
-    top: $header-height; //172px; // FIXXME: use variables!
+    top: $header-height + $workflow-height;
     left: 0;
     right: 0;
     height: 87.5vh;

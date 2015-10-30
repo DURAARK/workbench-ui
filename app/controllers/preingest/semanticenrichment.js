@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
       console.log('result for: ' + topic.label);
       // console.log(JSON.stringify(result, null, 4));
 
-      topic.candidates = result;
+      topic.candidateSelection = result;
 
       controller.get('session').save().then(function() {
         topic.set('showLoadingSpinner', false);
@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
       if (candidates.length) {
         console.log('candidates received: #' + candidates.length);
         // FIXXME: implement pagination and sorting by relevance to manage the huge amount of results!
-        topic.candidates = candidates.slice(0, 100);
+        topic.set('candidateSelection', candidates.slice(0, 100));
         // FIXXME: create a topic model to enable saving!
         controller.get('session').save().then(function() {
           console.log('stored candidates');
@@ -59,35 +59,33 @@ export default Ember.Controller.extend({
     }
 
     let allTopics = this.get('allTopics'),
-      configuredTopics = this.get('session.config.sda.topics'),
       selectedPhysicalAsset = this.get('selectedPhysicalAsset'),
-      paTopics = selectedPhysicalAsset.get('semMD.topics'),
-      shownTopics = [];
+      paTopics = selectedPhysicalAsset.get('semTopics');
 
-    configuredTopics.forEach(function(myTopic) {
-      var topic = allTopics.find(function(topic, index, enumerable) {
-        return myTopic === topic.get('label');
-      });
-      shownTopics.push(topic);
-    });
+    // configuredTopics.forEach(function(myTopic) {
+    //   var topic = allTopics.find(function(topic, index, enumerable) {
+    //     return myTopic === topic.get('label');
+    //   });
+    //   configuredTopics.push(topic);
+    // });
 
     // Set selection state based on selected file:
-    shownTopics.forEach(function(shownTopic, index, enumerable) {
+    allTopics.forEach(function(curTopic, index, enumerable) {
       var curFileTopic = paTopics.find(function(fileTopic, index, enumerable) {
-        return fileTopic.label === shownTopic.get('label');
+        return fileTopic.label === curTopic.get('label');
       });
 
       // If the file contains the topic from the selection set the selection
       // state in the shown topic accordingly:
       if (curFileTopic) {
-        shownTopic.set('isSelected', true);
+        curTopic.set('isSelected', true);
       } else {
-        shownTopic.set('isSelected', false);
+        curTopic.set('isSelected', false);
       }
     });
 
-    return shownTopics;
-  }.property('session.config', 'selectedPhysicalAsset.semMD.topics.[]'),
+    return allTopics;
+  }.property('session.config', 'selectedPhysicalAsset.semTopics.[]'),
 
   togglePhysicalAssetSelection: function(pa) {
     var flag = pa.get('isSelected');
@@ -136,16 +134,16 @@ export default Ember.Controller.extend({
       var session = this.get('session'),
         controller = this;
 
-      if (session.get('physicalAssets')) {
-        session.get('physicalAssets').forEach(function(pa) {
-          // FIXXME: remove ember-data and plain javascript models ASAP!
-          if (_.isFunction(pa.get)) {
-            let semMD = pa.get('semMD'),
-              tmp = JSON.parse(JSON.stringify(semMD));
-            pa.set('semMD', tmp);
-          }
-        });
-      }
+      // if (session.get('physicalAssets')) {
+      //   session.get('physicalAssets').forEach(function(pa) {
+      //     // FIXXME: remove ember-data and plain javascript models ASAP!
+      //     if (_.isFunction(pa.get)) {
+      //       let semMD = pa.get('semMD'),
+      //         tmp = JSON.parse(JSON.stringify(semMD));
+      //       pa.set('semMD', tmp);
+      //     }
+      //   });
+      // }
 
       session.save().then(function(session) {
         if (session.get('physicalAssets')) {
@@ -161,16 +159,16 @@ export default Ember.Controller.extend({
       var session = this.get('session'),
         controller = this;
 
-      if (session.get('physicalAssets')) {
-        session.get('physicalAssets').forEach(function(pa) {
-          // FIXXME: remove ember-data and plain javascript models ASAP!
-          if (_.isFunction(pa.get)) {
-            let semMD = pa.get('semMD'),
-              tmp = JSON.parse(JSON.stringify(semMD));
-            pa.set('semMD', tmp);
-          }
-        });
-      }
+      // if (session.get('physicalAssets')) {
+      //   session.get('physicalAssets').forEach(function(pa) {
+      //     // FIXXME: remove ember-data and plain javascript models ASAP!
+      //     if (_.isFunction(pa.get)) {
+      //       let semMD = pa.get('semMD'),
+      //         tmp = JSON.parse(JSON.stringify(semMD));
+      //       pa.set('semMD', tmp);
+      //     }
+      //   });
+      // }
 
       session.save().then(function(session) {
         controller.transitionToRoute('preingest.geometricenrichment', session);
@@ -193,7 +191,7 @@ export default Ember.Controller.extend({
 
     clickedTopic: function(topic) {
       var selectedPhysicalAsset = this.get('selectedPhysicalAsset'),
-        currentTopics = selectedPhysicalAsset.get('semMD.topics');
+        currentTopics = selectedPhysicalAsset.get('semTopics');
 
       var selectedTopic = currentTopics.find(function(item) {
         return topic.get('label') === item.label;
@@ -210,15 +208,15 @@ export default Ember.Controller.extend({
           description: topic.get('description'),
           seeds: topic.get('seeds'),
           crawlId: topic.get('crawlId'),
-          candidates: topic.get('candidates'),
+          candidateSelection: topic.get('candidates'),
           isLoading: false
         });
         currentTopics.pushObject(t);
 
-        if (!t.get('candidates').length) {
+        if (!t.get('candidateSelection').length) {
           t.set('showLoadingSpinner', true);
 
-          if (!t.candidates.length) {
+          if (!t.candidateSelection.length) {
             var topicCrawler = new DURAARK.TopicCrawler({
                 apiEndpoint: this.duraark.getAPIEndpoint('sda'),
               }),
@@ -241,7 +239,7 @@ export default Ember.Controller.extend({
       this.set('selectedPhysicalAsset', pa);
       this.selectPhysicalAsset(pa);
 
-      pa.get('semMD.topics').removeObject(topic);
+      pa.get('semTopics').removeObject(topic);
     },
 
     closeToolUI() {
