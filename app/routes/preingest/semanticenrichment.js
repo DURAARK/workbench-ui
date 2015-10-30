@@ -66,18 +66,10 @@ default Ember.Route.extend({
 
       if (session.get('physicalAssets')) {
         session.get('physicalAssets').forEach(function(pa) {
-          var semMD = pa.semMD;
-
-          if (!semMD) {
-            semMD = {
-              topics: []
-            };
-          }
-
           var obj = Ember.Object.create({
             label: pa.label,
             buildm: pa.buildm,
-            semMD: semMD,
+            semTopics: pa.semTopics ? pa.semTopics : [],
             isSelected: false
           });
 
@@ -90,22 +82,22 @@ default Ember.Route.extend({
       // FIXXME: get from SDA service!
       // FIXXME: create Topic model to enable saving and linking into session model!
       var allTopics = [Ember.Object.create({
-        label: 'Haus 30 (general context)',
+        label: 'Architectural Context',
         description: "Adds information on the building, architecture and the region around the building.",
         seeds: ['http://dbpedia.org/resource/Berlin,http://dbpedia.org/resource/List_of_museums,http://de.dbpedia.org/resource/Ludwig_Hoffmann(Architekt),http://de.dbpedia.org/resource/Bogensee_(Berlin-Buch),http://de.dbpedia.org/resource/Bucher_Forst,http://de.dbpedia.org/resource/Karpfenteiche_(Berlin-Buch),http://de.dbpedia.org/resource/Kategorie:Ehemaliges_Krankenhaus_in_Berlin'],
         crawlId: 27,
         candidates: [],
         isSelected: false
       }), Ember.Object.create({
-        label: 'Haus 30 (political context)',
+        label: 'Political Context',
         description: "Adds information on the political context at the location (Berlin) of the building. E.g., political parties and organizations in Berlin.",
         seeds: ['http://dbpedia.org/resource/Berlin,http://dbpedia.org/resource/Social_Democratic_Party_of_Germany,http://de.dbpedia.org/resource/Ludwig_Hoffmann(Architekt),http://de.dbpedia.org/resource/Mosse-Stift,http://de.dbpedia.org/resource/Landesgeschichtliche_Vereinigung_für_die_Mark_Brandenburg'],
         crawlId: 19,
         candidates: [],
         isSelected: false
       }), Ember.Object.create({
-        label: 'Nygade (general context)',
-        description: "Adds information on the building, architecture and the region around the building.",
+        label: 'Energy Context',
+        description: "Adds information on the energy and environmental context.",
         seeds: ['http://dbpedia.org/resource/Rosenborg_Castle,http://dbpedia.org/resource/Copenhagen_Opera_House,http://dbpedia.org/resource/Copenhagen,http://dbpedia.org/resource/Capital_Region_of_Denmark,http://dbpedia.org/resource/List_of_museums'],
         crawlId: 20,
         candidates: [],
@@ -167,7 +159,7 @@ default Ember.Route.extend({
       this.send('showWorkflowSteps', true);
       this.send('setActiveStep', 'semanticenrichment');
 
-      controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!      
+      controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!
     }
 
 });

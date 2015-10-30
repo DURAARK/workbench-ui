@@ -1,17 +1,18 @@
 <div class="l-cards c-cards">
 
   {{#if topic.crawlId}}
-    <!-- NOTE: A crawlId means that the topic has already been crawled -->
+    <!-- NOTE: An existing crawlId means that the topic has already been crawled -->
     <div class="l-duraark-tool__pane-two">
       {{#if selectedCandidate}}
         <div class="c-rise-tool__header">
           <button class="c-rise-tool__back" {{action "unselectCandidate"}}><i class="fa fa-arrow-left"></i>&nbsp; Back</button>
           <button class="c-rise-tool__edit" {{action "removeCandidate" selectedCandidate}}><i class="fa fa-pencil"></i>&nbsp; Remove</button>
-          <header class="c-rise-tool__label">Selected: <strong>{{selectedCandidate.entity}}</strong></header>
+          <!-- <header class="c-rise-tool__label">Selected: <strong>{{selectedCandidate.entity}}</strong></header> -->
         </div>
         <hr>
 
-        <h1>IFRAME WITH CANDIDATE LINK</h1>
+        <!-- FIXXME: 'height' is hardcoded for now and equals 100 table rows -->
+        <iframe src="{{selectedCandidate.entity}}" width="100%" height="5500px"></iframe>
       {{else}}
         <h1>Select a candidate to show its content ...</h1>
       {{/if}}
@@ -19,6 +20,7 @@
 
     <div class="l-duraark-tool__pane-one">
       {{#if topic.candidateSelection.length}}
+
         <table class="c-candidate-list">
           <thead>
             <tr>
@@ -56,12 +58,15 @@
         </table>
       {{else}}
         <!-- if topic.candidateSelection.length -->
-        {{#help-box}}
-          <div class="c-help-box__hint">
-            You removed all topic candidates.
-            <button {{action "reloadCandidates"}}>Reload Candidates</button>
-          </div>
-        {{/help-box}}
+
+        {{#duraark-sidebar}}
+          {{#help-box}}
+            <div class="c-help-box__hint">
+              You removed all topic candidates.
+              <button {{action "reloadCandidates"}}>Reload Candidates</button>
+            </div>
+          {{/help-box}}
+        {{/duraark-sidebar}}
       {{/if}}
       <!-- if topic.candidateSelection.length -->
     </div>
