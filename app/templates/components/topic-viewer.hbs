@@ -15,7 +15,7 @@
         <iframe src="{{selectedCandidate.entity}}" width="100%" height="1850px"></iframe>
       {{else}}
         {{#unless topic.isLoading}}
-          <h1 style="text-align: center;padding: 1em;">Select a candidate to show its content ...</h1>
+          <h1 style="text-align: center;padding: 1em;">The list shows information that is related to the building. Select a candidate to show its content. Remove the candidate if you don't find the information helpful for your context.</h1>
         {{/unless}}
       {{/if}}
     </div>
@@ -25,12 +25,11 @@
         <table class="c-candidate-list">
           <thead>
             <tr>
-              <th>
+              <th style="width: 6.5em;">
                 <!-- Show button -->
               </th>
               <th>Information Link</th>
-              <!-- <th>Score</th> -->
-              <th>
+                <th style="width: 4em;">
                 <!-- Remove button -->
               </th>
             </tr>
@@ -39,18 +38,14 @@
             {{#each topic.candidateSelection as |candidate|}}
               {{#if candidate.score}}
                 <tr>
-                  <td>
-                    <button {{action "selectCandidate" candidate}}>Show</button>
+                  <td style="text-align: center;">
+                    <button style="display: inline-block;" {{action "selectCandidate" candidate}}><i class="fa fa-eye"></i>&nbsp; Show</button>
                   </td>
-                  <!-- <td><a href={{candidate.entity}} target="_blank">{{strip-namespace candidate.entity}}</a></td> -->
                   <td {{action "selectCandidate" candidate}}>
                     <span>{{strip-namespace candidate.entity}}</span>
                   </td>
-                  <!-- <td>
-                    <p>Score: {{candidate.score}}</p>
-                  </td> -->
-                  <td>
-                    <button {{action "removeCandidate" candidate}}>Remove</button>
+                  <td style="text-align: center;">
+                    <button style="display: inline-block;" {{action "removeCandidate" candidate}}><i class="fa fa-remove"></i></button>
                   </td>
                 </tr>
               {{/if}}
