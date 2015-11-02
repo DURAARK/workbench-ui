@@ -47,6 +47,10 @@ export default Ember.Route.extend({
         let model = this.modelFor('application');
         model.set('showLoadingSpinner', flag)
         model.set('loadingMessage', message);
+      },
+
+      showError(error) {
+        alert(error);
       }
   }
 });

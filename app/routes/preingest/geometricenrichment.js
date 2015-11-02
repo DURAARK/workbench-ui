@@ -54,12 +54,14 @@ export default Ember.Route.extend({
     }), Ember.Object.create({
       label: 'Detect Power Lines',
       description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical appliances of the building.',
-    }), Ember.Object.create({
-      label: 'Extract Floor Plan and Room Information',
-      description: 'Enable this tool to extract a floor plan with additional geometric information for each room.',
-      rooms: 0,
-      walls: 0
-    })];
+    }),
+    // Ember.Object.create({
+    //   label: 'Extract Floor Plan and Room Information',
+    //   description: 'Enable this tool to extract a floor plan with additional geometric information for each room.',
+    //   rooms: 0,
+    //   walls: 0
+    // })
+    ];
 
     // FIXXME!
     Ember.$.get('/assets/bygade/wall.json').then(function(response) {

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export function stripNamespace(params/*, hash*/) {
-  return params[0].split('/').pop();
+  return decodeURIComponent(params[0].split('/').pop().replace('_', ' '));
 }
 
 export default Ember.HTMLBars.makeBoundHelper(stripNamespace);
