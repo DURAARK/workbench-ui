@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
 
       if (!enableRosettaDeposit) {
         // FIXXME: add authentification mechanism!
-        alert('Data deposit to Rosetta is disabled for the public version, to not overload the system. You can use the "Download BagIt SIP" option.');
+        alert('Data deposit to Rosetta is disabled for the public version, to not overload the system. You can use the "Download Data" option.');
       } else {
         console.log('Schedule Rosetta SIP creation and deposit ...');
 
