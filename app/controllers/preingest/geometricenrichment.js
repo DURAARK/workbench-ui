@@ -155,6 +155,7 @@ export default Ember.Controller.extend({
               t.set('hasError', false);
               t.set('hasData', true);
               t.set('downloadUrl', pc2bim.downloadUrl);
+              t.set('downloadUrlWallJSON', pc2bim.downloadUrlWallJSON);
             }
 
             if (pc2bim.status === 'error') {
@@ -181,18 +182,22 @@ export default Ember.Controller.extend({
                     console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
                     t.set('isLoading', false);
                     t.set('hasError', false);
+                    t.set('hasData', true);
                     t.set('downloadUrl', pc2bim.downloadUrl);
+                    t.set('downloadUrlWallJSON', pc2bim.downloadUrlWallJSON);
                     clearInterval(timer);
                   }
 
                   if (pc2bim.status === 'pending') {
                     t.set('isLoading', true);
                     t.set('hasError', false);
+                    t.set('hasData', false);
                   }
 
                   if (pc2bim.status === 'error') {
                     t.set('hasError', true);
                     t.set('isLoading', false);
+                    t.set('hasData', false);
                     clearInterval(timer);
                   }
                 });
