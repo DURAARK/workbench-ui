@@ -78,19 +78,26 @@ export default Ember.Component.extend({
         let url = this.duraark.getAPIEndpoint('geometricEnrichment') + this.get('tool.downloadUrl');
         console.log('Download-URL: ' + url);
 
-        function downloadURL(url) {
-          var hiddenIFrameID = 'hiddenDownloader',
-            iframe = document.getElementById(hiddenIFrameID);
-          if (iframe === null) {
-            iframe = document.createElement('iframe');
-            iframe.id = hiddenIFrameID;
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-          }
-          iframe.src = url;
-        };
+        downloadURL(url);
+      },
+
+      downloadWallJSON() {
+        let url = this.duraark.getAPIEndpoint('geometricEnrichment') + this.get('tool.downloadUrlWallJSON');
+        console.log('Download-URL: ' + url);
 
         downloadURL(url);
       }
   }
 });
+
+function downloadURL(url) {
+  var hiddenIFrameID = 'hiddenDownloader',
+    iframe = document.getElementById(hiddenIFrameID);
+  if (iframe === null) {
+    iframe = document.createElement('iframe');
+    iframe.id = hiddenIFrameID;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+  }
+  iframe.src = url;
+};

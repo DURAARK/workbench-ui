@@ -17,7 +17,8 @@
   {{else}}
 
     {{#unless tool.isLoading}}
-      <button {{action "download"}} class="c-ifc-reconstruction-tool__download">Download</button>
+      <button {{action "download"}} class="c-ifc-reconstruction-tool__download">Download Model</button>
+      <button {{action "downloadWallJSON"}} class="c-ifc-reconstruction-tool__download">Download WallJSON</button>
       <div class="c-ifc-reconstruction-tool__viewer">
         {{duraark-ifc-viewer}}
       </div>
