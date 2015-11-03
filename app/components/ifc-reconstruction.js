@@ -26,6 +26,7 @@ export default Ember.Component.extend({
             that.set('tool.hasError', false);
             that.set('tool.hasData', true);
             that.set('tool.downloadUrl', runState.downloadUrl);
+            that.set('tool.downloadUrlWallJSON', runState.downloadUrlWallJSON);
           }
 
           if (runState.status === 'error') {
@@ -55,17 +56,20 @@ export default Ember.Component.extend({
                   console.log('IFC reconstruction finished for file: ' + runState.inputFile);
                   that.set('tool.isLoading', false);
                   that.set('tool.hasError', false);
+                  that.set('tool.hasData', true);
                   clearInterval(timer);
                 }
 
                 if (runState.status === 'pending') {
                   that.set('tool.isLoading', true);
                   that.set('tool.hasError', false);
+                  that.set('tool.hasData', false);
                 }
 
                 if (runState.status === 'error') {
                   that.set('tool.hasError', true);
                   that.set('tool.isLoading', false);
+                  that.set('tool.hasData', false);
                   clearInterval(timer);
                 }
               });
