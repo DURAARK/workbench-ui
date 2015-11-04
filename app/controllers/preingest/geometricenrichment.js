@@ -154,8 +154,8 @@ export default Ember.Controller.extend({
               t.set('isLoading', false);
               t.set('hasError', false);
               t.set('hasData', true);
-              t.set('downloadUrl', pc2bim.downloadUrl);
-              t.set('downloadUrlWallJSON', pc2bim.downloadUrlWallJSON);
+              t.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
+              t.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
             }
 
             if (pc2bim.status === 'error') {
@@ -183,8 +183,8 @@ export default Ember.Controller.extend({
                     t.set('isLoading', false);
                     t.set('hasError', false);
                     t.set('hasData', true);
-                    t.set('downloadUrl', pc2bim.downloadUrl);
-                    t.set('downloadUrlWallJSON', pc2bim.downloadUrlWallJSON);
+                    t.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
+                    t.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
                     clearInterval(timer);
                   }
 

@@ -25,8 +25,8 @@ export default Ember.Component.extend({
             that.set('tool.isLoading', false);
             that.set('tool.hasError', false);
             that.set('tool.hasData', true);
-            that.set('tool.downloadUrl', runState.downloadUrl);
-            that.set('tool.downloadUrlWallJSON', runState.downloadUrlWallJSON);
+            that.set('tool.bimDownloadUrl', runState.bimDownloadUrl);
+            that.set('tool.wallsDownloadUrl', runState.wallsDownloadUrl);
           }
 
           if (runState.status === 'error') {
@@ -57,6 +57,8 @@ export default Ember.Component.extend({
                   that.set('tool.isLoading', false);
                   that.set('tool.hasError', false);
                   that.set('tool.hasData', true);
+                  that.set('tool.bimDownloadUrl', runState.bimDownloadUrl);
+                  that.set('tool.wallsDownloadUrl', runState.wallsDownloadUrl);
                   clearInterval(timer);
                 }
 
@@ -78,28 +80,31 @@ export default Ember.Component.extend({
         });
       },
 
-      download() {
-        let url = this.duraark.getAPIEndpoint('geometricEnrichment') + this.get('tool.downloadUrl');
+      downloadBIM() {
+        let url = this.duraark.getAPIEndpoint('geometricEnrichment') + this.get('tool.bimDownloadUrl');
         console.log('Download-URL: ' + url);
 
-        downloadURL(url);
+        downloadURL(url, 'bimDownloader');
       },
 
-      downloadWallJSON() {
-        let url = this.duraark.getAPIEndpoint('geometricEnrichment') + this.get('tool.downloadUrlWallJSON');
+      downloadWalls() {
+        let url = this.duraark.getAPIEndpoint('geometricEnrichment') + this.get('tool.wallsDownloadUrl');
         console.log('Download-URL: ' + url);
 
-        downloadURL(url);
+        // FIXXME: the download does not start because of the json mimetype.
+        // downloadURL(url, 'wallsDownloader');
+
+        // We are showing the file in a new tab instead ...
+        window.open(url, '_blank');
       }
   }
 });
 
-function downloadURL(url) {
-  var hiddenIFrameID = 'hiddenDownloader',
-    iframe = document.getElementById(hiddenIFrameID);
+function downloadURL(url, frameId) {
+  var iframe = document.getElementById(frameId);
   if (iframe === null) {
     iframe = document.createElement('iframe');
-    iframe.id = hiddenIFrameID;
+    iframe.id = frameId;
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
   }
