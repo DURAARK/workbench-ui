@@ -159,6 +159,8 @@ default Ember.Route.extend({
       this.send('showWorkflowSteps', true);
       this.send('setActiveStep', 'semanticenrichment');
 
+      controller.set('topic', null);
+      controller.set('selectedPhysicalAsset', null);
       controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!
     }
 

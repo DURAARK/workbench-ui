@@ -84,6 +84,8 @@ export default Ember.Route.extend({
     this.send('showWorkflowSteps', true);
     this.send('setActiveStep', 'geometricenrichment');
 
+    controller.set('tool', null);
+    controller.set('selectedDigitalObject', null);
     controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!
   }
 });
