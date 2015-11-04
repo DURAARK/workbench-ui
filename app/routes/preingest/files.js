@@ -31,7 +31,16 @@ default Ember.Route.extend({
 
       if (model.get('files.length')) {
         model.get('files').forEach(function(file) {
-          files.pushObject(router.store.createRecord('file', file));
+          var hasFileRecord = router.store.hasRecordForId('file', file.id);
+          debugger;
+          if (!hasFileRecord) {
+            files.pushObject(router.store.createRecord('file', file));
+          } else {
+            // FIXXME: this is causing an error still, which has no effect in our current case!
+            router.store.find('file', file.id).then(file => {
+              files.pushObject(file);
+            });
+          }
         });
       }
       controller.set('files', files);
