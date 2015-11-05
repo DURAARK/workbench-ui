@@ -13,7 +13,7 @@ export default Ember.Service.extend({
   metadataEndpoint: defaultHost + '/api/v0.7/metadata',
   sdaEndpoint: defaultHost + '/api/v0.7/sda',
   geometricEnrichmentEndpoint: defaultHost + '/api/v0.7/geometricenrichment',
-  digitalPreservationEndpoint: defaultHost + '/api/v0.7/digitalPreservation',
+  digitalPreservationEndpoint: defaultHost + '/api/v0.7/digitalpreservation',
 
   vocabBase: 'http://data.duraark.eu/vocab/buildm/',
 

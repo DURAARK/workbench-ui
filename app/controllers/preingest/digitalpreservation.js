@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var enableRosettaDeposit = false;
+var enableRosettaDeposit = true;
 
 function post(url, data) {
   var that = this;
@@ -28,7 +28,7 @@ function post(url, data) {
 export default Ember.Controller.extend({
   actions: {
     createRosettaSIP: function() {
-      this.duraark.storeInSDAS(this.get('session'));
+      // this.duraark.storeInSDAS(this.get('session'));
 
       if (!enableRosettaDeposit) {
         // FIXXME: add authentification mechanism!
@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
         console.log('Schedule Rosetta SIP creation and deposit ...');
 
         let session = this.get('session'),
-          url = this.duraark.getAPIEndpoint('digitalpreservation') + '/sip',
+          url = this.duraark.getAPIEndpoint('digitalPreservation') + '/sip',
           controller = this;
 
         var plainSession = {};
@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
         plainSession['digitalObjects'] = session.get('digitalObjects').toArray();
 
         let body = {
-          session: [plainSession],
+          session: plainSession,
           output: {
             type: 'rosetta'
           }

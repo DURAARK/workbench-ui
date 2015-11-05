@@ -156,6 +156,9 @@ export default Ember.Controller.extend({
               t.set('hasData', true);
               t.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
               t.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
+              selectedDigitalObject.get('derivatives').pushObject({
+                path: pc2bim.bimFilePath
+              });
             }
 
             if (pc2bim.status === 'error') {

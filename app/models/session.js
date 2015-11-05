@@ -14,6 +14,8 @@ var Session = DS.Model.extend({
   geoTools: DS.attr(),
   semTopics: DS.attr(),
 
+  sessionFolder: DS.attr(),
+
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
 });
