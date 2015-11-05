@@ -92,7 +92,7 @@ export default Ember.Component.extend({
     var TARGET_HEIGHT = TARGET_WIDTH / aspect;
     var scale = function(v, bb) {
       v.x = (v.x - totalbb.bbmin.x) * TARGET_WIDTH / totalbb.width();
-      v.y = (v.y - totalbb.bbmin.y) * TARGET_WIDTH / totalbb.width();
+      v.y = TARGET_HEIGHT - ((v.y - totalbb.bbmin.y) * TARGET_HEIGHT / totalbb.height());
     }
 
     _.forEach(ROOMS, function(room) {
