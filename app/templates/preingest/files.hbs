@@ -28,7 +28,7 @@
 
 			{{#if showSidebar}}
 				<div class="l-file-details">
-				{{#duraark-sidebar overflowYAuto=true}}
+					{{#duraark-sidebar overflowYAuto=true}}
 
 						{{#if app.showLoadingSpinner}}
 							{{loading-spinner-center}}
@@ -41,11 +41,11 @@
 									</div>
 								{{/duraark-tool}}
 						{{else}}
-							{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
+							<!-- {{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
 								<div class="l-file-details-titel">
 									<h3 class="title">{{fileInfoShortName}}</h3>
 								</div>
-							{{/duraark-tool}}
+							{{/duraark-tool}} -->
 							{{#if errors}}
 								{{#each error in errors}}
 									<div>Type: {{error.type}}</div>
@@ -53,19 +53,25 @@
 								{{/each}}
 							{{else}}
 								{{#if fileInfoIsE57}}
-									<!-- {{e57m-viewer file=fileInfo}} -->
-									{{duraark-pointcloud-viewer file=fileInfo}}
+									{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
+									{{#duraark-sidebar}}
+										{{duraark-pointcloud-viewer file=fileInfo}}
+									{{/duraark-sidebar}}
+								{{/duraark-tool}}
 								{{/if}}
 
 								{{#if fileInfoIsIFC}}
-									<!-- {{ifcm-viewer file=fileInfo}} -->
-									{{duraark-ifc-viewer file=fileInfo}}
+									{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
+									{{#duraark-sidebar}}
+										{{duraark-ifc-viewer}}
+									{{/duraark-sidebar}}
+								{{/duraark-tool}}
 								{{/if}}
 							{{/if}}
 							{{/unless}}
 						{{/if}}
-				{{/duraark-sidebar}}
-			</div>
+					{{/duraark-sidebar}}
+				</div>
 			{{/if}}
 		</div>
 
