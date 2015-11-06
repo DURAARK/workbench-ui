@@ -61,6 +61,10 @@ default Ember.Route.extend({
       this.send('showWorkflowSteps', true);
       this.send('setActiveStep', 'files');
       this.send('setSession', model);
+
+      controller.set('fileInfo', null);
+      controller.set('fileInfoIsE57', null);
+      controller.set('fileInfoIsIFC', null);
     },
 
     actions: {
