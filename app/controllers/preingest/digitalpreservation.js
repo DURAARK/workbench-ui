@@ -36,6 +36,7 @@ export default Ember.Controller.extend({
       } else {
         console.log('Schedule Rosetta SIP creation and deposit ...');
 
+        // FIXXME: make code DRY!
         let session = this.get('session'),
           url = this.duraark.getAPIEndpoint('digitalPreservation') + '/sip',
           controller = this;
@@ -44,6 +45,8 @@ export default Ember.Controller.extend({
 
         plainSession['physicalAssets'] = session.get('physicalAssets').toArray();
         plainSession['digitalObjects'] = session.get('digitalObjects').toArray();
+        plainSession['files'] = session.get('files').toArray();
+        plainSession['sessionFolder'] = session.get('sessionFolder');
 
         let body = {
           session: plainSession,
@@ -67,17 +70,20 @@ export default Ember.Controller.extend({
     createBagItSIP: function() {
       console.log('Schedule BagIt SIP creation ...');
 
+      // FIXXME: make code DRY!
       let session = this.get('session'),
-        url = this.duraark.getAPIEndpoint('digitalpreservation') + '/sip',
+        url = this.duraark.getAPIEndpoint('digitalPreservation') + '/sip',
         controller = this;
 
       var plainSession = {};
 
       plainSession['physicalAssets'] = session.get('physicalAssets').toArray();
       plainSession['digitalObjects'] = session.get('digitalObjects').toArray();
+      plainSession['files'] = session.get('files').toArray();
+      plainSession['sessionFolder'] = session.get('sessionFolder');
 
       let body = {
-        session: [plainSession],
+        session: plainSession,
         output: {
           type: 'bag'
         }
