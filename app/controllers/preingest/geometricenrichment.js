@@ -252,7 +252,8 @@ export default Ember.Controller.extend({
           t.set('hasData', true);
           t.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
           t.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
-          selectedDigitalObject.get('derivatives').pushObject({
+
+          controller.get('selectedDigitalObject.derivatives').pushObject({
             path: pc2bim.bimFilePath
           });
 
@@ -316,8 +317,9 @@ export default Ember.Controller.extend({
                 throw new Error('this should not happen, investigate!');
               }
 
-              console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
+              // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
               // pc2bim.status = 'finished';
+
               if (pc2bim.status === 'finished') {
                 console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
                 curTool.set('isLoading', false);
@@ -326,6 +328,10 @@ export default Ember.Controller.extend({
                 curTool.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
                 curTool.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
                 clearInterval(timer);
+
+                myDigObj.get('derivatives').pushObject({
+                  path: pc2bim.bimFilePath
+                });
 
                 controller.send('addFinishedEvent', {
                   label: 'Finished BIM reconstruction: ' + pc2bim.inputFile.split('/').pop(),
@@ -356,7 +362,7 @@ export default Ember.Controller.extend({
           }, 20000);
         }
       });
-      
+
       controller.send('save');
       controller.send('showLoadingSpinner', false);
     }
