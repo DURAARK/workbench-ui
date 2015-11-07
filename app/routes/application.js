@@ -5,6 +5,7 @@ export default Ember.Route.extend({
     // Stores application state:
     return Ember.Object.create({
       showLoadingSpinner: false,
+      historyEvents: [],
       preingest: {
         session: null,
         title: 'No Name',
@@ -51,6 +52,11 @@ export default Ember.Route.extend({
 
       showError(error) {
         alert(error);
+      },
+
+      addHistoryEvent(action) {
+        let model = this.modelFor('application');
+        model.get('historyEvents').pushObject(action);
       }
   }
 });

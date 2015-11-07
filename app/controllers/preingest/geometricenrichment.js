@@ -68,6 +68,7 @@ export default Ember.Controller.extend({
     },
 
     closeToolUI: function() {
+      this.send('showNotification', 'UI closed');
       this.set('tool', null);
     },
 

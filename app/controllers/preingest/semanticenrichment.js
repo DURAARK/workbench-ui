@@ -44,6 +44,10 @@ export default Ember.Controller.extend({
           console.log('stored candidates');
 
           topic.set('showLoadingSpinner', false);
+          controller.send('addHistoryEvent', {
+            label: 'Retrieved context information: ' + topic.get('label'),
+            type: 'success'
+          });
         });
       } else {
         console.log('No candidates yet, retrying in 60 seconds ...');
