@@ -355,10 +355,10 @@ export default Ember.Controller.extend({
             });
           }, 20000);
         }
-
-        controller.send('save');
-        controller.send('showLoadingSpinner', false);
       });
+      
+      controller.send('save');
+      controller.send('showLoadingSpinner', false);
     }
   },
 
