@@ -29,8 +29,17 @@ export default Ember.Controller.extend({
   },
 
   askForCandidates: function(crawler, topic) {
-    var controller = this;
+    var controller = this,
+      eventId = new Date(); // FIXXME: find a better more robust solution for a unique id. This will work for now...
+
     console.log('asking for candidates...');
+
+    controller.send('addPendingEvent', {
+      label: 'Requesting context information: ' + topic.get('label'),
+      displayType: 'info',
+      id: eventId
+    });
+
     crawler.getCandidates(topic.crawlId).then(function(candidates) {
       candidates = JSON.parse(candidates);
       if (candidates.length) {
@@ -44,9 +53,11 @@ export default Ember.Controller.extend({
           console.log('stored candidates');
 
           topic.set('showLoadingSpinner', false);
-          controller.send('addHistoryEvent', {
+
+          controller.send('addFinishedEvent', {
             label: 'Retrieved context information: ' + topic.get('label'),
-            type: 'success'
+            displayType: 'success',
+            id: eventId
           });
         });
       } else {

@@ -1,11 +1,17 @@
 import Ember from 'ember';
 
+var EventHistory = Ember.Object.extend({
+  currentEvent: null,
+  pendingEvents: [],
+  allEvents: []
+});
+
 export default Ember.Route.extend({
   model: function() {
     // Stores application state:
     return Ember.Object.create({
       showLoadingSpinner: false,
-      historyEvents: [],
+      eventHistory: EventHistory.create(),
       preingest: {
         session: null,
         title: 'No Name',
@@ -54,9 +60,24 @@ export default Ember.Route.extend({
         alert(error);
       },
 
-      addHistoryEvent(action) {
-        let model = this.modelFor('application');
-        model.get('historyEvents').pushObject(action);
+      addPendingEvent(historyEvent) {
+        let eventHistory = this.modelFor('application').get('eventHistory');
+
+        Ember.merge(historyEvent, {
+          eventType: 'pending'
+        });
+
+        eventHistory.set('currentEvent', historyEvent);
+      },
+
+      addFinishedEvent(historyEvent) {
+        let eventHistory = this.modelFor('application').get('eventHistory');
+
+        Ember.merge(historyEvent, {
+          eventType: 'finished'
+        });
+
+        eventHistory.set('currentEvent', historyEvent);
       }
   }
 });
