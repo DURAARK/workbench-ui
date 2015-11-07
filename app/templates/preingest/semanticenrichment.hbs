@@ -3,13 +3,7 @@
 <div class="l-page-with-header-and-workflow-steps">
 
 	<div class="c-workflow-page">
-		{{#workflow-step-header onNext="next" onBack="back" }}
-			{{#if app.eventHistory.pendingEvents.length}}
-				<header><i class="fa fa-dot-circle-o"></i>&nbsp; Building: {{session.label}} | Pending events: {{app.eventHistory.pendingEvents.length}}</header>
-			{{else}}
-				<header><i class="fa fa-dot-circle-o"></i>&nbsp; Building: {{session.label}}</header>
-			{{/if}}
-		{{/workflow-step-header}}
+		{{workflow-step-header session=session onNext="next" onBack="back" app=app}}
 
 		<div class="l-files">
 

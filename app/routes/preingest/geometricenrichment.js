@@ -75,6 +75,7 @@ export default Ember.Route.extend({
 
     controller.set('allTools', tools);
     controller.set('selectedDigitalObject', null);
+    controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!
 
     // setup 'duraark-header' component ('setSession' has to be called first!):
     this.send('setSession', model);

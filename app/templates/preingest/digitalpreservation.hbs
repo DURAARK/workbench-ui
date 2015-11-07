@@ -3,10 +3,7 @@
 <div class="l-page-with-header-and-workflow-steps">
 
 	<div class="c-workflow-page">
-		{{#workflow-step-header onBack="back" disableNext=true}}
-			<!-- <header><i class="fa fa-database"></i>&nbsp; 5 | DIGITAL PRESERVATION</header> -->
-			<header><i class="fa fa-dot-circle-o"></i>&nbsp; Building: {{session.label}}</header>
-		{{/workflow-step-header}}
+		{{workflow-step-header session=session disableNext=true onBack="back" app=app}}
 
 		<div class="l-files">
 

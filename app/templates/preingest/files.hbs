@@ -3,10 +3,7 @@
 <div class="l-page-with-header-and-workflow-steps">
 
 	<div class="c-workflow-page">
-		{{#workflow-step-header onNext="next" disableBack=true}}
-			<!-- <header><i class="fa fa-folder-o"></i>&nbsp; 1 | FILES</header> -->
-			<header><i class="fa fa-dot-circle-o"></i>&nbsp; Building: {{session.label}}</header>
-		{{/workflow-step-header}}
+		{{workflow-step-header session=session onNext="next" disableBack=true app=app}}
 
 		<div class="l-files">
 
@@ -54,18 +51,18 @@
 							{{else}}
 								{{#if fileInfoIsE57}}
 									{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
-									{{#duraark-sidebar}}
-										{{duraark-pointcloud-viewer file=fileInfo}}
-									{{/duraark-sidebar}}
-								{{/duraark-tool}}
+										{{#duraark-sidebar}}
+											{{duraark-pointcloud-viewer file=fileInfo}}
+										{{/duraark-sidebar}}
+									{{/duraark-tool}}
 								{{/if}}
 
 								{{#if fileInfoIsIFC}}
 									{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
-									{{#duraark-sidebar}}
-										{{duraark-ifc-viewer}}
-									{{/duraark-sidebar}}
-								{{/duraark-tool}}
+										{{#duraark-sidebar}}
+											{{duraark-ifc-viewer}}
+										{{/duraark-sidebar}}
+									{{/duraark-tool}}
 								{{/if}}
 							{{/if}}
 							{{/unless}}

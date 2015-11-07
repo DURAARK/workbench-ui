@@ -17,6 +17,7 @@ export default Ember.Route.extend({
       this._super(controller, model);
 
       controller.set('session', model);
+      controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!
 
       var label = model.get('label');
       this.send('setTitle', 'Archive Buildings - ' + label);

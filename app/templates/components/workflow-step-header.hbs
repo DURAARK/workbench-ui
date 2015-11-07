@@ -6,7 +6,11 @@
     </div>
   {{/unless}}
 
-  {{yield}}
+    {{#if app.eventHistory.pendingEvents.length}}
+      <header><i class="fa fa-dot-circle-o"></i>&nbsp; Building: {{session.label}} | Pending events: {{app.eventHistory.pendingEvents.length}}</header>
+    {{else}}
+      <header><i class="fa fa-dot-circle-o"></i>&nbsp; Building: {{session.label}}</header>
+    {{/if}}
 
   {{#unless disableNext}}
     <div {{action "nextClicked"}} class="c-workflow-step-header__go-right">
