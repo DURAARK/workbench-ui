@@ -91,43 +91,12 @@ export default Ember.Controller.extend({
           selectedDigitalObject.derivatives.splice(idx, 1);
         }
       } else {
-        // FIXXME: refactor and cleanup!
-
-        // FIXXME: delegate this over to duraark-geometricenrichment service!
         if (tool.get('label') === 'Detect Power Lines') {
-          // Create new instance of tool to be added to 'geoTools'. It is not
-          // possible to directly use the 'tool' instance, as multiple files can
-          // have the same tool assigned.
-          var t = Ember.Object.create({
-            label: tool.get('label'),
-            description: tool.get('description'),
-            isLoading: false,
-            hasError: false,
-            hasData: true,
-            downloadUrl: null,
-            // filename: filename
-          });
-
-          t.set('electDetectImages', tool.get('elecDetectImages'));
-          t.set('ruleSetImages', tool.get('ruleSetImages'));
-          t.set('hypothesisImages', tool.get('hypothesisImages'));
-
-          var digObj = controller.get('selectedDigitalObject'),
-            session = controller.get('session');
-
-          // var selectedDigObj = session.get('digitalObjects').find(function(dob) {
-          //   return dob.get('label') === digObj.get('label');
-          // });
-          digObj.get('geoTools').pushObject(t);
-
-          controller.send('save');
-          controller.send('showLoadingSpinner', false);
+          this.send('scheduleRISE', tool);
         }
 
         if (tool.get('label') === 'Reconstruct BIM Model') {
           let filename = selectedDigitalObject.get('path');
-          console.log('filename: ' + filename);
-
           this.send('scheduleBIMReconstruction', tool, filename);
         }
       }
@@ -140,6 +109,97 @@ export default Ember.Controller.extend({
 
       this.send('closeToolUI');
       this.send('save');
+    },
+
+    scheduleRISE(tool, removeToolFirst) {
+      let controller = this,
+        eventId = new Date();
+
+      controller.send('showLoadingSpinner', true, 'Scheduling power line detection ...');
+
+      controller.send('addPendingEvent', {
+        label: 'Scheduled power line detection',
+        displayType: 'info',
+        id: eventId
+      });
+
+      if (removeToolFirst) {
+        let geoTools = controller.get('selectedDigitalObject.geoTools');
+        let removeThis = geoTools.findBy('label', 'Detect Power Lines');
+        geoTools.removeObject(removeThis);
+      }
+
+      if (!_.isFunction(tool.get)) {
+        tool = Ember.Object.create(tool);
+        session = controller.get('session');
+      }
+
+      // Create new instance of tool to be added to 'geoTools'. It is not
+      // possible to directly use the 'tool' instance, as multiple files can
+      // have the same tool assigned.
+      var t = Ember.Object.create({
+        label: tool.get('label'),
+        description: tool.get('description'),
+        isLoading: true,
+        hasError: false,
+        hasData: false,
+        downloadUrl: null,
+        // filename: filename
+      });
+
+      t.set('electDetectImages', tool.get('elecDetectImages'));
+      t.set('ruleSetImages', tool.get('ruleSetImages'));
+      t.set('hypothesisImages', tool.get('hypothesisImages'));
+
+      var digObj = controller.get('selectedDigitalObject');
+      digObj.get('geoTools').pushObject(t);
+
+      controller.send('save');
+
+      // FIXXME: for now give the impression that a processing is taking place on the backend ...
+      setTimeout(function() {
+        let digObjs = controller.get('digitalObjects'),
+          curTool = null,
+          myDigObj = null;
+
+        digObjs.forEach(digObj => {
+          let tool = digObj.get('geoTools').findBy('label', 'Detect Power Lines');
+          // FIXXME: narrow down to current tool!
+          if (tool) {
+            myDigObj = digObj;
+            curTool = tool;
+
+            // FIXXME: the first time an object is created it is no ember object. Find out why!
+            // This workaround fixes that:
+            if (!_.isFunction(curTool.get)) {
+              myDigObj.get('geoTools').removeObject(curTool);
+              curTool = Ember.Object.create(curTool);
+              myDigObj.get('geoTools').pushObject(curTool);
+            }
+          }
+        });
+
+        if (curTool) {
+          // FIXXME: To get the bindings to correctly fire the tool has to be removed and added again.
+          // Otherwise setting e.g. the tool's 'isLoading' property does not reflect in the GUI.
+          myDigObj.get('geoTools').removeObject(curTool);
+          myDigObj.get('geoTools').pushObject(curTool);
+        } else {
+          throw new Error('this should not happen, investigate!');
+        }
+
+        curTool.set('isLoading', false);
+        curTool.set('hasError', false);
+        curTool.set('hasData', true);
+
+        controller.send('addFinishedEvent', {
+          label: 'Finished power line detection',
+          displayType: 'success',
+          id: eventId
+        });
+      }, 5000);
+
+      controller.send('showLoadingSpinner', false);
     },
 
     scheduleBIMReconstruction(tool, filename, removeToolFirst) {
@@ -159,7 +219,7 @@ export default Ember.Controller.extend({
       controller.send('showLoadingSpinner', true, 'Scheduling BIM reconstruction ...');
 
       controller.send('addPendingEvent', {
-        label: 'Requesting BIM reconstruction: ' + filename.split('/').pop(),
+        label: 'Scheduled BIM reconstruction: ' + filename.split('/').pop(),
         displayType: 'info',
         id: eventId
       });
