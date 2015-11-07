@@ -35,6 +35,13 @@ export default Ember.Route.extend({
           path: digObj.path
         });
 
+        // 'ember objectify' geo tools:
+        let geoTools = [];
+        obj.get('geoTools').forEach(tool => {
+            geoTools.pushObject(Ember.Object.create(tool));
+        });
+        obj.set('geoTools', geoTools);
+
         digObjs.pushObject(obj);
 
         if (digObj.path && digObj.path.endsWith('e57')) {

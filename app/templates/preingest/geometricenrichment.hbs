@@ -49,7 +49,7 @@
 
               {{#if isIFCReconstructionTool}}
                 {{#duraark-tool title="BIM Model" close="closeToolUI" fullscreen="maximizeToolUI" }}
-                  {{ifc-reconstruction tool=tool}}
+                  {{ifc-reconstruction tool=tool onRetry="scheduleBIMReconstruction"}}
                 {{/duraark-tool}}
               {{/if}}
             {{else}}
