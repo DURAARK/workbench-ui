@@ -1,12 +1,7 @@
 import Ember from 'ember';
+import { EventHistoryMixin, EventHistory } from '../mixins/event-history';
 
-var EventHistory = Ember.Object.extend({
-  currentEvent: null,
-  pendingEvents: [],
-  allEvents: []
-});
-
-export default Ember.Route.extend({
+export default Ember.Route.extend(EventHistoryMixin, {
   model: function() {
     // Stores application state:
     return Ember.Object.create({
@@ -58,26 +53,6 @@ export default Ember.Route.extend({
 
       showError(error) {
         alert(error);
-      },
-
-      addPendingEvent(historyEvent) {
-        let eventHistory = this.modelFor('application').get('eventHistory');
-
-        Ember.merge(historyEvent, {
-          eventType: 'pending'
-        });
-
-        eventHistory.set('currentEvent', historyEvent);
-      },
-
-      addFinishedEvent(historyEvent) {
-        let eventHistory = this.modelFor('application').get('eventHistory');
-
-        Ember.merge(historyEvent, {
-          eventType: 'finished'
-        });
-
-        eventHistory.set('currentEvent', historyEvent);
       }
   }
 });
