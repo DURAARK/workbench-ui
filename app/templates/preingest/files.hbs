@@ -15,7 +15,6 @@
 				<hr>
 
 				{{#if files.length}}
-
 					{{#duraark-sidebar overflowYAuto=true}}
 						{{#file-list files=files as |file|}}
 							{{file-item item=file select="toggleSelection" details="showDetails"}}
@@ -26,7 +25,6 @@
 				{{/if}}
 			</div>
 
-			{{#if showSidebar}}
 				<div class="l-file-details">
 					{{#duraark-sidebar overflowYAuto=true}}
 
@@ -40,39 +38,26 @@
 										{{x-droplet onFilesUploaded="addFiles"}}
 									</div>
 								{{/duraark-tool}}
-						{{else}}
-							<!-- {{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
-								<div class="l-file-details-titel">
-									<h3 class="title">{{fileInfoShortName}}</h3>
-								</div>
-							{{/duraark-tool}} -->
-							{{#if errors}}
-								{{#each error in errors}}
-									<div>Type: {{error.type}}</div>
-									<div>Message: {{error.msg}}</div>
-								{{/each}}
 							{{else}}
-								{{#if fileInfoIsE57}}
-									{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
-									{{#duraark-sidebar}}
-										{{duraark-pointcloud-viewer file=fileInfo}}
-									{{/duraark-sidebar}}
-								{{/duraark-tool}}
-								{{/if}}
+								{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
+									<div class="l-file-details-titel">
+										<h3 class="title">{{fileInfoShortName}}</h3>
+									</div>
 
-								{{#if fileInfoIsIFC}}
-									{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
 									{{#duraark-sidebar}}
-										{{duraark-ifc-viewer}}
+									{{#if isE57}}
+									{{duraark-pointcloud-viewer file=fileInfo}}
+									{{/if}}
+									{{#if isIFC}}
+									{{duraark-ifc-viewer}}
+									{{/if}}
 									{{/duraark-sidebar}}
 								{{/duraark-tool}}
-								{{/if}}
-							{{/if}}
+
 							{{/unless}}
 						{{/if}}
 					{{/duraark-sidebar}}
 				</div>
-			{{/if}}
 		</div>
 
 	</div>

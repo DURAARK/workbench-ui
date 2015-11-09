@@ -6,8 +6,8 @@
 				Show Result &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
 			{{/if}}
 			{{#if tool.isLoading}}
-				Processing ...
-				<!-- {{loading-spinner-small}} -->
+				Pending ...
+				<!-- <div class="loader">Loading...</div> -->
 			{{/if}}
 			{{#if tool.hasError}}
 				Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
@@ -17,7 +17,7 @@
 		<div class="c-file__name" style="text-align: center;">
 			{{tool.label}}<br>
 			{{#if tool.isLoading}}
-			...
+			<div class="loader">Loading...</div>
 			{{/if}}
 			{{#if tool.hasError}}
 			Failure!

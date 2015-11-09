@@ -13,19 +13,20 @@ export default Ember.Controller.extend({
     if (!this.get('fileInfo')) return 'No file selected';
 
     var path = this.get('fileInfo.path');
-    return path.replace('/duraark-storage/files/', ''); // FIXXME!
+    return path.split('/').pop()
   }.property('fileInfo'),
 
-  fileInfoIsE57: function() {
+  isE57: function() {
     if (!this.get('fileInfo')) return false;
-
+debugger;
     var path = this.get('fileInfo.path');
     return path.endsWith('.e57');
   }.property('fileInfo'),
 
-  fileInfoIsIFC: function() {
+  isIFC: function() {
     if (!this.get('fileInfo')) return false;
 
+    debugger;
     var path = this.get('fileInfo.path');
     return path.endsWith('.ifc');
   }.property('fileInfo'),

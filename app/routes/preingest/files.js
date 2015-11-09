@@ -32,7 +32,6 @@ default Ember.Route.extend({
       if (model.get('files.length')) {
         model.get('files').forEach(function(file) {
           var hasFileRecord = router.store.hasRecordForId('file', file.id);
-          debugger;
           if (!hasFileRecord) {
             files.pushObject(router.store.createRecord('file', file));
           } else {
