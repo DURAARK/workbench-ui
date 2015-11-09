@@ -41,7 +41,6 @@ export default Ember.Controller.extend({
     });
 
     crawler.getCandidates(topic.crawlId).then(function(candidates) {
-      candidates = JSON.parse(candidates);
       if (candidates.length) {
         console.log('candidates received: #' + candidates.length);
         // FIXXME: implement pagination and sorting by relevance to manage the huge amount of results!
