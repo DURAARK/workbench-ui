@@ -1,10 +1,12 @@
 import Ember from 'ember';
+import { EventHistoryMixin, EventHistory } from '../mixins/event-history';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(EventHistoryMixin, {
   model: function() {
     // Stores application state:
     return Ember.Object.create({
       showLoadingSpinner: false,
+      eventHistory: EventHistory.create(),
       preingest: {
         session: null,
         title: 'No Name',

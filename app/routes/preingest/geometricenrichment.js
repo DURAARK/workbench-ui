@@ -35,6 +35,13 @@ export default Ember.Route.extend({
           path: digObj.path
         });
 
+        // 'ember objectify' geo tools:
+        let geoTools = [];
+        obj.get('geoTools').forEach(tool => {
+            geoTools.pushObject(Ember.Object.create(tool));
+        });
+        obj.set('geoTools', geoTools);
+
         digObjs.pushObject(obj);
 
         if (digObj.path && digObj.path.endsWith('e57')) {
@@ -75,6 +82,7 @@ export default Ember.Route.extend({
 
     controller.set('allTools', tools);
     controller.set('selectedDigitalObject', null);
+    controller.set('app', this.modelFor('application')); // FIXXME: create DuraarkController and extend!
 
     // setup 'duraark-header' component ('setSession' has to be called first!):
     this.send('setSession', model);

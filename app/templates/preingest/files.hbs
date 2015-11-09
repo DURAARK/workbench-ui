@@ -3,10 +3,7 @@
 <div class="l-page-with-header-and-workflow-steps">
 
 	<div class="c-workflow-page">
-		{{#workflow-step-header onNext="next" disableBack=true}}
-			<!-- <header><i class="fa fa-folder-o"></i>&nbsp; 1 | FILES</header> -->
-			<header><i class="fa fa-dot-circle-o"></i>&nbsp; Building: {{session.label}}</header>
-		{{/workflow-step-header}}
+		{{workflow-step-header session=session onNext="next" disableBack=true app=app}}
 
 		<div class="l-files">
 
@@ -25,39 +22,49 @@
 				{{/if}}
 			</div>
 
-				<div class="l-file-details">
-					{{#duraark-sidebar overflowYAuto=true}}
+			<div class="l-file-details">
+				{{#duraark-sidebar overflowYAuto=true}}
 
-						{{#if app.showLoadingSpinner}}
-							{{loading-spinner-center}}
+					{{#if app.showLoadingSpinner}}
+						{{loading-spinner-center}}
+					{{else}}
+
+						{{#unless fileInfo}}
+							{{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true" }}
+								<div class="c-file-upload">
+									{{x-droplet onFilesUploaded="addFiles"}}
+								</div>
+							{{/duraark-tool}}
+					{{else}}
+
+						{{#if errors}}
+							<h1>asflkajsdflkasjdflkajsdf</h1>
+							{{#each error in errors}}
+								<div>Type: {{error.type}}</div>
+								<div>Message: {{error.msg}}</div>
+							{{/each}}
 						{{else}}
 
-							{{#unless fileInfo}}
-								{{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true" }}
-									<div class="c-file-upload">
-										{{x-droplet onFilesUploaded="addFiles"}}
-									</div>
-								{{/duraark-tool}}
-							{{else}}
-								{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
-									<div class="l-file-details-titel">
-										<h3 class="title">{{fileInfoShortName}}</h3>
-									</div>
-
-									{{#duraark-sidebar}}
+							{{#duraark-tool title="File Details" close="closeToolUI" fullscreen="maximizeToolUI" }}
+								<div class="l-file-details-titel">
+									<h3 class="title">{{fileInfoShortName}}</h3>
+								</div>
+								{{#duraark-sidebar}}
 									{{#if isE57}}
-									{{duraark-pointcloud-viewer file=fileInfo}}
+										{{duraark-pointcloud-viewer file=fileInfo}}
 									{{/if}}
 									{{#if isIFC}}
-									{{duraark-ifc-viewer}}
+										{{duraark-ifc-viewer}}
 									{{/if}}
-									{{/duraark-sidebar}}
-								{{/duraark-tool}}
+								{{/duraark-sidebar}}
+							{{/duraark-tool}}
 
-							{{/unless}}
 						{{/if}}
-					{{/duraark-sidebar}}
-				</div>
+
+						{{/unless}}
+					{{/if}}
+				{{/duraark-sidebar}}
+			</div>
 		</div>
 
 	</div>

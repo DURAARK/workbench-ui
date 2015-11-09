@@ -91,138 +91,14 @@ export default Ember.Controller.extend({
           selectedDigitalObject.derivatives.splice(idx, 1);
         }
       } else {
-        // FIXXME: refactor and cleanup!
-
-        // FIXXME: delegate this over to duraark-geometricenrichment service!
         if (tool.get('label') === 'Detect Power Lines') {
-          // Create new instance of tool to be added to 'geoTools'. It is not
-          // possible to directly use the 'tool' instance, as multiple files can
-          // have the same tool assigned.
-          var t = Ember.Object.create({
-            label: tool.get('label'),
-            description: tool.get('description'),
-            isLoading: false,
-            hasError: false,
-            hasData: true,
-            downloadUrl: null,
-            // filename: filename
-          });
-
-          t.set('electDetectImages', tool.get('elecDetectImages'));
-          t.set('ruleSetImages', tool.get('ruleSetImages'));
-          t.set('hypothesisImages', tool.get('hypothesisImages'));
-
-          var digObj = controller.get('selectedDigitalObject'),
-            session = controller.get('session');
-
-          // var selectedDigObj = session.get('digitalObjects').find(function(dob) {
-          //   return dob.get('label') === digObj.get('label');
-          // });
-          digObj.get('geoTools').pushObject(t);
-
-          controller.send('save');
-          controller.send('showLoadingSpinner', false);
+          this.send('scheduleRISE', tool);
         }
 
         if (tool.get('label') === 'Reconstruct BIM Model') {
           let filename = selectedDigitalObject.get('path');
-          console.log('filename: ' + filename);
-
-          controller.send('showLoadingSpinner', true, 'Scheduling BIM reconstruction ...');
-
-          this.duraark.getIFCReconstruction({
-            inputFile: filename,
-            restart: false
-          }).then(function(pc2bim) {
-            // Create new instance of tool to be added to 'geoTools'. It is not
-            // possible to directly use the 'tool' instance, as multiple files can
-            // have the same tool assigned.
-            var t = Ember.Object.create({
-              label: tool.get('label'),
-              description: tool.get('description'),
-              isLoading: true,
-              hasError: false,
-              hasData: false,
-              downloadUrl: null,
-              filename: filename
-            });
-
-            // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
-
-            if (pc2bim.status === 'finished') {
-              console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
-              t.set('isLoading', false);
-              t.set('hasError', false);
-              t.set('hasData', true);
-              t.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
-              t.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
-              selectedDigitalObject.get('derivatives').pushObject({
-                path: pc2bim.bimFilePath
-              });
-            }
-
-            if (pc2bim.status === 'error') {
-              t.set('hasError', true);
-              t.set('isLoading', false);
-              t.set('errorText', pc2bim.errorText);
-              t.set('hasData', false);
-            }
-
-            if (pc2bim.status === 'pending') {
-              t.set('isLoading', true);
-              t.set('hasError', false);
-              t.set('hasData', false);
-
-              var timer = setInterval(function() {
-                console.log('requesting pc2bim status for file: ' + pc2bim.inputFile);
-                duraark.getIFCReconstruction({
-                  inputFile: filename,
-                  restart: false
-                }).then(function(pc2bim) {
-                  console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
-
-                  if (pc2bim.status === 'finished') {
-                    console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
-                    t.set('isLoading', false);
-                    t.set('hasError', false);
-                    t.set('hasData', true);
-                    t.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
-                    t.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
-                    clearInterval(timer);
-                  }
-
-                  if (pc2bim.status === 'pending') {
-                    t.set('isLoading', true);
-                    t.set('hasError', false);
-                    t.set('hasData', false);
-                  }
-
-                  if (pc2bim.status === 'error') {
-                    t.set('hasError', true);
-                    t.set('isLoading', false);
-                    t.set('hasData', false);
-                    clearInterval(timer);
-                  }
-                });
-              }, 10000);
-            }
-
-            var digObj = controller.get('selectedDigitalObject'),
-              session = controller.get('session');
-
-            // var selectedDigObj = session.get('digitalObjects').find(function(dob) {
-            //   return dob.get('label') === digObj.get('label');
-            // });
-            digObj.get('geoTools').pushObject(t);
-
-            controller.send('save');
-            controller.send('showLoadingSpinner', false);
-          });
+          this.send('scheduleBIMReconstruction', tool, filename);
         }
-
-        // if (derivative) {
-        //   selectedDigitalObject.derivatives.push(derivative);
-        // }
       }
     },
 
@@ -234,6 +110,262 @@ export default Ember.Controller.extend({
       this.send('closeToolUI');
       this.send('save');
     },
+
+    scheduleRISE(tool, removeToolFirst) {
+      let controller = this,
+        eventId = new Date();
+
+      controller.send('showLoadingSpinner', true, 'Scheduling power line detection ...');
+
+      controller.send('addPendingEvent', {
+        label: 'Scheduled power line detection',
+        displayType: 'info',
+        id: eventId
+      });
+
+      if (removeToolFirst) {
+        let geoTools = controller.get('selectedDigitalObject.geoTools');
+        let removeThis = geoTools.findBy('label', 'Detect Power Lines');
+        geoTools.removeObject(removeThis);
+      }
+
+      if (!_.isFunction(tool.get)) {
+        tool = Ember.Object.create(tool);
+        session = controller.get('session');
+      }
+
+      // Create new instance of tool to be added to 'geoTools'. It is not
+      // possible to directly use the 'tool' instance, as multiple files can
+      // have the same tool assigned.
+      var t = Ember.Object.create({
+        label: tool.get('label'),
+        description: tool.get('description'),
+        isLoading: true,
+        hasError: false,
+        hasData: false,
+        downloadUrl: null,
+        // filename: filename
+      });
+
+      t.set('electDetectImages', tool.get('elecDetectImages'));
+      t.set('ruleSetImages', tool.get('ruleSetImages'));
+      t.set('hypothesisImages', tool.get('hypothesisImages'));
+
+      var digObj = controller.get('selectedDigitalObject');
+      digObj.get('geoTools').pushObject(t);
+
+      controller.send('save');
+
+      // FIXXME: for now give the impression that a processing is taking place on the backend ...
+      setTimeout(function() {
+        let digObjs = controller.get('digitalObjects'),
+          curTool = null,
+          myDigObj = null;
+
+        digObjs.forEach(digObj => {
+          let tool = digObj.get('geoTools').findBy('label', 'Detect Power Lines');
+          // FIXXME: narrow down to current tool!
+          if (tool) {
+            myDigObj = digObj;
+            curTool = tool;
+
+            // FIXXME: the first time an object is created it is no ember object. Find out why!
+            // This workaround fixes that:
+            if (!_.isFunction(curTool.get)) {
+              myDigObj.get('geoTools').removeObject(curTool);
+              curTool = Ember.Object.create(curTool);
+              myDigObj.get('geoTools').pushObject(curTool);
+            }
+          }
+        });
+
+        if (curTool) {
+          // FIXXME: To get the bindings to correctly fire the tool has to be removed and added again.
+          // Otherwise setting e.g. the tool's 'isLoading' property does not reflect in the GUI.
+          myDigObj.get('geoTools').removeObject(curTool);
+          myDigObj.get('geoTools').pushObject(curTool);
+        } else {
+          throw new Error('this should not happen, investigate!');
+        }
+
+        curTool.set('isLoading', false);
+        curTool.set('hasError', false);
+        curTool.set('hasData', true);
+
+        controller.send('addFinishedEvent', {
+          label: 'Finished power line detection',
+          displayType: 'success',
+          id: eventId
+        });
+      }, 5000);
+
+      controller.send('showLoadingSpinner', false);
+    },
+
+    scheduleBIMReconstruction(tool, filename, removeToolFirst) {
+      let controller = this,
+        eventId = new Date();
+
+      if (removeToolFirst) {
+        let geoTools = controller.get('selectedDigitalObject.geoTools');
+        let removeThis = geoTools.findBy('label', 'Reconstruct BIM Model');
+        geoTools.removeObject(removeThis);
+      }
+
+      if (!_.isFunction(tool.get)) {
+        tool = Ember.Object.create(tool);
+      }
+
+      controller.send('showLoadingSpinner', true, 'Scheduling BIM reconstruction ...');
+
+      controller.send('addPendingEvent', {
+        label: 'Scheduled BIM reconstruction: ' + filename.split('/').pop(),
+        displayType: 'info',
+        id: eventId
+      });
+
+      this.duraark.getIFCReconstruction({
+        inputFile: filename,
+        restart: false
+      }).then(function(pc2bim) {
+        // Create new instance of tool to be added to 'geoTools'. It is not
+        // possible to directly use the 'tool' instance, as multiple files can
+        // have the same tool assigned.
+        var t = Ember.Object.create({
+          label: tool.get('label'),
+          description: tool.get('description'),
+          isLoading: true,
+          hasError: false,
+          hasData: false,
+          downloadUrl: null,
+          filename: pc2bim.inputFile
+        });
+
+        controller.get('selectedDigitalObject.geoTools').pushObject(t);
+
+        // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
+        if (pc2bim.status === 'finished') {
+          console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
+
+          t.set('isLoading', false);
+          t.set('hasError', false);
+          t.set('hasData', true);
+          t.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
+          t.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
+
+          controller.get('selectedDigitalObject.derivatives').pushObject({
+            path: pc2bim.bimFilePath
+          });
+
+          controller.send('addFinishedEvent', {
+            label: 'Finished BIM reconstruction: ' + pc2bim.inputFile.split('/').pop(),
+            displayType: 'success',
+            id: eventId
+          });
+        }
+
+        if (pc2bim.status === 'error') {
+          t.set('hasError', true);
+          t.set('isLoading', false);
+          t.set('errorText', pc2bim.errorText);
+          t.set('hasData', false);
+
+          controller.send('addFinishedEvent', {
+            label: 'BIM reconstruction failure: ' + pc2bim.inputFile.split('/').pop(),
+            displayType: 'error',
+            id: eventId
+          });
+        }
+
+        if (pc2bim.status === 'pending') {
+          t.set('isLoading', true);
+          t.set('hasError', false);
+          t.set('hasData', false);
+
+          var timer = setInterval(function() {
+            console.log('requesting pc2bim status for file: ' + pc2bim.inputFile);
+            controller.duraark.getIFCReconstruction({
+              inputFile: filename,
+              restart: false
+            }).then(function(pc2bim) {
+              let digObjs = controller.get('digitalObjects'),
+                curTool = null,
+                myDigObj = null;
+
+              digObjs.forEach(digObj => {
+                let tool = digObj.get('geoTools').findBy('label', 'Reconstruct BIM Model');
+                if (tool && tool.filename === pc2bim.inputFile) {
+                  myDigObj = digObj;
+                  curTool = tool;
+
+                  // FIXXME: the first time an object is created it is no ember object. Find out why!
+                  // This workaround fixes that:
+                  if (!_.isFunction(curTool.get)) {
+                    myDigObj.get('geoTools').removeObject(curTool);
+                    curTool = Ember.Object.create(curTool);
+                    myDigObj.get('geoTools').pushObject(curTool);
+                  }
+                }
+              });
+
+              if (curTool) {
+                // FIXXME: To get the bindings to correctly fire the tool has to be removed and added again.
+                // Otherwise setting e.g. the tool's 'isLoading' property does not reflect in the GUI.
+                myDigObj.get('geoTools').removeObject(curTool);
+                myDigObj.get('geoTools').pushObject(curTool);
+              } else {
+                throw new Error('this should not happen, investigate!');
+              }
+
+              // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
+              // pc2bim.status = 'finished';
+
+              if (pc2bim.status === 'finished') {
+                console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
+                curTool.set('isLoading', false);
+                curTool.set('hasError', false);
+                curTool.set('hasData', true);
+                curTool.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
+                curTool.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
+                clearInterval(timer);
+
+                myDigObj.get('derivatives').pushObject({
+                  path: pc2bim.bimFilePath
+                });
+
+                controller.send('addFinishedEvent', {
+                  label: 'Finished BIM reconstruction: ' + pc2bim.inputFile.split('/').pop(),
+                  displayType: 'success',
+                  id: eventId
+                });
+              }
+
+              if (pc2bim.status === 'pending') {
+                curTool.set('isLoading', true);
+                curTool.set('hasError', false);
+                curTool.set('hasData', false);
+              }
+
+              if (pc2bim.status === 'error') {
+                curTool.set('hasError', true);
+                curTool.set('isLoading', false);
+                curTool.set('hasData', false);
+                clearInterval(timer);
+
+                controller.send('addFinishedEvent', {
+                  label: 'BIM reconstruction failure: ' + pc2bim.inputFile.split('/').pop(),
+                  displayType: 'error',
+                  id: eventId
+                });
+              }
+            });
+          }, 20000);
+        }
+      });
+
+      controller.send('save');
+      controller.send('showLoadingSpinner', false);
+    }
   },
 
   isElectricalApplianceDetectionTool: function() {
