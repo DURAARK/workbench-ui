@@ -15,12 +15,17 @@
 		</div>
 
 		<div class="c-file__name" style="text-align: center;">
-			{{tool.label}}<br>
+			{{tool.label}}
+			<br>
 			{{#if tool.isLoading}}
-			<div class="loader">Loading...</div>
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
 			{{/if}}
 			{{#if tool.hasError}}
-			Failure!
+				Failure!
 			{{/if}}
 		</div>
 
