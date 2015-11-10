@@ -18,7 +18,6 @@ export default Ember.Controller.extend({
 
   isE57: function() {
     if (!this.get('fileInfo')) return false;
-debugger;
     var path = this.get('fileInfo.path');
     return path.endsWith('.e57');
   }.property('fileInfo'),
@@ -26,7 +25,6 @@ debugger;
   isIFC: function() {
     if (!this.get('fileInfo')) return false;
 
-    debugger;
     var path = this.get('fileInfo.path');
     return path.endsWith('.ifc');
   }.property('fileInfo'),

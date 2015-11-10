@@ -11,6 +11,13 @@ default Ember.Component.extend({
     showDetails: function(item) {
       this.sendAction('details', item);
     },
+    downloadFile: function(item) {
+      // FIXXME: expose 'sessions' folder from 'duraark-sessions'!
+      let url = item.get('path').replace('/duraark-storage', '/api/v0.7/geometricenrichment');
+
+      console.log('Downloading filr from URL: ' + url);
+      downloadURL(url);
+    },
   },
 
   filename: function() {
@@ -56,3 +63,15 @@ default Ember.Component.extend({
 function _getFileExtension(filepath) {
   return (/[.]/.exec(filepath)) ? /[^.]+$/.exec(filepath) : null;
 }
+
+function downloadURL(url) {
+  var hiddenIFrameID = 'hiddenDownloader',
+    iframe = document.getElementById(hiddenIFrameID);
+  if (iframe === null) {
+    iframe = document.createElement('iframe');
+    iframe.id = hiddenIFrameID;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+  }
+  iframe.src = url;
+};
