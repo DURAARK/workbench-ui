@@ -112,6 +112,7 @@ export default Ember.Service.extend({
           label: building.get('label'),
           address: building.get('streetAddress') || 'No address given',
           description: building.get('description') || 'No description given',
+          type: 'fromArchive'
         };
 
         duraark._post(sessionsEndpoint, initialSessionData).then(function(session) {
