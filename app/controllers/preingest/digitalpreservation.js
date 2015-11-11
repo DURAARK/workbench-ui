@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var enableRosettaDeposit = true;
+var enableRosettaDeposit = false;
 
 function post(url, data) {
   var that = this;
@@ -93,7 +93,7 @@ export default Ember.Controller.extend({
 
       _post(url, body).then(function(result) {
         console.log('Sucessfully created BagIt SIP at: ' + JSON.stringify(result, 4, null));
-        console.log('Download-URL: ' + controller.duraark.getAPIEndpoint('digitalpreservation') + result.url);
+        console.log('Download-URL: ' + controller.duraark.getAPIEndpoint('digitalPreservation') + result.url);
 
         function downloadURL(url) {
           var hiddenIFrameID = 'hiddenDownloader',
@@ -109,8 +109,8 @@ export default Ember.Controller.extend({
           controller.set('bagIsCreating', false);
         };
 
-        console.log('Downloading from: ' + controller.duraark.getAPIEndpoint('digitalpreservation') + result.url);
-        downloadURL(controller.duraark.getAPIEndpoint('digitalpreservation') + result.url);
+        console.log('Downloading from: ' + controller.duraark.getAPIEndpoint('digitalPreservation') + result.url);
+        downloadURL(controller.duraark.getAPIEndpoint('digitalPreservation') + result.url);
       }).catch(function(err) {
         controller.set('bagIsCreating', false);
         throw new Error(err);
