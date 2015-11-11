@@ -8,41 +8,41 @@
         </div>
         <hr>
 
-        <h1>IFRAME WITH CANDIDATE LINK: {{selectedCandidate}}</h1>
+        {{#duraark-sidebar}}
+          <iframe src= {{selectedCandidate}} width="100%" height="100%"></iframe>
+        {{/duraark-sidebar}}
       {{else}}
         <h1>Select a result link ...</h1>
       {{/if}}
     </div>
 
     <div class="l-duraark-tool__pane-one">
-      <table class="c-candidate-list">
-        <thead>
-          <tr>
-            <th>
-              <!-- Show button -->
-            </th>
-            {{#each result.candidates.head.vars as |col|}}
-              <th>{{col}}</th>
-            {{/each}}
-          </tr>
-        </thead>
-        <tbody>
-          {{#each result.candidates.results.bindings as |row|}}
+      {{#duraark-sidebar}}
+        <table class="c-candidate-list">
+          <thead>
             <tr>
-              <td>
-                <button {{action "selectCandidate" row}}>Show</button>
-              </td>
-              {{#each result.candidates.head.vars as |propName|}}
-                <td {{action "selectCandidate" row}}>
-                  <a href= {{get-prop row propName}} target="_blank">
-                  {{get-prop-stripped row propName}}
-                </a>
-                </td>
+              <th>
+                <!-- Show button -->
+              </th>
+              {{#each result.candidates.head.vars as |col|}}
+                <th>{{col}}</th>
               {{/each}}
             </tr>
-          {{/each}}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {{#each result.candidates.results.bindings as |row|}}
+              <tr>
+                <td style="text-align: center;">
+                  <button {{action "selectCandidate" row}}>Show</button>
+                </td>
+                {{#each result.candidates.head.vars as |propName|}}
+                  <td {{action "selectCandidate" row}}>{{get-prop row propName}}</td>
+                {{/each}}
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{/duraark-sidebar}}
     </div>
   {{else}}
     {{#help-box}}

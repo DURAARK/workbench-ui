@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
           digObj.set('geoTools', tmp);
         }
       });
-
+debugger;
       session.save().catch(function(err) {
         throw new Error(err);
       });
@@ -257,6 +257,9 @@ export default Ember.Controller.extend({
             path: pc2bim.bimFilePath
           });
 
+debugger;
+          controller.send('save');
+
           controller.send('addFinishedEvent', {
             label: 'Finished BIM reconstruction: ' + pc2bim.inputFile.split('/').pop(),
             displayType: 'success',
@@ -332,6 +335,9 @@ export default Ember.Controller.extend({
                 myDigObj.get('derivatives').pushObject({
                   path: pc2bim.bimFilePath
                 });
+
+debugger;
+                controller.send('save');
 
                 controller.send('addFinishedEvent', {
                   label: 'Finished BIM reconstruction: ' + pc2bim.inputFile.split('/').pop(),

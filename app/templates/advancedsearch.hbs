@@ -17,9 +17,11 @@
       {{else}}
 
         {{#if result.candidates}}
-          {{#duraark-tool class="large" title="Results" hideClose=true fullscreen="maximizeToolUI" }}
-            {{query-result-viewer result=result icon="fa-file-text-o"}}
-          {{/duraark-tool}}
+          {{#duraark-sidebar}}
+            {{#duraark-tool class="large" title="Results" hideClose=true fullscreen="maximizeToolUI" }}
+              {{query-result-viewer result=result icon="fa-file-text-o"}}
+            {{/duraark-tool}}
+          {{/duraark-sidebar}}
         {{else}}
           {{#help-box}}
             <div class="c-help-box__hint">
@@ -42,7 +44,7 @@
     </div>
   </div>
 
-  {{#toggle-menu}}
+  <!-- {{#toggle-menu}}
     <nav>
       <ul style="color: black;">
         <li><a href="">Add Topics</a>
@@ -79,7 +81,7 @@
         </li>
       </ul>
     </nav>
-  {{/toggle-menu}}
+  {{/toggle-menu}} -->
 
   {{duraark-footer}}
 </div>
