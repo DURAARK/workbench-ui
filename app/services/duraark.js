@@ -343,9 +343,14 @@ export default Ember.Service.extend({
     return duraark._get(url);
   },
 
+  //
+  // Access to duraark-geometricenrichment
+  //
+
   getIFCReconstruction(config) {
     let duraark = this;
     config.restart = true;
+
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let geometricEnrichmentEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/pc2bim';
 
@@ -355,6 +360,44 @@ export default Ember.Service.extend({
         reject(err);
       });
     })
+  },
+
+  getRoomInfo(file, roomId) {
+    let duraark = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      let url = duraark.getAPIEndpoint('geometricEnrichment') + '/rise/roomInfo?file=' + file + '&roomId=' + roomId;
+
+      // console.log('url: ' + url);
+
+      // FIXXME: a GET request with jQuery or XMLHttpRequest object is corrupt in my setup with the weird behaviour to only
+      // work when the developer tools are open. Investigate (this is extremely anoying ...)!
+      return duraark._post(url, {}).then(function(roomInfo) {
+        resolve(roomInfo);
+      }).catch(function(err) {
+        reject(err);
+      });
+
+    });
+  },
+
+  getRoomX3D(file, roomId) {
+    let duraark = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      let url = duraark.getAPIEndpoint('geometricEnrichment') + '/rise/x3d?file=' + file + '&roomId=' + roomId;
+
+      // console.log('url: ' + url);
+
+      // FIXXME: a GET request with jQuery or XMLHttpRequest object is corrupt in my setup with the weird behaviour to only
+      // work when the developer tools are open. Investigate (this is extremely anoying ...)!
+      return duraark._post(url, {}).then(function(roomInfo) {
+        resolve(roomInfo);
+      }).catch(function(err) {
+        reject(err);
+      });
+
+    });
   },
 
   _get(url) {

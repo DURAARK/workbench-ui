@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var enableRosettaDeposit = false;
+var enableRosettaDeposit = true;
 
 function post(url, data) {
   var that = this;

@@ -1,0 +1,21 @@
+<!-- <x3d width='500px' height='400px'>
+  <scene>
+    <inline url='http://localhost/api/v0.7/geometricenrichment/sessions/tmp/1234.x3d'> </inline>
+  </scene>
+</x3d> -->
+
+
+<X3D width='1000px' height='700px' id='SCENE'>
+    <Scene>
+            <!--<Inline url="nygade1001.x3d" nameSpaceName="SCAN" mapDEFToID="true"></Inline> -->
+            <Inline url="http://localhost/api/v0.7/geometricenrichment/sessions/tmp/1234.x3d" nameSpaceName="SCAN" mapDEFToID="true"></Inline>
+    </Scene>
+</X3D>
+
+<script>
+ x3dom.runtime.ready = function() {
+  window.setTimeout(function() {
+    document.getElementById('SCENE').runtime.showAll();
+  }, 100);
+ }
+</script>

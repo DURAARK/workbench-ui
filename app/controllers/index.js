@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
       this.transitionToRoute('search');
     },
     showKnowledgeGraph: function() {
-      this.transitionToRoute('explore');
+      this.transitionToRoute('advancedsearch');
     }
   }
 });

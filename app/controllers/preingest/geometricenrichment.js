@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
           digObj.set('geoTools', tmp);
         }
       });
-debugger;
+
       session.save().catch(function(err) {
         throw new Error(err);
       });
@@ -212,9 +212,15 @@ debugger;
         geoTools.removeObject(removeThis);
       }
 
+
       if (!_.isFunction(tool.get)) {
+        tool.set('filename', filename);
         tool = Ember.Object.create(tool);
+      } else {
+        tool.set('filename', filename);
       }
+
+      controller.get('selectedDigitalObject.geoTools').pushObject(tool);
 
       controller.send('showLoadingSpinner', true, 'Scheduling BIM reconstruction ...');
 
@@ -241,7 +247,19 @@ debugger;
           filename: pc2bim.inputFile
         });
 
-        controller.get('selectedDigitalObject.geoTools').pushObject(t);
+        let digObjs = controller.get('digitalObjects'),
+          myDigObj = null;
+
+        digObjs.forEach(digObj => {
+          let tool = digObj.get('geoTools').findBy('label', 'Reconstruct BIM Model');
+          if (tool && tool.get('filename') === pc2bim.inputFile) {
+            myDigObj = digObj;
+          }
+        });
+
+        if (!myDigObj) {
+          throw new Error('no digObj found!');
+        }
 
         // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
         if (pc2bim.status === 'finished') {
@@ -253,11 +271,11 @@ debugger;
           t.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
           t.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
 
-          controller.get('selectedDigitalObject.derivatives').pushObject({
+          // controller.get('selectedDigitalObject.derivatives').pushObject({
+          myDigObj.get('derivatives').pushObject({
             path: pc2bim.bimFilePath
           });
 
-debugger;
           controller.send('save');
 
           controller.send('addFinishedEvent', {
@@ -311,15 +329,6 @@ debugger;
                 }
               });
 
-              if (curTool) {
-                // FIXXME: To get the bindings to correctly fire the tool has to be removed and added again.
-                // Otherwise setting e.g. the tool's 'isLoading' property does not reflect in the GUI.
-                myDigObj.get('geoTools').removeObject(curTool);
-                myDigObj.get('geoTools').pushObject(curTool);
-              } else {
-                throw new Error('this should not happen, investigate!');
-              }
-
               // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
               // pc2bim.status = 'finished';
 
@@ -336,7 +345,6 @@ debugger;
                   path: pc2bim.bimFilePath
                 });
 
-debugger;
                 controller.send('save');
 
                 controller.send('addFinishedEvent', {
@@ -369,7 +377,7 @@ debugger;
         }
       });
 
-      controller.send('save');
+      // controller.send('save');
       controller.send('showLoadingSpinner', false);
     }
   },
