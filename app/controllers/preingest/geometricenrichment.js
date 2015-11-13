@@ -197,7 +197,7 @@ export default Ember.Controller.extend({
           displayType: 'success',
           id: eventId
         });
-      }, 5000);
+      }, 500);
 
       controller.send('showLoadingSpinner', false);
     },

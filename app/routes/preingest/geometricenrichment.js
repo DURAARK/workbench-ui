@@ -38,7 +38,7 @@ export default Ember.Route.extend({
         // 'ember objectify' geo tools:
         let geoTools = [];
         obj.get('geoTools').forEach(tool => {
-            geoTools.pushObject(Ember.Object.create(tool));
+          geoTools.pushObject(Ember.Object.create(tool));
         });
         obj.set('geoTools', geoTools);
 
@@ -56,23 +56,23 @@ export default Ember.Route.extend({
     // FIXXME: get from SDA service!
     // FIXXME: create Topic model to enable saving and linking into session model!
     var tools = [Ember.Object.create({
-      label: 'Reconstruct BIM Model',
-      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan.',
-    }), Ember.Object.create({
-      label: 'Detect Power Lines',
-      description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical appliances of the building.',
-    }),
-    // Ember.Object.create({
-    //   label: 'Extract Floor Plan and Room Information',
-    //   description: 'Enable this tool to extract a floor plan with additional geometric information for each room.',
-    //   rooms: 0,
-    //   walls: 0
-    // })
+        label: 'Reconstruct BIM Model',
+        description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan.',
+      }), Ember.Object.create({
+        label: 'Detect Power Lines',
+        description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical appliances of the building.',
+      }),
+      // Ember.Object.create({
+      //   label: 'Extract Floor Plan and Room Information',
+      //   description: 'Enable this tool to extract a floor plan with additional geometric information for each room.',
+      //   rooms: 0,
+      //   walls: 0
+      // })
     ];
 
     // FIXXME!
-    Ember.$.get('/assets/bygade/wall.json').then(function(response) {
-      controller.set('wallConfig', response);
+    Ember.$.get('http://localhost/api/v0.7/geometricenrichment/sessions/byg72-2nd-scan_fixed/tmp/CITA_Byg72_2nd_Scan_wall.json', function(wallJSON) {
+      controller.set('wallConfig', wallJSON);
     });
 
     // FIXXME: incorporate selected tools from session!

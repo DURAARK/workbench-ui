@@ -74,6 +74,17 @@ export default Ember.Component.extend({
         }).catch(err => {
           throw new Error(err);
         });
+
+        // this.duraark.getWallJSON(file).then(function(wallJSON) {
+        //   debugger;
+        //   if (!wallJSON) {
+        //     throw new Error('x3d result is invalid!');
+        //   }
+        //   let baseUrl = controller.duraark.getAPIEndpoint('geometricEnrichment');
+        //   controller.set('roomX3DUrl', baseUrl + wallJSON.url);
+        // }).catch(err => {
+        //   throw new Error(err);
+        // });
       },
 
 

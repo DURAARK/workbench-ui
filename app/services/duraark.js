@@ -400,6 +400,27 @@ export default Ember.Service.extend({
     });
   },
 
+  getWallJSON(file) {
+    let duraark = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      let wallJSONPath = '/sessions/byg72-2nd-scan_fixed/tmp/CITA_Byg72_2nd_Scan_wall.json';
+      let url = duraark.getAPIEndpoint('geometricEnrichment') + wallJSONPath;
+
+      // console.log('url: ' + url);
+      debugger;
+
+      // FIXXME: a GET request with jQuery or XMLHttpRequest object is corrupt in my setup with the weird behaviour to only
+      // work when the developer tools are open. Investigate (this is extremely anoying ...)!
+      return duraark._post(url, {}).then(function(wallJSON) {
+        resolve(wallJSON);
+      }).catch(function(err) {
+        reject(err);
+      });
+
+    });
+  },
+
   _get(url) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       function handler(data, status, jqxhr) {
