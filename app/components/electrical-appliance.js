@@ -15,7 +15,8 @@ export default Ember.Component.extend({
         },
         hypothesis: {
           walls: []
-        }
+        },
+        label: roomInfo.get('label')
       });
 
     _.forEach(roomInfo.rise.orthophoto.walls, item => {
@@ -52,9 +53,7 @@ export default Ember.Component.extend({
             anHttpRequest.send(null);
           };
 
-        // roomName = 'room0';
-
-        // let file = '/duraark-storage/sessions/nygade_1001-fixed/master/Nygade_Scan1001.e57';
+        // FIXXME!
         let file = '/duraark-storage/sessions/byg72-2nd-scan_fixed/master/CITA_Byg72_2nd_Scan.e57';
 
         this.duraark.getRoomInfo(file, roomName).then(function(roomInfo) {
@@ -62,6 +61,7 @@ export default Ember.Component.extend({
             throw new Error('getRoomInfo result is invalid!');
           }
           let room = Ember.Object.create(roomInfo);
+          room.set('label', roomName);
           controller.set('roomInfo', room);
         });
 

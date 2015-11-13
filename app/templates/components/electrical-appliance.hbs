@@ -5,25 +5,22 @@
         <div class="c-rise-tool__header">
           <button class="c-rise-tool__back" {{action "backToFloorplan"}}><i class="fa fa-arrow-left"></i>&nbsp; Back</button>
           <button class="c-rise-tool__edit" {{action "backToFloorplan"}}><i class="fa fa-pencil"></i>&nbsp; Edit</button>
-          <header class="c-rise-tool__label">Selected:
-            <strong>{{selectedRoom.label}}</strong>
+          <header class="c-rise-tool__label">Showing: <strong>{{selectedRoom.label}}</strong>
           </header>
         </div>
         <hr>
 
-
-
         <div class="l-image-presenter">
           {{#if roomX3DUrl}}
             <h2 class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-eye"></i> 3D Preview</h2>
-            {{log roomX3DUrl}}
+            <h3>Double click a room on the left to add it to the 3D preview. Double click inside the 3D preview to set the center of rotation.</h3>
             {{x3d-viewer url=roomX3DUrl}}
           {{else}}
             <h2 class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-eye"></i> 3D Preview loading ...</h2>
             {{inline-spinner}}
           {{/if}}
         </div>
-        
+
         <div class="l-image-presenter">
           <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Hypothesis Results</div>
 
