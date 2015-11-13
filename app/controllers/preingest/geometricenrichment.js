@@ -147,9 +147,9 @@ export default Ember.Controller.extend({
         // filename: filename
       });
 
-      t.set('electDetectImages', tool.get('elecDetectImages'));
-      t.set('ruleSetImages', tool.get('ruleSetImages'));
-      t.set('hypothesisImages', tool.get('hypothesisImages'));
+      // t.set('electDetectImages', tool.get('elecDetectImages'));
+      // t.set('ruleSetImages', tool.get('ruleSetImages'));
+      // t.set('hypothesisImages', tool.get('hypothesisImages'));
 
       var digObj = controller.get('selectedDigitalObject');
       digObj.get('geoTools').pushObject(t);
@@ -191,6 +191,15 @@ export default Ember.Controller.extend({
         curTool.set('isLoading', false);
         curTool.set('hasError', false);
         curTool.set('hasData', true);
+
+        controller.send('save');
+
+        // FIXXME: get respective wallJSON!
+        let hostname = window.document.location.hostname;
+        Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment/sessions/byg72-2nd-scan_fixed/tmp/CITA_Byg72_2nd_Scan_wall.json', function(wallJSON) {
+          debugger;
+          controller.set('wallConfig', wallJSON);
+        });
 
         controller.send('addFinishedEvent', {
           label: 'Finished power line detection',

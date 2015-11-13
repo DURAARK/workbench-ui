@@ -70,11 +70,6 @@ export default Ember.Route.extend({
       // })
     ];
 
-    // FIXXME!
-    Ember.$.get('http://localhost/api/v0.7/geometricenrichment/sessions/byg72-2nd-scan_fixed/tmp/CITA_Byg72_2nd_Scan_wall.json', function(wallJSON) {
-      controller.set('wallConfig', wallJSON);
-    });
-
     // FIXXME: incorporate selected tools from session!
     tools.forEach(function(tool) {
       tool.set('isSelected', false);
