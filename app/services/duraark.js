@@ -270,8 +270,7 @@ export default Ember.Service.extend({
     var pa = session.get('physicalAssets').objectAt(0);
 
     duraark._post(sdaEndpoint, {
-      buildm: pa.buildm,
-      buildmOriginal: pa.buildmOriginal,
+      buildm: pa.buildm
     }).then(function(paBuildm) {
       if (session.get('digitalObjects')) {
         session.get('digitalObjects').forEach(function(item) {
@@ -285,10 +284,10 @@ export default Ember.Service.extend({
           }];
           // console.log('buildm_represents: ' + JSON.stringify(item.buildm, null, 4));
 
-          // FIXXME: temporary download URL from Rosetta:
-          item.buildm['http://data.duraark.eu/vocab/buildm/downloadUrl'] = [{
-            '@value': "http://rosetta.develop.lza.tib.eu/delivery/DeliveryManagerServlet?dps_pid=FL668512&dps_func=stream"
-          }];
+          // // FIXXME: temporary download URL from Rosetta:
+          // item.buildm['http://data.duraark.eu/vocab/buildm/downloadUrl'] = [{
+          //   '@value': "http://rosetta.develop.lza.tib.eu/delivery/DeliveryManagerServlet?dps_pid=FL668512&dps_func=stream"
+          // }];
 
           duraark._post(sdaEndpoint, {
             buildm: item.buildm

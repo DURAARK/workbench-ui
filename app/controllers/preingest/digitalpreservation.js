@@ -28,7 +28,11 @@ function post(url, data) {
 export default Ember.Controller.extend({
   actions: {
     createRosettaSIP: function() {
-      // this.duraark.storeInSDAS(this.get('session'));
+      this.duraark.storeInSDAS(this.get('session'));
+
+      // FIXXME: remove after testing!
+      this.set('rosettaIsCreating', false);
+      return;
 
       if (!enableRosettaDeposit) {
         // FIXXME: add authentification mechanism!

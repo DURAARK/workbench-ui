@@ -68,13 +68,16 @@ export default Ember.Component.extend({
     newBuildm['@type'] = originalBuildm['@type'];
 
     formDescription.forEach(function(item) {
-      let cur = newBuildm[item.get('origKey')] = [];
+      let cur = [];
 
       item.get('values').forEach(function(value) {
-        cur.pushObject({
-          '@value': value.value,
-          '@type': item.type
-        });
+        if (value.value != "") {
+          cur.pushObject({
+            '@value': value.value,
+            // '@type': item.type
+          });
+          newBuildm[item.get('origKey')] = cur;
+        }
       });
     });
 

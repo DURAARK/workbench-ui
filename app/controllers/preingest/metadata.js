@@ -22,11 +22,13 @@ function post(url, data) {
 export default Ember.Controller.extend({
   actions: {
     next: function() {
-
+      let controller = this;
       // FIXXME: check if everything is saved in the buildm-editor and display modal in case of unsaved changes!
 
       var session = this.get('session');
-      this.transitionToRoute('preingest.geometricenrichment', session);
+      session.save().then(function() {
+        controller.transitionToRoute('preingest.geometricenrichment', session);
+      });
     },
 
     back: function() {
@@ -90,6 +92,16 @@ export default Ember.Controller.extend({
         url = sessionEndpoint.host + '/sessions/' + sessionId;
 
       controller.send('showLoadingSpinner', true);
+
+      // var session = this.get('session');
+      // session.save().then(function() {
+      //   console.log('stored session ...');
+      //   controller.send('showLoadingSpinner', false);
+      //   controller.transitionToRoute('preingest.geometricenrichment', session);
+      // }).catch(function(err) {
+      //   controller.send('showLoadingSpinner', false);
+      //   throw new Error(err);
+      // });
 
       var payload = session.toJSON();
       var ds = [];
