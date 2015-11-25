@@ -91,12 +91,12 @@ export default Ember.Controller.extend({
           selectedDigitalObject.derivatives.splice(idx, 1);
         }
       } else {
+        let filename = selectedDigitalObject.get('path');
         if (tool.get('label') === 'Detect Power Lines') {
-          this.send('scheduleRISE', tool);
+          this.send('scheduleRISE', tool, filename);
         }
 
         if (tool.get('label') === 'Reconstruct BIM Model') {
-          let filename = selectedDigitalObject.get('path');
           this.send('scheduleBIMReconstruction', tool, filename);
         }
       }
@@ -111,7 +111,7 @@ export default Ember.Controller.extend({
       this.send('save');
     },
 
-    scheduleRISE(tool, removeToolFirst) {
+    scheduleRISE(tool, filename, removeToolFirst) {
       let controller = this,
         eventId = new Date();
 
@@ -195,10 +195,15 @@ export default Ember.Controller.extend({
         controller.send('save');
 
         // FIXXME: get respective wallJSON!
-        let hostname = window.document.location.hostname;
+        let hostname = window.document.location.hostname,
+          wallConfigPath = filename.replace('/duraark-storage', '').replace('master', 'tmp').slice(0, -4) + '_wall.json';
+
         // Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment/sessions/byg72-2nd-scan_fixed/tmp/CITA_Byg72_2nd_Scan_wall.json', function(wallJSON) {
-        Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment/sessions/byg72-3rd-scan-fixed/tmp/CITA_Byg72_3rd_Scan_09-2015_wall.json', function(wallJSON) {
+        // Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment/sessions/byg72-3rd-scan-fixed/tmp/CITA_Byg72_3rd_Scan_09-2015_wall.json', function(wallJSON) {
+        Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment' + wallConfigPath, function(wallJSON) {
           controller.set('wallConfig', wallJSON);
+        }).fail(function() {
+          controller.set('wallConfig', false);
         });
 
         controller.send('addFinishedEvent', {
