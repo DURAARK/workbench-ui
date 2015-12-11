@@ -226,13 +226,17 @@ export default Ember.Controller.extend({
         geoTools.removeObject(removeThis);
       }
 
-
+      // FIXXME: fix duality!
       if (!_.isFunction(tool.get)) {
-        tool.set('filename', filename);
+        tool.set('filename', filename); // ?
         tool = Ember.Object.create(tool);
       } else {
         tool.set('filename', filename);
       }
+
+      tool.set('isLoading', true);
+      tool.set('hasError', false);
+      tool.set('hasData', false);
 
       controller.get('selectedDigitalObject.geoTools').pushObject(tool);
 
@@ -248,6 +252,10 @@ export default Ember.Controller.extend({
         inputFile: filename,
         restart: false
       }).then(function(pc2bim) {
+        if (!pc2bim) {
+          pc2bim = {};
+        }
+
         // Create new instance of tool to be added to 'geoTools'. It is not
         // possible to directly use the 'tool' instance, as multiple files can
         // have the same tool assigned.
@@ -268,6 +276,8 @@ export default Ember.Controller.extend({
           let tool = digObj.get('geoTools').findBy('label', 'Reconstruct BIM Model');
           if (tool && tool.get('filename') === pc2bim.inputFile) {
             myDigObj = digObj;
+
+            digObj.get('geoTools').removeObject(tool);
           }
         });
 
@@ -304,6 +314,8 @@ export default Ember.Controller.extend({
           t.set('isLoading', false);
           t.set('errorText', pc2bim.errorText);
           t.set('hasData', false);
+
+          controller.get('selectedDigitalObject.geoTools').pushObject(t);
 
           controller.send('addFinishedEvent', {
             label: 'BIM reconstruction failure: ' + pc2bim.inputFile.split('/').pop(),

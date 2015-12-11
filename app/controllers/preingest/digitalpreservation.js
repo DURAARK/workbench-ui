@@ -31,8 +31,8 @@ export default Ember.Controller.extend({
       this.duraark.storeInSDAS(this.get('session'));
 
       // FIXXME: remove after testing!
-      this.set('rosettaIsCreating', false);
       return;
+      this.set('rosettaIsCreating', false);
 
       if (!enableRosettaDeposit) {
         // FIXXME: add authentification mechanism!
