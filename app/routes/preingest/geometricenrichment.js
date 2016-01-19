@@ -44,7 +44,7 @@ export default Ember.Route.extend({
 
         digObjs.pushObject(obj);
 
-        if (digObj.path && digObj.path.endsWith('e57')) {
+        if (digObj.path && digObj.path.endsWith('e57') || digObj.path.endsWith('e57n') || digObj.path.endsWith('ifc')) {
           pointClouds.pushObject(obj);
         }
       });
@@ -62,12 +62,10 @@ export default Ember.Route.extend({
         label: 'Detect Power Lines',
         description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical appliances of the building.',
       }),
-      // Ember.Object.create({
-      //   label: 'Extract Floor Plan and Room Information',
-      //   description: 'Enable this tool to extract a floor plan with additional geometric information for each room.',
-      //   rooms: 0,
-      //   walls: 0
-      // })
+      Ember.Object.create({
+        label: 'Difference Detection',
+        description: 'Enable this tool to detect differences between two point cloud files, or a point cloud file with a BIM model.',
+      })
     ];
 
     // FIXXME: incorporate selected tools from session!

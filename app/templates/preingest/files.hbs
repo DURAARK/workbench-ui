@@ -30,15 +30,15 @@
 					{{else}}
 
 						{{#unless fileInfo}}
-							{{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true" }}
+							<!-- {{#duraark-tool title="Upload Master Files" hideClose="true" hideFullscreen="true" }}
 								<div class="c-file-upload">
 									{{x-droplet onFilesUploaded="addFiles"}}
 								</div>
-							{{/duraark-tool}}
+							{{/duraark-tool}} -->
 					{{else}}
 
 						{{#if errors}}
-							<h1>asflkajsdflkasjdflkajsdf</h1>
+							<h1>Errors</h1>
 							{{#each error in errors}}
 								<div>Type: {{error.type}}</div>
 								<div>Message: {{error.msg}}</div>

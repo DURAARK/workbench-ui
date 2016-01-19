@@ -1,0 +1,49 @@
+<div class="l-file c-file">
+  <div {{action "infoClicked" tool}} style="position: relative;">
+
+    <div class="c-tool-item__header">
+      {{#if tool.hasData}}
+        Show Result &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+      {{/if}}
+      {{#if tool.isLoading}}
+        Select
+        <!-- <div class="loader">Loading...</div> -->
+      {{/if}}
+      {{#if tool.hasError}}
+        Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+      {{/if}}
+    </div>
+
+    <div class="c-file__name" style="text-align: center;">
+
+      <strong>{{tool.label}} <br>against</strong>
+
+      {{#if showStart}}
+        <div class="faux-select">
+          <select name= {{name}} style="width: 100%; height: 50px; text-align: center;">
+            {{#each choices as |choice|}}
+              <option value= {{choice.label}}>{{choice.label}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <button type="button" {{action "startClicked"}}>Start</button>
+      {{else}}
+      <br>
+        <p style="height: 50px">
+          Statsbygg_Rislokka_B1-Arch_PREVIEW.ifc
+        </p>
+      {{/if}}
+
+    </div>
+
+  </div>
+  <div class="c-file__actions">
+    <div {{action "remove" tool}} class="c-file__action" style="float: left;">
+      {{#unless static}}
+        <i class="fa fa-remove"></i>
+      {{/unless}}
+    </div>
+  </div>
+
+</div>
