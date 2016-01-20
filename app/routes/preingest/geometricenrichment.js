@@ -68,7 +68,7 @@ export default Ember.Route.extend({
       }),
       Ember.Object.create({
         label: 'Point Cloud Compression',
-        description: 'Enable this tool to generate a compressed point cloud (with added normals)',
+        description: 'Enable this tool to generate a compressed point cloud (with added normals.)',
       })
     ];
 

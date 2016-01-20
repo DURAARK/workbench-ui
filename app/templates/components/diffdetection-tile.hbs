@@ -1,7 +1,7 @@
 <div class="l-file c-file">
-  <div {{action "infoClicked" tool}} style="position: relative;">
+  <div style="position: relative;">
 
-    <div class="c-tool-item__header">
+    <div class="c-tool-item__header" {{action "infoClicked" tool}}>
       {{#if tool.hasData}}
         Show Result &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
       {{/if}}
