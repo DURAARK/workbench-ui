@@ -65,6 +65,10 @@ export default Ember.Route.extend({
       Ember.Object.create({
         label: 'Difference Detection',
         description: 'Enable this tool to detect differences between two point cloud files, or a point cloud file with a BIM model.',
+      }),
+      Ember.Object.create({
+        label: 'Point Cloud Compression',
+        description: 'Enable this tool to generate a compressed point cloud (with added normals)',
       })
     ];
 

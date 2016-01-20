@@ -104,6 +104,10 @@ export default Ember.Controller.extend({
         if (tool.get('label') === 'Difference Detection') {
           this.send('scheduleDiffDetection', tool, filename);
         }
+
+        if (tool.get('label') === 'Point Cloud Compression') {
+          this.send('scheduleCompression', tool, filename);
+        }
       }
     },
 
@@ -114,6 +118,52 @@ export default Ember.Controller.extend({
 
       this.send('closeToolUI');
       this.send('save');
+    },
+
+    scheduleCompression(tool, filename, removeToolFirst) {
+      let controller = this,
+        eventId = new Date();
+
+      // controller.send('showLoadingSpinner', true, 'Scheduling difference detection ...');
+
+      controller.send('addPendingEvent', {
+        label: 'Scheduled compression',
+        displayType: 'info',
+        id: eventId
+      });
+
+      if (removeToolFirst) {
+        let geoTools = controller.get('selectedDigitalObject.geoTools');
+        let removeThis = geoTools.findBy('label', 'Point Cloud Compression');
+        geoTools.removeObject(removeThis);
+      }
+
+      if (!_.isFunction(tool.get)) {
+        tool = Ember.Object.create(tool);
+        session = controller.get('session');
+      }
+
+      // Create new instance of tool to be added to 'geoTools'. It is not
+      // possible to directly use the 'tool' instance, as multiple files can
+      // have the same tool assigned.
+      var t = Ember.Object.create({
+        label: tool.get('label'),
+        description: tool.get('description'),
+        isLoading: true,
+        hasError: false,
+        hasData: false,
+        downloadUrl: null,
+        // filename: filename
+      });
+
+      // t.set('electDetectImages', tool.get('elecDetectImages'));
+      // t.set('ruleSetImages', tool.get('ruleSetImages'));
+      // t.set('hypothesisImages', tool.get('hypothesisImages'));
+
+      var digObj = controller.get('selectedDigitalObject');
+      digObj.get('geoTools').pushObject(t);
+
+      controller.send('save');
     },
 
     scheduleDiffDetection(tool, filename, removeToolFirst) {
@@ -472,6 +522,11 @@ export default Ember.Controller.extend({
   isDifferenceDetectionTool: function() {
     let toolname = this.get('tool.label');
     return (toolname === 'Difference Detection');
+  }.property('tool'),
+
+  isCompressionTool: function() {
+    let toolname = this.get('tool.label');
+    return (toolname === 'Poinc Cloud Compression');
   }.property('tool'),
 
   tools: function() {

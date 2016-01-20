@@ -1,0 +1,53 @@
+<div class="l-file c-file">
+  <div style="position: relative;">
+
+    <div class="c-tool-item__header" {{action "infoClicked" tool}}>
+      {{#if tool.hasData}}
+        Download Compressed File &nbsp;<i class="fa fa-cloud-download"></i>
+      {{/if}}
+      {{#if tool.isLoading}}
+        Select
+        <!-- <div class="loader">Loading...</div> -->
+      {{/if}}
+      {{#if tool.hasError}}
+        Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+      {{/if}}
+    </div>
+
+    <div class="c-file__name" style="text-align: center;">
+      {{#if showStart}}
+        <strong>Compression Ratio
+          <br>(0-1, e.g. 0.02):</strong>
+
+        <div class="faux-select" style="margin-top: 1em; margin-bottom: 1em">
+          {{input value=compressionRatio}}
+        </div>
+
+        <button type="button" {{action "startClicked"}}>Compress</button>
+      {{else}}
+        <br>
+        <strong>Compression Ratio:</strong>
+        <span style="margin-top: 1em; margin-bottom: 1em">{{compressionRatio}}</span>
+
+        <p>
+          <strong>Name:</strong>
+          Rislokka-{{compressionRatio}}.e57n
+        </p>
+        <p>
+          <strong>Size:</strong>
+          5MB
+        </p>
+      {{/if}}
+
+    </div>
+
+  </div>
+  <div class="c-file__actions">
+    <div {{action "remove" tool}} class="c-file__action" style="float: left;">
+      {{#unless static}}
+        <i class="fa fa-remove"></i>
+      {{/unless}}
+    </div>
+  </div>
+
+</div>
