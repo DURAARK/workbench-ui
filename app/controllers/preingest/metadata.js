@@ -139,7 +139,7 @@ export default Ember.Controller.extend({
       fileInfo.set('isSelected', false);
     }
 
-    item.set('isSelected', true);
+    Ember.set(item, 'isSelected', true);
     this.set('fileInfo', item);
 
     // this.get('physicalAssets').forEach(function(item) {

@@ -7,6 +7,8 @@ default Ember.Route.extend({
     },
 
     deactivate() {
+      this.get('controller').send('next');
+
       // NOTE: When linking back to the 'preingest' route the 'setupController'
       // hook of 'preingest' does not get called to remove the workflow step bar.
       // (that's because the 'preingest' model is already set and did not change).

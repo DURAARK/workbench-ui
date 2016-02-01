@@ -31,6 +31,7 @@ export default Ember.Controller.extend({
 
   actions: {
     next: function() {
+      console.log('next');
       var controller = this;
       if (!this.get('files.length')) {
         alert('Add at least one master file first!');
@@ -285,7 +286,7 @@ export default Ember.Controller.extend({
 
   showInViewer(file) {
     return;
-    var isE57 = file.get('path').endsWith('.e57');
+    var isE57 = file.get('path').endsWith('.e57') || file.get('path').endsWith('.e57n');
     var isIfc = file.get('path').endsWith('.ifc');
     if (isIfc) {
       this.transitionToRoute('ifc-viewer');
@@ -307,7 +308,7 @@ export default Ember.Controller.extend({
 
     if (file.get('path').endsWith('ifc')) {
       mdInstance = controller.store.createRecord('ifcm');
-    } else if (file.get('path').endsWith('e57')) {
+    } else if (file.get('path').endsWith('e57') || file.get('path').endsWith('.e57n')) {
       mdInstance = controller.store.createRecord('e57m');
     } else {
       alert('File type not supported: ' + file.get('path'));
