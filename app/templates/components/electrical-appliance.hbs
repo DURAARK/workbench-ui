@@ -23,30 +23,32 @@
         </div>
 
         <div class="l-image-presenter">
-          <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Hypothesis Results</div>
+          <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> In-wall power line hypothesis for <strong>{{selectedRoom.label}}:</strong></div>
 
           <div class="l-image-list">
             {{#each selectedRoom.hypothesis.walls as |img|}}
               <div class="l-image">
-                <img {{action "clickImage" img}} src="{{img}}" alt="Hypothesis Result Image" />
+                  <object data="{{img}}" type="image/svg+xml"></object>
+                <!-- <img {{action "clickImage" img}} src="{{img}}" alt="Hypothesis Result Image" /> -->
               </div>
             {{/each}}
           </div>
         </div>
 
         <div class="l-image-presenter">
-          <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Installation Zones</div>
+          <div class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> ... based on this installation zone suggestion: </div>
 
           <div class="l-image-list">
             {{#each selectedRoom.grammar.walls as |img|}}
               <div class="l-image">
-                <img {{action "clickImage" img}} src="{{img}}" alt="Rule Set Image" />
+                <object data="{{img}}" type="image/svg+xml"></object>
+                <!-- <img {{action "clickImage" img}} src="{{img}}" alt="Rule Set Image" /> -->
               </div>
             {{/each}}
           </div>
         </div>
 
-        <div class="l-image-presenter">
+        <!-- <div class="l-image-presenter">
           <h2 class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-image"></i> Detection Results</h2>
 
           <div class="l-image-list">
@@ -56,7 +58,7 @@
               </div>
             {{/each}}
           </div>
-        </div>
+        </div> -->
 
       {{else}}
         <!-- selectedRoom -->
