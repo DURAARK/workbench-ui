@@ -49,7 +49,7 @@
               {{#if tool}}
                 {{#if isElectricalApplianceDetectionTool}}
                   {{#duraark-tool title="Detect Power Lines" close="closeToolUI" fullscreen="maximizeToolUI" }}
-                    {{electrical-appliance tool=tool wallConfig=wallConfig}}
+                    {{electrical-appliance wallConfig=wallConfig digitalObject=selectedDigitalObject}}
                   {{/duraark-tool}}
                 {{/if}}
 

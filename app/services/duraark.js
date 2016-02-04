@@ -384,12 +384,15 @@ export default Ember.Service.extend({
     let duraark = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      let url = duraark.getAPIEndpoint('geometricEnrichment') + '/rise/x3d?file=' + file + '&roomId=' + roomId;
+      let url = duraark.getAPIEndpoint('geometricEnrichment') + '/rise/x3d?file=' + file;
+      if (roomId) {
+        url += '&roomId=' + roomId;
+      }
 
-      // console.log('url: ' + url);
+      console.log('url: ' + url);
 
       // FIXXME: a GET request with jQuery or XMLHttpRequest object is corrupt in my setup with the weird behaviour to only
-      // work when the developer tools are open. Investigate (this is extremely anoying ...)!
+      // work when the developer tools are open. Investigate (this is extremely annoying ...)!
       return duraark._post(url, {}).then(function(roomInfo) {
         resolve(roomInfo);
       }).catch(function(err) {

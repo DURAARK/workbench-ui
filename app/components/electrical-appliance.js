@@ -2,6 +2,23 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   selectedRoom: null,
+  digitalObject: null,
+
+  didInsertElement() {
+    let file = this.get('digitalObject.path'),
+      controller = this;
+
+    this.duraark.getRoomX3D(file).then(function(x3dInfo) {
+      if (!x3dInfo) {
+        throw new Error('x3d result is invalid!');
+      }
+      let baseUrl = controller.duraark.getAPIEndpoint('geometricEnrichment');
+      controller.set('roomX3DUrl', baseUrl + x3dInfo.url);
+    }).catch(err => {
+      controller.set('roomInfo', 'Error!');
+      throw new Error(err);
+    });
+  },
 
   roomInfoChanged: function() {
     let roomInfo = this.get('roomInfo'),
@@ -54,7 +71,11 @@ export default Ember.Component.extend({
           };
 
         // FIXXME!
-        let file = '/duraark-storage/sessions/byg72-2nd-scan_fixed/master/CITA_Byg72_2nd_Scan.e57';
+        // let file = '/duraark-storage/sessions/byg72-2nd-scan_fixed/master/CITA_Byg72_2nd_Scan.e57';
+
+        let digObj = this.get('digitalObject'),
+          file = digObj.get('path');
+        // console.log('do: ' + digObj.get('path'));
 
         this.duraark.getRoomInfo(file, roomName).then(function(roomInfo) {
           if (!roomInfo) {
@@ -63,15 +84,8 @@ export default Ember.Component.extend({
           let room = Ember.Object.create(roomInfo);
           room.set('label', roomName);
           controller.set('roomInfo', room);
-        });
-
-        this.duraark.getRoomX3D(file, roomName).then(function(x3dInfo) {
-          if (!x3dInfo) {
-            throw new Error('x3d result is invalid!');
-          }
-          let baseUrl = controller.duraark.getAPIEndpoint('geometricEnrichment');
-          controller.set('roomX3DUrl', baseUrl + x3dInfo.url);
         }).catch(err => {
+          controller.set('roomInfo', 'Error!');
           throw new Error(err);
         });
 

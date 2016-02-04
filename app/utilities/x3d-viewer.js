@@ -3,8 +3,8 @@ export default class X3DViewer {
     this._inlineNodes = [];
   	// init x3d
   	x3dom.reload(); // NOTE: when inserting the <X3D> element after the 'x3dom.js' is loaded you have to call 'reload()'
-    this._x3dElement = x3dElement;
-    this._runtime = x3dElement.runtime;
+    this._x3dElement = $(x3dElement)[0];
+    this._runtime = this._x3dElement.runtime;
 
     this._sceneNode = document.getElementById('roomScene');
 
@@ -27,17 +27,17 @@ export default class X3DViewer {
     // init debugger
     this.setDebugger(showDebugger);
 
-    // init keys
-    this.setKeys(keysEnabled);
+    // // init keys
+    // this.setKeys(keysEnabled);
 
-    // init middleDrag
-    this.setMiddleDrag(middleDrag);
+    // // init middleDrag
+    // this.setMiddleDrag(middleDrag);
 
     // init size
     // this._width = width;
     // x3dElement.setAttribute('width', this._width);
     this._height = height;
-    x3dElement.setAttribute('height', this._height);
+    this._x3dElement.setAttribute('height', this._height);
   }
 
   // Loads the scene located at url and calls the callback when loaded.
@@ -87,6 +87,7 @@ export default class X3DViewer {
   }
 
   setStats(value) {
+    return;
     if (value == null) {
       var toggle = this.runtime.statistics(); // FIXXME: for whatever weird reason the code line below only works with this line present...
       (this.runtime.statistics()) ? this.runtime.statistics(false) : this.runtime.statistics(true);

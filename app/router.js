@@ -25,6 +25,8 @@ Router.map(function() {
   // this.route('file-browser');
   this.route('ifc-viewer');
   this.route('advancedsearch');
+
+  this.route('x3dtest', { path: '/x3dtest' });
 });
 
 export default Router;
