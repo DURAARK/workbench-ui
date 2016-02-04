@@ -1,8 +1,8 @@
 export default class X3DViewer {
   constructor(x3dElement, loadScene, loadCallback, nameSpaceName, width, height, showStats, showDebugger, keysEnabled, middleDrag) {
     this._inlineNodes = [];
-  	// init x3d
-  	x3dom.reload(); // NOTE: when inserting the <X3D> element after the 'x3dom.js' is loaded you have to call 'reload()'
+    // init x3d
+    x3dom.reload(); // NOTE: when inserting the <X3D> element after the 'x3dom.js' is loaded you have to call 'reload()'
     this._x3dElement = $(x3dElement)[0];
     this._runtime = this._x3dElement.runtime;
 
@@ -42,15 +42,21 @@ export default class X3DViewer {
 
   // Loads the scene located at url and calls the callback when loaded.
   inlineScene(url, nameSpaceName, callback) {
+    debugger;
     var inline = document.createElement('inline');
     inline.setAttribute('url', url);
     inline.setAttribute('nameSpaceName', nameSpaceName);
     inline.setAttribute('mapDEFToID', 'true');
     this._sceneNode.appendChild(inline);
     //
-    this._inlineNodes.push({ name : nameSpaceName, node : inline });
+    this._inlineNodes.push({
+      name: nameSpaceName,
+      node: inline
+    });
     //
     inline.addEventListener('load', callback, false);
+
+    this.showAll();
     return inline;
   }
 
@@ -79,7 +85,10 @@ export default class X3DViewer {
    */
 
   showAll() {
-  	this.runtime.showAll();
+    let that = this;
+    setTimeout(() => {
+      that.runtime.showAll();
+    }, 500);
   }
 
   resetView() {
@@ -90,12 +99,12 @@ export default class X3DViewer {
     return;
     if (value == null) {
       var toggle = this.runtime.statistics(); // FIXXME: for whatever weird reason the code line below only works with this line present...
-      (this.runtime.statistics()) ? this.runtime.statistics(false) : this.runtime.statistics(true);
+      (this.runtime.statistics()) ? this.runtime.statistics(false): this.runtime.statistics(true);
     } else {
       if (value == true) {
-      	this.runtime.statistics(true);
+        this.runtime.statistics(true);
       } else {
-      	this.runtime.statistics(false);
+        this.runtime.statistics(false);
       }
     }
   }
@@ -103,12 +112,12 @@ export default class X3DViewer {
   setDebugger(value) {
     if (value == null) {
       var toggle = this.runtime.debug(); // FIXXME: for whatever weird reason the code line below only works with this line present...
-      (this.runtime.debug()) ? this.runtime.debug(false) : this.runtime.debug(true);
+      (this.runtime.debug()) ? this.runtime.debug(false): this.runtime.debug(true);
     } else {
       if (value == true) {
-      	this.runtime.debug(true);
+        this.runtime.debug(true);
       } else {
-      	this.runtime.debug(false);
+        this.runtime.debug(false);
       }
     }
   }
@@ -129,7 +138,7 @@ export default class X3DViewer {
     }
   }
 
-    /*
+  /*
    * getters and setters
    */
 
