@@ -295,14 +295,9 @@ export default Ember.Controller.extend({
 
         controller.send('save');
 
-        // FIXXME: get respective wallJSON!
-        let hostname = window.document.location.hostname,
-          wallConfigPath = filename.replace('/duraark-storage', '').replace('master', 'tmp').slice(0, -4) + '_wall.json';
-
-        // FIXXME: make available via duraark.js!
-        Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment/rise/getFloorplandata?e57master=' + filename, function(wallJSON) {
-          controller.set('wallConfig', wallJSON);
-        }).fail(function() {
+        controller.duraark.getFloorPlanData(filename).then(data => {
+          controller.set('wallConfig', data);
+        }).catch(err => {
           controller.set('wallConfig', false);
         });
 

@@ -211,7 +211,7 @@ export default Ember.Service.extend({
     return new Ember.RSVP.Promise(function(resolve, reject) {
       // console.log('[duraark-sda] Query-URL: ' + url);
 
-      // FIXXME: for some reason _get is not working correctly here whe initially
+      // FIXXME: for some reason _get is not working correctly here when initially
       // loading the data. It returns a "" result. When you do a page reload the data
       // is retrieved correctly. The server sends the data correctly in any case, but
       // in _get something seems to go sideways...
@@ -410,7 +410,6 @@ export default Ember.Service.extend({
       let url = duraark.getAPIEndpoint('geometricEnrichment') + wallJSONPath;
 
       // console.log('url: ' + url);
-      debugger;
 
       // FIXXME: a GET request with jQuery or XMLHttpRequest object is corrupt in my setup with the weird behaviour to only
       // work when the developer tools are open. Investigate (this is extremely anoying ...)!
@@ -420,6 +419,19 @@ export default Ember.Service.extend({
         reject(err);
       });
 
+    });
+  },
+
+  getFloorPlanData(file) {
+    let url = this.getAPIEndpoint('geometricEnrichment') + '/rise/getFloorplandata?e57master=' + file,
+      duraark = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      return duraark._post(url, {}).then(function(repsonse) {
+        resolve(repsonse);
+      }).catch(function(err) {
+        reject(err);
+      });
     });
   },
 

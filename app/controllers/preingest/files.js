@@ -29,29 +29,28 @@ export default Ember.Controller.extend({
     return path.endsWith('.ifc');
   }.property('fileInfo'),
 
-  actions: {
-    next: function() {
-      console.log('next');
-      var controller = this;
-      if (!this.get('files.length')) {
-        alert('Add at least one master file first!');
-        return;
-      }
+  saveSession: function() {
+    var controller = this;
+    if (!this.get('files.length')) {
+      alert('Add at least one master file first!');
+      return;
+    }
 
-      controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
+    controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
 
-      // console.log('Files:');
-      // controller.get('files').forEach(function(file) {
-      //   console.log('  * ' + file.get('path'));
-      // });
+    // console.log('Files:');
+    // controller.get('files').forEach(function(file) {
+    //   console.log('  * ' + file.get('path'));
+    // });
 
-      var session = controller.get('session'),
-        files = controller.get('files'),
-        sessionLabel = controller.get('session.label'),
-        buildingAddress = controller.get('session.address'),
-        hasPA = session.get('physicalAssets').length,
-        paNew = {};
+    var session = controller.get('session'),
+      files = controller.get('files'),
+      sessionLabel = controller.get('session.label'),
+      buildingAddress = controller.get('session.address'),
+      hasPA = session.get('physicalAssets').length,
+      paNew = {};
 
+    return new Ember.RSVP.Promise(function(resolve, reject) {
       session.set('files', files);
       // session['files'] = files;
 
@@ -131,16 +130,30 @@ export default Ember.Controller.extend({
         })
 
         session.save().then(function(session) {
-          controller.transitionToRoute('preingest.metadata', session);
           controller.send('showLoadingSpinner', false);
+          resolve(session);
         }).catch(function(err) {
           controller.send('showLoadingSpinner', false);
-          alert(err);
+          reject(err);
         });
       }).catch(function(err) {
-        alert('Error extracting metadata for selected file(s)');
         controller.send('showLoadingSpinner', false);
-        throw new Error(err);
+        reject(err);
+      });
+    });
+  },
+
+  actions: {
+    save: function() {
+      this.saveSession();
+    },
+
+    next: function() {
+      let controller = this;
+      controller.saveSession().then((session) => {
+        controller.transitionToRoute('preingest.metadata', session);
+      }).catch(err => {
+        alert('Error extracting metadata for selected file(s): ' + err);
       });
     },
 
