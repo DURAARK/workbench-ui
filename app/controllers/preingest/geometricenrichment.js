@@ -299,9 +299,8 @@ export default Ember.Controller.extend({
         let hostname = window.document.location.hostname,
           wallConfigPath = filename.replace('/duraark-storage', '').replace('master', 'tmp').slice(0, -4) + '_wall.json';
 
-        // Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment/sessions/byg72-2nd-scan_fixed/tmp/CITA_Byg72_2nd_Scan_wall.json', function(wallJSON) {
-        // Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment/sessions/byg72-3rd-scan-fixed/tmp/CITA_Byg72_3rd_Scan_09-2015_wall.json', function(wallJSON) {
-        Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment' + wallConfigPath, function(wallJSON) {
+        // FIXXME: make available via duraark.js!
+        Ember.$.get('http://' + hostname + '/api/v0.7/geometricenrichment/rise/getFloorplandata?e57master=' + filename, function(wallJSON) {
           controller.set('wallConfig', wallJSON);
         }).fail(function() {
           controller.set('wallConfig', false);
