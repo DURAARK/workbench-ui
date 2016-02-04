@@ -42,7 +42,6 @@ export default class X3DViewer {
 
   // Loads the scene located at url and calls the callback when loaded.
   inlineScene(url, nameSpaceName, callback) {
-    debugger;
     var inline = document.createElement('inline');
     inline.setAttribute('url', url);
     inline.setAttribute('nameSpaceName', nameSpaceName);

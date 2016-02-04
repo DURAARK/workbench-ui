@@ -5,8 +5,9 @@ export default Ember.Component.extend({
   inlineUrl: null,
 
   didInsertElement() {
-      this._init();
-      // x3dom.reload();
+      // this._init();
+      x3dom.reload();
+      document.getElementById('SCENE').runtime.showAll();
     },
 
     inlineUrlChanged: function() {
