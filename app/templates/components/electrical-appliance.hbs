@@ -1,5 +1,5 @@
 <div class="l-rise-tool c-rise-tool">
-  {{#if wallConfig}}
+  {{#if digitalObject}}
     <div class="l-duraark-tool__pane-two">
 
       {{#if selectedRoom}}
@@ -58,7 +58,7 @@
 
     <div class="l-duraark-tool__pane-one">
       <h3 class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-eye"></i> 2D Floorplan</h3>
-      {{duraark-floorplan wallConfig=wallConfig roomClicked="roomClicked"}}
+      {{duraark-floorplan fileId=digitalObject.path roomClicked="roomClicked"}}
 
       <h3 class="l-image-presenter__header"><i style="margin-right: 0.4em;" class="fa fa-eye"></i> 3D Result Preview</h3>
       <br>

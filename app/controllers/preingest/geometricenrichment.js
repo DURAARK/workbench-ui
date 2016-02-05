@@ -90,6 +90,8 @@ export default Ember.Controller.extend({
           var idx = selectedDigitalObject.derivatives.indexOf(derivative);
           selectedDigitalObject.derivatives.splice(idx, 1);
         }
+
+        this.send('save');
       } else {
         let filename = selectedDigitalObject.get('path');
         // FIXXME: introduce tool registry!
@@ -108,6 +110,8 @@ export default Ember.Controller.extend({
         if (tool.get('label') === 'Point Cloud Compression') {
           this.send('scheduleCompression', tool, filename);
         }
+
+        this.send('save');
       }
     },
 

@@ -5,9 +5,10 @@ export default Ember.Component.extend({
   digitalObject: null,
 
   didInsertElement() {
+    console.log('didInsertElement');
     let file = this.get('digitalObject.path'),
       controller = this;
-
+      
     this.duraark.getRoomX3D(file).then(function(x3dInfo) {
       if (!x3dInfo) {
         throw new Error('x3d result is invalid!');
@@ -88,17 +89,6 @@ export default Ember.Component.extend({
           controller.set('roomInfo', 'Error!');
           throw new Error(err);
         });
-
-        // this.duraark.getWallJSON(file).then(function(wallJSON) {
-        //   debugger;
-        //   if (!wallJSON) {
-        //     throw new Error('x3d result is invalid!');
-        //   }
-        //   let baseUrl = controller.duraark.getAPIEndpoint('geometricEnrichment');
-        //   controller.set('roomX3DUrl', baseUrl + wallJSON.url);
-        // }).catch(err => {
-        //   throw new Error(err);
-        // });
       },
 
 

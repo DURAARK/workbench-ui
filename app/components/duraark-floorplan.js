@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  wallConfig: null,
+  fileId: null,
   isRendered: false,
 
   // FIXXME: refactor into own lib!
@@ -10,9 +10,19 @@ export default Ember.Component.extend({
   },
 
   didInsertElement: function() {
-    if (!this.isRendered && this.wallConfig) {
-      this.renderFloorplan(this.wallConfig);
+    let that = this;
+    if (!this.isRendered && this.floorPlanData) {
+      this.renderFloorplan(this.floorPlanData);
       this.isRendered = true;
+    } else {
+      this.duraark.getFloorPlanData(this.fileId).then(function(floorPlanData) {
+        if (!floorPlanData) {
+          throw new Error('Floor plan data response is invalid!');
+        }
+        that.renderFloorplan(floorPlanData);
+      }).catch(err => {
+        throw new Error(err);
+      });
     }
   },
 
