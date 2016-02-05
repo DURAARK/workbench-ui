@@ -16,8 +16,8 @@ export default Ember.Component.extend({
     }
   },
 
-  renderFloorplan: function(wallConfig) {
-    var ROOMS = wallConfig,
+  renderFloorplan: function(room) {
+    var ROOMS = room,
       that = this;
 
     // FIXXME: find a better way to bind d3's 'onclick' handler to a function in this
