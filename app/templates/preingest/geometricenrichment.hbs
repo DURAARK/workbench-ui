@@ -22,7 +22,7 @@
 
               {{#each do.geoTools as |tool| }}
                 {{#if (eq tool.label "Difference Detection")}}
-                  {{diffdetection-tile tool=tool item=do infoClicked="showToolUI" remove="removeTool" }}
+                  {{diffdetection-tile tool=tool item=do digitalObjects=digitalObjects infoClicked="showToolUI" remove="removeTool" }}
                 {{else if (eq tool.label "Point Cloud Compression")}}
                   {{compression-tile tool=tool item=do infoClicked="showToolUI" remove="removeTool" }}
                 {{else}}
@@ -66,7 +66,7 @@
                 {{/if}}
               {{else}}
                 {{#if selectedDigitalObject}}
-                  {{tool-selector tools=tools click="clickedTool" icon="fa-building-o" title="Add geometric enrichments to the selected point cloud:"}}
+                  {{tool-selector tools=tools click="clickedTool" icon="fa-building-o" title="Apply tools to selected file:" digitalObject=selectedDigitalObject numFiles=digitalObjects.length}}
                 {{else}}
                   {{#help-box}}
                     <div class="c-help-box__hint">

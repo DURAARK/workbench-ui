@@ -12,6 +12,12 @@
 		{{/if}}
 
 		<div class="c-file__name">
+			{{#if item.thumbnail}}
+			<div class="c-file__thumbnail">
+				<img src="{{item.thumbnail}}" alt="File thumbnail" />
+			</div>
+			{{/if}}
+
 			{{#if filename}}
 				{{filename}}
 			{{else}}

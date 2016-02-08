@@ -8,6 +8,8 @@
       {{#if tool.isLoading}}
         Select
         <!-- <div class="loader">Loading...</div> -->
+      {{else}}
+        tool.label
       {{/if}}
       {{#if tool.hasError}}
         Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
@@ -16,22 +18,25 @@
 
     <div class="c-file__name" style="text-align: center;">
 
-      <strong>{{tool.label}} <br>against</strong>
+      {{#if (gte choices.length 1)}}
+        <strong>{{tool.label}}
+          <br>against</strong>
 
-      {{#if showStart}}
-        <div class="faux-select">
-          <select name= {{name}} style="width: 100%; height: 50px; text-align: center;">
-            {{#each choices as |choice|}}
-              <option value= {{choice.label}}>{{choice.label}}</option>
-            {{/each}}
-          </select>
-        </div>
+        {{#if showStart}}
+          <div class="faux-select">
+            {{digital-object-select content=choices action=(action (mut fileToCompareWith))}}
+          </div>
 
-        <button type="button" {{action "startClicked"}}>Start</button>
+          <button type="button" {{action "startClicked"}}>Start</button>
+        {{else}}
+          <br>
+          <p style="height: 50px">
+            {{fileToCompareWith}}
+          </p>
+        {{/if}}
       {{else}}
-      <br>
         <p style="height: 50px">
-          Statsbygg_Rislokka_B1-Arch_PREVIEW.ifc
+          Please add a second file in the "Files" step.
         </p>
       {{/if}}
 

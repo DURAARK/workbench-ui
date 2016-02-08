@@ -3,7 +3,8 @@
   <h2>{{title}}</h2>
 
   <div class="l-tool-gallery">
-    {{#each tools as |tool|}}
+    {{#each applicableTools as |tool|}}
+
       <div class="l-tool c-card {{if tool.isSelected 'is-selected'}}" {{action "click" tool}}>
         <div class="c-tool__header">
           <i class="fa {{icon}}"></i>
@@ -15,12 +16,28 @@
           <div class="c-card-copy">
             <p>{{tool.description}}</p>
           </div>
-          <div class="c-card__action">
-            <label class="c-label-switch">
-              {{input type="checkbox" checked=tool.isSelected}}
-              <div class="checkbox"></div>
-            </label>
-          </div>
+          {{#if (eq tool.label "Difference Detection")}}
+            {{#if (lte numFiles 1)}}
+              <center>
+                <span class="c-card-copy" style="padding-bottom: 1em;">Add another file to use this tool!</span>
+                <!-- {{#link-to "preingest.files"}}<i class="fa fa-plus-square-o fa-2x"></i>{{/link-to}} -->
+              </center>
+            {{else}}
+              <div class="c-card__action">
+                <label class="c-label-switch">
+                  {{input type="checkbox" checked=tool.isSelected}}
+                  <div class="checkbox"></div>
+                </label>
+              </div>
+            {{/if}}
+          {{else}}
+            <div class="c-card__action">
+              <label class="c-label-switch">
+                {{input type="checkbox" checked=tool.isSelected}}
+                <div class="checkbox"></div>
+              </label>
+            </div>
+          {{/if}}
         </div>
       </div>
     {{/each}}

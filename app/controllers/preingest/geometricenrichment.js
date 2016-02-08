@@ -206,10 +206,6 @@ export default Ember.Controller.extend({
         // filename: filename
       });
 
-      // t.set('electDetectImages', tool.get('elecDetectImages'));
-      // t.set('ruleSetImages', tool.get('ruleSetImages'));
-      // t.set('hypothesisImages', tool.get('hypothesisImages'));
-
       var digObj = controller.get('selectedDigitalObject');
       digObj.get('geoTools').pushObject(t);
 

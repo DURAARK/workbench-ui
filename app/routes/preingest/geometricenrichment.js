@@ -39,10 +39,10 @@ export default Ember.Route.extend({
         let geoTools = [];
         obj.get('geoTools').forEach(tool => {
           let toolObj = Ember.Object.create(tool);
-          // FIXXME: HACK: these parameters have to be set by the geometric enrichment service!
-          toolObj.set('hasData', true);
-          toolObj.set('hasError', false);
-          toolObj.set('isLoading', false);
+          // // FIXXME: HACK: these parameters have to be set by the geometric enrichment service!
+          // toolObj.set('hasData', true);
+          // toolObj.set('hasError', false);
+          // toolObj.set('isLoading', false);
           geoTools.pushObject(toolObj);
         });
         obj.set('geoTools', geoTools);
@@ -63,17 +63,21 @@ export default Ember.Route.extend({
     var tools = [Ember.Object.create({
         label: 'Reconstruct BIM Model',
         description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan.',
+        fileType: ['e57', 'e57n']
       }), Ember.Object.create({
         label: 'Detect Power Lines',
         description: 'Enable this tool to reconstruct a BIM model (IFC format) from the point cloud scan which contains a hypothesis of the in-wall electrical appliances of the building.',
+        fileType: ['e57', 'e57n']
       }),
       Ember.Object.create({
         label: 'Difference Detection',
         description: 'Enable this tool to detect differences between two point cloud files, or a point cloud file with a BIM model.',
+        fileType: ['ifc', 'e57', 'e57n']
       }),
       Ember.Object.create({
         label: 'Point Cloud Compression',
         description: 'Enable this tool to generate a compressed point cloud (with added normals.)',
+        fileType: ['e57', 'e57n']
       })
     ];
 
