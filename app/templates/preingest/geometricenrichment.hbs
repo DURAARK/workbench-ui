@@ -12,7 +12,7 @@
     <div class="l-files">
       <div class="l-file-list">
 
-        <h2 style="margin: 1em;"><i class="fa fa-building-o"></i>&nbsp; 3 | Add geometric enrichments:</h2>
+        <h2 style="margin: 1em;"><i class="fa fa-building-o"></i>&nbsp; 3 | Apply geometric tools:</h2>
         <hr>
 
         {{#if digitalObjects.length}}
@@ -66,26 +66,24 @@
                 {{/if}}
               {{else}}
                 {{#if selectedDigitalObject}}
-                  {{tool-selector tools=tools click="clickedTool" icon="fa-building-o" title="Apply tools to selected file:" digitalObject=selectedDigitalObject numFiles=digitalObjects.length}}
+                  {{tool-selector tools=tools click="clickedTool" icon="fa-building-o" title="Available tools" digitalObject=selectedDigitalObject numFiles=digitalObjects.length}}
                 {{else}}
                   {{#help-box}}
                     <div class="c-help-box__hint">
-                      For each 3D file you can apply tools which extract geometric information from the scan.
-                      <br>
-                      <br> Supported are
+                      For each point cloud file you can apply the following geometric tools.
                       <br>
                       <br>
 
                       <ul style="margin-left: 1.5em;">
-                        <li style="list-style-type: disc;">the reconstruction of a BIM model  (for E57 point clouds) and</li>
-                        <li style="list-style-type: disc;">the detection of electrical applicances in walls (for E57 point clouds) and</li>
-                        <li style="list-style-type: disc;">the difference detection between two files (for E57 and IFC files)/</li>
+                        <li style="list-style-type: disc;">Reconstruction of a BIM model from the point cloud file (<em>IFC Reconstruction component</em>)</li>
+                        <li style="list-style-type: disc;">Detection of electrical appliances within walls (<em>RISE component</em>)</li>
+                        <li style="list-style-type: disc;">Detection of differences between as-built and as-planned scans and models (<em>Difference Detection component</em>)/</li>
+                        <li style="list-style-type: disc;">Compression of point cloud files with the addition of normals (<em>Compression component</em>)/</li>
                       </ul>
                       <br>
-                      <br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a point cloud file to add an geometric enrichment processing step. The resulting IFC file(s) will be stored in the archive.
-
+                      For each BIM model the <em>Difference Detection</em> component can be applied.
                       <br>
-                      <br> The 'Show Results <i class="fa fa-arrow-circle-o-right"></i>' button allows you to inspect the progress and the results of the respective tool. You can continue the pre-ingest workflow during the tool is working in the background.
+                      <br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a file to apply a tool.
                     </div>
                   {{/help-box}}
                 {{/if}}

@@ -17,6 +17,7 @@ export default Ember.Component.extend({
 
   actions: {
     click: function(tool) {
+      // FIXXME: find a more generic solution!
       if (tool.get('label') === "Difference Detection" && this.get('numFiles') <= 1) {
         return;
       }

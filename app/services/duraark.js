@@ -353,8 +353,27 @@ export default Ember.Service.extend({
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let geometricEnrichmentEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/pc2bim';
 
-      duraark._post(geometricEnrichmentEndpoint, config).then(function(pc2bim) {
-        resolve(pc2bim);
+      duraark._post(geometricEnrichmentEndpoint, config).then(function(pc2bimResult) {
+        resolve(pc2bimResult);
+      }).catch(function(err) {
+        reject(err);
+      });
+    })
+  },
+
+  getDifferenceDetection(config) {
+    let duraark = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      // FIXXME: implement!
+      return resolve();
+
+      let diffDetectionEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/differencedetection';
+
+      console.log('[duraark] Requesting difference detection between file %s and file %s', config.fileIdA, config.fileIdB);
+
+      duraark._post(diffDetectionEndpoint, config).then(function(diffDetectionResult) {
+        resolve(diffDetectionResult);
       }).catch(function(err) {
         reject(err);
       });

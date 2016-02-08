@@ -32,17 +32,24 @@ export default Ember.Component.extend({
     },
 
     startClicked: function() {
-      let fileToCompareWith = this.get('fileToCompareWith');
+      let fileToCompareWith = this.get('fileToCompareWith'),
+        that = this;
 
       // Select first element as default:
       if (!fileToCompareWith) {
-        this.set('fileToCompareWith', this.get('choices')[0]);
+        fileToCompareWith = this.get('choices')[0];
+        this.set('fileToCompareWith', fileToCompareWith);
       }
 
-      this.set('tool.hasData', true);
-      this.set('tool.isLoading', false);
-      this.set('tool.hasError', false);
-      this.set('showStart', false)
+      this.duraark.getDifferenceDetection({
+        fileIdA: this.get('item.path'),
+        fileIdB: fileToCompareWith
+      }).then(function() {
+        that.set('tool.hasData', true);
+        that.set('tool.isLoading', false);
+        that.set('tool.hasError', false);
+        that.set('showStart', false);
+      });
     }
   }
 });

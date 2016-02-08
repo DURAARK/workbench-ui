@@ -4,12 +4,12 @@
     <div class="c-tool-item__header" {{action "infoClicked" tool}}>
       {{#if tool.hasData}}
         Show Result &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+      {{else}}
+        {{tool.label}}
       {{/if}}
       {{#if tool.isLoading}}
         Select
         <!-- <div class="loader">Loading...</div> -->
-      {{else}}
-        tool.label
       {{/if}}
       {{#if tool.hasError}}
         Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
