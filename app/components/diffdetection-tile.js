@@ -40,6 +40,7 @@ export default Ember.Component.extend({
       // Select first element as default:
       if (!fileIdBBasename) {
         fileIdBBasename = this.get('choices')[0];
+        this.set('fileToCompareWith', fileIdBBasename);
       }
 
       let fileIdB = this.extractFileIdPath(fileIdA) + fileIdBBasename;

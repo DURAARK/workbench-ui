@@ -365,12 +365,6 @@ export default Ember.Service.extend({
     let duraark = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      // TODO: implement!
-      resolve({
-        viewerUrl: 'http://potree.oglaroon.cc/potree/examples/byg2.html'
-      });
-      return;
-
       let diffDetectionEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/differencedetection';
 
       console.log('[duraark] Requesting difference detection between file %s and file %s', config.fileIdA, config.fileIdB);
