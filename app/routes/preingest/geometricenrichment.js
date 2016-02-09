@@ -22,8 +22,9 @@ export default Ember.Route.extend({
 
     controller.set('session', model);
 
-    if (session.get('digitalObjects')) {
-      session.get('digitalObjects').forEach(function(digObj) {
+    let digitalObjects = session.get('digitalObjects');
+    if (digitalObjects) {
+      digitalObjects.forEach(function(digObj) {
         var obj = Ember.Object.create({
           label: digObj.label,
           buildm: digObj.buildm,
@@ -39,10 +40,10 @@ export default Ember.Route.extend({
         let geoTools = [];
         obj.get('geoTools').forEach(tool => {
           let toolObj = Ember.Object.create(tool);
-          // // FIXXME: HACK: these parameters have to be set by the geometric enrichment service!
-          // toolObj.set('hasData', true);
-          // toolObj.set('hasError', false);
-          // toolObj.set('isLoading', false);
+          // FIXXME: HACK: these parameters have to be set by the geometric enrichment service!
+          toolObj.set('hasData', true);
+          toolObj.set('hasError', false);
+          toolObj.set('isLoading', false);
           geoTools.pushObject(toolObj);
         });
         obj.set('geoTools', geoTools);

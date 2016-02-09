@@ -6,15 +6,15 @@ default Ember.Route.extend({
       return this.store.find('session', params.id);
     },
 
-    deactivate() {
-      this.get('controller').send('save');
-
-      // NOTE: When linking back to the 'preingest' route the 'setupController'
-      // hook of 'preingest' does not get called to remove the workflow step bar.
-      // (that's because the 'preingest' model is already set and did not change).
-      // Therefore we do this 'cleanup' here in any case:
-      this.send('showWorkflowSteps', false);
-    },
+    // willTransition(transition) {
+    //   // NOTE: Prepare and save session data before transitioning, as other parts of the application
+    //   // are depending on the session data.
+    //
+    //   let filesController = this.controllerFor('files');
+    //   filesController.set('previousTransition', transition);
+    //   filesController.saveSession();
+    //   this.send('showWorkflowSteps', false);
+    // },
 
     setupController(controller, model) {
       this._super(controller, model);
@@ -46,17 +46,6 @@ default Ember.Route.extend({
       }
       controller.set('files', files);
 
-      //       this.store.findAll('file').then(function(availableFiles) {
-      //         controller.set('files', availableFiles);
-      //
-      //         let selectedFiles = model.get('files');
-      //         router.send('highlightSelectedFiles', availableFiles, selectedFiles);
-      //
-      //         controller.send('showLoadingSpinner', false);
-      //       });
-      // }
-      // }
-
       var label = model.get('label');
       this.send('setTitle', 'Archive Buildings - ' + label);
       this.send('showWorkflowSteps', true);
@@ -66,6 +55,14 @@ default Ember.Route.extend({
       controller.set('fileInfo', null);
       controller.set('fileInfoIsE57', null);
       controller.set('fileInfoIsIFC', null);
+
+      // If this is the first call to the route after the API got initialized with
+      // a set of fixed sessions we have to prepare the session data first:
+      // FIXXME: prepare session in duraark-sessions service after fixed session
+      // initialization and after a file is added
+      if (!model.get('physicalAssets.length')) {
+        controller.saveSession();
+      }
     },
 
     actions: {

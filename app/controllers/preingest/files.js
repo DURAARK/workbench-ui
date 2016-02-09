@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
   isE57: function() {
     if (!this.get('fileInfo')) return false;
     var path = this.get('fileInfo.path');
-    return path.endsWith('.e57');
+    return path.endsWith('.e57') || path.endsWith('.e57n');
   }.property('fileInfo'),
 
   isIFC: function() {
@@ -86,10 +86,10 @@ export default Ember.Controller.extend({
         var das = [];
 
         newFiles.forEach(function(file) {
-          var isIfcFile = true;
+          var isIfcFile = false;
 
-          if (file.get('path').endsWith('e57')) {
-            isIfcFile = false;
+          if (file.get('path').endsWith('ifc')) {
+            isIfcFile = true;
           }
 
           if (!hasPA) {
