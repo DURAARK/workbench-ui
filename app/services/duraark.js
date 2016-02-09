@@ -365,8 +365,11 @@ export default Ember.Service.extend({
     let duraark = this;
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
-      // FIXXME: implement!
-      return resolve();
+      // TODO: implement!
+      resolve({
+        viewerUrl: 'http://potree.oglaroon.cc/potree/examples/byg2.html'
+      });
+      return;
 
       let diffDetectionEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/differencedetection';
 

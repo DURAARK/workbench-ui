@@ -3,6 +3,10 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: '',
   digitalObjects: [],
+  fileToCompareWith: null,
+  name: 'diffFile',
+  showStart: true,
+
   choices: function() {
     let that = this;
     return this.get('digitalObjects').filter(function(item) {
@@ -11,14 +15,11 @@ export default Ember.Component.extend({
       return item.path.split('/').pop();
     });
   }.property('digitalObjects'),
-  fileToCompareWith: null,
-  name: 'diffFile',
-  showStart: true,
 
-  onFileToCompareWithChanged: function() {
-    let fileToCompareWith = this.get('fileToCompareWith');
-    console.log('fileToCompareWith: ' + fileToCompareWith);
-  }.observes('fileToCompareWith'),
+  extractFileIdPath: function(fileId) {
+    let fileIdBasename = fileId.split('/').pop();
+    return fileId.substring(0, fileId.length - fileIdBasename.length);
+  },
 
   actions: {
     remove: function(tool) {
@@ -32,19 +33,22 @@ export default Ember.Component.extend({
     },
 
     startClicked: function() {
-      let fileToCompareWith = this.get('fileToCompareWith'),
+      let fileIdA = this.get('item.path'),
+        fileIdBBasename = this.get('fileToCompareWith'),
         that = this;
 
       // Select first element as default:
-      if (!fileToCompareWith) {
-        fileToCompareWith = this.get('choices')[0];
-        this.set('fileToCompareWith', fileToCompareWith);
+      if (!fileIdBBasename) {
+        fileIdBBasename = this.get('choices')[0];
       }
 
+      let fileIdB = this.extractFileIdPath(fileIdA) + fileIdBBasename;
+
       this.duraark.getDifferenceDetection({
-        fileIdA: this.get('item.path'),
-        fileIdB: fileToCompareWith
-      }).then(function() {
+        fileIdA: fileIdA,
+        fileIdB: fileIdB
+      }).then(function(result) {
+        that.set('tool.viewerUrl', result.viewerUrl);
         that.set('tool.hasData', true);
         that.set('tool.isLoading', false);
         that.set('tool.hasError', false);
