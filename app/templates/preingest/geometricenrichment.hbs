@@ -12,7 +12,7 @@
     <div class="l-files">
       <div class="l-file-list">
 
-        <h2 style="margin: 1em;"><i class="fa fa-building-o"></i>&nbsp; 3 | Apply geometric tools:</h2>
+        <h2 style="margin: 1em;"><i class="fa fa-building-o"></i>&nbsp; Apply Geometric Tools</h2>
         <hr>
 
         {{#if digitalObjects.length}}
@@ -66,7 +66,7 @@
                 {{/if}}
               {{else}}
                 {{#if selectedDigitalObject}}
-                  {{tool-selector tools=tools click="clickedTool" icon="fa-building-o" title="Available tools" digitalObject=selectedDigitalObject numFiles=digitalObjects.length}}
+                  {{tool-selector tools=tools click="clickedTool" icon="fa-building-o" digitalObject=selectedDigitalObject numFiles=digitalObjects.length}}
                 {{else}}
                   {{#help-box}}
                     <div class="c-help-box__hint">

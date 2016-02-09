@@ -59,7 +59,7 @@ default Ember.Route.extend({
       // If this is the first call to the route after the API got initialized with
       // a set of fixed sessions we have to prepare the session data first:
       // FIXXME: prepare session in duraark-sessions service after fixed session
-      // initialization and after a file is added
+      // initialization and after a file is added.
       if (!model.get('physicalAssets.length')) {
         controller.saveSession();
       }

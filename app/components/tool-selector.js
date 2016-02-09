@@ -15,6 +15,11 @@ export default Ember.Component.extend({
     return applicableTools;
   }.property('digitalObject'),
 
+  title: function() {
+      let fileType = (this.get('digitalObject.path').endsWith('.ifc')) ? 'BIM Model' : 'Point Cloud';
+      return 'Available ' + fileType + ' Tools:';
+  }.property('digitalObject'),
+
   actions: {
     click: function(tool) {
       // FIXXME: find a more generic solution!
