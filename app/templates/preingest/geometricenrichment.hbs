@@ -22,7 +22,7 @@
 
               {{#each do.geoTools as |tool| }}
                 {{#if (eq tool.label "Difference Detection")}}
-                  {{diffdetection-tile tool=tool item=do digitalObjects=digitalObjects infoClicked="showToolUI" remove="removeTool" }}
+                  {{diffdetection-tile tool=tool item=do digitalObjects=digitalObjects session=session infoClicked="showToolUI" remove="removeTool" }}
                 {{else if (eq tool.label "Point Cloud Compression")}}
                   {{compression-tile tool=tool item=do infoClicked="showToolUI" remove="removeTool" }}
                 {{else}}

@@ -40,10 +40,10 @@ export default Ember.Route.extend({
         let geoTools = [];
         obj.get('geoTools').forEach(tool => {
           let toolObj = Ember.Object.create(tool);
-          // FIXXME: HACK: these parameters have to be set by the geometric enrichment service!
-          toolObj.set('hasData', true);
-          toolObj.set('hasError', false);
-          toolObj.set('isLoading', false);
+          // // FIXXME: HACK: these parameters have to be set by the geometric enrichment service!
+          // toolObj.set('hasData', true);
+          // toolObj.set('hasError', false);
+          // toolObj.set('isLoading', false);
           geoTools.pushObject(toolObj);
         });
         obj.set('geoTools', geoTools);

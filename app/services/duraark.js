@@ -513,5 +513,33 @@ export default Ember.Service.extend({
   _generateURI(duraarkType) {
     let type = duraarkType.split('/').pop().toLowerCase();
     return 'http://data.duraark.eu/' + type + '_' + uuid.v4();
+  },
+
+  // moral FIXXME: Dear developer, recruiter or other curious reader! Please ignore this piece of code.
+  // It is an ugly, temporarily necessary piece of something that will always remind me of
+  // how far technical dept can bring you when you have to meet a deadline ...
+  // technical FIXXME: use ember-data, for god's sake ...
+  fixxmeUpdateToolOnServer(session, digitalObject, tool) {
+    let geoTools = digitalObject.get('geoTools'),
+      sessionPlain = JSON.parse(JSON.stringify(session)),
+      digObj = _.where(sessionPlain.digitalObjects, {
+        label: digitalObject.get('label')
+      }),
+      geoTool = _.where(digObj[0].geoTools, {
+        label: tool.get('label')
+      });
+
+    geoTool[0].isLoading = tool.get('isLoading');
+    geoTool[0].hasData = tool.get('hasData');
+    geoTool[0].hasError = tool.get('hasError');
+    geoTool[0].jobId = tool.get('jobId');
+    geoTool[0].viewerUrl = tool.get('viewerUrl');
+    geoTool[0].errorText = tool.get('errorText');
+    if (tool.get('showStart')) {
+      geoTool[0].showStart = tool.get('showStart');
+    }
+
+    let sessionsEndpoint = this.getAPIEndpoint('sessions') + '/sessions/fixxmeSaveSession';
+    return this._post(sessionsEndpoint, sessionPlain);
   }
 });

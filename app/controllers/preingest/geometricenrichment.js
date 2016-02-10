@@ -6,6 +6,7 @@ var sdaEndpoint = ENV.DURAARKAPI.sda;
 export default Ember.Controller.extend({
   actions: {
     save: function() {
+      console.log('saving session ...');
       var session = this.get('session');
 
       session.get('digitalObjects').forEach(function(digObj) {
@@ -156,13 +157,12 @@ export default Ember.Controller.extend({
         isLoading: true,
         hasError: false,
         hasData: false,
-        downloadUrl: null,
-        // filename: filename
+        viewerUrl: null,
+        jobId: null
       });
 
       var digObj = controller.get('selectedDigitalObject');
       digObj.get('geoTools').pushObject(t);
-
       controller.send('save');
     },
 
@@ -197,8 +197,8 @@ export default Ember.Controller.extend({
         isLoading: true,
         hasError: false,
         hasData: false,
-        downloadUrl: null,
-        // filename: filename
+        viewerUrl: null,
+        jobId: null
       });
 
       var digObj = controller.get('selectedDigitalObject');
