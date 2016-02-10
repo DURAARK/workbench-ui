@@ -49,6 +49,7 @@ export default Ember.Component.extend({
         fileIdA: fileIdA,
         fileIdB: fileIdB
       }).then(function(result) {
+        // FIXXME: implement strategy for being updated when job is finished!
         that.set('tool.viewerUrl', result.viewerUrl);
         that.set('tool.hasData', true);
         that.set('tool.isLoading', false);

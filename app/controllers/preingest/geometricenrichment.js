@@ -395,6 +395,8 @@ export default Ember.Controller.extend({
             path: pc2bim.bimFilePath
           });
 
+          myDigObj.get('geoTools').pushObject(t);
+
           controller.send('save');
 
           controller.send('addFinishedEvent', {
