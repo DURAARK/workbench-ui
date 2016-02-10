@@ -160,10 +160,6 @@ export default Ember.Controller.extend({
         // filename: filename
       });
 
-      // t.set('electDetectImages', tool.get('elecDetectImages'));
-      // t.set('ruleSetImages', tool.get('ruleSetImages'));
-      // t.set('hypothesisImages', tool.get('hypothesisImages'));
-
       var digObj = controller.get('selectedDigitalObject');
       digObj.get('geoTools').pushObject(t);
 
@@ -190,7 +186,6 @@ export default Ember.Controller.extend({
 
       if (!_.isFunction(tool.get)) {
         tool = Ember.Object.create(tool);
-        session = controller.get('session');
       }
 
       // Create new instance of tool to be added to 'geoTools'. It is not
@@ -368,11 +363,20 @@ export default Ember.Controller.extend({
           myDigObj = null;
 
         digObjs.forEach(digObj => {
-          let tool = digObj.get('geoTools').findBy('label', 'Reconstruct BIM Model');
-          if (tool && tool.get('filename') === pc2bim.inputFile) {
-            myDigObj = digObj;
+          let tool = digObj.get('geoTools').findBy('label', 'Reconstruct BIM Model'),
+            filename;
+          if (tool) {
+            // FIXXME: the first time an object is created it is no ember object. Find out why!
+            // This workaround fixes that:
+            if (!_.isFunction(tool.get)) {
+              filename = tool.filename;
+            } else {
+              filename = tool.get('filename');
+            }
 
-            digObj.get('geoTools').removeObject(tool);
+            if (filename === pc2bim.inputFile) {
+              myDigObj = digObj;
+            }
           }
         });
 
@@ -395,8 +399,8 @@ export default Ember.Controller.extend({
             path: pc2bim.bimFilePath
           });
 
-          myDigObj.get('geoTools').pushObject(t);
-
+          controller.get('selectedDigitalObject.geoTools').removeObject(tool);
+          controller.get('selectedDigitalObject.geoTools').pushObject(t);
           controller.send('save');
 
           controller.send('addFinishedEvent', {
@@ -412,7 +416,9 @@ export default Ember.Controller.extend({
           t.set('errorText', pc2bim.errorText);
           t.set('hasData', false);
 
+          controller.get('selectedDigitalObject.geoTools').removeObject(tool);
           controller.get('selectedDigitalObject.geoTools').pushObject(t);
+          controller.send('save');
 
           controller.send('addFinishedEvent', {
             label: 'BIM reconstruction failure: ' + pc2bim.inputFile.split('/').pop(),

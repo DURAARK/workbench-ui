@@ -2,14 +2,17 @@
   <div style="position: relative;">
 
     <div class="c-tool-item__header" {{action "infoClicked" tool}}>
-      {{#if tool.hasData}}
-        Show Result &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
-      {{else}}
+      {{#if tool.showStart}}
         {{tool.label}}
       {{/if}}
+
+      {{#if tool.hasData}}
+        Show Result &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+      {{/if}}
+
       {{#if tool.isLoading}}
-        Select
-        <!-- <div class="loader">Loading...</div> -->
+        <!-- Select -->
+        <div class="loader">Loading...</div>
       {{/if}}
       {{#if tool.hasError}}
         Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
@@ -18,26 +21,32 @@
 
     <div class="c-file__name" style="text-align: center;">
 
-      {{#if (gte choices.length 1)}}
-        <strong>{{tool.label}}
-          <br>against</strong>
+      {{#if tool.hasError}}
+        <br><i class="fa fa-minus-circle fa-lg"></i>
+      {{else}}
 
-        {{#if showStart}}
-          <div class="faux-select">
-            {{digital-object-select content=choices action=(action (mut fileToCompareWith))}}
-          </div>
+        {{#if (gte choices.length 1)}}
+          <strong>{{tool.label}}
+            <br>against</strong>
 
-          <button type="button" {{action "startClicked"}}>Start</button>
+          {{#if tool.showStart}}
+            <div class="faux-select">
+              {{digital-object-select content=choices action=(action (mut fileToCompareWith))}}
+            </div>
+
+            <button type="button" {{action "startClicked"}}>Start</button>
+          {{else}}
+            <br>
+            <p style="height: 50px">
+              {{fileToCompareWith}}
+            </p>
+          {{/if}}
         {{else}}
-          <br>
           <p style="height: 50px">
-            {{fileToCompareWith}}
+            Please add a second file in the "Files" step.
           </p>
         {{/if}}
-      {{else}}
-        <p style="height: 50px">
-          Please add a second file in the "Files" step.
-        </p>
+
       {{/if}}
 
     </div>

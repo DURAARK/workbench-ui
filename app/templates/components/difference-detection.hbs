@@ -1,3 +1,7 @@
 <div class="l-duraark-ifc-viewer c-duraark-ifc-viewer">
-  <iframe src={{tool.viewerUrl}} width="100%" height="700px"></iframe>
+  {{#if tool.hasError}}
+    <center><h1>{{tool.errorText}}</h1></center>
+  {{else}}
+    <iframe src={{tool.viewerUrl}} width="100%" height="700px"></iframe>
+  {{/if}}
 </div>
