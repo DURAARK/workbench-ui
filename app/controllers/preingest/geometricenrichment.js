@@ -356,42 +356,20 @@ export default Ember.Controller.extend({
       let controller = this,
         eventId = new Date();
 
-      controller.send('showLoadingSpinner', true, 'Scheduling power line detection ...');
-
       controller.send('addPendingEvent', {
         label: 'Scheduled power line detection',
         displayType: 'info',
         id: eventId
       });
 
-      if (removeToolFirst) {
-        let geoTools = controller.get('selectedDigitalObject.geoTools');
-        let removeThis = geoTools.findBy('label', 'Detect Power Lines');
-        geoTools.removeObject(removeThis);
-      }
-
-      if (!_.isFunction(tool.get)) {
-        tool = Ember.Object.create(tool);
-        session = controller.get('session');
-      }
-
-      // Create new instance of tool to be added to 'geoTools'. It is not
-      // possible to directly use the 'tool' instance, as multiple files can
-      // have the same tool assigned.
-      var t = Ember.Object.create({
-        label: tool.get('label'),
-        description: tool.get('description'),
-        isLoading: true,
-        hasError: false,
-        hasData: false,
-        downloadUrl: null,
-        // filename: filename
-      });
+      tool.set('isLoading', true);
+      tool.set('hasError', false);
+      tool.set('hasData', false);
 
       var digObj = controller.get('selectedDigitalObject');
-      digObj.get('geoTools').pushObject(t);
+      digObj.get('geoTools').pushObject(tool);
 
-      controller.send('save');
+      this.duraark.fixxmeUpdateToolOnServer(this.get('session'), this.get('selectedDigitalObject'), tool);
 
       // FIXXME: for now give the impression that a processing is taking place on the backend ...
       setTimeout(function() {
@@ -429,7 +407,7 @@ export default Ember.Controller.extend({
         curTool.set('hasError', false);
         curTool.set('hasData', true);
 
-        controller.send('save');
+        controller.duraark.fixxmeUpdateToolOnServer(controller.get('session'), controller.get('selectedDigitalObject'), curTool);
 
         controller.duraark.getFloorPlanData(filename).then(data => {
           controller.set('wallConfig', data);
@@ -443,8 +421,6 @@ export default Ember.Controller.extend({
           id: eventId
         });
       }, 500);
-
-      controller.send('showLoadingSpinner', false);
     },
 
     scheduleBIMReconstruction(tool, filename, removeToolFirst) {

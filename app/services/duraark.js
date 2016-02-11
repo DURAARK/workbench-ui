@@ -542,9 +542,9 @@ export default Ember.Service.extend({
       if (tool.get('showStartButton')) {
         geoTool[0].showStartButton = tool.get('showStartButton');
       }
-      if (Ember.get(tool, 'downloadUrl')) {
-        geoTool[0].downloadUrl = Ember.get(tool, 'downloadUrl');
-      }
+      // if (Ember.get(tool, 'downloadUrl')) {
+      //   geoTool[0].downloadUrl = Ember.get(tool, 'downloadUrl');
+      // }
       if (Ember.get(tool, 'filename')) {
         geoTool[0].filename = Ember.get(tool, 'filename');
       }
