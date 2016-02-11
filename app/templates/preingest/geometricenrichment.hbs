@@ -61,7 +61,7 @@
 
                 {{#if isDifferenceDetectionTool}}
                   {{#duraark-tool title="Difference Detection Viewer" close="closeToolUI" fullscreen="maximizeToolUI" }}
-                    {{difference-detection tool=tool}}
+                    {{difference-detection tool=tool session=session item=digitalObject}}
                   {{/duraark-tool}}
                 {{/if}}
               {{else}}
