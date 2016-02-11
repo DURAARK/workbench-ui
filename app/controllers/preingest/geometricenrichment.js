@@ -85,7 +85,7 @@ export default Ember.Controller.extend({
 
     let cronHandler = this.cron.addJob(function(data) {
       return data.duraark.getIFCReconstruction({
-        filename: filename,
+        inputFile: filename,
         restart: false
       }).then(function(result) {
         let tool = data.tool,
@@ -280,7 +280,7 @@ export default Ember.Controller.extend({
       var t = Ember.Object.create({
         label: tool.get('label'),
         description: tool.get('description'),
-        filename: filename,
+        inputFile: filename,
         downloadUrl: null,
         compressionRatio: 0.02,
         showSlider: true,

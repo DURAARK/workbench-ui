@@ -546,8 +546,12 @@ export default Ember.Service.extend({
       if (Ember.get(tool, 'downloadUrl')) {
         geoTool[0].downloadUrl = Ember.get(tool, 'downloadUrl');
       }
+      // FIXXME: remove after renaming all 'filename' to 'inputFile' occurences
       if (Ember.get(tool, 'filename')) {
         geoTool[0].filename = Ember.get(tool, 'filename');
+      }
+      if (Ember.get(tool, 'inputFile')) {
+        geoTool[0].inputFile = Ember.get(tool, 'inputFile');
       }
       if (Ember.get(tool, 'bimDownloadUrl')) {
         geoTool[0].bimDownloadUrl = Ember.get(tool, 'bimDownloadUrl');
