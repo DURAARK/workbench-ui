@@ -4,6 +4,148 @@ import ENV from '../../config/environment';
 var sdaEndpoint = ENV.DURAARKAPI.sda;
 
 export default Ember.Controller.extend({
+  pollingInterval: 2000,
+  cronHandlerPC2BIM: null,
+  cronHandlerDifferenceDetection: null,
+
+  pollForDifferenceDetectionResult: function(files, digitalObject, tool) {
+    let data = {
+      files: files,
+      tool: tool,
+      session: this.get('session'),
+      digitalObject: digitalObject,
+      duraark: this.duraark,
+      controller: this
+    };
+
+    let cronHandler = this.cron.addJob(function(data) {
+      return data.duraark.getDifferenceDetection({
+        fileIdA: files.fileIdA,
+        fileIdB: files.fileIdB
+      }).then(function(result) {
+        let tool = data.tool,
+          session = data.session,
+          digitalObject = data.digitalObject,
+          controller = data.controller;
+
+        // FIXXME: introduce DifferenceDetectionTool object to do such things!
+        if (tool.get('doRemove')) {
+          controller.cron.removeJob(controller.get('cronHandlerDifferenceDetection'));
+          tool.set('doRemove', false);
+          data.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          return;
+        }
+
+        Ember.set(tool, 'jobId', result.id);
+        Ember.set(tool, 'fileIdA', files.fileIdA);
+        Ember.set(tool, 'fileIdB', files.fileIdB);
+
+        if (result.status === 'finished') {
+          Ember.set(tool, 'viewerUrl', result.viewerUrl);
+          Ember.set(tool, 'isLoading', false);
+          Ember.set(tool, 'hasData', true);
+          Ember.set(tool, 'hasError', false);
+
+          controller.set('cronHandlerDifferenceDetection', null);
+
+          data.duraark.fixxmeUpdateToolOnServer(data.session, data.digitalObject, tool);
+
+          return true;
+        } else if (result.status === 'error') {
+          Ember.set(tool, 'isLoading', false);
+          Ember.set(tool, 'hasData', false);
+          Ember.set(tool, 'hasError', true);
+          Ember.set(tool, 'errorText', result.errorText);
+          Ember.set(tool, 'showStartButton', false);
+
+          data.duraark.fixxmeUpdateToolOnServer(data.session, data.digitalObject, tool);
+
+          return true;
+        } else if (result.status === 'pending') {
+          Ember.set(tool, 'isLoading', true);
+          Ember.set(tool, 'hasData', false);
+          Ember.set(tool, 'hasError', false);
+
+          return false;
+        }
+      });
+    }, data, this.get('pollingInterval'));
+
+    this.set('cronHandlerDifferenceDetection', cronHandler);
+  },
+
+  pollForPC2BIMResult: function(filename, digitalObject, tool) {
+    let data = {
+        tool: tool,
+        session: this.get('session'),
+        digitalObject: digitalObject,
+        duraark: this.duraark
+      },
+      that = this;
+
+    let cronHandler = this.cron.addJob(function(data) {
+      return data.duraark.getIFCReconstruction({
+        filename: filename,
+        restart: false
+      }).then(function(result) {
+        let tool = data.tool,
+          digitalObject = data.digitalObject,
+          session = data.session;
+
+        // FIXXME: introduce PC2BIMTool object to do such things!
+        if (tool.get('doRemove')) {
+          that.cron.removeJob(that.get('cronHandler'));
+          tool.set('doRemove', false);
+          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          return;
+        }
+
+        Ember.set(tool, 'jobId', result.id);
+
+        if (result.status === 'finished') {
+          Ember.run(function() {
+            Ember.set(tool, 'jobId', result.id);
+            Ember.set(tool, 'isLoading', false);
+            Ember.set(tool, 'hasData', true);
+            Ember.set(tool, 'hasError', false);
+            Ember.set(tool, 'bimDownloadUrl', result.bimDownloadUrl);
+            Ember.set(tool, 'wallsDownloadUrl', result.wallsDownloadUrl);
+
+            that.cron.removeJob(that.get('cronHandler'));
+            that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          });
+
+          return true;
+        } else if (result.status === 'error') {
+          Ember.run(function() {
+            Ember.set(tool, 'jobId', result.id);
+            Ember.set(tool, 'isLoading', false);
+            Ember.set(tool, 'hasData', false);
+            Ember.set(tool, 'hasError', true);
+
+            that.cron.removeJob(that.get('cronHandler'));
+            that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          });
+
+          return true;
+        } else if (result.status === 'pending') {
+          Ember.run(function() {
+            Ember.set(tool, 'jobId', result.id);
+            Ember.set(tool, 'isLoading', true);
+            Ember.set(tool, 'hasData', false);
+            Ember.set(tool, 'hasError', false);
+
+            that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          });
+
+          return false;
+        }
+      });
+    }, data, this.get('pollingInterval'));
+
+    this.set('cronHandler', cronHandler);
+  },
+
   actions: {
     save: function() {
       console.log('saving session ...');
@@ -194,11 +336,14 @@ export default Ember.Controller.extend({
       var t = Ember.Object.create({
         label: tool.get('label'),
         description: tool.get('description'),
-        isLoading: true,
+        isLoading: false,
         hasError: false,
         hasData: false,
         viewerUrl: null,
-        jobId: null
+        fileIdA: null,
+        fileIdB: null,
+        jobId: null,
+        showStartButton: true
       });
 
       var digObj = controller.get('selectedDigitalObject');
@@ -242,10 +387,6 @@ export default Ember.Controller.extend({
         downloadUrl: null,
         // filename: filename
       });
-
-      // t.set('electDetectImages', tool.get('elecDetectImages'));
-      // t.set('ruleSetImages', tool.get('ruleSetImages'));
-      // t.set('hypothesisImages', tool.get('hypothesisImages'));
 
       var digObj = controller.get('selectedDigitalObject');
       digObj.get('geoTools').pushObject(t);
@@ -308,7 +449,8 @@ export default Ember.Controller.extend({
 
     scheduleBIMReconstruction(tool, filename, removeToolFirst) {
       let controller = this,
-        eventId = new Date();
+        eventId = new Date(),
+        that = this;
 
       if (removeToolFirst) {
         let geoTools = controller.get('selectedDigitalObject.geoTools');
@@ -316,7 +458,7 @@ export default Ember.Controller.extend({
         geoTools.removeObject(removeThis);
       }
 
-      // FIXXME: fix duality!
+      // FIXXME: use ember-data!
       if (!_.isFunction(tool.get)) {
         tool.set('filename', filename); // ?
         tool = Ember.Object.create(tool);
@@ -328,9 +470,15 @@ export default Ember.Controller.extend({
       tool.set('hasError', false);
       tool.set('hasData', false);
 
-      controller.get('selectedDigitalObject.geoTools').pushObject(tool);
+      let session = this.get('session');
+      let selectedDigitalObject = this.get('selectedDigitalObject');
+      let geoTools = selectedDigitalObject.get('geoTools');
+
+      geoTools.pushObject(tool);
 
       controller.send('showLoadingSpinner', true, 'Scheduling BIM reconstruction ...');
+
+      this.duraark.fixxmeUpdateToolOnServer(this.get('session'), this.get('selectedDigitalObject'), tool);
 
       controller.send('addPendingEvent', {
         label: 'Scheduled BIM reconstruction: ' + filename.split('/').pop(),
@@ -338,175 +486,48 @@ export default Ember.Controller.extend({
         id: eventId
       });
 
-      this.duraark.getIFCReconstruction({
+      let config = {
         inputFile: filename,
         restart: false
-      }).then(function(pc2bim) {
-        if (!pc2bim) {
-          pc2bim = {};
-        }
+      };
 
-        // Create new instance of tool to be added to 'geoTools'. It is not
-        // possible to directly use the 'tool' instance, as multiple files can
-        // have the same tool assigned.
-        var t = Ember.Object.create({
-          label: tool.get('label'),
-          description: tool.get('description'),
-          isLoading: true,
-          hasError: false,
-          hasData: false,
-          downloadUrl: null,
-          filename: pc2bim.inputFile
-        });
+      this.duraark.getIFCReconstruction(config).then(function(result) {
+        let session = that.get('session'),
+          digitalObject = selectedDigitalObject;
 
-        let digObjs = controller.get('digitalObjects'),
-          myDigObj = null;
+        if (result.status === 'finished') {
+          Ember.set(tool, 'jobId', result.id);
+          Ember.set(tool, 'viewerUrl', result.viewerUrl);
+          Ember.set(tool, 'isLoading', false);
+          Ember.set(tool, 'hasData', true);
+          Ember.set(tool, 'hasError', false);
+          Ember.set(tool, 'bimDownloadUrl', result.bimDownloadUrl);
+          Ember.set(tool, 'wallsDownloadUrl', result.wallsDownloadUrl);
 
-        digObjs.forEach(digObj => {
-          let tool = digObj.get('geoTools').findBy('label', 'Reconstruct BIM Model'),
-            filename;
-          if (tool) {
-            // FIXXME: the first time an object is created it is no ember object. Find out why!
-            // This workaround fixes that:
-            if (!_.isFunction(tool.get)) {
-              filename = tool.filename;
-            } else {
-              filename = tool.get('filename');
-            }
+          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
 
-            if (filename === pc2bim.inputFile) {
-              myDigObj = digObj;
-            }
-          }
-        });
+          return true;
+        } else if (result.status === 'error') {
+          Ember.set(tool, 'jobId', result.id);
+          Ember.set(tool, 'isLoading', false);
+          Ember.set(tool, 'hasData', false);
+          Ember.set(tool, 'hasError', true);
 
-        if (!myDigObj) {
-          throw new Error('no digObj found!');
-        }
+          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
 
-        // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
-        if (pc2bim.status === 'finished') {
-          console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
+          return true;
+        } else if (result.status === 'pending') {
+          Ember.set(tool, 'jobId', result.id);
+          Ember.set(tool, 'isLoading', true);
+          Ember.set(tool, 'hasData', false);
+          Ember.set(tool, 'hasError', false);
+          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          that.pollForPC2BIMResult(filename, digitalObject, tool);
 
-          t.set('isLoading', false);
-          t.set('hasError', false);
-          t.set('hasData', true);
-          t.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
-          t.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
-
-          // controller.get('selectedDigitalObject.derivatives').pushObject({
-          myDigObj.get('derivatives').pushObject({
-            path: pc2bim.bimFilePath
-          });
-
-          controller.get('selectedDigitalObject.geoTools').removeObject(tool);
-          controller.get('selectedDigitalObject.geoTools').pushObject(t);
-          controller.send('save');
-
-          controller.send('addFinishedEvent', {
-            label: 'Finished BIM reconstruction: ' + pc2bim.inputFile.split('/').pop(),
-            displayType: 'success',
-            id: eventId
-          });
-        }
-
-        if (pc2bim.status === 'error') {
-          t.set('hasError', true);
-          t.set('isLoading', false);
-          t.set('errorText', pc2bim.errorText);
-          t.set('hasData', false);
-
-          controller.get('selectedDigitalObject.geoTools').removeObject(tool);
-          controller.get('selectedDigitalObject.geoTools').pushObject(t);
-          controller.send('save');
-
-          controller.send('addFinishedEvent', {
-            label: 'BIM reconstruction failure: ' + pc2bim.inputFile.split('/').pop(),
-            displayType: 'error',
-            id: eventId
-          });
-        }
-
-        if (pc2bim.status === 'pending') {
-          t.set('isLoading', true);
-          t.set('hasError', false);
-          t.set('hasData', false);
-
-          var timer = setInterval(function() {
-            console.log('requesting pc2bim status for file: ' + pc2bim.inputFile);
-            controller.duraark.getIFCReconstruction({
-              inputFile: filename,
-              restart: false
-            }).then(function(pc2bim) {
-              let digObjs = controller.get('digitalObjects'),
-                curTool = null,
-                myDigObj = null;
-
-              digObjs.forEach(digObj => {
-                let tool = digObj.get('geoTools').findBy('label', 'Reconstruct BIM Model');
-                if (tool && tool.filename === pc2bim.inputFile) {
-                  myDigObj = digObj;
-                  curTool = tool;
-
-                  // FIXXME: the first time an object is created it is no ember object. Find out why!
-                  // This workaround fixes that:
-                  if (!_.isFunction(curTool.get)) {
-                    myDigObj.get('geoTools').removeObject(curTool);
-                    curTool = Ember.Object.create(curTool);
-                    myDigObj.get('geoTools').pushObject(curTool);
-                  }
-                }
-              });
-
-              // console.log('pc2bim: ' + JSON.stringify(pc2bim, null, 4));
-              // pc2bim.status = 'finished';
-
-              if (pc2bim.status === 'finished') {
-                console.log('IFC reconstruction finished for file: ' + pc2bim.inputFile);
-                curTool.set('isLoading', false);
-                curTool.set('hasError', false);
-                curTool.set('hasData', true);
-                curTool.set('bimDownloadUrl', pc2bim.bimDownloadUrl);
-                curTool.set('wallsDownloadUrl', pc2bim.wallsDownloadUrl);
-                clearInterval(timer);
-
-                myDigObj.get('derivatives').pushObject({
-                  path: pc2bim.bimFilePath
-                });
-
-                controller.send('save');
-
-                controller.send('addFinishedEvent', {
-                  label: 'Finished BIM reconstruction: ' + pc2bim.inputFile.split('/').pop(),
-                  displayType: 'success',
-                  id: eventId
-                });
-              }
-
-              if (pc2bim.status === 'pending') {
-                curTool.set('isLoading', true);
-                curTool.set('hasError', false);
-                curTool.set('hasData', false);
-              }
-
-              if (pc2bim.status === 'error') {
-                curTool.set('hasError', true);
-                curTool.set('isLoading', false);
-                curTool.set('hasData', false);
-                clearInterval(timer);
-
-                controller.send('addFinishedEvent', {
-                  label: 'BIM reconstruction failure: ' + pc2bim.inputFile.split('/').pop(),
-                  displayType: 'error',
-                  id: eventId
-                });
-              }
-            });
-          }, 20000);
+          return false;
         }
       });
 
-      // controller.send('save');
       controller.send('showLoadingSpinner', false);
     }
   },

@@ -520,24 +520,49 @@ export default Ember.Service.extend({
   // how far technical dept can bring you when you have to meet a deadline ...
   // technical FIXXME: use ember-data, for god's sake ...
   fixxmeUpdateToolOnServer(session, digitalObject, tool) {
-    let geoTools = digitalObject.get('geoTools'),
-      sessionPlain = JSON.parse(JSON.stringify(session)),
-      digObj = _.where(sessionPlain.digitalObjects, {
-        label: digitalObject.get('label')
-      }),
-      geoTool = _.where(digObj[0].geoTools, {
-        label: tool.get('label')
-      });
+    let geoToolsPlain = JSON.parse(JSON.stringify(digitalObject.get('geoTools')));
+    let sessionPlain = JSON.parse(JSON.stringify(session));
+    let digObj = _.where(sessionPlain.digitalObjects, {
+      label: digitalObject.get('label')
+    });
+    let geoTool = _.where(geoToolsPlain, {
+      label: tool.get('label')
+    });
 
-    geoTool[0].isLoading = tool.get('isLoading');
-    geoTool[0].hasData = tool.get('hasData');
-    geoTool[0].hasError = tool.get('hasError');
-    geoTool[0].jobId = tool.get('jobId');
-    geoTool[0].viewerUrl = tool.get('viewerUrl');
-    geoTool[0].errorText = tool.get('errorText');
-    if (tool.get('showStart')) {
-      geoTool[0].showStart = tool.get('showStart');
+    sessionPlain.id = session.get('id');
+    console.log('sessionid: ' + sessionPlain.id);
+
+    if (geoTool.length) { // NOTE: when saving after the removal of a tool in the GUI length === 0
+      geoTool[0].isLoading = tool.get('isLoading');
+      geoTool[0].hasData = tool.get('hasData');
+      geoTool[0].hasError = tool.get('hasError');
+      geoTool[0].jobId = tool.get('jobId');
+      geoTool[0].viewerUrl = tool.get('viewerUrl');
+      geoTool[0].errorText = tool.get('errorText');
+      if (tool.get('showStartButton')) {
+        geoTool[0].showStartButton = tool.get('showStartButton');
+      }
+      if (Ember.get(tool, 'downloadUrl')) {
+        geoTool[0].downloadUrl = Ember.get(tool, 'downloadUrl');
+      }
+      if (Ember.get(tool, 'filename')) {
+        geoTool[0].filename = Ember.get(tool, 'filename');
+      }
+      if (Ember.get(tool, 'bimDownloadUrl')) {
+        geoTool[0].bimDownloadUrl = Ember.get(tool, 'bimDownloadUrl');
+      }
+      if (Ember.get(tool, 'wallsDownloadUrl')) {
+        geoTool[0].wallsDownloadUrl = Ember.get(tool, 'wallsDownloadUrl');
+      }
+      if (Ember.get(tool, 'fileIdA')) {
+        geoTool[0].fileIdA = Ember.get(tool, 'fileIdA');
+      }
+      if (Ember.get(tool, 'fileIdB')) {
+        geoTool[0].fileIdB = Ember.get(tool, 'fileIdB');
+      }
     }
+
+    digObj[0].geoTools = geoToolsPlain;
 
     let sessionsEndpoint = this.getAPIEndpoint('sessions') + '/sessions/fixxmeSaveSession';
     return this._post(sessionsEndpoint, sessionPlain);

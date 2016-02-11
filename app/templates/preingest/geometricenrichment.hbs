@@ -24,9 +24,9 @@
                 {{#if (eq tool.label "Difference Detection")}}
                   {{diffdetection-tile tool=tool item=do digitalObjects=digitalObjects session=session infoClicked="showToolUI" remove="removeTool" }}
                 {{else if (eq tool.label "Point Cloud Compression")}}
-                  {{compression-tile tool=tool item=do infoClicked="showToolUI" remove="removeTool" }}
+                  {{compression-tile tool=tool item=do session=session infoClicked="showToolUI" remove="removeTool" }}
                 {{else}}
-                  {{tool-item tool=tool item=do infoClicked="showToolUI" remove="removeTool" }}
+                  {{tool-item tool=tool item=do session=session infoClicked="showToolUI" remove="removeTool" }}
                 {{/if}}
               {{/each}}
             </div>

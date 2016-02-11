@@ -17,8 +17,8 @@ export default Ember.Route.extend({
     this._super(controller, model);
 
     var session = model,
-      digObjs = [],
-      pointClouds = [];
+      digObjs = [];
+    // pointClouds = [];
 
     controller.set('session', model);
 
@@ -36,27 +36,38 @@ export default Ember.Route.extend({
           path: digObj.path
         });
 
-        // 'ember objectify' geo tools:
+        // FIXXME: use ember-data!
         let geoTools = [];
         obj.get('geoTools').forEach(tool => {
           let toolObj = Ember.Object.create(tool);
-          // // FIXXME: HACK: these parameters have to be set by the geometric enrichment service!
-          // toolObj.set('hasData', true);
-          // toolObj.set('hasError', false);
-          // toolObj.set('isLoading', false);
           geoTools.pushObject(toolObj);
+
+          if (toolObj.get('isLoading')) {
+            let label = toolObj.get('label');
+            console.log('pending: ' + label);
+            if (label === 'Reconstruct BIM Model') {
+              controller.pollForPC2BIMResult(toolObj.get('filename'), obj, toolObj);
+            } else if (label === 'Difference Detection') {
+              controller.pollForDifferenceDetectionResult({
+                fileIdA: toolObj.get('fileIdA'),
+                fileIdB: toolObj.get('fileIdB')
+              }, obj, toolObj);
+            }
+          }
         });
         obj.set('geoTools', geoTools);
 
         digObjs.pushObject(obj);
 
-        if (digObj.path && digObj.path.endsWith('e57') || digObj.path.endsWith('e57n') || digObj.path.endsWith('ifc')) {
-          pointClouds.pushObject(obj);
-        }
+        // if (digObj.path && digObj.path.endsWith('e57') || digObj.path.endsWith('e57n') || digObj.path.endsWith('ifc')) {
+        //   pointClouds.pushObject(obj);
+        // }
       });
 
       model.set('digitalObjects', digObjs);
-      controller.set('digitalObjects', pointClouds);
+      // controller.set('digitalObjects', pointClouds);
+      // FIXXME: use model.digitalObjects directly!
+      controller.set('digitalObjects', digObjs);
     }
 
     // FIXXME: get from SDA service!

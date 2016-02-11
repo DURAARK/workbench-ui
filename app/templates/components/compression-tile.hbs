@@ -7,7 +7,7 @@
       {{/if}}
       {{#if tool.isLoading}}
         Select
-        <!-- <div class="loader">Loading...</div> -->
+        <!-- <div class="loader">Pending...</div> -->
       {{/if}}
       {{#if tool.hasError}}
         Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
@@ -15,7 +15,7 @@
     </div>
 
     <div class="c-file__name" style="text-align: center;">
-      {{#if showStart}}
+      {{#if showStartButton}}
         <strong>Compression Ratio
           <br>(0-1, e.g. 0.02):</strong>
 

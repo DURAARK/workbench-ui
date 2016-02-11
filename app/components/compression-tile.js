@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: '',
   compressionRatio: 0.02,
-  showStart: true,
+  showStartButton: true,
 
   actions: {
     remove: function(tool) {
@@ -20,7 +20,7 @@ export default Ember.Component.extend({
       this.set('tool.hasData', true);
       this.set('tool.isLoading', false);
       this.set('tool.hasError', false);
-      this.set('showStart', false)
+      this.set('showStartButton', false)
     }
   }
 });

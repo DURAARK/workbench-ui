@@ -2,7 +2,7 @@
   <div style="position: relative;">
 
     <div class="c-tool-item__header" {{action "infoClicked" tool}}>
-      {{#if tool.showStart}}
+      {{#if tool.showStartButton}}
         {{tool.label}}
       {{/if}}
 
@@ -12,7 +12,7 @@
 
       {{#if tool.isLoading}}
         <!-- Select -->
-        <div class="loader">Loading...</div>
+        <div class="loader">Pending...</div>
       {{/if}}
       {{#if tool.hasError}}
         Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
@@ -29,7 +29,7 @@
           <strong>{{tool.label}}
             <br>against</strong>
 
-          {{#if tool.showStart}}
+          {{#if tool.showStartButton}}
             <div class="faux-select">
               {{digital-object-select content=choices action=(action (mut fileToCompareWith))}}
             </div>
@@ -40,6 +40,9 @@
             <p style="height: 50px">
               {{fileToCompareWith}}
             </p>
+            {{#if tool.isLoading}}
+      				{{inline-spinner}}
+      			{{/if}}            
           {{/if}}
         {{else}}
           <p style="height: 50px">

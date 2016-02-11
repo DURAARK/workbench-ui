@@ -7,6 +7,7 @@ default Ember.Component.extend({
   actions: {
     remove: function(tool) {
       var item = this.get('item');
+      Ember.set(tool, 'doRemove', true);
       this.sendAction('remove', item, tool);
     },
 

@@ -8,7 +8,7 @@ default Ember.Component.extend({
         if (model) {
             return model.application;
         } else {
-            return 'Loading...';
+            return 'Pending...';
         }
     }.property('item.model'),
 
