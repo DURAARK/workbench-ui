@@ -525,26 +525,27 @@ export default Ember.Service.extend({
     let digObj = _.where(sessionPlain.digitalObjects, {
       label: digitalObject.get('label')
     });
+
     let geoTool = _.where(geoToolsPlain, {
-      label: tool.get('label')
+      label: Ember.get(tool, 'label')
     });
 
     sessionPlain.id = session.get('id');
     console.log('sessionid: ' + sessionPlain.id);
 
     if (geoTool.length) { // NOTE: when saving after the removal of a tool in the GUI length === 0
-      geoTool[0].isLoading = tool.get('isLoading');
-      geoTool[0].hasData = tool.get('hasData');
-      geoTool[0].hasError = tool.get('hasError');
-      geoTool[0].jobId = tool.get('jobId');
-      geoTool[0].viewerUrl = tool.get('viewerUrl');
-      geoTool[0].errorText = tool.get('errorText');
-      if (tool.get('showStartButton')) {
+      geoTool[0].isLoading = Ember.get(tool, 'isLoading');
+      geoTool[0].hasData = Ember.get(tool, 'hasData');
+      geoTool[0].hasError = Ember.get(tool, 'hasError');
+      geoTool[0].jobId = Ember.get(tool, 'jobId');
+      geoTool[0].viewerUrl = Ember.get(tool, 'viewerUrl');
+      geoTool[0].errorText = Ember.get(tool, 'errorText');
+      if (Ember.get(tool, 'showStartButton')) {
         geoTool[0].showStartButton = tool.get('showStartButton');
       }
-      // if (Ember.get(tool, 'downloadUrl')) {
-      //   geoTool[0].downloadUrl = Ember.get(tool, 'downloadUrl');
-      // }
+      if (Ember.get(tool, 'downloadUrl')) {
+        geoTool[0].downloadUrl = Ember.get(tool, 'downloadUrl');
+      }
       if (Ember.get(tool, 'filename')) {
         geoTool[0].filename = Ember.get(tool, 'filename');
       }

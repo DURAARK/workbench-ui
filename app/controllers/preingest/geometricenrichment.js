@@ -267,11 +267,9 @@ export default Ember.Controller.extend({
       this.send('save');
     },
 
-    scheduleCompression(tool, filename, removeToolFirst) {
+    scheduleCompression(tool, filename) {
       let controller = this,
         eventId = new Date();
-
-      // controller.send('showLoadingSpinner', true, 'Scheduling difference detection ...');
 
       controller.send('addPendingEvent', {
         label: 'Scheduled compression',
@@ -279,33 +277,20 @@ export default Ember.Controller.extend({
         id: eventId
       });
 
-      if (removeToolFirst) {
-        let geoTools = controller.get('selectedDigitalObject.geoTools');
-        let removeThis = geoTools.findBy('label', 'Point Cloud Compression');
-        geoTools.removeObject(removeThis);
-      }
-
-      if (!_.isFunction(tool.get)) {
-        tool = Ember.Object.create(tool);
-        session = controller.get('session');
-      }
-
-      // Create new instance of tool to be added to 'geoTools'. It is not
-      // possible to directly use the 'tool' instance, as multiple files can
-      // have the same tool assigned.
       var t = Ember.Object.create({
         label: tool.get('label'),
         description: tool.get('description'),
-        isLoading: true,
+        filename: filename,
+        downloadUrl: null,
+        compressionRatio: 0.02,
+        showSlider: true,
+        isLoading: false,
         hasError: false,
         hasData: false,
-        viewerUrl: null,
         jobId: null
       });
 
-      var digObj = controller.get('selectedDigitalObject');
-      digObj.get('geoTools').pushObject(t);
-      controller.send('save');
+      controller.get('selectedDigitalObject.geoTools').pushObject(t);
     },
 
     scheduleDiffDetection(tool, filename, removeToolFirst) {
@@ -346,8 +331,7 @@ export default Ember.Controller.extend({
         showStartButton: true
       });
 
-      var digObj = controller.get('selectedDigitalObject');
-      digObj.get('geoTools').pushObject(t);
+      controller.get('selectedDigitalObject.geoTools').pushObject(t);
 
       controller.send('save');
     },

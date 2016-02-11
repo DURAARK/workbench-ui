@@ -2,12 +2,14 @@
   <div style="position: relative;">
 
     <div class="c-tool-item__header" {{action "infoClicked" tool}}>
+      {{#if tool.showSlider}}
+        Select
+      {{/if}}
       {{#if tool.hasData}}
         Download Compressed File &nbsp;<i class="fa fa-cloud-download"></i>
       {{/if}}
       {{#if tool.isLoading}}
-        Select
-        <!-- <div class="loader">Pending...</div> -->
+        Pending...
       {{/if}}
       {{#if tool.hasError}}
         Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
@@ -15,28 +17,23 @@
     </div>
 
     <div class="c-file__name" style="text-align: center;">
-      {{#if showStartButton}}
+      {{#if tool.showSlider}}
         <strong>Compression Ratio
-          <br>(0-1, e.g. 0.02):</strong>
+          <br>(0.0 - 1.0):</strong>
 
         <div class="faux-select" style="margin-top: 1em; margin-bottom: 1em">
-          {{input value=compressionRatio}}
+          {{input value=tool.compressionRatio placeholder=tool.compressionRatio}}
         </div>
 
         <button type="button" {{action "startClicked"}}>Compress</button>
       {{else}}
         <br>
-        <strong>Compression Ratio:</strong>
-        <span style="margin-top: 1em; margin-bottom: 1em">{{compressionRatio}}</span>
+        <strong>Compression Ratio: {{tool.compressionRatio}}</strong>
 
-        <p>
-          <strong>Name:</strong>
-          Rislokka-{{compressionRatio}}.e57n
-        </p>
-        <p>
-          <strong>Size:</strong>
-          5MB
-        </p>
+        {{#if tool.isLoading}}
+          {{inline-spinner}}
+        {{/if}}
+
       {{/if}}
 
     </div>

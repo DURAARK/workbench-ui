@@ -50,8 +50,8 @@ export default Ember.Component.extend({
         fileIdA: files.fileIdA,
         fileIdB: files.fileIdB
       }).then(function(result) {
-
         let tool = data.tool;
+        
         Ember.set(tool, 'jobId', result.id);
         Ember.set(tool, 'fileIdA', files.fileIdA);
         Ember.set(tool, 'fileIdB', files.fileIdB);
