@@ -8,51 +8,6 @@ export default Ember.Component.extend({
       return 'http://localhost/api/v0.7/geometricenrichment' + this.get('tool.viewerUrl');
   }.property('tool'),
 
-  restartTool: function() {
-    let files = {
-      fileIdA: this.get('tool.fileIdA'),
-      fileIdB: this.get('tool.fileIdB'),
-      restart: true
-    },
-    that = this;
-
-    this.duraark.getDifferenceDetection(files).then(function(result) {
-      let session = that.get('session'),
-        digitalObject = that.get('item');
-
-      if (result.status === 'finished') {
-        Ember.run(function() {
-          Ember.set(tool, 'jobId', result.id);
-          Ember.set(tool, 'viewerUrl', result.viewerUrl);
-          Ember.set(tool, 'isLoading', false);
-          Ember.set(tool, 'hasData', true);
-          Ember.set(tool, 'hasError', false);
-
-          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
-        });
-      } else if (result.status === 'error') {
-        Ember.run(function() {
-          Ember.set(tool, 'jobId', result.id);
-          Ember.set(tool, 'isLoading', false);
-          Ember.set(tool, 'hasData', false);
-          Ember.set(tool, 'hasError', true);
-          Ember.set(tool, 'errorText', result.errorText);
-          Ember.set(tool, 'showStartButton', false);
-          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
-        });
-      } else if (result.status === 'pending') {
-        Ember.run(function() {
-          Ember.set(tool, 'jobId', result.id);
-          Ember.set(tool, 'isLoading', true);
-          Ember.set(tool, 'hasData', false);
-          Ember.set(tool, 'hasError', false);
-          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
-          that.pollForResult(files);
-        });
-      }
-    });
-  },
-
   pollForResult: function(files) {
     let data = {
       tool: this.get('tool'),
@@ -107,4 +62,52 @@ export default Ember.Component.extend({
 
     this.set('cronHandler', cronHandler);
   },
+
+  actions: {
+    restartTool: function() {
+      let files = {
+        fileIdA: this.get('tool.fileIdA'),
+        fileIdB: this.get('tool.fileIdB'),
+        restart: true
+      },
+      tool = this.get('tool'),
+      that = this;
+
+      this.duraark.getDifferenceDetection(files).then(function(result) {
+        let session = that.get('session'),
+          digitalObject = that.get('item');
+
+        if (result.status === 'finished') {
+          Ember.run(function() {
+            Ember.set(tool, 'jobId', result.id);
+            Ember.set(tool, 'viewerUrl', result.viewerUrl);
+            Ember.set(tool, 'isLoading', false);
+            Ember.set(tool, 'hasData', true);
+            Ember.set(tool, 'hasError', false);
+
+            that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          });
+        } else if (result.status === 'error') {
+          Ember.run(function() {
+            Ember.set(tool, 'jobId', result.id);
+            Ember.set(tool, 'isLoading', false);
+            Ember.set(tool, 'hasData', false);
+            Ember.set(tool, 'hasError', true);
+            Ember.set(tool, 'errorText', result.errorText);
+            Ember.set(tool, 'showStartButton', false);
+            that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          });
+        } else if (result.status === 'pending') {
+          Ember.run(function() {
+            Ember.set(tool, 'jobId', result.id);
+            Ember.set(tool, 'isLoading', true);
+            Ember.set(tool, 'hasData', false);
+            Ember.set(tool, 'hasError', false);
+            that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+            that.pollForResult(files);
+          });
+        }
+      });
+    }
+  }
 });

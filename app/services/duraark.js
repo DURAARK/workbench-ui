@@ -365,6 +365,9 @@ export default Ember.Service.extend({
   getDifferenceDetection(config) {
     let duraark = this;
 
+    // FIXXME: remove after testing!
+    config.restart = true;
+
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let diffDetectionEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/differencedetection';
 
@@ -521,17 +524,17 @@ export default Ember.Service.extend({
   // how far technical dept can bring you when you have to meet a deadline ...
   // technical FIXXME: use ember-data, for god's sake ...
   fixxmeUpdateToolOnServer(session, digitalObject, tool) {
-    let geoToolsPlain = JSON.parse(JSON.stringify(digitalObject.get('geoTools')));
+    let geoToolsPlain = JSON.parse(JSON.stringify(Ember.get(digitalObject, 'geoTools')));
     let sessionPlain = JSON.parse(JSON.stringify(session));
     let digObj = _.where(sessionPlain.digitalObjects, {
-      label: digitalObject.get('label')
+      label: Ember.get(digitalObject, 'label')
     });
 
     let geoTool = _.where(geoToolsPlain, {
       label: Ember.get(tool, 'label')
     });
 
-    sessionPlain.id = session.get('id');
+    sessionPlain.id = Ember.get(session, 'id');
     console.log('sessionid: ' + sessionPlain.id);
 
     if (geoTool.length) { // NOTE: when saving after the removal of a tool in the GUI length === 0
@@ -542,7 +545,7 @@ export default Ember.Service.extend({
       geoTool[0].viewerUrl = Ember.get(tool, 'viewerUrl');
       geoTool[0].errorText = Ember.get(tool, 'errorText');
       if (Ember.get(tool, 'showStartButton')) {
-        geoTool[0].showStartButton = tool.get('showStartButton');
+        geoTool[0].showStartButton = Ember.get(tool, 'showStartButton');
       }
       if (Ember.get(tool, 'downloadUrl')) {
         geoTool[0].downloadUrl = Ember.get(tool, 'downloadUrl');
