@@ -60,18 +60,6 @@ This will build the dockerized development environment. After building the docke
 
 Run **npm test** in the **src** folder.
 
-## Platform Support
-
-This library is running on [NodeJS](https://nodejs.org/) and provides a Dockerfile for deployments on [Docker](https://www.docker.com/)-enabled hosts.
-
-## Public API
-
-We are hosting a public API endpoint at
-
-* http://data.duraark.eu/services/api/metadata/
-
-which also provides API documentation for the current stable version.
-
 ## Demo
 
 A public demo of the [DURAARK System](http://github.com/duraark/duraark-system) which incorporates this service is available [here](http://workbench.duraark.eu).
