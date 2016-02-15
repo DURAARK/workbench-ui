@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   cronHandler: null,
 
   viewerUrl: function() {
-      return 'http://localhost/api/v0.7/geometricenrichment' + this.get('tool.viewerUrl');
+      return 'http://' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + '/api/v0.7/geometricenrichment' + this.get('tool.viewerUrl');
   }.property('tool'),
 
   pollForResult: function(files) {
