@@ -189,43 +189,46 @@ export default Ember.Controller.extend({
       controller.set('errors', null);
       controller.set('fileInfo', null);
 
-      controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
+      // FIXXME: refactor the following code into 'duraark-sessions' service and
+      // execute when file is added!
 
-      this.addTechnicalMetadata(file).then(function(file) {
-        var md = file.get('metadata');
+      // controller.send('showLoadingSpinner', true, 'Extracting metadata ...');
+      // this.addTechnicalMetadata(file).then(function(file) {
+      //   var md = file.get('metadata');
+      //
+      //   console.log('showing technical metadata for:   ' + file.get('path'));
+      //
+      //   controller.set('fileInfo', file);
+      //   controller.send('showLoadingSpinner', false);
+      //
+      //   // // NOTE: override 'name' from extraction with filename:
+      //   // var name = file.get('path').split('/').pop(),
+      //   //   digObj = file.get('metadata.digitalObject'),
+      //   //   pa = file.get('metadata.physicalAsset');
+      //   //
+      //   // if (digObj['http://data.duraark.eu/vocab/buildm/name']) {
+      //   //   digObj['http://data.duraark.eu/vocab/buildm/name'] = [{
+      //   //     '@value': name
+      //   //   }];
+      //   // }
+      //   //
+      //   // if (pa['http://data.duraark.eu/vocab/buildm/name']) {
+      //   //   pa['http://data.duraark.eu/vocab/buildm/name'] = [{
+      //   //     '@value': 'Session Name' // FIXXME: set session name
+      //   //   }];
+      //   // }
+      //   //
+      //   // controller.set('fileInfo', file);
+      //   // controller.send('showLoadingSpinner', false);
+      // }).catch(function(err) {
+      //   controller.send('showLoadingSpinner', false);
+      //   // FIXXME: use either one of those two error handling methods!
+      //   controller.set('errors', err);
+      //   controller.send('showError', err);
+      //   throw new Error(err);
+      // });
 
-        console.log('showing technical metadata for:   ' + file.get('path'));
-
-        controller.set('fileInfo', file);
-        controller.send('showLoadingSpinner', false);
-
-        // // NOTE: override 'name' from extraction with filename:
-        // var name = file.get('path').split('/').pop(),
-        //   digObj = file.get('metadata.digitalObject'),
-        //   pa = file.get('metadata.physicalAsset');
-        //
-        // if (digObj['http://data.duraark.eu/vocab/buildm/name']) {
-        //   digObj['http://data.duraark.eu/vocab/buildm/name'] = [{
-        //     '@value': name
-        //   }];
-        // }
-        //
-        // if (pa['http://data.duraark.eu/vocab/buildm/name']) {
-        //   pa['http://data.duraark.eu/vocab/buildm/name'] = [{
-        //     '@value': 'Session Name' // FIXXME: set session name
-        //   }];
-        // }
-        //
-        // controller.set('fileInfo', file);
-        // controller.send('showLoadingSpinner', false);
-      }).catch(function(err) {
-        controller.send('showLoadingSpinner', false);
-        // FIXXME: use either one of those two error handling methods!
-        controller.set('errors', err);
-        controller.send('showError', err);
-        throw new Error(err);
-      });
-
+      controller.set('fileInfo', file);
       this.showInViewer(file);
     },
 
