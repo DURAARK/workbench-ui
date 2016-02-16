@@ -3,32 +3,32 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNameBindings: ['overflowYScroll:has-overflow-y-scroll', 'overflowYAuto:has-overflow-y-auto'],
   // FIXXME: get correct values for those!
-  headerHeight: 64,
-  workflowHeight: 35,
-  footerHeight: 68,
+  headerHeigth: 64,
+  workflowHeigth: 35,
+  footerHeigth: 115,
   // overflowYScroll: true,
 
-  setFullHeight() {
+  setFullHeigth() {
     let $el = this.$(),
-      headerHeight = this.get('headerHeight'),
-      footerHeight = this.get('footerHeight'),
-      workflowHeight = this.get('workflowHeight');
+      headerHeigth = this.get('headerHeigth'),
+      footerHeigth = this.get('footerHeigth'),
+      workflowHeigth = this.get('workflowHeigth');
 
-    var windowHeight = $(window).height();
-    // console.log('[duraark-sidebar] windowHeight: ' + windowHeight);
+    var windowHeigth = $(window).height();
+    // console.log('[duraark-sidebar] windowHeigth: ' + windowHeigth);
 
-    var sidebarHeight = windowHeight - headerHeight - footerHeight - workflowHeight;
+    var sidebarHeigth = windowHeigth - headerHeigth - footerHeigth - workflowHeigth;
 
     Ember.run.schedule('afterRender', function() {
-      $el.height(sidebarHeight);
+      $el.height(sidebarHeigth);
     });
   },
 
   didInsertElement() {
-    this.setFullHeight();
+    this.setFullHeigth();
 
     $(window).resize(function() {
-      this.setFullHeight();
+      this.setFullHeigth();
     }.bind(this));
   }
 });

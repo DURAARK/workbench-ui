@@ -8,23 +8,24 @@
 		<div class="l-files">
 
 			<div class="l-file-list">
+				{{#duraark-sidebar overflowYAuto=true}}
+					<h2 style="margin: 1em;"><i class="fa fa-file-text-o"></i>&nbsp; 2 | Edit metadata:</h2>
+					<hr>
 
-				<h2 style="margin: 1em;"><i class="fa fa-file-text-o"></i>&nbsp; 2 | Edit metadata:</h2>
-				<hr>
+					{{#file-list files=session.physicalAssets as |pa|}}
+						{{physical-asset-item item=pa details="showDetails"}}
+						<!-- FIXXME: unify *-item components! -->
+						<!-- {{file-item item=pa details="showDetails"}} -->
+					{{/file-list}}
 
-				{{#file-list files=session.physicalAssets as |pa|}}
-					{{physical-asset-item item=pa details="showDetails"}}
-					<!-- FIXXME: unify *-item components! -->
-					<!-- {{file-item item=pa details="showDetails"}} -->
-				{{/file-list}}
+					<!-- <h2 style="margin-top: 1em;">File Metadata</h2> -->
 
-				<!-- <h2 style="margin-top: 1em;">File Metadata</h2> -->
+					<hr>
 
-				<hr>
-
-				{{#file-list files=session.digitalObjects as |do|}}
-					{{physical-asset-item item=do details="showDetails"}}
-				{{/file-list}}
+					{{#file-list files=session.digitalObjects as |do|}}
+						{{physical-asset-item item=do details="showDetails"}}
+					{{/file-list}}
+				{{/duraark-sidebar}}
 
 			</div>
 
