@@ -19,7 +19,10 @@ default Ember.Component.extend({
 
 	name: function() {
 		var buildm = this.get('item.buildm');
-		var name = buildm['http://data.duraark.eu/vocab/buildm/name'][0]['@value'];
+		// incoming filename is either 'http://download.able.url/file.ext' or 'file.ext' for non-downloadable files
+		var name = buildm['http://data.duraark.eu/vocab/buildm/filename']['@value'].split('/').pop();
+
+		console.log('name: ' + name);
 
 		if (name) {
 			return name;

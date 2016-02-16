@@ -36,7 +36,6 @@ default Ember.Component.extend({
   }.property('item'),
 
   address: function() {
-    debugger;
     var address = this.get('item.buildm')['http://data.duraark.eu/vocab/buildm/streetAddress'];
 
     if (!address) {
