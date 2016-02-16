@@ -20,6 +20,9 @@ default Ember.Component.extend({
       console.log('Downloading file from URL: ' + url);
       downloadURL(url);
     },
+    openRestrictedFile: function(item) {
+      alert('This download is restricted. Please contact the creator for more information!');
+    }
   },
 
   filename: function() {

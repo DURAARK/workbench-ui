@@ -13,9 +13,9 @@
 
 		<div class="c-file__name">
 			{{#if item.thumbnail}}
-			<div class="c-file__thumbnail">
-				<img src="{{item.thumbnail}}" alt="File thumbnail" />
-			</div>
+				<div class="c-file__thumbnail">
+					<img src="{{item.thumbnail}}" alt="File thumbnail" />
+				</div>
 			{{/if}}
 
 			{{#if filename}}
@@ -36,8 +36,14 @@
 		<div {{action "showDetails" item}} class="c-file__action">
 			<i class="fa fa-eye"></i>
 		</div>
-		<div {{action "downloadFile" item}} class="c-file__action">
-			<i class="fa fa-cloud-download"></i>
-		</div>
+		{{#if item.downloadAllowed}}
+			<div {{action "downloadFile" item}} class="c-file__action">
+				<i class="fa fa-cloud-download"></i>
+			</div>
+		{{else}}
+			<div {{action "openRestrictedFile" item}} class="c-file__action">
+				<i class="fa fa-cloud-download"></i>&nbsp; Download restricted
+			</div>
+		{{/if}}
 	</div>
 </div>
