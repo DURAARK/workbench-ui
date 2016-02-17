@@ -5,8 +5,13 @@ export default Ember.Component.extend({
   query: null, // set as component parameter
   queryConfig: {},
   suggestions: Ember.Object.create({}),
+  hasSuggestions: false,
 
   didRender: function() {
+    if (this.get('hasSuggestions')) {
+      return;
+    }
+
     let query = this.get('query'),
       that = this;
 
@@ -20,7 +25,9 @@ export default Ember.Component.extend({
         suggestions.set(predicate, items);
       });
     });
-  }.observes('suggestion'),
+
+    this.set('hasSuggestions', true);
+  },
 
   actions: {
     selectItem(selection, component) {
@@ -50,6 +57,9 @@ export default Ember.Component.extend({
 
         console.log('queryConfig: %s', JSON.stringify(queryConfig, null, 4));
         this.sendAction('showResultsClicked', query, queryConfig);
+
+        // Reset query config:
+        this.set('queryConfig', {});
       }
   }
 });
