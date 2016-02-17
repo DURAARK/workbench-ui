@@ -1,6 +1,6 @@
 <div class="l-cards c-cards">
 
-  {{#if result.candidates.results.bindings}}
+  {{#if results.results.bindings}}
     <div class="l-duraark-tool__pane-two">
       {{#if selectedCandidate}}
         <div class="c-rise-tool__header">
@@ -9,7 +9,7 @@
         <hr>
 
         {{#duraark-sidebar}}
-          <iframe src= {{selectedCandidate}} width="100%" height="100%"></iframe>
+          <iframe src={{selectedCandidate}} width="100%" height="100%"></iframe>
         {{/duraark-sidebar}}
       {{else}}
         <h1>Select a result link ...</h1>
@@ -21,21 +21,23 @@
         <table class="c-candidate-list">
           <thead>
             <tr>
-              <th>
+              <th style="width: 10%;">
                 <!-- Show button -->
               </th>
-              {{#each result.candidates.head.vars as |col|}}
+              {{#each results.head.vars as |col|}}
                 <th>{{col}}</th>
               {{/each}}
             </tr>
           </thead>
           <tbody>
-            {{#each result.candidates.results.bindings as |row|}}
+            {{#each results.results.bindings as |row|}}
               <tr>
-                <td style="text-align: center;">
+                <td style="text-align: center; width: 10%;">
                   <button {{action "selectCandidate" row}}>Show</button>
                 </td>
-                {{#each result.candidates.head.vars as |propName|}}
+                {{#each results.head.vars as |propName|}}
+                {{log row}}
+                  <!-- <td {{action "selectCandidate" row}}>{{get-prop row propName}}</td> -->
                   <td {{action "selectCandidate" row}}>{{get-prop row propName}}</td>
                 {{/each}}
               </tr>
@@ -47,7 +49,7 @@
   {{else}}
     {{#help-box}}
       <div class="c-help-box__hint">
-        Information on topic "{{topic.label}}" is gathered in the background, please be patient and come back later.
+        No results for this query!
       </div>
     {{/help-box}}
   {{/if}}

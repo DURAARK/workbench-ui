@@ -1,6 +1,9 @@
-/** This file serves as the public client-side API for the
- *  DURAARK Service Platform.
+/** This file serves as the public client-side API for the DURAARK Service
+ *  Platform. It is an abstraction layer hiding the communication details to the
+ *  underlying Service Platform API.
  */
+
+// FIXXME: split up member functions of this god object to reflect services!
 
 import Ember from 'ember';
 import ENV from '../config/environment';
@@ -342,6 +345,35 @@ export default Ember.Service.extend({
     return duraark._get(url);
   },
 
+  getItemsForPredicate(predicate) {
+    let url = this.getAPIEndpoint('sda') + '/concepts/existingEntries?predicate=' + predicate
+
+    return Ember.$.get(url).then(response => {
+      let bindings = response.results.bindings;
+
+      let items = bindings.map(item => {
+        return item[predicate].value;
+      });
+
+      return items;
+    });
+  },
+
+  executeSDASQuery(queryId, queryConfig) {
+    let params = Ember.$.param(queryConfig);
+
+    let url = this.getAPIEndpoint('sda') + '/queries/' + queryId + '?' + params;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      Ember.$.get(url).then(response => {
+        // console.log('duraark.js RESULT: ' + JSON.stringify(response, null, 4));
+        resolve(response.result)
+      }).fail(function(err) {
+        reject(err);
+      });
+    });
+  },
+
   //
   // Access to duraark-geometricenrichment
   //
@@ -454,6 +486,10 @@ export default Ember.Service.extend({
       });
     });
   },
+
+  //
+  // internal helper functions
+  //
 
   _get(url) {
     return new Ember.RSVP.Promise(function(resolve, reject) {

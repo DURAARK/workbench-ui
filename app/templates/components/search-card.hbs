@@ -1,20 +1,32 @@
 <div class="l-search-card c-search-card mdl-card mdl-shadow--2dp">
-  <div {{action "editClicked" topic}} class="mdl-card__status {{if isWIP 'wip'}}  {{if isArchived 'archived'}} {{if isNew 'new'}}">
-    {{#if isNew}}
-      New {{else if isWIP}} Work In Progress {{else if isArchived}} Archived
-    {{/if}}
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">{{query.label}}</h2>
   </div>
 
-  <div {{action "editClicked" topic}} class="mdl-card__title">
-    <h2 class="mdl-card__title-text">{{topic.label}}</h2>
+  <div {{action "editClicked" query}} class="mdl-card__supporting-text">
+    {{query.description}}
   </div>
 
-  <div {{action "editClicked" topic}} class="mdl-card__supporting-text">
-    {{topic.description}}
-  </div>
+  {{#if query.variables.length}}
+    <div class="c-search-card__suggestions">
+      <h3>Select variables ></h3>
+      {{#each query.variables as |predicate|}}
+        {{#buildm-predicate-suggestions}}
+          <div class="c-search-card__suggestion_label"><i class="fa fa-pencil-square"></i>&nbsp; {{predicate}}:</div>
 
-  <div class="mdl-card__actions mdl-card--border">
-    <!-- <a {{action "editClicked"   topic}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">EDIT</a> -->
-      <a {{action "deleteClicked" topic}} class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">DELETE</a>
+          <div class="c-search-card__suggestion_items">
+            {{#x-select value="suggestions" action="selectItem" predicate=predicate}}
+              {{#each (mut (get suggestions predicate)) as |suggestion|}}
+                {{#x-option value=suggestion}}{{suggestion}}{{/x-option}}
+              {{/each}}
+            {{/x-select}}
+          </div>
+        {{/buildm-predicate-suggestions}}
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <div class="c-search-card__button_bar">
+    <a {{action "showResults" query}} style="width: 100%; color=" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">SHOW RESULTS</a>
   </div>
 </div>

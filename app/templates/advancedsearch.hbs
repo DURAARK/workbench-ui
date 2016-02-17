@@ -5,9 +5,11 @@
   <div class="l-files">
 
     <div class="l-explore__topics c-explore__topics">
-      {{#each queries as |topic|}}
-        {{search-card topic=topic editClicked="setResult"}}
-      {{/each}}
+      {{#duraark-sidebar overflowYAuto=true}}
+        {{#each queries as |query|}}
+          {{search-card query=query showResultsClicked="showResult"}}
+        {{/each}}
+      {{/duraark-sidebar}}
     </div>
 
     <div class="l-explore__results">
@@ -15,73 +17,41 @@
       {{#if app.showLoadingSpinner}}
         {{loading-spinner-center}}
       {{else}}
-
-        {{#if result.candidates}}
+        {{#if hasResults}}
+          {{#unless results.results.bindings.length}}
+            <h1>No results for this query!</h1>
+        {{else}}
           {{#duraark-sidebar}}
             {{#duraark-tool class="large" title="Results" hideClose=true fullscreen="maximizeToolUI" }}
-              {{query-result-viewer result=result icon="fa-file-text-o"}}
+              {{query-result-viewer results=results icon="fa-file-text-o"}}
             {{/duraark-tool}}
           {{/duraark-sidebar}}
+          {{/unless}}
         {{else}}
-          {{#help-box}}
-            <div class="c-help-box__hint">
-              For each 3D input file it is possible to add information topics. To show all available topics use the
-              <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
+          {{#if hasError}}
+            <h1>ERROR: {{error}}</h1>
+          {{else}}
+            {{#help-box}}
+              <div class="c-help-box__hint">
+                For each 3D input file it is possible to add information topics. To show all available topics use the
+                <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
 
-              <br>
-              <br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
+                <br>
+                <br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
 
-              <br>
-              <br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
+                <br>
+                <br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
 
-              <br>
-              <br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
-            </div>
-          {{/help-box}}
+                <br>
+                <br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
+              </div>
+            {{/help-box}}
+          {{/if}}
         {{/if}}
       {{/if}}
 
     </div>
   </div>
-
-  <!-- {{#toggle-menu}}
-    <nav>
-      <ul style="color: black;">
-        <li><a href="">Add Topics</a>
-          <hr>
-        </li>
-
-        <li>
-          <span>Topic Name</span>
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield">
-              {{input class="mdl-textfield__input" type="text" value=name placeholder="Name ..."}}
-            </div>
-          </form>
-
-          <span>Topic Description</span>
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield">
-              {{input class="mdl-textfield__input" type="text" value=description placeholder="Description ..."}}
-            </div>
-          </form>
-
-          <span>SPARQL Query</span>
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield">
-              {{textarea class="mdl-textfield__input" type="text" value=sparqlQuery rows=20 placeholder="SPARQL Query ..."}}
-            </div>
-          </form>
-        </li>
-
-        <li>
-          <button {{action "createSession"}} style="width: 100%;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            ADD
-          </button>
-        </li>
-      </ul>
-    </nav>
-  {{/toggle-menu}} -->
 
   {{duraark-footer}}
 </div>
