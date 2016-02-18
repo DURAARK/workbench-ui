@@ -7,8 +7,9 @@
     <div class="l-explore__topics c-explore__topics">
       {{#duraark-sidebar overflowYAuto=true}}
         <h2 style="margin: 1em;"><i class="fa fa-search"></i>&nbsp; Search queries:</h2>
+        (if you don't see all suggestions for the variable fields in the query please reload the page with <em>Ctrl-F5</em>)
         <hr>
-        
+
         {{#each queries as |query|}}
           {{search-card query=query showResultsClicked="showResult"}}
         {{/each}}
