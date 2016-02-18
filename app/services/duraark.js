@@ -397,6 +397,26 @@ export default Ember.Service.extend({
     });
   },
 
+  getNameForPhysicalAssetURI(paURI) {
+    let sparqlEndpoint = 'http://data.duraark.eu/sparq';
+
+    let query = 'SELECT ?name FROM <http://data.duraark.eu/sdas> WHERE { {{paURI}} <http://data.duraark.eu/vocab/buildm/name> ?name }';
+    query = query.replace('{{paURI}}', paURI);
+
+    let params = Ember.$.param(query);
+
+    let url = sparqlEndpoint + '?' + params;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      Ember.$.get(url).then(response => {
+        // console.log('duraark.js RESULT: ' + JSON.stringify(response, null, 4));
+        resolve(response.result)
+      }).fail(function(err) {
+        reject(err);
+      });
+    });
+  },
+
   //
   // Access to duraark-geometricenrichment
   //

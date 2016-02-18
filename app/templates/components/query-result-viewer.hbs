@@ -36,7 +36,8 @@
                   <button {{action "selectCandidate" row}}>Show</button>
                 </td>
                 {{#each results.head.vars as |propName|}}
-                  <td {{action "selectCandidate" row}}>{{strip-namespace (get-prop row propName)}}</td>
+                  <!-- <td {{action "selectCandidate" row}}>{{strip-namespace (get-prop row propName)}}</td> -->
+                  <td {{action "selectCandidate" row}}>{{get-name-for-pauri (get-prop row propName)}}</td>
                 {{/each}}
               </tr>
             {{/each}}

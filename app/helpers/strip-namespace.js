@@ -8,7 +8,6 @@ export function stripNamespace(params /*, hash*/ ) {
 
   if (hasVersion) {
     url = url.replace(/\/version\/\d*/, '');
-    console.log('url: ' + url);
   }
 
   return decodeURIComponent(url.split('/').pop().replace('_', ' '));
