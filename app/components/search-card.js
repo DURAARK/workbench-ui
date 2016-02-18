@@ -5,10 +5,10 @@ export default Ember.Component.extend({
   query: null, // set as component parameter
   queryConfig: {},
   suggestions: Ember.Object.create({}),
-  hasSuggestions: false,
+  requestedSuggestions: false,
 
   didRender: function() {
-    if (this.get('hasSuggestions')) {
+    if (this.get('requestedSuggestions')) {
       return;
     }
 
@@ -21,12 +21,16 @@ export default Ember.Component.extend({
 
     _.forEach(query.get('variables'), predicate => {
       that.duraark.getItemsForPredicate(predicate).then(items => {
-        let suggestions = that.get('suggestions');
-        suggestions.set(predicate, items);
+        Ember.run(function() {
+          let suggestions = that.get('suggestions');
+          suggestions.set(predicate, items);
+          that.set('suggestions', suggestions);
+          console.log('set suggestions for: ' + predicate);
+        });
       });
     });
 
-    this.set('hasSuggestions', true);
+    this.set('requestedSuggestions', true);
   },
 
   actions: {
