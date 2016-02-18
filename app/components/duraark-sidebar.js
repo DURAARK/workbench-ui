@@ -5,7 +5,8 @@ export default Ember.Component.extend({
   // FIXXME: get correct values for those!
   headerHeigth: 64,
   workflowHeigth: 35,
-  footerHeigth: 115,
+  // footerHeigth: 115,
+  footerHeigth: 68,
   // overflowYScroll: true,
 
   setFullHeigth() {

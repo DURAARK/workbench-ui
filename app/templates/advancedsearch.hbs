@@ -6,6 +6,9 @@
 
     <div class="l-explore__topics c-explore__topics">
       {{#duraark-sidebar overflowYAuto=true}}
+        <h2 style="margin: 1em;"><i class="fa fa-search"></i>&nbsp; Search queries:</h2>
+        <hr>
+        
         {{#each queries as |query|}}
           {{search-card query=query showResultsClicked="showResult"}}
         {{/each}}
@@ -22,7 +25,7 @@
             <h1>No results for this query!</h1>
         {{else}}
           {{#duraark-sidebar}}
-            {{#duraark-tool class="large" title="Results" hideClose=true fullscreen="maximizeToolUI" }}
+            {{#duraark-tool class="large" title="Results" fullscreen="maximizeToolUI" }}
               {{query-result-viewer results=results icon="fa-file-text-o"}}
             {{/duraark-tool}}
           {{/duraark-sidebar}}
@@ -33,17 +36,14 @@
           {{else}}
             {{#help-box}}
               <div class="c-help-box__hint">
-                For each 3D input file it is possible to add information topics. To show all available topics use the
-                <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> icon on the respective file and select one or more of the shown topics.
+                The building archive contains metadata for each building, as well as contextual data which is gathered from public linked data clouds. The contextual data is automatically added to each building when it is ingested into the archive.
 
                 <br>
-                <br> When adding a topic the system is searching for related informations in public linked data clouds and stores that information within the DURAARK knowledge graph.
+                <br> The metadata and the contextual information allow a user to formulate complex queries to search for buildings and also contextual data in the archive.
 
                 <br>
-                <br> The information gathering takes some time to finish. A loading spinner will be shown during the process is running. You can continue the pre-ingest workflow while this processing, it is not necessary to wait for it to finish.
+                <br> This page contains a set of demo queries showcasing this functionality. In the background the queries are formulated via a query language (SPARQL). Users can add new queries or adjust existing ones to their needs.
 
-                <br>
-                <br> If the information is available a click on the added information topic shows the semantic links which are going to be added to the knowledge graph at the end of the pre-ingest workflow.
               </div>
             {{/help-box}}
           {{/if}}

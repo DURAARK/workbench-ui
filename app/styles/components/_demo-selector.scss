@@ -21,11 +21,13 @@
   $grid-item-columns: 4;
   $grid-item-big-columns: 8;
   $grid-item-color: white;
-  $grid-item-height: 14em;
+  $grid-item-height: 16em;
 
+  @include full();
   @include clearfix;
 
   .grid-item {
+    @include span(1 of 2 0);
     @include transition (all 0.2s ease-in-out);
     background: $grid-item-background;
     // border-bottom: $grid-item-border-size solid $grid-items-background;
@@ -33,18 +35,18 @@
     // border-right: ($grid-item-border-size / 2) solid $grid-items-background;
     border-top: 0;
     cursor: pointer;
-    float: left;
+    // float: left;
     height: $grid-item-height;
     overflow: hidden;
     outline: none;
     padding: 2em;
     text-align: center;
     text-decoration: none;
-    width: 100%;
+    // width: 100%;
 
-    @include media($large-screen) {
-      @include grid-item-columns($grid-item-columns);
-    }
+    // @include media($large-screen) {
+    //   @include grid-item-columns($grid-item-columns);
+    // }
 
     @for $i from 1 through length($grid-item-colors) { // assign colors from $grid-item-colors list
       &:nth-child(#{$i}) {
@@ -89,16 +91,16 @@
       }
     }
 
-  .grid-item-big {
-    @include media($large-screen) {
-      @include grid-item-columns($grid-item-big-columns);
-    }
-    p {
-      @include media($medium-screen) {
-        max-width: 60%;
-      }
-    }
-  }
+  // .grid-item-big {
+  //   @include media($large-screen) {
+  //     @include grid-item-columns($grid-item-big-columns);
+  //   }
+  //   p {
+  //     @include media($medium-screen) {
+  //       max-width: 60%;
+  //     }
+  //   }
+  // }
 
   .grid-item-image {
     background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png");

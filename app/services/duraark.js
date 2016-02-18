@@ -349,11 +349,35 @@ export default Ember.Service.extend({
     let url = this.getAPIEndpoint('sda') + '/concepts/existingEntries?predicate=' + predicate
 
     return Ember.$.get(url).then(response => {
-      let bindings = response.results.bindings;
+      let bindings = response.results.bindings,
+        isNumeric = false;
 
       let items = bindings.map(item => {
-        return item[predicate].value;
+        // NOTE: unfortunately not all integers have a datatype property, so this method below does not work ...
+        // if (item[predicate].datatype && item[predicate].datatype === 'http://www.w3.org/2001/XMLSchema#integer') {
+        //   return parseInt(item[predicate].value);
+        // } else {
+        //   return item[predicate].value;
+        // }
+
+        let value = parseInt(item[predicate].value);
+        if (isNaN(value)) {
+          return item[predicate].value;
+        } else {
+          isNumeric = true;
+          return value;
+        }
       });
+
+      items = _.uniq(items);
+      
+      if (isNumeric) {
+        items = items.sort((a, b) => {
+          return a - b;
+        });
+      } else {
+        items = items.sort();
+      }
 
       return items;
     });

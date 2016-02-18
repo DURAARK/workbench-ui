@@ -1,7 +1,7 @@
 .l-search-card {
   // @include gallery(6 of 12);
   @include span(95 of 100);
-  margin-bottom: gutter() * 2;
+  margin-bottom: gutter() * 4;
 }
 .c-search-card > .mdl-card__status {
   $height: 2em;
