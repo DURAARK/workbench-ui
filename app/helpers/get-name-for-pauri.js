@@ -10,16 +10,27 @@ export function getNameForPaURI(params /*, hash*/ ) {
     paURI = paURI.replace(/\/version\/\d*/, '');
   }
 
-  console.log('paURI: ' + paURI);
+  let paramConfig = {
+    paURI: paURI
+  };
 
-  let param = Ember.$.param(paURI);
-  let url = 'http://localhost/api/v0.7/sda/concepts/getNameForPhysicalAssetURI?' + param;
+  console.log('paramConfig: ' + JSON.stringify(paramConfig, null, 4));
 
-  Ember.$.get(url).then(response => {
-    console.log('duraark.js RESULT: ' + JSON.stringify(response, null, 4));
-    resolve(response)
-  }).fail(function(err) {
-    reject(err);
+  let paramString = Ember.$.param(paramConfig);
+  let url = 'http://localhost/api/v0.7/sda/concepts/getNameForPhysicalAssetURI?' + paramString;
+
+  return new Ember.RSVP.Promise((resolve, reject) => {
+    Ember.$.get(url).then(response => {
+      if (response.name) {
+        console.log('duraark.js NAME: ' + response.name);
+        resolve(response.name);
+      } else {
+        resolve(paURI);
+      }
+    }).fail(function(err) {
+      console.log('[get-name-for-paURI] ERROR: ' + JSON.stringify(err, null, 4));
+      resolve(paURI);
+    });
   });
 }
 

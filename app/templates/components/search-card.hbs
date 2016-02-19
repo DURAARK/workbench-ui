@@ -5,7 +5,7 @@
     <h2 class="mdl-card__title-text">{{query.label}}</h2>
   </div>
 
-  <div {{action "editClicked" query}} class="mdl-card__supporting-text">
+  <div class="c-search-card__description">
     {{query.description}}
   </div>
 
@@ -22,6 +22,11 @@
                 {{#x-option value=suggestion}}{{suggestion}}{{/x-option}}
               {{/each}}
             {{/x-select}}
+
+            {{#if (eq predicate "postalLocality")}}
+              or {{input value="http://www.facebook.com"}}
+            {{/if}}
+
           </div>
         {{/buildm-predicate-suggestions}}
       {{/each}}

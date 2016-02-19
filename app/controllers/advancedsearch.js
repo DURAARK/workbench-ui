@@ -1,4 +1,4 @@
-import Ember from 'ember';
+  import Ember from 'ember';
 
 export default Ember.Controller.extend({
   hasResults: false,
@@ -14,7 +14,8 @@ export default Ember.Controller.extend({
       this.set('app.showLoadingSpinner', true);
 
       this.duraark.executeSDASQuery(queryId, queryConfig).then(results => {
-        console.log('results: ' + JSON.stringify(results, null, 4));
+        //console.log('results: ' + JSON.stringify(results, null, 4));
+        console.log('got results');
         that.set('results', results);
         that.set('hasResults', true);
         that.set('hasError', false);
