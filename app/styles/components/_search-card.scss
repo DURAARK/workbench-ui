@@ -57,9 +57,10 @@
   background: #5FBEBE;
   border: 1px solid black;
 }
-.c-search-card .mdl-card__supporting-text {
-  margin: 0;
-  padding: 0;
+.c-search-card .c-search-card__description {
+  padding: 1em;
+  background: white;
+  color: black;
 }
 .c-search-card__suggestions {
   // @include container()
