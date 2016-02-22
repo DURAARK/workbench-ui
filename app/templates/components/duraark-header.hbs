@@ -1,28 +1,30 @@
 <div class="c-duraark-header is-casting-shadow">
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
-  <!-- <div class="mdl-layout mdl-layout--fixed-header mdl-layout--fixed-tabs"> -->
     <header class="mdl-layout__header">
-      {{#link-to 'index'}}<img class='logo-small-left c-duraark-header-title' src="logos/logo-duraark_white_icon-only.png" alt="DURAARK logo">{{/link-to}}
-      <!-- {{#link-to 'index'}}<img class='logo-small-right' src="logos/logo-eu.png" alt="DURAARK logo">{{/link-to}} -->
+      {{#link-to 'index'}}
+        <img class='logo-small-left c-duraark-header-title' src="logos/logo-duraark_white_icon-only.png" alt="DURAARK logo">
+      {{/link-to}}
       <div class="mdl-layout__header-row">
-        <!-- <span class="mdl-layout-title"><a href="/preingest" style="color: white"><strong>{{title}}</strong></a></span> -->
-        <!-- <span class="mdl-layout-title"><a href="/" style="color: white"><strong>DURAARK Workbench</strong></a></span> -->
-        <span class="mdl-layout-title">{{#link-to "index" class="c-duraark-header__title"}}DURAARK Workbench{{/link-to}}</span>
-        <nav class="mdl-navigation mdl-layout--large-screen-only right-side">
-          {{#link-to "preingest" class="mdl-navigation__link" }}<i class="fa fa-database"></i>&nbsp; <strong>Ingest Buildings </strong>{{/link-to}}
-          {{#link-to "search" class="mdl-navigation__link" }}<i class="fa fa-binoculars"></i>&nbsp; <strong>Search Buildings </strong>{{/link-to}}
-          <!-- {{#link-to "explore" class="mdl-navigation__link" }}<i class="fa fa-lightbulb-o fa-lg"></i>&nbsp; <strong>Explore Buildings</strong>{{/link-to}} -->
-          {{#link-to "advancedsearch" class="mdl-navigation__link" }}<i class="fa fa-lightbulb-o fa-lg"></i>&nbsp; <strong>Advanced Search</strong>{{/link-to}}
+        <span class="mdl-layout-title">
+          {{#link-to "index" class="c-duraark-header__title" }}DURAARK Workbench{{/link-to}}
+        </span>
+        <nav class="c-duraark-header__navigation-bar">
+          {{#link-to "advancedsearch" class="c-duraark-header__nagivation-item mdl-navigation__link" }}<i class="fa fa-binoculars"></i>&nbsp;
+            <strong>Search Buildings </strong>
+          {{/link-to}}
+          {{#link-to "preingest" class="c-duraark-header__nagivation-item mdl-navigation__link" }}<i class="fa fa-database"></i>&nbsp;
+            <strong>Ingest Buildings </strong>
+          {{/link-to}}
         </nav>
       </div>
     </header>
     <div class="mdl-layout__drawer">
-      <!-- <span class="mdl-layout-title"><strong>{{title}}</strong></span> -->
-      <span class="mdl-layout-title"><strong>DURAARK Workbench</strong></span>
+      <span class="mdl-layout-title">
+        <strong>DURAARK Workbench</strong>
+      </span>
       <nav class="mdl-navigation">
         {{#link-to "preingest" class="mdl-navigation__link" }}<i class="mdi mdi-package"></i> Archive Buildings{{/link-to}}
-        {{#link-to "search" class="mdl-navigation__link" }}| Search Buildings{{/link-to}}
-        {{#link-to "explore" class="mdl-navigation__link" }}| Explore Knowledge Graph{{/link-to}}
+        {{#link-to "advancedsearch" class="mdl-navigation__link" }}| Search Buildings{{/link-to}}
       </nav>
     </div>
     <main class="mdl-layout__content"></main>

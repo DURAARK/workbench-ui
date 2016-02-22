@@ -14,7 +14,7 @@
 
 				{{#file-list files=physicalAssets as |pa|}}
 					<div class="files-wrapper {{if pa.isSelected "file-is-selected"}}">
-						{{digital-object-sementic item=pa select="showTopicSelection"}}
+						{{digital-object-semantic item=pa select="showTopicSelection"}}
 
 						{{#each pa.semTopics as |topic|}}
 							{{tool-item tool=topic item=pa infoClicked="showEnrichmentCandidates" remove="removeTopic"}}

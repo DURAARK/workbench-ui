@@ -1,6 +1,9 @@
-/** This file serves as the public client-side API for the
- *  DURAARK Service Platform.
+/** This file serves as the public client-side API for the DURAARK Service
+ *  Platform. It is an abstraction layer hiding the communication details to the
+ *  underlying Service Platform API.
  */
+
+// FIXXME: split up member functions of this god object to reflect services!
 
 import Ember from 'ember';
 import ENV from '../config/environment';
@@ -342,6 +345,78 @@ export default Ember.Service.extend({
     return duraark._get(url);
   },
 
+  getItemsForPredicate(predicate) {
+    let url = this.getAPIEndpoint('sda') + '/concepts/existingEntries?predicate=' + predicate
+
+    return Ember.$.get(url).then(response => {
+      let isNumeric = false;
+
+      let items = _.map(response, item => {
+        // NOTE: unfortunately not all integers have a datatype property, so this method below does not work ...
+        // if (item[predicate].datatype && item[predicate].datatype === 'http://www.w3.org/2001/XMLSchema#integer') {
+        //   return parseInt(item[predicate].value);
+        // } else {
+        //   return item[predicate].value;
+        // }
+
+        let value = parseInt(item.value);
+        if (isNaN(value)) {
+          return item.value;
+        } else {
+          isNumeric = true;
+          return value;
+        }
+      });
+
+      items = _.uniq(items);
+
+      if (isNumeric) {
+        items = items.sort((a, b) => {
+          return a - b;
+        });
+      } else {
+        items = items.sort();
+      }
+
+      return items;
+    });
+  },
+
+  executeSDASQuery(queryId, queryConfig) {
+    let params = Ember.$.param(queryConfig);
+
+    let url = this.getAPIEndpoint('sda') + '/queries/' + queryId + '?' + params;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      Ember.$.get(url).then(response => {
+        // console.log('duraark.js RESULT: ' + JSON.stringify(response, null, 4));
+        resolve(response.result)
+      }).fail(function(err) {
+        reject(err);
+      });
+    });
+  },
+
+  getNameForPhysicalAssetURI(paURI) {
+    let sparqlEndpoint = 'http://data.duraark.eu/sparq';
+
+    let query = 'SELECT ?name FROM <http://data.duraark.eu/sdas> WHERE { {{paURI}} <http://data.duraark.eu/vocab/buildm/name> ?name }';
+    query = query.replace('{{paURI}}', paURI);
+
+    let params = Ember.$.param(query);
+
+    let url = sparqlEndpoint + '?' + params;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      Ember.$.get(url).then(response => {
+        // console.log('duraark.js RESULT: ' + JSON.stringify(response, null, 4));
+        resolve(response.result)
+      }).fail(function(err) {
+        reject(err);
+      });
+    });
+  },
+
   //
   // Access to duraark-geometricenrichment
   //
@@ -454,6 +529,10 @@ export default Ember.Service.extend({
       });
     });
   },
+
+  //
+  // internal helper functions
+  //
 
   _get(url) {
     return new Ember.RSVP.Promise(function(resolve, reject) {

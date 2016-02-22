@@ -8,53 +8,49 @@
 		<div class="l-files">
 
 			<div class="l-file-list">
-				<!-- <h2 style="margin-top: 1em;"><i class="fa fa-database"></i>&nbsp; 5 | Check archive content: -->
-				<h2 style="margin-top: 1em;"><i class="fa fa-database"></i>&nbsp; 5 | Digital Preservation:
-					<div style="float: right;">
-						<!-- <button {{action "createBagItSIP"}}>
-							{{#unless bagIsCreating}}Download BagIt{{else}}Creating BagIt ...{{/unless}}
-						</button>
-						<button style="margin-left: 1.5em;" {{action "createRosettaSIP"}}>
-							{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{/unless}}
-						</button> -->
-						<!-- <div style="font-size: 0.7em; float: right; margin-left: 1em; margin-right: 1em; padding: 0.5em; margin-bottom: 1.5em; background: #E6892B" {{action "createBagItSIP"}}>
-							{{#unless bagIsCreating}}Download Data{{else}}Creating Package ...{{/unless}}
+				{{#duraark-sidebar overflowYAuto=true}}
+					<div class="c-digitalpreservation__title">
+						<h2 class="c-digitalpreservation__label"><i class="fa fa-database"></i>&nbsp; 4 | Session content</h2>
+					</div>
+
+					<hr>
+
+					<div class="c-digitalpreservation__buttons">
+						<div class="c-digitalpreservation__button" {{action "createRosettaSIP"}}>
+							{{#unless rosettaIsCreating}}Update Online Archive{{else}}Updating ...{{inline-spinner}}{{/unless}}
 						</div>
-						<div style="font-size: 0.7em; margin-left: 1em; float: right; padding: 0.5em; margin-left: 1.5em; background: #E6892B" {{action "createRosettaSIP"}}>
-							{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{/unless}}
-						</div> -->
+						<div class="c-digitalpreservation__button" {{action "createBagItSIP"}}>
+							{{#unless bagIsCreating}}Download Session{{else}}Creating Package ...{{inline-spinner}}{{/unless}}
+						</div>
 					</div>
-				</h2>
 
-				<hr>
-
-				<div style="margin-left: auto; margin-right: auto; width: 20em; text-align: center; padding: 0.5em; margin-top: 3em; background: #E6892B" {{action "createBagItSIP"}}>
-					{{#unless bagIsCreating}}Download Data{{else}}Creating Package ...{{inline-spinner}}{{/unless}}
-				</div>
-				<div style="margin-left: auto; margin-right: auto; width: 20em; text-align: center; padding: 0.5em; margin-top: 3em;background: #E6892B" {{action "createRosettaSIP"}}>
-					{{#unless rosettaIsCreating}}Update Archive{{else}}Archiving ...{{inline-spinner}}{{/unless}}
-				</div>
-
-				<!-- {{#file-list files=session.physicalAssets as |pa|}}
-					{{physical-asset-item item=pa details="showDetails" static=true}}
-				{{/file-list}}
-
-				<hr>
-
-				{{#file-list files=session.digitalObjects as |do|}}
-					<div>
-						{{physical-asset-item item=do details="showDetails" static=true}}
-
-						{{#each do.semMD.topics as |topic|}}
-							{{topic-item topic=topic digitalObject=do select="showSelectedTopic" remove="removeTopic" static=true}}
-						{{/each}}
-
-						{{#each do.geoTools as |tool|}}
-							{{tool-item tool=tool digitalObject=do select="showSelectedTool" remove="removeTool" infoClicked="showToolInfo" static=true}}
-						{{/each}}
+					<div class="c-digitalpreservation__summary">
+						<header>
+							Summary
+						</header>
+						<section>
+							<ul>
+								<li>
+									<strong>Files:</strong> {{session.digitalObjects.length}}</li>
+								<li>
+									<strong>Archive size:</strong> {{format-number archiveSize "0 b"}}</li>
+							</ul>
+						</section>
 					</div>
-				{{/file-list}} -->
 
+					<div class="c-digitalpreservation__details">
+						<header>
+							File listing
+						</header>
+						<section>
+							{{#each session.digitalObjects as |digObj|}}
+								<li>
+									<strong>{{digObj.label}}</strong> ({{format-number digObj.size "0 b"}})</li>
+							{{/each}}
+						</section>
+					</div>
+
+				{{/duraark-sidebar}}
 			</div>
 
 			{{#if model}}

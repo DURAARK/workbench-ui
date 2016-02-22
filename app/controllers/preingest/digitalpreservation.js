@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var enableRosettaDeposit = true;
+var enableRosettaDeposit = false;
 
 function post(url, data) {
   var that = this;
@@ -26,21 +26,27 @@ function post(url, data) {
 };
 
 export default Ember.Controller.extend({
+  archiveSize: function() {
+    let size = 0;
+    this.get('session.digitalObjects').forEach(digObj => {
+      size += digObj.size;
+    });
+    return size;
+  }.property('session.digitalObjects'),
+
   actions: {
     createRosettaSIP: function() {
       this.duraark.storeInSDAS(this.get('session'));
 
-      // FIXXME: remove after testing!
-      return;
       this.set('rosettaIsCreating', false);
 
       if (!enableRosettaDeposit) {
-        // FIXXME: add authentification mechanism!
-        alert('Data deposit to Rosetta is disabled for the public version, to not overload the system. You can use the "Download Data" option.');
+        alert('Data deposit to Rosetta is disabled for the public version, to not overload the system. You can use the "Download Session" option to download the data to a local archive file.');
       } else {
+        // FIXXME: add authentification mechanism!
         console.log('Schedule Rosetta SIP creation and deposit ...');
 
-        // FIXXME: make code DRY!
+        // FIXXME: use ember-data!
         let session = this.get('session'),
           url = this.duraark.getAPIEndpoint('digitalPreservation') + '/sip',
           controller = this;
@@ -122,11 +128,8 @@ export default Ember.Controller.extend({
     },
 
     back: function() {
-
-      // FIXXME: check if everytihng is saved in the buildm-editor and display modal in case of unsaved changes!
-
       var session = this.get('session');
-      this.transitionToRoute('preingest.semanticenrichment', session);
+      this.transitionToRoute('preingest.geometricenrichment', session);
     },
   }
 });

@@ -11,7 +11,8 @@ var File = DS.Model.extend({
   ctime: DS.attr('date'),
 
   metadata: DS.attr(),
-  techMD: DS.attr()
+  techMD: DS.attr(),
+  downloadAllowed: DS.attr()
 });
 
 export

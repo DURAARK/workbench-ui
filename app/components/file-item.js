@@ -12,12 +12,17 @@ default Ember.Component.extend({
       this.sendAction('details', item);
     },
     downloadFile: function(item) {
+      let path = item.get('path');
+      console.log('path: ' + path);
       // FIXXME: expose 'sessions' folder from 'duraark-sessions'!
-      let url = item.get('path').replace('/duraark-storage', '/api/v0.7/geometricenrichment');
+      let url = item.get('path').replace('/tmp/duraark-data', 'http://duraark.tib.eu');
 
-      console.log('Downloading filr from URL: ' + url);
+      console.log('Downloading file from URL: ' + url);
       downloadURL(url);
     },
+    openRestrictedFile: function(item) {
+      alert('This download is restricted. Please contact the creator for more information!');
+    }
   },
 
   filename: function() {

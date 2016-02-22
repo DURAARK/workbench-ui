@@ -11,31 +11,31 @@
 
     <div class="l-files">
       <div class="l-file-list">
+        {{#duraark-sidebar overflowYAuto=true}}
+          <h2 style="margin: 1em;"><i class="fa fa-building-o"></i>&nbsp; Apply Geometric Tools</h2>
+          <hr>
 
-        <h2 style="margin: 1em;"><i class="fa fa-building-o"></i>&nbsp; Apply Geometric Tools</h2>
-        <hr>
+          {{#if digitalObjects.length}}
+            {{#file-list files=digitalObjects as |do|}}
+              <div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
+                {{digital-object-semantic item=do select="showToolSelection"}}
 
-        {{#if digitalObjects.length}}
-          {{#file-list files=digitalObjects as |do|}}
-            <div class="files-wrapper {{if do.isSelected "file-is-selected"}}">
-              {{digital-object-sementic item=do select="showToolSelection"}}
+                {{#each do.geoTools as |tool| }}
+                  {{#if (eq tool.label "Difference Detection")}}
+                    {{diffdetection-tile tool=tool item=do digitalObjects=digitalObjects session=session infoClicked="showToolUI" remove="removeTool" }} {{else if (eq tool.label "Point Cloud Compression")}} {{compression-tile tool=tool item=do session=session infoClicked="showToolUI"
+                    remove="removeTool" }}
+                  {{else}}
+                    {{tool-item tool=tool item=do session=session infoClicked="showToolUI" remove="removeTool" }}
+                  {{/if}}
+                {{/each}}
+              </div>
 
-              {{#each do.geoTools as |tool| }}
-                {{#if (eq tool.label "Difference Detection")}}
-                  {{diffdetection-tile tool=tool item=do digitalObjects=digitalObjects session=session infoClicked="showToolUI" remove="removeTool" }}
-                {{else if (eq tool.label "Point Cloud Compression")}}
-                  {{compression-tile tool=tool item=do session=session infoClicked="showToolUI" remove="removeTool" }}
-                {{else}}
-                  {{tool-item tool=tool item=do session=session infoClicked="showToolUI" remove="removeTool" }}
-                {{/if}}
-              {{/each}}
-            </div>
-
-            <hr>
-          {{/file-list}}
-        {{else}}
-          <h3>To use the geometric enrichment tools at least one point cloud file (E57) has to be selected.</h3>
-        {{/if}}
+              <hr>
+            {{/file-list}}
+          {{else}}
+            <h3>To use the geometric enrichment tools at least one point cloud file (E57) has to be selected.</h3>
+          {{/if}}
+        {{/duraark-sidebar}}
       </div>
 
       {{#if model}}
@@ -75,13 +75,17 @@
                       <br>
 
                       <ul style="margin-left: 1.5em;">
-                        <li style="list-style-type: disc;">Reconstruction of a BIM model from the point cloud file (<em>IFC Reconstruction component</em>)</li>
-                        <li style="list-style-type: disc;">Detection of electrical appliances within walls (<em>RISE component</em>)</li>
-                        <li style="list-style-type: disc;">Detection of differences between as-built and as-planned scans and models (<em>Difference Detection component</em>)/</li>
-                        <li style="list-style-type: disc;">Compression of point cloud files with the addition of normals (<em>Compression component</em>)/</li>
+                        <li style="list-style-type: disc;">Reconstruction of a BIM model from the point cloud file (
+                          <em>IFC Reconstruction component</em>)</li>
+                        <li style="list-style-type: disc;">Detection of electrical appliances within walls (
+                          <em>RISE component</em>)</li>
+                        <li style="list-style-type: disc;">Detection of differences between as-built and as-planned scans and models (
+                          <em>Difference Detection component</em>)/</li>
+                        <li style="list-style-type: disc;">Compression of point cloud files with the addition of normals (
+                          <em>Compression component</em>)/</li>
                       </ul>
-                      <br>
-                      For each BIM model the <em>Difference Detection</em> component can be applied.
+                      <br> For each BIM model the
+                      <em>Difference Detection</em> component can be applied.
                       <br>
                       <br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a file to apply a tool.
                     </div>

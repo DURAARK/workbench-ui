@@ -8,18 +8,18 @@
 		<div class="l-files">
 
 			<div class="l-file-list">
-				<h2 style="margin: 1em;"><i class="fa fa-folder-o"></i>&nbsp; 1 | Master Files:</h2>
-				<hr>
+				{{#duraark-sidebar overflowYAuto=true}}
+					<h2 style="margin: 1em;"><i class="fa fa-folder-o"></i>&nbsp; Files:</h2>
+					<hr>
 
-				{{#if files.length}}
-					{{#duraark-sidebar overflowYAuto=true}}
+					{{#if files.length}}
 						{{#file-list files=files as |file|}}
 							{{file-item item=file select="toggleSelection" details="showDetails"}}
 						{{/file-list}}
-					{{/duraark-sidebar}}
-				{{else}}
-					<h1>No files added yet.</h1>
-				{{/if}}
+					{{else}}
+						<h1>No files added yet.</h1>
+					{{/if}}
+				{{/duraark-sidebar}}
 			</div>
 
 			<div class="l-file-details">

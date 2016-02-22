@@ -1,0 +1,43 @@
+.c-digitalpreservation__label {
+  margin-top: 1em;
+}
+
+.c-digitalpreservation__buttons {
+  @include container();
+  margin: 1em;
+
+  .c-digitalpreservation__button {
+    @include gallery(1 of 2);
+    text-align: center;
+    padding: 0.5em;
+    background: #E6892B;
+  }
+}
+.c-digitalpreservation__summary {
+  header {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  section {
+    margin-bottom: 1em;
+    color: darkgray;
+    li {
+      font-size: 1.5em;
+      margin: 0.3em;
+    }
+  }
+}
+.c-digitalpreservation__details {
+  header {
+    font-size: 2em;
+  }
+  section {
+    // overflow: auto;
+    margin-bottom: 1em;
+    color: darkgray;
+    li {
+      font-size: 1em;
+      margin: 0.3em;
+    }
+  }
+}
