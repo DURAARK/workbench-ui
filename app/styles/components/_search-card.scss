@@ -83,8 +83,21 @@
 .c-search-card__suggestion_items {
   @include span(6 of 8 last);
   padding: 0.3em;
-  select {
+  select, input {
     width: 100%;
+  }
+  .withPostalLocality select {
+    float: left;
+      width: 50%;
+  }
+  .withPostalLocality input {
+      width: 50%;
+      float: left;
+  }
+  .withPostalLocality button {
+      width: 50%;
+      padding: 6px;
+      float: right;
   }
 }
 .c-search-card__button_bar {

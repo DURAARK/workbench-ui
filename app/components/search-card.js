@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   queryConfig: {},
   suggestions: Ember.Object.create({}),
   requestedSuggestions: false,
+  customPostalLocality: false,
 
   didRender: function() {
     if (this.get('requestedSuggestions')) {
@@ -34,9 +35,25 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    selectItem(selection, component) {
+    switchCustom() {
+      this.toggleProperty('customPostalLocality');
+      },
+
+      setPostalLocality(text) {
+        this.set('postalLocality', text);
+      },
+
+      selectItem(selection, component) {
         let queryConfig = this.get('queryConfig'),
+          predicate = null;
+
+        if (component) {
           predicate = component.get('predicate');
+        }
+
+        if (predicate === 'postalLocality') {
+          this.set('postalLocality', selection);
+        }
 
         queryConfig[predicate] = selection;
 
@@ -52,9 +69,19 @@ export default Ember.Component.extend({
           // If no value for a predicate was selected manually assign the first
           // (shown) item in the suggestions array to the respective
           query.get('variables').forEach(predicate => {
-            if (!queryConfig[predicate]) {
-              let defaultSuggestion = suggestions.get(predicate)[0];
-              queryConfig[predicate] = defaultSuggestion;
+            if (predicate === 'postalLocality') {
+              let value = this.get('postalLocality');
+              if (!value) {
+                let defaultSuggestion = suggestions.get(predicate)[0];
+                queryConfig[predicate] = defaultSuggestion;
+              } else {
+                queryConfig[predicate] = value;
+              }
+            } else {
+              if (!queryConfig[predicate]) {
+                let defaultSuggestion = suggestions.get(predicate)[0];
+                queryConfig[predicate] = defaultSuggestion;
+              }
             }
           });
         }

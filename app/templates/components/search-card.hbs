@@ -17,14 +17,26 @@
           <div class="c-search-card__suggestion_label"><i class="fa fa-pencil-square"></i>&nbsp; {{predicate}}:</div>
 
           <div class="c-search-card__suggestion_items">
-            {{#x-select value="suggestions" action="selectItem" predicate=predicate}}
-              {{#each (mut (get suggestions predicate)) as |suggestion|}}
-                {{#x-option value=suggestion}}{{suggestion}}{{/x-option}}
-              {{/each}}
-            {{/x-select}}
-
             {{#if (eq predicate "postalLocality")}}
-              or {{input value="http://www.facebook.com"}}
+              <div class="withPostalLocality">
+                {{#if customPostalLocality}}
+                  {{input type="text" value=postalLocality placeholder="or custom locality ..." key-press="selectItem" key-press="setPostalLocality"}}
+                  <button type="button" name="button" {{action "switchCustom"}}>Predefined</button>
+                {{else}}
+                  {{#x-select value="suggestions" action="selectItem" predicate=predicate}}
+                    {{#each (mut (get suggestions predicate)) as |suggestion|}}
+                      {{#x-option value=suggestion}}{{suggestion}}{{/x-option}}
+                    {{/each}}
+                  {{/x-select}}
+                  <button type="button" name="button" {{action "switchCustom"}}>Custom</button>
+                {{/if}}
+              </div>
+            {{else}}
+              {{#x-select value="suggestions" action="selectItem" predicate=predicate}}
+                {{#each (mut (get suggestions predicate)) as |suggestion|}}
+                  {{#x-option value=suggestion}}{{suggestion}}{{/x-option}}
+                {{/each}}
+              {{/x-select}}
             {{/if}}
 
           </div>

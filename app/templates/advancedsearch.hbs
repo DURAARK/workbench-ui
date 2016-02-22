@@ -18,19 +18,10 @@
     </div>
 
     <div class="l-explore__results">
-
-      <h1>hasResult: {{hasResults}}</h1>
-      <h1>hasError: {{hasError}}</h1>
-      <h1>results: {{results}}</h1>
-      <h1>error: {{error}}</h1>
-      <h1>app.showLoadingSpinner: {{app.showLoadingSpinner}}</h1>
-
       {{#if app.showLoadingSpinner}}
-      <h1>LOADING SPINNER</h1>
         {{loading-spinner-center}}
       {{else}}
         {{#if hasResults}}
-          <h1>hasRESULTS ist da</h1>
           {{#unless results.results.bindings.length}}
             <h1>No results for this query!</h1>
           {{else}}
@@ -42,11 +33,9 @@
             {{/duraark-sidebar}}
           {{/unless}}
         {{else}}
-        <h1>ERROR</h1>
           {{#if hasError}}
             <h1>ERROR: {{error}}</h1>
           {{else}}
-          <h1>HELP BOX</h1>
             {{#help-box}}
               <div class="c-help-box__hint">
                 The building archive contains metadata for each building, as well as contextual data which is gathered from public linked data clouds. The contextual data is automatically added to each building when it is ingested into the archive.
