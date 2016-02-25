@@ -6,6 +6,7 @@ var File = DS.Model.extend({
   directory: DS.attr('boolean'),
   size: DS.attr('number'),
   thumbnail: DS.attr('string'),
+  downloadURL: DS.attr('string'),
   mtime: DS.attr('date'),
   atime: DS.attr('date'),
   ctime: DS.attr('date'),

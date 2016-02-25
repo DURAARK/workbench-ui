@@ -14,8 +14,7 @@ default Ember.Component.extend({
     downloadFile: function(item) {
       let path = item.get('path');
       console.log('path: ' + path);
-      // FIXXME: expose 'sessions' folder from 'duraark-sessions'!
-      let url = item.get('path').replace('/tmp/duraark-data', 'http://duraark.tib.eu');
+      let url = item.get('downloadURL');
 
       console.log('Downloading file from URL: ' + url);
       downloadURL(url);
