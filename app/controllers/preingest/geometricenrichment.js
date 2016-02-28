@@ -237,6 +237,7 @@ export default Ember.Controller.extend({
         this.send('save');
       } else {
         let filename = selectedDigitalObject.get('path');
+        console.log('filename: ' + filename);
         // FIXXME: introduce tool registry!
         if (tool.get('label') === 'Detect Power Lines') {
           this.send('scheduleRISE', tool, filename);
@@ -407,7 +408,7 @@ export default Ember.Controller.extend({
       }, 500);
     },
 
-    scheduleBIMReconstruction(tool, filename, removeToolFirst) {
+    scheduleBIMReconstruction(tool, filename, removeToolFirst, retry) {
       let controller = this,
         eventId = new Date(),
         that = this;
@@ -448,7 +449,7 @@ export default Ember.Controller.extend({
 
       let config = {
         inputFile: filename,
-        restart: false
+        restart: retry
       };
 
       this.duraark.getIFCReconstruction(config).then(function(result) {

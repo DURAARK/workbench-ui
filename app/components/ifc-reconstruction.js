@@ -11,7 +11,7 @@ export default Ember.Component.extend({
           tool = this.get('tool'),
           filename = this.get('tool.filename');
 
-        this.sendAction('onRetry', tool, filename, removeTool);
+        this.sendAction('onRetry', tool, filename, removeTool, true);
       },
 
       downloadBIM() {

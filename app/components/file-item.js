@@ -12,8 +12,6 @@ default Ember.Component.extend({
       this.sendAction('details', item);
     },
     downloadFile: function(item) {
-      let path = item.get('path');
-      console.log('path: ' + path);
       let url = item.get('downloadURL');
 
       console.log('Downloading file from URL: ' + url);
@@ -25,7 +23,7 @@ default Ember.Component.extend({
   },
 
   filename: function() {
-    var path = this.get('item.path');
+    var path = this.get('item.downloadURL');
     if (path) {
       return path.split('/').pop();
     }

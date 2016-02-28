@@ -22,17 +22,17 @@ default Ember.Component.extend({
 
   name: function() {
     var path = this.get('item.path');
-    if (path) {
-      return path.split('/').pop();
-    } else {
-      var buildm = this.get('item.buildm');
-      var name = "Session";
+    var buildm = this.get('item.buildm');
 
-      if (buildm['http://data.duraark.eu/vocab/buildm/name'] && buildm['http://data.duraark.eu/vocab/buildm/name'].length) {
-        name = buildm['http://data.duraark.eu/vocab/buildm/name'][0]['@value'];
-      }
-      return name;
+    if (buildm['http://data.duraark.eu/vocab/buildm/filename']) {
+      name = buildm['http://data.duraark.eu/vocab/buildm/filename']['@value'].split('/').pop();
+    } else if (path) {
+      name = path.split('/').pop();
+    } else {
+      name = "Address:";
     }
+
+    return name;
   }.property('item'),
 
   address: function() {
