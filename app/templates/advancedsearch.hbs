@@ -25,7 +25,6 @@
           {{#unless results.results.bindings.length}}
             <h1>No results for this query!</h1>
           {{else}}
-            <h1>in duraark-sidebar</h1>
             {{#duraark-sidebar}}
               {{#duraark-tool class="large" title="Results" fullscreen="maximizeToolUI" }}
                 {{query-result-viewer results=results icon="fa-file-text-o"}}
