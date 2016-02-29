@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  pollingInterval: 2000,
+  pollingInterval: 10000,
   cronHandler: null,
 
   viewerUrl: function() {

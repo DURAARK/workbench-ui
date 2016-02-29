@@ -66,7 +66,8 @@
                 {{/if}}
               {{else}}
                 {{#if selectedDigitalObject}}
-                  {{tool-selector tools=tools click="clickedTool" icon="fa-building-o" digitalObject=selectedDigitalObject numFiles=digitalObjects.length}}
+                {{log enableRISE}}
+                  {{tool-selector tools=tools enableRISE=enableRISE click="clickedTool" icon="fa-building-o" digitalObject=selectedDigitalObject numFiles=digitalObjects.length}}
                 {{else}}
                   {{#help-box}}
                     <div class="c-help-box__hint">

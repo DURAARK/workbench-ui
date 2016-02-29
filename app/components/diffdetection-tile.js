@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   tagName: '',
   digitalObjects: [],
   fileToCompareWith: null,
-  pollingInterval: 2000,
+  pollingInterval: 10000,
 
   didInsertElement: function() {
     if (this.get('tool.fileIdB')) {

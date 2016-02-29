@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: '',
   cronHandler: null,
-  pollingInterval: 2000,
+  pollingInterval: 10000,
 
   _cancelCronJob() {
     let cronHandler = this.get('cronHandler');

@@ -4,7 +4,7 @@ import ENV from '../../config/environment';
 var sdaEndpoint = ENV.DURAARKAPI.sda;
 
 export default Ember.Controller.extend({
-  pollingInterval: 2000,
+  pollingInterval: 10000,
   cronHandlerPC2BIM: null,
   cronHandlerDifferenceDetection: null,
 
@@ -145,6 +145,11 @@ export default Ember.Controller.extend({
 
     this.set('cronHandler', cronHandler);
   },
+
+  enableRISE: function() {
+      let description = this.get('session.description');
+      return description === 'Electrical appliance showcase dataset';
+  }.property('session'),
 
   actions: {
     save: function() {
