@@ -19,9 +19,6 @@
       <button {{action "downloadBIM"}} class="c-ifc-reconstruction-tool__download">Download Model</button>
       <button {{action "downloadWalls"}} class="c-ifc-reconstruction-tool__download">Show Wall Serialization (Advanced)</button>
       <div class="c-ifc-reconstruction-tool__viewer">
-        {{#duraark-sidebar}}
-          {{duraark-ifc-viewer}}
-        {{/duraark-sidebar}}
       </div>
   {{else}}
     The reconstruction process generates a BIM model based on the point cloud information. The generated model is stored as IFC file within the archive.
