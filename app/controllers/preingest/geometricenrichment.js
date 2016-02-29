@@ -83,6 +83,8 @@ export default Ember.Controller.extend({
       },
       that = this;
 
+    console.log('[pollForPC2BIMResult] scheduling new request in: ' + this.get('pollingInterval'));
+
     let cronHandler = this.cron.addJob(function(data) {
       return data.duraark.getIFCReconstruction({
         inputFile: filename,
@@ -91,6 +93,8 @@ export default Ember.Controller.extend({
         let tool = data.tool,
           digitalObject = data.digitalObject,
           session = data.session;
+
+        console.log('polling result: ' + JSON.stringify(result, null, 4));
 
         // FIXXME: introduce PC2BIMTool object to do such things!
         if (tool.get('doRemove')) {
@@ -147,8 +151,8 @@ export default Ember.Controller.extend({
   },
 
   enableRISE: function() {
-      let description = this.get('session.description');
-      return description === 'Electrical appliance showcase dataset';
+    let description = this.get('session.description');
+    return description === 'Electrical appliance showcase dataset';
   }.property('session'),
 
   actions: {

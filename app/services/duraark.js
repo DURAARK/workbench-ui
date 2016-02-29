@@ -440,9 +440,6 @@ export default Ember.Service.extend({
   getDifferenceDetection(config) {
     let duraark = this;
 
-    // FIXXME: remove after testing!
-    config.restart = true;
-
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let diffDetectionEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/differencedetection';
 
