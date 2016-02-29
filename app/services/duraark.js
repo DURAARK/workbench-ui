@@ -453,6 +453,22 @@ export default Ember.Service.extend({
     })
   },
 
+  getE57CompressedFile(config) {
+    let duraark = this;
+
+    // config = { filename: abc, restart: false }
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      let geometricEnrichmentEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/compression';
+
+      duraark._post(geometricEnrichmentEndpoint, config).then(function(compressionResult) {
+        resolve(compressionResult);
+      }).catch(function(err) {
+        reject(err);
+      });
+    })
+  },
+
   getRoomInfo(file, roomId) {
     let duraark = this;
 
