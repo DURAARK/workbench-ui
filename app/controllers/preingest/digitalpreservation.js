@@ -101,13 +101,13 @@ export default Ember.Controller.extend({
         }
       };
 
-      controller.set('bagIsCreating', true);
-
       if (!downloadAllowed) {
         return alert('The download of this data is restricted. Please contact the owner of the data for further information!');
       } else {
         alert('The session download package will contain downsampled versions of the point cloud files for this demo to save bandwidth and time.');
       }
+
+      controller.set('bagIsCreating', true);
 
       _post(url, body).then(function(result) {
         console.log('Sucessfully created BagIt SIP at: ' + JSON.stringify(result, 4, null));
