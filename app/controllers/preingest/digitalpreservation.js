@@ -83,14 +83,16 @@ export default Ember.Controller.extend({
       // FIXXME: make code DRY!
       let session = this.get('session'),
         url = this.duraark.getAPIEndpoint('digitalPreservation') + '/sip',
-        controller = this;
-
-      var plainSession = {};
+        controller = this,
+        plainSession = {},
+        downloadAllowed = false;
 
       plainSession['physicalAssets'] = session.get('physicalAssets').toArray();
       plainSession['digitalObjects'] = session.get('digitalObjects').toArray();
       plainSession['files'] = session.get('files').toArray();
       plainSession['sessionFolder'] = session.get('sessionFolder');
+
+      downloadAllowed = plainSession.files[0].downloadAllowed;
 
       let body = {
         session: plainSession,
@@ -100,6 +102,12 @@ export default Ember.Controller.extend({
       };
 
       controller.set('bagIsCreating', true);
+
+      if (!downloadAllowed) {
+        return alert('The download of this data is restricted. Please contact the owner of the data for further information!');
+      } else {
+        alert('The session download package will contain downsampled versions of the point cloud files for this demo to save bandwidth and time.');
+      }
 
       _post(url, body).then(function(result) {
         console.log('Sucessfully created BagIt SIP at: ' + JSON.stringify(result, 4, null));
