@@ -1,0 +1,37 @@
+<div class="l-file c-file">
+  <div style="position: relative;">
+
+    <div class="c-tool-item__header" {{action "infoClicked" tool}}>
+      {{#if tool.showSlider}}
+        Select
+      {{/if}}
+      {{#if tool.hasData}}
+        Show Result &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+      {{/if}}
+      {{#if tool.isLoading}}
+        Pending...
+      {{/if}}
+      {{#if tool.hasError}}
+        Show Error &nbsp;<i class="fa fa-arrow-circle-o-right fa-lg"></i>
+      {{/if}}
+    </div>
+
+    <div class="c-file__name" style="text-align: center;">
+      <strong>Reconstruct BIM Model</strong>
+
+      {{#if tool.isLoading}}
+        {{inline-spinner}}
+      {{/if}}
+
+    </div>
+
+  </div>
+  <div class="c-file__actions">
+    <div {{action "remove" tool}} class="c-file__action" style="float: left;">
+      {{#unless static}}
+        <i class="fa fa-remove"></i>
+      {{/unless}}
+    </div>
+  </div>
+
+</div>

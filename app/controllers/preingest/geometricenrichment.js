@@ -493,88 +493,47 @@ export default Ember.Controller.extend({
       }, 500);
     },
 
-    scheduleBIMReconstruction(tool, filename, removeToolFirst, retry) {
+    scheduleBIMReconstruction(tool, filename, removeToolFirst) {
       let controller = this,
-        eventId = new Date(),
-        that = this;
+        eventId = new Date();
 
-      if (removeToolFirst) {
-        let geoTools = controller.get('selectedDigitalObject.geoTools');
-        let removeThis = geoTools.findBy('label', 'Reconstruct BIM Model');
-        geoTools.removeObject(removeThis);
-      }
-
-      // FIXXME: use ember-data!
-      if (!_.isFunction(tool.get)) {
-        tool.set('filename', filename); // ?
-        tool = Ember.Object.create(tool);
-      } else {
-        tool.set('filename', filename);
-      }
-
-      tool.set('isLoading', true);
-      tool.set('hasError', false);
-      tool.set('hasData', false);
-
-      let session = this.get('session');
-      let selectedDigitalObject = this.get('selectedDigitalObject');
-      let geoTools = selectedDigitalObject.get('geoTools');
-
-      geoTools.pushObject(tool);
-
-      controller.send('showLoadingSpinner', true, 'Scheduling BIM reconstruction ...');
-
-      this.duraark.fixxmeUpdateToolOnServer(this.get('session'), this.get('selectedDigitalObject'), tool);
+      // controller.send('showLoadingSpinner', true, 'Scheduling difference detection ...');
 
       controller.send('addPendingEvent', {
-        label: 'Scheduled BIM reconstruction: ' + filename.split('/').pop(),
+        label: 'Scheduled difference detection',
         displayType: 'info',
         id: eventId
       });
 
-      let config = {
-        inputFile: filename,
-        restart: retry
-      };
+      if (removeToolFirst) {
+        let geoTools = controller.get('selectedDigitalObject.geoTools');
+        let removeThis = geoTools.findBy('label', 'Difference Detection');
+        geoTools.removeObject(removeThis);
+      }
 
-      this.duraark.getIFCReconstruction(config).then(function(result) {
-        let session = that.get('session'),
-          digitalObject = selectedDigitalObject;
+      if (!_.isFunction(tool.get)) {
+        tool = Ember.Object.create(tool);
+      }
 
-        if (result.status === 'finished') {
-          Ember.set(tool, 'jobId', result.id);
-          Ember.set(tool, 'viewerUrl', result.viewerUrl);
-          Ember.set(tool, 'isLoading', false);
-          Ember.set(tool, 'hasData', true);
-          Ember.set(tool, 'hasError', false);
-          Ember.set(tool, 'bimDownloadUrl', result.bimDownloadUrl);
-          Ember.set(tool, 'wallsDownloadUrl', result.wallsDownloadUrl);
-
-          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
-
-          return true;
-        } else if (result.status === 'error') {
-          Ember.set(tool, 'jobId', result.id);
-          Ember.set(tool, 'isLoading', false);
-          Ember.set(tool, 'hasData', false);
-          Ember.set(tool, 'hasError', true);
-
-          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
-
-          return true;
-        } else if (result.status === 'pending') {
-          Ember.set(tool, 'jobId', result.id);
-          Ember.set(tool, 'isLoading', true);
-          Ember.set(tool, 'hasData', false);
-          Ember.set(tool, 'hasError', false);
-          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
-          that.pollForPC2BIMResult(filename, digitalObject, tool);
-
-          return false;
-        }
+      // Create new instance of tool to be added to 'geoTools'. It is not
+      // possible to directly use the 'tool' instance, as multiple files can
+      // have the same tool assigned.
+      var t = Ember.Object.create({
+        label: tool.get('label'),
+        description: tool.get('description'),
+        isLoading: false,
+        hasError: false,
+        hasData: false,
+        viewerUrl: null,
+        fileIdA: null,
+        fileIdB: null,
+        jobId: null,
+        showStartButton: true
       });
 
-      controller.send('showLoadingSpinner', false);
+      controller.get('selectedDigitalObject.geoTools').pushObject(t);
+
+      controller.send('save');
     }
   },
 

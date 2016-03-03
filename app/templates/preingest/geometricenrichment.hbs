@@ -22,7 +22,12 @@
 
                 {{#each do.geoTools as |tool| }}
                   {{#if (eq tool.label "Difference Detection")}}
-                    {{diffdetection-tile tool=tool item=do digitalObjects=digitalObjects session=session infoClicked="showToolUI" remove="removeTool" }} {{else if (eq tool.label "Point Cloud Compression")}} {{compression-tile tool=tool item=do session=session infoClicked="showToolUI"
+                    {{diffdetection-tile tool=tool item=do digitalObjects=digitalObjects session=session infoClicked="showToolUI" remove="removeTool" }}
+                    {{else if (eq tool.label "Point Cloud Compression")}}
+                    {{compression-tile tool=tool item=do session=session infoClicked="showToolUI"
+                    remove="removeTool" }}
+                    {{else if (eq tool.label "Reconstruct BIM Model")}}
+                    {{pc2bim-tile tool=tool item=do session=session infoClicked="showToolUI"
                     remove="removeTool" }}
                   {{else}}
                     {{tool-item tool=tool item=do session=session infoClicked="showToolUI" remove="removeTool" }}
