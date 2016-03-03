@@ -420,7 +420,7 @@ export default Ember.Controller.extend({
       controller.get('selectedDigitalObject.geoTools').pushObject(t);
 
       controller.send('save');
-    }
+    },
 
     scheduleRISE(tool, filename, removeToolFirst) {
       let controller = this,
