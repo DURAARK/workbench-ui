@@ -3,7 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: '',
   cronHandler: null,
-  pollingInterval: 10000,
+  pollingInterval: 2000,
+  tool: null,
 
   _cancelCronJob() {
     let cronHandler = this.get('cronHandler');
@@ -26,7 +27,7 @@ export default Ember.Component.extend({
 
     let cronHandler = this.cron.addJob(function(data) {
       let that = this;
-      return data.duraark.getIFCReconstruction(data.config).then(function(result) {
+      return data.duraark.getE57CompressedFile(data.config).then(function(result) {
         let tool = data.tool;
 
         Ember.set(tool, 'jobId', result.id);
@@ -82,6 +83,7 @@ export default Ember.Component.extend({
     startClicked: function() {
       let filename = this.get('item.path'),
         digitalObject = this.get('item'),
+        compressionRatio = this.get('tool.compressionRatio'),
         that = this;
 
       this.set('tool.hasData', false);
@@ -92,10 +94,11 @@ export default Ember.Component.extend({
 
       let config = {
         inputFile: filename,
+        ratio: compressionRatio,
         restart: false
       };
 
-      this.duraark.getIFCReconstruction(config).then(function(result) {
+      this.duraark.getE57CompressedFile(config).then(function(result) {
         let session = that.get('session'),
           digitalObject = that.get('item'),
           tool = that.get('tool');

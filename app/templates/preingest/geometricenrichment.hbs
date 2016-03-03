@@ -64,9 +64,14 @@
                     {{difference-detection tool=tool session=session item=digitalObject}}
                   {{/duraark-tool}}
                 {{/if}}
+
+                {{#if isCompressionTool}}
+                  {{#duraark-tool title="Compression Tool" close="closeToolUI" fullscreen="maximizeToolUI" }}
+                    {{compression-tool tool=tool session=session item=digitalObject onRetry="scheduleCompression"}}
+                  {{/duraark-tool}}
+                {{/if}}
               {{else}}
                 {{#if selectedDigitalObject}}
-                {{log enableRISE}}
                   {{tool-selector tools=tools enableRISE=enableRISE click="clickedTool" icon="fa-building-o" digitalObject=selectedDigitalObject numFiles=digitalObjects.length}}
                 {{else}}
                   {{#help-box}}
@@ -85,7 +90,7 @@
                         <li style="list-style-type: disc;">Compression of point cloud files with the addition of normals (
                           <em>Compression component</em>)/</li>
                       </ul>
-                      <br> For each BIM model the
+                      <br>For each BIM model the
                       <em>Difference Detection</em> component can be applied.
                       <br>
                       <br> Use the <i class="fa fa-plus" style="margin-left: 0.5em; margin-right: 0.5em;"></i> sign on a file to apply a tool.

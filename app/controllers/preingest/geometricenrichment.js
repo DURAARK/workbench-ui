@@ -6,6 +6,7 @@ var sdaEndpoint = ENV.DURAARKAPI.sda;
 export default Ember.Controller.extend({
   pollingInterval: 10000,
   cronHandlerPC2BIM: null,
+  cronHandlerCompression: null,
   cronHandlerDifferenceDetection: null,
 
   pollForDifferenceDetectionResult: function(files, digitalObject, tool) {
@@ -72,6 +73,81 @@ export default Ember.Controller.extend({
     }, data, this.get('pollingInterval'));
 
     this.set('cronHandlerDifferenceDetection', cronHandler);
+  },
+
+  pollForCompressionResult: function(filename, digitalObject, tool) {
+    let data = {
+        tool: tool,
+        session: this.get('session'),
+        digitalObject: digitalObject,
+        duraark: this.duraark
+      },
+      that = this;
+
+    console.log('[pollForCompressionResult] scheduling new request in: ' + this.get('pollingInterval'));
+
+    let cronHandler = this.cron.addJob(function(data) {
+      return data.duraark.getE57CompressedFile({
+        inputFile: filename,
+        ratio: tool.get('compressionRatio')
+      }).then(function(result) {
+        let tool = data.tool,
+          digitalObject = data.digitalObject,
+          session = data.session;
+
+        console.log('polling result: ' + JSON.stringify(result, null, 4));
+
+        // FIXXME: introduce PC2BIMTool object to do such things!
+        if (tool.get('doRemove')) {
+          that.cron.removeJob(that.get('cronHandlerCompression'));
+          tool.set('doRemove', false);
+          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          return;
+        }
+
+        Ember.set(tool, 'jobId', result.id);
+
+        if (result.status === 'finished') {
+          Ember.run(function() {
+            Ember.set(tool, 'jobId', result.id);
+            Ember.set(tool, 'isLoading', false);
+            Ember.set(tool, 'hasData', true);
+            Ember.set(tool, 'hasError', false);
+            Ember.set(tool, 'downloadUrl', result.bimDownloadUrl);
+
+            that.cron.removeJob(that.get('cronHandlerCompression'));
+            that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          });
+
+          return true;
+        } else if (result.status === 'error') {
+          Ember.run(function() {
+            Ember.set(tool, 'jobId', result.id);
+            Ember.set(tool, 'isLoading', false);
+            Ember.set(tool, 'hasData', false);
+            Ember.set(tool, 'hasError', true);
+
+            that.cron.removeJob(that.get('cronHandlerCompression'));
+            that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          });
+
+          return true;
+        } else if (result.status === 'pending') {
+          Ember.run(function() {
+            Ember.set(tool, 'jobId', result.id);
+            Ember.set(tool, 'isLoading', true);
+            Ember.set(tool, 'hasData', false);
+            Ember.set(tool, 'hasError', false);
+
+            that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+          });
+
+          return false;
+        }
+      });
+    }, data, this.get('pollingInterval'));
+
+    this.set('cronHandlerCompression', cronHandler);
   },
 
   pollForPC2BIMResult: function(filename, digitalObject, tool) {
@@ -292,7 +368,7 @@ export default Ember.Controller.extend({
         description: tool.get('description'),
         inputFile: filename,
         downloadUrl: null,
-        compressionRatio: 0.02,
+        compressionRatio: 0.5,
         showSlider: true,
         isLoading: false,
         hasError: false,
@@ -344,162 +420,162 @@ export default Ember.Controller.extend({
       controller.get('selectedDigitalObject.geoTools').pushObject(t);
 
       controller.send('save');
-    },
-
-    scheduleRISE(tool, filename, removeToolFirst) {
-      let controller = this,
-        eventId = new Date();
-
-      controller.send('addPendingEvent', {
-        label: 'Scheduled power line detection',
-        displayType: 'info',
-        id: eventId
-      });
-
-      tool.set('isLoading', true);
-      tool.set('hasError', false);
-      tool.set('hasData', false);
-
-      var digObj = controller.get('selectedDigitalObject');
-      digObj.get('geoTools').pushObject(tool);
-
-      this.duraark.fixxmeUpdateToolOnServer(this.get('session'), this.get('selectedDigitalObject'), tool);
-
-      // FIXXME: for now give the impression that a processing is taking place on the backend ...
-      setTimeout(function() {
-        let digObjs = controller.get('digitalObjects'),
-          curTool = null,
-          myDigObj = null;
-
-        digObjs.forEach(digObj => {
-          let tool = digObj.get('geoTools').findBy('label', 'Detect Power Lines');
-          // FIXXME: narrow down to current tool!
-          if (tool) {
-            myDigObj = digObj;
-            curTool = tool;
-
-            // FIXXME: the first time an object is created it is no ember object. Find out why!
-            // This workaround fixes that:
-            if (!_.isFunction(curTool.get)) {
-              myDigObj.get('geoTools').removeObject(curTool);
-              curTool = Ember.Object.create(curTool);
-              myDigObj.get('geoTools').pushObject(curTool);
-            }
-          }
-        });
-
-        if (curTool) {
-          // FIXXME: To get the bindings to correctly fire the tool has to be removed and added again.
-          // Otherwise setting e.g. the tool's 'isLoading' property does not reflect in the GUI.
-          myDigObj.get('geoTools').removeObject(curTool);
-          myDigObj.get('geoTools').pushObject(curTool);
-        } else {
-          throw new Error('this should not happen, investigate!');
-        }
-
-        curTool.set('isLoading', false);
-        curTool.set('hasError', false);
-        curTool.set('hasData', true);
-
-        controller.duraark.fixxmeUpdateToolOnServer(controller.get('session'), controller.get('selectedDigitalObject'), curTool);
-
-        controller.duraark.getFloorPlanData(filename).then(data => {
-          controller.set('wallConfig', data);
-        }).catch(err => {
-          controller.set('wallConfig', false);
-        });
-
-        controller.send('addFinishedEvent', {
-          label: 'Finished power line detection',
-          displayType: 'success',
-          id: eventId
-        });
-      }, 500);
-    },
-
-    scheduleBIMReconstruction(tool, filename, removeToolFirst, retry) {
-      let controller = this,
-        eventId = new Date(),
-        that = this;
-
-      if (removeToolFirst) {
-        let geoTools = controller.get('selectedDigitalObject.geoTools');
-        let removeThis = geoTools.findBy('label', 'Reconstruct BIM Model');
-        geoTools.removeObject(removeThis);
-      }
-
-      // FIXXME: use ember-data!
-      if (!_.isFunction(tool.get)) {
-        tool.set('filename', filename); // ?
-        tool = Ember.Object.create(tool);
-      } else {
-        tool.set('filename', filename);
-      }
-
-      tool.set('isLoading', true);
-      tool.set('hasError', false);
-      tool.set('hasData', false);
-
-      let session = this.get('session');
-      let selectedDigitalObject = this.get('selectedDigitalObject');
-      let geoTools = selectedDigitalObject.get('geoTools');
-
-      geoTools.pushObject(tool);
-
-      controller.send('showLoadingSpinner', true, 'Scheduling BIM reconstruction ...');
-
-      this.duraark.fixxmeUpdateToolOnServer(this.get('session'), this.get('selectedDigitalObject'), tool);
-
-      controller.send('addPendingEvent', {
-        label: 'Scheduled BIM reconstruction: ' + filename.split('/').pop(),
-        displayType: 'info',
-        id: eventId
-      });
-
-      let config = {
-        inputFile: filename,
-        restart: retry
-      };
-
-      this.duraark.getIFCReconstruction(config).then(function(result) {
-        let session = that.get('session'),
-          digitalObject = selectedDigitalObject;
-
-        if (result.status === 'finished') {
-          Ember.set(tool, 'jobId', result.id);
-          Ember.set(tool, 'viewerUrl', result.viewerUrl);
-          Ember.set(tool, 'isLoading', false);
-          Ember.set(tool, 'hasData', true);
-          Ember.set(tool, 'hasError', false);
-          Ember.set(tool, 'bimDownloadUrl', result.bimDownloadUrl);
-          Ember.set(tool, 'wallsDownloadUrl', result.wallsDownloadUrl);
-
-          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
-
-          return true;
-        } else if (result.status === 'error') {
-          Ember.set(tool, 'jobId', result.id);
-          Ember.set(tool, 'isLoading', false);
-          Ember.set(tool, 'hasData', false);
-          Ember.set(tool, 'hasError', true);
-
-          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
-
-          return true;
-        } else if (result.status === 'pending') {
-          Ember.set(tool, 'jobId', result.id);
-          Ember.set(tool, 'isLoading', true);
-          Ember.set(tool, 'hasData', false);
-          Ember.set(tool, 'hasError', false);
-          that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
-          that.pollForPC2BIMResult(filename, digitalObject, tool);
-
-          return false;
-        }
-      });
-
-      controller.send('showLoadingSpinner', false);
     }
+  },
+
+  scheduleRISE(tool, filename, removeToolFirst) {
+    let controller = this,
+      eventId = new Date();
+
+    controller.send('addPendingEvent', {
+      label: 'Scheduled power line detection',
+      displayType: 'info',
+      id: eventId
+    });
+
+    tool.set('isLoading', true);
+    tool.set('hasError', false);
+    tool.set('hasData', false);
+
+    var digObj = controller.get('selectedDigitalObject');
+    digObj.get('geoTools').pushObject(tool);
+
+    this.duraark.fixxmeUpdateToolOnServer(this.get('session'), this.get('selectedDigitalObject'), tool);
+
+    // FIXXME: for now give the impression that a processing is taking place on the backend ...
+    setTimeout(function() {
+      let digObjs = controller.get('digitalObjects'),
+        curTool = null,
+        myDigObj = null;
+
+      digObjs.forEach(digObj => {
+        let tool = digObj.get('geoTools').findBy('label', 'Detect Power Lines');
+        // FIXXME: narrow down to current tool!
+        if (tool) {
+          myDigObj = digObj;
+          curTool = tool;
+
+          // FIXXME: the first time an object is created it is no ember object. Find out why!
+          // This workaround fixes that:
+          if (!_.isFunction(curTool.get)) {
+            myDigObj.get('geoTools').removeObject(curTool);
+            curTool = Ember.Object.create(curTool);
+            myDigObj.get('geoTools').pushObject(curTool);
+          }
+        }
+      });
+
+      if (curTool) {
+        // FIXXME: To get the bindings to correctly fire the tool has to be removed and added again.
+        // Otherwise setting e.g. the tool's 'isLoading' property does not reflect in the GUI.
+        myDigObj.get('geoTools').removeObject(curTool);
+        myDigObj.get('geoTools').pushObject(curTool);
+      } else {
+        throw new Error('this should not happen, investigate!');
+      }
+
+      curTool.set('isLoading', false);
+      curTool.set('hasError', false);
+      curTool.set('hasData', true);
+
+      controller.duraark.fixxmeUpdateToolOnServer(controller.get('session'), controller.get('selectedDigitalObject'), curTool);
+
+      controller.duraark.getFloorPlanData(filename).then(data => {
+        controller.set('wallConfig', data);
+      }).catch(err => {
+        controller.set('wallConfig', false);
+      });
+
+      controller.send('addFinishedEvent', {
+        label: 'Finished power line detection',
+        displayType: 'success',
+        id: eventId
+      });
+    }, 500);
+  },
+
+  scheduleBIMReconstruction(tool, filename, removeToolFirst, retry) {
+    let controller = this,
+      eventId = new Date(),
+      that = this;
+
+    if (removeToolFirst) {
+      let geoTools = controller.get('selectedDigitalObject.geoTools');
+      let removeThis = geoTools.findBy('label', 'Reconstruct BIM Model');
+      geoTools.removeObject(removeThis);
+    }
+
+    // FIXXME: use ember-data!
+    if (!_.isFunction(tool.get)) {
+      tool.set('filename', filename); // ?
+      tool = Ember.Object.create(tool);
+    } else {
+      tool.set('filename', filename);
+    }
+
+    tool.set('isLoading', true);
+    tool.set('hasError', false);
+    tool.set('hasData', false);
+
+    let session = this.get('session');
+    let selectedDigitalObject = this.get('selectedDigitalObject');
+    let geoTools = selectedDigitalObject.get('geoTools');
+
+    geoTools.pushObject(tool);
+
+    controller.send('showLoadingSpinner', true, 'Scheduling BIM reconstruction ...');
+
+    this.duraark.fixxmeUpdateToolOnServer(this.get('session'), this.get('selectedDigitalObject'), tool);
+
+    controller.send('addPendingEvent', {
+      label: 'Scheduled BIM reconstruction: ' + filename.split('/').pop(),
+      displayType: 'info',
+      id: eventId
+    });
+
+    let config = {
+      inputFile: filename,
+      restart: retry
+    };
+
+    this.duraark.getIFCReconstruction(config).then(function(result) {
+      let session = that.get('session'),
+        digitalObject = selectedDigitalObject;
+
+      if (result.status === 'finished') {
+        Ember.set(tool, 'jobId', result.id);
+        Ember.set(tool, 'viewerUrl', result.viewerUrl);
+        Ember.set(tool, 'isLoading', false);
+        Ember.set(tool, 'hasData', true);
+        Ember.set(tool, 'hasError', false);
+        Ember.set(tool, 'bimDownloadUrl', result.bimDownloadUrl);
+        Ember.set(tool, 'wallsDownloadUrl', result.wallsDownloadUrl);
+
+        that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+
+        return true;
+      } else if (result.status === 'error') {
+        Ember.set(tool, 'jobId', result.id);
+        Ember.set(tool, 'isLoading', false);
+        Ember.set(tool, 'hasData', false);
+        Ember.set(tool, 'hasError', true);
+
+        that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+
+        return true;
+      } else if (result.status === 'pending') {
+        Ember.set(tool, 'jobId', result.id);
+        Ember.set(tool, 'isLoading', true);
+        Ember.set(tool, 'hasData', false);
+        Ember.set(tool, 'hasError', false);
+        that.duraark.fixxmeUpdateToolOnServer(session, digitalObject, tool);
+        that.pollForPC2BIMResult(filename, digitalObject, tool);
+
+        return false;
+      }
+    });
+
+    controller.send('showLoadingSpinner', false);
   },
 
   isElectricalApplianceDetectionTool: function() {
@@ -519,7 +595,9 @@ export default Ember.Controller.extend({
 
   isCompressionTool: function() {
     let toolname = this.get('tool.label');
-    return (toolname === 'Poinc Cloud Compression');
+    let result = (toolname === 'Point Cloud Compression') ? true : false;
+    console.log('result: ' + result);
+    return result;
   }.property('tool'),
 
   tools: function() {

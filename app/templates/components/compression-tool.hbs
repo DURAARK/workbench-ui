@@ -1,0 +1,29 @@
+<div class="l-ifc-reconstruction-tool c-ifc-reconstruction-tool">
+  {{#if tool.hasError}}
+    <h2 class="c-ifc-reconstruction-tool__error-header">
+      Compression failed!
+    </h2>
+
+    <div style="text-align: center; width: 100%">
+      <button {{action "retry"}} class="c-ifc-reconstruction-tool__retry"><i class="fa fa-refresh"></i> Retry</button>
+    </div>
+
+    <div class="c-ifc-reconstruction-tool__error">
+      <h2>Error</h2>
+      <br> {{tool.errorText}}
+    </div>
+
+  {{else}}
+
+    {{#unless tool.isLoading}}
+      <div style="text-align: center; width: 100%">
+        <button {{action "download"}} class="c-ifc-reconstruction-tool__download">Download Model</button>
+      </div>
+  {{else}}
+    This tool generates a compressed version of the point cloud.
+
+    <br>
+    <br> Currently the compression is in progress, the file will be available in a few minutes or hours, depending on the file size of the point cloud scan.
+    {{/unless}}
+  {{/if}}
+</div>

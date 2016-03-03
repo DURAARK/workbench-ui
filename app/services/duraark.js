@@ -456,7 +456,7 @@ export default Ember.Service.extend({
   getE57CompressedFile(config) {
     let duraark = this;
 
-    // config = { filename: abc, restart: false }
+    // config = { filename: abc, ratio: 0-1, restart: false }
 
     return new Ember.RSVP.Promise(function(resolve, reject) {
       let geometricEnrichmentEndpoint = duraark.getAPIEndpoint('geometricEnrichment') + '/compression';
