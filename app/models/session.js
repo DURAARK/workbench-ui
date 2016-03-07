@@ -6,6 +6,7 @@ var Session = DS.Model.extend({
   uri: DS.attr('string'),
   address: DS.attr('string'),
   description: DS.attr('string'),
+  thumbnail: DS.attr('string'),
 
   physicalAssets: DS.attr(),
   digitalObjects: DS.attr(),

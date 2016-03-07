@@ -1,11 +1,15 @@
 <div class="l-session-card c-session-card mdl-card mdl-shadow--2dp">
-  <div {{action "editClicked" session}} class="mdl-card__status {{if isWIP 'wip'}}  {{if isArchived 'archived'}} {{if isNew 'new'}}">
+  <!-- <div {{action "editClicked" session}} class="mdl-card__status {{if isWIP 'wip'}}  {{if isArchived 'archived'}} {{if isNew 'new'}}">
     {{#if isNew}}
       New {{else if isWIP}} Work In Progress {{else if isArchived}} Archived
     {{/if}}
+  </div> -->
+
+  <div class="mdl-card__title">
+    <img src={{thumbnail}} alt="session thumbnail" width="100%"/>
   </div>
 
-  <div {{action "editClicked" session}} class="mdl-card__title">
+  <div {{action "editClicked" session}} class="mdl-card__titjle">
     <h2 class="mdl-card__title-text">{{session.label}}</h2>
   </div>
 

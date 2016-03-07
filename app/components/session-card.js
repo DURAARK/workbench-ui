@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: '',
+  defaultThumbnail: 'http://duraark.tib.eu/data/public/BuildingData/04_thumbnails/selection/Nygade_Scan1001.ifc.png',
 
   isWIP: function() {
     return this.get('session.state') === 'wip';
@@ -17,6 +18,16 @@ export default Ember.Component.extend({
 
   isDemoSession: function() {
       return this.get('session.label') === 'Nygade';
+  }.property('session'),
+
+  thumbnail: function() {
+    let thumbnail = this.get('session.thumbnail');
+    if (thumbnail) {
+      return thumbnail;
+    }
+
+console.log('asdfasdfasdf');
+    return this.get('defaultThumbnail');
   }.property('session'),
 
   actions: {

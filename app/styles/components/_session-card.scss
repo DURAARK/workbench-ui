@@ -2,7 +2,6 @@
   @include gallery(3 of 12);
   margin-bottom: gutter();
 }
-
 .c-session-card > .mdl-card__status {
   $height: 2em;
   $opacity: 0.9;
@@ -16,7 +15,6 @@
   text-align: right;
   color: $gui-main-font;
   font-weight: bold;
-
   &.new {
     opacity: $opacity;
     background: $btn-blue;
@@ -40,7 +38,7 @@
 .c-session-card > .mdl-card__title {
   color: #fff;
   height: 176px;
-  background: url("/images/holmenkollen.jpg") center / cover;
+  // background: url("/images/holmenkollen.jpg") center / cover;
   padding: 0;
   width: 100%;
 }
@@ -48,10 +46,11 @@
   color: #000;
   padding: 0.2em;
   width: 100%;
+  background: #fff;
 }
-// .c-session-card > .mdl-card__menu {
-//   color: #fff;
-// }
+.c-session-card > .mdl-card__supporting-text {
+  background: #fff;
+}
 .c-session-card .mdl-card__title-text {
   padding: 0.2em;
   color: #000;
