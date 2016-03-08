@@ -36,7 +36,8 @@ console.log('asdfasdfasdf');
     },
 
     deleteClicked: function(session) {
-      this.sendAction('deleteClicked', session);
+      alert('This public demo server does not allow the deletion of fixed sessions!');
+      // this.sendAction('deleteClicked', session);
     }
   }
 });

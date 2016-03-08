@@ -4,6 +4,7 @@ import ENV from '../../config/environment';
 var sdaEndpoint = ENV.DURAARKAPI.sda;
 
 export default Ember.Controller.extend({
+  selectedDigitalObject: null,
   pollingInterval: 10000,
   cronHandlerPC2BIM: null,
   cronHandlerCompression: null,
@@ -170,7 +171,7 @@ export default Ember.Controller.extend({
           digitalObject = data.digitalObject,
           session = data.session;
 
-        console.log('polling result: ' + JSON.stringify(result, null, 4));
+        // console.log('polling result: ' + JSON.stringify(result, null, 4));
 
         // FIXXME: introduce PC2BIMTool object to do such things!
         if (tool.get('doRemove')) {
@@ -227,9 +228,16 @@ export default Ember.Controller.extend({
   },
 
   enableRISE: function() {
-    let description = this.get('session.description');
-    return description === 'Electrical appliance showcase dataset';
-  }.property('session'),
+    // FIXXME: this is hardcoded for demo purposes:
+    let digObjLabel = this.get('selectedDigitalObject.label'),
+    description = this.get('session.description');
+
+    console.log('adsflasdf: ' + digObjLabel)
+    let flag = (description === 'Electrical appliance showcase dataset' || digObjLabel === 'CITA_Byg72_2nd_Scan.e57');
+    console.log('asdfasdf: ' + flag);
+
+    return flag;
+  }.property('selectedDigitalObject'),
 
   actions: {
     save: function() {
