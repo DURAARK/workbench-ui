@@ -8,7 +8,7 @@ COPY ./package.json /opt/workbench-ui
 RUN npm install ember-cli -g && npm install
 
 COPY ./bower.json /opt/workbench-ui
-RUN mv .git .git-tmp && bower install --allow-root; mv .git-tmp .git
+RUN bower install --allow-root
 
 COPY ./ /opt/workbench-ui
 
