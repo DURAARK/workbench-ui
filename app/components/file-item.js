@@ -26,6 +26,8 @@ default Ember.Component.extend({
     var path = this.get('item.downloadURL');
     if (path) {
       return path.split('/').pop();
+    } else {
+      return this.get('item.path').split('/').pop();
     }
 
     return '';
