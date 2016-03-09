@@ -2,6 +2,7 @@ FROM duraark/microservice-base
 
 MAINTAINER Martin Hecher <martin.hecher@fraunhofer.at>
 
+RUN mkdir /opt/workbench-ui
 WORKDIR /opt/workbench-ui
 
 COPY ./package.json /opt/workbench-ui
