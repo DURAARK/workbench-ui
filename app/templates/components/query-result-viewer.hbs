@@ -9,7 +9,7 @@
         <hr>
 
         {{#duraark-sidebar}}
-          <iframe src={{selectedCandidate}} width="100%" height="100%"></iframe>
+          <iframe src= {{selectedCandidate}} width="100%" height="100%"></iframe>
         {{/duraark-sidebar}}
       {{else}}
         <h1>Select a result link ...</h1>
@@ -21,9 +21,11 @@
         <table class="c-candidate-list">
           <thead>
             <tr>
-              <th style="width: 10%;">
-                <!-- Show button -->
-              </th>
+              {{#if showShowButton}}
+                <th style="width: 10%;">
+                  <!-- Show button -->
+                </th>
+              {{/if}}
               {{#each results.head.vars as |col|}}
                 <th>{{col}}</th>
               {{/each}}
@@ -32,9 +34,11 @@
           <tbody>
             {{#each results.results.bindings as |row|}}
               <tr>
-                <td style="text-align: center; width: 10%;">
-                  <button {{action "selectCandidate" row}}>Show</button>
-                </td>
+                {{#if showShowButton}}
+                  <td style="text-align: center; width: 10%;">
+                    <button {{action "selectCandidate" row}}>Show</button>
+                  </td>
+                {{/if}}
                 {{#each results.head.vars as |propName|}}
                   <td {{action "selectCandidate" row}}>{{strip-namespace (get-prop row propName)}}</td>
                 {{/each}}
@@ -42,7 +46,7 @@
             {{/each}}
           </tbody>
         </table>
-        {{/duraark-sidebar}}
+      {{/duraark-sidebar}}
     </div>
   {{else}}
     {{#help-box}}

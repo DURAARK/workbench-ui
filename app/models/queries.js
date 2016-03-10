@@ -5,5 +5,6 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   sparql: DS.attr('string'),
   variables: DS.attr(),
+  urlField: DS.attr('string'),
   result: DS.attr()
 });
