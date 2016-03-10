@@ -36,7 +36,7 @@ export default Ember.Component.extend({
 
   actions: {
     switchCustom() {
-      this.toggleProperty('customPostalLocality');
+        this.toggleProperty('customPostalLocality');
       },
 
       setPostalLocality(text) {
@@ -65,6 +65,8 @@ export default Ember.Component.extend({
           query = this.get('query'),
           suggestions = this.get('suggestions');
 
+        console.log('queryConfig: %s', JSON.stringify(queryConfig, null, 4));
+
         if (query.get('variables')) {
           // If no value for a predicate was selected manually assign the first
           // (shown) item in the suggestions array to the respective
@@ -86,11 +88,10 @@ export default Ember.Component.extend({
           });
         }
 
-        console.log('queryConfig: %s', JSON.stringify(queryConfig, null, 4));
         this.sendAction('showResultsClicked', query, queryConfig);
 
         // Reset query config:
-        this.set('queryConfig', {});
+        // this.set('queryConfig', {});
       }
   }
 });
